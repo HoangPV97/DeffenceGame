@@ -11,6 +11,8 @@ public class PlaySkill : MonoBehaviour
     public float CountdownTime;
     bool StartCountdown = false;
     float TimeLeft;
+    public float NummberBullet=10;
+    bool StopInvoke = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,32 @@ public class PlaySkill : MonoBehaviour
         StartCountdown = true;
         TimeLeft = CountdownTime;
         this.GetComponent<Image>().raycastTarget = false;
+    }
+    public void Skill2()
+    {
+        StartCoroutine(PlaySkill2());
+        Countdown.SetActive(true);
+        StartCountdown = true;
+        TimeLeft = CountdownTime;
+        this.GetComponent<Image>().raycastTarget = false;
+    }
+    public IEnumerator  PlaySkill2()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            InstanceBullet();
+        }
+        
+        //if (StopInvoke==false)
+        //{
+        //    CancelInvoke("InstanceObject");
+        //}
+        
+    }
+    public void InstanceBullet()
+    {
+        Instantiate(BulletOfSkill, Barrel.position, Quaternion.identity);
     }
 
 }

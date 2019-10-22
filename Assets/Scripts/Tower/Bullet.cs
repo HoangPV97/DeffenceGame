@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public bool SeekTarget=false;
     protected void Start()
     {
-
+        Destroy(this.gameObject, 7.0f);
     }
     public void Seek(Transform _Target)
     {
@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
         else
         {
             transform.position += Vector3.up * Speed * Time.deltaTime;
+            
         }
         
     }
@@ -50,10 +51,7 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            else
-            {
-                Destroy(gameObject, 5f);
-            }
+            
             
         }
     }
