@@ -13,6 +13,17 @@ public class TowerBullet : Bullet
     {
         base.Update();
     }
-
+    private void OnTriggerEnter2D(Collider2D Target)
+    {
+        if (Target.gameObject.tag.Equals(TargetTag))
+        {
+            Enemy enemy = Target.GetComponent<Enemy>();
+            enemy?.TakeDamge(Damge);
+            if (SeekTarget)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }
 

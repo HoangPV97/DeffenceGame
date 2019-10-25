@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3298531188047430334}
   - component: {fileID: 282828687622773971}
   - component: {fileID: 1648234707}
-  - component: {fileID: 7826956827455314596}
+  - component: {fileID: 2042101139113879814}
   m_Layer: 0
   m_Name: TowerBullet
   m_TagString: Bullet
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850151877545491864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.071619, y: -1.4982634, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -1.835, y: -1.4982634, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,14 +99,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.85}
+    oldSize: {x: 0.6, y: 0.59}
     newSize: {x: 0.43, y: 0.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43, y: 0.85}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!50 &1648234707
 Rigidbody2D:
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7826956827455314596
+--- !u!114 &2042101139113879814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,9 +138,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 850151877545491864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e134d68037e17c243badcac9665f67e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a35a1fd7390b2045bbc2da85b9c8d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  Damge: 30
+  Speed: 8
+  Damge: 15
+  TargetTag: Enemy
   SeekTarget: 1

@@ -8,11 +8,14 @@ public class Characters : MonoBehaviour
     public float range = 7f;
     protected Transform Target;
     private Enemy m_Enemy;
-    private float Countdown = 1f;
+    public string EnemyTag="Enemy";
+    private float RateOfFire = 1f;
     public GameObject Barrel;
     public GameObject Bullet;
+    public static bool Live = true;
     protected void Start()
     {
+        Live = true;
         InvokeRepeating("UpdateEnemy", 0f, 0.5f);
     }
 
@@ -24,11 +27,15 @@ public class Characters : MonoBehaviour
         {
             return;
         }
-        AutoShoot();
+        if (Live)
+        {
+            AutoShoot();
+        }
+        
     }
     private void UpdateEnemy()
     {
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject Enemy in Enemies)
@@ -57,17 +64,17 @@ public class Characters : MonoBehaviour
         {
             GameObject bullet = Instantiate(Bullet, Barrel.transform.position, Quaternion.identity);
             Bullet towerBullet = bullet.GetComponent<Bullet>();
-            towerBullet?.Seek(Target);
+            towerBullet?.SetTarget(Target);
         }
         
     }
     private void AutoShoot()
     {
-        if (Countdown <= 0f)
+        if (RateOfFire <= 0f)
         {
             Shoot();
-            Countdown = 1f;
+            RateOfFire = 1f;
         }
-        Countdown -= Time.deltaTime;
+        RateOfFire -= Time.deltaTime;
     }
 }

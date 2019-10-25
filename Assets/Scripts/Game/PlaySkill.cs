@@ -67,6 +67,7 @@ public class PlaySkill : MonoBehaviour
     }
     public void InstanceBullet()
     {
+        if(BulletOfSkill!=null || Barrel!=null)
         Instantiate(BulletOfSkill, Barrel.position, Quaternion.identity);
     }
 

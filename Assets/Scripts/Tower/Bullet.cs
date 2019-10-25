@@ -7,12 +7,13 @@ public class Bullet : MonoBehaviour
     protected Transform Target;
     public float Speed;
     public float Damge=20f;
+    public string TargetTag;
     public bool SeekTarget=false;
     protected void Start()
     {
         Destroy(this.gameObject, 7.0f);
     }
-    public void Seek(Transform _Target)
+    public void SetTarget(Transform _Target)
     {
         Target = _Target;
     }
@@ -41,18 +42,5 @@ public class Bullet : MonoBehaviour
         }
         
     }
-    private void OnTriggerEnter2D(Collider2D Target)
-    {
-        if (Target.gameObject.tag.Equals("Enemy"))
-        {
-            Enemy enemy = Target.GetComponent<Enemy>();
-            enemy?.TakeDamge(Damge);
-            if (SeekTarget)
-            {
-                Destroy(gameObject);
-            }
-            
-            
-        }
-    }
+   
 }
