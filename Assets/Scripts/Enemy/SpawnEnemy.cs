@@ -37,7 +37,7 @@ public class SpawnEnemy : MonoBehaviour
             float process =1-(EnemyQuantum / temp);
             slider.value = process;
             EnemyQuantum--;
-            yield return new WaitForSeconds(SpawnTime);
+            yield return new WaitForSeconds(SpawnTime-3*process);
         }
         
     }

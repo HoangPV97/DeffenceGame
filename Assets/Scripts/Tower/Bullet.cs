@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     protected Transform Target;
     public float Speed;
-    public float Damge=20f;
+    public float Damge;
     public string TargetTag;
     public bool SeekTarget=false;
     protected void Start()

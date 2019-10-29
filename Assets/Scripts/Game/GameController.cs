@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
     public GameObject GameoverPanel,WingamePanel;
-    public Text GoldText;
+    public Text GoldText,WinGold;
     float Gold = 0;
 
     private void Awake()
@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         Time.timeScale = 1;
     }
@@ -53,6 +54,7 @@ public class GameController : MonoBehaviour
     public void SetGoldText(float _gold)
     {
         GoldText.text = "" + _gold;
+        WinGold.text = "Gold : " + _gold;
     }
     public void GoldUp( float _bonusgold)
     {

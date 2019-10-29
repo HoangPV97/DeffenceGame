@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4425599459788562471}
   - component: {fileID: 2689770912388612631}
   - component: {fileID: 4171982704682984067}
+  - component: {fileID: 5998576606594140107}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f119551b16958b04f981be0d90f8a7ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,3 +142,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!111 &5998576606594140107
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620052249327683996}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6a3af1b873d0d2a4f927d171a79556eb, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6a3af1b873d0d2a4f927d171a79556eb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
