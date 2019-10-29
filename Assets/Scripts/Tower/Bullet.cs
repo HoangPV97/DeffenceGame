@@ -30,9 +30,7 @@ public class Bullet : MonoBehaviour
             Vector3 dir = Target.position - transform.position;
             float distanceThisFrame = Speed * Time.deltaTime;
 
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10f).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, 0f, -rotation.z);
+            transform.up = dir;
             transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         }
         else

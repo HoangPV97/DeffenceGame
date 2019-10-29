@@ -27,8 +27,9 @@ public class Characters : MonoBehaviour
         {
             return;
         }
-        if (Live)
+        if (Live && Target!=null)
         {
+            LookAtEnemy(Target);
             AutoShoot();
         }
         
@@ -51,6 +52,7 @@ public class Characters : MonoBehaviour
         if (nearestEnemy != null && shortestDistance < range)
         {
             Target = nearestEnemy.transform;
+
             m_Enemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
@@ -67,6 +69,11 @@ public class Characters : MonoBehaviour
             towerBullet?.SetTarget(Target);
         }
         
+    }
+    public void LookAtEnemy( Transform _Taget)
+    {
+        Vector3 dir = _Taget.position - transform.position;
+        transform.up = dir;
     }
     private void AutoShoot()
     {
