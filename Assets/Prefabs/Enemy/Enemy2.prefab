@@ -380,6 +380,7 @@ MonoBehaviour:
   Health: 200
   healthBar: {fileID: 1529785039077876507}
   Bullet: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb, type: 3}
+  Gold: {fileID: 5620052249327683996, guid: 1b1ef2472a709bf4e8093fe992932bb7, type: 3}
   DamageText: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
     type: 3}
 --- !u!61 &1529785039770135925

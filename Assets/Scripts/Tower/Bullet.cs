@@ -28,10 +28,9 @@ public class Bullet : MonoBehaviour
         if (SeekTarget)
         {
             Vector3 dir = Target.position - transform.position;
-            float distanceThisFrame = Speed * Time.deltaTime;
 
             transform.up = dir;
-            transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
         }
         else
         {

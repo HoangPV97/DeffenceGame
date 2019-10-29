@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public float Speed, Damge, range;
     public float Health;
     public Image healthBar;
-    public GameObject Bullet;
+    public GameObject Bullet,Gold;
     GameObject Player;
     string PlayerTag="Player";
     float distancetoPlayer;
@@ -21,8 +21,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = Health;
-
-
         SeekingPlayer();
     }
 
@@ -58,12 +56,11 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamge(float _Damge)
     {
-        //if (DamageText != null)
-        //{
+        if (DamageText != null)
+        {
             GameObject instance = Instantiate(DamageText,GetComponentInChildren<Canvas>().gameObject.transform);
             instance.GetComponent<LoadingText>().SetTextDamage(_Damge.ToString());
-        //}
-        
+        }
         currentHealth -= _Damge;
         healthBar.fillAmount = currentHealth / Health;
         if (currentHealth <= 0)
@@ -75,12 +72,8 @@ public class Enemy : MonoBehaviour
     {
 
         Destroy(gameObject);
-        GameController.Instance.GoldUp(Price);
         EnemyLive--;
-        //if (EnemyLive == 0)
-        //{
-        //    GameController.Instance.WinGame();
-        //}
+        SpawnGold();
     }
     private void AutoAttack()
     {
@@ -90,5 +83,16 @@ public class Enemy : MonoBehaviour
             RateOfFire = 1f;
         }
         RateOfFire -= Time.deltaTime;
+    }
+    public void SpawnGold()
+    {
+        //GameObject Gold = Resources.Load("Prefabs/Gold") as GameObject;
+        //Debug.Log("Spawn :" + Gold);
+        if (Gold != null)
+        {
+            GameObject _gold= Instantiate(Gold, transform.position, Quaternion.identity);
+            _gold.GetComponent<Gold>().Price = Price;
+        }
+        
     }
 }
