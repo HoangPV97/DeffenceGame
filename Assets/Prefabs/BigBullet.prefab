@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5229568108495720583}
   - component: {fileID: 1425757680558249793}
   - component: {fileID: 2626866714081026106}
-  - component: {fileID: 7720800593086446873}
+  - component: {fileID: 1182057406428322181}
   m_Layer: 0
   m_Name: BigBullet
   m_TagString: Untagged
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7720800593086446873
+--- !u!114 &1182057406428322181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2165682593795813483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a35a1fd7390b2045bbc2da85b9c8d4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 707487384e85c334b8e673c12ba7088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  Damge: 40
+  Speed: 50
+  Damge: 30
   TargetTag: Enemy
   SeekTarget: 0

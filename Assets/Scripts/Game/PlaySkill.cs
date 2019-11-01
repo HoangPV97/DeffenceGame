@@ -10,7 +10,7 @@ public class PlaySkill : MonoBehaviour
     public GameObject Countdown;
     public float CountdownTime;
     bool StartCountdown = false;
-    float TimeLeft;
+    public  float TimeLeft;
     public float NummberBullet=10;
     bool StopInvoke = false;
     // Start is called before the first frame update
@@ -31,17 +31,18 @@ public class PlaySkill : MonoBehaviour
         {
             StartCountdown = false;
             Countdown.gameObject.SetActive(false);
-            this.GetComponent<Image>().raycastTarget = true;
+            this.GetComponent<BoxCollider2D>().enabled = true;
         }
 
     }
-    public void Skill1()
+    public void Skill1(Vector2 _direction, float _rotatioZ)
     {
-        Instantiate(BulletOfSkill, Barrel.position, Quaternion.identity);
+        Player player = FindObjectOfType<Player>();
+        player.ShootToDirection(_direction, _rotatioZ,BulletOfSkill);
         Countdown.SetActive(true);
         StartCountdown = true;
         TimeLeft = CountdownTime;
-        this.GetComponent<Image>().raycastTarget = false;
+        this.GetComponent<BoxCollider2D>().enabled = false;
     }
     public void Skill2()
     {
@@ -49,7 +50,7 @@ public class PlaySkill : MonoBehaviour
         Countdown.SetActive(true);
         StartCountdown = true;
         TimeLeft = CountdownTime;
-        this.GetComponent<Image>().raycastTarget = false;
+        this.GetComponent<BoxCollider2D>().enabled = false;
     }
     public IEnumerator  PlaySkill2()
     {
@@ -58,12 +59,6 @@ public class PlaySkill : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             InstanceBullet();
         }
-        
-        //if (StopInvoke==false)
-        //{
-        //    CancelInvoke("InstanceObject");
-        //}
-        
     }
     public void InstanceBullet()
     {

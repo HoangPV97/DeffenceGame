@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour
     public static float EnemyLive;
     public GameObject DamageText;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+    }
     void Start()
     {
         currentHealth = Health;
@@ -63,6 +67,11 @@ public class Enemy : MonoBehaviour
         }
         currentHealth -= _Damge;
         healthBar.fillAmount = currentHealth / Health;
+        if (currentHealth <  (Health/2))
+        {
+            gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        }
+
         if (currentHealth <= 0)
         {
             Die();

@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Characters : MonoBehaviour
 {
     // Start is called before the first frame update
     public float range = 7f;
     protected Transform Target;
     private Enemy m_Enemy;
-    public string EnemyTag="Enemy";
-    private float RateOfFire = 1f;
+    public string EnemyTag = "Enemy";
+    public float RateOfFire = 1f;
     public GameObject Barrel;
     public GameObject Bullet;
     public static bool Live = true;
@@ -27,12 +26,11 @@ public class Characters : MonoBehaviour
         {
             return;
         }
-        if (Live && Target!=null)
+        if (Live && Target != null)
         {
             LookAtEnemy(Target);
-            AutoShoot();
         }
-        
+
     }
     private void UpdateEnemy()
     {
@@ -60,28 +58,19 @@ public class Characters : MonoBehaviour
             Target = null;
         }
     }
-    protected void Shoot()
+    
+    public GameObject Spawn(GameObject _gameObject, Vector3 _position)
     {
-        if (Bullet != null)
+        return Instantiate(_gameObject, _position, Quaternion.identity);
+    }
+    public void LookAtEnemy(Transform _Taget)
+    {
+        if (_Taget != null)
         {
-            GameObject bullet = Instantiate(Bullet, Barrel.transform.position, Quaternion.identity);
-            Bullet towerBullet = bullet.GetComponent<Bullet>();
-            towerBullet?.SetTarget(Target);
+            Vector3 dir = _Taget.position - transform.position;
+            transform.up = dir;
         }
         
     }
-    public void LookAtEnemy( Transform _Taget)
-    {
-        Vector3 dir = _Taget.position - transform.position;
-        transform.up = dir;
-    }
-    private void AutoShoot()
-    {
-        if (RateOfFire <= 0f)
-        {
-            Shoot();
-            RateOfFire = 1f;
-        }
-        RateOfFire -= Time.deltaTime;
-    }
+    
 }

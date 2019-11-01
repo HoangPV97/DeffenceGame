@@ -10,7 +10,25 @@ public class Tower : Characters
     }
     private void Update()
     {
+        AutoShoot();
         base.Update();
     }
-
+    protected void Shoot()
+    {
+        if (Bullet != null)
+        {
+            GameObject bullet = Spawn(Bullet, Barrel.transform.position);
+            Bullet towerBullet = bullet.GetComponent<Bullet>();
+            towerBullet?.SetTarget(Target);
+        }
+    }
+    private void AutoShoot()
+    {
+        if (RateOfFire <= 0f)
+        {
+            Shoot();
+            RateOfFire = 1f;
+        }
+        RateOfFire -= Time.deltaTime;
+    }
 }
