@@ -8,12 +8,11 @@ public class Bullet : MonoBehaviour
     public float Speed;
     public float Damge;
     public string TargetTag;
-    public bool SeekTarget=false;
+    public bool SeekTarget = false;
     private Vector2 Direction;
     private float RotationZ;
     protected void Start()
     {
-        Destroy(this.gameObject, 7.0f);
     }
     public void SetTarget(Transform _Target)
     {
@@ -22,15 +21,15 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (Target == null)
+        if (Target == null || !Target.gameObject.activeSelf)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
         Vector3 dir = Target.position - transform.position;
         transform.up = dir;
         transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
-        
+
     }
 
 }

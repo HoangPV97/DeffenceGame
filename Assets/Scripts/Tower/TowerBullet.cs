@@ -21,7 +21,7 @@ public class TowerBullet : Bullet
             enemy?.TakeDamge(Damge);
             if (SeekTarget)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

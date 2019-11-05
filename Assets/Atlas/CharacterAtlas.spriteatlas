@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CharacterAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 16df52fb03af0d944ba526bc4eda5e63, type: 3}
+    - {fileID: 21300000, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+    - {fileID: 21300002, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+    - {fileID: 21300004, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+    - {fileID: 21300000, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+    - {fileID: 21300004, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+    - {fileID: 21300006, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+    - {fileID: 21300008, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+    - {fileID: 21300010, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+    - {fileID: 2800000, guid: 2375554326b28374db672ea2b7e525c4, type: 3}
+    - {fileID: 2800000, guid: c2114c9f663494c4bab30a4cfe4fca32, type: 3}
+    totalSpriteSurfaceArea: 766739
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2375554326b28374db672ea2b7e525c4, type: 3}
+  - {fileID: 21300004, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  - {fileID: 21300006, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  - {fileID: 21300000, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  - {fileID: 21300008, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  - {fileID: 21300010, guid: 4979f9b8d0697f3499bb3f7adcd39925, type: 3}
+  - {fileID: 21300004, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+  - {fileID: 21300000, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+  - {fileID: 21300002, guid: 43923b7b42e9a8e40aa6832fe6c6d0a8, type: 3}
+  - {fileID: 21300000, guid: 16df52fb03af0d944ba526bc4eda5e63, type: 3}
+  - {fileID: 21300000, guid: c2114c9f663494c4bab30a4cfe4fca32, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - right-arrow
+  - Bullet_2
+  - Bullet_3
+  - Bullet_0
+  - Bullet_4
+  - Bullet_5
+  - tank2_2
+  - tank2_0
+  - tank2_1
+  - Tank
+  - Circle
+  m_Tag: CharacterAtlas
+  m_IsVariant: 0

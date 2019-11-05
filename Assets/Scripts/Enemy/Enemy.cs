@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     private float currentHealth;
-    public float Price ;
-    public float Speed, Damge, range;
-    public float Health;
+    public float Speed, Damge, range, Price, Health,Armor;
     public Image healthBar;
-    public GameObject Bullet,Gold;
+    public GameObject Bullet, Gold;
     GameObject Player;
-    string PlayerTag="Player";
+    string PlayerTag = "Player";
     float distancetoPlayer;
     private float RateOfFire = 1f;
     public static float EnemyLive;
     public GameObject DamageText;
+    public ParticleSystem particleSystem;
+    ObjectPoolManager PoolManager;
     // Start is called before the first frame update
     private void Awake()
     {
-        gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+        PoolManager = ObjectPoolManager.Instance;
     }
     void Start()
     {
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         Move();
         AutoAttack();
     }
@@ -45,14 +45,14 @@ public class Enemy : MonoBehaviour
     }
     public void Move()
     {
-        gameObject.transform.position += Vector3.down* Speed * Time.deltaTime * 0.01f;
+        gameObject.transform.Translate(Vector3.up * 0.1f * Speed * Time.deltaTime);
     }
     public void Attack()
     {
         distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (Bullet != null&& distancetoPlayer < range)
+        if (Bullet != null && distancetoPlayer < range)
         {
-            GameObject EnemyBullet = Instantiate(Bullet, transform.position, Quaternion.identity);
+            GameObject EnemyBullet = PoolManager.SpawnObject("enemybullet", transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             m_EnemyBullet?.SetTarget(Player.transform);
             m_EnemyBullet?.SetDamage(Damge);
@@ -60,16 +60,26 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamge(float _Damge)
     {
+        if (_Damge <= Armor)
+        {
+            return;
+        }
+        else
+        {
+            _Damge -= Armor;
+        }
         if (DamageText != null)
         {
-            GameObject instance = Instantiate(DamageText,GetComponentInChildren<Canvas>().gameObject.transform);
-            instance.GetComponent<LoadingText>().SetTextDamage(_Damge.ToString());
+            GameObject damageobj = PoolManager.SpawnObject("damagetext", gameObject.transform.position, Quaternion.identity);
+            damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
+            damageobj.GetComponent<LoadingText>().SetTextDamage(_Damge.ToString());
         }
+
         currentHealth -= _Damge;
         healthBar.fillAmount = currentHealth / Health;
-        if (currentHealth <  (Health/2))
+        if (currentHealth < (Health / 2))
         {
-            gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            particleSystem.gameObject.SetActive(true);
         }
 
         if (currentHealth <= 0)
@@ -80,7 +90,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         EnemyLive--;
         SpawnGold();
     }
@@ -95,13 +105,10 @@ public class Enemy : MonoBehaviour
     }
     public void SpawnGold()
     {
-        //GameObject Gold = Resources.Load("Prefabs/Gold") as GameObject;
-        //Debug.Log("Spawn :" + Gold);
         if (Gold != null)
         {
-            GameObject _gold= Instantiate(Gold, transform.position, Quaternion.identity);
+            GameObject _gold = PoolManager.SpawnObject("gold", transform.position, Quaternion.identity);
             _gold.GetComponent<Gold>().Price = Price;
-        }
-        
+        }   
     }
 }

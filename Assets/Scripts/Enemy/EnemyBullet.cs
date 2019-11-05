@@ -31,7 +31,7 @@ public class EnemyBullet : Bullet
             player?.TakeDamge(Damge);
             if (SeekTarget)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

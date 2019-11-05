@@ -27,7 +27,7 @@ public class Gold : MonoBehaviour
         if (Target.gameObject.tag.Equals("GoldPanel"))
         {
             GameController.Instance.GoldUp(Price);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     IEnumerator WaitforMove()

@@ -2,33 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestJoystick : MonoBehaviour
+public class TestJoystick : Skill
 {
     public VariableJoystick variableJoystick;
     Vector2 direction;
     float angle;
-    PlaySkill playSkill;
-    public GameObject arrow;
-    private void Start()
+
+    protected void Start()
     {
-        playSkill = FindObjectOfType<PlaySkill>();
+        base.Start();
     }
-    public void FixedUpdate()
+    protected void Update()
     {
-        
-        direction = Vector2.up * variableJoystick.Vertical + Vector2.right * variableJoystick.Horizontal;
+        base.Update();
+        Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        direction = MousePosition - directionGO.transform.position;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        if (playSkill.TimeLeft <= 0)
+        if (TimeLeft <= 0 && variableJoystick.Vertical != 0)
         {
-            arrow.SetActive(true);
-            arrow.transform.eulerAngles = new Vector3(0, 0, angle);
+            directionGO.SetActive(true);
+            directionGO.transform.eulerAngles = new Vector3(0, 0, angle);
+            directionGO.transform.localScale = new Vector3(direction.magnitude / 6 * transform.localScale.x, 0.3f, 1f);
         }
     }
 
+    public void Skill1(Vector2 _direction, float _rotatioZ)
+    {
+        player.ShootToDirection(_direction, _rotatioZ, "skillbullet1");
+        CountdownGo?.gameObject.SetActive(true);
+        StartCountdown = true;
+        TimeLeft = CountdownTime;
+    }
     private void OnMouseUp()
     {
-        arrow.SetActive(false);
-        playSkill.Skill1(direction,angle);
+        directionGO.SetActive(false);
+        Skill1(direction, angle);
     }
 
 }

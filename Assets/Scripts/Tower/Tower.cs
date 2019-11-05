@@ -17,7 +17,7 @@ public class Tower : Characters
     {
         if (Bullet != null)
         {
-            GameObject bullet = Spawn(Bullet, Barrel.transform.position);
+            GameObject bullet = Spawn("towerbullet", Barrel.transform.position);
             Bullet towerBullet = bullet.GetComponent<Bullet>();
             towerBullet?.SetTarget(Target);
         }

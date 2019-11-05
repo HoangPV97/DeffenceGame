@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
-    public GameObject GameoverPanel,WingamePanel;
+    public GameObject GameoverPanel,WingamePanel,PausePanel;
     public Text GoldText,WinGold;
     float Gold = 0;
-
+    float count = 0;
     private void Awake()
     {
         if (Instance == null)
@@ -63,5 +63,28 @@ public class GameController : MonoBehaviour
     public void WinGame()
     {
         WingamePanel.SetActive(true);
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PausePanel.SetActive(true);
+    }
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        PausePanel.SetActive(false);
+    }
+    public void SpeedUp()
+    {
+        count++;
+        if (count % 2 == 0)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.5f;
+        }
+        
     }
 }

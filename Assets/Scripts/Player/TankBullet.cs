@@ -23,7 +23,7 @@ public class TankBullet : Bullet
     public void DirectShooting(Vector2 _direction)
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<Rigidbody2D>().velocity = _direction * 50 * Speed * Time.deltaTime;
+        GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * Speed * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D Target)
     {
@@ -33,7 +33,7 @@ public class TankBullet : Bullet
             enemy?.TakeDamge(Damge);
             if (SeekTarget)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

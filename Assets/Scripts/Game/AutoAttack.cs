@@ -6,22 +6,20 @@ using UnityEngine.UI;
 public class AutoAttack : MonoBehaviour
 {
     public Sprite autoImage, disableImage;
-    Button btnAuto;
-    int Count=0;
+    public Button btnAuto;
+    public Player player;
     public bool Status;
-    Player player;
+    int Count = 0;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        btnAuto = GetComponent<Button>();
     }
 
     // Update is called once per frame
     public void ChangeStatus()
     {
         Count++;
-        if (Count % 2!=0)
+        if (Count % 2 != 0)
         {
             player.currentMode = Player.AutoMode.TurnOn;
             btnAuto.image.sprite = autoImage;

@@ -263,7 +263,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8020962621357836206}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.55, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
@@ -271,7 +271,7 @@ Transform:
   - {fileID: 4432708404261276083}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8020962621357836203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -332,16 +332,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500083d67d1420c41a2d96064d997412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 1
-  Speed: 40
+  Speed: 4
   Damge: 5
   range: 5.5
+  Price: 1
   Health: 150
+  Armor: 1
   healthBar: {fileID: 8020962621952129804}
   Bullet: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb, type: 3}
   Gold: {fileID: 5620052249327683996, guid: 1b1ef2472a709bf4e8093fe992932bb7, type: 3}
   DamageText: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
     type: 3}
+  particleSystem: {fileID: 8575502487216922806}
 --- !u!61 &8020962621357836202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -480,7 +482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8490166460855059930
 Transform:
   m_ObjectHideFlags: 0

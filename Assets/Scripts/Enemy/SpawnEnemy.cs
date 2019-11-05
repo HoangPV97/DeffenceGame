@@ -5,40 +5,38 @@ using UnityEngine.UI;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject[] Enemies;
     public Vector3 SpawnPosition;
     public float SpawnTime;
-    bool StopSpawn;
     public Slider slider;
     public float EnemyQuantum;
     float temp;
+    ObjectPoolManager poolManager;
     // Start is called before the first frame update
     void Start()
     {
         Enemy.EnemyLive = EnemyQuantum;
         temp = EnemyQuantum;
-        StopSpawn = false;
+        poolManager = ObjectPoolManager.Instance;
         StartCoroutine(WaitForSpawnEnemy());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator WaitForSpawnEnemy()
     {
-        while (StopSpawn==false &&EnemyQuantum>0)
+        while (EnemyQuantum > 0)
         {
-            int randomEnemy = Random.Range(0, Enemies.Length);
-            Vector3 RandomPosition=new Vector3(Random.Range(-SpawnPosition.x, SpawnPosition.x), 6, 0);
-            GameObject m_Enemy= Instantiate(Enemies[randomEnemy], RandomPosition+transform.TransformPoint(0,0,0), Enemies[randomEnemy].transform.rotation,this.gameObject.transform);
+            int randomEnemy = Random.Range(1, 4);
+            Vector3 RandomPosition = new Vector3(Random.Range(-SpawnPosition.x, SpawnPosition.x), 6, 0);
+            GameObject m_Enemy = poolManager.SpawnObject("enemy" + randomEnemy, RandomPosition + transform.TransformPoint(0, 0, 0),transform.rotation);
             m_Enemy.GetComponent<Enemy>().UpSpeedEnemy(slider.value);
-            float process =1-(EnemyQuantum / temp);
+            float process = 1 - (EnemyQuantum / temp);
             slider.value = process;
             EnemyQuantum--;
-            yield return new WaitForSeconds(SpawnTime-3*process);
+            yield return new WaitForSeconds(SpawnTime - 3 * process);
         }
-        
     }
 }

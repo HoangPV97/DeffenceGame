@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707487384e85c334b8e673c12ba7088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 50
+  Speed: 30
   Damge: 30
   TargetTag: Enemy
   SeekTarget: 0

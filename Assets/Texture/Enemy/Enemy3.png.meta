@@ -108,12 +108,12 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e48c465707657c64a8070fb563fe847b
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: 
+  spritePackingTag: Enemy
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 

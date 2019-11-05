@@ -12,9 +12,11 @@ public class Characters : MonoBehaviour
     public GameObject Barrel;
     public GameObject Bullet;
     public static bool Live = true;
+    ObjectPoolManager poolManager;
     protected void Start()
     {
         Live = true;
+        poolManager = ObjectPoolManager.Instance;
         InvokeRepeating("UpdateEnemy", 0f, 0.5f);
     }
 
@@ -59,16 +61,15 @@ public class Characters : MonoBehaviour
         }
     }
     
-    public GameObject Spawn(GameObject _gameObject, Vector3 _position)
+    public GameObject Spawn(string tag, Vector3 _position)
     {
-        return Instantiate(_gameObject, _position, Quaternion.identity);
+        return poolManager.SpawnObject(tag, _position, Quaternion.identity);
     }
     public void LookAtEnemy(Transform _Taget)
     {
         if (_Taget != null)
         {
-            Vector3 dir = _Taget.position - transform.position;
-            transform.up = dir;
+            transform.up = _Taget.position - transform.position;
         }
         
     }
