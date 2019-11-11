@@ -20,4 +20,9 @@ public class LoadingText : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    IEnumerator WaitingDisableObject(GameObject _gameObject, float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        _gameObject.SetActive(false);
+    }
 }

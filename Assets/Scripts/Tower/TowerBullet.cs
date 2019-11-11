@@ -18,7 +18,7 @@ public class TowerBullet : Bullet
         if (Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = Target.GetComponent<Enemy>();
-            enemy?.TakeDamge(Damge);
+            enemy?.TakeDamage(elementalBullet,Damge,damagePlus);
             if (SeekTarget)
             {
                 gameObject.SetActive(false);

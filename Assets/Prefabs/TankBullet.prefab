@@ -145,3 +145,5 @@ MonoBehaviour:
   Damge: 30
   TargetTag: Enemy
   SeekTarget: 1
+  elementalBullet: 0
+  damagePlus: 5

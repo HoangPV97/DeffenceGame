@@ -32,7 +32,7 @@ public class SpawnEnemy : MonoBehaviour
             int randomEnemy = Random.Range(1, 4);
             Vector3 RandomPosition = new Vector3(Random.Range(-SpawnPosition.x, SpawnPosition.x), 6, 0);
             GameObject m_Enemy = poolManager.SpawnObject("enemy" + randomEnemy, RandomPosition + transform.TransformPoint(0, 0, 0),transform.rotation);
-            m_Enemy.GetComponent<Enemy>().UpSpeedEnemy(slider.value);
+            //m_Enemy.GetComponent<Enemy>().UpSpeedEnemy(slider.value);
             float process = 1 - (EnemyQuantum / temp);
             slider.value = process;
             EnemyQuantum--;

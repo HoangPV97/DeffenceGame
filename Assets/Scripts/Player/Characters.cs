@@ -5,7 +5,7 @@ public class Characters : MonoBehaviour
 {
     // Start is called before the first frame update
     public float range = 7f;
-    protected Transform Target;
+    public Transform Target;
     private Enemy m_Enemy;
     public string EnemyTag = "Enemy";
     public float RateOfFire = 1f;

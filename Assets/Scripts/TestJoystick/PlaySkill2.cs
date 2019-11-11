@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlaySkill2 : Skill
 {
     public VariableJoystick variableJoystick;
-    public GameObject Circle;
+    public GameObject circle;
+    //public GameObject LightGo;
+    ObjectPoolManager poolManager;
     // Start is called before the first frame update
     void Start()
     {
+        poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
 
@@ -16,28 +19,49 @@ public class PlaySkill2 : Skill
     protected void Update()
     {
         base.Update();
-        if (TimeLeft <= 0 && variableJoystick.Vertical != 0)
+        if (TimeLeft <= 0 && player.CurrentMana >= manaNumber && variableJoystick.Vertical != 0 )
         {
-            Circle.SetActive(true);
             Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 offset = MousePosition - Circle.transform.position;
-            Circle.transform.Translate(offset);
+            Vector2 direction = MousePosition - circle.transform.position;
+            MoveObject(circle, direction);
         }
+        if (player.CurrentMana > manaNumber)
+        {
+            LowMana.SetActive(false);
+        }
+        else
+        {
+            LowMana.SetActive(true);
+        }
+
+    }
+    public void MoveObject(GameObject _object, Vector3 _postion)
+    {
+        _object.SetActive(true);
+        _object.transform.Translate(_postion);
     }
     public void FixedUpdate()
     {
-        
+
     }
     public void Play()
     {
         TimeLeft = CountdownTime;
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
-        Debug.Log("SHOOT!!!!!");
+        player.ConsumeMana(manaNumber);
+        GameObject lighSkill = poolManager.SpawnObject("lightskill", circle.transform.position, Quaternion.identity);
+        float particleTime = lighSkill.GetComponentInChildren<ParticleSystem>().main.duration;
+        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
+        StartCoroutine(WaitingActiveObject(lighSkill, particleTime,false));
+        circle.SetActive(false);
     }
     private void OnMouseUp()
     {
-        Circle.SetActive(false);
-        Play();
+        circle.SetActive(false);
+        if (player.CurrentMana >= manaNumber)
+        {
+            Play();
+        }
     }
 }

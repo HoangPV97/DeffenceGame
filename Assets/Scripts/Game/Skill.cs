@@ -6,19 +6,21 @@ using UnityEngine.UI;
 public class Skill : MonoBehaviour
 {
     public Player player;
-    public GameObject directionGO;
     public GameObject BulletOfSkill;
     public Transform Barrel;
     public Image CountdownGo;
     public float CountdownTime;
+    public float manaNumber;
+    public GameObject LowMana;
     protected bool StartCountdown = false;
     protected float TimeLeft;
     public float NummberBullet = 10;
-    BoxCollider2D boxCollider;
+    Collider2D boxCollider;
+
     // Start is called before the first frame update
     protected void Start()
     {
-        boxCollider = this.GetComponent<BoxCollider2D>();
+        boxCollider = this.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,10 @@ public class Skill : MonoBehaviour
             CountdownGo?.gameObject.SetActive(false);
             boxCollider.enabled = true;
         }
-
+    }
+    public IEnumerator WaitingActiveObject(GameObject _gameObject, float _time,bool status)
+    {
+        yield return new WaitForSeconds(_time);
+        _gameObject.SetActive(status);
     }
 }

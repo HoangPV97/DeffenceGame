@@ -5073,18 +5073,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500083d67d1420c41a2d96064d997412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1.5
+  Speed: 20
   Damge: 20
   range: 4
   Price: 3
   Health: 350
   Armor: 3
   healthBar: {fileID: 7178071148755731592}
-  Bullet: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb, type: 3}
-  Gold: {fileID: 5620052249327683996, guid: 1b1ef2472a709bf4e8093fe992932bb7, type: 3}
-  DamageText: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
-    type: 3}
   particleSystem: {fileID: 7768135062593744574}
+  elementalEnemy: 1
 --- !u!61 &7178071149278825003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5109,7 +5106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.73, y: 1.37}
+  m_Size: {x: 2.37, y: 2.22}
   m_EdgeRadius: 0
 --- !u!50 &379209336301220618
 Rigidbody2D:

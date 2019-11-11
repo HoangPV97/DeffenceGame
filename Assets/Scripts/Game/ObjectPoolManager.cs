@@ -48,7 +48,6 @@ public class ObjectPoolManager : MonoBehaviour
         objectSpawn.SetActive(true);
         objectSpawn.transform.position = _position;
         objectSpawn.transform.rotation = _quaternion;
-        objectSpawn.transform.parent = this.transform;
         poolDictionary[tag].Enqueue(objectSpawn);
         return objectSpawn;
     }

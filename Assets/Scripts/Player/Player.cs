@@ -4,23 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class Player : Characters
 {
     public enum AutoMode { TurnOn, TurnOff };
     private float currentHealth;
-    public float Health;
-    public Image healthBar;
+    public float Health,Mana, CurrentMana;
+    public float recoverMana,recoverTime;
+    [SerializeField]
+    private Image healthBar,manaBar;
     Vector3 EndPosition;
-    public bool AutoAttack = false;
+    //public bool AutoAttack = false;
     public AutoMode currentMode;
+    public Elemental elementalPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = Health;
+        CurrentMana = Mana;
         currentMode = AutoMode.TurnOff;
+        InvokeRepeating("RecoverMana", 0f, recoverTime);
         base.Start();
     }
-
+    public Elemental GetElemental()
+    {
+        return elementalPlayer;
+    }
     // Update is called once per frame
     private void Update()
     {
@@ -62,6 +72,12 @@ public class Player : Characters
             Die();
         }
     }
+    public void ConsumeMana(float _mana)
+    {
+        CurrentMana -= _mana;
+        Debug.Log($"Mana :  {CurrentMana}");
+        manaBar.fillAmount = CurrentMana / Mana * 1.0f;
+    }
     public void Die()
     {
         Live = false;
@@ -72,5 +88,15 @@ public class Player : Characters
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         TankBullet mBullet = bullet.GetComponent<TankBullet>();
         mBullet.DirectShooting(_direction);
+    }
+    public void RecoverMana()
+    {
+        if (CurrentMana < Mana  )
+        {
+            CurrentMana += recoverMana;
+            manaBar.fillAmount = CurrentMana / Mana * 1.0f;
+            if (CurrentMana > Mana)
+                CurrentMana = Mana;
+        }
     }
 }

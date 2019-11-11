@@ -25,12 +25,13 @@ public class TankBullet : Bullet
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * Speed * Time.deltaTime;
     }
-    private void OnTriggerEnter2D(Collider2D Target)
+    protected void OnTriggerEnter2D(Collider2D Target)
     {
+        base.OnTriggerEnter2D(Target);
         if (Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = Target.GetComponent<Enemy>();
-            enemy?.TakeDamge(Damge);
+            enemy?.TakeDamage(elementalBullet,Damge,damagePlus);
             if (SeekTarget)
             {
                 gameObject.SetActive(false);

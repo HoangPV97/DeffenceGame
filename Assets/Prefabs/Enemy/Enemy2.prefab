@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500083d67d1420c41a2d96064d997412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 16
   Damge: 10
   range: 4.5
   Price: 2
@@ -386,6 +386,7 @@ MonoBehaviour:
   DamageText: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
     type: 3}
   particleSystem: {fileID: 3156188044177389621}
+  elementalEnemy: 0
 --- !u!61 &1529785039770135925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -410,7 +411,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.71, y: 1}
+  m_Size: {x: 2.2, y: 2.04}
   m_EdgeRadius: 0
 --- !u!1 &3822921119473882495
 GameObject:

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Elemental { Ice, Fire, Wind }
 public class Bullet : MonoBehaviour
 {
     protected Transform Target;
@@ -11,6 +12,8 @@ public class Bullet : MonoBehaviour
     public bool SeekTarget = false;
     private Vector2 Direction;
     private float RotationZ;
+    public Elemental elementalBullet;
+    public float damagePlus;
     protected void Start()
     {
     }
@@ -31,5 +34,11 @@ public class Bullet : MonoBehaviour
         transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
 
     }
-
+    protected void OnTriggerEnter2D(Collider2D Target)
+    {
+        if (Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
