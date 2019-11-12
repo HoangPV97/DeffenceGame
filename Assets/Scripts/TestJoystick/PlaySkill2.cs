@@ -19,13 +19,13 @@ public class PlaySkill2 : Skill
     protected void Update()
     {
         base.Update();
-        if (TimeLeft <= 0 && player.CurrentMana >= manaNumber && variableJoystick.Vertical != 0 )
+        if (TimeLeft <= 0 && player.Mana.CurrentMana >= manaNumber && variableJoystick.Vertical != 0 )
         {
             Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = MousePosition - circle.transform.position;
             MoveObject(circle, direction);
         }
-        if (player.CurrentMana > manaNumber)
+        if (player.Mana.CurrentMana > manaNumber)
         {
             LowMana.SetActive(false);
         }
@@ -59,7 +59,7 @@ public class PlaySkill2 : Skill
     private void OnMouseUp()
     {
         circle.SetActive(false);
-        if (player.CurrentMana >= manaNumber)
+        if (player.Mana.CurrentMana >= manaNumber)
         {
             Play();
         }

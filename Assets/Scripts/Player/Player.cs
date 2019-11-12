@@ -4,32 +4,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
 public class Player : Characters
 {
     public enum AutoMode { TurnOn, TurnOff };
-    private float currentHealth;
-    public float Health,Mana, CurrentMana;
-    public float recoverMana,recoverTime;
-    [SerializeField]
-    private Image healthBar,manaBar;
-    Vector3 EndPosition;
-    //public bool AutoAttack = false;
     public AutoMode currentMode;
     public Elemental elementalPlayer;
-
+    public Health Health;
+    public Mana Mana;
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = Health;
-        CurrentMana = Mana;
+        Health.CurrentHealth = Health.health;
+        Mana.CurrentMana = Mana.mana;
         currentMode = AutoMode.TurnOff;
-        InvokeRepeating("RecoverMana", 0f, recoverTime);
+        InvokeRepeating("RecoverMana", 0f, Mana.RecoverManaTime);
+        InvokeRepeating("RecoverHealth", 0f, Health.RecoverHealthTime);
         base.Start();
-    }
-    public Elemental GetElemental()
-    {
-        return elementalPlayer;
     }
     // Update is called once per frame
     private void Update()
@@ -65,18 +55,18 @@ public class Player : Characters
     }
     public void TakeDamge(float _Damge)
     {
-        currentHealth -= _Damge;
-        healthBar.fillAmount = currentHealth / Health * 1.0f;
-        if (currentHealth <= 0)
+        Health.CurrentHealth -= _Damge;
+        Health.healthBar.fillAmount = Health.CurrentHealth / Health.health * 1.0f;
+        if (Health.CurrentHealth <= 0)
         {
             Die();
         }
     }
     public void ConsumeMana(float _mana)
     {
-        CurrentMana -= _mana;
-        Debug.Log($"Mana :  {CurrentMana}");
-        manaBar.fillAmount = CurrentMana / Mana * 1.0f;
+        Mana.CurrentMana -= _mana;
+        // Debug.Log($"Mana :  {CurrentMana}");
+        Mana.manaBar.fillAmount = Mana.CurrentMana / Mana.mana * 1.0f;
     }
     public void Die()
     {
@@ -91,12 +81,22 @@ public class Player : Characters
     }
     public void RecoverMana()
     {
-        if (CurrentMana < Mana  )
+        if (Mana.CurrentMana < Mana.mana)
         {
-            CurrentMana += recoverMana;
-            manaBar.fillAmount = CurrentMana / Mana * 1.0f;
-            if (CurrentMana > Mana)
-                CurrentMana = Mana;
+            Mana.CurrentMana += Mana.RecoverManaValue;
+            Mana.manaBar.fillAmount = Mana.CurrentMana / Mana.mana * 1.0f;
+            if (Mana.CurrentMana > Mana.mana)
+                Mana.CurrentMana = Mana.mana;
+        }
+    }
+    public void RecoverHealth()
+    {
+        if (Health.CurrentHealth < Health.health)
+        {
+            Health.CurrentHealth += Health.RecoverHealthValue;
+            Health.healthBar.fillAmount = Health.CurrentHealth / Health.health * 1.0f;
+            if (Health.CurrentHealth > Health.health)
+                Health.CurrentHealth = Health.health;
         }
     }
 }

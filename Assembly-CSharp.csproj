@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Enemy\TestSpawn.cs" />
     <Compile Include="Assets\Scripts\Game\AutoAttack.cs" />
     <Compile Include="Assets\Scripts\Game\GameController.cs" />
+    <Compile Include="Assets\Scripts\Game\GameEffect.cs" />
     <Compile Include="Assets\Scripts\Game\LoadingText.cs" />
     <Compile Include="Assets\Scripts\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Game\Skill.cs" />
@@ -79,14 +80,21 @@
     <Compile Include="Assets\Scripts\Game\UpdateSlider.cs" />
     <Compile Include="Assets\Scripts\Player\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Characters.cs" />
+    <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\LightingSkill.cs" />
+    <Compile Include="Assets\Scripts\Player\Mana.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\RecoverAPHP.cs" />
+    <Compile Include="Assets\Scripts\Player\SlowSkill.cs" />
     <Compile Include="Assets\Scripts\Player\TankBullet.cs" />
     <Compile Include="Assets\Scripts\TestJoystick\PlaySkill1.cs" />
     <Compile Include="Assets\Scripts\TestJoystick\PlaySkill2.cs" />
     <Compile Include="Assets\Scripts\Tower\Bullet.cs" />
     <Compile Include="Assets\Scripts\Tower\Tower.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerBullet.cs" />
+    <None Include="Assets\Spine\fire_melee1\fire_melee1.atlas.txt" />
+    <None Include="Assets\Spine\fire_ranger1\fire_ranger1_bullet.atlas.txt" />
+    <None Include="Assets\Spine\fire_ranger1\fire_ranger1.atlas.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

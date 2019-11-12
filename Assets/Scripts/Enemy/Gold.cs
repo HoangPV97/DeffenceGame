@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Gold : MonoBehaviour
 {
-    RectTransform Rec;
+    GameObject CanvasGoldPnl;
     public float Price { get; set; }
     float Speed;
     Animation aniamtion;
     // Start is called before the first frame update
     void Start()
     {
-        Speed = 200.0f;
-        GameObject CanvasGoldPnl = GameObject.FindGameObjectWithTag("GoldPanel");
-        Rec = CanvasGoldPnl.GetComponent<RectTransform>();
+        Speed = 10.0f;
+        CanvasGoldPnl = GameObject.FindGameObjectWithTag("GoldPanel");
         aniamtion = GetComponent<Animation>();
     }
 
@@ -30,17 +29,12 @@ public class Gold : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    IEnumerator WaitforMove()
-    {
-        yield return new WaitForSeconds(2.0f);
-    }
     private void Move()
     {
         if (!aniamtion.isPlaying)
         {
-            Vector3 dir = Rec.position - transform.position;
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            Vector3 dir = CanvasGoldPnl.transform.position - transform.position;
+            transform.Translate(dir.normalized * Speed * Time.deltaTime);
         }
-
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class LightingSkill : Bullet
 {
     public ParticleSystem particleSystem;
+    [SerializeField]
+    private float stunTime=3;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +23,14 @@ public class LightingSkill : Bullet
         if (Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = Target.GetComponent<Enemy>();
-            //if (!particleSystem.isPlaying)
-            //{
-            //    gameObject.SetActive(false);
-            //}
             enemy?.TakeDamage(elementalBullet,Damge,damagePlus);
+            enemy?.TakeEffect(Effect.Stun,5);
             if (SeekTarget)
             {
+                
                 gameObject.SetActive(false);
             }
         }
     }
+    
 }

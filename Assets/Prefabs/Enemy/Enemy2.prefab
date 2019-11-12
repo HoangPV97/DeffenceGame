@@ -290,7 +290,9 @@ GameObject:
   - component: {fileID: 1529785039770135920}
   - component: {fileID: 1529785039770135926}
   - component: {fileID: 1529785039770135927}
+  - component: {fileID: 8405747404023622455}
   - component: {fileID: 1529785039770135925}
+  - component: {fileID: 2381826484690694014}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -381,12 +383,21 @@ MonoBehaviour:
   Health: 200
   Armor: 2
   healthBar: {fileID: 1529785039077876507}
-  Bullet: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb, type: 3}
-  Gold: {fileID: 5620052249327683996, guid: 1b1ef2472a709bf4e8093fe992932bb7, type: 3}
-  DamageText: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
-    type: 3}
   particleSystem: {fileID: 3156188044177389621}
   elementalEnemy: 0
+--- !u!114 &8405747404023622455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529785039770135921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fdb9ec297fb4b479a3302b6535c680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEffect: 0
 --- !u!61 &1529785039770135925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -413,6 +424,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 2.04}
   m_EdgeRadius: 0
+--- !u!50 &2381826484690694014
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529785039770135921}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3822921119473882495
 GameObject:
   m_ObjectHideFlags: 0

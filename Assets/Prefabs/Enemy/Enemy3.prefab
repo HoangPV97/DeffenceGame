@@ -4988,6 +4988,7 @@ GameObject:
   - component: {fileID: 7178071149278825014}
   - component: {fileID: 7178071149278825000}
   - component: {fileID: 7178071149278825001}
+  - component: {fileID: 5541152226216747304}
   - component: {fileID: 7178071149278825003}
   - component: {fileID: 379209336301220618}
   m_Layer: 0
@@ -5082,6 +5083,19 @@ MonoBehaviour:
   healthBar: {fileID: 7178071148755731592}
   particleSystem: {fileID: 7768135062593744574}
   elementalEnemy: 1
+--- !u!114 &5541152226216747304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178071149278825015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fdb9ec297fb4b479a3302b6535c680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEffect: 0
 --- !u!61 &7178071149278825003
 BoxCollider2D:
   m_ObjectHideFlags: 0

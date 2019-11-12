@@ -1,0 +1,132 @@
+
+fire_melee1.png
+size: 256,520
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 761 copy
+  rotate: false
+  xy: 234, 484
+  size: 16, 34
+  orig: 16, 34
+  offset: 0, 0
+  index: -1
+Layer 762
+  rotate: false
+  xy: 214, 318
+  size: 36, 78
+  orig: 36, 78
+  offset: 0, 0
+  index: -1
+Layer 763
+  rotate: false
+  xy: 234, 452
+  size: 15, 30
+  orig: 15, 30
+  offset: 0, 0
+  index: -1
+Layer 764
+  rotate: false
+  xy: 146, 398
+  size: 86, 120
+  orig: 86, 120
+  offset: 0, 0
+  index: -1
+Layer 766
+  rotate: false
+  xy: 214, 243
+  size: 37, 73
+  orig: 37, 73
+  offset: 0, 0
+  index: -1
+Layer 768
+  rotate: false
+  xy: 93, 42
+  size: 43, 46
+  orig: 43, 46
+  offset: 0, 0
+  index: -1
+Layer 769
+  rotate: false
+  xy: 138, 2
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+Layer 771
+  rotate: false
+  xy: 214, 205
+  size: 39, 36
+  orig: 39, 36
+  offset: 0, 0
+  index: -1
+Layer 772
+  rotate: false
+  xy: 2, 2
+  size: 51, 28
+  orig: 51, 28
+  offset: 0, 0
+  index: -1
+Layer 773
+  rotate: false
+  xy: 190, 10
+  size: 59, 40
+  orig: 59, 40
+  offset: 0, 0
+  index: -1
+Layer 774
+  rotate: false
+  xy: 2, 32
+  size: 89, 56
+  orig: 89, 56
+  offset: 0, 0
+  index: -1
+a1
+  rotate: false
+  xy: 2, 374
+  size: 142, 144
+  orig: 142, 144
+  offset: 0, 0
+  index: -1
+a2
+  rotate: false
+  xy: 2, 228
+  size: 142, 144
+  orig: 142, 144
+  offset: 0, 0
+  index: -1
+e0
+  rotate: false
+  xy: 144, 52
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 55, 14
+  size: 60, 16
+  orig: 60, 16
+  offset: 0, 0
+  index: -1
+s1
+  rotate: false
+  xy: 146, 264
+  size: 66, 132
+  orig: 66, 132
+  offset: 0, 0
+  index: -1
+s2
+  rotate: false
+  xy: 146, 130
+  size: 66, 132
+  orig: 66, 132
+  offset: 0, 0
+  index: -1
+smoke
+  rotate: false
+  xy: 2, 90
+  size: 140, 136
+  orig: 140, 136
+  offset: 0, 0
+  index: -1
