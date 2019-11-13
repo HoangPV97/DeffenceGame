@@ -22,9 +22,11 @@ public class SlowSkill : Bullet
         if (_Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = _Target.GetComponent<Enemy>();
-            enemy?.TakeDamage(elementalBullet, Damge, damagePlus);
-            enemy?.Back(backSpace); 
-            
+            if (enemy != null)
+            {
+                enemy.TakeDamage(elementalBullet, Damge, damagePlus);
+                enemy.KnockBack(backSpace);
+            }
             if (SeekTarget)
             {
 

@@ -291,3 +291,7 @@ F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.PatternMatching
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Parser.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Useful.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.UI.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\spine-unity.pdb
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\spine-unity-editor.pdb
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.UI.xml

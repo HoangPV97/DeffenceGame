@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum CharacterState { Idle,Attack};
 public class Characters : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class Characters : MonoBehaviour
     public GameObject Bullet;
     public static bool Live = true;
     ObjectPoolManager poolManager;
+    public Elemental elementalType;
     protected void Start()
     {
         Live = true;
@@ -28,11 +30,6 @@ public class Characters : MonoBehaviour
         {
             return;
         }
-        if (Live && Target != null)
-        {
-            LookAtEnemy(Target);
-        }
-
     }
     private void UpdateEnemy()
     {
@@ -64,14 +61,6 @@ public class Characters : MonoBehaviour
     public GameObject Spawn(string tag, Vector3 _position)
     {
         return poolManager.SpawnObject(tag, _position, Quaternion.identity);
-    }
-    public void LookAtEnemy(Transform _Taget)
-    {
-        if (_Taget != null)
-        {
-            transform.up = _Taget.position - transform.position;
-        }
-        
     }
     
 }
