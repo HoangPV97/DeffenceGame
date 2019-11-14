@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum CharacterState { Idle,Attack};
@@ -15,6 +16,8 @@ public class Characters : MonoBehaviour
     public static bool Live = true;
     ObjectPoolManager poolManager;
     public Elemental elementalType;
+    protected CharacterState characterState,preCharacterState;
+    public PlaySkeletonAnimationState playSkeletonAnimation;
     protected void Start()
     {
         Live = true;
@@ -30,10 +33,37 @@ public class Characters : MonoBehaviour
         {
             return;
         }
+        if (preCharacterState != characterState)
+        {
+            ChangeState();
+            preCharacterState = characterState;
+        }
     }
+
+    private void ChangeState()
+    {
+        string nameState = null;
+        if (characterState.Equals(CharacterState.Attack))
+        {
+            nameState = "attack";
+            
+        }
+        else if (characterState.Equals(CharacterState.Idle))
+        {
+            nameState = "idle";
+            
+        }
+        Debug.Log("State Name :" + nameState);
+        playSkeletonAnimation.PlayAnimationState(nameState);
+    }
+
     private void UpdateEnemy()
     {
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
+        if (Enemies.Length == 0)
+        {
+            characterState = CharacterState.Idle;
+        }
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject Enemy in Enemies)

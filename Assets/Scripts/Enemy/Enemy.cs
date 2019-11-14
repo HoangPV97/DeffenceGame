@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour
     public PlaySkeletonAnimationState playSkeletonAnimation;
     private float currentHealth;
     public float Speed, Damge, range, Price, Health, Armor;
-    bool isMove = true,isLive=true,isAttack,isHurt,isDie,isIdle;
+    bool isMove = true, isLive = true, isAttack, isHurt, isDie, isIdle;
     public Image healthBar;
     protected GameObject Player;
     protected float distancetoPlayer;
-    public float RateOfFire ;
+    public float RateOfFire;
     protected float countdown;
     public static float EnemyLive;
     //public ParticleSystem particleSystem;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         PoolManager = ObjectPoolManager.Instance;
         soundManager = SoundManager.Instance;
-        
+
     }
     protected void Start()
     {
@@ -52,23 +52,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        bool stateChanged = previousState != CurrentState;
-        //previousState = CurrentState;
-        if (stateChanged)
+
+        if (previousState != CurrentState)
         {
             ChangeState();
             previousState = CurrentState;
+            Debug.Log("PreviousState :" + previousState);
+            Debug.Log("CurrentState :" + CurrentState);
         }
-        
-        
-        Debug.Log("Previous : " + previousState);
-        Debug.Log("Current : " + CurrentState);
-       
-        
-    }
-    private void FixedUpdate()
-    {
-               
+
+        AutoAttack();
     }
     /// <summary>
     /// Speed up for enemy
@@ -100,7 +93,11 @@ public class Enemy : MonoBehaviour
     }
 
     //
-    public void Attack( )
+    public void Attack()
+    {
+
+    }
+    protected void AutoAttack()
     {
         
     }
@@ -112,7 +109,7 @@ public class Enemy : MonoBehaviour
         SpawnGold();
         gameObject.SetActive(false);
     }
-    
+
     public void SpawnGold()
     {
         GameObject _gold = PoolManager.SpawnObject("gold", transform.position, Quaternion.identity);
@@ -121,7 +118,7 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(Elemental _elementalType, float _damage, float _damagePlus)
     {
-        
+
         float DamagePlus = 0;
         switch (elementalEnemy)
         {
@@ -157,14 +154,9 @@ public class Enemy : MonoBehaviour
         }
         currentHealth -= _damage + _damageplus;
         healthBar.fillAmount = currentHealth / Health;
-        //if (currentHealth < (Health / 2))
-        //{
-        //    particleSystem.gameObject.SetActive(true);
-        //}
-
         if (currentHealth <= 0)
         {
-           StartCoroutine( Die());
+            StartCoroutine(Die());
         }
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
@@ -173,7 +165,7 @@ public class Enemy : MonoBehaviour
         damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
-    public void TakeEffect(Effect _effect,float _time)
+    public void TakeEffect(Effect _effect, float _time)
     {
         if (gameObject.activeSelf)
         {
@@ -181,16 +173,18 @@ public class Enemy : MonoBehaviour
            {
                gameEffect.SetEffect(_effect, true, _time);
                isMove = false;
+               Move();
            }, () =>
            {
                gameEffect.SetEffect(_effect, false);
                isMove = true;
+               Move();
            }));
         }
     }
     public void KnockBack(float _backSpace)
     {
-        transform.position += new Vector3(0, _backSpace *0.1f, 0);
+        transform.position += new Vector3(0, _backSpace * 0.1f, 0);
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
@@ -206,15 +200,23 @@ public class Enemy : MonoBehaviour
         {
             case EnemyState.Attack:
                 stateName = "attack";
-                Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
-                
+                //Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+
                 break;
             case EnemyState.Die:
                 stateName = "die";
                 break;
             case EnemyState.Hurt:
                 stateName = "hurt";
-                Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+                if (isAttack)
+                {
+                    stateName = "hurt";
+                }
+                else
+                {
+                    Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+                }
+                
                 break;
             case EnemyState.Idle:
                 stateName = "idle";
@@ -231,8 +233,27 @@ public class Enemy : MonoBehaviour
         playSkeletonAnimation.PlayAnimationState(stateName);
     }
 
-    public void  BackToRunState()
+    public void BackToRunState()
     {
         CurrentState = EnemyState.Run;
     }
+    private void OnTriggerEnter2D(Collider2D _player)
+    {
+        if (_player.gameObject.tag.Equals("Player"))
+        {
+            //isMove = false;
+            isAttack = true;
+            CurrentState = EnemyState.Attack;
+            Rigidbody2D.velocity = Vector2.zero;
+        }
+    }
+    //private void OnTriggerStay2D(Collider2D _player)
+    //{
+    //    if (_player.gameObject.tag.Equals("Player"))
+    //    {
+    //        isAttack=true;
+    //        CurrentState = EnemyState.Attack;
+    //        Debug.Log("STAY :");
+    //    }
+    //}
 }

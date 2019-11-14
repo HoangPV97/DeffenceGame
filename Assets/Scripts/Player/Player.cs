@@ -30,28 +30,35 @@ public class Player : Characters
             switch (currentMode)
             {
                 case AutoMode.TurnOff:
+                    characterState = CharacterState.Idle;
                     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
                     {
                         Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                         float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                        transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
+                        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
                         ShootToDirection(direct, rotationZ, "tankbullet");
+
+                        //GameObject bullet = Spawn("tankbullet", Barrel.transform.position);
+                        //TankBullet mBullet = bullet.GetComponent<TankBullet>();
+                        //mBullet.DirectShooting(direct);
                         coundown = RateOfFire;
                     }
                     break;
                 case AutoMode.TurnOn:
                     if (Target != null)
                     {
-                        Vector3 dir = Target.position - transform.position;
-                        GameObject bullet = Spawn("tankbullet", Barrel.transform.position);
-                        TankBullet mBullet = bullet.GetComponent<TankBullet>();
-                        mBullet.DirectShooting(dir);
+                        characterState = CharacterState.Attack;
+                        Vector2 direct = Target.position - transform.position;
+                        float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
+                        ShootToDirection(direct, rotationZ, "tankbullet");
                         coundown = RateOfFire;
                     }
                     break;
             }
         }
         coundown -= Time.deltaTime;
+        base.Update();
     }
     public void TakeDamge(float _Damge)
     {
@@ -74,8 +81,8 @@ public class Player : Characters
     }
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
+        characterState = CharacterState.Attack;
         GameObject bullet = Spawn(_bullet, Barrel.transform.position);
-
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         TankBullet mBullet = bullet.GetComponent<TankBullet>();
         mBullet.elementalBullet = elementalType;

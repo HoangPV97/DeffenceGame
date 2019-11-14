@@ -35,6 +35,7 @@ public class PlaySkeletonAnimationState : MonoBehaviour
     }
     public void PlayAnimation(Spine.Animation _animation)
     {
+        //_animation.Duration = 0.3f;
         skeletonAnimation.AnimationState.SetAnimation(0, _animation, true);
         
     }
