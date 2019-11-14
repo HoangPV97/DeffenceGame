@@ -1,0 +1,132 @@
+
+wind_melee1.png
+size: 236,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 891
+  rotate: false
+  xy: 2, 350
+  size: 102, 157
+  orig: 102, 157
+  offset: 0, 0
+  index: -1
+Layer 892
+  rotate: false
+  xy: 151, 55
+  size: 49, 28
+  orig: 49, 28
+  offset: 0, 0
+  index: -1
+Layer 893
+  rotate: false
+  xy: 152, 27
+  size: 44, 26
+  orig: 44, 26
+  offset: 0, 0
+  index: -1
+Layer 894
+  rotate: false
+  xy: 106, 376
+  size: 123, 131
+  orig: 123, 131
+  offset: 0, 0
+  index: -1
+Layer 895
+  rotate: false
+  xy: 172, 85
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+Layer 896
+  rotate: false
+  xy: 172, 129
+  size: 40, 44
+  orig: 40, 44
+  offset: 0, 0
+  index: -1
+Layer 897
+  rotate: false
+  xy: 111, 54
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+Layer 898
+  rotate: false
+  xy: 111, 17
+  size: 39, 35
+  orig: 39, 35
+  offset: 0, 0
+  index: -1
+Layer 900
+  rotate: false
+  xy: 172, 175
+  size: 37, 50
+  orig: 37, 50
+  offset: 0, 0
+  index: -1
+Layer 901
+  rotate: false
+  xy: 131, 94
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: -1
+Layer 902
+  rotate: false
+  xy: 207, 236
+  size: 23, 25
+  orig: 23, 25
+  offset: 0, 0
+  index: -1
+Layer 903
+  rotate: false
+  xy: 207, 263
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+Layer 904
+  rotate: false
+  xy: 131, 292
+  size: 100, 82
+  orig: 100, 82
+  offset: 0, 0
+  index: -1
+atk1
+  rotate: false
+  xy: 2, 221
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+atk2
+  rotate: false
+  xy: 2, 92
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+leg
+  rotate: false
+  xy: 131, 148
+  size: 39, 77
+  orig: 39, 77
+  offset: 0, 0
+  index: -1
+riki
+  rotate: false
+  xy: 131, 227
+  size: 74, 63
+  orig: 74, 63
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 2, 2
+  size: 107, 88
+  orig: 107, 88
+  offset: 0, 0
+  index: -1

@@ -15,11 +15,18 @@ public class Tower : Characters
     }
     protected void Shoot()
     {
-        if (Bullet != null)
+        if (Target !=null)
         {
+            Debug.Log("Tower : ");
+            characterState = CharacterState.Attack;
             GameObject bullet = Spawn("towerbullet", Barrel.transform.position);
             Bullet towerBullet = bullet.GetComponent<Bullet>();
+            towerBullet.elementalBullet = elementalType;
             towerBullet?.SetTarget(Target);
+        }
+        else
+        {
+            characterState = CharacterState.Idle;
         }
     }
     private void AutoShoot()

@@ -23,8 +23,11 @@ public class LightingSkill : Bullet
         if (Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = Target.GetComponent<Enemy>();
-            enemy?.TakeDamage(elementalBullet,Damge,damagePlus);
-            enemy?.TakeEffect(Effect.Stun,5);
+            if (enemy != null)
+            {
+                enemy.TakeDamage(elementalBullet, Damge, damagePlus);
+                enemy.TakeEffect(Effect.Stun, 5);
+            }
             if (SeekTarget)
             {
                 

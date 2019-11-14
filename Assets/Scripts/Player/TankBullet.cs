@@ -31,6 +31,7 @@ public class TankBullet : Bullet
         if (Target.gameObject.tag.Equals(TargetTag))
         {
             Enemy enemy = Target.GetComponent<Enemy>();
+            enemy.CurrentState = EnemyState.Hurt;
             enemy?.TakeDamage(elementalBullet,Damge,damagePlus);
             if (SeekTarget)
             {

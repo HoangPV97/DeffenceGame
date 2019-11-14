@@ -3,43 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Spine.AnimationState;
 
+public enum EnemyState
+{
+    Idle, Run, Attack, Hurt, Die, Skill
+}
 public class Enemy : MonoBehaviour
 {
+
+    public EnemyState previousState, CurrentState;
+    public PlaySkeletonAnimationState playSkeletonAnimation;
     private float currentHealth;
     public float Speed, Damge, range, Price, Health, Armor;
-    bool isMove = true;
+    bool isMove = true, isLive = true, isAttack, isHurt, isDie, isIdle;
     public Image healthBar;
-    GameObject Player;
-    private string PlayerTag = "Player";
-    private float distancetoPlayer;
-    private float RateOfFire = 1f;
+    protected GameObject Player;
+    protected float distancetoPlayer;
+    public float RateOfFire;
+    protected float countdown;
     public static float EnemyLive;
-    public ParticleSystem particleSystem;
-    ObjectPoolManager PoolManager;
+    //public ParticleSystem particleSystem;
+    protected ObjectPoolManager PoolManager;
     SoundManager soundManager;
     float distance;
     public Elemental elementalEnemy;
     GameEffect gameEffect;
+    public Rigidbody2D Rigidbody2D;
     // Start is called before the first frame update
     private void Awake()
     {
         PoolManager = ObjectPoolManager.Instance;
         soundManager = SoundManager.Instance;
+
     }
-    void Start()
+    protected void Start()
     {
+        countdown = RateOfFire;
+        Rigidbody2D = GetComponent<Rigidbody2D>();
         gameEffect = GetComponent<GameEffect>();
         currentHealth = Health;
         SeekingPlayer();
         distance = Vector3.Distance(transform.position, Player.transform.position);
+        Move();
+        PlaySkeletonAnimationState.eventBacktoRun += BackToRunState;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
 
-        Move();
+        if (previousState != CurrentState)
+        {
+            ChangeState();
+            previousState = CurrentState;
+            Debug.Log("PreviousState :" + previousState);
+            Debug.Log("CurrentState :" + CurrentState);
+        }
+
         AutoAttack();
     }
     /// <summary>
@@ -51,9 +72,9 @@ public class Enemy : MonoBehaviour
         Speed += _Speed;
     }
     //Find player with tag="Player"
-    void SeekingPlayer()
+    protected void SeekingPlayer()
     {
-        Player = GameObject.FindGameObjectWithTag(PlayerTag);
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
     /// <summary>
     /// Move Enemy with velocity= distance/time
@@ -62,43 +83,33 @@ public class Enemy : MonoBehaviour
     {
         if (isMove)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, Time.deltaTime * (distance / Speed));
+            Rigidbody2D.velocity = Vector2.down * (distance / Speed);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position, Time.deltaTime * (distance / Speed));
+            Rigidbody2D.velocity = Vector2.zero;
         }
-
+        CurrentState = (Rigidbody2D.velocity.magnitude > 0) ? CurrentState = EnemyState.Run : CurrentState = EnemyState.Idle;
     }
 
     //
     public void Attack()
     {
-        distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (distancetoPlayer < range)
-        {
-            GameObject EnemyBullet = PoolManager.SpawnObject("enemybullet", transform.position, Quaternion.identity);
-            EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
-            m_EnemyBullet?.SetTarget(Player.transform);
-            m_EnemyBullet?.SetDamage(Damge);
-        }
-    }
-    public void Die()
-    {
 
-        gameObject.SetActive(false);
+    }
+    protected void AutoAttack()
+    {
+        
+    }
+    IEnumerator Die()
+    {
+        CurrentState = EnemyState.Die;
+        yield return new WaitForSeconds(1);
         EnemyLive--;
         SpawnGold();
+        gameObject.SetActive(false);
     }
-    private void AutoAttack()
-    {
-        if (RateOfFire <= 0f)
-        {
-            Attack();
-            RateOfFire = 1f;
-        }
-        RateOfFire -= Time.deltaTime;
-    }
+
     public void SpawnGold()
     {
         GameObject _gold = PoolManager.SpawnObject("gold", transform.position, Quaternion.identity);
@@ -107,42 +118,35 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(Elemental _elementalType, float _damage, float _damagePlus)
     {
+
+        float DamagePlus = 0;
         switch (elementalEnemy)
         {
             case Elemental.Fire:
                 if (_elementalType.Equals(Elemental.Wind))
                 {
-                    DealDamge(_damage, _damagePlus);
-                }
-                else
-                {
-                    DealDamge(_damage, 0);
+                    DamagePlus = _damagePlus;
                 }
                 break;
             case Elemental.Ice:
                 if (_elementalType.Equals(Elemental.Fire))
                 {
-                    DealDamge(_damage, _damagePlus);
+                    DamagePlus = _damagePlus;
                 }
-                else
-                {
-                    DealDamge(_damage, 0);
-                }
+
                 break;
             case Elemental.Wind:
                 if (_elementalType.Equals(Elemental.Ice))
                 {
-                    DealDamge(_damage, _damagePlus);
-                }
-                else
-                {
-                    DealDamge(_damage, 0);
+                    DamagePlus = _damagePlus;
                 }
                 break;
         }
+        DealDamge(_damage, DamagePlus);
     }
-    public void DealDamge(float _damage, float _damageplus)
+    protected void DealDamge(float _damage, float _damageplus)
     {
+        CurrentState = EnemyState.Hurt;
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
@@ -150,23 +154,18 @@ public class Enemy : MonoBehaviour
         }
         currentHealth -= _damage + _damageplus;
         healthBar.fillAmount = currentHealth / Health;
-        if (currentHealth < (Health / 2))
-        {
-            particleSystem.gameObject.SetActive(true);
-        }
-
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
-    public void SpawnDamageText(string tag, Vector2 _postion, float _damage)
+    private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
         GameObject damageobj = PoolManager.SpawnObject(tag, _postion, Quaternion.identity);
         damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
-    public void TakeEffect(Effect _effect,float _time)
+    public void TakeEffect(Effect _effect, float _time)
     {
         if (gameObject.activeSelf)
         {
@@ -174,16 +173,18 @@ public class Enemy : MonoBehaviour
            {
                gameEffect.SetEffect(_effect, true, _time);
                isMove = false;
+               Move();
            }, () =>
            {
                gameEffect.SetEffect(_effect, false);
                isMove = true;
+               Move();
            }));
         }
     }
-    public void Back(float _backSpace)
+    public void KnockBack(float _backSpace)
     {
-        transform.position += new Vector3(0, _backSpace *0.1f, 0);
+        transform.position += new Vector3(0, _backSpace * 0.1f, 0);
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
@@ -191,4 +192,68 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(_time);
         _action2.Invoke();
     }
+    public void ChangeState()
+    {
+
+        string stateName = null;
+        switch (CurrentState)
+        {
+            case EnemyState.Attack:
+                stateName = "attack";
+                //Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+
+                break;
+            case EnemyState.Die:
+                stateName = "die";
+                break;
+            case EnemyState.Hurt:
+                stateName = "hurt";
+                if (isAttack)
+                {
+                    stateName = "hurt";
+                }
+                else
+                {
+                    Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+                }
+                
+                break;
+            case EnemyState.Idle:
+                stateName = "idle";
+                break;
+            case EnemyState.Run:
+                stateName = "run";
+                break;
+            case EnemyState.Skill:
+                stateName = "skill";
+                break;
+            default:
+                break;
+        }
+        playSkeletonAnimation.PlayAnimationState(stateName);
+    }
+
+    public void BackToRunState()
+    {
+        CurrentState = EnemyState.Run;
+    }
+    private void OnTriggerEnter2D(Collider2D _player)
+    {
+        if (_player.gameObject.tag.Equals("Player"))
+        {
+            //isMove = false;
+            isAttack = true;
+            CurrentState = EnemyState.Attack;
+            Rigidbody2D.velocity = Vector2.zero;
+        }
+    }
+    //private void OnTriggerStay2D(Collider2D _player)
+    //{
+    //    if (_player.gameObject.tag.Equals("Player"))
+    //    {
+    //        isAttack=true;
+    //        CurrentState = EnemyState.Attack;
+    //        Debug.Log("STAY :");
+    //    }
+    //}
 }

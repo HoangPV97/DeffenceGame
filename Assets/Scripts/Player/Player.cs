@@ -8,9 +8,10 @@ public class Player : Characters
 {
     public enum AutoMode { TurnOn, TurnOff };
     public AutoMode currentMode;
-    public Elemental elementalPlayer;
+    //public Elemental elementalPlayer;
     public Health Health;
     public Mana Mana;
+    private float coundown;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,34 +25,40 @@ public class Player : Characters
     // Update is called once per frame
     private void Update()
     {
-        if (RateOfFire < 0)
+        if (coundown < 0)
         {
             switch (currentMode)
             {
                 case AutoMode.TurnOff:
+                    characterState = CharacterState.Idle;
                     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
                     {
                         Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                         float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                        transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
+                        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
                         ShootToDirection(direct, rotationZ, "tankbullet");
-                        RateOfFire = 1;
+
+                        //GameObject bullet = Spawn("tankbullet", Barrel.transform.position);
+                        //TankBullet mBullet = bullet.GetComponent<TankBullet>();
+                        //mBullet.DirectShooting(direct);
+                        coundown = RateOfFire;
                     }
                     break;
                 case AutoMode.TurnOn:
                     if (Target != null)
                     {
-                        LookAtEnemy(Target);
-                        Vector3 dir = Target.position - transform.position;
-                        GameObject bullet = Spawn("tankbullet", Barrel.transform.position);
-                        TankBullet mBullet = bullet.GetComponent<TankBullet>();
-                        mBullet.DirectShooting(dir);
-                        RateOfFire = 1;
+                        characterState = CharacterState.Attack;
+                        Vector2 direct = Target.position - transform.position;
+                        float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
+                        ShootToDirection(direct, rotationZ, "tankbullet");
+                        coundown = RateOfFire;
                     }
                     break;
             }
         }
-        RateOfFire -= Time.deltaTime;
+        coundown -= Time.deltaTime;
+        base.Update();
     }
     public void TakeDamge(float _Damge)
     {
@@ -74,9 +81,11 @@ public class Player : Characters
     }
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
+        characterState = CharacterState.Attack;
         GameObject bullet = Spawn(_bullet, Barrel.transform.position);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         TankBullet mBullet = bullet.GetComponent<TankBullet>();
+        mBullet.elementalBullet = elementalType;
         mBullet.DirectShooting(_direction);
     }
     public void RecoverMana()

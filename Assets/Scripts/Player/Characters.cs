@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum CharacterState { Idle,Attack};
 public class Characters : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,6 +15,9 @@ public class Characters : MonoBehaviour
     public GameObject Bullet;
     public static bool Live = true;
     ObjectPoolManager poolManager;
+    public Elemental elementalType;
+    protected CharacterState characterState,preCharacterState;
+    public PlaySkeletonAnimationState playSkeletonAnimation;
     protected void Start()
     {
         Live = true;
@@ -28,15 +33,37 @@ public class Characters : MonoBehaviour
         {
             return;
         }
-        if (Live && Target != null)
+        if (preCharacterState != characterState)
         {
-            LookAtEnemy(Target);
+            ChangeState();
+            preCharacterState = characterState;
         }
-
     }
+
+    private void ChangeState()
+    {
+        string nameState = null;
+        if (characterState.Equals(CharacterState.Attack))
+        {
+            nameState = "attack";
+            
+        }
+        else if (characterState.Equals(CharacterState.Idle))
+        {
+            nameState = "idle";
+            
+        }
+        Debug.Log("State Name :" + nameState);
+        playSkeletonAnimation.PlayAnimationState(nameState);
+    }
+
     private void UpdateEnemy()
     {
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
+        if (Enemies.Length == 0)
+        {
+            characterState = CharacterState.Idle;
+        }
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject Enemy in Enemies)
@@ -64,14 +91,6 @@ public class Characters : MonoBehaviour
     public GameObject Spawn(string tag, Vector3 _position)
     {
         return poolManager.SpawnObject(tag, _position, Quaternion.identity);
-    }
-    public void LookAtEnemy(Transform _Taget)
-    {
-        if (_Taget != null)
-        {
-            transform.up = _Taget.position - transform.position;
-        }
-        
     }
     
 }
