@@ -14,10 +14,9 @@ public class Enemy : MonoBehaviour
 
     public EnemyState previousState, CurrentState;
     public PlaySkeletonAnimationState playSkeletonAnimation;
-    private float currentHealth;
-    public float Speed, Damge, range, Price, Health, Armor;
+    public Health Health;
+    public float Speed, Damge, range, Price, Armor;
     bool isMove = true, isLive = true, isAttack, isHurt, isDie, isIdle;
-    public Image healthBar;
     protected GameObject Player;
     protected float distancetoPlayer;
     public float RateOfFire;
@@ -40,9 +39,8 @@ public class Enemy : MonoBehaviour
     protected void Start()
     {
         countdown = RateOfFire;
-        Rigidbody2D = GetComponent<Rigidbody2D>();
         gameEffect = GetComponent<GameEffect>();
-        currentHealth = Health;
+        Health.CurrentHealth = Health.health;
         SeekingPlayer();
         distance = Vector3.Distance(transform.position, Player.transform.position);
         Move();
@@ -60,8 +58,6 @@ public class Enemy : MonoBehaviour
             Debug.Log("PreviousState :" + previousState);
             Debug.Log("CurrentState :" + CurrentState);
         }
-
-        AutoAttack();
     }
     /// <summary>
     /// Speed up for enemy
@@ -90,16 +86,6 @@ public class Enemy : MonoBehaviour
             Rigidbody2D.velocity = Vector2.zero;
         }
         CurrentState = (Rigidbody2D.velocity.magnitude > 0) ? CurrentState = EnemyState.Run : CurrentState = EnemyState.Idle;
-    }
-
-    //
-    public void Attack()
-    {
-
-    }
-    protected void AutoAttack()
-    {
-        
     }
     IEnumerator Die()
     {
@@ -146,15 +132,16 @@ public class Enemy : MonoBehaviour
     }
     protected void DealDamge(float _damage, float _damageplus)
     {
+        isHurt = true;
         CurrentState = EnemyState.Hurt;
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
-        currentHealth -= _damage + _damageplus;
-        healthBar.fillAmount = currentHealth / Health;
-        if (currentHealth <= 0)
+        Health.CurrentHealth -= _damage + _damageplus;
+        Health.healthBar.fillAmount = Health.CurrentHealth / Health.health;
+        if (Health.CurrentHealth <= 0)
         {
             StartCoroutine(Die());
         }
@@ -200,23 +187,21 @@ public class Enemy : MonoBehaviour
         {
             case EnemyState.Attack:
                 stateName = "attack";
-                //Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
-
                 break;
             case EnemyState.Die:
                 stateName = "die";
                 break;
             case EnemyState.Hurt:
-                stateName = "hurt";
-                if (isAttack)
-                {
                     stateName = "hurt";
-                }
-                else
+                if (isMove)
                 {
                     Invoke("BackToRunState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
                 }
-                
+                if (isAttack)
+                {
+                    Invoke("BackToAttackState", playSkeletonAnimation.GetAnimationStateInList(stateName).Duration);
+                }
+
                 break;
             case EnemyState.Idle:
                 stateName = "idle";
@@ -235,25 +220,20 @@ public class Enemy : MonoBehaviour
 
     public void BackToRunState()
     {
-        CurrentState = EnemyState.Run;
+            CurrentState = EnemyState.Run;
+    }
+    public void BackToAttackState()
+    {
+        CurrentState = EnemyState.Attack;
     }
     private void OnTriggerEnter2D(Collider2D _player)
     {
         if (_player.gameObject.tag.Equals("Player"))
         {
-            //isMove = false;
             isAttack = true;
             CurrentState = EnemyState.Attack;
-            Rigidbody2D.velocity = Vector2.zero;
+            isMove = false;
+            Move();
         }
     }
-    //private void OnTriggerStay2D(Collider2D _player)
-    //{
-    //    if (_player.gameObject.tag.Equals("Player"))
-    //    {
-    //        isAttack=true;
-    //        CurrentState = EnemyState.Attack;
-    //        Debug.Log("STAY :");
-    //    }
-    //}
 }

@@ -245,7 +245,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8020962621357836205}
-  - component: {fileID: 8020962621357836204}
   - component: {fileID: 2882613129840932449}
   - component: {fileID: 8020962621357836202}
   - component: {fileID: 7385684139614032846}
@@ -253,6 +252,7 @@ GameObject:
   - component: {fileID: 401669833}
   - component: {fileID: 401669831}
   - component: {fileID: 6328121496462466024}
+  - component: {fileID: 6284507176347056622}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -276,31 +276,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8020962621357836204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8020962621357836206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500083d67d1420c41a2d96064d997412, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previousState: 0
-  CurrentState: 0
-  playSkeletonAnimation: {fileID: 6328121496462466024}
-  Speed: 15
-  Damge: 5
-  range: 5.5
-  Price: 1
-  Health: 150
-  Armor: 1
-  healthBar: {fileID: 8020962621952129804}
-  RateOfFire: 0
-  elementalEnemy: 1
-  Rigidbody2D: {fileID: 0}
 --- !u!114 &2882613129840932449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,8 +414,8 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: run
-  loop: 0
+  _animationName: atk
+  loop: 1
   timeScale: 1
 --- !u!114 &6328121496462466024
 MonoBehaviour:
@@ -466,6 +441,35 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: bc828a14ffbbbf04cb6d5c8fbeca4ab0, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 29a2ee7d19154e740a2bbe036f1b6f1d, type: 2}
+--- !u!114 &6284507176347056622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020962621357836206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e73aa182886756448a80739331a82d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousState: 0
+  CurrentState: 0
+  playSkeletonAnimation: {fileID: 6328121496462466024}
+  Health:
+    mHealth: 100
+    currentHealth: 0
+    recoverHealthValue: 0
+    recoverHealthTime: 0
+    healthBar: {fileID: 8020962621952129804}
+  Speed: 15
+  Damge: 5
+  range: 3
+  Price: 3
+  Armor: 2
+  RateOfFire: 1
+  elementalEnemy: 1
+  Rigidbody2D: {fileID: 7385684139614032846}
 --- !u!1 &8020962621952129806
 GameObject:
   m_ObjectHideFlags: 0

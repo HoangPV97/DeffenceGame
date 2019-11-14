@@ -11,6 +11,8 @@ public class SpawnEnemy : MonoBehaviour
     public float EnemyQuantum;
     float temp;
     float process;
+    [SerializeField]
+    List<Vector2> spawnPosition;
     ObjectPoolManager poolManager;
     // Start is called before the first frame update
     void Start()
@@ -31,9 +33,9 @@ public class SpawnEnemy : MonoBehaviour
     {
         while (EnemyQuantum > 0)
         {
-            int randomEnemy = Random.Range(1, 4);
-            Vector3 RandomPosition = new Vector3(Random.Range(-SpawnPosition.x, SpawnPosition.x), 5.7f, 0);
-            GameObject m_Enemy = poolManager.SpawnObject("enemy" + randomEnemy, RandomPosition + transform.TransformPoint(0, 0, 0),transform.rotation);
+            int randomEnemy = Random.Range(1, 6);
+            int RandomPosition = Random.Range(0, spawnPosition.Count);
+            GameObject m_Enemy = poolManager.SpawnObject("enemy" + randomEnemy, spawnPosition[RandomPosition],transform.rotation);
             //m_Enemy.GetComponent<Enemy>().UpSpeedEnemy(slider.value);
             
             EnemyQuantum--;

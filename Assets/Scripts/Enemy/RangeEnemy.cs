@@ -31,7 +31,6 @@ public class RangeEnemy : Enemy
                 m_EnemyBullet.SetDamage(Damge);
             }
         }
-        base.Attack();
     }
     public void AutoAttack()
     {
@@ -41,6 +40,5 @@ public class RangeEnemy : Enemy
             countdown = RateOfFire;
         }
         countdown -= Time.deltaTime;
-        base.AutoAttack();
     }
 }

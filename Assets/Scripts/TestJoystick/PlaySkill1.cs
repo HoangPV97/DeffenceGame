@@ -37,8 +37,7 @@ public class PlaySkill1 : Skill
     public void RotateArrow()
     {
         arrow.SetActive(true);
-        arrow.transform.eulerAngles = new Vector3(0, 0, angle);
-        arrow.transform.localScale = new Vector3(direction.magnitude / 6 * transform.localScale.x, 0.3f, 1f);
+        arrow.transform.eulerAngles = new Vector3(0, 0, angle - 90.0f);
     }
     public void Skill1(Vector2 _direction, float _rotatioZ)
     {

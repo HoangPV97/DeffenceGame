@@ -4738,7 +4738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6292061646329833500}
-  - component: {fileID: 6292061646329833475}
+  - component: {fileID: 1208439484003689986}
   - component: {fileID: 8658844840670544642}
   - component: {fileID: 6292061646329833473}
   - component: {fileID: 3571211530392899872}
@@ -4769,7 +4769,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &6292061646329833475
+--- !u!114 &1208439484003689986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4778,22 +4778,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292061646329833501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500083d67d1420c41a2d96064d997412, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   previousState: 0
   CurrentState: 0
   playSkeletonAnimation: {fileID: 809390913999438112}
+  Health:
+    mHealth: 250
+    currentHealth: 0
+    recoverHealthValue: 0
+    recoverHealthTime: 0
+    healthBar: {fileID: 6292061646851876514}
   Speed: 20
   Damge: 20
-  range: 4
+  range: 1
   Price: 3
-  Health: 350
   Armor: 3
-  healthBar: {fileID: 6292061646851876514}
   RateOfFire: 0
   elementalEnemy: 1
-  Rigidbody2D: {fileID: 0}
+  Rigidbody2D: {fileID: 3571211530392899872}
 --- !u!114 &8658844840670544642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4932,8 +4936,8 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: run_start
-  loop: 0
+  _animationName: dam_nghich
+  loop: 1
   timeScale: 1
 --- !u!114 &809390913999438112
 MonoBehaviour:
@@ -4952,13 +4956,13 @@ MonoBehaviour:
   - stateName: attack
     animation: {fileID: 11400000, guid: 71dc1e2b3f1be3f42932ff2873f819bc, type: 2}
   - stateName: die
-    animation: {fileID: 11400000, guid: 4b2eebf13ac5f0b4ca98861f9331e9f6, type: 2}
+    animation: {fileID: 11400000, guid: 883e1642f7f40fd43bff9aa73b34e237, type: 2}
   - stateName: hurt
-    animation: {fileID: 11400000, guid: 134ecb5df2c85d54aabc7add15bd049a, type: 2}
+    animation: {fileID: 11400000, guid: f9ebb791e25a76443adce1ce1bdd6f7c, type: 2}
   - stateName: run
-    animation: {fileID: 11400000, guid: bc828a14ffbbbf04cb6d5c8fbeca4ab0, type: 2}
+    animation: {fileID: 11400000, guid: d2d807d0f02200d4697ab934a137adbd, type: 2}
   - stateName: idle
-    animation: {fileID: 11400000, guid: 29a2ee7d19154e740a2bbe036f1b6f1d, type: 2}
+    animation: {fileID: 11400000, guid: 0247f1c1d0180c245bb7c32f1ca5180a, type: 2}
 --- !u!1 &6292061646712227653
 GameObject:
   m_ObjectHideFlags: 0

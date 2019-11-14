@@ -5032,16 +5032,20 @@ MonoBehaviour:
   previousState: 0
   CurrentState: 0
   playSkeletonAnimation: {fileID: 6528972253054926665}
+  Health:
+    mHealth: 180
+    currentHealth: 0
+    recoverHealthValue: 0
+    recoverHealthTime: 0
+    healthBar: {fileID: 7178071148755731592}
   Speed: 20
   Damge: 20
   range: 4
   Price: 3
-  Health: 350
   Armor: 3
-  healthBar: {fileID: 7178071148755731592}
   RateOfFire: 1
   elementalEnemy: 1
-  Rigidbody2D: {fileID: 0}
+  Rigidbody2D: {fileID: 379209336301220618}
 --- !u!114 &5541152226216747304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5180,7 +5184,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: run
+  _animationName: atk
   loop: 1
   timeScale: 1
 --- !u!114 &6528972253054926665

@@ -4919,7 +4919,7 @@ GameObject:
   - component: {fileID: 2564150611025518158}
   - component: {fileID: 4688615873598794641}
   - component: {fileID: 5481581012859897711}
-  - component: {fileID: 8427827957315114736}
+  - component: {fileID: 7148273269938506316}
   m_Layer: 0
   m_Name: Enemy6
   m_TagString: Enemy
@@ -5108,7 +5108,7 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: fdfac7451d036c943aaae501aac8c620, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: f16b8e581f66f57498dde9bd429695b0, type: 2}
---- !u!114 &8427827957315114736
+--- !u!114 &7148273269938506316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5117,22 +5117,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912908039463566854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e73aa182886756448a80739331a82d1, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   previousState: 0
   CurrentState: 0
   playSkeletonAnimation: {fileID: 5481581012859897711}
+  Health:
+    mHealth: 250
+    currentHealth: 0
+    recoverHealthValue: 0
+    recoverHealthTime: 0
+    healthBar: {fileID: 8912908038874902713}
   Speed: 30
   Damge: 30
-  range: 2
+  range: 1
   Price: 3
-  Health: 350
   Armor: 3
-  healthBar: {fileID: 8912908038874902713}
   RateOfFire: 1
   elementalEnemy: 1
-  Rigidbody2D: {fileID: 0}
+  Rigidbody2D: {fileID: 2121085402989365051}
 --- !u!1 &8912908039809388894
 GameObject:
   m_ObjectHideFlags: 0

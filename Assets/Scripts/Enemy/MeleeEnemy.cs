@@ -20,16 +20,14 @@ public class MeleeEnemy : Enemy
     {
 
         distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (distancetoPlayer < range)
+        if (distancetoPlayer < range )
         {
             CurrentState = EnemyState.Attack;
             if (Player != null)
             {
-                //m_EnemyBullet.SetTarget(Player.transform);
-                //m_EnemyBullet.SetDamage(Damge);
+                Player.GetComponent<Player>().TakeDamge(Damge);
             }
         }
-        base.Attack();
     }
     protected void AutoAttack()
     {
