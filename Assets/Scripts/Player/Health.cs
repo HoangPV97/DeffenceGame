@@ -15,6 +15,7 @@ public class Health
     [SerializeField]
     private float recoverHealthTime;
     public Image healthBar;
+    public Image maxHealthBar;
     public float health
     {
         get

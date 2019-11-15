@@ -16,7 +16,8 @@ public class Enemy : MonoBehaviour
     public PlaySkeletonAnimationState playSkeletonAnimation;
     public Health Health;
     public float Speed, Damge, range, Price, Armor;
-    bool isMove = true, isLive = true, isAttack, isHurt, isDie, isIdle;
+    public bool isMove = true ,isAttack, isLive = true;
+    bool  isHurt, isDie, isIdle;
     protected GameObject Player;
     protected float distancetoPlayer;
     public float RateOfFire;
@@ -55,8 +56,6 @@ public class Enemy : MonoBehaviour
         {
             ChangeState();
             previousState = CurrentState;
-            Debug.Log("PreviousState :" + previousState);
-            Debug.Log("CurrentState :" + CurrentState);
         }
     }
     /// <summary>
@@ -128,6 +127,8 @@ public class Enemy : MonoBehaviour
                 }
                 break;
         }
+        GameObject bulletImpact = gameEffect.GetElementalEffect(_elementalType, gameObject.transform.position);
+        bulletImpact.transform.parent = gameObject.transform;
         DealDamge(_damage, DamagePlus);
     }
     protected void DealDamge(float _damage, float _damageplus)
@@ -160,12 +161,17 @@ public class Enemy : MonoBehaviour
            {
                gameEffect.SetEffect(_effect, true, _time);
                isMove = false;
+               isAttack = false;
                Move();
            }, () =>
            {
                gameEffect.SetEffect(_effect, false);
                isMove = true;
-               Move();
+               if (!isAttack)
+               {
+                   Move();
+               }
+               
            }));
         }
     }

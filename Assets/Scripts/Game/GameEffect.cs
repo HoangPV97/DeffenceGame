@@ -55,5 +55,22 @@ public class GameEffect : MonoBehaviour
                 break;
         }
     }
+    public GameObject GetElementalEffect(Elemental _elemental,Vector2 _position)
+    {
+        GameObject effect=null;
+        switch (_elemental)
+        {
+            case Elemental.Fire:
+                effect= ObjectPoolManager.Instance.SpawnObject("fireimpact", _position, Quaternion.identity);
+                break;
+            case Elemental.Ice:
+                effect = ObjectPoolManager.Instance.SpawnObject("iceimpact", _position, Quaternion.identity);
+                break;
+            case Elemental.Wind:
+                effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
+                break;
+        }
+        return effect;
+    }
     
 }

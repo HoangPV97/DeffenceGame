@@ -15,6 +15,7 @@ public class Mana
     [SerializeField]
     private float recoverManaTime;
     public Image manaBar;
+    public Image maxManaBar;
     // Start is called before the first frame update
     public float mana
     {

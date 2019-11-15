@@ -1,4 +1,6 @@
-﻿using Spine.Unity;
+﻿using Spine;
+using Spine.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +14,16 @@ public class PlaySkeletonAnimationState : MonoBehaviour
     {
         public string stateName;
         public AnimationReferenceAsset animation;
-        public float Duration { get => animation.Animation.Duration; }
+        //public float Duration { get => animation.Animation.Duration; }
     }
     public SkeletonAnimation skeletonAnimation;
     public delegate void BacktoRunState();
     public static event BacktoRunState eventBacktoRun;
     //public SkeletonAnimation skeletonAnimation;
     public List<StateNameToAnimationReference> statesAnimation = new List<StateNameToAnimationReference>();
+    Bone bone;
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -37,8 +39,15 @@ public class PlaySkeletonAnimationState : MonoBehaviour
     {
         //_animation.Duration = 0.3f;
         skeletonAnimation.AnimationState.SetAnimation(0, _animation, true);
-        
+        skeletonAnimation.AnimationState.Event += OnEvent;
+        skeletonAnimation.Skeleton.FindBone("bullet");
     }
+
+    private void OnEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        Debug.Log(e);
+    }
+
     public Spine.Animation GetAnimationStateInList(string State)
     {
         return statesAnimation.Where(obj => obj.stateName.Equals(State)).SingleOrDefault().animation;

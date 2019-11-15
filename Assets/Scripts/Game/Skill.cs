@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Skill : MonoBehaviour
 {
     public Player player;
-    public GameObject BulletOfSkill;
-    public Transform Barrel;
     public Image CountdownGo;
     public float CountdownTime;
     public float manaNumber;

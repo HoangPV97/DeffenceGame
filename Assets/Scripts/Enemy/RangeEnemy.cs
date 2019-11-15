@@ -20,9 +20,11 @@ public class RangeEnemy : Enemy
     {
         
         distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (distancetoPlayer < range)
+        if (distancetoPlayer < range && isAttack)
         {
             CurrentState = EnemyState.Attack;
+            isMove = false;
+            Move(); 
             GameObject EnemyBullet = PoolManager.SpawnObject("enemybullet", transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)

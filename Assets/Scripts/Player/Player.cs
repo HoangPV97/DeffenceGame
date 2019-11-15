@@ -9,6 +9,7 @@ public class Player : Characters
     public enum AutoMode { TurnOn, TurnOff };
     public AutoMode currentMode;
     //public Elemental elementalPlayer;
+    public ViewPlayerController ViewPlayer;
     public Health Health;
     public Mana Mana;
     private float coundown;
@@ -33,20 +34,18 @@ public class Player : Characters
                     characterState = CharacterState.Idle;
                     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
                     {
+                        //ViewPlayer.SetPositionBone(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                         Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                         float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
-                        ShootToDirection(direct, rotationZ, "tankbullet");
 
-                        //GameObject bullet = Spawn("tankbullet", Barrel.transform.position);
-                        //TankBullet mBullet = bullet.GetComponent<TankBullet>();
-                        //mBullet.DirectShooting(direct);
+                        ShootToDirection(direct, rotationZ, "tankbullet");
                         coundown = RateOfFire;
                     }
                     break;
                 case AutoMode.TurnOn:
                     if (Target != null)
                     {
+                       // ViewPlayer.SetPositionBone(Target.position);
                         characterState = CharacterState.Attack;
                         Vector2 direct = Target.position - transform.position;
                         float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
@@ -63,7 +62,9 @@ public class Player : Characters
     public void TakeDamge(float _Damge)
     {
         Health.CurrentHealth -= _Damge;
-        Health.healthBar.fillAmount = Health.CurrentHealth / Health.health * 1.0f;
+        float width = Health.healthBar.rectTransform.rect.width;
+        float height = Health.healthBar.rectTransform.rect.height;
+        Health.healthBar.rectTransform.sizeDelta = new Vector2(width * (Health.CurrentHealth / Health.health * 1.0f), height);
         if (Health.CurrentHealth <= 0)
         {
             Die();
@@ -73,7 +74,9 @@ public class Player : Characters
     {
         Mana.CurrentMana -= _mana;
         // Debug.Log($"Mana :  {CurrentMana}");
-        Mana.manaBar.fillAmount = Mana.CurrentMana / Mana.mana * 1.0f;
+        float width = Mana.maxManaBar.rectTransform.rect.width;
+        float height = Mana.maxManaBar.rectTransform.rect.height;
+        Mana.manaBar.rectTransform.sizeDelta = new Vector2(width * (Mana.CurrentMana / Mana.mana * 1.0f), height);
     }
     public void Die()
     {
@@ -82,7 +85,7 @@ public class Player : Characters
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
         characterState = CharacterState.Attack;
-        GameObject bullet = Spawn(_bullet, Barrel.transform.position);
+        GameObject bullet = Spawn(_bullet, Barrel.position);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         TankBullet mBullet = bullet.GetComponent<TankBullet>();
         mBullet.elementalBullet = elementalType;
@@ -93,7 +96,9 @@ public class Player : Characters
         if (Mana.CurrentMana < Mana.mana)
         {
             Mana.CurrentMana += Mana.RecoverManaValue;
-            Mana.manaBar.fillAmount = Mana.CurrentMana / Mana.mana * 1.0f;
+            float width = Mana.maxManaBar.rectTransform.rect.width;
+            float height = Mana.maxManaBar.rectTransform.rect.height;
+            Mana.manaBar.rectTransform.sizeDelta = new Vector2(Mana.manaBar.rectTransform.rect.width + (Mana.RecoverManaValue / Mana.mana *width) , height);
             if (Mana.CurrentMana > Mana.mana)
                 Mana.CurrentMana = Mana.mana;
         }
@@ -103,7 +108,9 @@ public class Player : Characters
         if (Health.CurrentHealth < Health.health)
         {
             Health.CurrentHealth += Health.RecoverHealthValue;
-            Health.healthBar.fillAmount = Health.CurrentHealth / Health.health * 1.0f;
+            float width = Health.maxHealthBar.rectTransform.rect.width;
+            float height = Health.maxHealthBar.rectTransform.rect.height;
+            Health.healthBar.rectTransform.sizeDelta = new Vector2(Health.healthBar.rectTransform.rect.width + (Health.RecoverHealthValue / Health.health *width ), height);
             if (Health.CurrentHealth > Health.health)
                 Health.CurrentHealth = Health.health;
         }

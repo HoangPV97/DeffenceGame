@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowSkill : Bullet
+public class SlowSkill : TankBullet
 {
     [SerializeField]
     float backSpace;

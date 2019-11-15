@@ -50,7 +50,7 @@ public class PlaySkill2 : Skill
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
         player.ConsumeMana(manaNumber);
-        GameObject lighSkill = poolManager.SpawnObject("lightskill", circle.transform.position, Quaternion.identity);
+        GameObject lighSkill = poolManager.SpawnObject("iceskill", circle.transform.position, Quaternion.identity);
         float particleTime = lighSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         StartCoroutine(WaitingActiveObject(lighSkill, particleTime,false));

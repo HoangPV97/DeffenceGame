@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spine.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Characters : MonoBehaviour
     private Enemy m_Enemy;
     public string EnemyTag = "Enemy";
     public float RateOfFire = 1f;
-    public GameObject Barrel;
+    public Transform Barrel;
     public GameObject Bullet;
     public static bool Live = true;
     ObjectPoolManager poolManager;
@@ -53,7 +54,6 @@ public class Characters : MonoBehaviour
             nameState = "idle";
             
         }
-        Debug.Log("State Name :" + nameState);
         playSkeletonAnimation.PlayAnimationState(nameState);
     }
 
