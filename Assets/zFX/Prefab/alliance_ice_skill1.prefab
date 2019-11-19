@@ -23825,9 +23825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76da7a2cc459de4e9cfaacda5779cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  Damge: 50
-  TargetTag: Enemy
+  bullet:
+    _speed: 0
+    _damage: 50
+    _targetTag: Enemy
   SeekTarget: 0
   elementalBullet: 0
   damagePlus: 10

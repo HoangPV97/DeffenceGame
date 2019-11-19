@@ -28,11 +28,11 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.Live == false)
+        if (Tower.Islive == false)
         {
             EndGame();
         }
-        if (Enemy.EnemyLive == 0)
+        if (EnemyController.EnemyLive == 0)
         {
             WinGame();
         }

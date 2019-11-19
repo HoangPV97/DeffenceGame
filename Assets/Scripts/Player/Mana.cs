@@ -17,7 +17,7 @@ public class Mana
     public Image manaBar;
     public Image maxManaBar;
     // Start is called before the first frame update
-    public float mana
+    public float maxMana
     {
         get
         {
@@ -61,4 +61,23 @@ public class Mana
             this.recoverManaTime = value;
         }
     }
+    public void ConsumeMana(float _mana)
+    {
+        CurrentMana -= _mana;
+        float width = maxManaBar.rectTransform.rect.width;
+        float height = maxManaBar.rectTransform.rect.height;
+        manaBar.rectTransform.sizeDelta = new Vector2(width * (CurrentMana / maxMana * 1.0f), height);
+    }
+    public void RecoverMana()
+    {
+        CurrentMana += RecoverManaValue;
+        float width = maxManaBar.rectTransform.rect.width;
+        float height = maxManaBar.rectTransform.rect.height;
+        manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * width), height);
+        if (CurrentMana > maxMana)
+        {
+            CurrentMana = maxMana;
+        }
+    }
 }
+

@@ -95,9 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9954c02f35defd341b223207fe3872d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4
-  Damge: 7
-  TargetTag: Player
+  bullet:
+    _speed: 4
+    _damage: 5
+    _targetTag: Tower
   SeekTarget: 1
   elementalBullet: 0
   damagePlus: 0

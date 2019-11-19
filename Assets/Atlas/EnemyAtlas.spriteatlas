@@ -29,20 +29,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
-    packables:
-    - {fileID: 21300000, guid: 49b11646f27702c4f9c73646a103371c, type: 3}
-    - {fileID: 21300000, guid: a616ec00faa677d4981d0c281925673f, type: 3}
-    - {fileID: 21300000, guid: f4a33a5d171e53440800428850c7deff, type: 3}
-    totalSpriteSurfaceArea: 244377
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: a616ec00faa677d4981d0c281925673f, type: 3}
-  - {fileID: 21300000, guid: 49b11646f27702c4f9c73646a103371c, type: 3}
-  - {fileID: 21300000, guid: f4a33a5d171e53440800428850c7deff, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Enemy2
-  - enemy1
-  - Enemy3
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: EnemyAtlas
   m_IsVariant: 0

@@ -60,4 +60,22 @@ public class Health
             this.recoverHealthTime = value;
         }
     }
+    public void ReduceHealth(float _damage)
+    {
+        CurrentHealth -= _damage;
+        float width = maxHealthBar.rectTransform.rect.width;
+        float height = maxHealthBar.rectTransform.rect.height;
+        healthBar.rectTransform.sizeDelta = new Vector2(width * (CurrentHealth / health * 1.0f), height);
+    }
+    public void RecoverHealth()
+    {
+        CurrentHealth += RecoverHealthValue;
+        float width = maxHealthBar.rectTransform.rect.width;
+        float height = maxHealthBar.rectTransform.rect.height;
+        healthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width + (RecoverHealthValue / health * width), height);
+        if (CurrentHealth > health)
+        {
+            CurrentHealth = health;
+        }
+    }
 }

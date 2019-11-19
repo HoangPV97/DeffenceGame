@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3836920803098580258}
   - component: {fileID: 3598197864129109290}
   - component: {fileID: 8995014513006979831}
-  m_Layer: 5
-  m_Name: hero1_wind_skill1_start
+  m_Layer: 0
+  m_Name: hero1_wind_skill_start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 610889657566205950}
   - component: {fileID: 2396865381237711468}
   - component: {fileID: 3259763316118256969}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9543,7 +9543,7 @@ GameObject:
   - component: {fileID: 9039305017320147278}
   - component: {fileID: 7888191912310217481}
   - component: {fileID: 6396192974587439536}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: light_colum
   m_TagString: Untagged
   m_Icon: {fileID: 0}

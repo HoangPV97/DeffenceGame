@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : Enemy
+public class MeleeEnemy : EnemyController
 {
     // Start is called before the first frame update
     void Start()
@@ -19,13 +19,13 @@ public class MeleeEnemy : Enemy
     public void Attack()
     {
 
-        distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (distancetoPlayer < range )
+        distancetoPlayer = Vector3.Distance(transform.position, Tower.transform.position);
+        if (distancetoPlayer < enemy.range )
         {
             CurrentState = EnemyState.Attack;
-            if (Player != null)
+            if (Tower != null)
             {
-                Player.GetComponent<Player>().TakeDamge(Damge);
+                Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
             }
         }
     }
@@ -34,7 +34,7 @@ public class MeleeEnemy : Enemy
         if (countdown <= 0f)
         {
             Attack();
-            countdown = RateOfFire;
+            countdown = enemy.rateOfFire;
         }
         countdown -= Time.deltaTime;
     }

@@ -4765,8 +4765,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5500379542720505921}
-  - component: {fileID: 7952463694858917857}
   - component: {fileID: 6619658236861143327}
+  - component: {fileID: 8293043967621943714}
   m_Layer: 0
   m_Name: LightingSkill
   m_TagString: Untagged
@@ -4789,25 +4789,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7952463694858917857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5500379542720505923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76da7a2cc459de4e9cfaacda5779cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  Damge: 50
-  TargetTag: Enemy
-  SeekTarget: 0
-  elementalBullet: 0
-  damagePlus: 5
-  particleSystem: {fileID: 5500379542973511578}
 --- !u!58 &6619658236861143327
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4824,6 +4805,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.87
+--- !u!114 &8293043967621943714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500379542720505923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a251997a15e1e41428386c4602e3b59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet:
+    _speed: 0
+    _damge: 50
+    _targetTag: Enemy
+  Speed: 0
+  Damge: 50
+  TargetTag: Enemy
+  SeekTarget: 0
+  elementalBullet: 1
+  damagePlus: 7
+  particleSystem: {fileID: 5500379542973511578}
+  stunTime: 3
 --- !u!1 &5500379542973511581
 GameObject:
   m_ObjectHideFlags: 0

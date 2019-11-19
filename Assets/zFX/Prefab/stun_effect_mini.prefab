@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4119942233696235922}
   - component: {fileID: 5069225646587424590}
   - component: {fileID: 6593099873476395493}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: stun_effect_mini
   m_TagString: Untagged
   m_Icon: {fileID: 0}

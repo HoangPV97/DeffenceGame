@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeEnemy : Enemy
+public class RangeEnemy : EnemyController
 {
     // Start is called before the first frame update
     void Start()
@@ -17,10 +17,9 @@ public class RangeEnemy : Enemy
         base.Update();
     }
     public void Attack()
-    {
-        
-        distancetoPlayer = Vector3.Distance(transform.position, Player.transform.position);
-        if (distancetoPlayer < range && isAttack)
+    {  
+        distancetoPlayer = Vector3.Distance(transform.position, Tower.transform.position);
+        if (distancetoPlayer < enemy.range )
         {
             CurrentState = EnemyState.Attack;
             isMove = false;
@@ -29,8 +28,8 @@ public class RangeEnemy : Enemy
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {
-                m_EnemyBullet.SetTarget(Player.transform);
-                m_EnemyBullet.SetDamage(Damge);
+                m_EnemyBullet.SetTarget(Tower.transform);
+                m_EnemyBullet.SetDamage(enemy.damage);
             }
         }
     }
@@ -39,7 +38,7 @@ public class RangeEnemy : Enemy
         if (countdown <= 0f)
         {
             Attack();
-            countdown = RateOfFire;
+            countdown = enemy.rateOfFire;
         }
         countdown -= Time.deltaTime;
     }

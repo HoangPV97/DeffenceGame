@@ -10,7 +10,7 @@ public class RecoverAPHP : MonoBehaviour
     [SerializeField]
     Image barImage;
     [SerializeField]
-    Player player;
+    PlayerController player;
     // Start is called before the first frame update
     void Start()
     {

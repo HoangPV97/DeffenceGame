@@ -17,7 +17,7 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Enemy.EnemyLive = EnemyQuantum;
+        EnemyController.EnemyLive = EnemyQuantum;
         temp = EnemyQuantum;
         poolManager = ObjectPoolManager.Instance;
         StartCoroutine(WaitForSpawnEnemy());

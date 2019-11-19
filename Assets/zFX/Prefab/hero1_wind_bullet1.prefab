@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1774133775}
   - component: {fileID: 1774133774}
   - component: {fileID: 1774133773}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 8269058260270864913}
   - component: {fileID: 6560055376454787474}
   - component: {fileID: 5332335902274366659}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9476,7 +9476,7 @@ GameObject:
   - component: {fileID: 6967245558398862031}
   - component: {fileID: 5060907271537896527}
   - component: {fileID: 7234878298472323843}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14232,7 +14232,7 @@ GameObject:
   - component: {fileID: 7177713818508228956}
   - component: {fileID: 5342952567545871129}
   - component: {fileID: 5849494767459587487}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18997,7 +18997,7 @@ GameObject:
   - component: {fileID: 8531190557531176592}
   - component: {fileID: 8531190557531176606}
   - component: {fileID: 8531190557531176607}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23695,7 +23695,7 @@ GameObject:
   - component: {fileID: 8531190558032706987}
   - component: {fileID: 8531190558032706984}
   - component: {fileID: 8531190558032706985}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28396,8 +28396,8 @@ GameObject:
   - component: {fileID: 8531190558834038728}
   - component: {fileID: 2817752262629327310}
   - component: {fileID: 8304591641678869357}
-  - component: {fileID: 7429734257884586283}
-  m_Layer: 5
+  - component: {fileID: 8898499708412842702}
+  m_Layer: 0
   m_Name: hero1_wind_bullet1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -33230,7 +33230,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7429734257884586283
+--- !u!114 &8898499708412842702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33239,12 +33239,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8531190558834038732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707487384e85c334b8e673c12ba7088c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e9aaaaade20e2448a9589e88ea17716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 15
-  Damge: 30
-  TargetTag: Enemy
+  bullet:
+    _speed: 10
+    _damage: 15
+    _targetTag: Enemy
   SeekTarget: 1
   elementalBullet: 2
   damagePlus: 5

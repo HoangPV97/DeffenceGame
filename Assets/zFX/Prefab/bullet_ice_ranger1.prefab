@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6365759010569777178}
   - component: {fileID: 8187507981832555417}
   - component: {fileID: 6959860202469623496}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4710,7 +4710,10 @@ GameObject:
   - component: {fileID: 6697626865610046913}
   - component: {fileID: 6697626865610046912}
   - component: {fileID: 6697626865610046915}
-  m_Layer: 5
+  - component: {fileID: 413647770304057552}
+  - component: {fileID: 7665962174025143344}
+  - component: {fileID: 8019841949408560613}
+  m_Layer: 0
   m_Name: bullet_ice_ranger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4987,7 +4990,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.5
-      minScalar: 0.7
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9495,6 +9498,72 @@ TrailRenderer:
   m_MinVertexDistance: 0.01
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!61 &413647770304057552
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697626865610046919}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.21, y: 0.16}
+  m_EdgeRadius: 0
+--- !u!50 &7665962174025143344
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697626865610046919}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8019841949408560613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697626865610046919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c09f41fb1892f498a18680349d2741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet:
+    _speed: 6
+    _damage: 15
+    _targetTag: Enemy
+  SeekTarget: 1
+  elementalBullet: 0
+  damagePlus: 3
 --- !u!1 &6697626865865070503
 GameObject:
   m_ObjectHideFlags: 0
@@ -9506,7 +9575,7 @@ GameObject:
   - component: {fileID: 6697626865865070496}
   - component: {fileID: 6697626865865070499}
   - component: {fileID: 6697626865865070498}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14204,7 +14273,7 @@ GameObject:
   - component: {fileID: 6697626866443572379}
   - component: {fileID: 6697626866443572373}
   - component: {fileID: 6697626866443572372}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

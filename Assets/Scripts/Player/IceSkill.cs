@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceSkill : Bullet
+public class IceSkill : BulletController
 {
     public ParticleSystem particleSystem;
     [SerializeField]
@@ -10,7 +10,7 @@ public class IceSkill : Bullet
     // Start is called before the first frame update
     void Start()
     {
-        
+        elementalBullet = Elemental.Ice;   
     }
 
     // Update is called once per frame
@@ -20,13 +20,22 @@ public class IceSkill : Bullet
     }
     private void OnTriggerEnter2D(Collider2D Target)
     {
-        if (Target.gameObject.tag.Equals(TargetTag))
+        if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            Enemy enemy = Target.GetComponent<Enemy>();
+            EnemyController enemy = Target.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy.TakeDamage(elementalBullet, Damge, damagePlus);
-                enemy.TakeEffect(Effect.Stun, 5);
+                IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
+                if (elemental != null)
+                {
+                    elemental.FireImpactEffect(enemy.transform.position);
+                    enemy?.DealDamge(bullet.Damage, damagePlus);
+                }
+                else
+                {
+                    enemy?.DealDamge(bullet.Damage, 0);
+                }
+                enemy.DealEffect(Effect.freeze, enemy.transform.position,3);
             }
             if (SeekTarget)
             {
@@ -35,5 +44,4 @@ public class IceSkill : Bullet
             }
         }
     }
-    
 }

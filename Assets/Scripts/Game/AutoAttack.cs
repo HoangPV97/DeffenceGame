@@ -7,7 +7,7 @@ public class AutoAttack : MonoBehaviour
 {
     public Sprite autoImage, disableImage;
     public Button btnAuto;
-    public Player player;
+    public PlayerController player;
     public bool Status;
     int Count = 0;
     // Start is called before the first frame update
@@ -21,12 +21,12 @@ public class AutoAttack : MonoBehaviour
         Count++;
         if (Count % 2 != 0)
         {
-            player.currentMode = Player.AutoMode.TurnOn;
+            player.currentMode = PlayerController.AutoMode.TurnOn;
             btnAuto.image.sprite = autoImage;
         }
         else
         {
-            player.currentMode = Player.AutoMode.TurnOff;
+            player.currentMode = PlayerController.AutoMode.TurnOff;
             btnAuto.image.sprite = disableImage;
         }
     }

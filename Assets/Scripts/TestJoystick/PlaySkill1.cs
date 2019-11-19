@@ -17,13 +17,13 @@ public class PlaySkill1 : Skill
     {
         base.Update();
 
-        if (TimeLeft <= 0 && player.Mana.CurrentMana >= manaNumber && variableJoystick.Vertical != 0)
+        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaNumber && variableJoystick.Vertical != 0)
         {
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrow.transform.position;
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             RotateArrow();
         }
-        if (player.Mana.CurrentMana > manaNumber)
+        if (Tower.Mana.CurrentMana > manaNumber)
         {
             LowMana.SetActive(false);
         }
@@ -41,17 +41,17 @@ public class PlaySkill1 : Skill
     }
     public void Skill1(Vector2 _direction, float _rotatioZ)
     {
-        player.ShootToDirection(_direction, _rotatioZ, "skillbullet1");
+        playerController.ShootToDirection(_direction, _rotatioZ, "skillbullet1");
         CountdownGo?.gameObject.SetActive(true);
         StartCountdown = true;
         TimeLeft = CountdownTime;
-        player.ConsumeMana(manaNumber);
+        Tower.Mana.ConsumeMana(manaNumber);
         arrow.SetActive(false);
     }
     private void OnMouseUp()
     {
         arrow.SetActive(false);
-        if (player.Mana.CurrentMana >= manaNumber)
+        if (Tower.Mana.CurrentMana >= manaNumber)
         {
             Skill1(direction, angle);
         }

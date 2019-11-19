@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3775125765478934639}
   - component: {fileID: 3940833265178158569}
   - component: {fileID: 3941116371255289027}
-  m_Layer: 5
-  m_Name: alliance_ice_skill1_blow
+  m_Layer: 0
+  m_Name: alliance_ice_skill1_impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4772,7 +4772,7 @@ GameObject:
   - component: {fileID: 3782395133611707599}
   - component: {fileID: 3941479425618361217}
   - component: {fileID: 3942525819409860825}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9528,7 +9528,7 @@ GameObject:
   - component: {fileID: 3782321710224102465}
   - component: {fileID: 3948899259209920497}
   - component: {fileID: 3942843613981931549}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14293,7 +14293,7 @@ GameObject:
   - component: {fileID: 3782315230742154949}
   - component: {fileID: 3948954028972718221}
   - component: {fileID: 3941201732146088073}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19058,7 +19058,7 @@ GameObject:
   - component: {fileID: 7719847255688638227}
   - component: {fileID: 4590413061311971625}
   - component: {fileID: 5425487896081279731}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23814,7 +23814,7 @@ GameObject:
   - component: {fileID: 4954995162132335361}
   - component: {fileID: 840644828773799015}
   - component: {fileID: 5197161635501423038}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: smoke_loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28512,7 +28512,7 @@ GameObject:
   - component: {fileID: 8835731323714953705}
   - component: {fileID: 8835731323714953707}
   - component: {fileID: 8835731323714953706}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: frost_loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33277,7 +33277,7 @@ GameObject:
   - component: {fileID: 8835731323739617966}
   - component: {fileID: 8835731323739617952}
   - component: {fileID: 8835731323739617967}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: frost_add_loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38042,7 +38042,7 @@ GameObject:
   - component: {fileID: 8835731323944252010}
   - component: {fileID: 8835731323944252009}
   - component: {fileID: 8835731323944252008}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: frost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42811,7 +42811,7 @@ GameObject:
   - component: {fileID: 8835731324628387586}
   - component: {fileID: 8835731324628387588}
   - component: {fileID: 8835731324628387587}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: frost_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4738,7 +4738,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6292061646329833500}
-  - component: {fileID: 1208439484003689986}
   - component: {fileID: 8658844840670544642}
   - component: {fileID: 6292061646329833473}
   - component: {fileID: 3571211530392899872}
@@ -4746,6 +4745,7 @@ GameObject:
   - component: {fileID: 8479955599815322511}
   - component: {fileID: 9124661697560551847}
   - component: {fileID: 809390913999438112}
+  - component: {fileID: 1732862159562281024}
   m_Layer: 0
   m_Name: Enemy5
   m_TagString: Enemy
@@ -4769,35 +4769,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &1208439484003689986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292061646329833501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previousState: 0
-  CurrentState: 0
-  playSkeletonAnimation: {fileID: 809390913999438112}
-  Health:
-    mHealth: 250
-    currentHealth: 0
-    recoverHealthValue: 0
-    recoverHealthTime: 0
-    healthBar: {fileID: 6292061646851876514}
-  Speed: 20
-  Damge: 20
-  range: 1
-  Price: 3
-  Armor: 3
-  RateOfFire: 0
-  elementalEnemy: 1
-  Rigidbody2D: {fileID: 3571211530392899872}
 --- !u!114 &8658844840670544642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4936,7 +4907,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: dam_nghich
+  _animationName: run
   loop: 1
   timeScale: 1
 --- !u!114 &809390913999438112
@@ -4952,6 +4923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 9124661697560551847}
+  characterState: 0
+  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 71dc1e2b3f1be3f42932ff2873f819bc, type: 2}
@@ -4963,6 +4936,40 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: d2d807d0f02200d4697ab934a137adbd, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 0247f1c1d0180c245bb7c32f1ca5180a, type: 2}
+  eventName: 
+--- !u!114 &1732862159562281024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292061646329833501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3197d5924f0d74896a3a3bcc946330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+    _speed: 11
+    _name: EEEE
+    _damage: 5
+    _range: 1
+    _price: 2
+    _armor: 2
+    _rateOfFire: 1
+    _health:
+      mHealth: 110
+      currentHealth: 0
+      recoverHealthValue: 0
+      recoverHealthTime: 0
+      healthBar: {fileID: 6292061646851876514}
+      maxHealthBar: {fileID: 0}
+    _elemental: 0
+  playSkeletonAnimation: {fileID: 809390913999438112}
+  isMove: 1
+  isAttack: 1
+  isLive: 1
+  Rigidbody2D: {fileID: 3571211530392899872}
 --- !u!1 &6292061646712227653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5059,7 +5066,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2c150e65757e53d4d93d8de405721027, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 977d4a18f619a99498cdd7bfeda618c6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5233,7 +5240,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 29f3596c5e0c5bc41a70a63f6225b90b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a65b76d0b556ed49a299b05e183b8c3, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

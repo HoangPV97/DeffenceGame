@@ -4794,7 +4794,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2c150e65757e53d4d93d8de405721027, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 977d4a18f619a99498cdd7bfeda618c6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4919,7 +4919,7 @@ GameObject:
   - component: {fileID: 2564150611025518158}
   - component: {fileID: 4688615873598794641}
   - component: {fileID: 5481581012859897711}
-  - component: {fileID: 7148273269938506316}
+  - component: {fileID: 1497185456227880149}
   m_Layer: 0
   m_Name: Enemy6
   m_TagString: Enemy
@@ -5081,7 +5081,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: atk
+  _animationName: run
   loop: 1
   timeScale: 1
 --- !u!114 &5481581012859897711
@@ -5097,6 +5097,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4688615873598794641}
+  characterState: 0
+  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 4ed40ad327f4c774fbaa4b9e5f02b49c, type: 2}
@@ -5108,7 +5110,8 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: fdfac7451d036c943aaae501aac8c620, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: f16b8e581f66f57498dde9bd429695b0, type: 2}
---- !u!114 &7148273269938506316
+  eventName: 
+--- !u!114 &1497185456227880149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5117,25 +5120,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912908039463566854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 983b938ec8dd1c843b864a7cedfc7cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousState: 0
-  CurrentState: 0
+  enemy:
+    _speed: 13
+    _name: FFFF
+    _damage: 4
+    _range: 1
+    _price: 2
+    _armor: 1
+    _rateOfFire: 1
+    _health:
+      mHealth: 110
+      currentHealth: 0
+      recoverHealthValue: 0
+      recoverHealthTime: 0
+      healthBar: {fileID: 8912908038874902713}
+      maxHealthBar: {fileID: 0}
+    _elemental: 2
   playSkeletonAnimation: {fileID: 5481581012859897711}
-  Health:
-    mHealth: 250
-    currentHealth: 0
-    recoverHealthValue: 0
-    recoverHealthTime: 0
-    healthBar: {fileID: 8912908038874902713}
-  Speed: 30
-  Damge: 30
-  range: 1
-  Price: 3
-  Armor: 3
-  RateOfFire: 1
-  elementalEnemy: 1
+  isMove: 1
+  isAttack: 1
+  isLive: 1
   Rigidbody2D: {fileID: 2121085402989365051}
 --- !u!1 &8912908039809388894
 GameObject:
@@ -5233,7 +5240,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 29f3596c5e0c5bc41a70a63f6225b90b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a65b76d0b556ed49a299b05e183b8c3, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

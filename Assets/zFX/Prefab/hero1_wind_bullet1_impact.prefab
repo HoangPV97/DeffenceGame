@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 526481638545912109}
   - component: {fileID: 404521712583720107}
   - component: {fileID: 404242968034508161}
-  m_Layer: 5
-  m_Name: bullet_hero1_wind_blow
+  m_Layer: 0
+  m_Name: hero1_wind_bullet1_impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4770,7 +4770,7 @@ GameObject:
   - component: {fileID: 527197179780994951}
   - component: {fileID: 423338808642413007}
   - component: {fileID: 404328612342813131}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9535,7 +9535,7 @@ GameObject:
   - component: {fileID: 526996982382138765}
   - component: {fileID: 405167855189795523}
   - component: {fileID: 403963850048377243}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14291,7 +14291,7 @@ GameObject:
   - component: {fileID: 526922450590977283}
   - component: {fileID: 423565238575707827}
   - component: {fileID: 403718419235463519}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

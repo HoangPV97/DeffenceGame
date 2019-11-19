@@ -4794,7 +4794,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 29f3596c5e0c5bc41a70a63f6225b90b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a65b76d0b556ed49a299b05e183b8c3, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4968,7 +4968,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2c150e65757e53d4d93d8de405721027, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 977d4a18f619a99498cdd7bfeda618c6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5024,7 +5024,7 @@ GameObject:
   - component: {fileID: 3037066633875204656}
   - component: {fileID: 2329509318956476609}
   - component: {fileID: 7610019489098410371}
-  - component: {fileID: 8276358576634946411}
+  - component: {fileID: 4262427703916507590}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Enemy
@@ -5186,7 +5186,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: atk
+  _animationName: run
   loop: 1
   timeScale: 1
 --- !u!114 &7610019489098410371
@@ -5202,6 +5202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 2329509318956476609}
+  characterState: 0
+  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 38eee7796defacf4fa38dd6a6a845196, type: 2}
@@ -5213,7 +5215,8 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: 1aac05b5f4b49bb429eae27d04797c5e, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: cae16d314a7830f46960cf4e65510ecb, type: 2}
---- !u!114 &8276358576634946411
+  eventName: 
+--- !u!114 &4262427703916507590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5222,23 +5225,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5556297814356171359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a4344403889e694ab3a6981de60dfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousState: 0
-  CurrentState: 0
+  enemy:
+    _speed: 13
+    _name: DDDD
+    _damage: 4
+    _range: 1
+    _price: 2
+    _armor: 2
+    _rateOfFire: 1
+    _health:
+      mHealth: 100
+      currentHealth: 0
+      recoverHealthValue: 0
+      recoverHealthTime: 0
+      healthBar: {fileID: 5556297813800047840}
+      maxHealthBar: {fileID: 0}
+    _elemental: 1
   playSkeletonAnimation: {fileID: 7610019489098410371}
-  Health:
-    mHealth: 250
-    currentHealth: 0
-    recoverHealthValue: 0
-    recoverHealthTime: 0
-    healthBar: {fileID: 5556297813800047840}
-  Speed: 10
-  Damge: 30
-  range: 1
-  Price: 3
-  Armor: 2
-  RateOfFire: 1
-  elementalEnemy: 0
+  isMove: 1
+  isAttack: 1
+  isLive: 1
   Rigidbody2D: {fileID: 3154056995103499106}

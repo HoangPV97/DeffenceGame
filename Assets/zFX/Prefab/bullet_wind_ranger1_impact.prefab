@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2412613982061225816}
   - component: {fileID: 2569309884454611678}
   - component: {fileID: 2569597392739920884}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: bullet_wind_ranger1_impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4770,7 +4770,7 @@ GameObject:
   - component: {fileID: 2406442920325022712}
   - component: {fileID: 2569956577336603830}
   - component: {fileID: 2571002451705890798}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9526,7 +9526,7 @@ GameObject:
   - component: {fileID: 2406367843001719670}
   - component: {fileID: 2582231334591078598}
   - component: {fileID: 2571388415901890346}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14291,7 +14291,7 @@ GameObject:
   - component: {fileID: 2406568075999707634}
   - component: {fileID: 2582009027825874874}
   - component: {fileID: 2569678914365769662}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}

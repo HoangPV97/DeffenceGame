@@ -1,0 +1,97 @@
+
+alliance_wind1.png
+size: 560,252
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armLowL
+  rotate: false
+  xy: 503, 53
+  size: 48, 41
+  orig: 48, 41
+  offset: 0, 0
+  index: -1
+armLowR
+  rotate: false
+  xy: 477, 96
+  size: 71, 37
+  orig: 71, 37
+  offset: 0, 0
+  index: -1
+armUpL
+  rotate: false
+  xy: 363, 4
+  size: 26, 38
+  orig: 26, 38
+  offset: 0, 0
+  index: -1
+armUpR
+  rotate: false
+  xy: 503, 10
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 363, 111
+  size: 112, 137
+  orig: 112, 137
+  offset: 0, 0
+  index: -1
+hair1
+  rotate: false
+  xy: 363, 44
+  size: 59, 65
+  orig: 59, 65
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 169, 2
+  size: 116, 119
+  orig: 116, 119
+  offset: 0, 0
+  index: -1
+legL
+  rotate: false
+  xy: 466, 20
+  size: 35, 74
+  orig: 35, 74
+  offset: 0, 0
+  index: -1
+legR
+  rotate: false
+  xy: 424, 17
+  size: 40, 92
+  orig: 40, 92
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 169, 123
+  size: 192, 125
+  orig: 192, 125
+  offset: 0, 0
+  index: -1
+wingL
+  rotate: false
+  xy: 477, 135
+  size: 79, 113
+  orig: 79, 113
+  offset: 0, 0
+  index: -1
+wingR
+  rotate: false
+  xy: 287, 28
+  size: 74, 93
+  orig: 74, 93
+  offset: 0, 0
+  index: -1
+wp
+  rotate: false
+  xy: 2, 19
+  size: 165, 229
+  orig: 165, 229
+  offset: 0, 0
+  index: -1

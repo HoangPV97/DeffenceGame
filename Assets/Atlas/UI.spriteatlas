@@ -30,34 +30,13 @@ SpriteAtlas:
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 8eb4f2f3d02860c4eb22f0da47872c07, type: 3}
-    - {fileID: 2800000, guid: 4a4a11bb07b5e294c9ff189899e293b1, type: 3}
-    - {fileID: 2800000, guid: 951642313dbb13546917c86ee6a59054, type: 3}
-    - {fileID: 2800000, guid: facf87de4ca1d9f4bb8a3da43252cf5d, type: 3}
-    - {fileID: 2800000, guid: 2c150e65757e53d4d93d8de405721027, type: 3}
-    - {fileID: 2800000, guid: 29f3596c5e0c5bc41a70a63f6225b90b, type: 3}
-    - {fileID: 2800000, guid: 66bd7d9285d8ffc4d8bc6d778b3f31ca, type: 3}
     - {fileID: 2800000, guid: f119551b16958b04f981be0d90f8a7ee, type: 3}
-    totalSpriteSurfaceArea: 416443
+    totalSpriteSurfaceArea: 1225
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 951642313dbb13546917c86ee6a59054, type: 3}
-  - {fileID: 21300000, guid: 66bd7d9285d8ffc4d8bc6d778b3f31ca, type: 3}
-  - {fileID: 21300000, guid: 8eb4f2f3d02860c4eb22f0da47872c07, type: 3}
-  - {fileID: 21300000, guid: 2c150e65757e53d4d93d8de405721027, type: 3}
   - {fileID: 21300000, guid: f119551b16958b04f981be0d90f8a7ee, type: 3}
-  - {fileID: 21300000, guid: 4a4a11bb07b5e294c9ff189899e293b1, type: 3}
-  - {fileID: 21300000, guid: 29f3596c5e0c5bc41a70a63f6225b90b, type: 3}
-  - {fileID: 21300000, guid: facf87de4ca1d9f4bb8a3da43252cf5d, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Background
-  - Wall
-  - auto
-  - red
   - coin_gold
-  - autoDisable
-  - White
-  - Castle_0
   m_Tag: UI
   m_IsVariant: 0

@@ -1,45 +1,48 @@
 ﻿using Spine.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : Bullet
+public class EnemyBullet :MonoBehaviour
 {
+    public Bullet bullet;
+    protected Transform Target;
+    public bool SeekTarget = false;
     public SkeletonAnimation skeletonAnimation;
     public AnimationReferenceAsset idle;
     
     public void SetDamage(float _damage)
     {
-        Damge = _damage;
+        bullet.Damage = _damage;
     }
     public void SetSpeed(float _speed)
     {
-        Speed = _speed;
+        bullet.Speed = _speed;
     }
     // Start is called before the first frame update
     void Start()
     {
-
         skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
-        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * Speed * Time.deltaTime);
+        transform.Translate(Vector2.down * bullet.Speed * Time.deltaTime);
     }
-    private void OnTriggerEnter2D(Collider2D Player)
+    private void OnTriggerEnter2D(Collider2D _Tower)
     {
-        if (Player.gameObject.tag.Equals(TargetTag))
+        if (_Tower.gameObject.tag.Equals(bullet.TargetTag))
         {
-            Player player = Player.GetComponent<Player>();
-            player?.TakeDamge(Damge);
-            if (SeekTarget)
-            {
-                gameObject.SetActive(false);
-            }
+            Tower tower = _Tower.GetComponent<Tower>();
+            tower?.TakeDamage(bullet.Damage);
+            gameObject.SetActive(false);
         }
     }
-    
+
+    internal void SetTarget(Transform _Target)
+    {
+        Target = _Target;
+    }
 }

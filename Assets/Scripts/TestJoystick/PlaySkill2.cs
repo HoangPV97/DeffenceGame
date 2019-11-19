@@ -19,13 +19,13 @@ public class PlaySkill2 : Skill
     protected void Update()
     {
         base.Update();
-        if (TimeLeft <= 0 && player.Mana.CurrentMana >= manaNumber && variableJoystick.Vertical != 0 )
+        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaNumber && variableJoystick.Vertical != 0 )
         {
             Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = MousePosition - circle.transform.position;
             MoveObject(circle, direction);
         }
-        if (player.Mana.CurrentMana > manaNumber)
+        if (Tower.Mana.CurrentMana > manaNumber)
         {
             LowMana.SetActive(false);
         }
@@ -49,7 +49,7 @@ public class PlaySkill2 : Skill
         TimeLeft = CountdownTime;
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
-        player.ConsumeMana(manaNumber);
+        Tower.Mana.ConsumeMana(manaNumber);
         GameObject lighSkill = poolManager.SpawnObject("iceskill", circle.transform.position, Quaternion.identity);
         float particleTime = lighSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
@@ -59,7 +59,7 @@ public class PlaySkill2 : Skill
     private void OnMouseUp()
     {
         circle.SetActive(false);
-        if (player.Mana.CurrentMana >= manaNumber)
+        if (Tower.Mana.CurrentMana >= manaNumber)
         {
             Play();
         }

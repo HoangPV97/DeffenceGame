@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - GoldPanel
   - BlockPoint
+  - Tower
   layers:
   - Default
   - TransparentFX

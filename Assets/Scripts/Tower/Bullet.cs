@@ -1,44 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum Elemental { Ice, Fire, Wind }
-public class Bullet : MonoBehaviour
+[System.Serializable]
+public class Bullet
 {
-    protected Transform Target;
-    public float Speed;
-    public float Damge;
-    public string TargetTag;
-    public bool SeekTarget = false;
-    private Vector2 Direction;
-    private float RotationZ;
-    public Elemental elementalBullet;
-    public float damagePlus;
-    protected void Start()
-    {
-    }
-    public void SetTarget(Transform _Target)
-    {
-        Target = _Target;
-    }
-    // Update is called once per frame
-    protected void Update()
-    {
-        if (Target == null || !Target.gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        Vector3 dir = Target.position - transform.position;
-        transform.up = dir;
-        transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+    [SerializeField]
+    private float _speed;
+    [SerializeField]
+    private float _damage;
+    [SerializeField]
+    private string _targetTag;
 
-    }
-    protected void OnTriggerEnter2D(Collider2D Target)
-    {
-        if (Target.gameObject.tag.Equals("BlockPoint"))
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    public float Speed { get => _speed; set => _speed = value; }
+    public float Damage { get => _damage; set => _damage = value; }
+    public string TargetTag { get => _targetTag; set => _targetTag = value; }
+
 }

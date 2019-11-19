@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1697683326898580204}
   - component: {fileID: 2165886148831242406}
   - component: {fileID: 7993048504946233663}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: hero1_wind_skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4787,9 +4787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0575ccb34856fed4a834712104c2fe8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
-  Damge: 30
-  TargetTag: Enemy
+  bullet:
+    _speed: 20
+    _damage: 50
+    _targetTag: Enemy
   SeekTarget: 0
   elementalBullet: 2
   damagePlus: 5
@@ -4805,7 +4806,7 @@ GameObject:
   - component: {fileID: 185990495333401749}
   - component: {fileID: 185990495333401750}
   - component: {fileID: 185990495333401751}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9503,7 +9504,7 @@ GameObject:
   - component: {fileID: 5845265717963828595}
   - component: {fileID: 8707403141060908784}
   - component: {fileID: 7628910706185001889}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spark_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14200,7 +14201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8022773970935308862}
   - component: {fileID: 8022773970935308849}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14336,7 +14337,7 @@ GameObject:
   - component: {fileID: 8022773971722959185}
   - component: {fileID: 8022773971722959187}
   - component: {fileID: 8022773971722959184}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: slash_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19033,7 +19034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8022773971856342095}
   - component: {fileID: 8022773971856342094}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Trail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19160,7 +19161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8022773972402960461}
   - component: {fileID: 8022773972402960460}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: trail_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19295,7 +19296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8022773972607204728}
   - component: {fileID: 8022773972607204731}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: trail_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

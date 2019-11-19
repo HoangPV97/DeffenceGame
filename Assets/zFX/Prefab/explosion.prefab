@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 585039288324233949}
   - component: {fileID: 7435923924544918836}
   - component: {fileID: 8710137697238527397}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4772,7 +4772,7 @@ GameObject:
   - component: {fileID: 3316264381762249918}
   - component: {fileID: 3316264381762249912}
   - component: {fileID: 3316264381762249913}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9542,7 +9542,7 @@ GameObject:
   - component: {fileID: 3316264381784550322}
   - component: {fileID: 3316264381784550332}
   - component: {fileID: 3316264381784550333}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14419,7 +14419,9 @@ GameObject:
   - component: {fileID: 3316264382930781434}
   - component: {fileID: 3316264382930781188}
   - component: {fileID: 3316264382930781189}
-  m_Layer: 9
+  - component: {fileID: 7682491099482006180}
+  - component: {fileID: 4939408919123146774}
+  m_Layer: 0
   m_Name: explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14435,7 +14437,7 @@ RectTransform:
   m_GameObject: {fileID: 3316264382930781435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3316264381784550322}
   - {fileID: 3316264381762249918}
@@ -19172,3 +19174,40 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7682491099482006180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316264382930781435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a251997a15e1e41428386c4602e3b59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet:
+    _speed: 0
+    _damage: 50
+    _targetTag: Enemy
+  SeekTarget: 0
+  elementalBullet: 1
+  damagePlus: 5
+  particleSystem: {fileID: 0}
+  stunTime: 3
+--- !u!58 &4939408919123146774
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316264382930781435}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.23

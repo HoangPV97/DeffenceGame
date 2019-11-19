@@ -19,13 +19,22 @@ public class SlowSkill : TankBullet
     }
     private void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (_Target.gameObject.tag.Equals(TargetTag))
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            Enemy enemy = _Target.GetComponent<Enemy>();
+            EnemyController enemy = _Target.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy.TakeDamage(elementalBullet, Damge, damagePlus);
-                enemy.KnockBack(backSpace);
+                IIceEffectable elemental = enemy.GetComponent<IIceEffectable>();
+                if (elemental != null)
+                {
+                    elemental.IceImpactEffect(enemy.transform.position);
+                    enemy?.DealDamge(bullet.Damage, damagePlus);
+                }
+                else
+                {
+                    enemy?.DealDamge(bullet.Damage, 0);
+                }
+                enemy.DealEffect(Effect.Slow, new Vector3(0,0.5f,0), 0);
             }
             if (SeekTarget)
             {
