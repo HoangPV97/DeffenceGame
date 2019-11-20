@@ -22,7 +22,7 @@ public class WindAllianceBullet : BulletController
             if (elemental != null)
             {
                 elemental.IceImpactEffect(enemy.transform.position);
-                enemy?.DealDamge(bullet.Damage, damagePlus);
+                enemy?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else
             {

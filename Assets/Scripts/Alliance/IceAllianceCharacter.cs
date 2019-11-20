@@ -25,34 +25,31 @@ public class IceAllianceCharacter : AllianceController
 
     private void Update()
     {
-        CheckShoot();    
+           
         base.Update();
+        CheckShoot();
     }
     
     protected void Shoot()
     {
-        if (Alliance.target != null)
-        {
             characterState = CharacterState.Attack;
-            GameObject bullet = SpawnBullet("icealliancebullet", Barrel.transform.position);
+            GameObject bullet = poolManager.SpawnObject("icealliancebullet", Barrel.transform.position, Quaternion.identity);
             IceAllianceBullet alianceBullet = bullet.GetComponent<IceAllianceBullet>();
             if (alianceBullet != null)
             {
                 alianceBullet.elementalBullet = elementalType;
                 alianceBullet.SetTarget(Alliance.target);
             }
-            
+    }
+    public void CheckShoot()
+    {
+        if(Alliance.target != null)
+        {
+            characterState = CharacterState.Attack;
         }
         else
         {
             characterState = CharacterState.Idle;
-        }
-    }
-    void CheckShoot()
-    {
-        if (Alliance.target != null)
-        {
-            characterState = CharacterState.Attack;
         }
     }
 }

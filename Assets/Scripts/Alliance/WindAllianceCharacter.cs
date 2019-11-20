@@ -38,7 +38,7 @@ public class WindAllianceCharacter : AllianceController
         if (Alliance.target != null)
         {
             characterState = CharacterState.Attack;
-            GameObject bullet = SpawnBullet("windalliancebullet", Barrel.transform.position);
+            GameObject bullet = poolManager.SpawnObject("windalliancebullet", Barrel.transform.position, Quaternion.identity);
             WindAllianceBullet alianceBullet = bullet.GetComponent<WindAllianceBullet>();
             if (alianceBullet != null)
             {

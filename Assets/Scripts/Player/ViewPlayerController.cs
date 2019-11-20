@@ -9,7 +9,7 @@ public class ViewPlayerController : MonoBehaviour
     public SkeletonAnimation skeletonAnimation;
     [SpineBone(dataField: "skeletonAnimation")]
     public string boneName;
-    Bone bone;
+     public Bone bone;
     // Start is called before the first frame update
     void Start()
     {

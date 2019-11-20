@@ -8,7 +8,7 @@ public class Alliance
     public string name { get => _name; set => _name = value; }
     public float Level { get => _level; set => _level = value; }
     public float range { get => _range; set => _range = value; }
-    public Transform target { get => _target; set => _target = value; }
+    public EnemyController target { get => _target; set => _target = value; }
     public float rateOfFire { get => _rateOfFire; set => _rateOfFire = value; }
     public float Armor { get => _armor; set => _armor = value; }
     public string Bullet { get => bullet; set => bullet = value; }
@@ -22,7 +22,7 @@ public class Alliance
     [SerializeField]
     private float _range;
     [SerializeField]
-    private Transform _target;
+    private EnemyController _target;
     [SerializeField]
     private float _rateOfFire;
     [SerializeField]
@@ -49,21 +49,21 @@ public class AllianceController : MonoBehaviour
     protected void Update()
     {
         UpdateEnemy();
-        if (Alliance.target == null)
-        {
-            return;
-        }
         if (preCharacterState != characterState)
         {
             ChangeCharacterState();
             preCharacterState = characterState;
         }
+        if (Alliance.target == null)
+        {
+            return;
+        }
+        
         //AutoShoot();
 
     }
     private void ChangeCharacterState()
     {
-        string nameState = null;
         if (characterState.Equals(CharacterState.Attack))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
@@ -77,10 +77,10 @@ public class AllianceController : MonoBehaviour
     }
     protected void UpdateEnemy()
     {
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        EnemyController[] Enemies = GameObject.FindObjectsOfType<EnemyController>();
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach (GameObject Enemy in Enemies)
+        EnemyController nearestEnemy = null;
+        foreach (var Enemy in Enemies)
         {
             float distancetoEnemy = Vector3.Distance(transform.position, Enemy.transform.position);
             if (distancetoEnemy < shortestDistance)
@@ -91,9 +91,9 @@ public class AllianceController : MonoBehaviour
             }
 
         }
-        if (nearestEnemy != null && shortestDistance < Alliance.range)
+        if (nearestEnemy != null && shortestDistance < Alliance.range && nearestEnemy.isLive)
         {
-            Alliance.target = nearestEnemy.transform;
+            Alliance.target = nearestEnemy;
 
             m_Enemy = nearestEnemy.GetComponent<EnemyController>();
         }
@@ -109,8 +109,8 @@ public class AllianceController : MonoBehaviour
          poolManager.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
 
     }
-    public GameObject SpawnBullet(string tag, Vector3 _position)
-    {
-        return poolManager.SpawnObject(tag, _position, Quaternion.identity);
-    }
+    //public GameObject SpawnBullet(string tag, Vector3 _position)
+    //{
+    //    return poolManager.SpawnObject(tag, _position, Quaternion.identity);
+    //}
 }

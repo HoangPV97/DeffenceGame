@@ -18,8 +18,8 @@ public class RangeEnemy : EnemyController
     }
     public void Attack()
     {  
-        distancetoPlayer = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoPlayer < enemy.range )
+        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
+        if (distancetoTower < enemy.range )
         {
             CurrentState = EnemyState.Attack;
             isMove = false;

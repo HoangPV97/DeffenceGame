@@ -8,9 +8,11 @@ public class PlaySkill1 : Skill
     public VariableJoystick variableJoystick;
     private Vector2 direction;
     private float angle;
+    ObjectPoolManager poolManager;
 
     protected void Start()
     {
+        poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
     protected void Update()
@@ -41,7 +43,11 @@ public class PlaySkill1 : Skill
     }
     public void Skill1(Vector2 _direction, float _rotatioZ)
     {
-        playerController.ShootToDirection(_direction, _rotatioZ, "skillbullet1");
+        GameObject SlowSkill = poolManager.SpawnObject("skillbullet1", arrow.transform.position, Quaternion.identity);
+        SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
+        Rigidbody2D rigidbody = SlowSkill.GetComponent<Rigidbody2D>();
+        float speed = SlowSkill.GetComponent<BulletController>().bullet.Speed;
+        rigidbody.velocity = _direction.normalized *40* speed * Time.deltaTime;
         CountdownGo?.gameObject.SetActive(true);
         StartCountdown = true;
         TimeLeft = CountdownTime;

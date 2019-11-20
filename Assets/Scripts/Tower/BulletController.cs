@@ -6,7 +6,7 @@ public enum Elemental { Ice, Fire, Wind }
 public class BulletController : MonoBehaviour
 {
     public Bullet bullet;
-    protected Transform Target;
+    protected EnemyController Target;
     public bool SeekTarget = false;
     private Vector2 Direction;
     private float RotationZ;
@@ -15,19 +15,19 @@ public class BulletController : MonoBehaviour
     protected void Start()
     {
     }
-    public void SetTarget(Transform _Target)
+    public void SetTarget(EnemyController _Target)
     {
         Target = _Target;
     }
     // Update is called once per frame
     protected void Update()
     {
-        if (Target == null || !Target.gameObject.activeSelf)
+        if (Target == null || !Target.isLive)
         {
             gameObject.SetActive(false);
             return;
         }
-        Vector3 dir = Target.position - transform.position;
+        Vector3 dir = Target.transform.position - transform.position;
         transform.up = dir;
         transform.Translate(dir.normalized * bullet.Speed * Time.deltaTime, Space.World);
 
@@ -36,12 +36,5 @@ public class BulletController : MonoBehaviour
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
-    }
-    protected void OnTriggerEnter2D(Collider2D Target)
-    {
-        if (Target.gameObject.tag.Equals("BlockPoint"))
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

@@ -28,7 +28,7 @@ public class StunSkill : BulletController
                 if (elemental != null)
                 {
                     elemental.WindImpactEffect(enemy.transform.position);
-                    enemy?.DealDamge(bullet.Damage, damagePlus);
+                    enemy?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
                 }
                 else
                 {

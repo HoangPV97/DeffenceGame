@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Enemy\FireMeleeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\FireRangeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\Gold.cs" />
+    <Compile Include="Assets\Scripts\Enemy\HandleEnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\IceMeleeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\IceRangeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\MeleeEnemy.cs" />
@@ -182,14 +183,18 @@
     <Compile Include="Assets\Spine Examples\Scripts\SpineboyPole.cs" />
     <Compile Include="Assets\Spine Examples\Scripts\SpineGauge.cs" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Eyes\eyes.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Gauge\Gauge.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\FootSoldier\FS_White.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\alliance_ice1\alliance_ice1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Dragon\license.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Animation\SpineAnimation\wind_ranger1\wind_ranger1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Hero\license.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Goblins\goblins.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Stretchyman\stretchyman-diffuse-pma.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Animation\SpineAnimation\wind_melee1\wind_melee1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\raptor-pro-and-mask\raptor-pma.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Raptor\raptor.atlas.txt" />
@@ -199,17 +204,32 @@
     <None Include="Assets\Spine\version.txt" />
     <None Include="Assets\Animation\SpineAnimation\fire_ranger1\fire_ranger1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Raggedy Spineboy\Raggedy Spineboy.atlas.txt" />
+    <None Include="Assets\Animation\SpineAnimation\ice_ranger1\ice_ranger1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\whirlyblendmodes\whirlyblendmodes.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Spine Examples\Scripts\Sample Components\Ghost\Shaders\Spine-Special-Skeleton-Ghost.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Dragon\dragon.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Spine Examples\Scripts\MecanimAnimationMatchModifier\AnimationMatchModifierAsset.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Spine Examples\Spine Skeletons\spineboy-pro\spineboy-pro.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Spineunitygirl\Doi.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\bullet\fire_ranger1_bullet.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Animation\SpineAnimation\hero2\hero1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Hero\hero-pro.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Animation\SpineAnimation\fire_melee1\fire_melee1.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\ice_melee1\ice_melee1.atlas.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Spine Examples\Spine Skeletons\FootSoldier\Equipment\Equipment.atlas.txt" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
@@ -219,6 +239,12 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -9,8 +9,8 @@ public class EnemyBullet :MonoBehaviour
     public Bullet bullet;
     protected Transform Target;
     public bool SeekTarget = false;
-    public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset idle;
+    //public SkeletonAnimation skeletonAnimation;
+    //public AnimationReferenceAsset idle;
     
     public void SetDamage(float _damage)
     {
@@ -23,7 +23,6 @@ public class EnemyBullet :MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
     }
 
     // Update is called once per frame

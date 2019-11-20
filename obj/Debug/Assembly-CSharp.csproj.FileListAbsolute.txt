@@ -112,8 +112,6 @@ F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Analytics.Tracker.
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.CollabProxy.Editor.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Locator.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
-F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.dll
-F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.AccessibilityModule.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.AIModule.dll
@@ -194,10 +192,8 @@ F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Cecil.Pdb.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Cecil.Mdb.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.xml
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.xml
-F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.PackageManagerUI.Editor.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
-F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Analytics.DataPrivacy.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.AIModule.xml
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.ARModule.xml
@@ -291,7 +287,11 @@ F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.PatternMatching
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Parser.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Useful.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
-F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.UI.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\spine-unity.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\spine-unity-editor.pdb
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.UI.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.TextMeshPro.pdb
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEditor.UI.xml

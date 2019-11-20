@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowSkill : TankBullet
+public class SlowSkill : BulletController
 {
     [SerializeField]
     float backSpace;
@@ -19,6 +19,10 @@ public class SlowSkill : TankBullet
     }
     private void OnTriggerEnter2D(Collider2D _Target)
     {
+        if (_Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            gameObject.SetActive(false);
+        }
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = _Target.GetComponent<EnemyController>();
@@ -28,18 +32,14 @@ public class SlowSkill : TankBullet
                 if (elemental != null)
                 {
                     elemental.IceImpactEffect(enemy.transform.position);
-                    enemy?.DealDamge(bullet.Damage, damagePlus);
+                    enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
                 }
                 else
                 {
-                    enemy?.DealDamge(bullet.Damage, 0);
+                    enemy.DealDamge(bullet.Damage, 0);
                 }
                 enemy.DealEffect(Effect.Slow, new Vector3(0,0.5f,0), 0);
-            }
-            if (SeekTarget)
-            {
-
-                gameObject.SetActive(false);
+                return;
             }
         }
     }

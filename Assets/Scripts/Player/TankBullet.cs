@@ -21,14 +21,13 @@ public class TankBullet : BulletController
     }
     protected void OnTriggerEnter2D(Collider2D Target)
     {
-        base.OnTriggerEnter2D(Target);
-        if (Target.gameObject.tag.Equals(bullet.TargetTag))
+        if (Target.gameObject.tag.Equals(bullet.TargetTag) || Target.gameObject.tag.Equals("BlockPoint"))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
             //enemy.CurrentState = EnemyState.Hurt;
 
             //Elemental elemental= enemy.GetComponent<I>
-            enemy?.DealDamge( bullet.Damage,damagePlus);
+            enemy?.DealDamge( bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             if (SeekTarget)
             {
                 gameObject.SetActive(false);

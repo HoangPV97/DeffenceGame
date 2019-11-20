@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1172421136729513976}
   - component: {fileID: 5128277112195368290}
   - component: {fileID: 7233505950730306557}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: thunder_strike_ab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4767,7 +4767,7 @@ GameObject:
   - component: {fileID: 2392520961819110752}
   - component: {fileID: 2002968398373683152}
   - component: {fileID: 6332379067176241863}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: impact_mini
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9639,7 +9639,9 @@ GameObject:
   - component: {fileID: 7876475299836020589}
   - component: {fileID: 7311496966927553333}
   - component: {fileID: 8764305380225697592}
-  m_Layer: 5
+  - component: {fileID: 2492529978320715563}
+  - component: {fileID: 9008892596521694210}
+  m_Layer: 0
   m_Name: alliance_wind_skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14401,6 +14403,42 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2492529978320715563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625949087083810963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a251997a15e1e41428386c4602e3b59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet:
+    _speed: 0
+    _damage: 50
+    _targetTag: Enemy
+  SeekTarget: 0
+  elementalBullet: 0
+  damagePlus: 5
+  stunTime: 3
+--- !u!58 &9008892596521694210
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625949087083810963}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.09
 --- !u!1 &4130411899159347334
 GameObject:
   m_ObjectHideFlags: 0
@@ -14412,7 +14450,7 @@ GameObject:
   - component: {fileID: 8964009641324244497}
   - component: {fileID: 3056028961601545053}
   - component: {fileID: 8053637172387844569}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19226,7 +19264,7 @@ GameObject:
   - component: {fileID: 7428945431752262570}
   - component: {fileID: 1661736215682209343}
   - component: {fileID: 1067200843617771619}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: thunder_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24098,7 +24136,7 @@ GameObject:
   - component: {fileID: 5368588335296781248}
   - component: {fileID: 4051012913455714062}
   - component: {fileID: 6141396328473521040}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28863,7 +28901,7 @@ GameObject:
   - component: {fileID: 1962103779534300129}
   - component: {fileID: 6183937779838186561}
   - component: {fileID: 6160687438058443056}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33561,7 +33599,7 @@ GameObject:
   - component: {fileID: 1483231622973502943}
   - component: {fileID: 2952657823388621124}
   - component: {fileID: 4398663704255968230}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38326,7 +38364,7 @@ GameObject:
   - component: {fileID: 913298756441792930}
   - component: {fileID: 1588802925521762802}
   - component: {fileID: 2312025637335108416}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: thunder_strike_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}

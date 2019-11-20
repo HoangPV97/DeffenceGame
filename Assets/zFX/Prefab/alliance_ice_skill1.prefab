@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3892153918343385390}
   - component: {fileID: 3892153918343385376}
   - component: {fileID: 3892153918343385391}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   - component: {fileID: 3892153918558934030}
   - component: {fileID: 3892153918558934029}
   - component: {fileID: 3892153918558934028}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: alliance_ice_skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9541,7 +9541,7 @@ GameObject:
   - component: {fileID: 3892153919214984942}
   - component: {fileID: 3892153919214984928}
   - component: {fileID: 3892153919214984943}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14297,7 +14297,7 @@ GameObject:
   - component: {fileID: 3892153919844820364}
   - component: {fileID: 3892153919844820366}
   - component: {fileID: 3892153919844820365}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19055,7 +19055,7 @@ GameObject:
   - component: {fileID: 3892153920387240646}
   - component: {fileID: 1544787562777578068}
   - component: {fileID: 2444946500082550550}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: alliance_ice_skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

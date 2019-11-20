@@ -21,7 +21,10 @@ public class IcePlayerBullet : BulletController
     }
     protected void OnTriggerEnter2D(Collider2D Target)
     {
-        base.OnTriggerEnter2D(Target);
+        if (Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            gameObject.SetActive(false);
+        }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
@@ -30,7 +33,7 @@ public class IcePlayerBullet : BulletController
             if (elemental != null)
             {
                 elemental.FireImpactEffect(enemy.transform.position);
-                enemy.DealDamge( bullet.Damage, damagePlus);
+                enemy.DealDamge( bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else
             {

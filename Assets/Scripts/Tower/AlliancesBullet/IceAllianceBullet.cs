@@ -22,16 +22,13 @@ public class IceAllianceBullet : BulletController
             if (elemental != null)
             {
                 elemental.FireImpactEffect(enemy.transform.position);
-                enemy.DealDamge(bullet.Damage, damagePlus);
+                enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else
             {
                 enemy.DealDamge(bullet.Damage, 0);
             }
-            if (SeekTarget)
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 public enum Effect { Stun, freeze, Slow };
 public class GameEffect : MonoBehaviour
 {
-
-    public Effect currentEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,27 +18,40 @@ public class GameEffect : MonoBehaviour
     public GameObject GetEffect(Effect _effect, Vector3 _position, float _time)
     {
         GameObject effectObj = null;
+        
         switch (_effect)
         {
             case Effect.freeze:
                 effectObj = ObjectPoolManager.Instance.SpawnObject("freezeffect", _position, Quaternion.identity);
+                effectObj.AddComponent<DestroyFreezeEffect>()._time = _time;
                 break;
             case Effect.Slow:
-                KnockBack(_position);
+                //KnockBack(_position);
                 break;
             case Effect.Stun:
                 effectObj = ObjectPoolManager.Instance.SpawnObject("stuneffect", _position, Quaternion.identity);
+                effectObj.AddComponent<DestroyFreezeEffect>()._time = _time;
                 break;
         }
         return effectObj;
     }
-    IEnumerator WaitingDestroyEffect(GameObject _gameObject, float _time)
+    public void KnockBack( GameObject _gameObject,Vector3 _backSpace)
     {
-        yield return new WaitForSeconds(_time);
-        _gameObject.SetActive(false);
+        _gameObject.transform.position += _backSpace;
     }
-    public void KnockBack(Vector3 _backSpace)
+}
+public class DestroyFreezeEffect:MonoBehaviour
+{
+
+    public float _time;
+    private void Start()
     {
-        transform.position += _backSpace;
+        StartCoroutine(WaitingDestroyEffect());
+    }
+    IEnumerator WaitingDestroyEffect()
+    {
+        
+        yield return new WaitForSeconds(_time);
+        gameObject.SetActive(false);
     }
 }

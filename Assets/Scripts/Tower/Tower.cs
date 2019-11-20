@@ -13,17 +13,11 @@ public class Tower : MonoBehaviour
         Islive = true;
         Mana.CurrentMana = Mana.maxMana;
         Health.CurrentHealth = Health.health;
-        Debug.Log(Mana.RecoverManaTime);
         InvokeRepeating("RecoverMana",0, Mana.RecoverManaTime);
         InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
     }
-    private void Update()
-    {
-        
-    }
     public void TakeDamage(float _damage)
     {
-
         Health.ReduceHealth(_damage);
             if (Health.CurrentHealth <= 0)
             {

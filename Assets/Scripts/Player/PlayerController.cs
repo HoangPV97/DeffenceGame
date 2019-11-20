@@ -23,28 +23,19 @@ public class PlayerController : MonoBehaviour
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
     Vector2 direct;
+    float rotationZ;
     // Start is called before the first frame update
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
         poolManager = ObjectPoolManager.Instance;
         currentMode = AutoMode.TurnOff;
-
     }
     // Update is called once per frame
     private void Update()
     {
-
         UpdateEnemy();
         CheckonShoot();
-        if (player.target == null)
-        {
-            return;
-        }
         if (preCharacterState != characterState)
         {
             ChangeState();
@@ -56,71 +47,60 @@ public class PlayerController : MonoBehaviour
             {
                 case AutoMode.TurnOff:
                     characterState = CharacterState.Idle;
-                    if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
-                    {
-                        // ViewPlayer.SetPositionBone(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                        ClicktoShoot();
+                    direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+                    {                  
+                        //ClicktoShoot();
+                        characterState = CharacterState.Attack;
+                        coundown = player.rateOfFire;
                     }
                     break;
                 case AutoMode.TurnOn:
                     if (player.target != null)
                     {
-                        // ViewPlayer.SetPositionBone(player.target.position);
-                        AutoShootTarget();
+                        //AutoShootTarget();
+                        characterState = CharacterState.Attack;
+                        direct = player.target.position - Barrel.transform.position;
+                        rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                     }
                     break;
             }
         }
+        
         coundown -= Time.deltaTime;
+        //if (player.target == null)
+        //{
+        //    return;
+        //}
     }
-    public void AutoShoot()
-    {
-
-    }
-    public void ClicktoShoot()
-    {
-        characterState = CharacterState.Attack;
-        Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-        float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-
-        ShootToDirection(direct, rotationZ, "tankbullet");
-        coundown = player.rateOfFire;
-    }
-    public void AutoShootTarget()
-    {
-        characterState = CharacterState.Attack;
-        Vector2 direct = player.target.position - Barrel.transform.position;
-        float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
-        ShootToDirection(direct, rotationZ, "tankbullet");
-        coundown = player.rateOfFire;
-    }
+    //public void ClicktoShoot()
+    //{
+    //    characterState = CharacterState.Attack;
+    //    Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+    //    float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+    //    ShootToDirection(direct, rotationZ, "tankbullet");
+    //    coundown = player.rateOfFire;
+    //}
+    //public void AutoShootTarget()
+    //{
+    //    characterState = CharacterState.Attack;
+    //    Vector2 direct = player.target.position - Barrel.transform.position;
+    //    float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+    //    //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
+    //    ShootToDirection(direct, rotationZ, "tankbullet");
+    //    coundown = player.rateOfFire;
+    //}
     public void Shoot()
     {
-        switch (currentMode)
-        {
-            case AutoMode.TurnOff:
-                if (Input.GetMouseButtonDown(0))
-                {
-                    ClicktoShoot();
-                }
-                break;
-            case AutoMode.TurnOn:
-                if (player.target != null)
-                {
-                    AutoShootTarget();
-                }
-                break;
-        }
-
+        ShootToDirection(direct, rotationZ, "tankbullet");
     }
     void CheckonShoot()
     {
-        if (Input.GetMouseButtonDown(0) && currentMode == AutoMode.TurnOff)
+        if (Input.GetMouseButton(0) && currentMode == AutoMode.TurnOff)
         {
             characterState = CharacterState.Attack;
         }
-
     }
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
     {
@@ -129,19 +109,16 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-
     }
     private void ChangeState()
     {
         if (characterState.Equals(CharacterState.Attack))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-
         }
         else if (characterState.Equals(CharacterState.Idle))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
-
         }
     }
     protected void UpdateEnemy()
@@ -156,10 +133,9 @@ public class PlayerController : MonoBehaviour
             {
                 shortestDistance = distancetoEnemy;
                 nearestEnemy = Enemy;
-
             }
         }
-        if (nearestEnemy != null && shortestDistance < player.range)
+        if (nearestEnemy != null && shortestDistance < player.range && nearestEnemy.GetComponent<EnemyController>().isLive)
         {
             player.target = nearestEnemy.transform;
         }
@@ -172,10 +148,11 @@ public class PlayerController : MonoBehaviour
 
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
-        characterState = CharacterState.Attack;
+        ViewPlayer.SetPositionBone(direct);
+        //characterState = CharacterState.Attack;
         GameObject bullet = poolManager.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
-        WindPlayerBullet mBullet = bullet.GetComponent<WindPlayerBullet>();
+        BulletController mBullet = bullet.GetComponent<BulletController>();
         mBullet.elementalBullet = elementalType;
         mBullet.DirectShooting(_direction);
     }

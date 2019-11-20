@@ -6,24 +6,10 @@ using UnityEngine;
 
 public class WindRangeEnemy : EnemyController,IWindEffectable
 {
-    public SkeletonAnimation skeletonAnimation;
-    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    public string eventName;
     void Start()
     {
-        skeletonAnimation.AnimationState.Event += OnEvent;
         base.Start();
     }
-
-    private void OnEvent(TrackEntry trackEntry, Spine.Event e)
-    {
-        bool eventMatch = (e.Data.Name.Equals(eventName));
-        if (eventMatch && isAttack)
-        {
-            Attack();
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -44,19 +30,23 @@ public class WindRangeEnemy : EnemyController,IWindEffectable
     }
     public void CheckAttack()
     {
-        distancetoPlayer = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoPlayer < enemy.range)
+        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
+        if (distancetoTower < enemy.range && isLive)
         {
-            isAttack = true;
-
-            isMove = false;
-            Move();
-            if (countdown <= 0f)
+            if (countdown <= 0f && isAttack)
             {
+                isAttack = true;
+                Rigidbody2D.velocity = Vector2.zero;
+                CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
                 countdown = enemy.rateOfFire;
             }
             countdown -= Time.deltaTime;
         }
+    }
+    public void WindImpactEffect(Vector3 _position)
+    {
+        GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
+        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
     }
 }

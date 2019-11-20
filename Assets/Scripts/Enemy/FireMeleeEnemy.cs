@@ -1,13 +1,11 @@
-﻿using Spine.Unity;
+﻿using Spine;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FireMeleeEnemy : EnemyController,IFireEffectable
 {
-    public SkeletonAnimation skeletonAnimation;
-    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    public string eventName;
     void Start()
     {
         base.Start();
@@ -16,29 +14,35 @@ public class FireMeleeEnemy : EnemyController,IFireEffectable
     // Update is called once per frame
     void Update()
     {
-        AutoAttack();
+        CheckAttack();
         base.Update();
     }
     public void Attack()
     {
-
-        distancetoPlayer = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoPlayer < enemy.range &&isAttack)
+        if (Tower != null)
         {
-            CurrentState = EnemyState.Attack;
-            if (Tower != null)
-            {
-                Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
-            }
+            Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
         }
     }
-    protected void AutoAttack()
+    public void CheckAttack()
     {
-        if (countdown <= 0f)
+        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
+        if (distancetoTower < enemy.range && isLive)
         {
-            Attack();
-            countdown = enemy.rateOfFire;
+            
+            if (countdown <= 0f && isAttack)
+            {
+                Rigidbody2D.velocity = Vector2.zero;
+                CurrentState = EnemyState.Idle;
+                CurrentState = EnemyState.Attack;
+                countdown = enemy.rateOfFire;
+            }
+            countdown -= Time.deltaTime;
         }
-        countdown -= Time.deltaTime;
+    }
+    public void FireImpactEffect(Vector3 _position)
+    {
+        GameObject effect = ObjectPoolManager.Instance.SpawnObject("fireimpact", _position, Quaternion.identity);
+        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
     }
 }

@@ -33,7 +33,7 @@ public class Gold : MonoBehaviour
     {
         if (!aniamtion.isPlaying)
         {
-            Vector3 dir = CanvasGoldPnl.transform.position - transform.position;
+            Vector2 dir = CanvasGoldPnl.transform.position - transform.position;
             transform.Translate(dir.normalized * Speed * Time.deltaTime);
         }
     }
