@@ -132,12 +132,14 @@ public class EnemyController : MonoBehaviour
        {
            if (_effect.Equals(Effect.Slow))
            {
+               //Rigidbody2D.AddForce(new Vector2(0,10).normalized*10000f);
                gameEffect.KnockBack(gameObject, _position);
                if (effect != null)
                {
                    gameEffect.KnockBack(effect, _position);
+                   return;
                }
-               return;
+               
                }
            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.freeze))
            {    

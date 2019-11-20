@@ -9,7 +9,6 @@ public class SlowSkill : BulletController
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -23,11 +22,19 @@ public class SlowSkill : BulletController
         {
             gameObject.SetActive(false);
         }
-        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
+        Identify identify = _Target.gameObject.GetComponent<Identify>();
+        if (identify == null)
         {
+            identify = _Target.gameObject.AddComponent<Identify>();
+        }
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag) && !identify.collided)
+        {
+            
             EnemyController enemy = _Target.GetComponent<EnemyController>();
-            if (enemy != null)
+            
+            if (enemy != null )
             {
+                _Target.gameObject.GetComponent<Identify>().collided = true;
                 IIceEffectable elemental = enemy.GetComponent<IIceEffectable>();
                 if (elemental != null)
                 {
@@ -38,9 +45,21 @@ public class SlowSkill : BulletController
                 {
                     enemy.DealDamge(bullet.Damage, 0);
                 }
-                enemy.DealEffect(Effect.Slow, new Vector3(0,0.5f,0), 0);
+                enemy.DealEffect(Effect.Slow, new Vector3(0,0.4f,0), 0);
                 return;
             }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+    }
+    public class Identify : MonoBehaviour
+    {
+        public bool collided;
+        private void Start()
+        {
+           // collided= false;
         }
     }
 }

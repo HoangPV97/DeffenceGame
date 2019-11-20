@@ -43,7 +43,7 @@ public class PlaySkill1 : Skill
     }
     public void Skill1(Vector2 _direction, float _rotatioZ)
     {
-        GameObject SlowSkill = poolManager.SpawnObject("skillbullet1", arrow.transform.position, Quaternion.identity);
+        GameObject SlowSkill = poolManager.SpawnObject("slowskill", arrow.transform.position, Quaternion.identity);
         SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         Rigidbody2D rigidbody = SlowSkill.GetComponent<Rigidbody2D>();
         float speed = SlowSkill.GetComponent<BulletController>().bullet.Speed;

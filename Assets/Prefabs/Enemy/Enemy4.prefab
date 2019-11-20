@@ -355,7 +355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.4, y: 1.45}
   m_EdgeRadius: 0
 --- !u!50 &3154056995103499106
 Rigidbody2D:
@@ -472,8 +472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 2329509318956476609}
-  characterState: 0
-  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 38eee7796defacf4fa38dd6a6a845196, type: 2}
@@ -485,7 +483,6 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: 1aac05b5f4b49bb429eae27d04797c5e, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: cae16d314a7830f46960cf4e65510ecb, type: 2}
-  eventName: 
 --- !u!114 &4262427703916507590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,30 +530,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401a1002b65665743aaaf331c5c7c25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthUI: {fileID: 5556297814197646599}
-  boxCollider2D: {fileID: 5556297814356171331}
   skeletonAnimation: {fileID: 2329509318956476609}
   EventAttack:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4262427703916507590}
         m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  EventDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9186302783461152939}
-        m_MethodName: Ondie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

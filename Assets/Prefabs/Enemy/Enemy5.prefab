@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.15, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,8 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 9124661697560551847}
-  characterState: 0
-  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 71dc1e2b3f1be3f42932ff2873f819bc, type: 2}
@@ -206,7 +204,6 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: d2d807d0f02200d4697ab934a137adbd, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 0247f1c1d0180c245bb7c32f1ca5180a, type: 2}
-  eventName: 
 --- !u!114 &1732862159562281024
 MonoBehaviour:
   m_ObjectHideFlags: 0

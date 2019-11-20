@@ -1440,7 +1440,7 @@ MonoBehaviour:
     prefab: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb,
       type: 3}
     size: 50
-  - tag: skillbullet1
+  - tag: slowskill
     prefab: {fileID: 185990494516342514, guid: a0f5294d87d3a244f956e7b1edce2de1, type: 3}
     size: 1
   - tag: gold

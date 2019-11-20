@@ -26,7 +26,7 @@ public class GameEffect : MonoBehaviour
                 effectObj.AddComponent<DestroyFreezeEffect>()._time = _time;
                 break;
             case Effect.Slow:
-                //KnockBack(_position);
+                gameObject.GetComponent<Rigidbody2D>().AddForce(_position*5);
                 break;
             case Effect.Stun:
                 effectObj = ObjectPoolManager.Instance.SpawnObject("stuneffect", _position, Quaternion.identity);

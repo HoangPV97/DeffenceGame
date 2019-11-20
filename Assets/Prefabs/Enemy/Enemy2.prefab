@@ -355,7 +355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2, y: 2.04}
+  m_Size: {x: 1.32, y: 1.33}
   m_EdgeRadius: 0
 --- !u!50 &2381826484690694014
 Rigidbody2D:
@@ -472,8 +472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4975697748422171678}
-  characterState: 0
-  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: c441f7c31767a2643bb45f606f7d26f6, type: 2}
@@ -485,7 +483,6 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: 49d48eac4a1c06b4fb08665b9ae93a90, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 8bca01bbe2724f246b0834f5e4dbe2f6, type: 2}
-  eventName: 
 --- !u!114 &1533087464899566581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,8 +516,6 @@ MonoBehaviour:
   isAttack: 1
   isLive: 1
   Rigidbody2D: {fileID: 2381826484690694014}
-  HealthUI: {fileID: 1529785039536315530}
-  boxCollider2D: {fileID: 1529785039770135925}
   HealthUI: {fileID: 1529785039536315530}
   boxCollider2D: {fileID: 1529785039770135925}
 --- !u!114 &1983052066646033201
