@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6195405742813765865}
   - component: {fileID: 8907043287824811345}
   - component: {fileID: 4660577766429049117}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: alliance_ice_skill1_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 4954248956520802305}
   - component: {fileID: 4891560613361987029}
   - component: {fileID: 6381380772543694512}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ice_spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
