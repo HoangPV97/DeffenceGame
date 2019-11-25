@@ -7,7 +7,7 @@ public class SpawnEnemy : MonoBehaviour
 {
     public Vector3 SpawnPosition;
     public float SpawnTime;
-    public Image slider;
+    public Slider slider;
     public float EnemyQuantum;
     float temp;
     float process;
@@ -27,7 +27,7 @@ public class SpawnEnemy : MonoBehaviour
     void Update()
     {
         process = 1 - (EnemyQuantum / temp);
-        slider.fillAmount = process;
+        slider.value = process;
     }
     IEnumerator WaitForSpawnEnemy()
     {

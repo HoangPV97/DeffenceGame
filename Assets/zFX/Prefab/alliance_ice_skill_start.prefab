@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2385964418753089852}
   - component: {fileID: 587039471524160686}
   - component: {fileID: 314113294256159627}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   - component: {fileID: 2042820256987157472}
   - component: {fileID: 1768130093650172904}
   - component: {fileID: 6175071834318171189}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: alliance_ice_skill_start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9543,7 +9543,7 @@ GameObject:
   - component: {fileID: 6058719264922685324}
   - component: {fileID: 4908512201516670411}
   - component: {fileID: 8188989466085191538}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: light_colum
   m_TagString: Untagged
   m_Icon: {fileID: 0}

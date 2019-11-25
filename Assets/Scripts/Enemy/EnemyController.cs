@@ -7,6 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Spine.AnimationState;
 
+public class Enemies
+{
+    public static List<EnemyController> listEnemies = new List<EnemyController>();
+}
 public enum EnemyState
 {
     Idle, Run, Attack, Hurt, Die, Skill
@@ -19,27 +23,29 @@ public class EnemyController : MonoBehaviour
     public bool isMove = true, isAttack = true, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
+    PlayerController playerController;
     protected float distancetoTower;
     protected float countdown;
     public static float EnemyLive;
-    protected ObjectPoolManager PoolManager;
     SoundManager soundManager;
     float distance;
     GameEffect gameEffect;
+    GameObject effect ;
     public Rigidbody2D Rigidbody2D;
-    GameObject effect;
+    
     [SerializeField] GameObject HealthUI;
     [SerializeField] BoxCollider2D boxCollider2D;
     // Start is called before the first frame update
     private void Awake()
     {
-        PoolManager = ObjectPoolManager.Instance;
+        Enemies.listEnemies = new List<EnemyController>();
         soundManager = SoundManager.Instance;
 
     }
     protected void Start()
     {
         countdown = enemy.rateOfFire;
+        playerController = FindObjectOfType<PlayerController>();
         gameEffect = GetComponent<GameEffect>();
         enemy.health.CurrentHealth = enemy.health.health;
         SeekingPlayer();
@@ -81,22 +87,23 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Idle;
         }
-        
+
     }
     IEnumerator Die()
     {
-        
+
         isLive = false;
         isAttack = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
         HealthUI.SetActive(false);
         boxCollider2D.enabled = false;
-        if (effect != null && effect.activeSelf)
+        if(effect!=null && effect.activeSelf)
         {
             effect.SetActive(false);
         }
         yield return new WaitForSeconds(1);
+        Enemies.listEnemies.Remove(this);
         EnemyLive--;
         gameObject.SetActive(false);
     }
@@ -122,27 +129,26 @@ public class EnemyController : MonoBehaviour
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
-        GameObject damageobj = PoolManager.SpawnObject(tag, _postion, Quaternion.identity);
+        GameObject damageobj = ObjectPoolManager.Instance.SpawnObject(tag, _postion, Quaternion.identity);
         damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
     public void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
+        
         StartCoroutine(WaitingEffect(_time, () =>
        {
            if (_effect.Equals(Effect.Slow))
            {
-               //Rigidbody2D.AddForce(new Vector2(0,10).normalized*10000f);
                gameEffect.KnockBack(gameObject, _position);
                if (effect != null)
                {
                    gameEffect.KnockBack(effect, _position);
                    return;
                }
-               
-               }
+           }
            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.freeze))
-           {    
+           {
                isMove = false;
                Move();
                isAttack = false;
@@ -157,6 +163,13 @@ public class EnemyController : MonoBehaviour
            }
            isAttack = true;
        }));
+    }
+    public void KnockBack(Vector3 _position)
+    {
+        //gameObject.transform.Translate(_position);
+        //Rigidbody2D.MovePosition(gameObject.transform.position + _position);
+        Rigidbody2D.AddForce(new Vector2(gameObject.transform.position.x * 100, gameObject.transform.position.x * -100));
+        //transform.position += _position;
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
@@ -212,5 +225,12 @@ public class EnemyController : MonoBehaviour
     {
         HealthUI.SetActive(true);
         boxCollider2D.enabled = true;
+    }
+    public void OnTriggerExit2D(Collider2D BlockPoint)
+    {
+        if (BlockPoint.gameObject.tag.Equals("BlockPoint"))
+        {
+            Enemies.listEnemies.Add(this);
+        }
     }
 }

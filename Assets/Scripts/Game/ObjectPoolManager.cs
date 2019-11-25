@@ -45,10 +45,10 @@ public class ObjectPoolManager : MonoBehaviour
             return null;
         }
         GameObject objectSpawn= poolDictionary[tag].Dequeue();
-        objectSpawn.SetActive(true);
         objectSpawn.transform.position = _position;
         objectSpawn.transform.rotation = _quaternion;
         poolDictionary[tag].Enqueue(objectSpawn);
+        objectSpawn.SetActive(true);
         return objectSpawn;
     }
 

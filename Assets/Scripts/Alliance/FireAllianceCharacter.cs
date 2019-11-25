@@ -29,7 +29,7 @@ public class FireAllianceCharacter : AllianceController
     public void Shoot()
     {
         characterState = CharacterState.Attack;
-        GameObject bullet = poolManager.SpawnObject("firealliancebullet", Barrel.transform.position, Quaternion.identity);
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
         FireAllianceBullet allianceBullet = bullet.GetComponent<FireAllianceBullet>();
         if (allianceBullet != null)
         {

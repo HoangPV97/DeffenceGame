@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaySkill1 : Skill
 {
+    public PlayerController playerController;
     public GameObject arrow;
     public VariableJoystick variableJoystick;
     private Vector2 direction;
@@ -44,22 +45,23 @@ public class PlaySkill1 : Skill
     public void Skill1(Vector2 _direction, float _rotatioZ)
     {
         GameObject SlowSkill = poolManager.SpawnObject("slowskill", arrow.transform.position, Quaternion.identity);
-        SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
+        SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = SlowSkill.GetComponent<Rigidbody2D>();
         float speed = SlowSkill.GetComponent<BulletController>().bullet.Speed;
         rigidbody.velocity = _direction.normalized *40* speed * Time.deltaTime;
-        CountdownGo?.gameObject.SetActive(true);
-        StartCountdown = true;
-        TimeLeft = CountdownTime;
-        Tower.Mana.ConsumeMana(manaNumber);
-        arrow.SetActive(false);
+       
     }
     private void OnMouseUp()
     {
         arrow.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaNumber)
         {
-            Skill1(direction, angle);
+            playerController.SlowSkill(direction, angle - 90f);
+            CountdownGo?.gameObject.SetActive(true);
+            StartCountdown = true;
+            TimeLeft = CountdownTime;
+            Tower.Mana.ConsumeMana(manaNumber);
+            arrow.SetActive(false);
         }
     }
 

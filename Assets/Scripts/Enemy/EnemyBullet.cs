@@ -4,14 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet :MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public Bullet bullet;
+    [SerializeField]
+    string exploseEffect;
     protected Transform Target;
     public bool SeekTarget = false;
+
     //public SkeletonAnimation skeletonAnimation;
     //public AnimationReferenceAsset idle;
-    
+
     public void SetDamage(float _damage)
     {
         bullet.Damage = _damage;
@@ -36,11 +39,14 @@ public class EnemyBullet :MonoBehaviour
         {
             Tower tower = _Tower.GetComponent<Tower>();
             tower?.TakeDamage(bullet.Damage);
+            GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
+            Exposion.AddComponent<DestroyEffect>()._time = 0.3f;
             gameObject.SetActive(false);
+
         }
     }
 
-    internal void SetTarget(Transform _Target)
+    public void SetTarget(Transform _Target)
     {
         Target = _Target;
     }

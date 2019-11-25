@@ -3,6 +3,7 @@ using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public enum CharacterState { Idle, Attack };
@@ -15,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public ViewPlayerController ViewPlayer;
     private float coundown;
     public GameObject Barrel;
-    protected ObjectPoolManager poolManager;
     public Elemental elementalType;
     public CharacterState characterState, preCharacterState;
     public SkeletonAnimation skeletonAnimation;
@@ -24,11 +24,15 @@ public class PlayerController : MonoBehaviour
     public string eventName;
     Vector2 direct;
     float rotationZ;
+    public UnityEvent Skill1;
+    float shortestDistance = Mathf.Infinity;
+    float _2ndShortestDistance = Mathf.Infinity;
+    EnemyController nearestEnemy = null;
+    EnemyController _2ndEnemy = null;
     // Start is called before the first frame update
     void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
-        poolManager = ObjectPoolManager.Instance;
         currentMode = AutoMode.TurnOff;
     }
     // Update is called once per frame
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour
                     direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
                     rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                     if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
-                    {                  
+                    {
                         //ClicktoShoot();
                         characterState = CharacterState.Attack;
                         coundown = player.rateOfFire;
@@ -61,36 +65,15 @@ public class PlayerController : MonoBehaviour
                     {
                         //AutoShootTarget();
                         characterState = CharacterState.Attack;
-                        direct = player.target.position - Barrel.transform.position;
+                        direct = player.target.gameObject.transform.position - Barrel.transform.position;
                         rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                     }
                     break;
             }
         }
-        
+
         coundown -= Time.deltaTime;
-        //if (player.target == null)
-        //{
-        //    return;
-        //}
     }
-    //public void ClicktoShoot()
-    //{
-    //    characterState = CharacterState.Attack;
-    //    Vector2 direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-    //    float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-    //    ShootToDirection(direct, rotationZ, "tankbullet");
-    //    coundown = player.rateOfFire;
-    //}
-    //public void AutoShootTarget()
-    //{
-    //    characterState = CharacterState.Attack;
-    //    Vector2 direct = player.target.position - Barrel.transform.position;
-    //    float rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-    //    //transform.rotation = Quaternion.Euler(0, 0, rotationZ - 90);
-    //    ShootToDirection(direct, rotationZ, "tankbullet");
-    //    coundown = player.rateOfFire;
-    //}
     public void Shoot()
     {
         ShootToDirection(direct, rotationZ, "tankbullet");
@@ -104,7 +87,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
     {
-        Debug.Log(trackEntry);
         if (e.Data.Name.Equals(eventName))
         {
             Shoot();
@@ -121,40 +103,71 @@ public class PlayerController : MonoBehaviour
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
         }
     }
-    protected void UpdateEnemy()
+    public void UpdateEnemy()
     {
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach (GameObject Enemy in Enemies)
+        shortestDistance = Mathf.Infinity;
+        _2ndShortestDistance = Mathf.Infinity;
+        nearestEnemy = null;
+        _2ndEnemy = null;
+        if (Enemies.listEnemies.Count > 0)
         {
-            float distancetoEnemy = Vector3.Distance(transform.position, Enemy.transform.position);
-            if (distancetoEnemy < shortestDistance)
+            for (int i = 0; i < Enemies.listEnemies.Count; i++)
             {
-                shortestDistance = distancetoEnemy;
-                nearestEnemy = Enemy;
+                float distancetoEnemy = Vector3.Distance(transform.position, Enemies.listEnemies[i].transform.position);
+                if (distancetoEnemy < shortestDistance)
+                {
+                    _2ndShortestDistance = shortestDistance;
+                    shortestDistance = distancetoEnemy;
+                    _2ndEnemy = nearestEnemy;
+                    nearestEnemy = Enemies.listEnemies[i];
+                }
+                else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
+                {
+                    _2ndShortestDistance = distancetoEnemy;
+                    _2ndEnemy = Enemies.listEnemies[i];
+                }
+                if (nearestEnemy != null && shortestDistance < player.range && nearestEnemy.isLive)
+                {
+                    player.target = nearestEnemy;
+                }
+                else if (_2ndEnemy != null && !nearestEnemy.isLive)
+                {
+                    nearestEnemy = _2ndEnemy;
+                    player.target = nearestEnemy;
+                }
+                if(!nearestEnemy.isLive && _2ndEnemy==null )
+                {
+                    player.target = null;
+                }
             }
-        }
-        if (nearestEnemy != null && shortestDistance < player.range && nearestEnemy.GetComponent<EnemyController>().isLive)
-        {
-            player.target = nearestEnemy.transform;
         }
         else
         {
             characterState = CharacterState.Idle;
-            player.target = null;
-        }
+        } 
     }
 
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
         ViewPlayer.SetPositionBone(direct);
-        //characterState = CharacterState.Attack;
-        GameObject bullet = poolManager.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
         mBullet.elementalBullet = elementalType;
+        mBullet.SetTarget(player.target);
         mBullet.DirectShooting(_direction);
     }
-
+    public void SlowSkill(Vector2 _direction, float _rotatioZ)
+    {
+        GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(player.Bullet_Skill_1, gameObject.transform.position, Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position, Quaternion.identity);
+        if (!effectStart.GetComponent<DestroyEffect>())
+        {
+            effectStart.AddComponent<DestroyEffect>()._time = 0.3f;
+        }
+        skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
+        Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
+        float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;
+        rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
+    }
 }

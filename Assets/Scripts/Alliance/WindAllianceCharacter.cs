@@ -38,7 +38,7 @@ public class WindAllianceCharacter : AllianceController
         if (Alliance.target != null)
         {
             characterState = CharacterState.Attack;
-            GameObject bullet = poolManager.SpawnObject("windalliancebullet", Barrel.transform.position, Quaternion.identity);
+            GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
             WindAllianceBullet alianceBullet = bullet.GetComponent<WindAllianceBullet>();
             if (alianceBullet != null)
             {
@@ -59,5 +59,19 @@ public class WindAllianceCharacter : AllianceController
             characterState = CharacterState.Attack;
         }
     }
-
+    public void StunSkill(Vector3 _position)
+    {
+        GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
+        float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
+        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position, Quaternion.identity);
+        if (!effectStart.GetComponent<DestroyEffect>())
+        {
+            effectStart.AddComponent<DestroyEffect>()._time = particleTime;
+        }
+        if (!stunSkill.GetComponent<DestroyEffect>())
+        {
+            stunSkill.AddComponent<DestroyEffect>()._time = particleTime;
+        }
+    }
 }

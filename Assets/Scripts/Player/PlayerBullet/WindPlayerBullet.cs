@@ -10,8 +10,11 @@ public class WindPlayerBullet : BulletController
     }
     private void Update()
     {
-
-        //base.Update();
+        if (Target == null || !Target.isLive)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
     }
     // Update is called once per frame
     public void DirectShooting(Vector2 _direction)

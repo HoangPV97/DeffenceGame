@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Game\PlaySkeletonAnimationState.cs" />
     <Compile Include="Assets\Scripts\Game\Skill.cs" />
+    <Compile Include="Assets\Scripts\Game\SkillController.cs" />
     <Compile Include="Assets\Scripts\Game\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Game\UpdateSlider.cs" />
     <Compile Include="Assets\Scripts\Player\Arrow.cs" />

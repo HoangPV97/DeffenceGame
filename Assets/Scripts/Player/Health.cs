@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class Health
     private float recoverHealthTime;
     public Image healthBar;
     public Image maxHealthBar;
+    public TextMeshProUGUI healthValueText;
     public float health
     {
         get
@@ -64,18 +66,24 @@ public class Health
     {
         CurrentHealth -= _damage;
         float width = maxHealthBar.rectTransform.rect.width;
-        float height = maxHealthBar.rectTransform.rect.height;
+        float height = healthBar.rectTransform.rect.height;
         healthBar.rectTransform.sizeDelta = new Vector2(width * (CurrentHealth / health * 1.0f), height);
+        UpdateValueText();
     }
     public void RecoverHealth()
     {
         CurrentHealth += RecoverHealthValue;
         float width = maxHealthBar.rectTransform.rect.width;
-        float height = maxHealthBar.rectTransform.rect.height;
+        float height = healthBar.rectTransform.rect.height;
         healthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width + (RecoverHealthValue / health * width), height);
         if (CurrentHealth > health)
         {
             CurrentHealth = health;
         }
+        UpdateValueText();
+    }
+    public void UpdateValueText()
+    {
+        healthValueText.text = currentHealth.ToString() + "/" + health;
     }
 }

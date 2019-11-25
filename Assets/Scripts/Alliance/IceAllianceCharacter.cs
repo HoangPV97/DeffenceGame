@@ -33,7 +33,7 @@ public class IceAllianceCharacter : AllianceController
     protected void Shoot()
     {
             characterState = CharacterState.Attack;
-            GameObject bullet = poolManager.SpawnObject("icealliancebullet", Barrel.transform.position, Quaternion.identity);
+            GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
             IceAllianceBullet alianceBullet = bullet.GetComponent<IceAllianceBullet>();
             if (alianceBullet != null)
             {
@@ -50,6 +50,22 @@ public class IceAllianceCharacter : AllianceController
         else
         {
             characterState = CharacterState.Idle;
+        }
+    }
+    public void IceSkill(Vector3 _position)
+    {
+        GameObject iceskill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
+        float particleTime = iceskill.GetComponentInChildren<ParticleSystem>().main.duration;
+        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
+        GameObject effectStart  = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position, Quaternion.identity);
+        if (!effectStart.GetComponent<DestroyEffect>())
+        {
+            effectStart.AddComponent<DestroyEffect>()._time = particleTime;
+        }
+        if (!iceskill.GetComponent<IceSkill>())
+        {
+            iceskill.AddComponent<DestroyEffect>()._time = particleTime;
+
         }
     }
 }

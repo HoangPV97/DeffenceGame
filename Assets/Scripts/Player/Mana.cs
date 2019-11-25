@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class Mana
     private float recoverManaTime;
     public Image manaBar;
     public Image maxManaBar;
+    public TextMeshProUGUI manaValueText;
     // Start is called before the first frame update
     public float maxMana
     {
@@ -65,19 +67,25 @@ public class Mana
     {
         CurrentMana -= _mana;
         float width = maxManaBar.rectTransform.rect.width;
-        float height = maxManaBar.rectTransform.rect.height;
+        float height = manaBar.rectTransform.rect.height;
         manaBar.rectTransform.sizeDelta = new Vector2(width * (CurrentMana / maxMana * 1.0f), height);
+        UpdateValueText();
     }
     public void RecoverMana()
     {
         CurrentMana += RecoverManaValue;
         float width = maxManaBar.rectTransform.rect.width;
-        float height = maxManaBar.rectTransform.rect.height;
+        float height = manaBar.rectTransform.rect.height;
         manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * width), height);
         if (CurrentMana > maxMana)
         {
             CurrentMana = maxMana;
         }
+        UpdateValueText();
+    }
+    public void UpdateValueText()
+    {
+        manaValueText.text = CurrentMana.ToString() + "/" + maxMana.ToString();
     }
 }
 

@@ -6,7 +6,7 @@ public class PlaySkill2 : Skill
 {
     public VariableJoystick variableJoystick;
     public GameObject circle;
-    //public GameObject LightGo;
+    public IceAllianceCharacter Alliance;
     ObjectPoolManager poolManager;
     // Start is called before the first frame update
     void Start()
@@ -50,10 +50,7 @@ public class PlaySkill2 : Skill
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
         Tower.Mana.ConsumeMana(manaNumber);
-        GameObject lighSkill = poolManager.SpawnObject("iceskill", circle.transform.position, Quaternion.identity);
-        float particleTime = lighSkill.GetComponentInChildren<ParticleSystem>().main.duration;
-        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        StartCoroutine(WaitingActiveObject(lighSkill, particleTime,false));
+        Alliance.IceSkill(circle.transform.position);
         circle.SetActive(false);
     }
     private void OnMouseUp()

@@ -15,6 +15,8 @@ public class Tower : MonoBehaviour
         Health.CurrentHealth = Health.health;
         InvokeRepeating("RecoverMana",0, Mana.RecoverManaTime);
         InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
+        Mana.UpdateValueText();
+        Health.UpdateValueText();
     }
     public void TakeDamage(float _damage)
     {

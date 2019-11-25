@@ -12,29 +12,27 @@ public class Alliance
     public float rateOfFire { get => _rateOfFire; set => _rateOfFire = value; }
     public float Armor { get => _armor; set => _armor = value; }
     public string Bullet { get => bullet; set => bullet = value; }
+    public string Bullet_Skill { get => _bulletSkill; set => _bulletSkill = value; }
+    public string EffectStart { get => _effectStart; set => _effectStart = value; }
 
-    [SerializeField]
-    private string bullet;
-    [SerializeField]
-    private string _name;
-    [SerializeField]
-    private float _level;
-    [SerializeField]
-    private float _range;
-    [SerializeField]
-    private EnemyController _target;
-    [SerializeField]
-    private float _rateOfFire;
-    [SerializeField]
-    private float _armor;
+    [SerializeField] private string bullet;
+    [SerializeField] private string _name;
+    [SerializeField] private float _level;
+    [SerializeField] private float _range;
+    [SerializeField] private EnemyController _target;
+    [SerializeField] private float _rateOfFire;
+    [SerializeField] private float _armor;
+    [SerializeField] private string _bulletSkill;
+    [SerializeField] private string _effectStart;
+
 }
 public class AllianceController : MonoBehaviour
 {
     public Alliance Alliance;
-    protected EnemyController m_Enemy;
     public GameObject Barrel;
-    protected ObjectPoolManager poolManager;
     public Elemental elementalType;
+    float shortestDistance, _2ndShortestDistance;
+    EnemyController nearestEnemy, _2ndEnemy;
     //public PlaySkeletonAnimationState playSkeletonAnimation;
     public CharacterState characterState, preCharacterState;
     public SkeletonAnimation skeletonAnimation;
@@ -43,8 +41,6 @@ public class AllianceController : MonoBehaviour
     public string eventName;
     protected void Start()
     {
-        poolManager = ObjectPoolManager.Instance;
-        //InvokeRepeating("UpdateEnemy", 0, 0.5f);
     }
     protected void Update()
     {
@@ -58,7 +54,7 @@ public class AllianceController : MonoBehaviour
         {
             return;
         }
-        
+
         //AutoShoot();
 
     }
@@ -73,40 +69,56 @@ public class AllianceController : MonoBehaviour
         {
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
         }
-        
+
     }
-    protected void UpdateEnemy()
+    public void UpdateEnemy()
     {
-        EnemyController[] Enemies = GameObject.FindObjectsOfType<EnemyController>();
-        float shortestDistance = Mathf.Infinity;
-        EnemyController nearestEnemy = null;
-        foreach (var Enemy in Enemies)
+        shortestDistance = Mathf.Infinity;
+        _2ndShortestDistance = Mathf.Infinity;
+        nearestEnemy = null;
+        _2ndEnemy = null;
+        if (Enemies.listEnemies.Count > 0)
         {
-            float distancetoEnemy = Vector3.Distance(transform.position, Enemy.transform.position);
-            if (distancetoEnemy < shortestDistance)
+            for (int i = 0; i < Enemies.listEnemies.Count; i++)
             {
-                shortestDistance = distancetoEnemy;
-                nearestEnemy = Enemy;
-
+                float distancetoEnemy = Vector3.Distance(transform.position, Enemies.listEnemies[i].transform.position);
+                if (distancetoEnemy < shortestDistance)
+                {
+                    _2ndShortestDistance = shortestDistance;
+                    shortestDistance = distancetoEnemy;
+                    _2ndEnemy = nearestEnemy;
+                    nearestEnemy = Enemies.listEnemies[i];
+                }
+                else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
+                {
+                    _2ndShortestDistance = distancetoEnemy;
+                    _2ndEnemy = Enemies.listEnemies[i];
+                }
+                if (nearestEnemy != null && shortestDistance < Alliance.range && nearestEnemy.isLive)
+                {
+                    Alliance.target = nearestEnemy;
+                }
+                else if (_2ndEnemy != null && !nearestEnemy.isLive)
+                {
+                    nearestEnemy = _2ndEnemy;
+                    Alliance.target = nearestEnemy;
+                }
+                if (!nearestEnemy.isLive && _2ndEnemy == null)
+                {
+                    Alliance.target = null;
+                }
             }
-
-        }
-        if (nearestEnemy != null && shortestDistance < Alliance.range && nearestEnemy.isLive)
-        {
-            Alliance.target = nearestEnemy;
-
-            m_Enemy = nearestEnemy.GetComponent<EnemyController>();
         }
         else
         {
             characterState = CharacterState.Idle;
-            Alliance.target = null;
         }
+
     }
 
     public void SpawnBullet()
     {
-         poolManager.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
+        ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
 
     }
     //public GameObject SpawnBullet(string tag, Vector3 _position)

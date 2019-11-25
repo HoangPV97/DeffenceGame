@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlaySkill3 : Skill
 {
+    public AllianceController alliance;
     public VariableJoystick variableJoystick;
     public GameObject circle;
-    //public GameObject LightGo;
+    public WindAllianceCharacter Alliance;
     ObjectPoolManager poolManager;
     // Start is called before the first frame update
     void Start()
@@ -50,10 +51,7 @@ public class PlaySkill3 : Skill
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
         Tower.Mana.ConsumeMana(manaNumber);
-        GameObject stunSkill = poolManager.SpawnObject("stunskill", circle.transform.position, Quaternion.identity);
-        float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
-        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        StartCoroutine(WaitingActiveObject(stunSkill, particleTime, false));
+        Alliance.StunSkill(circle.transform.position);
         circle.SetActive(false);
     }
     private void OnMouseUp()

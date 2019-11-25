@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1526769224090359338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.071619, y: -1.4982634, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,9 +99,8 @@ MonoBehaviour:
     _speed: 4
     _damage: 5
     _targetTag: Tower
+  exploseEffect: exploseeffectenemy
   SeekTarget: 1
-  skeletonAnimation: {fileID: 115755963973018769}
-  idle: {fileID: 11400000, guid: 1dee67bdd12ff9246b02e488d9a24c0d, type: 2}
 --- !u!33 &8465559959718522619
 MeshFilter:
   m_ObjectHideFlags: 0

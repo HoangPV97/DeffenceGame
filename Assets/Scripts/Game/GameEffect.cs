@@ -22,15 +22,13 @@ public class GameEffect : MonoBehaviour
         switch (_effect)
         {
             case Effect.freeze:
-                effectObj = ObjectPoolManager.Instance.SpawnObject("freezeffect", _position, Quaternion.identity);
-                effectObj.AddComponent<DestroyFreezeEffect>()._time = _time;
+                effectObj = SpawnEffect("freezeffect", _position, _time);
                 break;
             case Effect.Slow:
-                gameObject.GetComponent<Rigidbody2D>().AddForce(_position*5);
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(_position*5);
                 break;
             case Effect.Stun:
-                effectObj = ObjectPoolManager.Instance.SpawnObject("stuneffect", _position, Quaternion.identity);
-                effectObj.AddComponent<DestroyFreezeEffect>()._time = _time;
+                effectObj = SpawnEffect("stuneffect", _position, _time);
                 break;
         }
         return effectObj;
@@ -39,10 +37,16 @@ public class GameEffect : MonoBehaviour
     {
         _gameObject.transform.position += _backSpace;
     }
+    public GameObject SpawnEffect( string _effectName,Vector3 _position,float _time)
+    {
+        GameObject effectObj;
+        effectObj = ObjectPoolManager.Instance.SpawnObject(_effectName, _position, Quaternion.identity);
+        effectObj.AddComponent<DestroyEffect>()._time = _time;
+        return effectObj;
+    }
 }
-public class DestroyFreezeEffect:MonoBehaviour
+public class DestroyEffect:MonoBehaviour
 {
-
     public float _time;
     private void Start()
     {
@@ -52,6 +56,6 @@ public class DestroyFreezeEffect:MonoBehaviour
     {
         
         yield return new WaitForSeconds(_time);
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 }
