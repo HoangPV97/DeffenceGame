@@ -20,7 +20,7 @@ public class WindRangeEnemy : EnemyController,IWindEffectable
     {
 
 
-        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("enemybullet", transform.position, Quaternion.identity);
+        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", transform.position, Quaternion.identity);
         EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
         if (m_EnemyBullet != null)
         {

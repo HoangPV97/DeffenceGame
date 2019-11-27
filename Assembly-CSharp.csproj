@@ -80,19 +80,24 @@
     <Compile Include="Assets\Scripts\Enemy\IceRangeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\MeleeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SetElementalImage.cs" />
     <Compile Include="Assets\Scripts\Enemy\SpawnEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\TestSpawn.cs" />
     <Compile Include="Assets\Scripts\Enemy\WindMeleeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\WindRangeEnemy.cs" />
     <Compile Include="Assets\Scripts\Game\AutoAttack.cs" />
+    <Compile Include="Assets\Scripts\Game\ConectingFireBase.cs" />
+    <Compile Include="Assets\Scripts\Game\EffectButton.cs" />
     <Compile Include="Assets\Scripts\Game\GameController.cs" />
     <Compile Include="Assets\Scripts\Game\GameEffect.cs" />
     <Compile Include="Assets\Scripts\Game\LoadingText.cs" />
     <Compile Include="Assets\Scripts\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Game\PlaySkeletonAnimationState.cs" />
+    <Compile Include="Assets\Scripts\Game\ResizeCamera.cs" />
     <Compile Include="Assets\Scripts\Game\Skill.cs" />
     <Compile Include="Assets\Scripts\Game\SkillController.cs" />
     <Compile Include="Assets\Scripts\Game\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Game\TestWeapon.cs" />
     <Compile Include="Assets\Scripts\Game\UpdateSlider.cs" />
     <Compile Include="Assets\Scripts\Player\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Characters.cs" />
@@ -196,8 +201,10 @@
     <None Include="Assets\Spine Examples\Spine Skeletons\Goblins\goblins.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Stretchyman\stretchyman-diffuse-pma.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
     <None Include="Assets\Animation\SpineAnimation\wind_melee1\wind_melee1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\raptor-pro-and-mask\raptor-pma.atlas.txt" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-config-unity\maven-metadata.xml" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Raptor\raptor.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\spineboy-unity\spineboy.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\alliance_wind1\alliance_wind1.atlas.txt" />
@@ -207,11 +214,13 @@
     <None Include="Assets\Spine Examples\Spine Skeletons\Raggedy Spineboy\Raggedy Spineboy.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\ice_ranger1\ice_ranger1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\whirlyblendmodes\whirlyblendmodes.atlas.txt" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-analytics-unity\maven-metadata.xml" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Spine Examples\Scripts\Sample Components\Ghost\Shaders\Spine-Special-Skeleton-Ghost.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Animation\SpineAnimation\hero1\hero1.atlas.txt" />
     <None Include="Assets\Spine Examples\Spine Skeletons\Dragon\dragon.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -230,6 +239,7 @@
     <None Include="Assets\Animation\SpineAnimation\fire_melee1\fire_melee1.atlas.txt" />
     <None Include="Assets\Animation\SpineAnimation\ice_melee1\ice_melee1.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Animation\SpineAnimation\fire_ranger1\fire_ranger1_bullet.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Spine Examples\Spine Skeletons\FootSoldier\Equipment\Equipment.atlas.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
@@ -447,6 +457,30 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.14f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Analytics">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.RemoteConfig">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Firebase.RemoteConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Compat">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Tasks">
+      <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>F:/Unity/project/DefenceGame/DefenceGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

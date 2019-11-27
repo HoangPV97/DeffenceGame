@@ -19000,7 +19000,7 @@ GameObject:
   - component: {fileID: 7856357515346073272}
   - component: {fileID: 4357560109661372606}
   - component: {fileID: 7519978991422681629}
-  - component: {fileID: 6926062626372391870}
+  - component: {fileID: 2767976380314298376}
   m_Layer: 0
   m_Name: alliance_ice_bullet1
   m_TagString: Bullet
@@ -23834,7 +23834,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6926062626372391870
+--- !u!114 &2767976380314298376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23843,7 +23843,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7856357515346073276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9aaaaade20e2448a9589e88ea17716, type: 3}
+  m_Script: {fileID: 11500000, guid: d5c09f41fb1892f498a18680349d2741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
@@ -23851,8 +23851,8 @@ MonoBehaviour:
     _damage: 15
     _targetTag: Enemy
   SeekTarget: 1
-  elementalBullet: 2
-  damagePlus: 5
+  elementalBullet: 0
+  damagePlus: 10
 --- !u!1 &7856357515609570524
 GameObject:
   m_ObjectHideFlags: 0

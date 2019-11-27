@@ -4712,7 +4712,7 @@ GameObject:
   - component: {fileID: 5257514012312268342}
   - component: {fileID: 2455077673029485861}
   - component: {fileID: 1257820060279861292}
-  - component: {fileID: 9018175890177513798}
+  - component: {fileID: 6608291324172498366}
   m_Layer: 0
   m_Name: bullet_wind_ranger1
   m_TagString: Untagged
@@ -9513,7 +9513,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.08
 --- !u!50 &1257820060279861292
 Rigidbody2D:
   serializedVersion: 4
@@ -9535,7 +9535,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9018175890177513798
+--- !u!114 &6608291324172498366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9544,16 +9544,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5257514012312268338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f64d8ff9383994180366ee222baa31, type: 3}
+  m_Script: {fileID: 11500000, guid: 9954c02f35defd341b223207fe3872d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
-    _speed: 8
-    _damage: 15
-    _targetTag: Enemy
+    _speed: 5
+    _damage: 6
+    _targetTag: Tower
+  exploseEffect: windeffectenemy
   SeekTarget: 1
-  elementalBullet: 2
-  damagePlus: 10
 --- !u!1 &5257514013114123346
 GameObject:
   m_ObjectHideFlags: 0

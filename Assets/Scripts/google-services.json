@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1040342782697",
+    "firebase_url": "https://defencegame-1cf03.firebaseio.com",
+    "project_id": "defencegame-1cf03",
+    "storage_bucket": "defencegame-1cf03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040342782697:android:3dd180472d698fc8c85678",
+        "android_client_info": {
+          "package_name": "com.Hoang.Demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040342782697-vbi4oohevd8dvnfkbnvae9koof332u8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Hoang.Demo",
+            "certificate_hash": "10c20ae0ac707f0e34644b8f831ed13888edf2a1"
+          }
+        },
+        {
+          "client_id": "1040342782697-huf8m6ihjblo9q41j0598qevpgvs75cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqVk4qJFYpF6QwQDC0bVWlHMFutHENQHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040342782697-huf8m6ihjblo9q41j0598qevpgvs75cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

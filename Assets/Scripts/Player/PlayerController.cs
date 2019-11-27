@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateEnemy();
-        CheckonShoot();
         if (preCharacterState != characterState)
         {
             ChangeState();
@@ -53,7 +52,8 @@ public class PlayerController : MonoBehaviour
                     characterState = CharacterState.Idle;
                     direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
                     rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+                    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()
+                        && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                     {
                         //ClicktoShoot();
                         characterState = CharacterState.Attack;
@@ -78,13 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         ShootToDirection(direct, rotationZ, "tankbullet");
     }
-    void CheckonShoot()
-    {
-        if (Input.GetMouseButton(0) && currentMode == AutoMode.TurnOff)
-        {
-            characterState = CharacterState.Attack;
-        }
-    }
+
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
     {
         if (e.Data.Name.Equals(eventName))
@@ -135,7 +129,7 @@ public class PlayerController : MonoBehaviour
                     nearestEnemy = _2ndEnemy;
                     player.target = nearestEnemy;
                 }
-                if(!nearestEnemy.isLive && _2ndEnemy==null )
+                if (!nearestEnemy.isLive && _2ndEnemy == null)
                 {
                     player.target = null;
                 }
@@ -144,7 +138,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             characterState = CharacterState.Idle;
-        } 
+        }
     }
 
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)

@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         countdown = enemy.rateOfFire;
         playerController = FindObjectOfType<PlayerController>();
         gameEffect = GetComponent<GameEffect>();
-        enemy.health.CurrentHealth = enemy.health.health;
+        enemy.health.Init();
         SeekingPlayer();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
         Move();
@@ -121,11 +121,9 @@ public class EnemyController : MonoBehaviour
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
-            Debug.Log("ElementalDamage :" + _damageplus);
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
-        enemy.health.CurrentHealth -= _damage + _damageplus;
-        enemy.health.healthBar.fillAmount = enemy.health.CurrentHealth / enemy.health.health;
+        enemy.health.ReduceHealth(_damage+_damageplus);
 
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
@@ -172,10 +170,7 @@ public class EnemyController : MonoBehaviour
     }
     public void KnockBack(Vector3 _position)
     {
-        //gameObject.transform.Translate(_position);
-        //Rigidbody2D.MovePosition(gameObject.transform.position + _position);
         Rigidbody2D.AddForce(new Vector2(gameObject.transform.position.x * 1, gameObject.transform.position.x * -1));
-        //transform.position += _position;
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {

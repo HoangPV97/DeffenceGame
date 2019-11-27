@@ -4787,7 +4787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
-    _speed: 9
+    _speed: 25
     _damage: 50
     _targetTag: Enemy
   SeekTarget: 0

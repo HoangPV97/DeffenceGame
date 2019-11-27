@@ -16,9 +16,9 @@ public class Health
     [SerializeField]
     private float recoverHealthTime;
     public Image healthBar;
-    public Image maxHealthBar;
+    public Image effecthealthBar;
     public TextMeshProUGUI healthValueText;
-    float Width;
+    float Width,Height;
     public float health
     {
         get
@@ -65,24 +65,25 @@ public class Health
     }
     public void Init()
     {
-        Width = maxHealthBar.rectTransform.rect.width;
+        Width = healthBar.rectTransform.rect.width;
+        Height = healthBar.rectTransform.rect.height;
         CurrentHealth = health;
         UpdateValueText();
     }
     public void ReduceHealth(float _damage)
     {
         CurrentHealth -= _damage;
-        float width = maxHealthBar.rectTransform.rect.width;
-        float height = healthBar.rectTransform.rect.height;
-        healthBar.rectTransform.sizeDelta = new Vector2(width * (CurrentHealth / health * 1.0f), height);
+        healthBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentHealth / health * 1.0f), Height);
         UpdateValueText();
+    }
+    public void EffectHealth()
+    {
+        effecthealthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width, Height);
     }
     public void RecoverHealth()
     {
         CurrentHealth += RecoverHealthValue;
-        float width = maxHealthBar.rectTransform.rect.width;
-        float height = healthBar.rectTransform.rect.height;
-        healthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width + (RecoverHealthValue / health * width), height);
+        healthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width + (RecoverHealthValue / health * Width), Height);
         if (CurrentHealth > health)
         {
             CurrentHealth = health;
@@ -91,6 +92,9 @@ public class Health
     }
     public void UpdateValueText()
     {
-        healthValueText.text = currentHealth.ToString() + "/" + health;
+        if (healthValueText != null)
+        {
+            healthValueText.text = currentHealth.ToString() + "/" + health;
+        }       
     }
 }

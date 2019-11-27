@@ -19,6 +19,7 @@ public class Tower : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         Health.ReduceHealth(_damage);
+        StartCoroutine(WaitingEffectHealth());
             if (Health.CurrentHealth <= 0)
             {
                 Die();
@@ -45,6 +46,11 @@ public class Tower : MonoBehaviour
         {
             Mana.RecoverMana();
         }
+    }
+    IEnumerator WaitingEffectHealth()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Health.EffectHealth();
     }
     public void RecoverHealth()
     {

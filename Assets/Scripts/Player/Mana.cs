@@ -16,9 +16,8 @@ public class Mana
     [SerializeField]
     private float recoverManaTime;
     public Image manaBar;
-    public Image maxManaBar;
     public TextMeshProUGUI manaValueText;
-    float Width;
+    float Width,Height;
     // Start is called before the first frame update
     public float maxMana
     {
@@ -66,23 +65,21 @@ public class Mana
     }
     public void Init()
     {
-        Width= maxManaBar.rectTransform.rect.width;
+        Width= manaBar.rectTransform.rect.width;
+        Height = manaBar.rectTransform.rect.height;
         CurrentMana = maxMana;
         UpdateValueText();
     }
     public void ConsumeMana(float _mana)
     {
         CurrentMana -= _mana;
-        float height = manaBar.rectTransform.rect.height;
-        manaBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentMana / maxMana * 1.0f), height);
+        manaBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentMana / maxMana * 1.0f), Height);
         UpdateValueText();
     }
     public void RecoverMana()
     {
         CurrentMana += RecoverManaValue;
-        float width = maxManaBar.rectTransform.rect.width;
-        float height = manaBar.rectTransform.rect.height;
-        manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * width), height);
+        manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * Width), Height);
         if (CurrentMana > maxMana)
         {
             CurrentMana = maxMana;

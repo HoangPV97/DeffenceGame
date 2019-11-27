@@ -1,0 +1,104 @@
+
+hero1.png
+size: 340,472
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armLowL
+  rotate: false
+  xy: 307, 104
+  size: 28, 58
+  orig: 28, 58
+  offset: 0, 0
+  index: -1
+armLowR
+  rotate: false
+  xy: 266, 55
+  size: 28, 58
+  orig: 28, 58
+  offset: 0, 0
+  index: -1
+armUpL
+  rotate: false
+  xy: 296, 48
+  size: 23, 54
+  orig: 23, 54
+  offset: 0, 0
+  index: -1
+armUpR
+  rotate: false
+  xy: 266, 115
+  size: 39, 47
+  orig: 39, 47
+  offset: 0, 0
+  index: -1
+backL
+  rotate: false
+  xy: 277, 164
+  size: 50, 131
+  orig: 50, 131
+  offset: 0, 0
+  index: -1
+backM
+  rotate: false
+  xy: 142, 85
+  size: 52, 119
+  orig: 52, 119
+  offset: 0, 0
+  index: -1
+backR
+  rotate: false
+  xy: 196, 202
+  size: 79, 129
+  orig: 79, 129
+  offset: 0, 0
+  index: -1
+bow_wind1
+  rotate: false
+  xy: 2, 333
+  size: 292, 134
+  orig: 292, 134
+  offset: 0, 0
+  index: -1
+hair1
+  rotate: false
+  xy: 196, 53
+  size: 68, 147
+  orig: 68, 147
+  offset: 0, 0
+  index: -1
+hair2
+  rotate: false
+  xy: 296, 359
+  size: 42, 108
+  orig: 42, 108
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 33
+  size: 138, 171
+  orig: 138, 171
+  offset: 0, 0
+  index: -1
+legL
+  rotate: false
+  xy: 296, 297
+  size: 38, 60
+  orig: 38, 60
+  offset: 0, 0
+  index: -1
+legR
+  rotate: false
+  xy: 142, 2
+  size: 45, 81
+  orig: 45, 81
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 206
+  size: 192, 125
+  orig: 192, 125
+  offset: 0, 0
+  index: -1

@@ -22,7 +22,7 @@ public class IceRangeEnemy : EnemyController,IIceEffectable
     {
 
 
-        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("enemybullet", transform.position, Quaternion.identity);
+        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("iceenemybullet", transform.position, Quaternion.identity);
         EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
         if (m_EnemyBullet != null)
         {

@@ -33243,7 +33243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
-    _speed: 10
+    _speed: 20
     _damage: 15
     _targetTag: Enemy
   SeekTarget: 1

@@ -1,131 +1,138 @@
 
 fire_melee1.png
-size: 256,520
+size: 300,524
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Layer 761 copy
   rotate: false
-  xy: 234, 484
+  xy: 282, 223
   size: 16, 34
   orig: 16, 34
   offset: 0, 0
   index: -1
 Layer 762
   rotate: false
-  xy: 214, 318
+  xy: 171, 45
   size: 36, 78
   orig: 36, 78
   offset: 0, 0
   index: -1
 Layer 763
   rotate: false
-  xy: 234, 452
+  xy: 282, 191
   size: 15, 30
   orig: 15, 30
   offset: 0, 0
   index: -1
 Layer 764
   rotate: false
-  xy: 146, 398
+  xy: 196, 402
   size: 86, 120
   orig: 86, 120
   offset: 0, 0
   index: -1
 Layer 766
   rotate: false
-  xy: 214, 243
+  xy: 209, 50
   size: 37, 73
   orig: 37, 73
   offset: 0, 0
   index: -1
 Layer 768
   rotate: false
-  xy: 93, 42
+  xy: 209, 2
   size: 43, 46
   orig: 43, 46
   offset: 0, 0
   index: -1
 Layer 769
   rotate: false
-  xy: 138, 2
+  xy: 248, 75
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
   index: -1
 Layer 771
   rotate: false
-  xy: 214, 205
+  xy: 254, 37
   size: 39, 36
   orig: 39, 36
   offset: 0, 0
   index: -1
 Layer 772
   rotate: false
-  xy: 2, 2
+  xy: 141, 15
   size: 51, 28
   orig: 51, 28
   offset: 0, 0
   index: -1
 Layer 773
   rotate: false
-  xy: 190, 10
+  xy: 80, 5
   size: 59, 40
   orig: 59, 40
   offset: 0, 0
   index: -1
 Layer 774
   rotate: false
-  xy: 2, 32
+  xy: 80, 47
   size: 89, 56
   orig: 89, 56
   offset: 0, 0
   index: -1
 a1
   rotate: false
-  xy: 2, 374
+  xy: 2, 251
   size: 142, 144
   orig: 142, 144
   offset: 0, 0
   index: -1
 a2
   rotate: false
-  xy: 2, 228
+  xy: 2, 105
   size: 142, 144
   orig: 142, 144
   offset: 0, 0
   index: -1
 e0
   rotate: false
-  xy: 144, 52
+  xy: 2, 27
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 eye
   rotate: false
-  xy: 55, 14
+  xy: 2, 9
   size: 60, 16
   orig: 60, 16
   offset: 0, 0
   index: -1
 s1
   rotate: false
-  xy: 146, 264
+  xy: 146, 125
   size: 66, 132
   orig: 66, 132
   offset: 0, 0
   index: -1
 s2
   rotate: false
-  xy: 146, 130
+  xy: 214, 125
   size: 66, 132
   orig: 66, 132
   offset: 0, 0
   index: -1
+shadow
+  rotate: false
+  xy: 2, 397
+  size: 192, 125
+  orig: 192, 125
+  offset: 0, 0
+  index: -1
 smoke
   rotate: false
-  xy: 2, 90
+  xy: 146, 259
   size: 140, 136
   orig: 140, 136
   offset: 0, 0

@@ -295,3 +295,11 @@ F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.PatternMatching
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Parser.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Boo.Lang.Useful.dll
 F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Firebase.Analytics.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Firebase.App.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Firebase.Platform.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Firebase.RemoteConfig.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Firebase.TaskExtension.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Google.MiniJson.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Compat.dll
+F:\Unity\project\DefenceGame\DefenceGame\Temp\bin\Debug\Unity.Tasks.dll
