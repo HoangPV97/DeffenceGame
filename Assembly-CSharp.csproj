@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Game\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Game\TestWeapon.cs" />
     <Compile Include="Assets\Scripts\Game\UpdateSlider.cs" />
+    <Compile Include="Assets\Scripts\Game\WeaponsData.cs" />
     <Compile Include="Assets\Scripts\Player\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Characters.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />

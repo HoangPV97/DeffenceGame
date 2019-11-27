@@ -33244,7 +33244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet:
     _speed: 20
-    _damage: 15
+    _damage: 5
     _targetTag: Enemy
   SeekTarget: 1
   elementalBullet: 2

@@ -7,10 +7,9 @@ using Firebase.Extensions;
 
 public class ConectingFireBase : MonoBehaviour
 {
-    public TestWeapon testFireBase;
-    List<string> listNameKey;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -42,12 +41,10 @@ public class ConectingFireBase : MonoBehaviour
         {
             case LastFetchStatus.Success:
                 FirebaseRemoteConfig.ActivateFetched();
+                string stop = FirebaseRemoteConfig.GetValue("Weapons").StringValue;
 
-                Debug.Log(string.Format("Remote data loaded and ready (last fetch time {0}).", info.FetchTime));
-                string stop = FirebaseRemoteConfig.GetValue("Tier1").StringValue;
-
-                testFireBase = JsonUtility.FromJson<TestWeapon>(stop);
-                //Debug.Log("Value: " + (string.IsNullOrEmpty(stop) ? "NA" : stop));
+                WeaponsData.Instance.Weapons = JsonUtility.FromJson<TestWeapon>(stop);
+                Debug.Log("Value: " + (string.IsNullOrEmpty(stop) ? "NA" : stop));
                 break;
             case LastFetchStatus.Failure:
                 switch (info.LastFetchFailureReason)

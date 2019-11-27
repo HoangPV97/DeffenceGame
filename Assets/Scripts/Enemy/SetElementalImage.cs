@@ -32,7 +32,6 @@ public class SetElementalImage : MonoBehaviour
     Sprite loadImageResource(string pathFolder)
     {
         Sprite prefab = Resources.Load<Sprite>(pathFolder);
-        Debug.Log(prefab);
         return prefab;
     }
 }

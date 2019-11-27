@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Elemental { Ice, Fire, Wind }
+public enum Elemental { Wind=1, Ice, Fire,Earth  }
 public class BulletController : MonoBehaviour
 {
     public Bullet bullet;
@@ -14,6 +14,11 @@ public class BulletController : MonoBehaviour
     public float damagePlus;
     protected void Start()
     {
+    }
+    public void SetDataBullet(float _speed,float _damage)
+    {
+        bullet.Speed = _speed;
+        bullet.Damage = _damage;
     }
     public void SetTarget(EnemyController _Target)
     {
