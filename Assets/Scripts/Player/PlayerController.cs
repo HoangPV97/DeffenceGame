@@ -154,17 +154,18 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);   
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        mBullet.SetDataBullet(ATK, ATKspeed);
+        //mBullet.SetDataBullet(ATK, ATKspeed);
+        mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
         mBullet.DirectShooting(_direction);
     }
     public void SlowSkill(Vector2 _direction, float _rotatioZ)
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(player.Bullet_Skill_1, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position, Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position+new Vector3(0,0.7f,0), Quaternion.identity);
         if (!effectStart.GetComponent<DestroyEffect>())
         {
-            effectStart.AddComponent<DestroyEffect>()._time = 0.3f;
+            effectStart.AddComponent<DestroyEffect>()._time = 0.7f;
         }
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();

@@ -64,7 +64,7 @@ public class WindAllianceCharacter : AllianceController
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
         float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position, Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position+new Vector3(0,1,0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
         CheckDestroyEffect(stunSkill, 0.5f);
     }

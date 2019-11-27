@@ -233,7 +233,7 @@ MonoBehaviour:
       healthBar: {fileID: 880590222804794058}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
-    _elemental: 0
+    _elemental: 2
   playSkeletonAnimation: {fileID: 809390913999438112}
   isMove: 1
   isAttack: 1

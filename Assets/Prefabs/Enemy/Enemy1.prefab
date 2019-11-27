@@ -264,7 +264,7 @@ MonoBehaviour:
       healthBar: {fileID: 3787182832656921180}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
-    _elemental: 1
+    _elemental: 3
   playSkeletonAnimation: {fileID: 6328121496462466024}
   isMove: 1
   isAttack: 1
@@ -389,7 +389,7 @@ PrefabInstance:
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
