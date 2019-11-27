@@ -121,8 +121,15 @@ public class AllianceController : MonoBehaviour
         ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
 
     }
-    //public GameObject SpawnBullet(string tag, Vector3 _position)
-    //{
-    //    return poolManager.SpawnObject(tag, _position, Quaternion.identity);
-    //}
+    public void CheckDestroyEffect(GameObject Obj, float _time)
+    {
+        if (!Obj.GetComponent<DestroyEffect>())
+        {
+            Obj.AddComponent<DestroyEffect>()._time = _time;
+        }
+        else
+        {
+            Obj.GetComponent<DestroyEffect>().Start();
+        }
+    }
 }

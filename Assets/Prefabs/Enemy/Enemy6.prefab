@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 8912908039463566854}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0.67, y: 1.38, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8912908039809388895}
   m_Father: {fileID: 0}
@@ -367,8 +367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4688615873598794641}
-  characterState: 0
-  preCharacterState: 0
   statesAnimation:
   - stateName: attack
     animation: {fileID: 11400000, guid: 4ed40ad327f4c774fbaa4b9e5f02b49c, type: 2}
@@ -380,7 +378,6 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: fdfac7451d036c943aaae501aac8c620, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: f16b8e581f66f57498dde9bd429695b0, type: 2}
-  eventName: 
 --- !u!114 &1497185456227880149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +405,7 @@ MonoBehaviour:
       recoverHealthTime: 0
       healthBar: {fileID: 8912908038874902713}
       maxHealthBar: {fileID: 0}
+      healthValueText: {fileID: 0}
     _elemental: 2
   playSkeletonAnimation: {fileID: 5481581012859897711}
   isMove: 1
@@ -428,30 +426,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401a1002b65665743aaaf331c5c7c25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthUI: {fileID: 8912908039809388894}
-  boxCollider2D: {fileID: 8912908039463566874}
   skeletonAnimation: {fileID: 4688615873598794641}
   EventAttack:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1497185456227880149}
         m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  EventDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7872905782356698868}
-        m_MethodName: Ondie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

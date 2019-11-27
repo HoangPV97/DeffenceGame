@@ -9562,7 +9562,7 @@ MonoBehaviour:
     _targetTag: Enemy
   SeekTarget: 1
   elementalBullet: 0
-  damagePlus: 3
+  damagePlus: 10
 --- !u!1 &6697626865865070503
 GameObject:
   m_ObjectHideFlags: 0

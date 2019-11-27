@@ -11,12 +11,10 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         Islive = true;
-        Mana.CurrentMana = Mana.maxMana;
-        Health.CurrentHealth = Health.health;
+        Mana.Init();
+        Health.Init();
         InvokeRepeating("RecoverMana",0, Mana.RecoverManaTime);
         InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
-        Mana.UpdateValueText();
-        Health.UpdateValueText();
     }
     public void TakeDamage(float _damage)
     {

@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     SoundManager soundManager;
     float distance;
     GameEffect gameEffect;
-    GameObject effect ;
+    GameObject effectObj ;
     public Rigidbody2D Rigidbody2D;
     
     [SerializeField] GameObject HealthUI;
@@ -98,9 +98,9 @@ public class EnemyController : MonoBehaviour
         Rigidbody2D.velocity = Vector2.zero;
         HealthUI.SetActive(false);
         boxCollider2D.enabled = false;
-        if(effect!=null && effect.activeSelf)
+        if(effectObj!=null && effectObj.activeSelf)
         {
-            effect.SetActive(false);
+            effectObj.SetActive(false);
         }
         yield return new WaitForSeconds(1);
         Enemies.listEnemies.Remove(this);
@@ -121,6 +121,7 @@ public class EnemyController : MonoBehaviour
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
+            Debug.Log("ElementalDamage :" + _damageplus);
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
         enemy.health.CurrentHealth -= _damage + _damageplus;
@@ -141,22 +142,27 @@ public class EnemyController : MonoBehaviour
            if (_effect.Equals(Effect.Slow))
            {
                gameEffect.KnockBack(gameObject, _position);
-               if (effect != null)
+               if (effectObj != null)
                {
-                   gameEffect.KnockBack(effect, _position);
+                   gameEffect.KnockBack(effectObj, _position);
                    return;
                }
            }
-           else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.freeze))
+           else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
            {
                isMove = false;
                Move();
                isAttack = false;
-               effect = gameEffect.GetEffect(_effect, _position, _time);
+               effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
        }, () =>
        {
+
            isMove = true;
+           if (_effect.Equals(Effect.Freeze))
+           {
+               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+           }
            if (!isAttack)
            {
                Move();
@@ -168,7 +174,7 @@ public class EnemyController : MonoBehaviour
     {
         //gameObject.transform.Translate(_position);
         //Rigidbody2D.MovePosition(gameObject.transform.position + _position);
-        Rigidbody2D.AddForce(new Vector2(gameObject.transform.position.x * 100, gameObject.transform.position.x * -100));
+        Rigidbody2D.AddForce(new Vector2(gameObject.transform.position.x * 1, gameObject.transform.position.x * -1));
         //transform.position += _position;
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)

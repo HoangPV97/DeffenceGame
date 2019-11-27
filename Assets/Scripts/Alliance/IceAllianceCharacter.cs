@@ -25,25 +25,25 @@ public class IceAllianceCharacter : AllianceController
 
     private void Update()
     {
-           
+
         base.Update();
         CheckShoot();
     }
-    
+
     protected void Shoot()
     {
-            characterState = CharacterState.Attack;
-            GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
-            IceAllianceBullet alianceBullet = bullet.GetComponent<IceAllianceBullet>();
-            if (alianceBullet != null)
-            {
-                alianceBullet.elementalBullet = elementalType;
-                alianceBullet.SetTarget(Alliance.target);
-            }
+        characterState = CharacterState.Attack;
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
+        IceAllianceBullet alianceBullet = bullet.GetComponent<IceAllianceBullet>();
+        if (alianceBullet != null)
+        {
+            alianceBullet.elementalBullet = elementalType;
+            alianceBullet.SetTarget(Alliance.target);
+        }
     }
     public void CheckShoot()
     {
-        if(Alliance.target != null)
+        if (Alliance.target != null)
         {
             characterState = CharacterState.Attack;
         }
@@ -57,15 +57,8 @@ public class IceAllianceCharacter : AllianceController
         GameObject iceskill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
         float particleTime = iceskill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart  = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position, Quaternion.identity);
-        if (!effectStart.GetComponent<DestroyEffect>())
-        {
-            effectStart.AddComponent<DestroyEffect>()._time = particleTime;
-        }
-        if (!iceskill.GetComponent<IceSkill>())
-        {
-            iceskill.AddComponent<DestroyEffect>()._time = particleTime;
-
-        }
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position, Quaternion.identity);
+        CheckDestroyEffect(effectStart, particleTime);
+        CheckDestroyEffect(iceskill, 0.5f);
     }
 }

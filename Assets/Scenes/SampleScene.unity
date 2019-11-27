@@ -412,7 +412,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1109,7 +1109,7 @@ Transform:
   m_GameObject: {fileID: 272643481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1892586427}
   - {fileID: 18398007}
@@ -1645,6 +1645,10 @@ MonoBehaviour:
     prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
       type: 3}
     size: 2
+  - tag: iceeffectend
+    prefab: {fileID: 1248681905678545692, guid: 9de50726d80a91247b1e1ca349d8311e,
+      type: 3}
+    size: 5
 --- !u!4 &472097027
 Transform:
   m_ObjectHideFlags: 0
@@ -2198,7 +2202,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2522,7 +2526,7 @@ RectTransform:
   m_Children:
   - {fileID: 1563458003}
   m_Father: {fileID: 1770261807}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2558,7 +2562,7 @@ RectTransform:
   m_Children:
   - {fileID: 1971568895}
   m_Father: {fileID: 1770261807}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2825,8 +2829,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824654519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.46, y: -3.93, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 2.792, y: -7.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456755987}
   m_Father: {fileID: 297382516}
@@ -3016,7 +3020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &841790242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3103,7 +3107,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1770261807}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 1}
   m_AnchorMax: {x: 0.25, y: 1}
@@ -3875,7 +3879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5571,8 +5575,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503692024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4, y: -4.03, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -2.8, y: -7.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 229130057}
   m_Father: {fileID: 297382516}
@@ -5836,6 +5840,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stage_process_effect
       objectReference: {fileID: 0}
+    - target: {fileID: 2291765582739051447, guid: cf63cfcf31afa2d45ab8c80e9572027f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1878141047157780038, guid: cf63cfcf31afa2d45ab8c80e9572027f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5950,6 +5959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000030517578
+      objectReference: {fileID: 0}
+    - target: {fileID: 49372354755270984, guid: cf63cfcf31afa2d45ab8c80e9572027f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf63cfcf31afa2d45ab8c80e9572027f, type: 3}
@@ -6219,9 +6233,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 697952025}
   - {fileID: 862684124}
   - {fileID: 629309390}
-  - {fileID: 697952025}
   - {fileID: 114947288}
   m_Father: {fileID: 786716529}
   m_RootOrder: 1
@@ -6693,7 +6707,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -6
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 8fc40417627c69e4ba9305753c4409c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7838,8 +7852,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3615715291874212679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -3.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.08, y: -6.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3615715292778661747}
   - {fileID: 177385285}
@@ -8137,7 +8151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3615715292778661747}
   - component: {fileID: 3615715292778661749}
-  - component: {fileID: 3615715292778661748}
   - component: {fileID: 3615715292778661750}
   m_Layer: 0
   m_Name: Tanks
@@ -8161,32 +8174,6 @@ Transform:
   m_Father: {fileID: 3615715291874212728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3615715292778661748
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615715292778661746}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.54}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.48, y: 3.44}
-    newSize: {x: 2.28, y: 5.33}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.73, y: 1.48}
-  m_EdgeRadius: 0
 --- !u!114 &3615715292778661749
 MonoBehaviour:
   m_ObjectHideFlags: 0

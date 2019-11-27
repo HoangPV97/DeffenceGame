@@ -18,6 +18,7 @@ public class Health
     public Image healthBar;
     public Image maxHealthBar;
     public TextMeshProUGUI healthValueText;
+    float Width;
     public float health
     {
         get
@@ -61,6 +62,12 @@ public class Health
         {
             this.recoverHealthTime = value;
         }
+    }
+    public void Init()
+    {
+        Width = maxHealthBar.rectTransform.rect.width;
+        CurrentHealth = health;
+        UpdateValueText();
     }
     public void ReduceHealth(float _damage)
     {

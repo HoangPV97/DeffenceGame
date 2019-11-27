@@ -35,7 +35,7 @@ public class IceSkill : BulletController
                 {
                     enemy?.DealDamge(bullet.Damage, 0);
                 }
-                enemy.DealEffect(Effect.freeze, enemy.transform.position,3);
+                enemy.DealEffect(Effect.Freeze, enemy.transform.position,3);
             }
             if (SeekTarget)
             {

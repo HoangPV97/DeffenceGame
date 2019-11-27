@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 6292061646329833501}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0.67, y: 1.38, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6292061646712227652}
   m_Father: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
       recoverHealthTime: 0
       healthBar: {fileID: 6292061646851876514}
       maxHealthBar: {fileID: 0}
+      healthValueText: {fileID: 0}
     _elemental: 0
   playSkeletonAnimation: {fileID: 809390913999438112}
   isMove: 1
