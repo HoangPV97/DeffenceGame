@@ -44,7 +44,7 @@ public class ConectingFireBase : MonoBehaviour
                 FirebaseRemoteConfig.ActivateFetched();
 
                 Debug.Log(string.Format("Remote data loaded and ready (last fetch time {0}).", info.FetchTime));
-                string stop = FirebaseRemoteConfig.GetValue("namekey").StringValue;
+                string stop = FirebaseRemoteConfig.GetValue("Tier1").StringValue;
 
                 testFireBase = JsonUtility.FromJson<TestWeapon>(stop);
                 //Debug.Log("Value: " + (string.IsNullOrEmpty(stop) ? "NA" : stop));

@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         gameEffect = GetComponent<GameEffect>();
         enemy.health.Init();
-        SeekingPlayer();
+        SeekingTower();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
         Move();
     }
@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
         }
     }
     //Find player with tag="Player"
-    protected void SeekingPlayer()
+    protected void SeekingTower()
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
     }

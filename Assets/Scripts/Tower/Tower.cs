@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     public Health Health;
     public Mana Mana;
     public static bool Islive;
+    public GameObject TowerEffect;
     private void Start()
     {
         Islive = true;
@@ -18,6 +19,7 @@ public class Tower : MonoBehaviour
     }
     public void TakeDamage(float _damage)
     {
+        TowerEffect.SetActive(true);
         Health.ReduceHealth(_damage);
         StartCoroutine(WaitingEffectHealth());
             if (Health.CurrentHealth <= 0)
@@ -54,6 +56,7 @@ public class Tower : MonoBehaviour
     }
     public void RecoverHealth()
     {
+        TowerEffect.SetActive(false);
         if (Health.CurrentHealth < Health.health)
         {
             Health.RecoverHealth();

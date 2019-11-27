@@ -5,8 +5,16 @@ using UnityEngine;
 public class TestWeapon
 {
     public float level;
-    public Elemental elemental;
-    public float atk;
-    public float atkSpeed;
-    public float fireRate;
+    public ATK atk;
+    public ATKspeed atkSpeed;
+}
+public struct ATK
+{
+    Elemental elemental;
+    float atlValue;
+}
+public struct ATKspeed
+{
+    Elemental elemental;
+    float atkSpeedlValue;
 }
