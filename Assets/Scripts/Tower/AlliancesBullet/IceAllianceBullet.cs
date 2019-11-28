@@ -28,7 +28,7 @@ public class IceAllianceBullet : BulletController
             {
                 enemy.DealDamge(bullet.Damage, 0);
             }
-            gameObject.SetActive(false);
+            Despawn();
         }
     }
 }

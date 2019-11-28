@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1819,6 +1819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472097027}
   - component: {fileID: 472097026}
+  - component: {fileID: 472097028}
   m_Layer: 0
   m_Name: PoolManager
   m_TagString: Untagged
@@ -1842,116 +1843,87 @@ MonoBehaviour:
   - tag: icealliancebullet
     prefab: {fileID: 7856357515346073276, guid: dd632dc9fe5ea5d4d81835e9f0709d24,
       type: 3}
-    size: 15
   - tag: tankbullet
     prefab: {fileID: 8531190558834038732, guid: 0425d98558237a941b746eb896156085,
       type: 3}
-    size: 10
   - tag: fireenemybullet
     prefab: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb,
       type: 3}
-    size: 15
   - tag: slowskill
     prefab: {fileID: 185990494516342514, guid: a0f5294d87d3a244f956e7b1edce2de1, type: 3}
-    size: 1
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
       type: 3}
-    size: 50
   - tag: enemy3
     prefab: {fileID: 7178071149278825015, guid: 632bd9b6a9f80db459ce828612406efb,
       type: 3}
-    size: 10
   - tag: enemy4
     prefab: {fileID: 5556297814356171359, guid: 6aaafcf7cd1691e428a6860f09df7a9d,
       type: 3}
-    size: 10
   - tag: enemy6
     prefab: {fileID: 8912908039463566854, guid: 2736130805ea0a8429c949e70ee4930b,
       type: 3}
-    size: 10
   - tag: iceskill
     prefab: {fileID: 3892153920387240644, guid: a9347b55fa576574daa4e76e3b5ad825,
       type: 3}
-    size: 1
   - tag: elementaldamage
     prefab: {fileID: 2406792519959080423, guid: e7fb4304775423a49b4a895e59289947,
       type: 3}
-    size: 50
   - tag: enemy1
     prefab: {fileID: 8020962621357836206, guid: 0b98e80e53dedd741a0c9e6ab999dbfe,
       type: 3}
-    size: 10
   - tag: enemy2
     prefab: {fileID: 1529785039770135921, guid: 3da9603081489f845bf9f249911be413,
       type: 3}
-    size: 10
   - tag: enemy5
     prefab: {fileID: 6292061646329833501, guid: 5d4cf667f3187e34a8ee9e547f35d169,
       type: 3}
-    size: 10
   - tag: iceimpact
     prefab: {fileID: 2358666650387642368, guid: 2d95c60b58f1b6846ae9ddbd6b39eacb,
       type: 3}
-    size: 10
   - tag: windimpact
     prefab: {fileID: 529602048673010497, guid: fc9e10cb667bdb8458164c7b37c119e7, type: 3}
-    size: 10
   - tag: fireimpact
     prefab: {fileID: 529602048673010497, guid: fc9e10cb667bdb8458164c7b37c119e7, type: 3}
-    size: 10
   - tag: freezeffect
     prefab: {fileID: 3779653558240659971, guid: 66e753b25b649a04db7d6c344e1165f8,
       type: 3}
-    size: 10
   - tag: stuneffect
     prefab: {fileID: 4485175983094295713, guid: 30ecef1dc4b52bf4f982dd6c31689e41,
       type: 3}
-    size: 10
   - tag: stunskill
     prefab: {fileID: 2625949087083810963, guid: 56311b1c93261424aa408a6a24f6efee,
       type: 3}
-    size: 1
   - tag: windalliancebullet
     prefab: {fileID: 6761650371443875019, guid: 2c1aa140fd034a248af42a0d72bb96d6,
       type: 3}
-    size: 10
   - tag: exploseeffectenemy
     prefab: {fileID: 3316264382930781435, guid: 8425809d6cc52cc46a422cfc7b3cfe8e,
       type: 3}
-    size: 10
   - tag: iceeffectstart
     prefab: {fileID: 4347381270211962999, guid: 3c2e9ff2e89a38c409292bd5b44f6eac,
       type: 3}
-    size: 2
   - tag: stuneffectstart
     prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
       type: 3}
-    size: 2
   - tag: windeffectstart
     prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
       type: 3}
-    size: 2
   - tag: iceeffectend
     prefab: {fileID: 1248681905678545692, guid: 9de50726d80a91247b1e1ca349d8311e,
       type: 3}
-    size: 5
   - tag: iceeffectenemy
     prefab: {fileID: 3051739942749450383, guid: 651ad56631158644f92c6e7aba5933ad,
       type: 3}
-    size: 5
   - tag: windeffectenemy
     prefab: {fileID: 2408482012950447412, guid: 365e64976f08d0d479f28aba98f8536d,
       type: 3}
-    size: 5
   - tag: iceenemybullet
     prefab: {fileID: 6697626865610046919, guid: 76e856c087741364a9b4458e9713c68a,
       type: 3}
-    size: 5
   - tag: windenemybullet
     prefab: {fileID: 5257514012312268338, guid: b9309557100c2544b9be954c4398f8ff,
       type: 3}
-    size: 5
 --- !u!4 &472097027
 Transform:
   m_ObjectHideFlags: 0
@@ -1966,6 +1938,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &472097028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472097025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701aa713e99c7d940b1b7ef47d209221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &482949042
 GameObject:
   m_ObjectHideFlags: 0

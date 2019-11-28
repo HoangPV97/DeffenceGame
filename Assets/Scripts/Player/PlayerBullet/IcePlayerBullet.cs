@@ -41,7 +41,7 @@ public class IcePlayerBullet : BulletController
             }
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

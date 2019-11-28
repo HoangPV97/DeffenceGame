@@ -9,7 +9,6 @@ public class IceAllianceCharacter : AllianceController
 
     private void Start()
     {
-
         skeletonAnimation.AnimationState.Event += OnEvent;
         base.Start();
     }
@@ -25,7 +24,6 @@ public class IceAllianceCharacter : AllianceController
 
     private void Update()
     {
-
         base.Update();
         CheckShoot();
     }
@@ -52,6 +50,7 @@ public class IceAllianceCharacter : AllianceController
             characterState = CharacterState.Idle;
         }
     }
+
     public void IceSkill(Vector3 _position)
     {
         GameObject iceskill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);

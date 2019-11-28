@@ -43,7 +43,7 @@ public class FirePlayerBullet : BulletController
             }
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

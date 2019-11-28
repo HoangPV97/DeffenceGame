@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Elemental { Wind=1, Ice, Fire,Earth  }
+public enum Elemental { Wind = 1, Ice, Fire, Earth }
 public class BulletController : MonoBehaviour
 {
     public Bullet bullet;
@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour
     protected void Start()
     {
     }
-    public void SetDataBullet(float _speed,float _damage)
+    public void SetDataBullet(float _speed, float _damage)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
@@ -41,5 +41,10 @@ public class BulletController : MonoBehaviour
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
+    }
+
+    public void Despawn()
+    {
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

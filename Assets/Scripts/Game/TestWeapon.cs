@@ -7,6 +7,33 @@ public class TestWeapon
     public List<Weapons> Weapons;
 }
 [System.Serializable]
+public class WeaponDatabase
+{
+    public List<Weapons> Weapons;
+    public List<Item> GetCostEvolution(Elemental Type, int Tier)
+    {
+        return GetWeapons(Type, Tier).CostEvolution;
+    }
+
+    public Weapons GetWeapons(Elemental Type, int Tier)
+    {
+        for (int i = 0; i < Weapons.Count; i++)
+            if (Weapons[i].Type == Type && Weapons[i].Tier == Tier)
+                return Weapons[i];
+        return null;
+    }
+}
+
+public class InGameWeapon
+{
+    public Elemental Type;
+    public int Tier;
+    public int Level;
+    public int ATK;
+    public int ATKspeed;
+}
+
+[System.Serializable]
 public class Weapons
 {
     public Elemental Type;
@@ -14,17 +41,18 @@ public class Weapons
     public List<int> ATK;
     public List<int> ATKspeed;
     public List<int> Cost;
-    public List<ItemEvolution> CostEvolution;
+    public List<Item> CostEvolution;
 }
 [System.Serializable]
-public class ItemEvolution
+public class Item
 {
-    public  itemEvolutionType Type;
+    public ITEM_TYPE Type;
     public int Quality;
 }
 [System.Serializable]
-public enum itemEvolutionType{
-    WindObs=1,
+public enum ITEM_TYPE
+{
+    WindObs = 1,
     IceObs,
     FireObs,
     EarthObs,

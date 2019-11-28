@@ -38,8 +38,8 @@ public class StunSkill : BulletController
             }
             if (SeekTarget)
             {
-                
-                gameObject.SetActive(false);
+
+                Despawn();
             }
         }
     }

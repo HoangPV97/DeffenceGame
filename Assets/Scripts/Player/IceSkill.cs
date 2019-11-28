@@ -13,11 +13,7 @@ public class IceSkill : BulletController
         elementalBullet = Elemental.Ice;   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     private void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
@@ -39,8 +35,8 @@ public class IceSkill : BulletController
             }
             if (SeekTarget)
             {
-                
-                gameObject.SetActive(false);
+
+                Despawn();
             }
         }
     }

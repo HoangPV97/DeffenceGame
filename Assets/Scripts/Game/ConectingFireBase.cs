@@ -4,11 +4,11 @@ using UnityEngine;
 using Firebase.RemoteConfig;
 using System.Threading.Tasks;
 using Firebase.Extensions;
-
-public class ConectingFireBase : MonoBehaviour
+using InviGiant.Tools;
+public class ConectingFireBase : Singleton<ConectingFireBase>
 {
-    
     // Start is called before the first frame update
+    public ConfigInfo ConfigInfo;
     void Awake()
     {
         Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
@@ -21,6 +21,12 @@ public class ConectingFireBase : MonoBehaviour
             }
         });
     }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void InitFirebase()
     {
         Task fetchTask = FirebaseRemoteConfig.FetchAsync(System.TimeSpan.Zero);
@@ -35,25 +41,24 @@ public class ConectingFireBase : MonoBehaviour
         {
             Debug.Log("Fetch completed successfully!");
         }
-        var info = FirebaseRemoteConfig.Info;
+        ConfigInfo = FirebaseRemoteConfig.Info;
 
-        switch (info.LastFetchStatus)
+        switch (ConfigInfo.LastFetchStatus)
         {
             case LastFetchStatus.Success:
                 FirebaseRemoteConfig.ActivateFetched();
-                string stop = FirebaseRemoteConfig.GetValue("Weapons").StringValue;
-
-                WeaponsData.Instance.Weapons = JsonUtility.FromJson<TestWeapon>(stop);
-                Debug.Log("Value: " + (string.IsNullOrEmpty(stop) ? "NA" : stop));
+                string txt = FirebaseRemoteConfig.GetValue("Weapons").StringValue;
+                // DataController.Instance.WeaponsDatas = JsonUtility.FromJson<WeaponDatabase>(stop);
+                Debug.Log("Value: " + (string.IsNullOrEmpty(txt) ? "NA" : txt));
                 break;
             case LastFetchStatus.Failure:
-                switch (info.LastFetchFailureReason)
+                switch (ConfigInfo.LastFetchFailureReason)
                 {
                     case FetchFailureReason.Error:
                         Debug.Log("Fetch failed for unknown reason");
                         break;
                     case FetchFailureReason.Throttled:
-                        Debug.Log("Fetch throttled until " + info.ThrottledEndTime);
+                        Debug.Log("Fetch throttled until " + ConfigInfo.ThrottledEndTime);
                         break;
                 }
                 break;
@@ -61,10 +66,18 @@ public class ConectingFireBase : MonoBehaviour
                 Debug.Log("Latest Fetch call still pending.");
                 break;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
+        DataController.Instance.SetUpData();
 
+    }
+
+    public string GetTextWeaponDatabase()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("Weapons").StringValue;
+        else
+        {
+            //Load file default from resource 
+            return "";
+        }
     }
 }

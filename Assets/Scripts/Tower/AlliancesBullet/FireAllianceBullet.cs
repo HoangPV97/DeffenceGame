@@ -31,7 +31,7 @@ public class FireAllianceBullet : BulletController
             }
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

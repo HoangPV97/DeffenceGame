@@ -12,7 +12,7 @@ public class WindPlayerBullet : BulletController
     {
         if (Target == null || !Target.isLive)
         {
-            gameObject.SetActive(false);
+            Despawn();
             return;
         }
     }
@@ -45,7 +45,7 @@ public class WindPlayerBullet : BulletController
             }
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

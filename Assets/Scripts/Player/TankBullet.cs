@@ -30,7 +30,7 @@ public class TankBullet : BulletController
             enemy?.DealDamge( bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

@@ -30,7 +30,7 @@ public class WindAllianceBullet : BulletController
             }
             if (SeekTarget)
             {
-                gameObject.SetActive(false);
+                Despawn();
             }
         }
     }

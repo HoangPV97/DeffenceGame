@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using InviGiant.Tools;
 public class ObjectPoolManager : MonoBehaviour
 {
     [System.Serializable]
@@ -9,11 +9,9 @@ public class ObjectPoolManager : MonoBehaviour
     {
         public string tag;
         public GameObject prefab;
-        public int size;
     }
     public static ObjectPoolManager Instance;
     public List<ObjectPool> Pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
     private void Awake()
     {
         if (Instance == null)
@@ -22,39 +20,26 @@ public class ObjectPoolManager : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    public GameObject GetGameObjectByTag(string tag)
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        foreach(ObjectPool pool in Pools)
-        {
-            Queue<GameObject> objectPools = new Queue<GameObject>();
-            for (int i = 0; i < pool.size; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab) as GameObject;
-                obj.SetActive(false);
-                objectPools.Enqueue(obj);
-            }
-            poolDictionary.Add(pool.tag, objectPools);
-        }
+        for (int i = 0; i < Pools.Count; i++)
+            if (Pools[i].tag == tag)
+                return Pools[i].prefab;
+        return null;
     }
-    public GameObject SpawnObject(string tag, Vector3 _position,Quaternion _quaternion )
+    public GameObject SpawnObject(string tag, Vector3 _position, Quaternion _quaternion)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning(" Tag Doesn't Exist");
-            return null;
-        }
-        GameObject objectSpawn= poolDictionary[tag].Dequeue();
-        objectSpawn.transform.position = _position;
-        objectSpawn.transform.rotation = _quaternion;
-        poolDictionary[tag].Enqueue(objectSpawn);
-        objectSpawn.SetActive(true);
-        return objectSpawn;
+        return SmartPool.Instance.Spawn(GetGameObjectByTag(tag), _position, _quaternion);
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject SpawnObject(GameObject prefab, Vector3 _position, Quaternion _quaternion)
     {
-        
+        return SmartPool.Instance.Spawn(prefab, _position, _quaternion);
     }
+
+    public void DespawnObJect(GameObject obj)
+    {
+        SmartPool.Instance.Despawn(obj);
+    }
+
 }
