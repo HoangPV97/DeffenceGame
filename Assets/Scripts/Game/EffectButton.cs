@@ -7,16 +7,7 @@ public class EffectButton : MonoBehaviour
 {
     public RectTransform rectTransform;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnMouseDown()
     {
         rectTransform.localScale = new Vector3(0.9f, 0.9f, 0f);

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a913544d2ee937843bf330f3f6758deb, type: 3}
+  m_Name: DefaultData
+  m_EditorClassIdentifier: 
+  MonsterDataBases: {fileID: 4900000, guid: ca925e3ffe1c2084ab617aafe6901f5d, type: 3}
+  GameStageDataBase: {fileID: 4900000, guid: 01ae8214c4b13f1479c2659a5e2d00c5, type: 3}
+  GameEnemyDataBase: {fileID: 4900000, guid: 2586f9edbedaf5743a0e4feafff99886, type: 3}
+  Weapons: {fileID: 4900000, guid: e24edc5d02f5fad4b95d2f8fba20cf23, type: 3}
+  AllianceDataBases: {fileID: 4900000, guid: 43e30fda7d6f2ba4fb47a54819a8eb45, type: 3}
+  BaseDatabases: {fileID: 4900000, guid: 03339cb318134d14881dbc8e5e58db5a, type: 3}
+  WeaponWindSkills:
+  - {fileID: 4205350128027674012, guid: 266d54d723e55404a93b4342d168f2dc, type: 3}
+  WeaponIceSkills:
+  - {fileID: 0}
+  WeaponEarthSkills: []
+  WeaponFireSkills: []
+  AllianceWindSkills: {fileID: 0}
+  AllianceIceSkills: {fileID: 0}
+  AllianceEarthSkills: {fileID: 0}
+  AllianceFireSkills: {fileID: 0}
+  TextWeaponSkills:
+  - SkillID: WEAPON_WIND_SKILL_1
+    SkillText: '{"SkillID":"WEAPON_WIND_SKILL_1","ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"KnockbackDistance":[10,20,30],"KnockbackDuration":[10,20,30],"EffectedAoe":[10,20,30]}'

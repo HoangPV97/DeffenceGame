@@ -12,9 +12,9 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         Islive = true;
-        Mana.Init();
-        Health.Init();
-        InvokeRepeating("RecoverMana",0, Mana.RecoverManaTime);
+        // Mana.Init();
+        //  Health.Init();
+        InvokeRepeating("RecoverMana", 0, Mana.RecoverManaTime);
         InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
     }
     public void TakeDamage(float _damage)
@@ -22,21 +22,27 @@ public class Tower : MonoBehaviour
         TowerEffect.SetActive(true);
         Health.ReduceHealth(_damage);
         StartCoroutine(WaitingEffectHealth());
-            if (Health.CurrentHealth <= 0)
-            {
-                Die();
-            }
+        if (Health.CurrentHealth <= 0)
+        {
+            Die();
+        }
     }
+
+    public void SetUpData()
+    {
+        Health.Init(DataController.Instance.InGameBaseData.HP, DataController.Instance.InGameBaseData.HPRegen);
+        Mana.Init(DataController.Instance.InGameBaseData.Mana, DataController.Instance.InGameBaseData.ManaRegen);
+    }
+
     public void ReduceMana(float _mana)
     {
         Mana.ConsumeMana(_mana);
-        
     }
 
     IEnumerator WaitingRecoverMana()
     {
         yield return new WaitForSeconds(Mana.RecoverManaTime);
-        
+
     }
     private void Die()
     {

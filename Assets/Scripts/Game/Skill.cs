@@ -5,20 +5,29 @@ using UnityEngine.UI;
 
 public class Skill : MonoBehaviour
 {
-    public Tower Tower;
+    public string SkillID;
+    public Tower Tower
+    {
+        get
+        {
+            return GameplayController.Instance.Tower;
+        }
+    }
     public Image CountdownGo;
     public float CountdownTime;
-    public float manaNumber;
-    public GameObject LowMana;
+    public float manaCost;
     protected bool StartCountdown = false;
     protected float TimeLeft;
     public float NummberBullet = 10;
-    Collider2D boxCollider;
 
     // Start is called before the first frame update
     protected void Start()
     {
-        boxCollider = this.GetComponent<Collider2D>();
+    }
+
+    public virtual void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    {
+
     }
 
     // Update is called once per frame
@@ -29,18 +38,25 @@ public class Skill : MonoBehaviour
             CountdownGo?.gameObject.SetActive(true);
             TimeLeft -= Time.deltaTime;
             CountdownGo.fillAmount = TimeLeft / CountdownTime;
-            boxCollider.enabled = false;
         }
         else
         {
             StartCountdown = false;
             CountdownGo?.gameObject.SetActive(false);
-            boxCollider.enabled = true;
         }
     }
-    public IEnumerator WaitingActiveObject(GameObject _gameObject, float _time,bool status)
+    public IEnumerator WaitingActiveObject(GameObject _gameObject, float _time, bool status)
     {
         yield return new WaitForSeconds(_time);
         _gameObject.SetActive(status);
+    }
+
+    public virtual void OnInvokeSkill()
+    {
+    }
+
+    public virtual void OnCancelSkill()
+    {
+
     }
 }

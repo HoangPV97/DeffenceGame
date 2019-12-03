@@ -28,19 +28,23 @@ public class PlayerController : MonoBehaviour
     float _2ndShortestDistance = Mathf.Infinity;
     EnemyController nearestEnemy = null;
     EnemyController _2ndEnemy = null;
-    public int ATK;
-    public int ATKspeed;
+    public float ATK;
+    public float ATKspeed;
     // Start is called before the first frame update
     void Start()
     {
-        
         skeletonAnimation.AnimationState.Event += OnEvent;
-        currentMode = AutoMode.TurnOff;  
+        currentMode = AutoMode.TurnOff;
     }
+
     public void SetDataWeapon()
     {
-        ATK = WeaponsData.Instance.GetDataAtackWeapon(1, 1, elementalType);
-        ATKspeed = WeaponsData.Instance.GetDataAtackWeapon(1, 1, elementalType);
+        this.elementalType = DataController.Instance.inGameWeapons.Type;
+        ///
+        /// set file spine/
+        ///
+        ATK = DataController.Instance.inGameWeapons.ATK;
+        ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
     }
     // Update is called once per frame
     private void Update()
@@ -151,7 +155,7 @@ public class PlayerController : MonoBehaviour
     public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
     {
         ViewPlayer.SetPositionBone(direct);
-        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);   
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
         //mBullet.SetDataBullet(ATK, ATKspeed);
@@ -162,7 +166,7 @@ public class PlayerController : MonoBehaviour
     public void SlowSkill(Vector2 _direction, float _rotatioZ)
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(player.Bullet_Skill_1, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position+new Vector3(0,0.7f,0), Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
         if (!effectStart.GetComponent<DestroyEffect>())
         {
             effectStart.AddComponent<DestroyEffect>()._time = 0.7f;
@@ -172,6 +176,6 @@ public class PlayerController : MonoBehaviour
         float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;
         rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
     }
-    
+
 }
 

@@ -1,0 +1,1 @@
+{"stageEnemies":[{"Level":1,"NightMareAddLevel":5,"HellAddLevel":10,"stageEnemies":[{"Type":"1_1","Level":1,"StartTime":2,"RepeatTime":6,"Position":5,"Number":10},{"Type":"1_1","Level":1,"StartTime":3,"RepeatTime":6,"Position":999,"Number":10}]}]}

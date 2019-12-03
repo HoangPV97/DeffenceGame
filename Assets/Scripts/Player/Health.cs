@@ -18,7 +18,7 @@ public class Health
     public Image healthBar;
     public Image effecthealthBar;
     public TextMeshProUGUI healthValueText;
-    float Width,Height;
+    float Width, Height;
     public float health
     {
         get
@@ -63,11 +63,13 @@ public class Health
             this.recoverHealthTime = value;
         }
     }
-    public void Init()
+    public void Init(float Hp, float HpRegen)
     {
         Width = healthBar.rectTransform.rect.width;
         Height = healthBar.rectTransform.rect.height;
+        health = Hp;
         CurrentHealth = health;
+        recoverHealthValue = HpRegen;
         UpdateValueText();
     }
     public void ReduceHealth(float _damage)
@@ -95,6 +97,6 @@ public class Health
         if (healthValueText != null)
         {
             healthValueText.text = currentHealth.ToString() + "/" + health;
-        }       
+        }
     }
 }

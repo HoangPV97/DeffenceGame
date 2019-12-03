@@ -1,0 +1,1 @@
+{"stageDataBases":[{"Level":1,"StarCondition":[70,40],"WinReward":[{"Type":1,"Quality":10}]},{"Level":2,"StarCondition":[70,40],"WinReward":[{"Type":1,"Quality":10}]}]}

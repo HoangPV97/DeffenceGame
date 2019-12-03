@@ -23,14 +23,15 @@ public class WeaponDatabase
         return null;
     }
 }
-
+[System.Serializable]
 public class InGameWeapon
 {
     public Elemental Type;
     public int Tier;
     public int Level;
-    public int ATK;
-    public int ATKspeed;
+    public float ATK;
+    public float ATKspeed;
+    public float BulletSpeed;
 }
 
 [System.Serializable]
@@ -38,9 +39,10 @@ public class Weapons
 {
     public Elemental Type;
     public int Tier;
-    public List<int> ATK;
-    public List<int> ATKspeed;
-    public List<int> Cost;
+    public float BulletSpeed;
+    public List<float> ATK;
+    public List<float> ATKspeed;
+    public List<float> Cost;
     public List<Item> CostEvolution;
 }
 [System.Serializable]

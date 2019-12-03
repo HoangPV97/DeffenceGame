@@ -1,0 +1,1 @@
+{"monsterDatas":[{"Type":"W_1","HP":50,"ATK":60,"Range":7,"ATKSpeed":1,"MoveSpeed":4,"Armor":10,"Growth":0.1}]}

@@ -30,9 +30,9 @@ public class EnemyController : MonoBehaviour
     SoundManager soundManager;
     float distance;
     GameEffect gameEffect;
-    GameObject effectObj ;
+    GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
-    
+
     [SerializeField] GameObject HealthUI;
     [SerializeField] BoxCollider2D boxCollider2D;
     // Start is called before the first frame update
@@ -47,10 +47,18 @@ public class EnemyController : MonoBehaviour
         countdown = enemy.rateOfFire;
         playerController = FindObjectOfType<PlayerController>();
         gameEffect = GetComponent<GameEffect>();
-        enemy.health.Init();
+        // enemy.health.Init();
         SeekingTower();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
         Move();
+    }
+
+    public void SetUpdata(string type, int Level)
+    {
+        var md = DataController.Instance.GetMonsterData(type);
+        enemy.health.Init(md.HP, 0);
+        enemy.damage = md.ATK;
+        enemy.armor = md.Armor;
     }
 
     // Update is called once per frame
@@ -98,7 +106,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody2D.velocity = Vector2.zero;
         HealthUI.SetActive(false);
         boxCollider2D.enabled = false;
-        if(effectObj!=null && effectObj.activeSelf)
+        if (effectObj != null && effectObj.activeSelf)
         {
             effectObj.SetActive(false);
         }
@@ -123,7 +131,7 @@ public class EnemyController : MonoBehaviour
         {
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
-        enemy.health.ReduceHealth(_damage+_damageplus);
+        enemy.health.ReduceHealth(_damage + _damageplus);
 
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
@@ -134,7 +142,7 @@ public class EnemyController : MonoBehaviour
     }
     public void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        
+
         StartCoroutine(WaitingEffect(_time, () =>
        {
            if (_effect.Equals(Effect.Slow))

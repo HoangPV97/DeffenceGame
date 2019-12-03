@@ -17,7 +17,7 @@ public class Mana
     private float recoverManaTime;
     public Image manaBar;
     public TextMeshProUGUI manaValueText;
-    float Width,Height;
+    float Width, Height;
     // Start is called before the first frame update
     public float maxMana
     {
@@ -63,10 +63,12 @@ public class Mana
             this.recoverManaTime = value;
         }
     }
-    public void Init()
+    public void Init(float mn, float ManaRegen)
     {
-        Width= manaBar.rectTransform.rect.width;
+        Width = manaBar.rectTransform.rect.width;
         Height = manaBar.rectTransform.rect.height;
+        maxMana = mn;
+        recoverManaValue = ManaRegen;
         CurrentMana = maxMana;
         UpdateValueText();
     }

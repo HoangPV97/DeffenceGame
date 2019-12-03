@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Elemental { Wind = 1, Ice, Fire, Earth }
+public enum Elemental { None = 0, Wind = 1, Ice = 2, Fire = 3, Earth = 4 }
 public class BulletController : MonoBehaviour
 {
     public Bullet bullet;
@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour
     {
         if (Target == null || !Target.isLive)
         {
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             return;
         }
         Vector3 dir = Target.transform.position - transform.position;

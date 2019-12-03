@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class StageData
 {
     public int Level;
-    public int DifficalMode;
+    public int HardMode;
     public StageDataBase stageDataBase;
     public StageEnemyDataBase stageEnemyDataBase;
 }
-
+[System.Serializable]
 public class GameStageDataBase
 {
     public List<StageDataBase> stageDataBases;
@@ -26,14 +26,14 @@ public class GameStageDataBase
     }
 }
 
-
+[System.Serializable]
 public class StageDataBase
 {
     public int Level;
     public int[] StarCondition;
     public List<Item> WinReward;
 }
-
+[System.Serializable]
 public class GameEnemyDataBase
 {
     public List<StageEnemyDataBase> stageEnemies;
@@ -49,7 +49,7 @@ public class GameEnemyDataBase
         return null;
     }
 }
-
+[System.Serializable]
 public class StageEnemyDataBase
 {
     public int Level;
@@ -57,7 +57,7 @@ public class StageEnemyDataBase
     public int HellAddLevel;
     public List<StageEnemy> stageEnemies;
 }
-
+[System.Serializable]
 public class StageEnemy
 {
     public string Type;

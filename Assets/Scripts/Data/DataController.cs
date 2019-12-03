@@ -9,6 +9,12 @@ public class DataController : Singleton<DataController>
 {
     #region DataBase
     public WeaponDatabase WeaponsDatas;
+    public MonsterDataBases MonsterDataBases;
+    public GameStageDataBase GameStageDataBase;
+    public GameEnemyDataBase GameEnemyDataBase;
+    public AllianceDataBases AllianceDataBases;
+    public BaseDatabases BaseDatabases;
+    public DefaultData DefaultData;
     #endregion
 
     #region Data Player
@@ -18,7 +24,9 @@ public class DataController : Singleton<DataController>
     #region in game
     public StageData StageData;
     public int CurrentSelected;
-    public List<InGameWeapon> inGameWeapons;
+    public InGameWeapon inGameWeapons;
+    public IngameAlliance IngameAlliance1, IngameAlliance2;
+    public BaseData InGameBaseData;
     #endregion
 
     private string dataPath = "";
@@ -26,6 +34,11 @@ public class DataController : Singleton<DataController>
     {
         dataPath = Path.Combine(Application.persistentDataPath, "data.dat");
         DontDestroyOnLoad(gameObject);
+    }
+
+    public MonsterData GetMonsterData(string type)
+    {
+        return MonsterDataBases.GetMonsterData(type);
     }
 
     private void Load()
@@ -66,18 +79,22 @@ public class DataController : Singleton<DataController>
     {
         GameData = new GameData
         {
-            BaseLevel = 1,
+            BaseHPLevel = 1,
+            BaseHPTier = 1,
+            BaseManaLevel = 1,
+            BaseManaTier = 1,
+            BaseShieldLevel = 1,
+            BaseShieldTier = 1,
             CurrentStage = 1,
             gameDataWeapons = new List<GameDataWeapon> {
-                new GameDataWeapon{
+                new GameDataWeapon {
                     Type = Elemental.Wind,
-                    Tier =1,
-                    Level =1
+                    Tier = 1,
+                    Level = 1
                 }
             },
-            EquipedWeapon = new List<Elemental> {
-                Elemental.Wind
-            }
+            CurrentSelectedWeapon = Elemental.Wind,
+            gameStages = new List<GameStage>()
         };
     }
 
@@ -85,7 +102,11 @@ public class DataController : Singleton<DataController>
     {
         ///Set up database
         WeaponsDatas = JsonUtility.FromJson<WeaponDatabase>(ConectingFireBase.Instance.GetTextWeaponDatabase());
-
+        MonsterDataBases = JsonUtility.FromJson<MonsterDataBases>(ConectingFireBase.Instance.GetTextMonsterDataBases());
+        GameStageDataBase = JsonUtility.FromJson<GameStageDataBase>(ConectingFireBase.Instance.GetTextGameStageDataBase());
+        GameEnemyDataBase = JsonUtility.FromJson<GameEnemyDataBase>(ConectingFireBase.Instance.GetTextGameEnemyDataBase());
+        AllianceDataBases = JsonUtility.FromJson<AllianceDataBases>(ConectingFireBase.Instance.GetTextAllianceDatabase());
+        BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
         ///Load data 
         Load();
 
@@ -95,6 +116,77 @@ public class DataController : Singleton<DataController>
 
     public void LoadIngameStage()
     {
+        // Load Stage Data
+        StageData = new StageData
+        {
+            Level = CurrentSelected,
+            HardMode = GameData.GetGameStage(CurrentSelected).HardMode,
+            stageDataBase = GameStageDataBase.GetStageDataBase(CurrentSelected),
+            stageEnemyDataBase = GameEnemyDataBase.GetStageEnemyDataBase(CurrentSelected)
+        };
+
+        // load Weapon data
+        // GameData.CurrentSelectedWeapon
+        var slwp = GameData.GetGameDataWeapon(GameData.CurrentSelectedWeapon);
+        var wp = WeaponsDatas.GetWeapons(slwp.Type, slwp.Tier);
+        inGameWeapons = new InGameWeapon
+        {
+            Type = wp.Type,
+            Tier = wp.Tier,
+            Level = slwp.Level,
+            ATK = wp.ATK[slwp.Level - 1],
+            ATKspeed = wp.ATKspeed[slwp.Level - 1],
+            BulletSpeed = wp.BulletSpeed,
+        };
+
+        // load alliance data
+        //Load slot 1
+        if (GameData.Slot1 != Elemental.None)
+        {
+            //load
+            var sl1 = GameData.GetGameAlliance(GameData.Slot1);
+            var wp1 = AllianceDataBases.GetAlliance(sl1.Type, sl1.Tier);
+            IngameAlliance1 = new IngameAlliance
+            {
+                Type = wp1.Type,
+                Tier = wp1.Tier,
+                Level = sl1.Level,
+                ATK = wp1.ATK[sl1.Level - 1],
+                ATKspeed = wp1.ATKspeed[slwp.Level - 1],
+                ATKRange = wp1.ATKRange[slwp.Level - 1]
+            };
+        }
+
+        //Load slot 2
+        if (GameData.Slot2 != Elemental.None)
+        {
+            //load
+            var sl2 = GameData.GetGameAlliance(GameData.Slot1);
+            var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.Tier);
+            IngameAlliance1 = new IngameAlliance
+            {
+                Type = wp2.Type,
+                Tier = wp2.Tier,
+                Level = sl2.Level,
+                ATK = wp2.ATK[sl2.Level - 1],
+                ATKspeed = wp2.ATKspeed[slwp.Level - 1],
+                ATKRange = wp2.ATKRange[slwp.Level - 1]
+            };
+        }
+
+        // load base
+        var bdbHP = BaseDatabases.GetBaseHpData(GameData.BaseHPTier);
+        var bdbMana = BaseDatabases.GetBaseManaData(GameData.BaseManaTier);
+        var bdbShield = BaseDatabases.GetBaseShieldData(GameData.BaseShieldTier);
+        InGameBaseData = new BaseData
+        {
+            HP = bdbHP.Value1[GameData.BaseHPLevel - 1],
+            HPRegen = bdbHP.Value2[GameData.BaseHPLevel - 1],
+            Mana = bdbMana.Value1[GameData.BaseManaLevel - 1],
+            ManaRegen = bdbMana.Value2[GameData.BaseManaLevel - 1],
+            ShieldBlockValue = bdbShield.Value1[GameData.BaseShieldLevel - 1],
+            ShieldBlockChance = bdbShield.Value2[GameData.BaseShieldLevel - 1],
+        };
 
     }
 }

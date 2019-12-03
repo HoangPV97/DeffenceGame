@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "1040342782697",
-    "firebase_url": "https://defencegame-1cf03.firebaseio.com",
-    "project_id": "defencegame-1cf03",
-    "storage_bucket": "defencegame-1cf03.appspot.com"
+    "project_number": "229519990104",
+    "firebase_url": "https://hero-defense-21091356.firebaseio.com",
+    "project_id": "hero-defense-21091356",
+    "storage_bucket": "hero-defense-21091356.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1040342782697:android:3dd180472d698fc8c85678",
+        "mobilesdk_app_id": "1:229519990104:android:9b301d4334993669c1d92d",
         "android_client_info": {
-          "package_name": "com.Hoang.Demo"
+          "package_name": "com.cscmobi.herodefense"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1040342782697-vbi4oohevd8dvnfkbnvae9koof332u8d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Hoang.Demo",
-            "certificate_hash": "10c20ae0ac707f0e34644b8f831ed13888edf2a1"
-          }
-        },
-        {
-          "client_id": "1040342782697-huf8m6ihjblo9q41j0598qevpgvs75cd.apps.googleusercontent.com",
+          "client_id": "229519990104-mi5ena7osahdaj03uk5ud1t125hhoj13.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqVk4qJFYpF6QwQDC0bVWlHMFutHENQHk"
+          "current_key": "AIzaSyCOrWBdK3teZUKHJZCDvpcM2sw0gofRmmQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1040342782697-huf8m6ihjblo9q41j0598qevpgvs75cd.apps.googleusercontent.com",
+              "client_id": "229519990104-mi5ena7osahdaj03uk5ud1t125hhoj13.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

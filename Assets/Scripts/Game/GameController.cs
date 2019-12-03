@@ -35,12 +35,11 @@ public class GameController : MonoBehaviour
         if (EnemyController.EnemyLive == 0)
         {
             WinGame();
-        }
-        
+        }        
     }
+
     public void EndGame()
-    {
-        
+    {        
         GameoverPanel.SetActive(true);
         Time.timeScale = 0;
     }

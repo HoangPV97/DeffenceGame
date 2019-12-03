@@ -4,19 +4,31 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int BaseLevel;
-    public int CurrentStage;
+    public int BaseHPLevel = 1;
+    public int BaseHPTier = 1;
+    public int BaseManaLevel = 1;
+    public int BaseManaTier = 1;
+    public int BaseShieldLevel = 1;
+    public int BaseShieldTier = 1;
+    public int CurrentStage = 1;
     public List<Item> Inventory;
     public List<GameDataWeapon> gameDataWeapons;
-    public List<Elemental> EquipedWeapon;
+    public List<GameDataWeapon> gameDataAlliance;
     public List<GameStage> gameStages;
-
-    public GameStage GetGameStage(int Level)
+    public Elemental CurrentSelectedWeapon;
+    public Elemental Slot1, Slot2;
+    public GameStage GetGameStage(int level)
     {
         for (int i = 0; i < gameStages.Count; i++)
-            if (gameStages[i].Level == Level)
+            if (gameStages[i].Level == level)
                 return gameStages[i];
-        return null;
+        GameStage gameStage = new GameStage
+        {
+            Level = level,
+            HardMode = 0
+        };
+        gameStages.Add(gameStage);
+        return gameStage;
     }
 
     public void SaveGameStage(int level, int hardMode = 0)
@@ -58,17 +70,43 @@ public class GameData
             Inventory.Add(item);
         }
     }
+
+    public GameDataWeapon GetGameDataWeapon(Elemental elemental)
+    {
+        for (int i = 0; i < gameDataWeapons.Count; i++)
+        {
+            if (gameDataWeapons[i].Type == elemental)
+                return gameDataWeapons[i];
+        }
+        GameDataWeapon gdw = new GameDataWeapon
+        {
+            Type = elemental,
+            Tier = 1,
+            Level = 1,
+        };
+        gameDataWeapons.Add(gdw);
+        return gdw;
+    }
+
+    public GameDataWeapon GetGameAlliance(Elemental elemental)
+    {
+        for (int i = 0; i < gameDataAlliance.Count; i++)
+        {
+            if (gameDataAlliance[i].Type == elemental)
+                return gameDataAlliance[i];
+        }
+        GameDataWeapon gdw = new GameDataWeapon
+        {
+            Type = elemental,
+            Tier = 1,
+            Level = 1,
+        };
+        gameDataAlliance.Add(gdw);
+        return gdw;
+    }
 }
 
-[System.Serializable]
-public class BaseData
-{
-    public float HP;
-    public float Mana;
-    public float HPRegen;
-    public float ManaRegen;
-    public float Shield;
-}
+/**/
 
 [System.Serializable]
 public class GameDataWeapon
@@ -76,6 +114,7 @@ public class GameDataWeapon
     public Elemental Type;
     public int Tier;
     public int Level;
+    public bool unlockSkill = false;
 }
 
 public class GameStage

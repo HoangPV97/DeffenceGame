@@ -20,6 +20,7 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
                 InitFirebase();
             }
         });
+        DataController.Instance.DefaultData = Resources.Load<DefaultData>("Data/DefaultData");
     }
 
     private void Start()
@@ -70,14 +71,73 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
 
     }
 
+    public string GetTextAllianceDatabase()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("AllianceDataBases").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.AllianceDataBases.text;
+        }
+    }
+
     public string GetTextWeaponDatabase()
     {
         if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
             return FirebaseRemoteConfig.GetValue("Weapons").StringValue;
         else
         {
-            //Load file default from resource 
-            return "";
+            return DataController.Instance.DefaultData.Weapons.text;
+        }
+    }
+
+    public string GetTextGameEnemyDataBase()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("GameEnemyDataBase").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.GameEnemyDataBase.text;
+        }
+    }
+
+    public string GetTextGameStageDataBase()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("GameStageDataBase").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.GameStageDataBase.text;
+        }
+    }
+
+    public string GetTextMonsterDataBases()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("MonsterDataBases").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.MonsterDataBases.text;
+        }
+    }
+
+    public string GetTextWeaponSkill(string SkillID)
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue(SkillID).StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.GetTextWeaponSkill(SkillID);
+        }
+    }
+
+    public string GetTextBaseDataBases()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("BaseDatabases").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.BaseDatabases.text;
         }
     }
 }

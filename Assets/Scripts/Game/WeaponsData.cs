@@ -16,9 +16,4 @@ public class WeaponsData : MonoBehaviour
         }
     }
 
-    public int GetDataAtackWeapon(int level,int tier,Elemental elemental)
-    {
-        Debug.Log(Weapons.Weapons.Where(obj => (obj.Tier.Equals(tier)) && (obj.Type.Equals(elemental))).SingleOrDefault().ATK[level]);
-        return Weapons.Weapons.Where(obj => ( obj.Tier.Equals(tier))&& (obj.Type.Equals(elemental))).SingleOrDefault().ATK[level];
-    }
 }

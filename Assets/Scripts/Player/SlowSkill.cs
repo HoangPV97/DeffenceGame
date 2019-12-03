@@ -12,7 +12,7 @@ public class SlowSkill : BulletController
     {
         if (_Target.gameObject.tag.Equals("BlockPoint"))
         {
-            gameObject.SetActive(false);
+          //  gameObject.SetActive(false);
         }
         Identify identify = _Target.gameObject.GetComponent<Identify>();
         if (identify == null)
