@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Spine.AnimationState;
+
 public class Enemies
 {
     public static List<EnemyController> listEnemies = new List<EnemyController>();
@@ -26,17 +27,20 @@ public class EnemyController : MonoBehaviour
     protected float distancetoTower;
     protected float countdown;
     public static float EnemyLive;
+    SoundManager soundManager;
     float distance;
     GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
-    ObjectPoolManager objectPoolManager;
+
     [SerializeField] GameObject HealthUI;
     [SerializeField] BoxCollider2D boxCollider2D;
     // Start is called before the first frame update
     private void Awake()
     {
         Enemies.listEnemies = new List<EnemyController>();
+        soundManager = SoundManager.Instance;
+
     }
     protected void Start()
     {
@@ -52,9 +56,13 @@ public class EnemyController : MonoBehaviour
     public void SetUpdata(string type, int Level)
     {
         var md = DataController.Instance.GetMonsterData(type);
-        enemy.health.Init(md.HP, 0);
-        enemy.damage = md.ATK;
-        enemy.armor = md.Armor;
+        float growth = 1 + md.Growth * Level;
+        enemy.health.Init(md.HP * growth, 0);
+        enemy.damage = md.ATK * growth;
+        enemy.armor = md.Armor * growth;
+        enemy.speed = md.MoveSpeed;
+        enemy.rateOfFire = md.ATKSpeed;
+        enemy.bulletSpeed = md.BulletSpeed;
     }
 
     // Update is called once per frame
@@ -109,7 +117,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
         Enemies.listEnemies.Remove(this);
         EnemyLive--;
-        Despawn();
+        gameObject.SetActive(false);
     }
 
     //public void SpawnGold()
@@ -216,9 +224,9 @@ public class EnemyController : MonoBehaviour
         }
         playSkeletonAnimation.PlayAnimationState(stateName);
     }
-    private void OnTriggerEnter2D(Collider2D _tower)
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (_tower.gameObject.tag.Equals("Tower"))
+        if (collider2D.gameObject.tag.Equals("Tower"))
         {
             isMove = false;
             Move();
@@ -237,9 +245,5 @@ public class EnemyController : MonoBehaviour
         {
             Enemies.listEnemies.Add(this);
         }
-    }
-    public void Despawn()
-    {
-        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

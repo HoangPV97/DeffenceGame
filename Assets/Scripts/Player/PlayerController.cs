@@ -144,7 +144,6 @@ public class PlayerController : MonoBehaviour
                 {
                     player.target = null;
                 }
-
             }
         }
         else
@@ -159,7 +158,7 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        mBullet.SetDataBullet(ATKspeed, ATK);
+        //mBullet.SetDataBullet(ATK, ATKspeed);
         mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
         mBullet.DirectShooting(_direction);
@@ -177,6 +176,9 @@ public class PlayerController : MonoBehaviour
         float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;
         rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 }
 

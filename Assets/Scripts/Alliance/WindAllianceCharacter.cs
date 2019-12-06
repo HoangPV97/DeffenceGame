@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class WindAllianceCharacter : AllianceController
 {
+    //public SkeletonAnimation skeletonAnimation;
+    //public AnimationReferenceAsset attack,idle;
+    //[SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
+
     private void Start()
     {
 
@@ -38,7 +42,6 @@ public class WindAllianceCharacter : AllianceController
             WindAllianceBullet alianceBullet = bullet.GetComponent<WindAllianceBullet>();
             if (alianceBullet != null)
             {
-                alianceBullet.SetDataBullet(ATKspeed, ATK);
                 alianceBullet.elementalBullet = elementalType;
                 alianceBullet.SetTarget(Alliance.target);
             }
