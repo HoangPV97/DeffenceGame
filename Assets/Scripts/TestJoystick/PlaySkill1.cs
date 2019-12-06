@@ -98,10 +98,7 @@ public class PlaySkill1 : Skill
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(SkillID, gameObject.transform.position, Quaternion.identity);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
-        if (!effectStart.GetComponent<DestroyEffect>())
-        {
-            effectStart.AddComponent<DestroyEffect>()._time = 0.7f;
-        }
+        CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
         float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;

@@ -37,7 +37,10 @@ public class GameController : MonoBehaviour
             WinGame();
         }        
     }
-
+    public void SaveGame()
+    {
+        DataController.Instance.Save();
+    }
     public void EndGame()
     {        
         GameoverPanel.SetActive(true);

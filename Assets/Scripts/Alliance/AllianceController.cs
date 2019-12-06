@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
+#region Enemy
 public class Alliance
 {
     public string name { get => _name; set => _name = value; }
@@ -26,6 +27,7 @@ public class Alliance
     [SerializeField] private string _effectStart;
 
 }
+#endregion
 public class AllianceController : MonoBehaviour
 {
     public Alliance Alliance;
@@ -39,20 +41,22 @@ public class AllianceController : MonoBehaviour
     public AnimationReferenceAsset attack, idle;
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
+    public PlayerController playerController;
+    public List<EnemyController> listEnemies;
     public float ATK;
     public float ATKspeed;
-    public  void SetDataWeapon()
-    {
-        this.elementalType = DataController.Instance.IngameAlliance1.Type;
-        ///
-        /// set file spine/
-        ///
-        ATK = DataController.Instance.IngameAlliance1.ATK;
-        ATKspeed = DataController.Instance.IngameAlliance1.ATKspeed;
-    }
+    public CircleCollider2D CircleCollider2D;
     protected void Start()
     {
-
+        CircleCollider2D.radius = Alliance.range;
+        listEnemies = new List<EnemyController>();
+        playerController = GameplayController.Instance.PlayerController;
+    }
+    public void SetDataWeapon(Elemental elemental, float Atkspeed,float atk)
+    {
+        this.elementalType = elemental;
+        ATK = atk;
+        ATKspeed = Atkspeed;
     }
     protected void Update()
     {
@@ -89,22 +93,22 @@ public class AllianceController : MonoBehaviour
         _2ndShortestDistance = Mathf.Infinity;
         nearestEnemy = null;
         _2ndEnemy = null;
-        if (Enemies.listEnemies.Count > 0)
+        if (listEnemies.Count > 0)
         {
-            for (int i = 0; i < Enemies.listEnemies.Count; i++)
+            for (int i = 0; i < listEnemies.Count; i++)
             {
-                float distancetoEnemy = Vector3.Distance(transform.position, Enemies.listEnemies[i].transform.position);
+                float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
                 if (distancetoEnemy < shortestDistance)
                 {
                     _2ndShortestDistance = shortestDistance;
                     shortestDistance = distancetoEnemy;
                     _2ndEnemy = nearestEnemy;
-                    nearestEnemy = Enemies.listEnemies[i];
+                    nearestEnemy = listEnemies[i];
                 }
                 else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
                 {
                     _2ndShortestDistance = distancetoEnemy;
-                    _2ndEnemy = Enemies.listEnemies[i];
+                    _2ndEnemy = listEnemies[i];
                 }
                 if (nearestEnemy != null && shortestDistance < Alliance.range && nearestEnemy.isLive)
                 {
@@ -142,6 +146,13 @@ public class AllianceController : MonoBehaviour
         else
         {
             Obj.GetComponent<DestroyEffect>().Start();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.tag.Equals("Enemy"))
+        {
+            listEnemies.Add(collider2D.gameObject.GetComponent<EnemyController>());
         }
     }
 }

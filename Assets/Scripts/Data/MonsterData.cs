@@ -43,16 +43,16 @@ public class AllianceData
 {
     public Elemental Type;
     public int Tier;
+    public float BulletSpeed;
     public List<float> ATK;
     public List<float> ATKspeed;
-    public List<float> ATKRange;
     public List<Item> CostEvolution;
-    public float BulletSpeed;
+    public List<float> ATKRange;
 }
 
-public class AllianceDataBases
+public class AllianceDataBase
 {
-    public List<AllianceData> allianceDatas;
+    public List<AllianceData> AllianceData;
     public List<Item> GetCostEvolution(Elemental Type, int Tier)
     {
         return GetAlliance(Type, Tier).CostEvolution;
@@ -60,9 +60,9 @@ public class AllianceDataBases
 
     public AllianceData GetAlliance(Elemental Type, int Tier)
     {
-        for (int i = 0; i < allianceDatas.Count; i++)
-            if (allianceDatas[i].Type == Type && allianceDatas[i].Tier == Tier)
-                return allianceDatas[i];
+        for (int i = 0; i < AllianceData.Count; i++)
+            if (AllianceData[i].Type == Type && AllianceData[i].Tier == Tier)
+                return AllianceData[i];
         return null;
     }
 }

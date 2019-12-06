@@ -967,7 +967,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a906c6c5e897c4e4e8ff32c1f12c7b25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10857cd7181e56e4b9e17a01d7cd0745, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1384,9 +1384,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 3615715292778661749}
+  Alliance_1: {fileID: 0}
+  Alliance_2: {fileID: 0}
+  Tower: {fileID: 18398008}
   Slot1: {fileID: 704362106}
   Slot2: {fileID: 291958627}
-  Tower: {fileID: 18398008}
   CancelSkill: 0
   SkillButtons:
   - {fileID: 2052314187}
@@ -1658,50 +1660,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431427853}
   m_CullTransparentMesh: 0
---- !u!1 &471341588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 471341590}
-  - component: {fileID: 471341589}
-  m_Layer: 0
-  m_Name: SkillController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &471341589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471341588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acca198ca29fbca4dbf1a3c792e86534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet_Skill_1: slowskill
---- !u!4 &471341590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471341588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3956842, y: 1.7518612, z: 579.772}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472097025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,7 +4157,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a906c6c5e897c4e4e8ff32c1f12c7b25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c0162f37f920c54dbcd5daad540a601, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8745,7 +8703,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a906c6c5e897c4e4e8ff32c1f12c7b25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caffbca76eead8a4085c3fe8803c07da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9354,6 +9312,7 @@ GameObject:
   - component: {fileID: 3615715292778661747}
   - component: {fileID: 3615715292778661749}
   - component: {fileID: 3615715292778661750}
+  - component: {fileID: 3615715292778661748}
   m_Layer: 0
   m_Name: Tanks
   m_TagString: Player
@@ -9376,6 +9335,22 @@ Transform:
   m_Father: {fileID: 3615715291874212728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3615715292778661748
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615715292778661746}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 11.65
 --- !u!114 &3615715292778661749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9388,11 +9363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61fc959510959294d9d5a1fa32ab1eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listEnemies: []
   player:
     bullet: tankbullet
     _name: AAAAAAAAA
     _level: 0
-    _range: 20
+    _range: 16
     _target: {fileID: 0}
     _rateOfFire: 1
     _armor: 3
@@ -9410,6 +9386,7 @@ MonoBehaviour:
   eventName: onatk
   ATK: 0
   ATKspeed: 0
+  CircleCollider2D: {fileID: 3615715292778661748}
 --- !u!50 &3615715292778661750
 Rigidbody2D:
   serializedVersion: 4

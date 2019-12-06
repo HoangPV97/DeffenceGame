@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 289914067657404192}
   - component: {fileID: 289914067657404199}
   - component: {fileID: 289914067657404194}
+  - component: {fileID: 1397725713964813292}
   m_Layer: 0
   m_Name: IceAlliance
   m_TagString: Untagged
@@ -282,7 +283,7 @@ MonoBehaviour:
     bullet: icealliancebullet
     _name: 
     _level: 0
-    _range: 18
+    _range: 12
     _target: {fileID: 0}
     _rateOfFire: 1
     _armor: 2
@@ -296,5 +297,24 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 7d4cc4a814872fc4e8a7fe359d8618f1, type: 2}
   idle: {fileID: 11400000, guid: 56917fff3eaaf2e41a1a21fc49aaa895, type: 2}
   eventName: onatk
+  playerController: {fileID: 0}
+  listEnemies: []
   ATK: 0
   ATKspeed: 0
+  CircleCollider2D: {fileID: 1397725713964813292}
+--- !u!58 &1397725713964813292
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289914067657404193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.16177452, y: 1.0928514}
+  serializedVersion: 2
+  m_Radius: 1.4930851

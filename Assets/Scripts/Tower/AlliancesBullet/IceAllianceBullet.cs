@@ -11,6 +11,11 @@ public class IceAllianceBullet : BulletController
     }
     private void Update()
     {
+        if (Target == null || !Target.isLive)
+        {
+            Despawn();
+            return;
+        }
         base.Update();
     }
     private void OnTriggerEnter2D(Collider2D Target)

@@ -59,4 +59,15 @@ public class Skill : MonoBehaviour
     {
 
     }
+    public void CheckDestroyEffect(GameObject Obj, float _time)
+    {
+        if (!Obj.GetComponent<DestroyEffect>())
+        {
+            Obj.AddComponent<DestroyEffect>()._time = _time;
+        }
+        else
+        {
+            Obj.GetComponent<DestroyEffect>().Start();
+        }
+    }
 }

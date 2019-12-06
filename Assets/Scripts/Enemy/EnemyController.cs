@@ -7,10 +7,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Spine.AnimationState;
 
-public class Enemies
-{
-    public static List<EnemyController> listEnemies = new List<EnemyController>();
-}
 public enum EnemyState
 {
     Idle, Run, Attack, Hurt, Die, Skill
@@ -23,7 +19,6 @@ public class EnemyController : MonoBehaviour
     public bool isMove = true, isAttack = true, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
-    PlayerController playerController;
     protected float distancetoTower;
     protected float countdown;
     public static float EnemyLive;
@@ -38,14 +33,11 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Enemies.listEnemies = new List<EnemyController>();
         soundManager = SoundManager.Instance;
-
     }
     protected void Start()
     {
         countdown = enemy.rateOfFire;
-        playerController = FindObjectOfType<PlayerController>();
         gameEffect = GetComponent<GameEffect>();
         // enemy.health.Init();
         SeekingTower();
@@ -103,7 +95,9 @@ public class EnemyController : MonoBehaviour
     }
     IEnumerator Die()
     {
-
+        GameplayController.Instance.PlayerController.listEnemies.Remove(this);
+        GameplayController.Instance.Alliance_1.listEnemies.Remove(this);
+        GameplayController.Instance.Alliance_2.listEnemies.Remove(this);
         isLive = false;
         isAttack = false;
         CurrentState = EnemyState.Die;
@@ -115,17 +109,10 @@ public class EnemyController : MonoBehaviour
             effectObj.SetActive(false);
         }
         yield return new WaitForSeconds(1);
-        Enemies.listEnemies.Remove(this);
+        
         EnemyLive--;
         gameObject.SetActive(false);
     }
-
-    //public void SpawnGold()
-    //{
-    //    GameObject _gold = PoolManager.SpawnObject("gold", transform.position, Quaternion.identity);
-    //    soundManager.PlayClipOneShot(soundManager.Coin);
-    //    _gold.GetComponent<Gold>().Price = enemy.price;
-    //}
     public void DealDamge(float _damage, float _damageplus)
     {
         isHurt = true;
@@ -233,17 +220,18 @@ public class EnemyController : MonoBehaviour
             isAttack = true;
             CurrentState = EnemyState.Attack;
         }
+        //if (collider2D.gameObject.tag.Equals("Player"))
+        //{
+        //    GameplayController.Instance.PlayerController.listEnemies.Add(this);
+        //}
     }
     private void OnEnable()
     {
         HealthUI.SetActive(true);
         boxCollider2D.enabled = true;
     }
-    public void OnTriggerExit2D(Collider2D BlockPoint)
+    public void Despawn()
     {
-        if (BlockPoint.gameObject.tag.Equals("BlockPoint"))
-        {
-            Enemies.listEnemies.Add(this);
-        }
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

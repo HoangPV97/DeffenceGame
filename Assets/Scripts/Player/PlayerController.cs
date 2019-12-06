@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public enum CharacterState { Idle, Attack };
 public class PlayerController : MonoBehaviour
 {
+    public List<EnemyController> listEnemies;
+
     public Player player;
     public enum AutoMode { TurnOn, TurnOff };
     public AutoMode currentMode;
@@ -30,7 +32,12 @@ public class PlayerController : MonoBehaviour
     EnemyController _2ndEnemy = null;
     public float ATK;
     public float ATKspeed;
+    public CircleCollider2D CircleCollider2D;
     // Start is called before the first frame update
+    public void Awake()
+    {
+        CircleCollider2D.radius = player.range;
+    }
     void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
@@ -40,9 +47,6 @@ public class PlayerController : MonoBehaviour
     public void SetDataWeapon()
     {
         this.elementalType = DataController.Instance.inGameWeapons.Type;
-        ///
-        /// set file spine/
-        ///
         ATK = DataController.Instance.inGameWeapons.ATK;
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
     }
@@ -63,7 +67,7 @@ public class PlayerController : MonoBehaviour
                     characterState = CharacterState.Idle;
                     direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
                     rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()
+                    if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                         && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                     {
                         //ClicktoShoot();
@@ -114,24 +118,24 @@ public class PlayerController : MonoBehaviour
         _2ndShortestDistance = Mathf.Infinity;
         nearestEnemy = null;
         _2ndEnemy = null;
-        if (Enemies.listEnemies.Count > 0)
+        if (listEnemies.Count > 0)
         {
-            for (int i = 0; i < Enemies.listEnemies.Count; i++)
+            for (int i = 0; i < listEnemies.Count; i++)
             {
-                float distancetoEnemy = Vector3.Distance(transform.position, Enemies.listEnemies[i].transform.position);
+                float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
                 if (distancetoEnemy < shortestDistance)
                 {
                     _2ndShortestDistance = shortestDistance;
                     shortestDistance = distancetoEnemy;
                     _2ndEnemy = nearestEnemy;
-                    nearestEnemy = Enemies.listEnemies[i];
+                    nearestEnemy = listEnemies[i];
                 }
                 else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
                 {
                     _2ndShortestDistance = distancetoEnemy;
-                    _2ndEnemy = Enemies.listEnemies[i];
+                    _2ndEnemy = listEnemies[i];
                 }
-                if (nearestEnemy != null && shortestDistance < player.range && nearestEnemy.isLive)
+                if (nearestEnemy != null  && nearestEnemy.isLive)
                 {
                     player.target = nearestEnemy;
                 }
@@ -158,27 +162,17 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        //mBullet.SetDataBullet(ATK, ATKspeed);
+        mBullet.SetDataBullet(ATKspeed, ATK);
         mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
-        mBullet.DirectShooting(_direction);
+        mBullet.GetComponent<Rigidbody2D>().velocity = _direction.normalized *10* mBullet.bullet.Speed * Time.deltaTime;
     }
-    public void SlowSkill(Vector2 _direction, float _rotatioZ)
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(player.Bullet_Skill_1, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(player.effectStart, this.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
-        if (!effectStart.GetComponent<DestroyEffect>())
+        if (collider2D.gameObject.tag.Equals("Enemy"))
         {
-            effectStart.AddComponent<DestroyEffect>()._time = 0.7f;
+            listEnemies.Add(collider2D.gameObject.GetComponent<EnemyController>());
         }
-        skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
-        float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;
-        rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
     }
 }
 

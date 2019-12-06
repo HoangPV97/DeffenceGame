@@ -5,18 +5,22 @@ using InviGiant.Tools;
 public class GameplayController : Singleton<GameplayController>
 {
     public PlayerController PlayerController;
+    public AllianceController Alliance_1, Alliance_2;
     public Tower Tower;
+    public GameObject Slot1, Slot2;
     [Header("Skill button")]
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
     public List<Transform> spawnPosition;
-
+    
     private void Start()
     {
         LoadDataGamePlay();
     }
     public void LoadDataGamePlay()
     {
+        Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+        Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
         ///SetUp Base first
         Tower.SetUpData();
 
@@ -40,19 +44,24 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 1
         if (DataController.Instance.GameData.Slot1 != Elemental.None)
         {
-            //Load
-
+            Alliance_1.SetDataWeapon(DataController.Instance.IngameAlliance1.Type,
+                                    DataController.Instance.IngameAlliance1.ATKspeed,
+                                    DataController.Instance.IngameAlliance1.ATK);
             // set  skill button
-
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
+            go.GetComponent<Skill>().SetUpData(1, SkillButtons[1]);
         }
 
         ///Load slot 2
         if (DataController.Instance.GameData.Slot2 != Elemental.None)
         {
             //load
-
+            Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,
+                                    DataController.Instance.IngameAlliance2.ATKspeed,
+                                    DataController.Instance.IngameAlliance2.ATK);
             // set  skill button
-
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
+            go.GetComponent<Skill>().SetUpData(1, SkillButtons[2]);
         }
 
         //spawn Enemy

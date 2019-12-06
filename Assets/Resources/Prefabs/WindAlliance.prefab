@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 1786888695913067428}
   - component: {fileID: 1786888695913067425}
   - component: {fileID: 1786888695913067430}
+  - component: {fileID: 8404775333394181250}
   m_Layer: 0
   m_Name: WindAlliance
   m_TagString: Untagged
@@ -282,7 +283,7 @@ MonoBehaviour:
     bullet: windalliancebullet
     _name: 
     _level: 0
-    _range: 18
+    _range: 13
     _target: {fileID: 0}
     _rateOfFire: 1
     _armor: 2
@@ -296,5 +297,24 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 1cd725be85852bd459f13e61a5755730, type: 2}
   idle: {fileID: 11400000, guid: 343509e0d0d5373469460f5768c77061, type: 2}
   eventName: onatk
+  playerController: {fileID: 0}
+  listEnemies: []
   ATK: 0
   ATKspeed: 0
+  CircleCollider2D: {fileID: 8404775333394181250}
+--- !u!58 &8404775333394181250
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786888695913067435}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.44388026, y: 0.9357096}
+  serializedVersion: 2
+  m_Radius: 1.3359432

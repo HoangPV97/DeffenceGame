@@ -12,7 +12,7 @@ public class DataController : Singleton<DataController>
     public MonsterDataBases MonsterDataBases;
     public GameStageDataBase GameStageDataBase;
     public GameEnemyDataBase GameEnemyDataBase;
-    public AllianceDataBases AllianceDataBases;
+    public AllianceDataBase AllianceDataBases;
     public BaseDatabases BaseDatabases;
     public DefaultData DefaultData;
     #endregion
@@ -28,7 +28,6 @@ public class DataController : Singleton<DataController>
     public IngameAlliance IngameAlliance1, IngameAlliance2;
     public BaseData InGameBaseData;
     #endregion
-
     private string dataPath = "";
     private void Start()
     {
@@ -62,10 +61,14 @@ public class DataController : Singleton<DataController>
             }
         }
         else
+        {
+            Debug.Log("<color=red> File not exist</color>");
             ResetData();
+        }
+
     }
 
-    private void Save()
+    public void Save()
     {
         string origin = JsonUtility.ToJson(GameData);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -87,13 +90,29 @@ public class DataController : Singleton<DataController>
             BaseShieldTier = 1,
             CurrentStage = 1,
             gameDataWeapons = new List<GameDataWeapon> {
-                new GameDataWeapon {
+                new GameDataWeapon
+                {
                     Type = Elemental.Wind,
                     Tier = 1,
                     Level = 1
                 }
             },
+            gameDataAlliance = new List<GameDataWeapon> {
+                new GameDataWeapon {
+                    Type = Elemental.Ice,
+                    Tier = 1,
+                    Level = 1
+                }
+                ,new GameDataWeapon
+                {
+                Type = Elemental.Fire,
+                Tier = 1,
+                Level = 1
+                },
+            },
             CurrentSelectedWeapon = Elemental.Wind,
+            Slot1 = Elemental.Ice,
+            Slot2 = Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }
@@ -105,7 +124,7 @@ public class DataController : Singleton<DataController>
         MonsterDataBases = JsonUtility.FromJson<MonsterDataBases>(ConectingFireBase.Instance.GetTextMonsterDataBases());
         GameStageDataBase = JsonUtility.FromJson<GameStageDataBase>(ConectingFireBase.Instance.GetTextGameStageDataBase());
         GameEnemyDataBase = JsonUtility.FromJson<GameEnemyDataBase>(ConectingFireBase.Instance.GetTextGameEnemyDataBase());
-        AllianceDataBases = JsonUtility.FromJson<AllianceDataBases>(ConectingFireBase.Instance.GetTextAllianceDatabase());
+        AllianceDataBases = JsonUtility.FromJson<AllianceDataBase>(ConectingFireBase.Instance.GetTextAllianceDatabase());
         BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
         ///Load data 
         Load();
@@ -153,7 +172,6 @@ public class DataController : Singleton<DataController>
                 Level = sl1.Level,
                 ATK = wp1.ATK[sl1.Level - 1],
                 ATKspeed = wp1.ATKspeed[slwp.Level - 1],
-                ATKRange = wp1.ATKRange[slwp.Level - 1]
             };
         }
 
@@ -161,9 +179,9 @@ public class DataController : Singleton<DataController>
         if (GameData.Slot2 != Elemental.None)
         {
             //load
-            var sl2 = GameData.GetGameAlliance(GameData.Slot1);
+            var sl2 = GameData.GetGameAlliance(GameData.Slot2);
             var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.Tier);
-            IngameAlliance1 = new IngameAlliance
+            IngameAlliance2 = new IngameAlliance
             {
                 Type = wp2.Type,
                 Tier = wp2.Tier,

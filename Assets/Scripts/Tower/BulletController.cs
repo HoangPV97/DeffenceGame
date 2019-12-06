@@ -34,15 +34,8 @@ public class BulletController : MonoBehaviour
         }
         Vector3 dir = Target.transform.position - transform.position;
         transform.up = dir;
-        transform.Translate(dir.normalized * bullet.Speed * 0.1f * Time.deltaTime, Space.World);
-
+        transform.Translate(dir.normalized * bullet.Speed  * Time.deltaTime, Space.World);
     }
-    public void DirectShooting(Vector2 _direction)
-    {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<Rigidbody2D>().velocity = _direction.normalized * bullet.Speed *0.1f* Time.deltaTime;
-    }
-
     public void Despawn()
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);

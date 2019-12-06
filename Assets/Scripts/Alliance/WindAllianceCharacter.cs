@@ -7,10 +7,17 @@ using UnityEngine;
 
 public class WindAllianceCharacter : AllianceController
 {
-    //public SkeletonAnimation skeletonAnimation;
-    //public AnimationReferenceAsset attack,idle;
-    //[SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-
+    //public float ATK;
+    //public float ATKspeed;
+    //public void SetDataWeapon()
+    //{
+    //    this.elementalType = DataController.Instance.IngameAlliance2.Type;
+    //    ///
+    //    /// set file spine/
+    //    ///
+    //    ATK = DataController.Instance.IngameAlliance2.ATK;
+    //    ATKspeed = DataController.Instance.IngameAlliance2.ATKspeed;
+    //}
     private void Start()
     {
 

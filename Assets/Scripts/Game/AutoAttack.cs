@@ -25,13 +25,11 @@ public class AutoAttack : MonoBehaviour
         {
             player.currentMode = PlayerController.AutoMode.TurnOn;
             btnAuto.image.sprite = autoImage;
-            textMesh.text = "Auto\nOn";
         }
         else
         {
             player.currentMode = PlayerController.AutoMode.TurnOff;
             btnAuto.image.sprite = disableImage;
-            textMesh.text = "Auto\nOff";
         }
     }
 }

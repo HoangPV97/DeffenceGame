@@ -11,6 +11,11 @@ public class WindAllianceBullet : BulletController
     }
     private void Update()
     {
+        if (Target == null || !Target.isLive)
+        {
+            Despawn();
+            return;
+        }
         base.Update();
     }
     private void OnTriggerEnter2D(Collider2D Target)
@@ -28,10 +33,7 @@ public class WindAllianceBullet : BulletController
             {
                 enemy?.DealDamge(bullet.Damage, 0);
             }
-            if (SeekTarget)
-            {
-                Despawn();
-            }
+            Despawn();
         }
     }
 }
