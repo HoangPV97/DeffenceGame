@@ -225,6 +225,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponsDatas:
     Weapons: []
+  MonsterDataBases:
+    monsterDatas: []
+  GameStageDataBase:
+    stageDataBases: []
+  GameEnemyDataBase:
+    stageEnemies: []
+  DefaultData: {fileID: 0}
+  GameData:
+    BaseHPLevel: 1
+    BaseHPTier: 1
+    BaseManaLevel: 1
+    BaseManaTier: 1
+    BaseShieldLevel: 1
+    BaseShieldTier: 1
+    CurrentStage: 1
+    Inventory: []
+    gameDataWeapons: []
+    gameDataAlliance: []
+    CurrentSelectedWeapon: 0
+    Slot1: 0
+    Slot2: 0
+  StageData:
+    Level: 0
+    HardMode: 0
+    stageDataBase:
+      Level: 0
+      StarCondition: 
+      WinReward: []
+    stageEnemyDataBase:
+      Level: 0
+      NightMareAddLevel: 0
+      HellAddLevel: 0
+      stageEnemies: []
+  CurrentSelected: 0
+  inGameWeapons:
+    Type: 0
+    Tier: 0
+    Level: 0
+    ATK: 0
+    ATKspeed: 0
+    BulletSpeed: 0
+  IngameAlliance1:
+    Type: 0
+    Tier: 0
+    Level: 0
+    ATK: 0
+    ATKspeed: 0
+    ATKRange: 0
+  IngameAlliance2:
+    Type: 0
+    Tier: 0
+    Level: 0
+    ATK: 0
+    ATKspeed: 0
+    ATKRange: 0
+  InGameBaseData:
+    HP: 0
+    Mana: 0
+    HPRegen: 0
+    ManaRegen: 0
+    ShieldBlockChance: 0
+    ShieldBlockValue: 0
 --- !u!4 &184790057
 Transform:
   m_ObjectHideFlags: 0

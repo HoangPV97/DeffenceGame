@@ -5,7 +5,7 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-public class FireRangeEnemy : EnemyController,IFireEffectable
+public class FireRangeEnemy : EnemyController, IFireEffectable
 {
     void Start()
     {
@@ -20,18 +20,19 @@ public class FireRangeEnemy : EnemyController,IFireEffectable
     }
     public new void Attack()
     {
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("fireenemybullet", transform.position, Quaternion.identity);
-            EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
-            if (m_EnemyBullet != null)
-            {
-                m_EnemyBullet.SetTarget(Tower.transform);
-                m_EnemyBullet.SetDamage(enemy.damage);
-            }
+        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("fireenemybullet", transform.position, Quaternion.identity);
+        EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
+        if (m_EnemyBullet != null)
+        {
+            m_EnemyBullet.SetTarget(Tower.transform);
+            m_EnemyBullet.SetDamage(enemy.damage);
+            m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
+        }
     }
     public void CheckAttack()
     {
         distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range && isLive )
+        if (distancetoTower < enemy.range && isLive)
         {
             if (countdown <= 0f && isAttack)
             {

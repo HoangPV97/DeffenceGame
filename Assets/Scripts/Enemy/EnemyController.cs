@@ -56,9 +56,13 @@ public class EnemyController : MonoBehaviour
     public void SetUpdata(string type, int Level)
     {
         var md = DataController.Instance.GetMonsterData(type);
-        enemy.health.Init(md.HP, 0);
-        enemy.damage = md.ATK;
-        enemy.armor = md.Armor;
+        float growth = 1 + md.Growth * Level;
+        enemy.health.Init(md.HP * growth, 0);
+        enemy.damage = md.ATK * growth;
+        enemy.armor = md.Armor * growth;
+        enemy.speed = md.MoveSpeed;
+        enemy.rateOfFire = md.ATKSpeed;
+        enemy.bulletSpeed = md.BulletSpeed;
     }
 
     // Update is called once per frame
