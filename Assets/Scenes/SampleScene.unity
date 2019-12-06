@@ -1784,7 +1784,7 @@ MonoBehaviour:
   - tag: stuneffect
     prefab: {fileID: 4485175983094295713, guid: 30ecef1dc4b52bf4f982dd6c31689e41,
       type: 3}
-  - tag: WEAPON_FIRE_SKILL_1
+  - tag: ALLIANCE_FIRE_SKILL_1
     prefab: {fileID: 2625949087083810963, guid: 56311b1c93261424aa408a6a24f6efee,
       type: 3}
   - tag: windalliancebullet
