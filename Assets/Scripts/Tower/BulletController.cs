@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour
     {
         if (Target == null || !Target.isLive)
         {
-            // gameObject.SetActive(false);
+            //Despawn();
             return;
         }
         Vector3 dir = Target.transform.position - transform.position;
@@ -40,7 +40,7 @@ public class BulletController : MonoBehaviour
     public void DirectShooting(Vector2 _direction)
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
+        GetComponent<Rigidbody2D>().velocity = _direction.normalized * bullet.Speed *0.1f* Time.deltaTime;
     }
 
     public void Despawn()

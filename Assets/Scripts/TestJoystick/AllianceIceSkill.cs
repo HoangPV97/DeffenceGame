@@ -6,13 +6,30 @@ public class AllianceIceSkill : Skill
 {
     public VariableJoystick variableJoystick;
     public GameObject circle;
-    public IceAllianceCharacter Alliance;
+    public string bulletName, EffectName;
+    [SerializeField]
+    SkillWeaponIce1 Swi1;
+    // Start is called before the first frame update
+    /// <summary>
+    /// get data sww1.ManaCost[Level-1]
+    /// </summary>
+    int Level;
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
     }
-
+    public override void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    {
+        base.SetUpData(Level);
+        this.Level = Level;
+        Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
+        this.variableJoystick = variableJoystick;
+        manaCost = Swi1.ManaCost[Level - 1];
+        CountdownTime = Swi1.CoolDown[Level - 1];
+        variableJoystick.SetUpData(this);
+        CountdownGo = variableJoystick.CountDountMask;
+    }
     // Update is called once per frame
     protected void Update()
     {
@@ -46,12 +63,21 @@ public class AllianceIceSkill : Skill
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
         Tower.Mana.ConsumeMana(manaCost);
-        Alliance.IceSkill(circle.transform.position);
+        IceSkill(circle.transform.position);
         circle.SetActive(false);
     }
     public override void OnInvokeSkill()
     {
+        circle.SetActive(false);
         Debug.Log(Tower.Mana.CurrentMana + "___" + manaCost);
+        
+        if (Tower.Mana.CurrentMana >= manaCost)
+        {
+            Play();
+        }
+    }
+    private void OnMouseUp()
+    {
         circle.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost)
         {
@@ -61,5 +87,14 @@ public class AllianceIceSkill : Skill
     public override void OnCancelSkill()
     {
         circle.SetActive(false);
+    }
+    public void IceSkill(Vector3 _position)
+    {
+        GameObject iceskill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
+        float particleTime = iceskill.GetComponentInChildren<ParticleSystem>().main.duration;
+        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        CheckDestroyEffect(effectStart, particleTime);
+        CheckDestroyEffect(iceskill, 0.5f);
     }
 }
