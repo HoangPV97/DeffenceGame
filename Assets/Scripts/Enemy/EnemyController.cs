@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Spine.AnimationState;
-
 public class Enemies
 {
     public static List<EnemyController> listEnemies = new List<EnemyController>();
@@ -27,20 +26,17 @@ public class EnemyController : MonoBehaviour
     protected float distancetoTower;
     protected float countdown;
     public static float EnemyLive;
-    SoundManager soundManager;
     float distance;
     GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
-
+    ObjectPoolManager objectPoolManager;
     [SerializeField] GameObject HealthUI;
     [SerializeField] BoxCollider2D boxCollider2D;
     // Start is called before the first frame update
     private void Awake()
     {
         Enemies.listEnemies = new List<EnemyController>();
-        soundManager = SoundManager.Instance;
-
     }
     protected void Start()
     {
@@ -113,7 +109,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
         Enemies.listEnemies.Remove(this);
         EnemyLive--;
-        gameObject.SetActive(false);
+        Despawn();
     }
 
     //public void SpawnGold()
@@ -241,5 +237,9 @@ public class EnemyController : MonoBehaviour
         {
             Enemies.listEnemies.Add(this);
         }
+    }
+    public void Despawn()
+    {
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

@@ -20,14 +20,24 @@ MonoBehaviour:
   BaseDatabases: {fileID: 4900000, guid: 03339cb318134d14881dbc8e5e58db5a, type: 3}
   WeaponWindSkills:
   - {fileID: 4205350128027674012, guid: 266d54d723e55404a93b4342d168f2dc, type: 3}
-  WeaponIceSkills:
-  - {fileID: 0}
+  WeaponIceSkills: []
   WeaponEarthSkills: []
-  WeaponFireSkills: []
+  WeaponFireSkills:
+  - {fileID: 3346026367710059841, guid: f3f5b7611f7d04340951ff9fb9da7877, type: 3}
   AllianceWindSkills: {fileID: 0}
-  AllianceIceSkills: {fileID: 0}
+  AllianceIceSkills: {fileID: 3346026367710059841, guid: 47fd60ea0241956409dfffd53b3aa6bd,
+    type: 3}
   AllianceEarthSkills: {fileID: 0}
-  AllianceFireSkills: {fileID: 0}
+  AllianceFireSkills: {fileID: 3346026367710059841, guid: f3f5b7611f7d04340951ff9fb9da7877,
+    type: 3}
   TextWeaponSkills:
   - SkillID: WEAPON_WIND_SKILL_1
     SkillText: '{"SkillID":"WEAPON_WIND_SKILL_1","ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"KnockbackDistance":[10,20,30],"KnockbackDuration":[10,20,30],"EffectedAoe":[10,20,30]}'
+  - SkillID: ALLIANCE_ICE_SKILL_1
+    SkillText: '{   "SkillID": "ALLIANCE_ICE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
+      [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
+      [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
+  - SkillID: ALLIANCE_FIRE_SKILL_1
+    SkillText: '{   "SkillID": "ALLIANCE_FIRE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
+      [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
+      [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'

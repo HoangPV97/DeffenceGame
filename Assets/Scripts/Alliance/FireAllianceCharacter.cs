@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class FireAllianceCharacter : AllianceController
 {
-
     private void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
@@ -33,6 +32,7 @@ public class FireAllianceCharacter : AllianceController
         FireAllianceBullet allianceBullet = bullet.GetComponent<FireAllianceBullet>();
         if (allianceBullet != null)
         {
+            allianceBullet.SetDataBullet(ATKspeed,ATK);
             allianceBullet.elementalBullet = elementalType;
             allianceBullet.SetTarget(Alliance.target);
         }

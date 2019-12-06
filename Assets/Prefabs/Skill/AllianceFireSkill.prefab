@@ -88,15 +88,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c53016e771244eb22207f15db6e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 0}
+  SkillID: ALLIANCE_FIRE_SKILL_1
   CountdownGo: {fileID: 0}
   CountdownTime: 13
   manaCost: 0
   NummberBullet: 10
-  alliance: {fileID: 0}
   variableJoystick: {fileID: 0}
   circle: {fileID: 4858672756582602106}
-  Alliance: {fileID: 0}
+  bulletName: stunskill
+  EffectName: stuneffectstart
 --- !u!1 &4858672756582602106
 GameObject:
   m_ObjectHideFlags: 0

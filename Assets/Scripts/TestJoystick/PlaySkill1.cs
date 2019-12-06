@@ -61,15 +61,6 @@ public class PlaySkill1 : Skill
         arrow.SetActive(true);
         arrow.transform.eulerAngles = new Vector3(0, 0, angle - 90.0f);
     }
-    public void Skill1(Vector2 _direction, float _rotatioZ)
-    {
-        GameObject SlowSkill = poolManager.SpawnObject("slowskill", arrow.transform.position, Quaternion.identity);
-        SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        Rigidbody2D rigidbody = SlowSkill.GetComponent<Rigidbody2D>();
-        float speed = SlowSkill.GetComponent<BulletController>().bullet.Speed;
-        rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
-
-    }
     private void Play()
     {
         SlowSkill(direction, angle - 90f);
@@ -98,10 +89,7 @@ public class PlaySkill1 : Skill
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(bulletName, gameObject.transform.position, Quaternion.identity);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
-        if (!effectStart.GetComponent<DestroyEffect>())
-        {
-            effectStart.AddComponent<DestroyEffect>()._time = 0.7f;
-        }
+        CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
         float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;

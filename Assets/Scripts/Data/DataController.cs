@@ -62,10 +62,14 @@ public class DataController : Singleton<DataController>
             }
         }
         else
+        {
+            Debug.Log("<color=red> File not exist</color>");
             ResetData();
+        }
+            
     }
 
-    private void Save()
+    public void Save()
     {
         string origin = JsonUtility.ToJson(GameData);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -93,7 +97,15 @@ public class DataController : Singleton<DataController>
                     Level = 1
                 }
             },
+            gameDataAlliance = new List<GameDataWeapon> {
+                new GameDataWeapon {
+                    Type = Elemental.Ice,
+                    Tier = 1,
+                    Level = 1
+                }
+            },
             CurrentSelectedWeapon = Elemental.Wind,
+            Slot1 = Elemental.Ice,Slot2=Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }
@@ -161,9 +173,9 @@ public class DataController : Singleton<DataController>
         if (GameData.Slot2 != Elemental.None)
         {
             //load
-            var sl2 = GameData.GetGameAlliance(GameData.Slot1);
+            var sl2 = GameData.GetGameAlliance(GameData.Slot2);
             var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.Tier);
-            IngameAlliance1 = new IngameAlliance
+            IngameAlliance2 = new IngameAlliance
             {
                 Type = wp2.Type,
                 Tier = wp2.Tier,

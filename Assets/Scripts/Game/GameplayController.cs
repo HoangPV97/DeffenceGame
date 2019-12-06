@@ -5,6 +5,7 @@ using InviGiant.Tools;
 public class GameplayController : Singleton<GameplayController>
 {
     public PlayerController PlayerController;
+    public GameObject Slot1,Slot2;
     public Tower Tower;
     [Header("Skill button")]
     public bool CancelSkill = false;
@@ -17,6 +18,9 @@ public class GameplayController : Singleton<GameplayController>
     }
     public void LoadDataGamePlay()
     {
+        
+        var Alliance1 = ObjectPoolManager.Instance.SpawnObject(Resources .Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity);
+        var Alliance2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity);
         ///SetUp Base first
         Tower.SetUpData();
 
@@ -41,25 +45,28 @@ public class GameplayController : Singleton<GameplayController>
         if (DataController.Instance.GameData.Slot1 != Elemental.None)
         {
             //Load
-
+            Alliance1.GetComponent<IceAllianceCharacter>().SetDataWeapon();
             // set  skill button
-
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
+            go.GetComponent<Skill>().SetUpData(1, SkillButtons[1]);
         }
 
         ///Load slot 2
         if (DataController.Instance.GameData.Slot2 != Elemental.None)
         {
             //load
-
+            Alliance2.GetComponent<WindAllianceCharacter>().SetDataWeapon();
             // set  skill button
-
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
+            go.GetComponent<Skill>().SetUpData(1, SkillButtons[2]);
         }
 
         //spawn Enemy
         var sd = DataController.Instance.StageData;
         for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
         {
-            StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+            //StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+            StartCoroutine(IESpawnEnemy(i, 5));
             EnemyController.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
         //voi

@@ -39,8 +39,20 @@ public class AllianceController : MonoBehaviour
     public AnimationReferenceAsset attack, idle;
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
+    public float ATK;
+    public float ATKspeed;
+    public  void SetDataWeapon()
+    {
+        this.elementalType = DataController.Instance.IngameAlliance1.Type;
+        ///
+        /// set file spine/
+        ///
+        ATK = DataController.Instance.IngameAlliance1.ATK;
+        ATKspeed = DataController.Instance.IngameAlliance1.ATKspeed;
+    }
     protected void Start()
     {
+
     }
     protected void Update()
     {

@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
                 {
                     player.target = null;
                 }
+
             }
         }
         else
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        //mBullet.SetDataBullet(ATK, ATKspeed);
+        mBullet.SetDataBullet(ATKspeed, ATK);
         mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
         mBullet.DirectShooting(_direction);

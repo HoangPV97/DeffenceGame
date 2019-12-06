@@ -29,10 +29,7 @@ public class FireAllianceBullet : BulletController
             {
                 enemy.DealDamge(bullet.Damage, 0);
             }
-            if (SeekTarget)
-            {
-                Despawn();
-            }
+            Despawn();
         }
     }
 }

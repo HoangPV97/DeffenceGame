@@ -86,4 +86,8 @@ public class GameController : MonoBehaviour
         }
         
     }
+    public void SaveGame()
+    {
+        DataController.Instance.Save();
+    }
 }

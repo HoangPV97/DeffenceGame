@@ -14,11 +14,6 @@ public class TankBullet : BulletController
         //base.Update();
     }
     // Update is called once per frame
-    public void DirectShooting(Vector2 _direction)
-    {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
-    }
     protected void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag) || Target.gameObject.tag.Equals("BlockPoint"))

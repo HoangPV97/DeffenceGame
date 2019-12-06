@@ -21,3 +21,17 @@ public class SkillWeaponWind1 : SkillData
     public float[] KnockbackDuration;
     public float[] EffectedAoe;
 }
+public class SkillWeaponFire1 : SkillData
+{
+    public float[] SkillSpeed;
+    public float[] Damage;
+    public float[] EffectedAoe;
+    public float[] TimeEffect;
+}
+public class SkillWeaponIce1 : SkillData
+{
+    public float[] SkillSpeed;
+    public float[] Damage;
+    public float[] EffectedAoe;
+    public float[] TimeEffect;
+}

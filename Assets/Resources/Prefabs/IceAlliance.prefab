@@ -289,10 +289,12 @@ MonoBehaviour:
     _bulletSkill: iceskill
     _effectStart: iceeffectstart
   Barrel: {fileID: 289914066381771921}
-  elementalType: 0
+  elementalType: 2
   characterState: 0
   preCharacterState: 0
   skeletonAnimation: {fileID: 289914067657404192}
   attack: {fileID: 11400000, guid: 7d4cc4a814872fc4e8a7fe359d8618f1, type: 2}
   idle: {fileID: 11400000, guid: 56917fff3eaaf2e41a1a21fc49aaa895, type: 2}
   eventName: onatk
+  ATK: 0
+  ATKspeed: 0
