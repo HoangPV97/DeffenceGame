@@ -1742,7 +1742,7 @@ MonoBehaviour:
   - tag: fireenemybullet
     prefab: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb,
       type: 3}
-  - tag: slowskill
+  - tag: WEAPON_WIND_SKILL_1
     prefab: {fileID: 185990494516342514, guid: a0f5294d87d3a244f956e7b1edce2de1, type: 3}
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   - tag: enemy6
     prefab: {fileID: 8912908039463566854, guid: 2736130805ea0a8429c949e70ee4930b,
       type: 3}
-  - tag: iceskill
+  - tag: ALLIANCE_ICE_SKILL_1
     prefab: {fileID: 3892153920387240644, guid: a9347b55fa576574daa4e76e3b5ad825,
       type: 3}
   - tag: elementaldamage
@@ -1784,7 +1784,7 @@ MonoBehaviour:
   - tag: stuneffect
     prefab: {fileID: 4485175983094295713, guid: 30ecef1dc4b52bf4f982dd6c31689e41,
       type: 3}
-  - tag: stunskill
+  - tag: WEAPON_FIRE_SKILL_1
     prefab: {fileID: 2625949087083810963, guid: 56311b1c93261424aa408a6a24f6efee,
       type: 3}
   - tag: windalliancebullet

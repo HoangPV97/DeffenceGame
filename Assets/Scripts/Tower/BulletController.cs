@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour
     {
         if (Target == null || !Target.isLive)
         {
-            Despawn();
+            //Despawn();
             return;
         }
         Vector3 dir = Target.transform.position - transform.position;

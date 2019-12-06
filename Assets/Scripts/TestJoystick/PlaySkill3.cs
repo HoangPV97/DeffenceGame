@@ -79,7 +79,7 @@ public class PlaySkill3 : Skill
     }
     public void StunSkill(Vector3 _position)
     {
-        GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(bulletName, _position, Quaternion.identity);
+        GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
         float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
