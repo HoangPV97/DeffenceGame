@@ -50,17 +50,7 @@ public class Skill : MonoBehaviour
         yield return new WaitForSeconds(_time);
         _gameObject.SetActive(status);
     }
-    public void CheckDestroyEffect(GameObject Obj, float _time)
-    {
-        if (!Obj.GetComponent<DestroyEffect>())
-        {
-            Obj.AddComponent<DestroyEffect>()._time = _time;
-        }
-        else
-        {
-            Obj.GetComponent<DestroyEffect>().Start();
-        }
-    }
+
     public virtual void OnInvokeSkill()
     {
     }

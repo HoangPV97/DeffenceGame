@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class IceAllianceCharacter : AllianceController
 {
-    
+
     private void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
@@ -35,7 +35,6 @@ public class IceAllianceCharacter : AllianceController
         IceAllianceBullet alianceBullet = bullet.GetComponent<IceAllianceBullet>();
         if (alianceBullet != null)
         {
-            alianceBullet.SetDataBullet(ATKspeed, ATK);
             alianceBullet.elementalBullet = elementalType;
             alianceBullet.SetTarget(Alliance.target);
         }

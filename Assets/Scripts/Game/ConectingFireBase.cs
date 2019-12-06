@@ -74,7 +74,7 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
     public string GetTextAllianceDatabase()
     {
         if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
-            return FirebaseRemoteConfig.GetValue("AllianceDataBase").StringValue;
+            return FirebaseRemoteConfig.GetValue("AllianceDataBases").StringValue;
         else
         {
             return DataController.Instance.DefaultData.AllianceDataBases.text;

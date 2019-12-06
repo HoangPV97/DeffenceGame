@@ -22,7 +22,10 @@ public class Enemy
     private Health _health;
     [SerializeField]
     private Elemental _elemental;
+    [SerializeField]
+    private float _bulletSpeed;
 
+    public float bulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
     public string name { get => _name; set => _name = value; }
     public float speed { get => _speed; set => _speed = value; }
     public float damage { get => _damage; set => _damage = value; }
