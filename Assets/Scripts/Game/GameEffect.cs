@@ -14,7 +14,8 @@ public class GameEffect : MonoBehaviour
                 effectObj = SpawnEffect("freezeffect", _position, _time);
                 break;
             case Effect.Slow:
-                this.gameObject.GetComponent<Rigidbody2D>().AddForce(_position * 5);
+                //this.gameObject.GetComponent<Rigidbody2D>().AddForce(_position * 5);
+                KnockBack(this.gameObject, _position);
                 break;
             case Effect.Stun:
                 effectObj = SpawnEffect("stuneffect", _position, _time);
@@ -40,7 +41,7 @@ public class GameEffect : MonoBehaviour
             effectObj.AddComponent<DestroyEffect>()._time = _time;
         return effectObj;
     }
-
+    
 }
 public class DestroyEffect : MonoBehaviour
 {

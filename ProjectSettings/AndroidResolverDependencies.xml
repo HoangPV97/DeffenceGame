@@ -61,7 +61,7 @@
   </files>
   <settings>
     <setting name="androidAbis" value="armeabi-v7a,x86" />
-    <setting name="bundleId" value="com.Hoang.Demo" />
+    <setting name="bundleId" value="com.cscmobi.herodefense" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />

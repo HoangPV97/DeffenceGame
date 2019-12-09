@@ -12,7 +12,7 @@ public class SlowSkill : BulletController
     {
         if (_Target.gameObject.tag.Equals("BlockPoint"))
         {
-          //  gameObject.SetActive(false);
+            ObjectPoolManager.Instance.DespawnObJect(gameObject);
         }
         Identify identify = _Target.gameObject.GetComponent<Identify>();
         if (identify == null)
@@ -37,7 +37,7 @@ public class SlowSkill : BulletController
                 {
                     enemy.DealDamge(bullet.Damage, 0);
                 }
-                enemy.DealEffect(Effect.Slow, new Vector3(0,0.4f,0), 0);
+                enemy.DealEffect(Effect.Slow, new Vector3(0,1f,0), 0);
                 return;
             }
         }

@@ -97,7 +97,7 @@ public class PlaySkill1 : Skill
     public void SlowSkill(Vector2 _direction, float _rotatioZ)
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(SkillID, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, gameObject.transform.position, Quaternion.identity);
         CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();

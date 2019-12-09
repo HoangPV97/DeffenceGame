@@ -40,7 +40,7 @@ public class EnemyBullet : MonoBehaviour
             Tower tower = _Tower.GetComponent<Tower>();
             tower?.TakeDamage(bullet.Damage);
             GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
-            Exposion.AddComponent<DestroyEffect>()._time = 0.3f;
+            Exposion.AddComponent<DestroyEffect>()._time = 0.5f;
             //  gameObject.SetActive(false);
             ObjectPoolManager.Instance.DespawnObJect(gameObject);
         }

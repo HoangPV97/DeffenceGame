@@ -1,1 +1,34 @@
-{"monsterDatas":[{"Type":"W_1","HP":50,"ATK":60,"Range":7,"ATKSpeed":1,"MoveSpeed":4,"Armor":10,"Growth":0.1}]}
+{
+  "monsterDatas": [
+    {
+      "Type": "W_1",
+      "HP": 50,
+      "ATK": 60,
+      "Range": 7,
+      "ATKSpeed": 1,
+      "MoveSpeed": 4,
+      "Armor": 10,
+      "Growth": 0.1
+    },
+    {
+      "Type": "W_2",
+      "HP": 70,
+      "ATK": 50,
+      "Range": 5,
+      "ATKSpeed": 1,
+      "MoveSpeed": 4,
+      "Armor": 8,
+      "Growth": 0.1
+    },
+    {
+      "Type": "W_3",
+      "HP": 60,
+      "ATK": 55,
+      "Range": 6,
+      "ATKSpeed": 1,
+      "MoveSpeed": 3,
+      "Armor": 9,
+      "Growth": 0.1
+    }
+  ]
+}

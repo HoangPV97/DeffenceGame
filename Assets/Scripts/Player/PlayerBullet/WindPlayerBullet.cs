@@ -10,11 +10,11 @@ public class WindPlayerBullet : BulletController
     }
     private void Update()
     {
-        if (Target == null || !Target.isLive)
-        {
-            Despawn();
-            return;
-        }
+        //if (Target == null || !Target.isLive)
+        //{
+        //    Despawn();
+        //    return;
+        //}
     }
     // Update is called once per frame
     public void DirectShooting(Vector2 _direction)

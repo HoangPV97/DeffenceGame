@@ -1705,7 +1705,7 @@ MonoBehaviour:
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
       type: 3}
-  - tag: enemy3
+  - tag: W_3
     prefab: {fileID: 7178071149278825015, guid: 632bd9b6a9f80db459ce828612406efb,
       type: 3}
   - tag: enemy4
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   - tag: W_1
     prefab: {fileID: 8020962621357836206, guid: 0b98e80e53dedd741a0c9e6ab999dbfe,
       type: 3}
-  - tag: enemy2
+  - tag: W_2
     prefab: {fileID: 1529785039770135921, guid: 3da9603081489f845bf9f249911be413,
       type: 3}
   - tag: enemy5

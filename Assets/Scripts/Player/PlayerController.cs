@@ -64,15 +64,20 @@ public class PlayerController : MonoBehaviour
             switch (currentMode)
             {
                 case AutoMode.TurnOff:
-                    characterState = CharacterState.Idle;
+                    //characterState = CharacterState.Idle;
                     direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
                     rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+
                     if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                         && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                     {
                         //ClicktoShoot();
                         characterState = CharacterState.Attack;
                         coundown = player.rateOfFire;
+                    }
+                    else
+                    {
+                        characterState = CharacterState.Idle;
                     }
                     break;
                 case AutoMode.TurnOn:
@@ -82,6 +87,11 @@ public class PlayerController : MonoBehaviour
                         characterState = CharacterState.Attack;
                         direct = player.target.gameObject.transform.position - Barrel.transform.position;
                         rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                    }
+                    else
+                    {
+                        characterState = CharacterState.Idle;
+                        ChangeState();
                     }
                     break;
             }
@@ -147,10 +157,11 @@ public class PlayerController : MonoBehaviour
                 if (!nearestEnemy.isLive && _2ndEnemy == null)
                 {
                     player.target = null;
+                    characterState = CharacterState.Idle;
                 }
             }
         }
-        else
+        else if(listEnemies.Count <=0 && currentMode== AutoMode.TurnOn)
         {
             characterState = CharacterState.Idle;
         }

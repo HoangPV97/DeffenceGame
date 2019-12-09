@@ -73,6 +73,6 @@ public class WindAllianceCharacter : AllianceController
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position+new Vector3(0,1,0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
-        CheckDestroyEffect(stunSkill, 0.5f);
+        CheckDestroyEffect(stunSkill, 1f);
     }
 }

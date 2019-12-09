@@ -95,6 +95,6 @@ public class AllianceIceSkill : Skill
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
-        CheckDestroyEffect(iceskill, 0.5f);
+        CheckDestroyEffect(iceskill, particleTime);
     }
 }

@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
         enemy.speed = md.MoveSpeed;
         enemy.rateOfFire = md.ATKSpeed;
         enemy.bulletSpeed = md.BulletSpeed;
+        enemy.range = md.Range;
     }
 
     // Update is called once per frame
