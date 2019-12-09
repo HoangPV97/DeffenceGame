@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SlowSkill : BulletController
 {
+
     [SerializeField]
     float backSpace;
     // Start is called before the first frame update
+    public void SetDataSkill(float _speed,float _damage,float _knockback)
+    {
 
+    }
     private void OnTriggerEnter2D(Collider2D _Target)
     {
         if (_Target.gameObject.tag.Equals("BlockPoint"))

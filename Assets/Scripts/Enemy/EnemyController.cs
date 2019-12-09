@@ -72,14 +72,10 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-    //Find player with tag="Player"
     protected void SeekingTower()
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
     }
-    /// <summary>
-    /// Move Enemy with velocity= distance/time
-    /// </summary>
     public void Move()
     {
         if (isMove)
@@ -221,10 +217,6 @@ public class EnemyController : MonoBehaviour
             isAttack = true;
             CurrentState = EnemyState.Attack;
         }
-        //if (collider2D.gameObject.tag.Equals("Player"))
-        //{
-        //    GameplayController.Instance.PlayerController.listEnemies.Add(this);
-        //}
     }
     private void OnEnable()
     {

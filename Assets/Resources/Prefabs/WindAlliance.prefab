@@ -193,7 +193,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 94f8941f90b8a944c8c28342cb8b5b86, type: 2}
+  - {fileID: 2100000, guid: d1c1336f0026d8e4398f0179fea4ba09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 6f6e340e5a23f2a40a9b662fc35595ca, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 56a410d01201ecb4fb022516de19b66f, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -264,9 +264,9 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 1786888695913067428}
   statesAnimation:
   - stateName: attack
-    animation: {fileID: 11400000, guid: 1cd725be85852bd459f13e61a5755730, type: 2}
+    animation: {fileID: 11400000, guid: 0eeb741b5b6217d4ea7fbf6c428c05bb, type: 2}
   - stateName: idle
-    animation: {fileID: 11400000, guid: 343509e0d0d5373469460f5768c77061, type: 2}
+    animation: {fileID: 11400000, guid: 399572f80af1bd749979717dea99d93c, type: 2}
 --- !u!114 &1786888695913067430
 MonoBehaviour:
   m_ObjectHideFlags: 0

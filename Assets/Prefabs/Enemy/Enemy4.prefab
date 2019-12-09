@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 3037066633875204656}
   - component: {fileID: 2329509318956476609}
   - component: {fileID: 7610019489098410371}
-  - component: {fileID: 4262427703916507590}
   - component: {fileID: 9186302783461152939}
   - component: {fileID: 9213207529110385906}
+  - component: {fileID: 5465840703658280170}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Enemy
@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.45}
+  m_Size: {x: 1.55, y: 1.03}
   m_EdgeRadius: 0
 --- !u!50 &3154056995103499106
 Rigidbody2D:
@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b41186d7addfd14a846bbabe1584a20, type: 2}
+  - {fileID: 2100000, guid: 1f646ba45c1920b49a05fac6c0c5e4c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: cc8c74ed405b6244f9863f393992b8a6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 72d25bda28f2205469e4e8d9e950ec42, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -227,51 +227,15 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 2329509318956476609}
   statesAnimation:
   - stateName: attack
-    animation: {fileID: 11400000, guid: 38eee7796defacf4fa38dd6a6a845196, type: 2}
+    animation: {fileID: 11400000, guid: 126e3bb46f115d44d80b6c4a11857b08, type: 2}
   - stateName: die
-    animation: {fileID: 11400000, guid: 78d84e600a5787d4b9ddf632730fa14b, type: 2}
+    animation: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}
   - stateName: hurt
-    animation: {fileID: 11400000, guid: 2647c73863efc7745b121aa28667fbf0, type: 2}
+    animation: {fileID: 11400000, guid: eb234618f56a71e4497984f911404aa7, type: 2}
   - stateName: run
-    animation: {fileID: 11400000, guid: 1aac05b5f4b49bb429eae27d04797c5e, type: 2}
+    animation: {fileID: 11400000, guid: 8475b5eee8fea5c49bf800054e0d7f18, type: 2}
   - stateName: idle
-    animation: {fileID: 11400000, guid: cae16d314a7830f46960cf4e65510ecb, type: 2}
---- !u!114 &4262427703916507590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5556297814356171359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4344403889e694ab3a6981de60dfd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy:
-    _speed: 13
-    _name: DDDD
-    _damage: 4
-    _range: 1
-    _price: 2
-    _armor: 2
-    _rateOfFire: 1
-    _health:
-      mHealth: 100
-      currentHealth: 0
-      recoverHealthValue: 0
-      recoverHealthTime: 0
-      healthBar: {fileID: 4436636802897880709}
-      effecthealthBar: {fileID: 0}
-      healthValueText: {fileID: 0}
-    _elemental: 3
-  playSkeletonAnimation: {fileID: 7610019489098410371}
-  isMove: 1
-  isAttack: 1
-  isLive: 1
-  Rigidbody2D: {fileID: 3154056995103499106}
-  HealthUI: {fileID: 5556297814197646599}
-  boxCollider2D: {fileID: 5556297814356171331}
+    animation: {fileID: 11400000, guid: 0b0cb78ed81611940ad494cb2a83e208, type: 2}
 --- !u!114 &9186302783461152939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +252,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4262427703916507590}
+      - m_Target: {fileID: 5465840703658280170}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -314,6 +278,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 4471448962666860270}
+--- !u!114 &5465840703658280170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556297814356171359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b547f42b1ac0d40bcff74f92190331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+    _speed: 17
+    _name: BBB
+    _damage: 7
+    _range: 9
+    _price: 2
+    _armor: 2
+    _rateOfFire: 2.2
+    _health:
+      mHealth: 140
+      currentHealth: 0
+      recoverHealthValue: 0
+      recoverHealthTime: 0
+      healthBar: {fileID: 4436636802897880709}
+      effecthealthBar: {fileID: 0}
+      healthValueText: {fileID: 0}
+    _elemental: 1
+    _bulletSpeed: 0
+  playSkeletonAnimation: {fileID: 7610019489098410371}
+  isMove: 1
+  isAttack: 1
+  isLive: 1
+  Rigidbody2D: {fileID: 3154056995103499106}
+  HealthUI: {fileID: 5556297814197646599}
+  boxCollider2D: {fileID: 5556297814356171331}
 --- !u!1001 &9039521630462613986
 PrefabInstance:
   m_ObjectHideFlags: 0
