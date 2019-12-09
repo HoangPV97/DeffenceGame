@@ -294,8 +294,8 @@ MonoBehaviour:
   characterState: 0
   preCharacterState: 0
   skeletonAnimation: {fileID: 1786888695913067428}
-  attack: {fileID: 11400000, guid: 1cd725be85852bd459f13e61a5755730, type: 2}
-  idle: {fileID: 11400000, guid: 343509e0d0d5373469460f5768c77061, type: 2}
+  attack: {fileID: 11400000, guid: 0eeb741b5b6217d4ea7fbf6c428c05bb, type: 2}
+  idle: {fileID: 11400000, guid: 399572f80af1bd749979717dea99d93c, type: 2}
   eventName: onatk
   playerController: {fileID: 0}
   listEnemies: []
