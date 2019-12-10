@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
         mBullet.SetDataBullet(ATKspeed, ATK);
         mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
-        mBullet.GetComponent<Rigidbody2D>().velocity = _direction.normalized *10* mBullet.bullet.Speed * Time.deltaTime;
+        mBullet.DirectShooting(_direction);
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {

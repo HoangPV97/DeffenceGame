@@ -46,10 +46,6 @@ public class SlowSkill : BulletController
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
     public class Identify : MonoBehaviour
     {
         public bool collided;

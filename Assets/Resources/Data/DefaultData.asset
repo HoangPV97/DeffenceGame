@@ -24,7 +24,8 @@ MonoBehaviour:
   WeaponEarthSkills: []
   WeaponFireSkills:
   - {fileID: 3346026367710059841, guid: f3f5b7611f7d04340951ff9fb9da7877, type: 3}
-  AllianceWindSkills: {fileID: 0}
+  AllianceWindSkills: {fileID: 3346026367710059841, guid: f3f5b7611f7d04340951ff9fb9da7877,
+    type: 3}
   AllianceIceSkills: {fileID: 3346026367710059841, guid: 47fd60ea0241956409dfffd53b3aa6bd,
     type: 3}
   AllianceEarthSkills: {fileID: 0}

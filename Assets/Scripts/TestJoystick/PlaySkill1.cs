@@ -39,7 +39,7 @@ public class PlaySkill1 : Skill
     {
         base.Update();
 
-        if (variableJoystick.Vertical != 0)
+        if (variableJoystick.Vertical != 0 && TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost)
         {
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrow.transform.position;
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -82,7 +82,6 @@ public class PlaySkill1 : Skill
 
     public override void OnInvokeSkill()
     {
-        Debug.Log(Tower.Mana.CurrentMana + "___" + manaCost);
         arrow.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {

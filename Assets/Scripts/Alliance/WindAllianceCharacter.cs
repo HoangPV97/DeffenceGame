@@ -7,17 +7,7 @@ using UnityEngine;
 
 public class WindAllianceCharacter : AllianceController
 {
-    //public float ATK;
-    //public float ATKspeed;
-    //public void SetDataWeapon()
-    //{
-    //    this.elementalType = DataController.Instance.IngameAlliance2.Type;
-    //    ///
-    //    /// set file spine/
-    //    ///
-    //    ATK = DataController.Instance.IngameAlliance2.ATK;
-    //    ATKspeed = DataController.Instance.IngameAlliance2.ATKspeed;
-    //}
+    Vector2 direct;
     private void Start()
     {
 
@@ -36,27 +26,20 @@ public class WindAllianceCharacter : AllianceController
 
     private void Update()
     {
-        CheckShoot();
         base.Update();
+        CheckShoot();
     }
 
     protected void Shoot()
     {
+        characterState = CharacterState.Attack;
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
+        WindAllianceBullet allianceBullet = bullet.GetComponent<WindAllianceBullet>();
         if (Alliance.target != null)
         {
-            characterState = CharacterState.Attack;
-            GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
-            WindAllianceBullet alianceBullet = bullet.GetComponent<WindAllianceBullet>();
-            if (alianceBullet != null)
-            {
-                alianceBullet.elementalBullet = elementalType;
-                alianceBullet.SetTarget(Alliance.target);
-            }
-
-        }
-        else
-        {
-            characterState = CharacterState.Idle;
+            allianceBullet.SetTarget(Alliance.target);
+            allianceBullet.elementalBullet = elementalType;
+            allianceBullet.SetDataBullet(ATKspeed, ATK);
         }
     }
     void CheckShoot()
@@ -65,13 +48,17 @@ public class WindAllianceCharacter : AllianceController
         {
             characterState = CharacterState.Attack;
         }
+        else
+        {
+            characterState = CharacterState.Idle;
+        }
     }
     public void StunSkill(Vector3 _position)
     {
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
         float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position+new Vector3(0,1,0), Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
         CheckDestroyEffect(stunSkill, 1f);
     }

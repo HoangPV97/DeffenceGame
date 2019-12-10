@@ -105,14 +105,14 @@ public class DataController : Singleton<DataController>
                 }
                 ,new GameDataWeapon
                 {
-                Type = Elemental.Fire,
+                Type = Elemental.Wind,
                 Tier = 1,
                 Level = 1
                 },
             },
             CurrentSelectedWeapon = Elemental.Wind,
             Slot1 = Elemental.Ice,
-            Slot2 = Elemental.Fire,
+            Slot2 = Elemental.Wind,
             gameStages = new List<GameStage>()
         };
     }

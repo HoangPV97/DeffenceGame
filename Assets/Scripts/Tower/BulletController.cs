@@ -13,8 +13,10 @@ public class BulletController : MonoBehaviour
     public Elemental elementalBullet;
     public float damagePlus;
     public GameEffect gameEffect;
+    Rigidbody2D Rigidbody2D;
     protected void Start()
     {
+        Rigidbody2D = GetComponent<Rigidbody2D>();
         gameEffect = new GameEffect();
     }
     public void SetDataBullet(float _speed, float _damage)
@@ -29,22 +31,33 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (Target == null || !Target.isLive)
+        //if (Target == null || !Target.isLive)
+        //{
+        //    //Despawn();
+        //    return;
+        //}
+        if(Target != null)
         {
-            //Despawn();
-            return;
+            Vector3 dir = Target.transform.position - transform.position;
+            transform.up = dir;
+            transform.Translate(dir.normalized * bullet.Speed * 0.1f * Time.deltaTime, Space.World);
         }
-        Vector3 dir = Target.transform.position - transform.position;
-        transform.up = dir;
-        transform.Translate(dir.normalized * bullet.Speed  * Time.deltaTime, Space.World);
+        
+    }
+    public void DirectShooting(Vector2 _direction)
+    {
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        GetComponent<Rigidbody2D>().velocity = _direction.normalized *10* bullet.Speed * Time.deltaTime;
     }
     public void Despawn()
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
-    public IEnumerator IEDespawn(GameObject _gameobject,float _time)
+    private void OnTriggerEnter2D(Collider2D _Target)
     {
-        yield return new WaitForSeconds(_time);
-        ObjectPoolManager.Instance.DespawnObJect(_gameobject);
+        if (_Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            Despawn();
+        }
     }
 }

@@ -26,7 +26,7 @@ public class WindPlayerBullet : BulletController
     {
         if (Target.gameObject.tag.Equals("BlockPoint"))
         {
-            gameObject.SetActive(false);
+            Despawn();
         }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {

@@ -6,13 +6,6 @@ using UnityEngine;
 
 public class IceAllianceCharacter : AllianceController
 {
-
-    public void SetDataWeapon()
-    {
-        this.elementalType = DataController.Instance.IngameAlliance1.Type;
-        ATK = DataController.Instance.IngameAlliance1.ATK;
-        ATKspeed = DataController.Instance.IngameAlliance1.ATKspeed;
-    }
     private void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
@@ -42,6 +35,7 @@ public class IceAllianceCharacter : AllianceController
         if (alianceBullet != null)
         {
             alianceBullet.elementalBullet = elementalType;
+            alianceBullet.SetDataBullet(ATKspeed, ATK);
             alianceBullet.SetTarget(Alliance.target);
         }
     }

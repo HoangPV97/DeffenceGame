@@ -41,18 +41,17 @@ public class AllianceController : MonoBehaviour
     public AnimationReferenceAsset attack, idle;
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
-    public PlayerController playerController;
     public List<EnemyController> listEnemies;
     public float ATK;
     public float ATKspeed;
+    protected Vector2 direction;
     public CircleCollider2D CircleCollider2D;
     protected void Start()
     {
         CircleCollider2D.radius = Alliance.range;
         listEnemies = new List<EnemyController>();
-        playerController = GameplayController.Instance.PlayerController;
     }
-    public void SetDataWeapon(Elemental elemental, float Atkspeed,float atk)
+    public void SetData_Alliance_Weapon(Elemental elemental, float Atkspeed,float atk)
     {
         this.elementalType = elemental;
         ATK = atk;
@@ -66,13 +65,11 @@ public class AllianceController : MonoBehaviour
             ChangeCharacterState();
             preCharacterState = characterState;
         }
-        if (Alliance.target == null)
+        if (Alliance.target== null)
+
         {
             return;
         }
-
-        //AutoShoot();
-
     }
     private void ChangeCharacterState()
     {

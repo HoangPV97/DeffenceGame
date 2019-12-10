@@ -20,7 +20,9 @@ public class WindMeleeEnemy : EnemyController,IWindEffectable
     {
         if (Tower != null)
         {
+
             Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+            gameEffect.SpawnEffect("WindMeleeImpact", this.transform.position+new Vector3(0,-1,0), 0.5f);
         }
     }
     public void CheckAttack()

@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     public static float EnemyLive;
     SoundManager soundManager;
     protected float distance;
-    GameEffect gameEffect;
+    protected GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
 
@@ -41,10 +41,6 @@ public class EnemyController : MonoBehaviour
         gameEffect = GetComponent<GameEffect>();
         // enemy.health.Init();
         SeekingTower();
-        //Vector2 direction = transform.position - Tower.transform.position;
-        //direction.x = 0;
-        //distance = direction.magnitude;
-        //distance = Vector3.Distance(transform.position, Tower.transform.position);
         distance= transform.position.y - Tower.transform.position.y;
         Move();
     }
@@ -116,15 +112,27 @@ public class EnemyController : MonoBehaviour
     }
     public void DealDamge(float _damage, float _damageplus)
     {
+        float damageTotal = _damage + _damageplus;
         isHurt = true;
+        
         //CurrentState = EnemyState.Hurt;
         SpawnDamageText(Resources.Load<GameObject>("Prefabs/Damage"), gameObject.transform.position+new Vector3(0,0.5f,0), _damage);
         if (_damageplus > 0)
         {
             SpawnDamageText(Resources.Load<GameObject>("Prefabs/ElementalDamage"), gameObject.transform.position + new Vector3(0, 0.8f, 0), _damageplus);
         }
-        enemy.health.ReduceHealth(_damage + _damageplus);
-
+        
+        if (enemy.armor > 0)
+        {
+            float temp = damageTotal - enemy.armor;
+            enemy.armor=enemy.armor - damageTotal;
+            if (temp < 0) temp = 0;
+            enemy.health.ReduceHealth(temp);
+        }
+        else
+        {
+            enemy.health.ReduceHealth(damageTotal);
+        }
     }
     private void SpawnDamageText(GameObject tag, Vector2 _postion, float _damage)
     {
