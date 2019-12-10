@@ -23,15 +23,15 @@ public class WindAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            IIceEffectable elemental = enemy.GetComponent<IIceEffectable>();
+            gameEffect.SpawnEffect("windimpact", enemy.transform.position, 0.5f);
+            IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
             if (elemental != null)
             {
-                elemental.IceImpactEffect(enemy.transform.position);
-                enemy?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else
             {
-                enemy?.DealDamge(bullet.Damage, 0);
+                enemy.DealDamge(bullet.Damage, 0);
             }
             Despawn();
         }

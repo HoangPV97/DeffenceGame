@@ -71,8 +71,7 @@ public class GameplayController : Singleton<GameplayController>
             StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
             EnemyController.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
-        //voi
-
+        
     }
 
     #region Monster

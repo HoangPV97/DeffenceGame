@@ -23,10 +23,10 @@ public class IceAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
+            gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
             {
-                elemental.FireImpactEffect(enemy.transform.position);
                 enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else

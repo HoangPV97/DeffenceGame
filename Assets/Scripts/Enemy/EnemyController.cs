@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     protected float countdown;
     public static float EnemyLive;
     SoundManager soundManager;
-    float distance;
+    protected float distance;
     GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
@@ -41,7 +41,11 @@ public class EnemyController : MonoBehaviour
         gameEffect = GetComponent<GameEffect>();
         // enemy.health.Init();
         SeekingTower();
-        distance = Vector3.Distance(transform.position, Tower.transform.position);
+        //Vector2 direction = transform.position - Tower.transform.position;
+        //direction.x = 0;
+        //distance = direction.magnitude;
+        //distance = Vector3.Distance(transform.position, Tower.transform.position);
+        distance= transform.position.y - Tower.transform.position.y;
         Move();
     }
 
@@ -114,15 +118,15 @@ public class EnemyController : MonoBehaviour
     {
         isHurt = true;
         //CurrentState = EnemyState.Hurt;
-        SpawnDamageText("damage", gameObject.transform.position, _damage);
+        SpawnDamageText(Resources.Load<GameObject>("Prefabs/Damage"), gameObject.transform.position+new Vector3(0,0.5f,0), _damage);
         if (_damageplus > 0)
         {
-            SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
+            SpawnDamageText(Resources.Load<GameObject>("Prefabs/ElementalDamage"), gameObject.transform.position + new Vector3(0, 0.8f, 0), _damageplus);
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
 
     }
-    private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
+    private void SpawnDamageText(GameObject tag, Vector2 _postion, float _damage)
     {
         GameObject damageobj = ObjectPoolManager.Instance.SpawnObject(tag, _postion, Quaternion.identity);
         damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
@@ -226,5 +230,14 @@ public class EnemyController : MonoBehaviour
     public void Despawn()
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
+    }
+    public void IceImpactEffect(Vector3 _position)
+    {
+    }
+    public void FireImpactEffect(Vector3 _position)
+    {
+    }
+    public void WindImpactEffect(Vector3 _position)
+    {
     }
 }

@@ -1,28 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoadingText : MonoBehaviour
 {
-    public Text Damage;
+    public TextMeshProUGUI Damage;
     public Animation Animation;
     // Start is called before the first frame update
     void Start()
     {
     }
+    private void Update()
+    {
+        gameObject.transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(0, 0.05f, 0), 2f * Time.deltaTime);
+    }
 
     public void SetTextDamage(string _Damage)
     {
-        Damage.text = _Damage;
+        Damage.text = "-"+_Damage;
         if (!Animation.isPlaying)
         {
             gameObject.SetActive(false);
         }
     }
-    IEnumerator WaitingDisableObject(GameObject _gameObject, float _time)
+    /// <summary>
+    /// Animation event
+    /// </summary>
+    public void DespawnObject()
     {
-        yield return new WaitForSeconds(_time);
-        _gameObject.SetActive(false);
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

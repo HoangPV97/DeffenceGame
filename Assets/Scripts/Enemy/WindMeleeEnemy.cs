@@ -25,8 +25,7 @@ public class WindMeleeEnemy : EnemyController,IWindEffectable
     }
     public void CheckAttack()
     {
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range && isLive)
+        if (distance <= enemy.range && isLive)
         {
             if (countdown <= 0f && isAttack)
             {
@@ -38,9 +37,5 @@ public class WindMeleeEnemy : EnemyController,IWindEffectable
             countdown -= Time.deltaTime;
         }
     }
-    public void WindImpactEffect(Vector3 _position)
-    {
-        GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
-        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
-    }
+
 }

@@ -12,8 +12,10 @@ public class BulletController : MonoBehaviour
     private float RotationZ;
     public Elemental elementalBullet;
     public float damagePlus;
+    public GameEffect gameEffect;
     protected void Start()
     {
+        gameEffect = new GameEffect();
     }
     public void SetDataBullet(float _speed, float _damage)
     {
@@ -39,5 +41,10 @@ public class BulletController : MonoBehaviour
     public void Despawn()
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
+    }
+    public IEnumerator IEDespawn(GameObject _gameobject,float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        ObjectPoolManager.Instance.DespawnObJect(_gameobject);
     }
 }

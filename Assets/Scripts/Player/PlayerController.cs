@@ -64,22 +64,19 @@ public class PlayerController : MonoBehaviour
             switch (currentMode)
             {
                 case AutoMode.TurnOff:
-                    //characterState = CharacterState.Idle;
-                    direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-
                     if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                         && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                     {
                         //ClicktoShoot();
+                        direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+                        rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                         characterState = CharacterState.Attack;
-                        coundown = player.rateOfFire;
                     }
                     else
                     {
                         characterState = CharacterState.Idle;
                     }
-                    break;
+                break;
                 case AutoMode.TurnOn:
                     if (player.target != null)
                     {
@@ -91,13 +88,12 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         characterState = CharacterState.Idle;
-                        ChangeState();
                     }
-                    break;
+                break;
             }
-        }
+    }
 
-        coundown -= Time.deltaTime;
+    coundown -= Time.deltaTime;
     }
     public void Shoot()
     {

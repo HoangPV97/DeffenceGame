@@ -26,8 +26,7 @@ public class FireMeleeEnemy : EnemyController,IFireEffectable
     }
     public void CheckAttack()
     {
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range && isLive)
+        if (distance < enemy.range && isLive)
         {
             
             if (countdown <= 0f && isAttack)
@@ -40,9 +39,5 @@ public class FireMeleeEnemy : EnemyController,IFireEffectable
             countdown -= Time.deltaTime;
         }
     }
-    public void FireImpactEffect(Vector3 _position)
-    {
-        GameObject effect = ObjectPoolManager.Instance.SpawnObject("fireimpact", _position, Quaternion.identity);
-        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
-    }
+
 }
