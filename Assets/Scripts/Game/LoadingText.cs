@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class LoadingText : MonoBehaviour
 {
-    public Text Damage;
+    public TextMeshProUGUI Damage;
     public Animation Animation;
     // Start is called before the first frame update
 
     public void SetTextDamage(string _Damage)
     {
+        if (Damage == null)
+            Damage = GetComponent<TextMeshProUGUI>();
         Damage.text = _Damage;
         Animation.Play();
         StartCoroutine(WaitingDisableObject(0.5f));

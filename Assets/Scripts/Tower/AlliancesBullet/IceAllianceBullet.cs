@@ -15,7 +15,7 @@ public class IceAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
+           // gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
             {

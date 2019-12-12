@@ -12,11 +12,7 @@ public class FireMeleeEnemy : EnemyController, IFireEffectable
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        CheckAttack();
-        base.Update();
-    }
+   
     public void Attack()
     {
         if (Tower != null)
@@ -24,19 +20,10 @@ public class FireMeleeEnemy : EnemyController, IFireEffectable
             Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
         }
     }
-    public override void CheckAttack()
-    {
-        if (distance < enemy.range && isLive)
-        {
-            if (countdown <= 0f && isAttack)
-            {
-                Rigidbody2D.velocity = Vector2.zero;
-                CurrentState = EnemyState.Idle;
-                CurrentState = EnemyState.Attack;
-                countdown = enemy.rateOfFire;
-            }
-            countdown -= Time.deltaTime;
-        }
-    }
+ 
 
+    public void FireImpactEffect(Vector3 _position)
+    {
+        throw new System.NotImplementedException();
+    }
 }

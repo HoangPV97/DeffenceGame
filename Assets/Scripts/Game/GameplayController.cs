@@ -45,7 +45,7 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 1
         if (DataController.Instance.GameData.Slot1 != Elemental.None)
         {
-            Alliance_1.SetData_Alliance_Weapon(DataController.Instance.IngameAlliance1.Type,
+            Alliance_1.SetDataWeapon(DataController.Instance.IngameAlliance1.Type,
                                     DataController.Instance.IngameAlliance1.ATKspeed,
                                     DataController.Instance.IngameAlliance1.ATK,
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
@@ -58,7 +58,7 @@ public class GameplayController : Singleton<GameplayController>
         if (DataController.Instance.GameData.Slot2 != Elemental.None)
         {
             //load
-            Alliance_2.SetData_Alliance_Weapon(DataController.Instance.IngameAlliance2.Type,
+            Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,
                                     DataController.Instance.IngameAlliance2.ATKspeed,
                                     DataController.Instance.IngameAlliance2.ATK,
                                      DataController.Instance.IngameAlliance1.BulletSpeed);

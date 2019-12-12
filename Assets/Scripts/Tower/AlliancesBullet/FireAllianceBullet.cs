@@ -24,7 +24,7 @@ public class FireAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            gameEffect.SpawnEffect("fireimpact", enemy.transform.position, 0.5f);
+           // gameEffect.SpawnEffect("fireimpact", enemy.transform.position, 0.5f);
             IWindEffectable elemental = enemy.GetComponent<IWindEffectable>();
             if (elemental != null)
             {
