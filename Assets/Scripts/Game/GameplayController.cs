@@ -12,15 +12,16 @@ public class GameplayController : Singleton<GameplayController>
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
     public List<Transform> spawnPosition;
-    
+
     private void Start()
     {
         LoadDataGamePlay();
     }
     public void LoadDataGamePlay()
     {
-        Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-        Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+       // Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+       // Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+      
         ///SetUp Base first
         Tower.SetUpData();
 
@@ -46,7 +47,8 @@ public class GameplayController : Singleton<GameplayController>
         {
             Alliance_1.SetDataWeapon(DataController.Instance.IngameAlliance1.Type,
                                     DataController.Instance.IngameAlliance1.ATKspeed,
-                                    DataController.Instance.IngameAlliance1.ATK);
+                                    DataController.Instance.IngameAlliance1.ATK,
+                                     DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
             go.GetComponent<Skill>().SetUpData(1, SkillButtons[1]);
@@ -58,7 +60,8 @@ public class GameplayController : Singleton<GameplayController>
             //load
             Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,
                                     DataController.Instance.IngameAlliance2.ATKspeed,
-                                    DataController.Instance.IngameAlliance2.ATK);
+                                    DataController.Instance.IngameAlliance2.ATK,
+                                     DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
             go.GetComponent<Skill>().SetUpData(1, SkillButtons[2]);

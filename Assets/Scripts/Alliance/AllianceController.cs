@@ -1,4 +1,5 @@
-﻿using Spine.Unity;
+﻿using Spine;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,18 +46,21 @@ public class AllianceController : MonoBehaviour
     public List<EnemyController> listEnemies;
     public float ATK;
     public float ATKspeed;
+    public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
     protected void Start()
     {
         CircleCollider2D.radius = Alliance.range;
         listEnemies = new List<EnemyController>();
         playerController = GameplayController.Instance.PlayerController;
+        skeletonAnimation.AnimationState.Event += OnEvent;
     }
-    public void SetDataWeapon(Elemental elemental, float Atkspeed,float atk)
+    public void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
     {
         this.elementalType = elemental;
         ATK = atk;
         ATKspeed = Atkspeed;
+        this.BulletSpeed = BulletSpeed;
     }
     protected void Update()
     {
@@ -70,7 +74,7 @@ public class AllianceController : MonoBehaviour
         {
             return;
         }
-
+        CheckShoot();
         //AutoShoot();
 
     }
@@ -79,11 +83,12 @@ public class AllianceController : MonoBehaviour
         if (characterState.Equals(CharacterState.Attack))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-
+            skeletonAnimation.timeScale = ATKspeed / 100;
         }
         else if (characterState.Equals(CharacterState.Idle))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
+            skeletonAnimation.timeScale = 1;
         }
 
     }
@@ -155,4 +160,39 @@ public class AllianceController : MonoBehaviour
             listEnemies.Add(collider2D.gameObject.GetComponent<EnemyController>());
         }
     }
+
+    public virtual void CheckShoot()
+    {
+        if (Alliance.target != null)
+        {
+            characterState = CharacterState.Attack;
+        }
+        else
+        {
+            characterState = CharacterState.Idle;
+        }
+    }
+
+    public virtual void Shoot()
+    {
+        characterState = CharacterState.Attack;
+        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
+        var alianceBullet = bullet.GetComponent<BulletController>();
+        if (alianceBullet != null)
+        {
+            alianceBullet.elementalBullet = elementalType;
+            alianceBullet.SetTarget(Alliance.target);
+            alianceBullet.SetDataBullet(BulletSpeed, ATK);
+        }
+    }
+
+    private void OnEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        bool eventMatch = (e.Data.Name.Equals(eventName));
+        if (eventMatch)
+        {
+            Shoot();
+        }
+    }
+
 }

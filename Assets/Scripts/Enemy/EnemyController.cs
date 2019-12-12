@@ -37,12 +37,7 @@ public class EnemyController : MonoBehaviour
     }
     protected void Start()
     {
-        countdown = enemy.rateOfFire;
         gameEffect = GetComponent<GameEffect>();
-        // enemy.health.Init();
-        SeekingTower();
-        distance = Vector3.Distance(transform.position, Tower.transform.position);
-        Move();
     }
 
     public void SetUpdata(string type, int Level)
@@ -56,12 +51,17 @@ public class EnemyController : MonoBehaviour
         enemy.rateOfFire = md.ATKSpeed;
         enemy.bulletSpeed = md.BulletSpeed;
         enemy.range = md.Range;
+        isMove = true;
+        isAttack = true;
+        isLive = true;
+        SeekingTower();
+        distance = Vector3.Distance(transform.position, Tower.transform.position);
+        Move();
     }
 
     // Update is called once per frame
     protected void Update()
     {
-
         if (previousState != CurrentState)
         {
             ChangeState();
@@ -71,7 +71,9 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine(Die());
         }
+        CheckAttack();
     }
+
     protected void SeekingTower()
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
@@ -93,12 +95,17 @@ public class EnemyController : MonoBehaviour
     IEnumerator Die()
     {
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
-        GameplayController.Instance.Alliance_1.listEnemies.Remove(this);
-        GameplayController.Instance.Alliance_2.listEnemies.Remove(this);
+        // GameplayController.Instance.Alliance_1.listEnemies.Remove(this);
+        //  GameplayController.Instance.Alliance_2.listEnemies.Remove(this);
         isLive = false;
         isAttack = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
+        var lText = GetComponentsInChildren<LoadingText>();
+        for (int i = 0; i < lText.Length; i++)
+        {
+            ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
+        }
         HealthUI.SetActive(false);
         boxCollider2D.enabled = false;
         if (effectObj != null && effectObj.activeSelf)
@@ -106,9 +113,9 @@ public class EnemyController : MonoBehaviour
             effectObj.SetActive(false);
         }
         yield return new WaitForSeconds(1);
-        
+
         EnemyLive--;
-        gameObject.SetActive(false);
+        Despawn();
     }
     public void DealDamge(float _damage, float _damageplus)
     {
@@ -227,4 +234,22 @@ public class EnemyController : MonoBehaviour
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
+
+    public virtual void CheckAttack()
+    {
+        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
+        if (distancetoTower < enemy.range && isLive)
+        {
+            if (countdown <= 0f && isAttack)
+            {
+                isAttack = true;
+                Rigidbody2D.velocity = Vector2.zero;
+                CurrentState = EnemyState.Idle;
+                CurrentState = EnemyState.Attack;
+                countdown = enemy.rateOfFire;
+            }
+            countdown -= Time.deltaTime;
+        }
+    }
+
 }

@@ -18,7 +18,6 @@ public class Health
     public Image healthBar;
     public Image effecthealthBar;
     public TextMeshProUGUI healthValueText;
-    float Width, Height;
     public float health
     {
         get
@@ -65,27 +64,26 @@ public class Health
     }
     public void Init(float Hp, float HpRegen)
     {
-        Width = healthBar.rectTransform.rect.width;
-        Height = healthBar.rectTransform.rect.height;
         health = Hp;
         CurrentHealth = health;
         recoverHealthValue = HpRegen;
         UpdateValueText();
+        healthBar.fillAmount = 1;
     }
     public void ReduceHealth(float _damage)
     {
         CurrentHealth -= _damage;
-        healthBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentHealth / health * 1.0f), Height);
+        healthBar.fillAmount = CurrentHealth / health * 1.0f;
         UpdateValueText();
     }
     public void EffectHealth()
     {
-        effecthealthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width, Height);
+        effecthealthBar.fillAmount = healthBar.fillAmount;
     }
     public void RecoverHealth()
     {
         CurrentHealth += RecoverHealthValue;
-        healthBar.rectTransform.sizeDelta = new Vector2(healthBar.rectTransform.rect.width + (RecoverHealthValue / health * Width), Height);
+        healthBar.fillAmount += RecoverHealthValue / health;
         if (CurrentHealth > health)
         {
             CurrentHealth = health;

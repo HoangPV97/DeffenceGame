@@ -29,21 +29,7 @@ public class FireRangeEnemy : EnemyController, IFireEffectable
             m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
         }
     }
-    public void CheckAttack()
-    {
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range && isLive)
-        {
-            if (countdown <= 0f && isAttack)
-            {
-                Rigidbody2D.velocity = Vector2.zero;
-                CurrentState = EnemyState.Idle;
-                CurrentState = EnemyState.Attack;
-                countdown = enemy.rateOfFire;
-            }
-            countdown -= Time.deltaTime;
-        }
-    }
+
     public void FireImpactEffect(Vector3 _position)
     {
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("fireimpact", _position, Quaternion.identity);

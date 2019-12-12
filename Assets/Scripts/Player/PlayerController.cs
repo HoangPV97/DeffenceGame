@@ -27,11 +27,12 @@ public class PlayerController : MonoBehaviour
     Vector2 direct;
     float rotationZ;
     float shortestDistance = Mathf.Infinity;
-    float _2ndShortestDistance = Mathf.Infinity;
+    //  float _2ndShortestDistance = Mathf.Infinity;
     EnemyController nearestEnemy = null;
-    EnemyController _2ndEnemy = null;
+    // EnemyController _2ndEnemy = null;
     public float ATK;
     public float ATKspeed;
+    public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
     // Start is called before the first frame update
     public void Awake()
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         this.elementalType = DataController.Instance.inGameWeapons.Type;
         ATK = DataController.Instance.inGameWeapons.ATK;
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
+        BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
     }
     // Update is called once per frame
     private void Update()
@@ -59,42 +61,42 @@ public class PlayerController : MonoBehaviour
             ChangeState();
             preCharacterState = characterState;
         }
-        if (coundown < 0)
+        // if (coundown < 0)
+        //  {
+        switch (currentMode)
         {
-            switch (currentMode)
-            {
-                case AutoMode.TurnOff:
-                    //characterState = CharacterState.Idle;
-                    direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+            case AutoMode.TurnOff:
+                //characterState = CharacterState.Idle;
+                direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+                rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
 
-                    if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
-                        && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
-                    {
-                        //ClicktoShoot();
-                        characterState = CharacterState.Attack;
-                        coundown = player.rateOfFire;
-                    }
-                    else
-                    {
-                        characterState = CharacterState.Idle;
-                    }
-                    break;
-                case AutoMode.TurnOn:
-                    if (player.target != null)
-                    {
-                        //AutoShootTarget();
-                        characterState = CharacterState.Attack;
-                        direct = player.target.gameObject.transform.position - Barrel.transform.position;
-                        rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
-                    }
-                    else
-                    {
-                        characterState = CharacterState.Idle;
-                        ChangeState();
-                    }
-                    break;
-            }
+                if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
+                    && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
+                {
+                    //ClicktoShoot();
+                    characterState = CharacterState.Attack;
+                    coundown = player.rateOfFire;
+                }
+                else
+                {
+                    characterState = CharacterState.Idle;
+                }
+                break;
+            case AutoMode.TurnOn:
+                if (player.target != null)
+                {
+                    //AutoShootTarget();
+                    characterState = CharacterState.Attack;
+                    direct = player.target.gameObject.transform.position - Barrel.transform.position;
+                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                }
+                else
+                {
+                    characterState = CharacterState.Idle;
+                    ChangeState();
+                }
+                break;
+                //   }
         }
 
         coundown -= Time.deltaTime;
@@ -116,52 +118,73 @@ public class PlayerController : MonoBehaviour
         if (characterState.Equals(CharacterState.Attack))
         {
             skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
+            skeletonAnimation.timeScale = ATKspeed / 100;
         }
         else if (characterState.Equals(CharacterState.Idle))
         {
+            skeletonAnimation.timeScale = 1;
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
         }
     }
     public void UpdateEnemy()
     {
         shortestDistance = Mathf.Infinity;
-        _2ndShortestDistance = Mathf.Infinity;
-        nearestEnemy = null;
-        _2ndEnemy = null;
+        //  _2ndShortestDistance = Mathf.Infinity;
+        // nearestEnemy = null;
+        // _2ndEnemy = null;
         if (listEnemies.Count > 0)
         {
+            int index = 0;
             for (int i = 0; i < listEnemies.Count; i++)
             {
                 float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
                 if (distancetoEnemy < shortestDistance)
                 {
-                    _2ndShortestDistance = shortestDistance;
                     shortestDistance = distancetoEnemy;
-                    _2ndEnemy = nearestEnemy;
-                    nearestEnemy = listEnemies[i];
+                    index = i;
                 }
-                else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
-                {
-                    _2ndShortestDistance = distancetoEnemy;
-                    _2ndEnemy = listEnemies[i];
-                }
-                if (nearestEnemy != null  && nearestEnemy.isLive)
-                {
-                    player.target = nearestEnemy;
-                }
-                else if (_2ndEnemy != null && !nearestEnemy.isLive)
-                {
-                    nearestEnemy = _2ndEnemy;
-                    player.target = nearestEnemy;
-                }
-                if (!nearestEnemy.isLive && _2ndEnemy == null)
-                {
-                    player.target = null;
-                    characterState = CharacterState.Idle;
-                }
+                /* if (distancetoEnemy < shortestDistance)
+                 {
+                     _2ndShortestDistance = shortestDistance;
+                     shortestDistance = distancetoEnemy;
+                     _2ndEnemy = nearestEnemy;
+                     nearestEnemy = listEnemies[i];
+                 }
+                 else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
+                 {
+                     _2ndShortestDistance = distancetoEnemy;
+                     _2ndEnemy = listEnemies[i];
+                 }
+                 if (nearestEnemy != null && nearestEnemy.isLive)
+                 {
+                     player.target = nearestEnemy;
+                 }
+                 else if (_2ndEnemy != null && !nearestEnemy.isLive)
+                 {
+                     nearestEnemy = _2ndEnemy;
+                     player.target = nearestEnemy;
+                 }
+                 if (!nearestEnemy.isLive && _2ndEnemy == null)
+                 {
+                     player.target = null;
+                     characterState = CharacterState.Idle;
+                 }*/
+            }
+            if (nearestEnemy != listEnemies[index])
+            {
+                nearestEnemy = listEnemies[index];
+            }
+            if (nearestEnemy != null && nearestEnemy.isLive)
+            {
+                player.target = nearestEnemy;
+            }
+            else
+            {
+                player.target = null;
+                characterState = CharacterState.Idle;
             }
         }
-        else if(listEnemies.Count <=0 && currentMode== AutoMode.TurnOn)
+        else if (listEnemies.Count <= 0 && currentMode == AutoMode.TurnOn)
         {
             characterState = CharacterState.Idle;
         }
@@ -173,10 +196,10 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        mBullet.SetDataBullet(ATKspeed, ATK);
+        mBullet.SetDataBullet(BulletSpeed, ATK);
         mBullet.SetTarget(player.target);
         mBullet.elementalBullet = elementalType;
-        mBullet.GetComponent<Rigidbody2D>().velocity = _direction.normalized *10* mBullet.bullet.Speed * Time.deltaTime;
+        mBullet.GetComponent<Rigidbody2D>().velocity = _direction.normalized * 10 * mBullet.bullet.Speed * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {

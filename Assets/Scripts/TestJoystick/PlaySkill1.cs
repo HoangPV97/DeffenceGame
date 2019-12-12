@@ -82,7 +82,6 @@ public class PlaySkill1 : Skill
 
     public override void OnInvokeSkill()
     {
-        Debug.Log(Tower.Mana.CurrentMana + "___" + manaCost);
         arrow.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {

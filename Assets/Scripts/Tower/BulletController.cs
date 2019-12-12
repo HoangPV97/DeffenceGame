@@ -12,6 +12,7 @@ public class BulletController : MonoBehaviour
     private float RotationZ;
     public Elemental elementalBullet;
     public float damagePlus;
+    Vector3 dir = Vector3.zero;
     protected void Start()
     {
     }
@@ -29,15 +30,31 @@ public class BulletController : MonoBehaviour
     {
         if (Target == null || !Target.isLive)
         {
-            //Despawn();
-            return;
+            Target = null;
+            StartCoroutine(DelayDespawn());
         }
-        Vector3 dir = Target.transform.position - transform.position;
+        else
+            dir = Target.transform.position - transform.position;
+        if (dir == Vector3.zero)
+            dir = new Vector3(0, 1, 0);
+
         transform.up = dir;
-        transform.Translate(dir.normalized * bullet.Speed  * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * bullet.Speed * Time.deltaTime, Space.World);
+    }
+    IEnumerator DelayDespawn()
+    {
+        yield return new WaitForSeconds(3);
+        Despawn();
     }
     public void Despawn()
     {
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        var trail = GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+            trail.Clear();
     }
 }

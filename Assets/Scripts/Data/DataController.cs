@@ -111,8 +111,8 @@ public class DataController : Singleton<DataController>
                 },
             },
             CurrentSelectedWeapon = Elemental.Wind,
-            Slot1 = Elemental.Ice,
-            Slot2 = Elemental.Fire,
+            // Slot1 = Elemental.Ice,
+            //  Slot2 = Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }
@@ -172,6 +172,7 @@ public class DataController : Singleton<DataController>
                 Level = sl1.Level,
                 ATK = wp1.ATK[sl1.Level - 1],
                 ATKspeed = wp1.ATKspeed[slwp.Level - 1],
+                BulletSpeed = wp1.BulletSpeed
             };
         }
 
@@ -188,7 +189,8 @@ public class DataController : Singleton<DataController>
                 Level = sl2.Level,
                 ATK = wp2.ATK[sl2.Level - 1],
                 ATKspeed = wp2.ATKspeed[slwp.Level - 1],
-                ATKRange = wp2.ATKRange[slwp.Level - 1]
+                ATKRange = wp2.ATKRange[slwp.Level - 1],
+                BulletSpeed = wp2.BulletSpeed
             };
         }
 

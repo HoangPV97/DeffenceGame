@@ -32,7 +32,7 @@ public class FireAllianceCharacter : AllianceController
         FireAllianceBullet allianceBullet = bullet.GetComponent<FireAllianceBullet>();
         if (allianceBullet != null)
         {
-            allianceBullet.SetDataBullet(ATKspeed,ATK);
+            allianceBullet.SetDataBullet(BulletSpeed, ATK);
             allianceBullet.elementalBullet = elementalType;
             allianceBullet.SetTarget(Alliance.target);
         }

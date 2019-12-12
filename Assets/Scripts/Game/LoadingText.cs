@@ -8,21 +8,17 @@ public class LoadingText : MonoBehaviour
     public Text Damage;
     public Animation Animation;
     // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     public void SetTextDamage(string _Damage)
     {
         Damage.text = _Damage;
-        if (!Animation.isPlaying)
-        {
-            gameObject.SetActive(false);
-        }
+        Animation.Play();
+        StartCoroutine(WaitingDisableObject(0.5f));
     }
-    IEnumerator WaitingDisableObject(GameObject _gameObject, float _time)
+
+    IEnumerator WaitingDisableObject(float _time)
     {
         yield return new WaitForSeconds(_time);
-        _gameObject.SetActive(false);
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

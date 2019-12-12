@@ -9,15 +9,7 @@ public class IceAllianceBullet : BulletController
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-    private void Update()
-    {
-        if (Target == null || !Target.isLive)
-        {
-            Despawn();
-            return;
-        }
-        base.Update();
-    }
+
     private void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag))

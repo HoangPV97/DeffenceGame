@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireMeleeEnemy : EnemyController,IFireEffectable
+public class FireMeleeEnemy : EnemyController, IFireEffectable
 {
     void Start()
     {
@@ -24,12 +24,11 @@ public class FireMeleeEnemy : EnemyController,IFireEffectable
             Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
         }
     }
-    public void CheckAttack()
+    public override void CheckAttack()
     {
         distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
         if (distancetoTower < enemy.range && isLive)
         {
-            
             if (countdown <= 0f && isAttack)
             {
                 Rigidbody2D.velocity = Vector2.zero;

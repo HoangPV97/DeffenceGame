@@ -37,6 +37,7 @@ public class IngameAlliance
     public float ATK;
     public float ATKspeed;
     public float ATKRange;
+    public float BulletSpeed;
 }
 [System.Serializable]
 public class AllianceData

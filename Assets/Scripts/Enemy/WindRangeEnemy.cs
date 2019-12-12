@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindRangeEnemy : EnemyController,IWindEffectable
+public class WindRangeEnemy : EnemyController, IWindEffectable
 {
     void Start()
     {
@@ -28,9 +28,9 @@ public class WindRangeEnemy : EnemyController,IWindEffectable
             m_EnemyBullet.SetDamage(enemy.damage);
         }
     }
-    public void CheckAttack()
+    public override void CheckAttack()
     {
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
+        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
         if (distancetoTower < enemy.range && isLive)
         {
             if (countdown <= 0f && isAttack)

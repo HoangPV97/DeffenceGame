@@ -32,6 +32,8 @@ public class InGameWeapon
     public float ATK;
     public float ATKspeed;
     public float BulletSpeed;
+    public float CritChance;
+    public float CritValue;
 }
 
 [System.Serializable]
