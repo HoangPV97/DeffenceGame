@@ -52,7 +52,7 @@ public class AllianceIceSkill : Skill
     }
     public void MoveObject(GameObject _object, Vector3 _postion)
     {
-        if (!_object.activeSelf)
+        //if (!_object.activeSelf)
             _object.SetActive(true);
         _object.transform.Translate(_postion);
     }
@@ -69,21 +69,19 @@ public class AllianceIceSkill : Skill
     public override void OnInvokeSkill()
     {
         circle.SetActive(false);
-        Debug.Log(Tower.Mana.CurrentMana + "___" + manaCost);
-        
-        if (Tower.Mana.CurrentMana >= manaCost)
+        if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {
             Play();
         }
     }
-    private void OnMouseUp()
-    {
-        circle.SetActive(false);
-        if (Tower.Mana.CurrentMana >= manaCost)
-        {
-            Play();
-        }
-    }
+    //private void OnMouseUp()
+    //{
+    //    circle.SetActive(false);
+    //    if (Tower.Mana.CurrentMana >= manaCost)
+    //    {
+    //        Play();
+    //    }
+    //}
     public override void OnCancelSkill()
     {
         circle.SetActive(false);

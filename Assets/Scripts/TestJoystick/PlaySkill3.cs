@@ -69,14 +69,14 @@ public class PlaySkill3 : Skill
         StunSkill(circle.transform.position);
         circle.SetActive(false);
     }
-    private void OnMouseUp()
-    {
-        circle.SetActive(false);
-        if (Tower.Mana.CurrentMana >= manaCost)
-        {
-            Play();
-        }
-    }
+    //private void OnMouseUp()
+    //{
+    //    circle.SetActive(false);
+    //    if (Tower.Mana.CurrentMana >= manaCost)
+    //    {
+    //        Play();
+    //    }
+    //}
     public void StunSkill(Vector3 _position)
     {
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
@@ -88,7 +88,6 @@ public class PlaySkill3 : Skill
     }
     public override void OnInvokeSkill()
     {
-        Debug.Log(Tower.Mana.CurrentMana + "___" + manaCost);
         circle.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {
