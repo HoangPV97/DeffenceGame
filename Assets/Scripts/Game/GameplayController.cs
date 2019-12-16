@@ -19,9 +19,9 @@ public class GameplayController : Singleton<GameplayController>
     }
     public void LoadDataGamePlay()
     {
-       // Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-       // Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-      
+        // Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+        // Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+
         ///SetUp Base first
         Tower.SetUpData();
 
@@ -33,7 +33,7 @@ public class GameplayController : Singleton<GameplayController>
             //set 1 skill button 
             // spawn skill controller
             var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, SkillButtons[0]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0]);
         }
         else
         {
@@ -51,7 +51,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, SkillButtons[1]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1]);
         }
 
         ///Load slot 2
@@ -64,7 +64,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, SkillButtons[2]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2]);
         }
 
         //spawn Enemy
@@ -74,7 +74,7 @@ public class GameplayController : Singleton<GameplayController>
             StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
             EnemyController.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
-        
+
     }
 
     #region Monster

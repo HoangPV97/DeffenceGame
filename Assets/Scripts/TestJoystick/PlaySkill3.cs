@@ -20,14 +20,14 @@ public class PlaySkill3 : Skill
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
-    public override void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         base.SetUpData(Level);
         this.Level = Level;
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
-        manaCost = Swf1.ManaCost[Level - 1];
-        CountdownTime = Swf1.CoolDown[Level - 1];
+        manaCost = Swf1.GetManaCost(Tier, Level);
+        CountdownTime = Swf1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
     }

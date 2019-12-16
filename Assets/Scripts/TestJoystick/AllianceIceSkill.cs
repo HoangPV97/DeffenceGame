@@ -19,14 +19,14 @@ public class AllianceIceSkill : Skill
     {
         base.Start();
     }
-    public override void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         base.SetUpData(Level);
         this.Level = Level;
         Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
-        manaCost = Swi1.ManaCost[Level - 1];
-        CountdownTime = Swi1.CoolDown[Level - 1];
+        manaCost = Swi1.GetManaCost(Tier, Level);
+        CountdownTime = Swi1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
     }
@@ -53,7 +53,7 @@ public class AllianceIceSkill : Skill
     public void MoveObject(GameObject _object, Vector3 _postion)
     {
         //if (!_object.activeSelf)
-            _object.SetActive(true);
+        _object.SetActive(true);
         _object.transform.Translate(_postion);
     }
 
