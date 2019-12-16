@@ -33191,7 +33191,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8531190558834038732}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -33258,6 +33258,7 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
+  EnemyinRange: []
 --- !u!58 &2170715936868737182
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -33265,7 +33266,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8531190558834038732}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

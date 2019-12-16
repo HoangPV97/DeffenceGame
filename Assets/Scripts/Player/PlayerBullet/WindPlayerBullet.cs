@@ -6,7 +6,8 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
 {
     EnemyController nearEnemy;
     public List<GameObject> EnemyinRange;
-    CircleCollider2D circleCollider;
+    private float bounceRange = 5f;
+    private int numberBounce=2;
     public void explosionBulletEffect()
     {
 
@@ -52,28 +53,42 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             //}
             if (bounce)
             {
+                nearEnemy = null;
+                
                 if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
                 {
-                    
-                    float shortdistance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[0].transform.position);
-                    for (int i = 1; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
+                    int index = 0;
+                    float shortdistance =Mathf.Infinity;
+                    for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
                     {
-                        float distance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (distance < 3f && distance <= shortdistance)
+                        float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
+                        if (distance < bounceRange && distance <= shortdistance && GameplayController.Instance.PlayerController.listEnemies[i] != _Target.gameObject)
                         {
+                            shortdistance = distance;
+                          //  index = i;
                             nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
-                            dir = nearEnemy.transform.position - transform.position;
-                            Move(dir);
-                            //Vector3.MoveTowards(transform.position, nearEnemy.gameObject.transform.position, 0f);
+                            Debug.Log("Exist NearEnemy");
                         }
-                        
-                      //  enemy.DealDamge(bullet.Damage, damagePlus);
+                        //if (distance < bounceRange && distance <= shortdistance && nearEnemy != _Target.gameObject)
+                        //{
+                        //    nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
+                        //    Debug.Log("Exist NearEnemy");
+                        //}
+                    }
+                    if (numberBounce > 0 && nearEnemy != null )
+                    {
+                        dir = nearEnemy.transform.position - transform.position;
+                        Move(dir);
+                        //nearEnemy.DealDamge(bullet.Damage, damagePlus);
+                        numberBounce--;
+                        Debug.Log("numberBounce" + numberBounce) ;
+                    }
+                    else
+                    {
+                        Despawn();
                     }
                 }
-                else
-                {
-                    Despawn();
-                }
+
 
             }
         }
