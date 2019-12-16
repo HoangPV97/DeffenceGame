@@ -8,11 +8,19 @@ public class BulletController : MonoBehaviour
     public Bullet bullet;
     protected EnemyController Target;
     public bool SeekTarget = false;
-    private Vector2 Direction;
-    private float RotationZ;
     public Elemental elementalBullet;
     public float damagePlus;
-    Vector3 dir = Vector3.zero;
+    protected Vector3 dir = Vector3.zero;
+    #region Attribute bullet
+    public bool explosion;
+    public bool bounce;
+    public bool poison;
+    public bool slow;
+    public bool pierce;
+    public bool critical;
+    public bool multishot;
+    public bool quickhand;
+    #endregion
     protected void Start()
     {
     }
@@ -25,25 +33,33 @@ public class BulletController : MonoBehaviour
     {
         Target = _Target;
     }
+    public void setDirection(Vector3 _dir)
+    {
+        dir=_dir;
+    }
     // Update is called once per frame
     protected void Update()
     {
         if (Target == null || !Target.isLive)
         {
             Target = null;
-            StartCoroutine(DelayDespawn());
+            StartCoroutine(DelayDespawn(3));
         }
         else
             dir = Target.transform.position - transform.position;
         if (dir == Vector3.zero)
             dir = new Vector3(0, 1, 0);
 
-        transform.up = dir;
-        transform.Translate(dir.normalized * bullet.Speed * Time.deltaTime, Space.World);
+        Move(dir);
     }
-    IEnumerator DelayDespawn()
+    public void Move( Vector3 _dir)
     {
-        yield return new WaitForSeconds(3);
+        transform.up = _dir;
+        transform.Translate(_dir.normalized * bullet.Speed * Time.deltaTime, Space.World);
+    }
+    protected IEnumerator DelayDespawn(float _time)
+    {
+        yield return new WaitForSeconds(_time);
         Despawn();
     }
     public void Despawn()

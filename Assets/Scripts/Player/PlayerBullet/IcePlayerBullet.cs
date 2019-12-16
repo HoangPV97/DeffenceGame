@@ -8,12 +8,15 @@ public class IcePlayerBullet : BulletController
     {
         base.Start();
     }
-    private void Update()
+    public void Update()
     {
-
-        //base.Update();
+        if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)
+            Move(dir);
+        else
+        {
+            base.Update();
+        }
     }
-    // Update is called once per frame
     public void DirectShooting(Vector2 _direction)
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();

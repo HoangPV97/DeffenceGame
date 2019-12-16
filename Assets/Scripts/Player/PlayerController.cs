@@ -7,12 +7,13 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public enum CharacterState { Idle, Attack };
+public enum AutoMode { TurnOn, TurnOff };
 public class PlayerController : MonoBehaviour
 {
     public List<EnemyController> listEnemies;
 
     public Player player;
-    public enum AutoMode { TurnOn, TurnOff };
+
     public AutoMode currentMode;
     //public Elemental elementalPlayer;
     public ViewPlayerController ViewPlayer;
@@ -93,12 +94,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     characterState = CharacterState.Idle;
-                    ChangeState();
                 }
                 break;
-                //   }
         }
-
         coundown -= Time.deltaTime;
     }
     public void Shoot()
@@ -196,10 +194,10 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
         BulletController mBullet = bullet.GetComponent<BulletController>();
-        mBullet.SetDataBullet(BulletSpeed, ATK);
         mBullet.SetTarget(player.target);
+        mBullet.setDirection(_direction);
+        mBullet.SetDataBullet(BulletSpeed, ATK);
         mBullet.elementalBullet = elementalType;
-        mBullet.GetComponent<Rigidbody2D>().velocity = _direction.normalized * 10 * mBullet.bullet.Speed * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {

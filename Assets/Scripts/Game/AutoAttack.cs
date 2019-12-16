@@ -23,12 +23,12 @@ public class AutoAttack : MonoBehaviour
         Count++;
         if (Count % 2 != 0)
         {
-            player.currentMode = PlayerController.AutoMode.TurnOn;
+            player.currentMode = AutoMode.TurnOn;
             btnAuto.image.sprite = autoImage;
         }
         else
         {
-            player.currentMode = PlayerController.AutoMode.TurnOff;
+            player.currentMode = AutoMode.TurnOff;
             btnAuto.image.sprite = disableImage;
         }
     }

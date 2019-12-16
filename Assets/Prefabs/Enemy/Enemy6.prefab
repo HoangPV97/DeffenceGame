@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 8912908039463566854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.67, y: 1.38, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8912908039809388895}
   m_Father: {fileID: 0}
@@ -125,7 +125,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 87d396479f7e06048879ae1cf23c6ff8, type: 2}
+  - {fileID: 2100000, guid: 1f646ba45c1920b49a05fac6c0c5e4c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e79acacee4f7e3b4980bfe3fa745f166, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 72d25bda28f2205469e4e8d9e950ec42, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -196,15 +196,15 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 4688615873598794641}
   statesAnimation:
   - stateName: attack
-    animation: {fileID: 11400000, guid: 4ed40ad327f4c774fbaa4b9e5f02b49c, type: 2}
+    animation: {fileID: 0}
   - stateName: die
-    animation: {fileID: 11400000, guid: 5eeba9bb1fa8eae4493d3f1444114ee9, type: 2}
+    animation: {fileID: 0}
   - stateName: hurt
-    animation: {fileID: 11400000, guid: ca73da1057eaf6e44a2608132273a9a1, type: 2}
+    animation: {fileID: 0}
   - stateName: run
-    animation: {fileID: 11400000, guid: fdfac7451d036c943aaae501aac8c620, type: 2}
+    animation: {fileID: 0}
   - stateName: idle
-    animation: {fileID: 11400000, guid: f16b8e581f66f57498dde9bd429695b0, type: 2}
+    animation: {fileID: 0}
 --- !u!114 &1497185456227880149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
     _elemental: 1
+    _bulletSpeed: 0
   playSkeletonAnimation: {fileID: 5481581012859897711}
   isMove: 1
   isAttack: 1

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1804,6 +1804,12 @@ MonoBehaviour:
       type: 3}
   - tag: WindMeleeImpact
     prefab: {fileID: 2892912235544848691, guid: cb5d7217908d41042ad39510ff8d1211,
+      type: 3}
+  - tag: explosionBullet
+    prefab: {fileID: 6164340513003871311, guid: 97a69aa2cbef32549832caee96303489,
+      type: 3}
+  - tag: bounceBullet
+    prefab: {fileID: 6164340513003871311, guid: fde2656eb558d374e95aa965c3601847,
       type: 3}
 --- !u!4 &472097027
 Transform:

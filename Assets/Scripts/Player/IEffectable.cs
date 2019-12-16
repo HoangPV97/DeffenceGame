@@ -18,3 +18,7 @@ public interface IEffectSkill
 {
     void DealEffect(Effect _effect,Vector3 _position,float _time);
 }
+public interface IExplosionBullet
+{
+    void explosionBulletEffect();
+}

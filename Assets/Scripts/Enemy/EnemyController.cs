@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Spine.AnimationState;
-
+#region EnemyState
 public enum EnemyState
 {
     Idle, Run, Attack, Hurt, Die, Skill
 }
+#endregion
 public class EnemyController : MonoBehaviour
 {
     public Enemy enemy;
