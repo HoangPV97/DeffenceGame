@@ -25,7 +25,7 @@ public class Skill : MonoBehaviour
     {
     }
 
-    public virtual void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
 
     }

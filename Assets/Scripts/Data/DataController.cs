@@ -91,24 +91,67 @@ public class DataController : Singleton<DataController>
             CurrentStage = 1,
             gameDataWeapons = new List<GameDataWeapon> {
                 new GameDataWeapon
-                {
-                    Type = Elemental.Wind,
-                    Tier = 1,
-                    Level = 1
-                }
+        {
+            Type = Elemental.Wind,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
+                Level = 1,
+            }
+            }
+        }
             },
             gameDataAlliance = new List<GameDataWeapon> {
-                new GameDataWeapon {
-                    Type = Elemental.Ice,
-                    Tier = 1,
-                    Level = 1
-                }
-                ,new GameDataWeapon
-                {
-                Type = Elemental.Fire,
+               new GameDataWeapon
+        {
+            Type = Elemental.Ice,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
                 Tier = 1,
-                Level = 1
-                },
+                Level = 1,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            }
+            }
+        }
+                ,new GameDataWeapon
+        {
+            Type = Elemental.Fire,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            }
+            }
+        },
             },
             CurrentSelectedWeapon = Elemental.Wind,
             // Slot1 = Elemental.Ice,
@@ -147,14 +190,14 @@ public class DataController : Singleton<DataController>
         // load Weapon data
         // GameData.CurrentSelectedWeapon
         var slwp = GameData.GetGameDataWeapon(GameData.CurrentSelectedWeapon);
-        var wp = WeaponsDatas.GetWeapons(slwp.Type, slwp.Tier);
+        var wp = WeaponsDatas.GetWeapons(slwp.Type, slwp.WeaponTierLevel.Tier);
         inGameWeapons = new InGameWeapon
         {
             Type = wp.Type,
             Tier = wp.Tier,
-            Level = slwp.Level,
-            ATK = wp.ATK[slwp.Level - 1],
-            ATKspeed = wp.ATKspeed[slwp.Level - 1],
+            Level = slwp.WeaponTierLevel.Level,
+            ATK = wp.ATK[slwp.WeaponTierLevel.Level - 1],
+            ATKspeed = wp.ATKspeed[slwp.WeaponTierLevel.Level - 1],
             BulletSpeed = wp.BulletSpeed,
         };
 
@@ -164,14 +207,14 @@ public class DataController : Singleton<DataController>
         {
             //load
             var sl1 = GameData.GetGameAlliance(GameData.Slot1);
-            var wp1 = AllianceDataBases.GetAlliance(sl1.Type, sl1.Tier);
+            var wp1 = AllianceDataBases.GetAlliance(sl1.Type, sl1.WeaponTierLevel.Tier);
             IngameAlliance1 = new IngameAlliance
             {
                 Type = wp1.Type,
                 Tier = wp1.Tier,
-                Level = sl1.Level,
-                ATK = wp1.ATK[sl1.Level - 1],
-                ATKspeed = wp1.ATKspeed[slwp.Level - 1],
+                Level = sl1.WeaponTierLevel.Level,
+                ATK = wp1.ATK[sl1.WeaponTierLevel.Level - 1],
+                ATKspeed = wp1.ATKspeed[slwp.WeaponTierLevel.Level - 1],
                 BulletSpeed = wp1.BulletSpeed
             };
         }
@@ -181,15 +224,15 @@ public class DataController : Singleton<DataController>
         {
             //load
             var sl2 = GameData.GetGameAlliance(GameData.Slot2);
-            var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.Tier);
+            var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.WeaponTierLevel.Tier);
             IngameAlliance2 = new IngameAlliance
             {
                 Type = wp2.Type,
                 Tier = wp2.Tier,
-                Level = sl2.Level,
-                ATK = wp2.ATK[sl2.Level - 1],
-                ATKspeed = wp2.ATKspeed[slwp.Level - 1],
-                ATKRange = wp2.ATKRange[slwp.Level - 1],
+                Level = sl2.WeaponTierLevel.Level,
+                ATK = wp2.ATK[sl2.WeaponTierLevel.Level - 1],
+                ATKspeed = wp2.ATKspeed[slwp.WeaponTierLevel.Level - 1],
+                ATKRange = wp2.ATKRange[slwp.WeaponTierLevel.Level - 1],
                 BulletSpeed = wp2.BulletSpeed
             };
         }

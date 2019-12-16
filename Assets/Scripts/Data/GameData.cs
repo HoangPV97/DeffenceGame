@@ -81,8 +81,30 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
-            Tier = 1,
-            Level = 1,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
+                Level = 1,
+            }
+            }
         };
         gameDataWeapons.Add(gdw);
         return gdw;
@@ -98,8 +120,18 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
-            Tier = 1,
-            Level = 1,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            }
+            }
         };
         gameDataAlliance.Add(gdw);
         return gdw;
@@ -112,9 +144,14 @@ public class GameData
 public class GameDataWeapon
 {
     public Elemental Type;
+    public SaveGameTierLevel WeaponTierLevel;
+    public List<SaveGameTierLevel> SkillTierLevel;
+}
+
+public class SaveGameTierLevel
+{
     public int Tier;
     public int Level;
-    public bool unlockSkill = false;
 }
 
 public class GameStage

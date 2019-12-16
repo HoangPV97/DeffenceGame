@@ -23,14 +23,14 @@ public class PlaySkill1 : Skill
         base.Start();
     }
 
-    public override void SetUpData(int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         base.SetUpData(Level);
         this.Level = Level;
         sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
-        manaCost = sww1.ManaCost[Level - 1];
-        CountdownTime = sww1.CoolDown[Level - 1];
+        manaCost = sww1.GetManaCost(Tier, Level);
+        CountdownTime = sww1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
     }
