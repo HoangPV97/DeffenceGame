@@ -117,6 +117,87 @@ public class DataController : Singleton<DataController>
                 Level = 1,
             }
             }
+        },                new GameDataWeapon
+        {
+            Type = Elemental.Ice,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 0,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
+                Level = 1,
+            }
+            }
+        },                new GameDataWeapon
+        {
+            Type = Elemental.Fire,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 0,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
+                Level = 1,
+            }
+            }
+        },                new GameDataWeapon
+        {
+            Type = Elemental.Earth,
+            WeaponTierLevel = new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 0,
+            },
+            SkillTierLevel = new List<SaveGameTierLevel>() {
+                new SaveGameTierLevel
+            {
+                Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
+                Level = 1,
+            }
+            }
         }
             },
             gameDataAlliance = new List<GameDataWeapon> {
