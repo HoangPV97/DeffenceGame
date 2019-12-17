@@ -19,8 +19,8 @@ public class GameplayController : Singleton<GameplayController>
     }
     public void LoadDataGamePlay()
     {
-        // Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-         Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+         //Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+         //Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
 
         ///SetUp Base first
         Tower.SetUpData();
