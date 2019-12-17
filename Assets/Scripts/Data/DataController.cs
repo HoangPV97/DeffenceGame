@@ -18,7 +18,40 @@ public class DataController : Singleton<DataController>
     #endregion
 
     #region Data Player
-    public GameData GameData;
+    private GameData GameData;
+    public Elemental ElementalSlot1
+    {
+        get
+        {
+            return GameData.Slot1;
+        }
+        set
+        {
+            GameData.Slot1 = value;
+        }
+    }
+    public Elemental ElementalSlot2
+    {
+        get
+        {
+            return GameData.Slot2;
+        }
+        set
+        {
+            GameData.Slot2 = value;
+        }
+    }
+    public Elemental CurrentSelectedWeapon
+    {
+        get
+        {
+            return GameData.CurrentSelectedWeapon;
+        }
+        set
+        {
+            GameData.CurrentSelectedWeapon = value;
+        }
+    }
     #endregion
 
     #region in game
@@ -93,6 +126,7 @@ public class DataController : Singleton<DataController>
                 new GameDataWeapon
         {
             Type = Elemental.Wind,
+            ID = "Wind1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -120,6 +154,7 @@ public class DataController : Singleton<DataController>
         },                new GameDataWeapon
         {
             Type = Elemental.Ice,
+            ID = "Ice1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -147,6 +182,7 @@ public class DataController : Singleton<DataController>
         },                new GameDataWeapon
         {
             Type = Elemental.Fire,
+            ID = "Fire1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -174,6 +210,7 @@ public class DataController : Singleton<DataController>
         },                new GameDataWeapon
         {
             Type = Elemental.Earth,
+            ID = "Earth",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -236,7 +273,7 @@ public class DataController : Singleton<DataController>
             },
             CurrentSelectedWeapon = Elemental.Wind,
             // Slot1 = Elemental.Ice,
-              //Slot2 = Elemental.Fire,
+            //Slot2 = Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }
@@ -270,8 +307,8 @@ public class DataController : Singleton<DataController>
 
         // load Weapon data
         // GameData.CurrentSelectedWeapon
-        var slwp = GameData.GetGameDataWeapon(GameData.CurrentSelectedWeapon);
-        var wp = WeaponsDatas.GetWeapons(slwp.Type, slwp.WeaponTierLevel.Tier);
+        var slwp = GetGameDataWeapon(GameData.CurrentSelectedWeapon);
+        var wp = GetDataBaseWeapons(slwp.Type, slwp.WeaponTierLevel.Tier);
         inGameWeapons = new InGameWeapon
         {
             Type = wp.Type,
@@ -287,8 +324,8 @@ public class DataController : Singleton<DataController>
         if (GameData.Slot1 != Elemental.None)
         {
             //load
-            var sl1 = GameData.GetGameAlliance(GameData.Slot1);
-            var wp1 = AllianceDataBases.GetAlliance(sl1.Type, sl1.WeaponTierLevel.Tier);
+            var sl1 = GetGameAlliance(GameData.Slot1);
+            var wp1 = GetAllianceDataBases(sl1.Type, sl1.WeaponTierLevel.Tier);
             IngameAlliance1 = new IngameAlliance
             {
                 Type = wp1.Type,
@@ -304,8 +341,8 @@ public class DataController : Singleton<DataController>
         if (GameData.Slot2 != Elemental.None)
         {
             //load
-            var sl2 = GameData.GetGameAlliance(GameData.Slot2);
-            var wp2 = AllianceDataBases.GetAlliance(sl2.Type, sl2.WeaponTierLevel.Tier);
+            var sl2 = GetGameAlliance(GameData.Slot2);
+            var wp2 = GetAllianceDataBases(sl2.Type, sl2.WeaponTierLevel.Tier);
             IngameAlliance2 = new IngameAlliance
             {
                 Type = wp2.Type,
@@ -332,6 +369,26 @@ public class DataController : Singleton<DataController>
             ShieldBlockChance = bdbShield.Value2[GameData.BaseShieldLevel - 1],
         };
 
+    }
+
+    public Weapons GetDataBaseWeapons(Elemental elemental, int Tier)
+    {
+        return WeaponsDatas.GetWeapons(elemental, Tier);
+    }
+
+    public GameDataWeapon GetGameDataWeapon(Elemental elemental)
+    {
+        return GameData.GetGameDataWeapon(elemental);
+    }
+
+    public GameDataWeapon GetGameAlliance(Elemental elemental)
+    {
+        return GameData.GetGameAlliance(elemental);
+    }
+
+    public AllianceData GetAllianceDataBases(Elemental elemental, int Tier)
+    {
+        return AllianceDataBases.GetAlliance(elemental, Tier);
     }
 }
 

@@ -81,6 +81,7 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
+            ID = elemental.ToString() + "1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -120,6 +121,7 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
+            ID = elemental.ToString() + "_Alliance1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -139,11 +141,13 @@ public class GameData
 }
 
 /**/
-
+public enum Elemental { None = 0, Wind = 1, Ice = 2, Earth = 3, Fire = 4 }
 [System.Serializable]
 public class GameDataWeapon
 {
     public Elemental Type;
+    public string ID;
+    public int EXP;
     public SaveGameTierLevel WeaponTierLevel;
     public List<SaveGameTierLevel> SkillTierLevel;
 }
