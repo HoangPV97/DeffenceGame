@@ -118,7 +118,7 @@ public class EnemyController : MonoBehaviour
         EnemyLive--;
         Despawn();
     }
-    public void DealDamge(float _damage, float _damageplus)
+    public void DealDamge(float _damage, float _damageplus=0f)
     {
         isHurt = true;
         //CurrentState = EnemyState.Hurt;

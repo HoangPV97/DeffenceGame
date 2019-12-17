@@ -6,20 +6,28 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
 {
     EnemyController nearEnemy;
     public List<GameObject> EnemyinRange;
-    private float bounceRange = 5f;
-    private int numberBounce=2;
+    private float bounceRange = 3f;
+    private int numberBounce = 3;
+    private float timePoiton = 3f;
+    private float damagePoiton = 3f;
     public void explosionBulletEffect()
     {
 
+    }
+    public override void SetDataBullet(float _speed, float _damage)
+    {
+        base.SetDataBullet(_speed, _damage);
+        bounceRange = 5f;
+        numberBounce = 3;
     }
     public void Update()
     {
         if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)
             Move(dir);
-        //else
-        //{
-        //    base.Update();
-        //}
+        else
+        {
+            base.Update();
+        }
     }
     protected void OnTriggerEnter2D(Collider2D _Target)
     {
@@ -46,73 +54,61 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             //{
             //    Despawn();
             //}
+            #region Explosion Bullet
             //if (explosion)
             //{
             //    ObjectPoolManager.Instance.SpawnObject("explosionBullet", this.transform.position, Quaternion.identity);
             //    Despawn();
             //}
+            #endregion
+            #region BounceBullet
             if (bounce)
             {
-                nearEnemy = null;
-                
+                Debug.Log("Triger");
                 if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
                 {
+                    nearEnemy = null;
                     int index = 0;
-                    float shortdistance =Mathf.Infinity;
+                    float shortdistance = Mathf.Infinity;
                     for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
                     {
                         float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (distance < bounceRange && distance <= shortdistance && GameplayController.Instance.PlayerController.listEnemies[i] != _Target.gameObject)
+                        if (distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject)
                         {
                             shortdistance = distance;
-                          //  index = i;
-                            nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
+                            index = i;
                             Debug.Log("Exist NearEnemy");
                         }
-                        //if (distance < bounceRange && distance <= shortdistance && nearEnemy != _Target.gameObject)
-                        //{
-                        //    nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
-                        //    Debug.Log("Exist NearEnemy");
-                        //}
                     }
-                    if (numberBounce > 0 && nearEnemy != null )
+                    if (shortdistance <= bounceRange)
                     {
+                        nearEnemy = GameplayController.Instance.PlayerController.listEnemies[index];
+                    }
+                    if (numberBounce > 0 && nearEnemy != null && nearEnemy.isLive)
+                    {
+                        SetTarget(nearEnemy);
                         dir = nearEnemy.transform.position - transform.position;
                         Move(dir);
                         //nearEnemy.DealDamge(bullet.Damage, damagePlus);
+                        bullet.Damage = bullet.Damage * 90 / 100;
                         numberBounce--;
-                        Debug.Log("numberBounce" + numberBounce) ;
+                        if (numberBounce < 0)
+                        {
+                            Despawn();
+                        }
                     }
                     else
                     {
                         Despawn();
                     }
                 }
-
-
             }
-        }
-    }
-    private IEnumerator BounceToAnother(List<EnemyController> lst)
-    {
-        EnemyController nearestEnemy;
-        float shortdistance = Mathf.Infinity;
-        nearestEnemy = lst[0];
-        shortdistance = Vector3.Distance(transform.position, nearestEnemy.transform.position);
-        yield return new WaitForSeconds(0.3f);
-        for (int i = 0; i < lst.Count; i++)
-        {
-            float distance = Vector3.Distance(transform.position, lst[i].transform.position);
-            if (distance < 3f)
+            #endregion
+            if (poison)
             {
-                nearestEnemy = lst[i];
-            }
-            EnemyController _enemy = lst[i].GetComponent<EnemyController>();
-            Vector3.MoveTowards(lst[i].GetComponent<EnemyController>().transform.position, lst[i + 1].GetComponent<EnemyController>().transform.position, 0f);
-            Target = _enemy;
-            _enemy.DealDamge(bullet.Damage, damagePlus);
-        }
 
+            }
+        }
     }
 }
 

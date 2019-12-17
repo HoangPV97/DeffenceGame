@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour
     protected void Start()
     {
     }
-    public void SetDataBullet(float _speed, float _damage)
+    public virtual void SetDataBullet(float _speed, float _damage)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;

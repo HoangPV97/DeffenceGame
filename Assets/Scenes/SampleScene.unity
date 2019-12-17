@@ -1811,6 +1811,9 @@ MonoBehaviour:
   - tag: bounceBullet
     prefab: {fileID: 6164340513003871311, guid: fde2656eb558d374e95aa965c3601847,
       type: 3}
+  - tag: poison
+    prefab: {fileID: 3316264382930781435, guid: 33d34f9d72f21a24b946985017be7469,
+      type: 3}
 --- !u!4 &472097027
 Transform:
   m_ObjectHideFlags: 0
@@ -6372,7 +6375,6 @@ MonoBehaviour:
   CountdownGo: {fileID: 832016660}
   CountdownTime: 2
   manaCost: 0
-  NummberBullet: 10
   variableJoystick: {fileID: 957591502}
   circle: {fileID: 1920795930}
   bulletName: 

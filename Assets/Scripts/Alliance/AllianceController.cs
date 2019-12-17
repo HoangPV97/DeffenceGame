@@ -184,6 +184,8 @@ public class AllianceController : MonoBehaviour
             alianceBullet.SetTarget(Alliance.target);
             alianceBullet.SetDataBullet(BulletSpeed, ATK);
         }
+        Vector2 dir = Alliance.target.transform.position - transform.position;
+        alianceBullet.setDirection(dir);
     }
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)

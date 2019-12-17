@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySkill3 : Skill
+public class PlaySkill4 : Skill
 {
     public VariableJoystick variableJoystick;
     public GameObject circle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
     [SerializeField]
-    SkillWeaponFire1 Swf1;
+    SkillWeaponFire1 Swf1; //Dùng tạm thời//
     // Start is called before the first frame update
     /// <summary>
     /// get data sww1.ManaCost[Level-1]
@@ -69,22 +69,15 @@ public class PlaySkill3 : Skill
         StunSkill(circle.transform.position);
         circle.SetActive(false);
     }
-    //private void OnMouseUp()
-    //{
-    //    circle.SetActive(false);
-    //    if (Tower.Mana.CurrentMana >= manaCost)
-    //    {
-    //        Play();
-    //    }
-    //}
+
     public void StunSkill(Vector3 _position)
     {
-        GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
-        float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
+        GameObject Poison_Skill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
+        float particleTime = Poison_Skill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
-        CheckDestroyEffect(stunSkill, particleTime);
+        CheckDestroyEffect(Poison_Skill, particleTime);
     }
     public override void OnInvokeSkill()
     {

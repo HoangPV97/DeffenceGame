@@ -18,7 +18,6 @@ public class Skill : MonoBehaviour
     public float manaCost;
     protected bool StartCountdown = false;
     protected float TimeLeft;
-    public float NummberBullet = 10;
 
     // Start is called before the first frame update
     protected void Start()
