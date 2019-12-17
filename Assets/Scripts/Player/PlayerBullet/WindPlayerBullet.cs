@@ -15,10 +15,10 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
     {
         if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)
             Move(dir);
-        //else
-        //{
-        //    base.Update();
-        //}
+        else
+        {
+            base.Update();
+        }
     }
     protected void OnTriggerEnter2D(Collider2D _Target)
     {
@@ -41,41 +41,41 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             {
                 enemy?.DealDamge(bullet.Damage, 0);
             }
-            //if (SeekTarget)
-            //{
-            //    Despawn();
-            //}
+            if (SeekTarget)
+            {
+                Despawn();
+            }
             //if (explosion)
             //{
             //    ObjectPoolManager.Instance.SpawnObject("explosionBullet", this.transform.position, Quaternion.identity);
             //    Despawn();
             //}
-            if (bounce)
-            {
-                if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
-                {
+            //if (bounce)
+            //{
+            //    if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
+            //    {
                     
-                    float shortdistance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[0].transform.position);
-                    for (int i = 1; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
-                    {
-                        float distance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (distance < 3f && distance <= shortdistance)
-                        {
-                            nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
-                            dir = nearEnemy.transform.position - transform.position;
-                            Move(dir);
-                            //Vector3.MoveTowards(transform.position, nearEnemy.gameObject.transform.position, 0f);
-                        }
+            //        float shortdistance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[0].transform.position);
+            //        for (int i = 1; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
+            //        {
+            //            float distance = Vector3.Distance(transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
+            //            if (distance < 3f && distance <= shortdistance)
+            //            {
+            //                nearEnemy = GameplayController.Instance.PlayerController.listEnemies[i];
+            //                dir = nearEnemy.transform.position - transform.position;
+            //                Move(dir);
+            //                //Vector3.MoveTowards(transform.position, nearEnemy.gameObject.transform.position, 0f);
+            //            }
                         
-                      //  enemy.DealDamge(bullet.Damage, damagePlus);
-                    }
-                }
-                else
-                {
-                    Despawn();
-                }
+            //          //  enemy.DealDamge(bullet.Damage, damagePlus);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Despawn();
+            //    }
 
-            }
+            //}
         }
     }
     private IEnumerator BounceToAnother(List<EnemyController> lst)

@@ -59,30 +59,33 @@ public class BaseSkill
     public float[] Damage;
     public List<Item>[] UpgradeItems;
     public List<Item> EvolutionItems;
+    public List<SkillAttribute> SkillAttributes;
+
 }
 
 [System.Serializable]
 public class SkillWeaponWind1 : SkillData
 {
-    public struct SkillWeaponWind1Data
-    {
-        public int Tier;
-        public float[] SkillSpeed;
-        public float[] KnockbackDistance;
-        public float[] KnockbackDuration;
-        public float[] EffectedAoe;
-    }
-    public List<SkillWeaponWind1Data> SkillWeaponWind1Datas;
+    public const string SkillSpeed = "SkillSpeed";
+    public const string KnockbackDistance = "KnockbackDistance";
+    public const string KnockbackDuration = "KnockbackDuration";
+    public const string EffectedAoe = "EffectedAoe";
 }
 public class SkillWeaponFire1 : SkillData
 {
-    public float[] SkillSpeed;
-    public float[] EffectedAoe;
-    public float[] TimeEffect;
+    public const string SkillSpeed = "SkillSpeed";
+    public const string TimeEffect = "TimeEffect";
+    public const string EffectedAoe = "EffectedAoe";
 }
 public class SkillWeaponIce1 : SkillData
 {
-    public float[] SkillSpeed;
-    public float[] EffectedAoe;
-    public float[] TimeEffect;
+    public const string SkillSpeed = "SkillSpeed";
+    public const string TimeEffect = "TimeEffect";
+    public const string EffectedAoe = "EffectedAoe";
+}
+
+public class SkillAttribute
+{
+    public string Attribute;
+    public float[] Value;
 }
