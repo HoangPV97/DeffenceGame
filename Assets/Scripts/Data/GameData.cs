@@ -11,6 +11,7 @@ public class GameData
     public int BaseShieldLevel = 1;
     public int BaseShieldTier = 1;
     public int CurrentStage = 1;
+    public int Gold;
     public List<Item> Inventory;
     public List<GameDataWeapon> gameDataWeapons;
     public List<GameDataWeapon> gameDataAlliance;
@@ -49,10 +50,22 @@ public class GameData
 
     public Item GetItem(ITEM_TYPE Type)
     {
+        if (Inventory == null)
+            Inventory = new List<Item>();
         for (int i = 0; i < Inventory.Count; i++)
             if (Inventory[i].Type == Type)
                 return Inventory[i];
-        return null;
+        Item item = new Item { Quality = 0, Type = Type };
+        Inventory.Add(item);
+        return item;
+    }
+
+    public void AddItemQuality(ITEM_TYPE type, int number)
+    {
+        var it = GetItem(type);
+        it.Quality += number;
+        if (it.Quality < 0)
+            it.Quality = 0;
     }
 
     public void SaveItem(ITEM_TYPE type, int number)

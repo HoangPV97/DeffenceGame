@@ -16,6 +16,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public UISkillItem[] UISkillItems;
     UIHeroItem currentSelectedHero = null;
     public UIButton BtnEquip, BtnUpgrade;
+    public UIUpgradehero UIUpgradehero;
     [Header("Alliance")]
     public GameObject PanelAlliance;
 
@@ -54,7 +55,14 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     {
         UIHeroItems = GetComponentsInChildren<UIHeroItem>();
         UISkillItems = GetComponentsInChildren<UISkillItem>();
+        BtnUpgrade.SetUpEvent(Upgradehero);
     }
+
+    void Upgradehero()
+    {
+        UIUpgradehero.SetUpData(currentSelectedHero.elemental);
+    }
+
     public void ReSetUI()
     {
         throw new System.NotImplementedException();

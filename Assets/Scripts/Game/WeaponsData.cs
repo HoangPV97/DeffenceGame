@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 public class WeaponsData : MonoBehaviour
 {
-    public TestWeapon Weapons;
+
     public static WeaponsData Instance;
     // Start is called before the first frame update
     private void Awake()

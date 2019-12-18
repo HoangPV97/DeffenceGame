@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class DefaultData : ScriptableObject
 {
-    public TextAsset MonsterDataBases, GameStageDataBase, GameEnemyDataBase, Weapons, AllianceDataBases, BaseDatabases;
+    public TextAsset MonsterDataBases, GameStageDataBase, GameEnemyDataBase, Weapons, AllianceDataBases, BaseDatabases, ItemDataBase;
     public List<GameObject> WeaponWindSkills;
     public List<GameObject> WeaponIceSkills;
     public List<GameObject> WeaponEarthSkills;

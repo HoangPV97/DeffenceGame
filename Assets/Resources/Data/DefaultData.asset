@@ -18,6 +18,7 @@ MonoBehaviour:
   Weapons: {fileID: 4900000, guid: e24edc5d02f5fad4b95d2f8fba20cf23, type: 3}
   AllianceDataBases: {fileID: 4900000, guid: 43e30fda7d6f2ba4fb47a54819a8eb45, type: 3}
   BaseDatabases: {fileID: 4900000, guid: 03339cb318134d14881dbc8e5e58db5a, type: 3}
+  ItemDataBase: {fileID: 4900000, guid: a26ca0b4637dd05489076d881476b585, type: 3}
   WeaponWindSkills:
   - {fileID: 4205350128027674012, guid: 266d54d723e55404a93b4342d168f2dc, type: 3}
   WeaponIceSkills: []

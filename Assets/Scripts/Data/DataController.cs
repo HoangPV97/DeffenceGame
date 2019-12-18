@@ -15,6 +15,7 @@ public class DataController : Singleton<DataController>
     public AllianceDataBase AllianceDataBases;
     public BaseDatabases BaseDatabases;
     public DefaultData DefaultData;
+    public ItemDataBase ItemDataBase;
     #endregion
 
     #region Data Player
@@ -50,6 +51,17 @@ public class DataController : Singleton<DataController>
         set
         {
             GameData.CurrentSelectedWeapon = value;
+        }
+    }
+    public int Gold
+    {
+        get
+        {
+            return GameData.Gold;
+        }
+        set
+        {
+            GameData.Gold = value;
         }
     }
     #endregion
@@ -98,7 +110,13 @@ public class DataController : Singleton<DataController>
             Debug.Log("<color=red> File not exist</color>");
             ResetData();
         }
-
+        GameData.SaveItem(ITEM_TYPE.WindObs_1, 10);
+        GameData.SaveItem(ITEM_TYPE.WindObs_2, 4);
+        GameData.SaveItem(ITEM_TYPE.WindObs_3, 1);
+        GameData.SaveItem(ITEM_TYPE.IceObs_3, 10);
+        GameData.SaveItem(ITEM_TYPE.FireObs_1, 10);
+        GameData.SaveItem(ITEM_TYPE.EarthObs_2, 4);
+        Gold = 10000;
     }
 
     public void Save()
@@ -287,6 +305,7 @@ public class DataController : Singleton<DataController>
         GameEnemyDataBase = JsonUtility.FromJson<GameEnemyDataBase>(ConectingFireBase.Instance.GetTextGameEnemyDataBase());
         AllianceDataBases = JsonUtility.FromJson<AllianceDataBase>(ConectingFireBase.Instance.GetTextAllianceDatabase());
         BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
+        ItemDataBase = JsonUtility.FromJson<ItemDataBase>(ConectingFireBase.Instance.GetTextItemDataBase());
         ///Load data 
         Load();
 
@@ -389,6 +408,28 @@ public class DataController : Singleton<DataController>
     public AllianceData GetAllianceDataBases(Elemental elemental, int Tier)
     {
         return AllianceDataBases.GetAlliance(elemental, Tier);
+    }
+
+    public Item GetGameItemData(ITEM_TYPE _TYPE)
+    {
+        return GameData.GetItem(_TYPE);
+    }
+
+    public ItemData GetItemDataBase(ITEM_TYPE _TYPE)
+    {
+        return ItemDataBase.GetItemData(_TYPE);
+    }
+
+    public void AddWeaponLevel(Elemental elemental, int AddLevel, int CurrentEXP)
+    {
+        var gdw = GameData.GetGameDataWeapon(elemental);
+        gdw.EXP = CurrentEXP;
+        gdw.WeaponTierLevel.Level += AddLevel;
+    }
+
+    public void AddItemQuality(ITEM_TYPE type, int number)
+    {
+        GameData.AddItemQuality(type, number);
     }
 }
 

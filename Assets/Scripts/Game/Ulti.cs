@@ -1,11 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-public class TestWeapon
-{
-    public List<Weapons> Weapons;
-}
+
 [System.Serializable]
 public class WeaponDatabase
 {
@@ -56,12 +52,43 @@ public class Item
 [System.Serializable]
 public enum ITEM_TYPE
 {
-    WindObs = 1,
-    IceObs,
-    FireObs,
-    EarthObs,
+    None = 0,
+    WindObs_1,
+    WindObs_2,
+    WindObs_3,
+    IceObs_1,
+    IceObs_2,
+    IceObs_3,
+    FireObs_1,
+    FireObs_2,
+    FireObs_3,
+    EarthObs_1,
+    EarthObs_2,
+    EarthObs_3,
     Mithril,
     Gold
 }
-
+[System.Serializable]
+public class ItemDataBase
+{
+    public List<ItemData> Items;
+    public ItemData GetItemData(ITEM_TYPE Type)
+    {
+        for (int i = 0; i < Items.Count; i++)
+            if (Items[i].Type == Type)
+                return Items[i];
+        return null;
+    }
+}
+[System.Serializable]
+public class ItemData
+{
+    public ITEM_TYPE Type;
+    public string ID;
+    public int Value;
+    public int UseGemCost;
+    public int UseGoldCost;
+    public int GemCost;
+    public int GoldCost;
+}
 
