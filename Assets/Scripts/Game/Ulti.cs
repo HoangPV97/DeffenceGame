@@ -16,6 +16,7 @@ public class WeaponDatabase
         for (int i = 0; i < Weapons.Count; i++)
             if (Weapons[i].Type == Type && Weapons[i].Tier == Tier)
                 return Weapons[i];
+
         return null;
     }
 }

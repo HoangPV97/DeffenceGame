@@ -15,12 +15,14 @@ public class TabItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IP
     [SerializeField]
     Image Image;
     TextMeshProUGUI text;
+    public int Tab;
     // Start is called before the first frame update
     void Awake()
     {
         TabController = transform.parent.parent.GetComponent<TabController>();
         Image = GetComponent<Image>();
         text = GetComponentInChildren<TextMeshProUGUI>();
+        Tab = transform.GetSiblingIndex();
     }
 
 

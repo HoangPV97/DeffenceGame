@@ -13,6 +13,13 @@ public class UIHeroItem : MonoBehaviour
     public UIButton btnButton;
     public Animator Animator;
     // Start is called before the first frame update
+    public bool IsHero
+    {
+        get
+        {
+            return MenuController.Instance.UIPanelHeroAlliance.isHero;
+        }
+    }
     void Start()
     {
         btnButton.SetUpEvent(OnSelected);
@@ -34,7 +41,12 @@ public class UIHeroItem : MonoBehaviour
     {
         Selected.SetActive(false);
         Animator.Play("Default");
-        var weapon = DataController.Instance.GetGameDataWeapon(elemental);
+        GameDataWeapon weapon;
+        if (IsHero)
+            weapon = DataController.Instance.GetGameDataWeapon(elemental);
+        else
+            weapon = DataController.Instance.GetGameAlliance(elemental);
+
         Lock.SetActive(weapon.WeaponTierLevel.Tier == 1 && weapon.WeaponTierLevel.Level == 0);
         txtLevel.gameObject.SetActive(weapon.WeaponTierLevel.Level != 0);
         txtLevel.text = "Lv." + weapon.WeaponTierLevel.Level;

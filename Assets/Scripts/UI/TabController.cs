@@ -30,6 +30,12 @@ public class TabController : MonoBehaviour
                 CurrentTabItems.OnDisableTab();
             tabItem.OnEnableTab();
             CurrentTabItems = tabItem;
+            if (tabItem.Tab == 0)
+            {
+                MenuController.Instance.UIPanelHeroAlliance.SetUpData(true);
+            }
+            else
+                MenuController.Instance.UIPanelHeroAlliance.SetUpData(false);
         }
         else
         {

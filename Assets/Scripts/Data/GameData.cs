@@ -127,7 +127,7 @@ public class GameData
         return gdw;
     }
 
-    public GameDataWeapon GetGameAlliance(Elemental elemental)
+    public GameDataWeapon GetGameDataAlliance(Elemental elemental)
     {
         for (int i = 0; i < gameDataAlliance.Count; i++)
         {
@@ -141,12 +141,24 @@ public class GameData
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
-                Level = 1,
+                Level = 0,
             },
             SkillTierLevel = new List<SaveGameTierLevel>() {
                 new SaveGameTierLevel
             {
                 Tier = 1,
+                Level = 1,
+            },new SaveGameTierLevel
+            {
+                Tier = 2,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 3,
+                Level = 0,
+            },new SaveGameTierLevel
+            {
+                Tier = 999,
                 Level = 1,
             }
             }

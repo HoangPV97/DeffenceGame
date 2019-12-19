@@ -42,12 +42,7 @@ public class IngameAlliance
 [System.Serializable]
 public class AllianceData
 {
-    public Elemental Type;
-    public int Tier;
-    public float BulletSpeed;
-    public List<float> ATK;
-    public List<float> ATKspeed;
-    public List<Item> CostEvolution;
+    public Weapons weapons;
     public List<float> ATKRange;
 }
 
@@ -56,13 +51,13 @@ public class AllianceDataBase
     public List<AllianceData> AllianceData;
     public List<Item> GetCostEvolution(Elemental Type, int Tier)
     {
-        return GetAlliance(Type, Tier).CostEvolution;
+        return GetAlliance(Type, Tier).weapons.CostEvolution;
     }
 
     public AllianceData GetAlliance(Elemental Type, int Tier)
     {
         for (int i = 0; i < AllianceData.Count; i++)
-            if (AllianceData[i].Type == Type && AllianceData[i].Tier == Tier)
+            if (AllianceData[i].weapons.Type == Type && AllianceData[i].weapons.Tier == Tier)
                 return AllianceData[i];
         return null;
     }
