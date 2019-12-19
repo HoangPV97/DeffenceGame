@@ -11,6 +11,7 @@ public class UISelectLevelItem : MonoBehaviour
     public TextMeshProUGUI txtLevel;
     public GameObject[] Star;
     public int Level;
+    [SerializeField]
     GameStage gameStage;
     // Start is called before the first frame update
     void Awake()

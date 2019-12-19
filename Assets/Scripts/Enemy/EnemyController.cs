@@ -22,7 +22,6 @@ public class EnemyController : MonoBehaviour
     protected GameObject Tower;
     protected float distancetoTower;
     protected float countdown;
-    public static float EnemyLive;
     float distance;
     public GameEffect gameEffect;
     GameObject effectObj;
@@ -88,7 +87,7 @@ public class EnemyController : MonoBehaviour
                 CurrentState = EnemyState.Idle;
             }
         }
-        
+
 
     }
     IEnumerator Die()
@@ -114,7 +113,7 @@ public class EnemyController : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
 
-        EnemyLive--;
+        GameController.Instance.OnEnemyDie(1);
         Despawn(gameObject);
     }
     public void DealDamge(float _damage, float _damageplus = 0f)
@@ -160,7 +159,7 @@ public class EnemyController : MonoBehaviour
                    isAttack = false;
                }
                Move(enemy.speed);
-               
+
                effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
            else if (_effect.Equals(Effect.Poiton))
