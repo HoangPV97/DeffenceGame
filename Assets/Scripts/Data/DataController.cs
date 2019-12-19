@@ -431,6 +431,16 @@ public class DataController : Singleton<DataController>
     {
         GameData.AddItemQuality(type, number);
     }
+
+    public GameStage GetGameStage(int level)
+    {
+        return GameData.GetGameStage(level);
+    }
+
+    public StageDataBase GetStageDataBase(int Level)
+    {
+        return GameStageDataBase.GetStageDataBase(Level);
+    }
 }
 
 

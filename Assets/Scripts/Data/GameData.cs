@@ -20,13 +20,16 @@ public class GameData
     public Elemental Slot1, Slot2;
     public GameStage GetGameStage(int level)
     {
+        if (gameStages == null)
+            gameStages = new List<GameStage>();
         for (int i = 0; i < gameStages.Count; i++)
             if (gameStages[i].Level == level)
                 return gameStages[i];
+
         GameStage gameStage = new GameStage
         {
             Level = level,
-            HardMode = 0
+            HardMode = level == 1 ? 1 : 0
         };
         gameStages.Add(gameStage);
         return gameStage;

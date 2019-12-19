@@ -23,7 +23,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     #region Animation
     public void OnHide()
     {
-        throw new System.NotImplementedException();
+        gameObject.SetActive(false);
     }
 
     public void OnHideLeft(UnityAction unityAction = null)

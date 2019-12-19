@@ -66,7 +66,8 @@ public enum ITEM_TYPE
     EarthObs_2,
     EarthObs_3,
     Mithril,
-    Gold
+    coin,
+    Gem
 }
 [System.Serializable]
 public class ItemDataBase
