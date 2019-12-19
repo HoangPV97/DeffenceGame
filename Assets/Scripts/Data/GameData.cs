@@ -11,6 +11,7 @@ public class GameData
     public int BaseShieldLevel = 1;
     public int BaseShieldTier = 1;
     public int CurrentStage = 1;
+    public int Gold;
     public List<Item> Inventory;
     public List<GameDataWeapon> gameDataWeapons;
     public List<GameDataWeapon> gameDataAlliance;
@@ -19,13 +20,16 @@ public class GameData
     public Elemental Slot1, Slot2;
     public GameStage GetGameStage(int level)
     {
+        if (gameStages == null)
+            gameStages = new List<GameStage>();
         for (int i = 0; i < gameStages.Count; i++)
             if (gameStages[i].Level == level)
                 return gameStages[i];
+
         GameStage gameStage = new GameStage
         {
             Level = level,
-            HardMode = 0
+            HardMode = level == 1 ? 1 : 0
         };
         gameStages.Add(gameStage);
         return gameStage;
@@ -49,10 +53,22 @@ public class GameData
 
     public Item GetItem(ITEM_TYPE Type)
     {
+        if (Inventory == null)
+            Inventory = new List<Item>();
         for (int i = 0; i < Inventory.Count; i++)
             if (Inventory[i].Type == Type)
                 return Inventory[i];
-        return null;
+        Item item = new Item { Quality = 0, Type = Type };
+        Inventory.Add(item);
+        return item;
+    }
+
+    public void AddItemQuality(ITEM_TYPE type, int number)
+    {
+        var it = GetItem(type);
+        it.Quality += number;
+        if (it.Quality < 0)
+            it.Quality = 0;
     }
 
     public void SaveItem(ITEM_TYPE type, int number)
@@ -81,6 +97,7 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
+            ID = elemental.ToString() + "1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -120,6 +137,7 @@ public class GameData
         GameDataWeapon gdw = new GameDataWeapon
         {
             Type = elemental,
+            ID = elemental.ToString() + "_Alliance1",
             WeaponTierLevel = new SaveGameTierLevel
             {
                 Tier = 1,
@@ -139,11 +157,13 @@ public class GameData
 }
 
 /**/
-
+public enum Elemental { None = 0, Wind = 1, Ice = 2, Earth = 3, Fire = 4 }
 [System.Serializable]
 public class GameDataWeapon
 {
     public Elemental Type;
+    public string ID;
+    public int EXP;
     public SaveGameTierLevel WeaponTierLevel;
     public List<SaveGameTierLevel> SkillTierLevel;
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class DefaultData : ScriptableObject
 {
-    public TextAsset MonsterDataBases, GameStageDataBase, GameEnemyDataBase, Weapons, AllianceDataBases, BaseDatabases;
+    public TextAsset MonsterDataBases, GameStageDataBase, GameEnemyDataBase, Weapons, AllianceDataBases, BaseDatabases, ItemDataBase;
     public List<GameObject> WeaponWindSkills;
     public List<GameObject> WeaponIceSkills;
     public List<GameObject> WeaponEarthSkills;
@@ -17,6 +17,19 @@ public class DefaultData : ScriptableObject
     public GameObject AllianceEarthSkills;
     public GameObject AllianceFireSkills;
     public List<DefaultDataSkill> TextWeaponSkills;
+    public TextAsset AssetBundleItem;
+    public AssetBundle Item;
+    public Sprite GetSpriteItem(ITEM_TYPE _TYPE)
+    {
+        if (Item == null)
+        {
+            byte[] bundleData = AssetBundleItem.bytes.Clone() as byte[];
+            var bundle = AssetBundle.LoadFromMemory(bundleData);
+            Item = bundle;
+        }
+        return Item.LoadAsset<Sprite>(_TYPE.ToString());
+        return null;
+    }
     public GameObject GetWeaponSkill(Elemental elemental, int index)
     {
         switch (elemental)

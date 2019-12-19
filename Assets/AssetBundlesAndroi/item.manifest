@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 3235781747
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3335f4e72c45db1bbd4fa7b6f6815953
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Texture/UI/icon_item/IceObs_1.png
+- Assets/Texture/UI/icon_item/coin.png
+- Assets/Texture/UI/icon_item/WindObs_1.png
+- Assets/Texture/UI/icon_item/IceObs_3.png
+- Assets/Texture/UI/icon_item/EarthObs_1.png
+- Assets/Texture/UI/icon_item/EarthObs_2.png
+- Assets/Texture/UI/icon_item/WindObs_3.png
+- Assets/Texture/UI/icon_item/gem.png
+- Assets/Texture/UI/icon_item/IceObs_2.png
+- Assets/Texture/UI/icon_item/FireObs_2.png
+- Assets/Texture/UI/icon_item/FireObs_3.png
+- Assets/Texture/UI/icon_item/EarthObs_3.png
+- Assets/Texture/UI/icon_item/FireObs_1.png
+- Assets/Texture/UI/icon_item/WindObs_2.png
+Dependencies: []

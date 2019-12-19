@@ -140,4 +140,14 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
             return DataController.Instance.DefaultData.BaseDatabases.text;
         }
     }
+
+    public string GetTextItemDataBase()
+    {
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+            return FirebaseRemoteConfig.GetValue("ItemDataBase").StringValue;
+        else
+        {
+            return DataController.Instance.DefaultData.ItemDataBase.text;
+        }
+    }
 }

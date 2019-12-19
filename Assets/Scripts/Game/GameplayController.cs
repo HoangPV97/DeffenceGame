@@ -19,8 +19,8 @@ public class GameplayController : Singleton<GameplayController>
     }
     public void LoadDataGamePlay()
     {
-         //Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-         //Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+        //Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/IceAlliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+        //Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/WindAlliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
 
         ///SetUp Base first
         Tower.SetUpData();
@@ -43,7 +43,7 @@ public class GameplayController : Singleton<GameplayController>
         /// Load Alliance
         /// Load from resource
         ///Load slot 1
-        if (DataController.Instance.GameData.Slot1 != Elemental.None)
+        if (DataController.Instance.ElementalSlot1 != Elemental.None)
         {
             Alliance_1.SetDataWeapon(DataController.Instance.IngameAlliance1.Type,
                                     DataController.Instance.IngameAlliance1.ATKspeed,
@@ -55,7 +55,7 @@ public class GameplayController : Singleton<GameplayController>
         }
 
         ///Load slot 2
-        if (DataController.Instance.GameData.Slot2 != Elemental.None)
+        if (DataController.Instance.ElementalSlot2 != Elemental.None)
         {
             //load
             Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,

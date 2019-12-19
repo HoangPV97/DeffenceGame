@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Elemental { None = 0, Wind = 1, Ice = 2, Fire = 3, Earth = 4 }
 public class BulletController : MonoBehaviour
 {
     public Bullet bullet;
@@ -42,7 +41,7 @@ public class BulletController : MonoBehaviour
     }
     public void setDirection(Vector3 _dir)
     {
-        dir=_dir;
+        dir = _dir;
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -59,7 +58,7 @@ public class BulletController : MonoBehaviour
 
         Move(dir);
     }
-    public void Move( Vector3 _dir)
+    public void Move(Vector3 _dir)
     {
         transform.up = _dir;
         transform.Translate(_dir.normalized * bullet.Speed * Time.deltaTime, Space.World);
