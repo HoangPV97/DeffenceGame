@@ -235,8 +235,8 @@ public class DataController : Singleton<DataController>
         },
             },
             CurrentSelectedWeapon = Elemental.Wind,
-            // Slot1 = Elemental.Ice,
-              //Slot2 = Elemental.Fire,
+             //Slot1 = Elemental.Ice,
+            //Slot2 = Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }

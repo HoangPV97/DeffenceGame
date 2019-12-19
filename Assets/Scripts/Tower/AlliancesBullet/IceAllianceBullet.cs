@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class IceAllianceBullet : BulletController
 {
+    private float number_Bullet;
     private void Start()
     {
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-
-    private void OnTriggerEnter2D(Collider2D Target)
+    public override void SetDataBullet(float _speed, float _damage)
     {
-        if (Target.gameObject.tag.Equals(bullet.TargetTag))
+        base.SetDataBullet(_speed, _damage);
+        number_Bullet = 3f;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D _Target)
+    {
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            EnemyController enemy = Target.GetComponent<EnemyController>();
-           // gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
+            EnemyController enemy = _Target.GetComponent<EnemyController>();
+            enemy.gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
             {
@@ -27,5 +33,6 @@ public class IceAllianceBullet : BulletController
             }
             Despawn();
         }
+        base.OnTriggerEnter2D(_Target);
     }
 }

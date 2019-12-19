@@ -17,25 +17,19 @@ public class EnemyController : MonoBehaviour
     public Enemy enemy;
     protected EnemyState previousState, CurrentState;
     public PlaySkeletonAnimationState playSkeletonAnimation;
-    public bool isMove = true, isAttack = true, isLive = true;
+    public bool isMove = true, isAttack, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
     protected float distancetoTower;
     protected float countdown;
     public static float EnemyLive;
-    SoundManager soundManager;
     float distance;
-    GameEffect gameEffect;
+    public GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
-
-    [SerializeField] GameObject HealthUI;
+    [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        soundManager = SoundManager.Instance;
-    }
     protected void Start()
     {
         gameEffect = GetComponent<GameEffect>();
@@ -53,11 +47,10 @@ public class EnemyController : MonoBehaviour
         enemy.bulletSpeed = md.BulletSpeed;
         enemy.range = md.Range;
         isMove = true;
-        isAttack = true;
         isLive = true;
         SeekingTower();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
-        Move();
+        Move(enemy.speed);
     }
 
     // Update is called once per frame
@@ -79,25 +72,31 @@ public class EnemyController : MonoBehaviour
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
     }
-    public void Move()
+    public void Move(float _speed, float percent_slow = 100f)
     {
-        if (isMove)
+        if (!isAttack)
         {
-            CurrentState = EnemyState.Run;
-            Rigidbody2D.velocity = Vector2.down * (distance / enemy.speed);
+            if (isMove)
+            {
+                CurrentState = EnemyState.Run;
+                Rigidbody2D.velocity = Vector2.down * (distance / enemy.speed) * (percent_slow / 100);
+            }
+
+            else
+            {
+                Rigidbody2D.velocity = Vector2.zero;
+                CurrentState = EnemyState.Idle;
+            }
         }
-        else
-        {
-            Rigidbody2D.velocity = Vector2.zero;
-            CurrentState = EnemyState.Idle;
-        }
+        
 
     }
     IEnumerator Die()
     {
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
-        // GameplayController.Instance.Alliance_1.listEnemies.Remove(this);
-        //  GameplayController.Instance.Alliance_2.listEnemies.Remove(this);
+        GameplayController.Instance.Alliance_1?.listEnemies.Remove(this);
+        GameplayController.Instance.Alliance_2?.listEnemies.Remove(this);
+
         isLive = false;
         isAttack = false;
         CurrentState = EnemyState.Die;
@@ -107,7 +106,7 @@ public class EnemyController : MonoBehaviour
         {
             ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
         }
-        HealthUI.SetActive(false);
+        canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = false;
         if (effectObj != null && effectObj.activeSelf)
         {
@@ -116,9 +115,9 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         EnemyLive--;
-        Despawn();
+        Despawn(gameObject);
     }
-    public void DealDamge(float _damage, float _damageplus=0f)
+    public void DealDamge(float _damage, float _damageplus = 0f)
     {
         isHurt = true;
         //CurrentState = EnemyState.Hurt;
@@ -133,15 +132,14 @@ public class EnemyController : MonoBehaviour
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
         GameObject damageobj = ObjectPoolManager.Instance.SpawnObject(tag, _postion, Quaternion.identity);
-        damageobj.transform.parent = GetComponentInChildren<Canvas>().gameObject.transform;
+        damageobj.transform.SetParent(canvas.gameObject.transform);
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
     public void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-
         StartCoroutine(WaitingEffect(_time, () =>
        {
-           if (_effect.Equals(Effect.Slow))
+           if (_effect.Equals(Effect.Knockback))
            {
                gameEffect.KnockBack(gameObject, _position);
                if (effectObj != null)
@@ -150,31 +148,41 @@ public class EnemyController : MonoBehaviour
                    return;
                }
            }
+           else if (_effect.Equals(Effect.Slow))
+           {
+               Debug.Log("Slow");
+           }
            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
            {
                isMove = false;
-               Move();
-               isAttack = false;
+               if (isAttack)
+               {
+                   isAttack = false;
+               }
+               Move(enemy.speed);
+               
+               effectObj = gameEffect.GetEffect(_effect, _position, _time);
+           }
+           else if (_effect.Equals(Effect.Poiton))
+           {
                effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
        }, () =>
        {
-
            isMove = true;
            if (_effect.Equals(Effect.Freeze))
            {
                gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+               if (!isAttack)
+               {
+                   isAttack = true;
+               }
            }
            if (!isAttack)
            {
-               Move();
+               Move(enemy.speed);
            }
-           isAttack = true;
        }));
-    }
-    public void KnockBack(Vector3 _position)
-    {
-        Rigidbody2D.AddForce(new Vector2(gameObject.transform.position.x * 1, gameObject.transform.position.x * -1));
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
@@ -185,7 +193,7 @@ public class EnemyController : MonoBehaviour
     protected IEnumerator WaitingDestroyEffect(GameObject _gameObject, float _time)
     {
         yield return new WaitForSeconds(_time);
-        _gameObject?.SetActive(false);
+        Despawn(_gameObject);
     }
     public void ChangeState()
     {
@@ -221,19 +229,19 @@ public class EnemyController : MonoBehaviour
         if (collider2D.gameObject.tag.Equals("Tower"))
         {
             isMove = false;
-            Move();
+            Move(enemy.speed);
             isAttack = true;
             CurrentState = EnemyState.Attack;
         }
     }
     private void OnEnable()
     {
-        HealthUI.SetActive(true);
+        canvas.gameObject.SetActive(true);
         boxCollider2D.enabled = true;
     }
-    public void Despawn()
+    public void Despawn(GameObject _Obj)
     {
-        ObjectPoolManager.Instance.DespawnObJect(gameObject);
+        ObjectPoolManager.Instance.DespawnObJect(_Obj);
     }
 
     public virtual void CheckAttack()
@@ -241,7 +249,7 @@ public class EnemyController : MonoBehaviour
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
         if (distancetoTower < enemy.range && isLive)
         {
-            if (countdown <= 0f && isAttack)
+            if (countdown <= 0f && !isAttack)
             {
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;

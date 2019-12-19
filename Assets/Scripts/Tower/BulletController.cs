@@ -20,6 +20,10 @@ public class BulletController : MonoBehaviour
     public bool critical;
     public bool multishot;
     public bool quickhand;
+    EnemyController nearEnemy;
+    private float bounceRange = 3f;
+    private int numberBounce = 3;
+    private float percent_Slow = 20;
     #endregion
     protected void Start()
     {
@@ -28,6 +32,9 @@ public class BulletController : MonoBehaviour
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
+        bounceRange = 5f;
+        numberBounce = 3;
+        percent_Slow = 20f;
     }
     public void SetTarget(EnemyController _Target)
     {
@@ -38,7 +45,7 @@ public class BulletController : MonoBehaviour
         dir=_dir;
     }
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         if (Target == null || !Target.isLive)
         {
@@ -72,5 +79,75 @@ public class BulletController : MonoBehaviour
         var trail = GetComponentInChildren<TrailRenderer>();
         if (trail != null)
             trail.Clear();
+    }
+    protected virtual void OnTriggerEnter2D(Collider2D _Target)
+    {
+        if (_Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            Despawn();
+        }
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
+        {
+            EnemyController enemyController = _Target.GetComponent<EnemyController>();
+            if (SeekTarget)
+            {
+                Despawn();
+            }
+            #region Explosion Bullet
+            if (explosion)
+            {
+                ObjectPoolManager.Instance.SpawnObject("explosionBullet", this.transform.position, Quaternion.identity);
+                Despawn();
+            }
+            #endregion
+            #region BounceBullet
+            if (bounce)
+            {
+                if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
+                {
+                    //listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
+                    nearEnemy = null;
+                    int index = 0;
+                    float shortdistance = Mathf.Infinity;
+                    for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
+                    {
+                        float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
+                        if (distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject)
+                        {
+                            shortdistance = distance;
+                            index = i;
+                        }
+                    }
+                    if (shortdistance <= bounceRange)
+                    {
+                        nearEnemy = GameplayController.Instance.PlayerController.listEnemies[index];
+                    }
+                    if (numberBounce > 0 && nearEnemy != null && nearEnemy.isLive)
+                    {
+                        SetTarget(nearEnemy);
+                        dir = nearEnemy.transform.position - transform.position;
+                        Move(dir);
+                        //nearEnemy.DealDamge(bullet.Damage, damagePlus);
+                        bullet.Damage = Mathf.Round(bullet.Damage * 90 / 100);
+                        numberBounce--;
+                        if (numberBounce < 0 || !nearEnemy.isLive)
+                        {
+                            Despawn();
+                        }
+                    }
+                    else
+                    {
+                        Despawn();
+                    }
+                }
+            }
+            #endregion
+            if (slow)
+            {
+                enemyController.DealEffect(Effect.Slow, enemyController.transform.position, 2f);
+                enemyController.Move(enemyController.enemy.speed, percent_Slow);
+                Debug.Log("SlowEnemy");
+            }
+        }
     }
 }

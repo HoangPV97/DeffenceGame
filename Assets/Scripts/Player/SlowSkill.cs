@@ -8,16 +8,13 @@ public class SlowSkill : BulletController
     [SerializeField]
     float backSpace;
     // Start is called before the first frame update
-    public void SetDataSkill(float _speed,float _damage,float _knockback)
-    {
-
+    public override void SetDataBullet(float _speed, float _damage)
+    {       
+        base.SetDataBullet(_speed, _damage);
     }
-    private void OnTriggerEnter2D(Collider2D _Target)
+    protected override void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (_Target.gameObject.tag.Equals("BlockPoint"))
-        {
-            ObjectPoolManager.Instance.DespawnObJect(gameObject);
-        }
+        base.OnTriggerEnter2D(_Target);
         Identify identify = _Target.gameObject.GetComponent<Identify>();
         if (identify == null)
         {
@@ -41,7 +38,7 @@ public class SlowSkill : BulletController
                 {
                     enemy.DealDamge(bullet.Damage, 0);
                 }
-                enemy.DealEffect(Effect.Slow, new Vector3(0,1f,0), 0);
+                enemy.DealEffect(Effect.Knockback, new Vector3(0,1f,0), 0);
                 return;
             }
         }

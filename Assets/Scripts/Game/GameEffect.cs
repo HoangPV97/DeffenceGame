@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Effect { Stun, Freeze, Slow, destroyFreeze, destroyStun };
+public enum Effect { Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback};
 public class GameEffect : MonoBehaviour
 {
 
@@ -14,6 +14,9 @@ public class GameEffect : MonoBehaviour
                 effectObj = SpawnEffect("freezeffect", _position, _time);
                 break;
             case Effect.Slow:
+                Debug.Log("SLOW_EFFECT");
+                break;
+            case Effect.Knockback:
                 //this.gameObject.GetComponent<Rigidbody2D>().AddForce(_position * 5);
                 KnockBack(this.gameObject, _position);
                 break;
@@ -22,6 +25,10 @@ public class GameEffect : MonoBehaviour
                 break;
             case Effect.destroyFreeze:
                 effectObj = SpawnEffect("iceeffectend", _position, _time);
+                break;
+            case Effect.Poiton:
+                //spawn Effect
+                Debug.Log("EFFECT POITON");
                 break;
         }
         return effectObj;

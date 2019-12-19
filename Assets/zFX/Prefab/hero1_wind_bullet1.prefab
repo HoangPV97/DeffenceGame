@@ -33251,14 +33251,13 @@ MonoBehaviour:
   elementalBullet: 2
   damagePlus: 5
   explosion: 0
-  bounce: 1
+  bounce: 0
   poison: 0
   slow: 0
   pierce: 0
   critical: 0
   multishot: 0
   quickhand: 0
-  EnemyinRange: []
 --- !u!58 &2170715936868737182
 CircleCollider2D:
   m_ObjectHideFlags: 0

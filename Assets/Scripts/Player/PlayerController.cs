@@ -1,7 +1,9 @@
 ﻿using Spine;
 using Spine.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public float ATKspeed;
     public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
+    bool idleStatus;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
+        skeletonAnimation.AnimationState.Complete += OnAttack;
         currentMode = AutoMode.TurnOff;
     }
 
@@ -74,13 +78,12 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                     && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                 {
-                    //ClicktoShoot();
                     characterState = CharacterState.Attack;
-                    coundown = player.rateOfFire;
                 }
                 else
                 {
-                    characterState = CharacterState.Idle;
+                    if(!idleStatus)
+                        idleStatus = true;
                 }
                 break;
             case AutoMode.TurnOn:
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-        coundown -= Time.deltaTime;
+
     }
     public void Shoot()
     {
@@ -110,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+        
     }
     private void ChangeState()
     {
@@ -124,6 +128,16 @@ public class PlayerController : MonoBehaviour
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
         }
     }
+
+    private void OnAttack(TrackEntry trackEntry)
+    {
+        if (idleStatus)
+        {
+            idleStatus = false;
+            characterState = CharacterState.Idle;
+        }
+    }
+
     public void UpdateEnemy()
     {
         shortestDistance = Mathf.Infinity;
@@ -133,14 +147,16 @@ public class PlayerController : MonoBehaviour
         if (listEnemies.Count > 0)
         {
             int index = 0;
-            for (int i = 0; i < listEnemies.Count; i++)
-            {
-                float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
-                if (distancetoEnemy < shortestDistance)
-                {
-                    shortestDistance = distancetoEnemy;
-                    index = i;
-                }
+            listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
+            //for (int i = 0; i < listEnemies.Count; i++)
+            //{
+                
+                //float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
+                //if (distancetoEnemy < shortestDistance)
+                //{
+                //    shortestDistance = distancetoEnemy;
+                //    index = i;
+                //}
                 /* if (distancetoEnemy < shortestDistance)
                  {
                      _2ndShortestDistance = shortestDistance;
@@ -167,10 +183,11 @@ public class PlayerController : MonoBehaviour
                      player.target = null;
                      characterState = CharacterState.Idle;
                  }*/
-            }
-            if (nearestEnemy != listEnemies[index])
+            //}
+            nearestEnemy = listEnemies[index];
+            if (!nearestEnemy.isLive)
             {
-                nearestEnemy = listEnemies[index];
+                nearestEnemy = listEnemies[index + 1];
             }
             if (nearestEnemy != null && nearestEnemy.isLive)
             {

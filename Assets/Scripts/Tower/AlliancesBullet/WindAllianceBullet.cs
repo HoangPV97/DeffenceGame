@@ -15,7 +15,7 @@ public class WindAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            // gameEffect.SpawnEffect("windimpact", enemy.transform.position, 0.5f);
+            enemy.gameEffect.SpawnEffect("windimpact", enemy.transform.position, 0.5f);
             IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
             if (elemental != null)
             {

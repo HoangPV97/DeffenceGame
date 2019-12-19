@@ -33,7 +33,7 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
         if (distancetoTower < enemy.range && isLive)
         {
-            if (countdown <= 0f && isAttack)
+            if (countdown <= 0f && !isAttack)
             {
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;

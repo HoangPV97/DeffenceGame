@@ -22,15 +22,11 @@ public class IcePlayerBullet : BulletController
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
     }
-    protected void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (Target.gameObject.tag.Equals("BlockPoint"))
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            gameObject.SetActive(false);
-        }
-        if (Target.gameObject.tag.Equals(bullet.TargetTag))
-        {
-            EnemyController enemy = Target.GetComponent<EnemyController>();
+            EnemyController enemy = _Target.GetComponent<EnemyController>();
            // gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
@@ -46,5 +42,6 @@ public class IcePlayerBullet : BulletController
                 Despawn();
             }
         }
+        base.OnTriggerEnter2D(_Target);
     }
 }

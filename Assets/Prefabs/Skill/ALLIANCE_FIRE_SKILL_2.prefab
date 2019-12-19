@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294ab216ad4881145953fd2fc5baf73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillID: ALLIANCE_FIRE_SKILL_2
+  SkillID: ALLIANCE_FIRE_SKILL_1
   CountdownGo: {fileID: 0}
   CountdownTime: 15
   manaCost: 0

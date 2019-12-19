@@ -14420,8 +14420,9 @@ GameObject:
   - component: {fileID: 3316264382930781188}
   - component: {fileID: 3316264382930781189}
   - component: {fileID: 4939408919123146774}
+  - component: {fileID: 7889097541011061114}
   m_Layer: 0
-  m_Name: explosion
+  m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19188,4 +19189,17 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.23
+  m_Radius: 2.5
+--- !u!114 &7889097541011061114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316264382930781435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be86386a4d00e344a9b71e6d2c37f6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleCollider2D: {fileID: 4939408919123146774}

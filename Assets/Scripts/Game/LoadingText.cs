@@ -15,12 +15,14 @@ public class LoadingText : MonoBehaviour
             Damage = GetComponent<TextMeshProUGUI>();
         Damage.text = _Damage;
         Animation.Play();
-        StartCoroutine(WaitingDisableObject(0.5f));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(WaitingDisableObject(0.5f));
     }
 
     IEnumerator WaitingDisableObject(float _time)
     {
         yield return new WaitForSeconds(_time);
-        ObjectPoolManager.Instance.DespawnObJect(gameObject);
+       
+            ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
 }

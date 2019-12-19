@@ -10,7 +10,7 @@ public class PlaySkill1 : Skill
     private float angle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
-
+    float SpeedSkill;
     [SerializeField]
     SkillWeaponWind1 sww1;
     /// <summary>
@@ -30,6 +30,7 @@ public class PlaySkill1 : Skill
         sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
+        SpeedSkill = sww1.GetSkillSpeed("SkillSpeed", Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
@@ -100,8 +101,8 @@ public class PlaySkill1 : Skill
         CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
-        float speed = skill_1_player.GetComponent<BulletController>().bullet.Speed;
-        rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
+        
+        rigidbody.velocity = _direction.normalized * SpeedSkill * Time.deltaTime;
     }
 
 }

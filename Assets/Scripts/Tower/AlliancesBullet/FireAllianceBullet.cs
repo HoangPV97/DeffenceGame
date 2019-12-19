@@ -19,12 +19,12 @@ public class FireAllianceBullet : BulletController
         }
         base.Update();
     }
-    private void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-           // gameEffect.SpawnEffect("fireimpact", enemy.transform.position, 0.5f);
+            enemy.gameEffect.SpawnEffect("fireimpact", enemy.transform.position, 0.5f);
             IWindEffectable elemental = enemy.GetComponent<IWindEffectable>();
             if (elemental != null)
             {
@@ -36,5 +36,6 @@ public class FireAllianceBullet : BulletController
             }
             Despawn();
         }
+        base.OnTriggerEnter2D(Target);
     }
 }

@@ -2,6 +2,7 @@
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 [System.Serializable]
 #region Enemy
@@ -34,8 +35,8 @@ public class AllianceController : MonoBehaviour
     public Alliance Alliance;
     public GameObject Barrel;
     public Elemental elementalType;
-    float shortestDistance, _2ndShortestDistance;
-    EnemyController nearestEnemy, _2ndEnemy;
+    protected float shortestDistance, _2ndShortestDistance;
+    protected EnemyController nearestEnemy, _2ndEnemy;
     //public PlaySkeletonAnimationState playSkeletonAnimation;
     public CharacterState characterState, preCharacterState;
     public SkeletonAnimation skeletonAnimation;
@@ -48,14 +49,14 @@ public class AllianceController : MonoBehaviour
     public float ATKspeed;
     public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
-    protected void Start()
+    public virtual void Start()
     {
         CircleCollider2D.radius = Alliance.range;
         listEnemies = new List<EnemyController>();
         playerController = GameplayController.Instance.PlayerController;
         skeletonAnimation.AnimationState.Event += OnEvent;
     }
-    public void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
+    public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
     {
         this.elementalType = elemental;
         ATK = atk;
@@ -64,7 +65,7 @@ public class AllianceController : MonoBehaviour
     }
     protected void Update()
     {
-        UpdateEnemy();
+            UpdateEnemy();
         if (preCharacterState != characterState)
         {
             ChangeCharacterState();
@@ -92,42 +93,51 @@ public class AllianceController : MonoBehaviour
         }
 
     }
-    public void UpdateEnemy()
+    public virtual void UpdateEnemy()
     {
         shortestDistance = Mathf.Infinity;
         _2ndShortestDistance = Mathf.Infinity;
-        nearestEnemy = null;
-        _2ndEnemy = null;
+        // nearestEnemy = null;
+        // _2ndEnemy = null;
         if (listEnemies.Count > 0)
         {
+            if (listEnemies.Count > 1)
+            {
+                listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
+            }
+            int index = 0;
+
             for (int i = 0; i < listEnemies.Count; i++)
             {
                 float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
                 if (distancetoEnemy < shortestDistance)
                 {
-                    _2ndShortestDistance = shortestDistance;
                     shortestDistance = distancetoEnemy;
-                    _2ndEnemy = nearestEnemy;
-                    nearestEnemy = listEnemies[i];
+                    index = i;
                 }
                 else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
                 {
                     _2ndShortestDistance = distancetoEnemy;
                     _2ndEnemy = listEnemies[i];
                 }
-                if (nearestEnemy != null && shortestDistance < Alliance.range && nearestEnemy.isLive)
-                {
-                    Alliance.target = nearestEnemy;
-                }
-                else if (_2ndEnemy != null && !nearestEnemy.isLive)
-                {
-                    nearestEnemy = _2ndEnemy;
-                    Alliance.target = nearestEnemy;
-                }
-                if (!nearestEnemy.isLive && _2ndEnemy == null)
-                {
-                    Alliance.target = null;
-                }
+            }
+            if (_2ndEnemy != null && !nearestEnemy.isLive)
+            {
+                nearestEnemy = _2ndEnemy;
+                Alliance.target = nearestEnemy;
+            }
+            if (nearestEnemy != listEnemies[index])
+            {
+                nearestEnemy = listEnemies[index];
+            }
+            if (nearestEnemy != null && nearestEnemy.isLive)
+            {
+                Alliance.target = nearestEnemy;
+            }
+            else
+            {
+                Alliance.target = null;
+                characterState = CharacterState.Idle;
             }
         }
         else
@@ -184,8 +194,6 @@ public class AllianceController : MonoBehaviour
             alianceBullet.SetTarget(Alliance.target);
             alianceBullet.SetDataBullet(BulletSpeed, ATK);
         }
-        Vector2 dir = Alliance.target.transform.position - transform.position;
-        alianceBullet.setDirection(dir);
     }
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)

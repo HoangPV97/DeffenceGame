@@ -240,6 +240,7 @@ MonoBehaviour:
   isAttack: 1
   isLive: 1
   Rigidbody2D: {fileID: 2121085402989365051}
+  canvas: {fileID: 5240803140284971041}
   HealthUI: {fileID: 8912908039809388894}
   boxCollider2D: {fileID: 8912908039463566874}
 --- !u!114 &7872905782356698868
@@ -437,6 +438,12 @@ PrefabInstance:
 --- !u!224 &5240803140284971042 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
+    type: 3}
+  m_PrefabInstance: {fileID: 602319194220858610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &5240803140284971041 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4674961459942323411, guid: 047aa3e3016052441b4c2a011841725b,
     type: 3}
   m_PrefabInstance: {fileID: 602319194220858610}
   m_PrefabAsset: {fileID: 0}

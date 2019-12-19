@@ -61,7 +61,7 @@ public class GameplayController : Singleton<GameplayController>
             Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,
                                     DataController.Instance.IngameAlliance2.ATKspeed,
                                     DataController.Instance.IngameAlliance2.ATK,
-                                     DataController.Instance.IngameAlliance1.BulletSpeed);
+                                     DataController.Instance.IngameAlliance2.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
             go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2]);

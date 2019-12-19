@@ -310,10 +310,11 @@ MonoBehaviour:
     _bulletSpeed: 0
   playSkeletonAnimation: {fileID: 6328121496462466024}
   isMove: 1
-  isAttack: 1
+  isAttack: 0
   isLive: 1
+  isSlow: 0
   Rigidbody2D: {fileID: 7385684139614032846}
-  HealthUI: {fileID: 8020962620738334467}
+  canvas: {fileID: 3787182833335925224}
   boxCollider2D: {fileID: 8020962621357836202}
 --- !u!1001 &8389654243278130491
 PrefabInstance:
@@ -452,6 +453,12 @@ PrefabInstance:
 --- !u!224 &3787182833335925227 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8389654243278130491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &3787182833335925224 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4674961459942323411, guid: 047aa3e3016052441b4c2a011841725b,
     type: 3}
   m_PrefabInstance: {fileID: 8389654243278130491}
   m_PrefabAsset: {fileID: 0}

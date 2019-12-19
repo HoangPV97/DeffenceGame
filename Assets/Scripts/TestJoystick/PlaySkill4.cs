@@ -72,12 +72,12 @@ public class PlaySkill4 : Skill
 
     public void StunSkill(Vector3 _position)
     {
-        GameObject Poison_Skill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
+        GameObject Poison_Skill = ObjectPoolManager.Instance.SpawnObject("poison", _position, Quaternion.identity);
         float particleTime = Poison_Skill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
-        CheckDestroyEffect(Poison_Skill, particleTime);
+        CheckDestroyEffect(Poison_Skill, 5f);
     }
     public override void OnInvokeSkill()
     {
