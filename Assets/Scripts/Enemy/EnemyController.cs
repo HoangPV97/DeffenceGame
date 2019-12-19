@@ -16,7 +16,8 @@ public class EnemyController : MonoBehaviour
 {
     public Enemy enemy;
     protected EnemyState previousState, CurrentState;
-    public PlaySkeletonAnimationState playSkeletonAnimation;
+    public SkeletonAnimation skeletonAnimation;
+    public AnimationReferenceAsset attack, idle,run,hurt,die;
     public bool isMove = true, isAttack, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
@@ -37,12 +38,13 @@ public class EnemyController : MonoBehaviour
     public void SetUpdata(string type, int Level)
     {
         var md = DataController.Instance.GetMonsterData(type);
-        float growth = 1 + md.Growth * Level;
+        float growth = 1 + md.Growth * (Level - 1);
         enemy.health.Init(md.HP * growth, 0);
         enemy.damage = md.ATK * growth;
         enemy.armor = md.Armor * growth;
         enemy.speed = md.MoveSpeed;
         enemy.rateOfFire = md.ATKSpeed;
+        Debug.Log("RateofFire :" + enemy.rateOfFire);
         enemy.bulletSpeed = md.BulletSpeed;
         enemy.range = md.Range;
         isMove = true;
@@ -55,7 +57,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+
         if (previousState != CurrentState)
         {
             ChangeState();
@@ -197,32 +199,32 @@ public class EnemyController : MonoBehaviour
     }
     public void ChangeState()
     {
-
-        string stateName = null;
         switch (CurrentState)
         {
             case EnemyState.Attack:
-                stateName = "attack";
+                skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
+                skeletonAnimation.timeScale = enemy.rateOfFire;
                 break;
             case EnemyState.Die:
-                stateName = "die";
+                skeletonAnimation.timeScale = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, die, true);
                 break;
             case EnemyState.Hurt:
-                stateName = "hurt";
+                skeletonAnimation.timeScale = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, hurt, true);
                 break;
             case EnemyState.Idle:
-                stateName = "idle";
+                skeletonAnimation.timeScale = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
                 break;
             case EnemyState.Run:
-                stateName = "run";
-                break;
-            case EnemyState.Skill:
-                stateName = "skill";
+                skeletonAnimation.timeScale = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, run, true);
                 break;
             default:
                 break;
         }
-        playSkeletonAnimation.PlayAnimationState(stateName);
+
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
@@ -253,9 +255,10 @@ public class EnemyController : MonoBehaviour
             {
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
-                CurrentState = EnemyState.Idle;
+                //CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
                 countdown = enemy.rateOfFire;
+                Debug.Log("RateofFire :"+enemy.rateOfFire);
             }
             countdown -= Time.deltaTime;
         }

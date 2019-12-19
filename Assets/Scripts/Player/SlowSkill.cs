@@ -5,11 +5,22 @@ using UnityEngine;
 public class SlowSkill : BulletController
 {
     List<GameObject> listCheckColision;
-    [SerializeField]
-    float backSpace;
+    float KnockBackDistance;
+    float effectedAoe;
+    [SerializeField] BoxCollider2D collider2D;
     // Start is called before the first frame update
+    public void setDataSkill( float _knockback,float _effectAoe)
+    {
+        this.KnockBackDistance = _knockback;
+        this.effectedAoe = _effectAoe;
+        if (effectedAoe != 0)
+        {
+            collider2D.size = new Vector2(effectedAoe, 1);
+        }
+    }
     public override void SetDataBullet(float _speed, float _damage)
     {
+        
         listCheckColision = new List<GameObject>();
         base.SetDataBullet(_speed, _damage);
     }
@@ -35,7 +46,7 @@ public class SlowSkill : BulletController
                     {
                         enemy.DealDamge(bullet.Damage);
                     }
-                    enemy.DealEffect(Effect.Knockback, new Vector3(0, 1f, 0), 0);
+                    enemy.DealEffect(Effect.Knockback, new Vector3(0, KnockBackDistance, 0), 0);
                     return;
                 }
 

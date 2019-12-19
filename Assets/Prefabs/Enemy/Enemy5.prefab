@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7493419020059271482}
   - component: {fileID: 8479955599815322511}
   - component: {fileID: 9124661697560551847}
-  - component: {fileID: 809390913999438112}
   - component: {fileID: 6864730306257849177}
   - component: {fileID: 3171938695651895084}
   - component: {fileID: 3196201080331221289}
@@ -181,30 +180,6 @@ MonoBehaviour:
   _animationName: run
   loop: 1
   timeScale: 1
---- !u!114 &809390913999438112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292061646329833501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec350a8760f7484eb48e316aecb401b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 9124661697560551847}
-  statesAnimation:
-  - stateName: attack
-    animation: {fileID: 11400000, guid: f61575e25e3055f439f84c225244b250, type: 2}
-  - stateName: die
-    animation: {fileID: 11400000, guid: ca9e23558252f5b43a7dfbae85873d20, type: 2}
-  - stateName: hurt
-    animation: {fileID: 11400000, guid: 1e73009e735a1514aacd04e142ed4e08, type: 2}
-  - stateName: run
-    animation: {fileID: 11400000, guid: 5089a26000867f44f95dd73d040fe55b, type: 2}
-  - stateName: idle
-    animation: {fileID: 11400000, guid: 4c3da58f2cbb9834898db85a86e62f39, type: 2}
 --- !u!114 &6864730306257849177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,13 +252,18 @@ MonoBehaviour:
       healthValueText: {fileID: 0}
     _elemental: 1
     _bulletSpeed: 0
-  playSkeletonAnimation: {fileID: 809390913999438112}
+  skeletonAnimation: {fileID: 9124661697560551847}
+  attack: {fileID: 11400000, guid: f61575e25e3055f439f84c225244b250, type: 2}
+  idle: {fileID: 11400000, guid: 4c3da58f2cbb9834898db85a86e62f39, type: 2}
+  run: {fileID: 11400000, guid: 5089a26000867f44f95dd73d040fe55b, type: 2}
+  hurt: {fileID: 11400000, guid: 1e73009e735a1514aacd04e142ed4e08, type: 2}
+  die: {fileID: 11400000, guid: ca9e23558252f5b43a7dfbae85873d20, type: 2}
   isMove: 1
   isAttack: 1
   isLive: 1
+  gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 3571211530392899872}
   canvas: {fileID: 880590222981525886}
-  HealthUI: {fileID: 6292061646712227653}
   boxCollider2D: {fileID: 6292061646329833473}
 --- !u!1 &6292061646712227653
 GameObject:

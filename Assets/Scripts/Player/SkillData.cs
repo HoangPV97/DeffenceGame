@@ -23,7 +23,7 @@ public class SkillData
         for (int i = 0; i < baseSkills.Count; i++)
         {
             if (baseSkills[i].Tier == Tier)
-                return baseSkills[i].SkillSpeed[Level];
+                return baseSkills[i].SkillSpeed[Level-1];
         }
         return 0;
     }
@@ -57,7 +57,26 @@ public class SkillData
         }
         return null;
     }
-
+    public float GetSkillAttributes(string attribute, int Tier, int Level)
+    {
+        for (int i = 0; i < baseSkills.Count; i++)
+        {
+            if (baseSkills[i].Tier == Tier)
+                return GetAttribute(baseSkills[i].SkillAttributes, attribute, Level-1);
+        }
+        return 0;
+    }
+    protected float GetAttribute(List<SkillAttribute> attributeList, string _attribute, int level)
+    {
+        for (int i = 0; i < attributeList.Count; i++)
+        {
+            if (attributeList[i].Attribute.Equals(_attribute))
+            {
+                return attributeList[i].Value[level];
+            }
+        }
+        return 0;
+    }
 }
 [System.Serializable]
 public class BaseSkill

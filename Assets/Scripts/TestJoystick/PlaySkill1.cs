@@ -10,7 +10,7 @@ public class PlaySkill1 : Skill
     private float angle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
-    float Speed,Damage;
+    float Speed, Damage, KnockBack,EffectedAoe ;
     [SerializeField]
     SkillWeaponWind1 sww1;
     /// <summary>
@@ -30,8 +30,11 @@ public class PlaySkill1 : Skill
         sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
-        Speed = sww1.GetSkillSpeed( Tier, Level);
+        Speed = sww1.GetSkillSpeed(Tier, Level);
+        Debug.Log("Speed :" + Speed);
         Damage = sww1.GetDamage(Tier, Level);
+        KnockBack = sww1.GetSkillAttributes("KnockbackDistance", Tier, Level);
+        EffectedAoe= sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
@@ -92,8 +95,10 @@ public class PlaySkill1 : Skill
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, gameObject.transform.position, Quaternion.identity);
         CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        skill_1_player.GetComponent<BulletController>().SetDataBullet(Speed, Damage);
-        skill_1_player.GetComponent<BulletController>().setDirection(direction);
+        SlowSkill slowSkill = skill_1_player.GetComponent<SlowSkill>();
+        slowSkill.SetDataBullet(Speed, Damage);
+        slowSkill.setDirection(direction);
+        slowSkill.setDataSkill(KnockBack,EffectedAoe);
         //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
         //rigidbody.velocity = _direction.normalized * 40 * Speed * Time.deltaTime;
     }

@@ -17,13 +17,16 @@ public class PlaySkeletonAnimationState : MonoBehaviour
     }
     public SkeletonAnimation skeletonAnimation;
     public List<StateNameToAnimationReference> statesAnimation = new List<StateNameToAnimationReference>();
-    public void PlayAnimationState(string _state)
+    public void PlayAnimationState(string _state,float _timeScale)
     {
-        PlayAnimation(GetAnimationStateInList(_state));
+        PlayAnimation(GetAnimationStateInList(_state),_timeScale);
+        
     }
-    public void PlayAnimation(Spine.Animation _animation)
+    public void PlayAnimation(Spine.Animation _animation, float _timeScale)
     {
         skeletonAnimation.AnimationState.SetAnimation(0, _animation, true);
+        skeletonAnimation.timeScale = _timeScale;
+
     }
     public Spine.Animation GetAnimationStateInList(string State)
     {

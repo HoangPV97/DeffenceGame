@@ -28,4 +28,8 @@ public class WindMeleeEnemy : EnemyController, IWindEffectable
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
         StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
     }
+    public override void CheckAttack()
+    {
+        base.CheckAttack();
+    }
 }

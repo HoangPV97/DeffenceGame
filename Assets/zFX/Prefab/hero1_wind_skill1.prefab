@@ -4751,7 +4751,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7, y: 1}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &2165886148831242406
 Rigidbody2D:
@@ -4801,7 +4801,7 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
-  backSpace: 2
+  collider2D: {fileID: 1697683326898580204}
 --- !u!1 &185990495333401746
 GameObject:
   m_ObjectHideFlags: 0
