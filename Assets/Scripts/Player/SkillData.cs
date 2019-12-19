@@ -18,27 +18,15 @@ public class SkillData
         }
         return 0;
     }
-    public float GetSkillSpeed(string attribute,int Tier, int Level)
+    public float GetSkillSpeed(int Tier, int Level)
     {
         for (int i = 0; i < baseSkills.Count; i++)
         {
             if (baseSkills[i].Tier == Tier)
-                return GetAttribute(baseSkills[i].SkillAttributes, attribute, Level);
+                return baseSkills[i].SkillSpeed[Level];
         }
         return 0;
     }
-    protected float GetAttribute(List<SkillAttribute> attributeList,string _attribute,int level)
-    {
-        for(int i=0;i< attributeList.Count; i++)
-        {
-            if (attributeList[i].Attribute.Equals(_attribute))
-            {
-                return attributeList[i].Value[level];
-            }
-        }
-        return 0;
-    }
-
 
     public float GetCoolDown(int Tier, int Level)
     {
@@ -78,6 +66,7 @@ public class BaseSkill
     public float[] ManaCost;
     public float[] CoolDown;
     public float[] Damage;
+    public float[] SkillSpeed;
     public List<List<Item>> UpgradeItems;
     public List<Item> EvolutionItems;
     public List<SkillAttribute> SkillAttributes;
@@ -87,20 +76,17 @@ public class BaseSkill
 [System.Serializable]
 public class SkillWeaponWind1 : SkillData
 {
-    public const string SkillSpeed = "SkillSpeed";
     public const string KnockbackDistance = "KnockbackDistance";
     public const string KnockbackDuration = "KnockbackDuration";
     public const string EffectedAoe = "EffectedAoe";
 }
 public class SkillWeaponFire1 : SkillData
 {
-    public const string SkillSpeed = "SkillSpeed";
     public const string TimeEffect = "TimeEffect";
     public const string EffectedAoe = "EffectedAoe";
 }
 public class SkillWeaponIce1 : SkillData
 {
-    public const string SkillSpeed = "SkillSpeed";
     public const string TimeEffect = "TimeEffect";
     public const string EffectedAoe = "EffectedAoe";
 }

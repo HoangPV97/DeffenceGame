@@ -6,6 +6,15 @@ using UnityEngine;
 
 public class WindMeleeEnemy : EnemyController, IWindEffectable
 {
+    protected override void Update()
+    {
+        if (Vector3.Distance(transform.position, Tower.transform.position) > 0)
+        {
+            isMove = true;
+            isAttack = false;
+        }
+        base.Update();
+    }
     public void Attack()
     {
         if (Tower != null)

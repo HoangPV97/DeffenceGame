@@ -10,7 +10,7 @@ public class PlaySkill1 : Skill
     private float angle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
-    float SpeedSkill;
+    float Speed,Damage;
     [SerializeField]
     SkillWeaponWind1 sww1;
     /// <summary>
@@ -30,7 +30,8 @@ public class PlaySkill1 : Skill
         sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
-        SpeedSkill = sww1.GetSkillSpeed("SkillSpeed", Tier, Level);
+        Speed = sww1.GetSkillSpeed( Tier, Level);
+        Damage = sww1.GetDamage(Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
@@ -62,15 +63,6 @@ public class PlaySkill1 : Skill
         arrow.SetActive(true);
         arrow.transform.eulerAngles = new Vector3(0, 0, angle - 90.0f);
     }
-    public void Skill1(Vector2 _direction, float _rotatioZ)
-    {
-        GameObject SlowSkill = poolManager.SpawnObject("slowskill", arrow.transform.position, Quaternion.identity);
-        SlowSkill.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        Rigidbody2D rigidbody = SlowSkill.GetComponent<Rigidbody2D>();
-        float speed = SlowSkill.GetComponent<BulletController>().bullet.Speed;
-        rigidbody.velocity = _direction.normalized * 40 * speed * Time.deltaTime;
-
-    }
     private void Play()
     {
         SlowSkill(direction, angle - 90f);
@@ -100,9 +92,10 @@ public class PlaySkill1 : Skill
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, gameObject.transform.position, Quaternion.identity);
         CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
-        
-        rigidbody.velocity = _direction.normalized * SpeedSkill * Time.deltaTime;
+        skill_1_player.GetComponent<BulletController>().SetDataBullet(Speed, Damage);
+        skill_1_player.GetComponent<BulletController>().setDirection(direction);
+        //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
+        //rigidbody.velocity = _direction.normalized * 40 * Speed * Time.deltaTime;
     }
 
 }
