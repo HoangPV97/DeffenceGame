@@ -355,12 +355,12 @@ public class DataController : Singleton<DataController>
             var wp1 = GetAllianceDataBases(sl1.Type, sl1.WeaponTierLevel.Tier);
             IngameAlliance1 = new IngameAlliance
             {
-                Type = wp1.Type,
-                Tier = wp1.Tier,
+                Type = wp1.weapons.Type,
+                Tier = wp1.weapons.Tier,
                 Level = sl1.WeaponTierLevel.Level,
-                ATK = wp1.ATK[sl1.WeaponTierLevel.Level - 1],
-                ATKspeed = wp1.ATKspeed[slwp.WeaponTierLevel.Level - 1],
-                BulletSpeed = wp1.BulletSpeed
+                ATK = wp1.weapons.ATK[sl1.WeaponTierLevel.Level - 1],
+                ATKspeed = wp1.weapons.ATKspeed[slwp.WeaponTierLevel.Level - 1],
+                BulletSpeed = wp1.weapons.BulletSpeed
             };
         }
 
@@ -372,13 +372,13 @@ public class DataController : Singleton<DataController>
             var wp2 = GetAllianceDataBases(sl2.Type, sl2.WeaponTierLevel.Tier);
             IngameAlliance2 = new IngameAlliance
             {
-                Type = wp2.Type,
-                Tier = wp2.Tier,
+                Type = wp2.weapons.Type,
+                Tier = wp2.weapons.Tier,
                 Level = sl2.WeaponTierLevel.Level,
-                ATK = wp2.ATK[sl2.WeaponTierLevel.Level - 1],
-                ATKspeed = wp2.ATKspeed[slwp.WeaponTierLevel.Level - 1],
+                ATK = wp2.weapons.ATK[sl2.WeaponTierLevel.Level - 1],
+                ATKspeed = wp2.weapons.ATKspeed[slwp.WeaponTierLevel.Level - 1],
                 ATKRange = wp2.ATKRange[slwp.WeaponTierLevel.Level - 1],
-                BulletSpeed = wp2.BulletSpeed
+                BulletSpeed = wp2.weapons.BulletSpeed
             };
         }
 
@@ -410,7 +410,7 @@ public class DataController : Singleton<DataController>
 
     public GameDataWeapon GetGameAlliance(Elemental elemental)
     {
-        return GameData.GetGameAlliance(elemental);
+        return GameData.GetGameDataAlliance(elemental);
     }
 
     public AllianceData GetAllianceDataBases(Elemental elemental, int Tier)
@@ -431,6 +431,13 @@ public class DataController : Singleton<DataController>
     public void AddWeaponLevel(Elemental elemental, int AddLevel, int CurrentEXP)
     {
         var gdw = GameData.GetGameDataWeapon(elemental);
+        gdw.EXP = CurrentEXP;
+        gdw.WeaponTierLevel.Level += AddLevel;
+    }
+
+    public void AddAllianceLevel(Elemental elemental, int AddLevel, int CurrentEXP)
+    {
+        var gdw = GameData.GetGameDataAlliance(elemental);
         gdw.EXP = CurrentEXP;
         gdw.WeaponTierLevel.Level += AddLevel;
     }

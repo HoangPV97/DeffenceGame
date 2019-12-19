@@ -26,6 +26,13 @@ public class UIUpgradehero : MonoBehaviour
     Weapons dataBase;
     int RemainEXP;
     int addLevel = 0;
+    public bool IsHero
+    {
+        get
+        {
+            return MenuController.Instance.UIPanelHeroAlliance.isHero;
+        }
+    }
     public int EmptySlot
     {
         get
@@ -76,16 +83,23 @@ public class UIUpgradehero : MonoBehaviour
     {
         heroElemental = elemental;
         gameObject.SetActive(true);
-        txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
-        data1 = DataController.Instance.GetGameDataWeapon(elemental);
-        dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
+        if (IsHero)
+        {
+            data1 = DataController.Instance.GetGameDataWeapon(elemental);
+            dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
+            txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
+        }
+        else
+        {
+            data1 = DataController.Instance.GetGameAlliance(elemental);
+            dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
+            txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
+        }
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
         txtDamage.text = dataBase.ATK[Level - 1].ToString();
         PBDamage.fillAmount = dataBase.ATK[Level - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
         txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
-        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATK[dataBase.ATKspeed.Count - 1];
-        txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
-        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATK[dataBase.ATKspeed.Count - 1];
+        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
         currentExp = data1.EXP;
         AddExp = 0;
         GoldCost = 0;
@@ -211,7 +225,11 @@ public class UIUpgradehero : MonoBehaviour
     {
         if (DataController.Instance.Gold >= GoldCost)
         {
-            DataController.Instance.AddWeaponLevel(heroElemental, addLevel, RemainEXP);
+            if (IsHero)
+                DataController.Instance.AddWeaponLevel(heroElemental, addLevel, RemainEXP);
+            else
+                DataController.Instance.AddAllianceLevel(heroElemental, addLevel, RemainEXP);
+
             DataController.Instance.Gold -= GoldCost;
             for (int i = 0; i < Slots.Length; i++)
             {

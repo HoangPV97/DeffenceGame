@@ -14,6 +14,8 @@ public class MenuController : Singleton<MenuController>
         {
             if (UIPanelHeroAlliance.gameObject.activeSelf)
                 return UIPanelHeroAlliance;
+            if (UiSelectLevel.gameObject.activeSelf)
+                return UiSelectLevel;
             return null;
         }
     }
@@ -33,7 +35,7 @@ public class MenuController : Singleton<MenuController>
     {
         if (CurrentUI != null)
             CurrentUI.OnHide();
-        UIPanelHeroAlliance.SetUpData();
+        UIPanelHeroAlliance.SetUpData(true);
     }
 
     public void OnBtnMainPlayClick()
