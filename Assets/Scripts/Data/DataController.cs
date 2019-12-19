@@ -72,6 +72,14 @@ public class DataController : Singleton<DataController>
     public InGameWeapon inGameWeapons;
     public IngameAlliance IngameAlliance1, IngameAlliance2;
     public BaseData InGameBaseData;
+
+    public int MaxStage
+    {
+        get
+        {
+            return GameStageDataBase.MaxStage;
+        }
+    }
     #endregion
     private string dataPath = "";
     private void Start()

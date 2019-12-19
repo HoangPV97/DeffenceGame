@@ -167,13 +167,13 @@ public class GameDataWeapon
     public SaveGameTierLevel WeaponTierLevel;
     public List<SaveGameTierLevel> SkillTierLevel;
 }
-
+[System.Serializable]
 public class SaveGameTierLevel
 {
     public int Tier;
     public int Level;
 }
-
+[System.Serializable]
 public class GameStage
 {
     public int Level;

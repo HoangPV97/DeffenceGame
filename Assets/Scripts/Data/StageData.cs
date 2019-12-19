@@ -13,6 +13,7 @@ public class StageData
 public class GameStageDataBase
 {
     public List<StageDataBase> stageDataBases;
+    public int MaxStage;
     public StageDataBase GetStageDataBase(int Level)
     {
         for (int i = 0; i < stageDataBases.Count; i++)
@@ -31,8 +32,14 @@ public class StageDataBase
 {
     public int Level;
     public int[] StarCondition;
-    public List<Item> WinReward;
+    public List<ListItem> WinReward;
 }
+[System.Serializable]
+public class ListItem
+{
+    public List<Item> items;
+}
+
 [System.Serializable]
 public class GameEnemyDataBase
 {

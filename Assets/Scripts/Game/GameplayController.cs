@@ -72,7 +72,7 @@ public class GameplayController : Singleton<GameplayController>
         for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
         {
             StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
-            EnemyController.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
+            GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
 
     }

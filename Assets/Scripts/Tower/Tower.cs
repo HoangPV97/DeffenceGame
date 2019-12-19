@@ -47,6 +47,7 @@ public class Tower : MonoBehaviour
     private void Die()
     {
         Islive = false;
+        GameController.Instance.EndGame();
     }
     public void RecoverMana()
     {

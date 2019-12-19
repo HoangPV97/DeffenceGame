@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
-    public GameObject GameoverPanel,WingamePanel,PausePanel;
-    public Text GoldText,WinGold;
+    public float EnemyLive;
+    public GameObject GameoverPanel, WingamePanel, PausePanel;
+    public Text GoldText, WinGold;
     float Gold = 0;
     float count = 0;
     private void Awake()
@@ -22,33 +23,20 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Tower.Islive == false)
-        {
-            EndGame();
-        }
-        if (EnemyController.EnemyLive == 0)
-        {
-            WinGame();
-        }        
-    }
     public void SaveGame()
     {
         DataController.Instance.Save();
     }
     public void EndGame()
-    {        
+    {
         GameoverPanel.SetActive(true);
         Time.timeScale = 0;
     }
     public void Restart()
     {
-        
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
@@ -57,13 +45,35 @@ public class GameController : MonoBehaviour
         GoldText.text = "" + _gold;
         WinGold.text = "Gold : " + _gold;
     }
-    public void GoldUp( float _bonusgold)
+    public void GoldUp(float _bonusgold)
     {
         Gold += _bonusgold;
         SetGoldText(Gold);
     }
     public void WinGame()
     {
+        // Add Item
+        int Level = DataController.Instance.CurrentSelected;
+        var gameStage = DataController.Instance.GetGameStage(Level);
+        var gsd = DataController.Instance.GetStageDataBase(Level);
+        var listItem = gsd.WinReward[gameStage.HardMode - 1];
+        for (int i = 0; i < listItem.items.Count; i++)
+        {
+            if (listItem.items[i].Type == ITEM_TYPE.coin)
+            {
+                DataController.Instance.Gold += listItem.items[i].Quality;
+            }
+            else
+                DataController.Instance.AddItemQuality(listItem.items[i].Type, listItem.items[i].Quality);
+        }
+        gameStage.HardMode++;
+        if (Level < DataController.Instance.MaxStage)
+        {
+            var gameStage2 = DataController.Instance.GetGameStage(Level + 1);
+            if (gameStage2.HardMode == 0)
+                gameStage2.HardMode = 1;
+        }
+        DataController.Instance.Save();
         WingamePanel.SetActive(true);
     }
     public void PauseGame()
@@ -87,6 +97,13 @@ public class GameController : MonoBehaviour
         {
             Time.timeScale = 1.5f;
         }
-        
+
+    }
+
+    public void OnEnemyDie(int value)
+    {
+        EnemyLive -= value;
+        if (EnemyLive == 0)
+            WinGame();
     }
 }

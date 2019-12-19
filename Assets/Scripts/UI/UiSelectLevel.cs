@@ -56,13 +56,14 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
             HardMode[i].SetActive(gameStage.HardMode == i + 1);
         }
         var gsd = DataController.Instance.GetStageDataBase(Level);
-        for (int i = 0; i < gsd.WinReward.Count; i++)
+        var listItem = gsd.WinReward[gameStage.HardMode - 1];
+        for (int i = 0; i < listItem.items.Count; i++)
         {
             var it = Instantiate(pfUIItem.gameObject, Vector3.zero, Quaternion.identity);
             it.SetActive(true);
             it.transform.SetParent(ItemContain);
             it.transform.SetDefaultTransform();
-            it.GetComponent<UiItem>().SetUpData(gsd.WinReward[i], 1);
+            it.GetComponent<UiItem>().SetUpData(listItem.items[i], 1);
         }
     }
     void BtnPlayClick()
