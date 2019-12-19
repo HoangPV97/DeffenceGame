@@ -290,7 +290,7 @@ MonoBehaviour:
   hurt: {fileID: 11400000, guid: d3c546cb9d610164484bc2d344da9313, type: 2}
   die: {fileID: 11400000, guid: a8b9cfe31ee5fe5448b04dffc4f26402, type: 2}
   isMove: 1
-  isAttack: 1
+  isAttack: 0
   isLive: 1
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 2381826484690694014}
@@ -307,6 +307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

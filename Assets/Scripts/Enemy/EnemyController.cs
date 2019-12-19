@@ -203,7 +203,7 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Attack:
                 skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-                skeletonAnimation.timeScale = enemy.rateOfFire;
+                skeletonAnimation.timeScale = enemy.rateOfFire/100;
                 break;
             case EnemyState.Die:
                 skeletonAnimation.timeScale = 1;
@@ -251,8 +251,10 @@ public class EnemyController : MonoBehaviour
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
         if (distancetoTower < enemy.range && isLive)
         {
+            Debug.Log("Attack");
             if (countdown <= 0f && !isAttack)
             {
+                Debug.Log("Attack");
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
                 //CurrentState = EnemyState.Idle;

@@ -259,7 +259,7 @@ MonoBehaviour:
   hurt: {fileID: 11400000, guid: 1e73009e735a1514aacd04e142ed4e08, type: 2}
   die: {fileID: 11400000, guid: ca9e23558252f5b43a7dfbae85873d20, type: 2}
   isMove: 1
-  isAttack: 1
+  isAttack: 0
   isLive: 1
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 3571211530392899872}

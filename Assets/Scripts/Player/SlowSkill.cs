@@ -13,10 +13,10 @@ public class SlowSkill : BulletController
     {
         this.KnockBackDistance = _knockback;
         this.effectedAoe = _effectAoe;
-        if (effectedAoe != 0)
-        {
-            collider2D.size = new Vector2(effectedAoe, 1);
-        }
+        //if (effectedAoe != 0)
+        //{
+        //    collider2D.size = new Vector2(effectedAoe, 1);
+        //}
     }
     public override void SetDataBullet(float _speed, float _damage)
     {
