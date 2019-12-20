@@ -43,6 +43,20 @@ public class Weapons
     public List<float> ATKspeed;
     public List<float> Cost;
     public List<Item> CostEvolution;
+    public int MaxLevel
+    {
+        get
+        {
+            return ATK.Count;
+        }
+    }
+    public float MaxEXP
+    {
+        get
+        {
+            return Cost[Cost.Count - 1];
+        }
+    }
 }
 [System.Serializable]
 public class Item

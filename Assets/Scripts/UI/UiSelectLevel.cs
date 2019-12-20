@@ -13,14 +13,19 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
     public GameObject[] Star, HardMode;
     public UIButton BtnPlay;
     public UiItem pfUIItem;
+    public UIButton BtnCloseLevelDetail;
     public Transform ItemContain;
     int CurrentLevel;
     void Awake()
     {
         uiSelectLevelItems = GetComponentsInChildren<UISelectLevelItem>();
         BtnPlay.SetUpEvent(BtnPlayClick);
+        BtnCloseLevelDetail.SetUpEvent(OnBtnCloseLevelDetailClick);
     }
-
+    void OnBtnCloseLevelDetailClick()
+    {
+        LevelDetail.SetActive(false);
+    }
     public UISelectLevelItem GetUISelectLevelItem(int Level)
     {
         for (int i = 0; i < uiSelectLevelItems.Length; i++)

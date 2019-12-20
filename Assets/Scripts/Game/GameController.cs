@@ -73,6 +73,34 @@ public class GameController : MonoBehaviour
             if (gameStage2.HardMode == 0)
                 gameStage2.HardMode = 1;
         }
+        if (Level == 5)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Wind);
+        }
+        if (Level == 15)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Earth);
+        }
+        if (Level == 25)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Ice);
+        }
+        if (Level == 35)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Fire);
+        }
+        if (Level == 11)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Earth);
+        }
+        if (Level == 21)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Ice);
+        }
+        if (Level == 31)
+        {
+            DataController.Instance.UnLockAlliance(Elemental.Fire);
+        }
         DataController.Instance.Save();
         WingamePanel.SetActive(true);
     }

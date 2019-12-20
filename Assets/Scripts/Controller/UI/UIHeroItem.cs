@@ -39,8 +39,10 @@ public class UIHeroItem : MonoBehaviour
     }
     public void SetupData()
     {
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         Selected.SetActive(false);
-        Animator.Play("Default");
+        Animator.Play("HeroItemDefault");
         GameDataWeapon weapon;
         if (IsHero)
             weapon = DataController.Instance.GetGameDataWeapon(elemental);
