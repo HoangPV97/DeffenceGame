@@ -23,7 +23,7 @@ public class SkillData
         for (int i = 0; i < baseSkills.Count; i++)
         {
             if (baseSkills[i].Tier == Tier)
-                return baseSkills[i].SkillSpeed[Level-1];
+                return baseSkills[i].SkillSpeed[Level - 1];
         }
         return 0;
     }
@@ -62,7 +62,7 @@ public class SkillData
         for (int i = 0; i < baseSkills.Count; i++)
         {
             if (baseSkills[i].Tier == Tier)
-                return GetAttribute(baseSkills[i].SkillAttributes, attribute, Level-1);
+                return GetAttribute(baseSkills[i].SkillAttributes, attribute, Level - 1);
         }
         return 0;
     }
@@ -98,6 +98,7 @@ public class SkillWeaponWind1 : SkillData
     public const string KnockbackDistance = "KnockbackDistance";
     public const string KnockbackDuration = "KnockbackDuration";
     public const string EffectedAoe = "EffectedAoe";
+    public List<SkillAttribute> SpecialSkillAttributes;
 }
 public class SkillWeaponFire1 : SkillData
 {

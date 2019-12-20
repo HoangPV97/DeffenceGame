@@ -20,6 +20,8 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public UIButton BtnEquip, BtnUpgrade, BtnUnEquip, BtnEvolve;
     public UIUpgradehero UIUpgradehero;
     public bool isHero = true;
+    public UIEvolveHero UIEvolveHero;
+
     #region Animation
     public void OnHide()
     {
@@ -92,7 +94,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
 
     private void OnEvolve()
     {
-        throw new NotImplementedException();
+        UIEvolveHero.SetUpData(currentSelectedHero.elemental);
     }
 
     void Upgradehero()
@@ -197,7 +199,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
         }
         if (data1.WeaponTierLevel.Level == dataBase.MaxLevel && data1.EXP == dataBase.MaxEXP)
         {
-            BtnEvolve.gameObject.SetActive(true);
+            BtnEvolve.gameObject.SetActive(data1.WeaponTierLevel.Tier < 3);
             BtnUpgrade.gameObject.SetActive(false);
         }
         else

@@ -10,14 +10,11 @@ public class UISkillItem : MonoBehaviour
     public GameObject Unlock;
     public UIButton BtnUpgrade;
     // Start is called before the first frame update
-    void Start()
+    public void SetUpdata(string SkillID)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        //WEAPON_WIND_SKILL_1
+        var skillData = JsonUtility.FromJson<SkillData>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
+        txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID);
 
     }
 }
