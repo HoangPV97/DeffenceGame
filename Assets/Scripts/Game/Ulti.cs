@@ -80,9 +80,22 @@ public enum ITEM_TYPE
     EarthObs_1,
     EarthObs_2,
     EarthObs_3,
-    Mithril,
     coin,
-    Gem
+    gem,
+    Evolve_Weapon,
+    Evolve_Spell,
+    Evolve_Wind,
+    Evolve_Ice,
+    Evolve_Earth,
+    Evolve_Fire,
+    Upgrade_Spell_Wind_1,
+    Upgrade_Spell_Ice_1,
+    Upgrade_Spell_Earth_1,
+    Upgrade_Spell_Fire_1,
+    Upgrade_Spell_Wind_2,
+    Upgrade_Spell_Ice_2,
+    Upgrade_Spell_Earth_2,
+    Upgrade_Spell_Fire_2,
 }
 [System.Serializable]
 public class ItemDataBase

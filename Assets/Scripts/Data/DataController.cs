@@ -478,6 +478,22 @@ public class DataController : Singleton<DataController>
         if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
             gdw.WeaponTierLevel.Level = 1;
     }
+
+    public SaveGameTierLevel GetGameSkillData(string SkillID)
+    {
+        /// SkillID = WEAPON_ICE_SKILL_1 || SkillID = ALLIANCE_ICE_SKILL_1
+        /// 
+        var skillInfo = SkillID.Split('_');
+        int SkillSlot = int.Parse(skillInfo[3]);
+        if (skillInfo[0] == "WEAPON")
+        {
+
+        }
+        else {
+
+        }
+        return null;
+    }
 }
 
 
