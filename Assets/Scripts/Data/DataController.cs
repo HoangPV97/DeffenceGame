@@ -20,6 +20,13 @@ public class DataController : Singleton<DataController>
 
     #region Data Player
     private GameData GameData;
+    public bool CanEquipAlliance
+    {
+        get
+        {
+            return ElementalSlot1 == Elemental.None || ElementalSlot2 == Elemental.None;
+        }
+    }
     public Elemental ElementalSlot1
     {
         get
@@ -263,40 +270,41 @@ public class DataController : Singleton<DataController>
             }
         }
             },
-            gameDataAlliance = new List<GameDataWeapon> {
-               new GameDataWeapon
-        {
-            Type = Elemental.Ice,
-            WeaponTierLevel = new SaveGameTierLevel
+            gameDataAlliance = new List<GameDataWeapon>(),
+            /*  gameDataAlliance = new List<GameDataWeapon> {
+                   new GameDataWeapon
             {
-                Tier = 1,
-                Level = 1,
+                Type = Elemental.Ice,
+                WeaponTierLevel = new SaveGameTierLevel
+                {
+                    Tier = 1,
+                    Level = 1,
+                },
+                SkillTierLevel = new List<SaveGameTierLevel>() {
+                    new SaveGameTierLevel
+                {
+                    Tier = 1,
+                    Level = 1,
+                }
+                }
+            }
+                    ,new GameDataWeapon
+            {
+                Type = Elemental.Fire,
+                WeaponTierLevel = new SaveGameTierLevel
+                {
+                    Tier = 1,
+                    Level = 1,
+                },
+                SkillTierLevel = new List<SaveGameTierLevel>() {
+                    new SaveGameTierLevel
+                {
+                    Tier = 1,
+                    Level = 1,
+                }
+                }
             },
-            SkillTierLevel = new List<SaveGameTierLevel>() {
-                new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            }
-            }
-        }
-                ,new GameDataWeapon
-        {
-            Type = Elemental.Fire,
-            WeaponTierLevel = new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            },
-            SkillTierLevel = new List<SaveGameTierLevel>() {
-                new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            }
-            }
-        },
-            },
+                },*/
             CurrentSelectedWeapon = Elemental.Wind,
             // Slot1 = Elemental.Ice,
             //Slot2 = Elemental.Fire,
@@ -455,6 +463,20 @@ public class DataController : Singleton<DataController>
     public StageDataBase GetStageDataBase(int Level)
     {
         return GameStageDataBase.GetStageDataBase(Level);
+    }
+
+    public void UnLockAlliance(Elemental elemental)
+    {
+        var gdw = GameData.GetGameDataAlliance(elemental);
+        if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
+            gdw.WeaponTierLevel.Level = 1;
+    }
+
+    public void UnLockWeapon(Elemental elemental)
+    {
+        var gdw = GameData.GetGameDataWeapon(elemental);
+        if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
+            gdw.WeaponTierLevel.Level = 1;
     }
 }
 

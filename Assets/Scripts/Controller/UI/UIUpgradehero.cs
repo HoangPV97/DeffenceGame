@@ -240,6 +240,7 @@ public class UIUpgradehero : MonoBehaviour
             }
             SetUpData(heroElemental);
             MenuController.Instance.UIPanelHeroAlliance.SetupUIHero(heroElemental);
+            DataController.Instance.Save();
         }
         else
         {

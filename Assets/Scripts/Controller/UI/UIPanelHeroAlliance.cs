@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using System;
+
 public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
 {
     [Header("Hero")]
@@ -15,7 +17,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public UIHeroItem[] UIHeroItems;
     public UISkillItem[] UISkillItems;
     UIHeroItem currentSelectedHero = null;
-    public UIButton BtnEquip, BtnUpgrade;
+    public UIButton BtnEquip, BtnUpgrade, BtnUnEquip, BtnEvolve;
     public UIUpgradehero UIUpgradehero;
     public bool isHero = true;
     #region Animation
@@ -54,6 +56,43 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
         UIHeroItems = GetComponentsInChildren<UIHeroItem>();
         UISkillItems = GetComponentsInChildren<UISkillItem>();
         BtnUpgrade.SetUpEvent(Upgradehero);
+        BtnEquip.SetUpEvent(OnEquip);
+        BtnUnEquip.SetUpEvent(OnUnEquip);
+        BtnEvolve.SetUpEvent(OnEvolve);
+    }
+
+    private void OnEquip()
+    {
+        if (isHero)
+        {
+            DataController.Instance.CurrentSelectedWeapon = currentSelectedHero.elemental;
+            SetupUIHero(currentSelectedHero.elemental);
+        }
+        else
+        {
+            if (DataController.Instance.ElementalSlot1 == Elemental.None)
+                DataController.Instance.ElementalSlot1 = currentSelectedHero.elemental;
+            else if (DataController.Instance.ElementalSlot2 == Elemental.None)
+                DataController.Instance.ElementalSlot2 = currentSelectedHero.elemental;
+            SetupUIHero(currentSelectedHero.elemental);
+        }
+    }
+
+    private void OnUnEquip()
+    {
+        if (!isHero)
+        {
+            if (DataController.Instance.ElementalSlot1 == currentSelectedHero.elemental)
+                DataController.Instance.ElementalSlot1 = Elemental.None;
+            else if (DataController.Instance.ElementalSlot2 == currentSelectedHero.elemental)
+                DataController.Instance.ElementalSlot2 = Elemental.None;
+            SetupUIHero(currentSelectedHero.elemental);
+        }
+    }
+
+    private void OnEvolve()
+    {
+        throw new NotImplementedException();
     }
 
     void Upgradehero()
@@ -77,6 +116,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
         currentSelectedHero = null;
         this.isHero = isHero;
         bool showAliiance = false;
+
         for (int i = 0; i < UIHeroItems.Length; i++)
         {
             UIHeroItems[i].SetupData();
@@ -101,9 +141,9 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
                     showAliiance = true;
                     break;
                 }
-
             }
         }
+
         if (!isHero && !showAliiance)
             UIHeroItems[0].OnSelected();
     }
@@ -135,8 +175,36 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
             // dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier);
             dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
 
-        BtnEquip.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1 && data1.Type != DataController.Instance.CurrentSelectedWeapon);
         BtnUpgrade.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
+        if (isHero)
+        {
+            BtnEquip.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1 && data1.Type != DataController.Instance.CurrentSelectedWeapon);
+            BtnUnEquip.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            if (data1.Type == DataController.Instance.ElementalSlot1 || data1.Type == DataController.Instance.ElementalSlot2)
+            {
+                BtnUnEquip.gameObject.SetActive(true);
+                BtnEquip.gameObject.SetActive(false);
+            }
+            else
+            {
+                BtnUnEquip.gameObject.SetActive(false);
+                BtnEquip.gameObject.SetActive(DataController.Instance.CanEquipAlliance && data1.WeaponTierLevel.Level >= 1);
+            }
+        }
+        if (data1.WeaponTierLevel.Level == dataBase.MaxLevel && data1.EXP == dataBase.MaxEXP)
+        {
+            BtnEvolve.gameObject.SetActive(true);
+            BtnUpgrade.gameObject.SetActive(false);
+        }
+        else
+        {
+            BtnEvolve.gameObject.SetActive(false);
+        }
+
         txtLevel.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
         txtLevel.text = Language.GetKey("Level") + " " + data1.WeaponTierLevel.Level + "/" + dataBase.ATKspeed.Count;
