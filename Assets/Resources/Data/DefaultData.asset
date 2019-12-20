@@ -30,8 +30,7 @@ MonoBehaviour:
   AllianceIceSkills: {fileID: 3346026367710059841, guid: 47fd60ea0241956409dfffd53b3aa6bd,
     type: 3}
   AllianceEarthSkills: {fileID: 0}
-  AllianceFireSkills: {fileID: 3346026367710059841, guid: 9b3bfea8ed4aead48915578a47140a1f,
-    type: 3}
+  AllianceFireSkills: {fileID: 0}
   TextWeaponSkills:
   - SkillID: WEAPON_WIND_SKILL_1
     SkillText: '{"SkillID":"WEAPON_WIND_SKILL_1","ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"KnockbackDistance":[10,20,30],"KnockbackDuration":[10,20,30],"EffectedAoe":[10,20,30]}'

@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Effect { Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback};
+public enum Effect {None, Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback};
 public class GameEffect : MonoBehaviour
 {
-
+    public Effect CurrentEffect;
+    private void Start()
+    {
+        CurrentEffect = Effect.None;
+    }
+    public void SetEffect(Effect _effect)
+    {
+        CurrentEffect = _effect;
+    }
     public GameObject GetEffect(Effect _effect, Vector3 _position, float _time)
     {
+        CurrentEffect = _effect;
         GameObject effectObj = null;
-        switch (_effect)
+        switch (CurrentEffect)
         {
             case Effect.Freeze:
                 effectObj = SpawnEffect("freezeffect", _position, _time);
@@ -48,7 +57,6 @@ public class GameEffect : MonoBehaviour
             effectObj.AddComponent<DestroyEffect>()._time = _time;
         return effectObj;
     }
-    
 }
 public class DestroyEffect : MonoBehaviour
 {
@@ -65,6 +73,7 @@ public class DestroyEffect : MonoBehaviour
     {
         _time = time;
         yield return new WaitForSeconds(_time);
+
         // this.gameObject.SetActive(false);
         ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }

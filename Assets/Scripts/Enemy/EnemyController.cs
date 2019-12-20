@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     protected GameObject Tower;
     protected float distancetoTower;
     protected float countdown;
-    float distance;
+    protected float distance;
     public GameEffect gameEffect;
     GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] BoxCollider2D boxCollider2D;
     private Vector2 DirectionMove;
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         gameEffect = GetComponent<GameEffect>();
     }
@@ -77,7 +77,7 @@ public class EnemyController : MonoBehaviour
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
     }
-    public void Move(float _speed, float percent_slow = 100f)
+    public virtual void Move(float _speed, float percent_slow = 100f)
     {
         if (!isAttack)
         {
@@ -139,6 +139,7 @@ public class EnemyController : MonoBehaviour
     }
     public void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
+        //gameEffect.CurrentEffect = _effect;
         StartCoroutine(WaitingEffect(_time, () =>
        {
            if (_effect.Equals(Effect.Knockback))
@@ -184,6 +185,7 @@ public class EnemyController : MonoBehaviour
            {
                Move(enemy.speed);
            }
+           gameEffect.CurrentEffect = Effect.None;
        }));
     }
     IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
@@ -248,21 +250,22 @@ public class EnemyController : MonoBehaviour
 
     public virtual void CheckAttack()
     {
-        if (!isAttack)
+        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
+
+        if (distancetoTower < enemy.range && isLive)
         {
-            distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
-            if (distancetoTower < enemy.range && isLive)
+            if (!isAttack)
             {
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
                 CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
             }
-            else
-            {
-                isAttack = false;
-                isMove = true;
-            }
+        }
+        else
+        {
+            isAttack = false;
+            isMove = true;
         }
     }
 

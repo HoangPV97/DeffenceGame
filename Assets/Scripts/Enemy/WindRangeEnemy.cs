@@ -24,10 +24,6 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
             m_EnemyBullet.SetDamage(enemy.damage);
         }
     }
-    public override void CheckAttack()
-    {
-        base.CheckAttack();
-    }
     public void WindImpactEffect(Vector3 _position)
     {
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);

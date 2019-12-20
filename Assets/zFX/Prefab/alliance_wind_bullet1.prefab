@@ -23585,6 +23585,14 @@ MonoBehaviour:
   SeekTarget: 1
   elementalBullet: 2
   damagePlus: 10
+  explosion: 0
+  bounce: 1
+  poison: 0
+  slow: 0
+  pierce: 0
+  critical: 0
+  multishot: 0
+  quickhand: 0
 --- !u!61 &219139974746340187
 BoxCollider2D:
   m_ObjectHideFlags: 0

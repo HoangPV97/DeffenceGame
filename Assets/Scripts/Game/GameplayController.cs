@@ -80,7 +80,7 @@ public class GameplayController : Singleton<GameplayController>
     }
 
     #region Monster
-    IEnumerator IESpawnEnemy(int i, float timeDelay)
+    public IEnumerator IESpawnEnemy(int i, float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
         var se = DataController.Instance.StageData.stageEnemyDataBase.stageEnemies[i];
