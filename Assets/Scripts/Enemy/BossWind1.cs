@@ -10,14 +10,10 @@ public class BossWindData : MonsterData
 }
 public class BossWind1 : EnemyController
 {
-    void Start()
-    {
-        base.Start();
-    }
+    public List<Vector3> pointList;
     // Update is called once per frame
     protected override void Update()
     {
-        CheckAttack();
         base.Update();
     }
     public void Attack()
@@ -32,30 +28,50 @@ public class BossWind1 : EnemyController
     }
     public override void CheckAttack()
     {
-        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
-        if (distancetoTower < enemy.range && isLive)
+        if (!isAttack)
         {
-            if (countdown <= 0f && !isAttack)
+            distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
+            if (distancetoTower < enemy.range && isLive)
             {
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
                 CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
-                countdown = enemy.rateOfFire;
+                RandomTranslate();
             }
-            countdown -= Time.deltaTime;
+            else
+            {
+                isAttack = false;
+                isMove = true;
+            }
         }
-        if (enemy.health.CurrentHealth <= enemy.health.health / 2)
+        if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4)
         {
-            ChargeAttack();
+            StartCoroutine(IEChargeAttack(2));
+        }
+        else if (enemy.health.CurrentHealth <= enemy.health.health / 4)
+        {
+            StartCoroutine(IEFrenetic(1));
         }
     }
 
-    private void ChargeAttack()
+    IEnumerator IEChargeAttack(float _time)
     {
+        yield return new WaitForSeconds(_time);
         //Charge
     }
-
+    public void RandomTranslate()
+    {
+        isAttack = false;
+        isMove = true;
+        int newPosition = UnityEngine.Random.Range(0, pointList.Count);
+        Vector2 dir = transform.position - pointList[newPosition];
+        //gameObject.transform.position = Vector3.MoveTowards();
+    }
+    IEnumerator IEFrenetic(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+    }
     public void WindImpactEffect(Vector3 _position)
     {
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);

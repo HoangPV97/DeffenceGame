@@ -204,7 +204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -7
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: bc4efa60b3c8c134eb1b42adffbe6964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -296,7 +296,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.8, y: 5.12}
+    oldSize: {x: 10.8, y: 7.76}
     newSize: {x: 25.48, y: 8.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   - tag: W_4
     prefab: {fileID: 5556297814356171359, guid: 6aaafcf7cd1691e428a6860f09df7a9d,
       type: 3}
-  - tag: enemy6
+  - tag: W_6
     prefab: {fileID: 8912908039463566854, guid: 2736130805ea0a8429c949e70ee4930b,
       type: 3}
   - tag: ALLIANCE_ICE_SKILL_1
@@ -7803,7 +7803,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 8fc40417627c69e4ba9305753c4409c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8574,8 +8574,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012520330}
-  m_LocalRotation: {x: 0, y: 0, z: 0.000000043913943, w: 1}
-  m_LocalPosition: {x: 0.0014313571, y: 1.9527156, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0012417537, y: 2.1641262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3615715292174716536}
@@ -9270,7 +9270,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 13
 --- !u!33 &3615715292174716490
 MeshFilter:
   m_ObjectHideFlags: 0

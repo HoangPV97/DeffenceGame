@@ -143,7 +143,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 0
 --- !u!114 &9124661697560551847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   Rigidbody2D: {fileID: 3571211530392899872}
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
+  Barrel: {fileID: 0}
 --- !u!1 &6292061646712227653
 GameObject:
   m_ObjectHideFlags: 0

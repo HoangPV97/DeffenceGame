@@ -33,25 +33,28 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
         base.OnTriggerEnter2D(_Target);
-        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag) && !checkCollision)
         {
+            checkCollision = true;
             EnemyController enemyController = _Target.GetComponent<EnemyController>();
-            //enemy.CurrentState = EnemyState.Hurt;
-            enemyController.gameEffect.SpawnEffect("windimpact", enemyController.transform.position, 0.5f);
-            IIceEffectable elemental = enemyController?.GetComponent<IIceEffectable>();
-            if (elemental != null)
-            {
-                elemental.IceImpactEffect(enemyController.transform.position);
-                enemyController?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
-            }
-            else
-            {
-                enemyController?.DealDamge(bullet.Damage, 0);
-            }
-            if (SeekTarget)
-            {
-                Despawn();
-            }
+            //if (enemyController.Equals(GameplayController.Instance.PlayerController.player.target))
+            //{
+                enemyController.gameEffect.SpawnEffect("windimpact", enemyController.transform.position, 0.5f);
+                IIceEffectable elemental = enemyController?.GetComponent<IIceEffectable>();
+                if (elemental != null)
+                {
+                    elemental.IceImpactEffect(enemyController.transform.position);
+                    enemyController?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                }
+                else
+                {
+                    enemyController?.DealDamge(bullet.Damage, 0);
+                }
+                if (SeekTarget)
+                {
+                    Despawn();
+                }
+            //}
             #region Explosion Bullet
             //if (explosion)
             //{
@@ -59,7 +62,7 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             //    Despawn();
             //}
             #endregion
-            //#region BounceBullet
+            #region BounceBullet
             //if (bounce)
             //{
             //    if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
@@ -99,12 +102,14 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             //        }
             //    }
             //}
-            //#endregion
+            #endregion
+            #region Slow
             //if (slow)
             //{
             //    enemyController.DealEffect(Effect.Slow, enemyController.transform.position, 2f);
             //    enemyController.Move(enemyController.enemy.speed,percent_Slow);
             //}
+            #endregion
         }
     }
 }

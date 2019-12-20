@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     public Enemy enemy;
     protected EnemyState previousState, CurrentState;
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset attack, idle,run,hurt,die;
+    public AnimationReferenceAsset attack, idle, run, hurt, die;
     public bool isMove = true, isAttack, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
@@ -29,12 +29,16 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D Rigidbody2D;
     [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
+    private Vector2 DirectionMove;
     // Start is called before the first frame update
     protected void Start()
     {
         gameEffect = GetComponent<GameEffect>();
     }
-
+    public void SetDirection(Vector2 _direction)
+    {
+        DirectionMove = _direction;
+    }
     public void SetUpdata(string type, int Level)
     {
         var md = DataController.Instance.GetMonsterData(type);
@@ -51,9 +55,9 @@ public class EnemyController : MonoBehaviour
         isLive = true;
         SeekingTower();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
+        DirectionMove = Vector2.down;
         Move(enemy.speed);
     }
-
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -69,7 +73,6 @@ public class EnemyController : MonoBehaviour
         }
         CheckAttack();
     }
-
     protected void SeekingTower()
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
@@ -81,17 +84,14 @@ public class EnemyController : MonoBehaviour
             if (isMove)
             {
                 CurrentState = EnemyState.Run;
-                Rigidbody2D.velocity = Vector2.down * (distance / enemy.speed) * (percent_slow / 100);
+                Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed) * (percent_slow / 100);
             }
-
             else
             {
                 Rigidbody2D.velocity = Vector2.zero;
                 CurrentState = EnemyState.Idle;
             }
         }
-
-
     }
     IEnumerator Die()
     {
@@ -203,7 +203,7 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Attack:
                 skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-                skeletonAnimation.timeScale = enemy.rateOfFire/100;
+                skeletonAnimation.timeScale = enemy.rateOfFire / 100;
                 break;
             case EnemyState.Die:
                 skeletonAnimation.timeScale = 1;
@@ -248,21 +248,21 @@ public class EnemyController : MonoBehaviour
 
     public virtual void CheckAttack()
     {
-        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
-        if (distancetoTower < enemy.range && isLive)
+        if (!isAttack)
         {
-            Debug.Log("Attack");
-            if (countdown <= 0f && !isAttack)
+            distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
+            if (distancetoTower < enemy.range && isLive)
             {
-                Debug.Log("Attack");
                 isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
-                //CurrentState = EnemyState.Idle;
+                CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
-                countdown = enemy.rateOfFire;
-                Debug.Log("RateofFire :"+enemy.rateOfFire);
             }
-            countdown -= Time.deltaTime;
+            else
+            {
+                isAttack = false;
+                isMove = true;
+            }
         }
     }
 

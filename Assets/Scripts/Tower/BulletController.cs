@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
     public Elemental elementalBullet;
     public float damagePlus;
     protected Vector3 dir = Vector3.zero;
+    protected bool checkCollision;
     #region Attribute bullet
     public bool explosion;
     public bool bounce;
@@ -24,7 +25,7 @@ public class BulletController : MonoBehaviour
     private int numberBounce = 3;
     private float percent_Slow = 20;
     #endregion
-    protected void Start()
+    protected virtual void Start()
     {
     }
     public virtual void SetDataBullet(float _speed, float _damage)
@@ -34,6 +35,7 @@ public class BulletController : MonoBehaviour
         bounceRange = 5f;
         numberBounce = 3;
         percent_Slow = 20f;
+        checkCollision = false;
     }
     public void SetTarget(EnemyController _Target)
     {

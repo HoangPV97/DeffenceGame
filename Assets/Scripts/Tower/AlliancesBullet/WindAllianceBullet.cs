@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WindAllianceBullet : BulletController
 {
-    private void Start()
+    protected override void Start()
     {
         elementalBullet = Elemental.Wind;
-        base.Start();
     }
 
-    private void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D Target)
     {
+        base.OnTriggerEnter2D(Target);
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();

@@ -6,21 +6,17 @@ using UnityEngine;
 
 public class WindRangeEnemy : EnemyController, IWindEffectable
 {
-    void Start()
-    {
-        base.Start();
-    }
+    [SerializeField] private GameObject Barrel;
     // Update is called once per frame
-    protected override void Update()
-    {
-        CheckAttack();
-        base.Update();
-    }
+    //protected override void Update()
+    //{
+        
+    //    base.Update();
+    //    CheckAttack();
+    //}
     public void Attack()
     {
-
-
-        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", transform.position, Quaternion.identity);
+        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
         EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
         if (m_EnemyBullet != null)
         {
@@ -30,19 +26,7 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     }
     public override void CheckAttack()
     {
-        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
-        if (distancetoTower < enemy.range && isLive)
-        {
-            if (countdown <= 0f && !isAttack)
-            {
-                isAttack = true;
-                Rigidbody2D.velocity = Vector2.zero;
-                CurrentState = EnemyState.Idle;
-                CurrentState = EnemyState.Attack;
-                countdown = enemy.rateOfFire;
-            }
-            countdown -= Time.deltaTime;
-        }
+        base.CheckAttack();
     }
     public void WindImpactEffect(Vector3 _position)
     {

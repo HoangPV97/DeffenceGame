@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     _speed: 0
-    _name: 
+    _name: Boss
     _damage: 0
     _range: 0
     _price: 0
@@ -247,24 +247,32 @@ MonoBehaviour:
       currentHealth: 0
       recoverHealthValue: 0
       recoverHealthTime: 0
-      healthBar: {fileID: 0}
+      healthBar: {fileID: 5240803140074681237}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
     _elemental: 0
     _bulletSpeed: 0
-  skeletonAnimation: {fileID: 0}
-  attack: {fileID: 0}
-  idle: {fileID: 0}
-  run: {fileID: 0}
-  hurt: {fileID: 0}
-  die: {fileID: 0}
+  skeletonAnimation: {fileID: 4688615873598794641}
+  attack: {fileID: 11400000, guid: 126e3bb46f115d44d80b6c4a11857b08, type: 2}
+  idle: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}
+  run: {fileID: 11400000, guid: 8475b5eee8fea5c49bf800054e0d7f18, type: 2}
+  hurt: {fileID: 11400000, guid: eb234618f56a71e4497984f911404aa7, type: 2}
+  die: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
   gameEffect: {fileID: 0}
-  Rigidbody2D: {fileID: 0}
-  canvas: {fileID: 0}
-  boxCollider2D: {fileID: 0}
+  Rigidbody2D: {fileID: 2121085402989365051}
+  canvas: {fileID: 5240803140284971041}
+  boxCollider2D: {fileID: 8912908039463566874}
+  pointList:
+  - {x: 0, y: 3.32, z: 0}
+  - {x: -2.39, y: 1.78, z: 0}
+  - {x: 2.4, y: 1.78, z: 0}
+  - {x: -2.5, y: 6.7, z: 0}
+  - {x: 2.5, y: 6.7, z: 0}
+  - {x: 0, y: 6.79, z: 0}
+  - {x: -1.5, y: 5, z: 0}
 --- !u!1 &8912908039809388894
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +316,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae1392e2c22c2d44f8f63e99f3686b6d,
+        type: 3}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,7 +385,7 @@ PrefabInstance:
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -421,6 +440,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 602319194220858610}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &5240803140284971041 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4674961459942323411, guid: 047aa3e3016052441b4c2a011841725b,
+    type: 3}
+  m_PrefabInstance: {fileID: 602319194220858610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5240803140074681237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+    type: 3}
+  m_PrefabInstance: {fileID: 602319194220858610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5414677219417791486 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,

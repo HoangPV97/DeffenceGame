@@ -27,6 +27,9 @@ public class SetElementalImage : MonoBehaviour
             case Elemental.Wind:
                 elematalImage.sprite = loadImageResource("icon_element_wind");
                 break;
+            case Elemental.None:
+                elematalImage.sprite = loadImageResource("icon_element_none");
+                break;
         }
     }
     Sprite loadImageResource(string pathFolder)
