@@ -19,6 +19,7 @@ public class DefaultData : ScriptableObject
     public List<DefaultDataSkill> TextWeaponSkills;
     public TextAsset AssetBundleItem;
     public AssetBundle Item;
+    public List<TextAsset> SpawnEnemyBoss;
     public Sprite GetSpriteItem(ITEM_TYPE _TYPE)
     {
         if (Item == null)
@@ -73,6 +74,17 @@ public class DefaultData : ScriptableObject
                 return TextWeaponSkills[i].SkillText;
         }
         return "";
+    }
+    public string GetTextSpawnEnemy(int Level)
+    {
+        for(int i =0; i< SpawnEnemyBoss.Count; i++)
+        {
+            if (i == Level)
+            {
+                return SpawnEnemyBoss[i].text;
+            }
+        }
+        return null;
     }
 }
 [System.Serializable]

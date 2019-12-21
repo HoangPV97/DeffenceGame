@@ -16,6 +16,7 @@ public class DataController : Singleton<DataController>
     public BaseDatabases BaseDatabases;
     public DefaultData DefaultData;
     public ItemDataBase ItemDataBase;
+    public SpawnEnemyBoss SpawnEnemyBoss;
     #endregion
 
     #region Data Player
@@ -322,6 +323,7 @@ public class DataController : Singleton<DataController>
         AllianceDataBases = JsonUtility.FromJson<AllianceDataBase>(ConectingFireBase.Instance.GetTextAllianceDatabase());
         BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
         ItemDataBase = JsonUtility.FromJson<ItemDataBase>(ConectingFireBase.Instance.GetTextItemDataBase());
+
         ///Load data 
         Load();
 

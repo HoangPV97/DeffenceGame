@@ -150,4 +150,8 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
             return DataController.Instance.DefaultData.ItemDataBase.text;
         }
     }
+    public string GetTexSpawnEnemyBoss(int level)
+    {
+        return DataController.Instance.DefaultData.SpawnEnemyBoss[level].text;
+    }
 }

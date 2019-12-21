@@ -18,16 +18,17 @@ public class BossWind1 : EnemyController
     // Update is called once per frame
     protected override void Start()
     {
+        InvokeRepeating("RandomPosition", 0, 4f);
     }
     protected override void Update()
     {
-        if (!isAttack && countdown <= 0)
-        {
-            RandomPosition();
-            countdown = 4f;
-        }
-        countdown -= Time.deltaTime;
-        if (isAttack && isMove && gameEffect.CurrentEffect == Effect.None)
+        //if (isAttack && countdown <= 0)
+        //{
+        //    RandomPosition();
+        //    countdown = 4f;
+        //}
+        //countdown -= Time.deltaTime;
+        if (!isAttack  && gameEffect.CurrentEffect == Effect.None)
         {
             MoveRandom();
         }
@@ -60,16 +61,26 @@ public class BossWind1 : EnemyController
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Idle;
             CurrentState = EnemyState.Attack;
+
         }
-        else
-        {
-            isAttack = false;
-            isMove = true;
-        }
+
+        //else
+        //{
+        //    isAttack = false;
+        //    isMove = true;
+        //}
 
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
             float ChargeRatio = UnityEngine.Random.Range(0, 100);
+            int hardmode = DataController.Instance.StageData.HardMode;
+            var se = JsonUtility.FromJson<SpawnEnemyBoss>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss(hardmode));
+            var sd = DataController.Instance.StageData;
+            for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
+            {
+                StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+                GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
+            }
             if (ChargeRatio > 20 && frenetic_50)
             {
                 frenetic_50 = true;
@@ -85,11 +96,14 @@ public class BossWind1 : EnemyController
     }
     private void RandomPosition()
     {
+        isAttack = true;
+        skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
         int newPosition = UnityEngine.Random.Range(0, pointList.Count);
         newpposition = pointList[newPosition];
     }
     private void MoveRandom()
     {
+        isAttack = false;
         gameObject.transform.position = Vector3.MoveTowards(transform.position, newpposition, enemy.speed / 5 * Time.deltaTime);
     }
     IEnumerator IEChargeAttack(float _time)
@@ -105,5 +119,27 @@ public class BossWind1 : EnemyController
     {
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
         StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
+    }
+    public IEnumerator IESpawnEnemy(int i, float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        var se= JsonUtility.FromJson<SpawnEnemyBoss>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss(i));
+        se.stageEnemies[i].Number--;
+        int level = se.stageEnemies[i].Level;
+        if (DataController.Instance.StageData.HardMode == 2)
+            level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
+        else if (DataController.Instance.StageData.HardMode == 3)
+            level += DataController.Instance.StageData.stageEnemyDataBase.HellAddLevel;
+        // spawnEnemy
+        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.stageEnemies[i].Type, se.stageEnemies[i].Position == 999 ? 
+            GameplayController.Instance.spawnPosition[UnityEngine.Random.Range(0, 8)].position : 
+            GameplayController.Instance.spawnPosition[se.stageEnemies[i].Position].position, transform.rotation);
+        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.stageEnemies[i].Type, level);
+        //repeat
+        if (se.stageEnemies[i].Number > 0)
+        {
+            StartCoroutine(IESpawnEnemy(i, se.stageEnemies[i].RepeatTime));
+        }
+
     }
 }

@@ -65,6 +65,11 @@ public class StageEnemyDataBase
     public List<StageEnemy> stageEnemies;
 }
 [System.Serializable]
+public class SpawnEnemyBoss
+{
+    public List<StageEnemy> stageEnemies;
+}
+[System.Serializable]
 public class StageEnemy
 {
     public string Type;
