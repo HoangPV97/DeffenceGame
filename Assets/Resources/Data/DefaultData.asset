@@ -42,6 +42,14 @@ MonoBehaviour:
     SkillText: '{   "SkillID": "ALLIANCE_FIRE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
       [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
       [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
+  - SkillID: WEAPON_WIND_SKILL_2
+    SkillText: '{   "SkillID": "ALLIANCE_FIRE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
+      [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
+      [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
+  - SkillID: WEAPON_WIND_SKILL_4
+    SkillText: '{"SkillID":"WEAPON_WIND_SKILL_4","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"InscreaFireRate","Value":[10]},{"Attribute":"InscreaDamage","Value":[20]},{"Attribute":"InscreaCrit","Value":[10]}]}],"SkillType":1}'
+  - SkillID: WEAPON_WIND_SKILL_3
+    SkillText: '{"SkillID":"WEAPON_WIND_SKILL_3","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"InscreaFireRate","Value":[2,4,6,8,10,12,14,16,18,20]}]}],"SkillType":1}'
   AssetBundleItem: {fileID: 4900000, guid: 3e3bf748a1a3d9e4193afc2e67652935, type: 3}
   Item: {fileID: 0}
   BossDataBase: {fileID: 4900000, guid: a9c22dcd68cf23547b487ac7cbda1129, type: 3}

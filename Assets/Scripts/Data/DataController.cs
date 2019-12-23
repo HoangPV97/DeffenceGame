@@ -169,19 +169,8 @@ public class DataController : Singleton<DataController>
             SkillTierLevel = new List<SaveGameTierLevel>() {
                 new SaveGameTierLevel
             {
+                Des = "WEAPON_WIND_SKILL_1",
                 Tier = 1,
-                Level = 1,
-            },new SaveGameTierLevel
-            {
-                Tier = 2,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 3,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 999,
                 Level = 1,
             }
             }
@@ -193,25 +182,6 @@ public class DataController : Singleton<DataController>
             {
                 Tier = 1,
                 Level = 0,
-            },
-            SkillTierLevel = new List<SaveGameTierLevel>() {
-                new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            },new SaveGameTierLevel
-            {
-                Tier = 2,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 3,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 999,
-                Level = 1,
-            }
             }
         },                new GameDataWeapon
         {
@@ -221,25 +191,6 @@ public class DataController : Singleton<DataController>
             {
                 Tier = 1,
                 Level = 0,
-            },
-            SkillTierLevel = new List<SaveGameTierLevel>() {
-                new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            },new SaveGameTierLevel
-            {
-                Tier = 2,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 3,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 999,
-                Level = 1,
-            }
             }
         },                new GameDataWeapon
         {
@@ -249,66 +200,11 @@ public class DataController : Singleton<DataController>
             {
                 Tier = 1,
                 Level = 0,
-            },
-            SkillTierLevel = new List<SaveGameTierLevel>() {
-                new SaveGameTierLevel
-            {
-                Tier = 1,
-                Level = 1,
-            },new SaveGameTierLevel
-            {
-                Tier = 2,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 3,
-                Level = 0,
-            },new SaveGameTierLevel
-            {
-                Tier = 999,
-                Level = 1,
-            }
             }
         }
             },
             gameDataAlliance = new List<GameDataWeapon>(),
-            /*  gameDataAlliance = new List<GameDataWeapon> {
-                   new GameDataWeapon
-            {
-                Type = Elemental.Ice,
-                WeaponTierLevel = new SaveGameTierLevel
-                {
-                    Tier = 1,
-                    Level = 1,
-                },
-                SkillTierLevel = new List<SaveGameTierLevel>() {
-                    new SaveGameTierLevel
-                {
-                    Tier = 1,
-                    Level = 1,
-                }
-                }
-            }
-                    ,new GameDataWeapon
-            {
-                Type = Elemental.Fire,
-                WeaponTierLevel = new SaveGameTierLevel
-                {
-                    Tier = 1,
-                    Level = 1,
-                },
-                SkillTierLevel = new List<SaveGameTierLevel>() {
-                    new SaveGameTierLevel
-                {
-                    Tier = 1,
-                    Level = 1,
-                }
-                }
-            },
-                },*/
             CurrentSelectedWeapon = Elemental.Wind,
-            // Slot1 = Elemental.Ice,
-            //Slot2 = Elemental.Fire,
             gameStages = new List<GameStage>()
         };
     }
@@ -323,7 +219,7 @@ public class DataController : Singleton<DataController>
         AllianceDataBases = JsonUtility.FromJson<AllianceDataBase>(ConectingFireBase.Instance.GetTextAllianceDatabase());
         BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
         ItemDataBase = JsonUtility.FromJson<ItemDataBase>(ConectingFireBase.Instance.GetTextItemDataBase());
-        BossDataBase_Wind=JsonUtility.FromJson<BossDataBase_Wind_1>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss());
+        BossDataBase_Wind = JsonUtility.FromJson<BossDataBase_Wind_1>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss());
         ///Load data 
         Load();
 
@@ -438,6 +334,22 @@ public class DataController : Singleton<DataController>
         return ItemDataBase.GetItemData(_TYPE);
     }
 
+    public void AddWeaponTier(Elemental elemental)
+    {
+        var gdw = GameData.GetGameDataWeapon(elemental);
+        gdw.EXP = 0;
+        gdw.WeaponTierLevel.Level = 1;
+        gdw.WeaponTierLevel.Tier++;
+    }
+
+    public void AddAllianceTier(Elemental elemental)
+    {
+        var gdw = GameData.GetGameDataAlliance(elemental);
+        gdw.EXP = 0;
+        gdw.WeaponTierLevel.Level = 1;
+        gdw.WeaponTierLevel.Tier++;
+    }
+
     public void AddWeaponLevel(Elemental elemental, int AddLevel, int CurrentEXP)
     {
         var gdw = GameData.GetGameDataWeapon(elemental);
@@ -486,17 +398,30 @@ public class DataController : Singleton<DataController>
         /// SkillID = WEAPON_ICE_SKILL_1 || SkillID = ALLIANCE_ICE_SKILL_1
         /// 
         var skillInfo = SkillID.Split('_');
-        int SkillSlot = int.Parse(skillInfo[3]);
+        Elemental e = ConvertToElement(skillInfo[1]);
         if (skillInfo[0] == "WEAPON")
+            return GetGameDataWeapon(e).GetSkillTierLevel(SkillID);
+        else
+            return GetGameAlliance(e).GetSkillTierLevel(SkillID);
+    }
+
+    public Elemental ConvertToElement(string srt)
+    {
+        switch (srt.ToLower())
         {
-
+            case "wind":
+                return Elemental.Wind;
+            case "ice":
+                return Elemental.Ice;
+            case "earth":
+                return Elemental.Earth;
+            case "fire":
+                return Elemental.Fire;
         }
-        else {
-
-        }
-        return null;
+        return Elemental.None;
     }
 }
+
 
 
 
