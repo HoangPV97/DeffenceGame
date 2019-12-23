@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,23 +230,14 @@ MonoBehaviour:
     monsterDatas: []
   GameStageDataBase:
     stageDataBases: []
+    MaxStage: 0
   GameEnemyDataBase:
     stageEnemies: []
   DefaultData: {fileID: 0}
-  GameData:
-    BaseHPLevel: 1
-    BaseHPTier: 1
-    BaseManaLevel: 1
-    BaseManaTier: 1
-    BaseShieldLevel: 1
-    BaseShieldTier: 1
-    CurrentStage: 1
-    Inventory: []
-    gameDataWeapons: []
-    gameDataAlliance: []
-    CurrentSelectedWeapon: 0
-    Slot1: 0
-    Slot2: 0
+  ItemDataBase:
+    Items: []
+  BossDataBase_Wind:
+    BossDataBase_Wind: []
   StageData:
     Level: 0
     HardMode: 0

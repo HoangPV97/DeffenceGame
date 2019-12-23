@@ -23582,7 +23582,7 @@ MonoBehaviour:
     _speed: 10
     _damage: 15
     _targetTag: Enemy
-  SeekTarget: 1
+  SeekTarget: 0
   elementalBullet: 2
   damagePlus: 10
   explosion: 0
@@ -23593,6 +23593,7 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
+  stun: 0
 --- !u!61 &219139974746340187
 BoxCollider2D:
   m_ObjectHideFlags: 0

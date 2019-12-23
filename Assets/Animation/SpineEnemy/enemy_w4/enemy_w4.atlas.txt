@@ -1,139 +1,125 @@
 
 enemy_w4.png
-size: 380,272
+size: 956,140
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-arm_L3
+arm_down
   rotate: false
-  xy: 170, 117
-  size: 23, 24
-  orig: 23, 24
+  xy: 913, 53
+  size: 38, 41
+  orig: 38, 41
   offset: 0, 0
   index: -1
-arm_R1
+arm_up
   rotate: false
-  xy: 55, 5
-  size: 38, 29
-  orig: 38, 29
+  xy: 653, 4
+  size: 38, 55
+  orig: 38, 55
   offset: 0, 0
   index: -1
-arm_R2
+arrow
   rotate: false
-  xy: 132, 2
-  size: 30, 45
-  orig: 30, 45
+  xy: 853, 62
+  size: 17, 75
+  orig: 17, 75
   offset: 0, 0
   index: -1
-arm_R3
+back
   rotate: false
-  xy: 356, 178
-  size: 21, 25
-  orig: 21, 25
+  xy: 408, 26
+  size: 129, 111
+  orig: 129, 111
   offset: 0, 0
   index: -1
-back_R1
+ear
   rotate: false
-  xy: 250, 50
-  size: 27, 54
-  orig: 27, 54
+  xy: 772, 13
+  size: 60, 46
+  orig: 60, 46
   offset: 0, 0
   index: -1
-back_R2
+earing
   rotate: false
-  xy: 95, 9
-  size: 35, 38
-  orig: 35, 38
+  xy: 315, 4
+  size: 12, 15
+  orig: 12, 15
   offset: 0, 0
   index: -1
-back_mid
+eye
   rotate: false
-  xy: 356, 205
-  size: 22, 63
-  orig: 22, 63
+  xy: 693, 12
+  size: 77, 47
+  orig: 77, 47
   offset: 0, 0
   index: -1
-body
+hand
   rotate: false
-  xy: 2, 36
-  size: 86, 105
-  orig: 86, 105
+  xy: 913, 96
+  size: 40, 41
+  orig: 40, 41
   offset: 0, 0
   index: -1
-e1
+hand1
   rotate: false
-  xy: 196, 176
-  size: 78, 92
-  orig: 78, 92
+  xy: 913, 11
+  size: 34, 40
+  orig: 34, 40
   offset: 0, 0
   index: -1
-e2
+hat
   rotate: false
-  xy: 90, 49
-  size: 78, 92
-  orig: 78, 92
+  xy: 2, 2
+  size: 114, 135
+  orig: 114, 135
   offset: 0, 0
   index: -1
-e3
+hatB
   rotate: false
-  xy: 276, 176
-  size: 78, 92
-  orig: 78, 92
-  offset: 0, 0
-  index: -1
-e4
-  rotate: false
-  xy: 289, 82
-  size: 78, 92
-  orig: 78, 92
-  offset: 0, 0
-  index: -1
-e5
-  rotate: false
-  xy: 170, 12
-  size: 78, 92
-  orig: 78, 92
+  xy: 539, 28
+  size: 112, 109
+  orig: 112, 109
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 196, 106
-  size: 91, 68
-  orig: 91, 68
+  xy: 315, 21
+  size: 91, 116
+  orig: 91, 116
   offset: 0, 0
   index: -1
 hurt
   rotate: false
-  xy: 2, 14
-  size: 51, 20
-  orig: 51, 20
+  xy: 834, 18
+  size: 77, 41
+  orig: 77, 41
   offset: 0, 0
   index: -1
-neck
+leg
   rotate: false
-  xy: 279, 29
-  size: 62, 51
-  orig: 62, 51
+  xy: 872, 67
+  size: 34, 70
+  orig: 34, 70
   offset: 0, 0
   index: -1
 shadow
   rotate: false
-  xy: 2, 143
-  size: 192, 125
-  orig: 192, 125
+  xy: 118, 13
+  size: 195, 124
+  orig: 195, 124
   offset: 0, 0
   index: -1
 wp
   rotate: false
-  xy: 250, 22
-  size: 16, 26
-  orig: 16, 26
+  xy: 653, 61
+  size: 198, 76
+  orig: 198, 76
   offset: 0, 0
   index: -1
-wp_effect
+wp_items
   rotate: false
-  xy: 343, 36
-  size: 35, 44
-  orig: 35, 44
+  xy: 118, 6
+  size: 86, 5
+  orig: 86, 5
   offset: 0, 0
   index: -1

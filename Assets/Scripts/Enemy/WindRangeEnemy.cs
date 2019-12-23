@@ -16,13 +16,17 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     //}
     public void Attack()
     {
-        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
-        EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
-        if (m_EnemyBullet != null)
+        if(isAttack)
         {
-            m_EnemyBullet.SetTarget(Tower.transform);
-            m_EnemyBullet.SetDamage(enemy.damage);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
+            EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
+            if (m_EnemyBullet != null)
+            {
+                m_EnemyBullet.SetTarget(Tower.transform);
+                m_EnemyBullet.SetDamage(enemy.damage);
+            }
         }
+        
     }
     public void WindImpactEffect(Vector3 _position)
     {

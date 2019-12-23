@@ -8,7 +8,20 @@ public class WindAllianceBullet : BulletController
     {
         elementalBullet = Elemental.Wind;
     }
+    protected override void Update()
+    {
+        if (Target == null || !Target.isLive)
+        {
+            Target = null;
+            Despawn();
+        }
+        else
+            dir = Target.transform.position - transform.position;
+        if (dir == Vector3.zero)
+            dir = new Vector3(0, 1, 0);
 
+        Move(dir);
+    }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {
         base.OnTriggerEnter2D(Target);
@@ -25,7 +38,7 @@ public class WindAllianceBullet : BulletController
             {
                 enemy.DealDamge(bullet.Damage, 0);
             }
-            Despawn();
+            //Despawn();
         }
     }
 }

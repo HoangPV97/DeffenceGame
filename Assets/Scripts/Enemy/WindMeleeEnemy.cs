@@ -6,18 +6,10 @@ using UnityEngine;
 
 public class WindMeleeEnemy : EnemyController, IWindEffectable
 {
-    protected override void Update()
-    {
-        //if (Vector3.Distance(transform.position, Tower.transform.position) > 0)
-        //{
-        //    isMove = true;
-        //    isAttack = false;
-        //}
-        base.Update();
-    }
+
     public void Attack()
     {
-        if (Tower != null)
+        if (Tower != null && isAttack)
         {
             Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
         }
@@ -27,9 +19,5 @@ public class WindMeleeEnemy : EnemyController, IWindEffectable
     {
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
         StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
-    }
-    public override void CheckAttack()
-    {
-        base.CheckAttack();
     }
 }

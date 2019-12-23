@@ -33258,6 +33258,8 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
+  stun: 1
+  nearEnemy: {fileID: 0}
 --- !u!58 &2170715936868737182
 CircleCollider2D:
   m_ObjectHideFlags: 0

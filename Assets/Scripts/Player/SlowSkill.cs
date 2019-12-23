@@ -26,7 +26,7 @@ public class SlowSkill : BulletController
     }
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
-        base.OnTriggerEnter2D(_Target);
+        //base.OnTriggerEnter2D(_Target);
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             if (!listCheckColision.Contains(_Target.gameObject))

@@ -152,29 +152,4 @@ public class BossWind1 : EnemyController
         GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
         StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
     }
-    public IEnumerator IESpawnEnemy(int i, float timeDelay)
-    {
-        yield return new WaitForSeconds(timeDelay);
-        int levelStage = DataController.Instance.StageData.Level;
-        int HardMode = DataController.Instance.StageData.HardMode;
-        var se = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode).stageEnemyDataBase.stageEnemies[i];
-        se.Number--;
-        Debug.Log(se.Number);
-        int level = se.Level;
-        //if (HardMode == 2)
-        //    level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
-        //else if (HardMode == 3)
-        //    level += DataController.Instance.StageData.stageEnemyDataBase.HellAddLevel;
-        // spawnEnemy
-        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.Type, se.Position == 999 ? 
-            GameplayController.Instance.spawnPosition[UnityEngine.Random.Range(0, 8)].position : 
-            GameplayController.Instance.spawnPosition[se.Position].position, transform.rotation);
-        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
-        //repeat
-        if (se.Number > 0)
-        {
-            StartCoroutine(IESpawnEnemy(i, se.RepeatTime));
-        }
-
-    }
 }

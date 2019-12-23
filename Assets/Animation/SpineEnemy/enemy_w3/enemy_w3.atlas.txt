@@ -1,139 +1,104 @@
 
 enemy_w3.png
-size: 532,276
+size: 600,524
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Layer 891
+arm_downR
   rotate: false
-  xy: 385, 2
-  size: 102, 157
-  orig: 102, 157
+  xy: 341, 42
+  size: 75, 86
+  orig: 75, 86
   offset: 0, 0
   index: -1
-Layer 892
+arm_downRB
   rotate: false
-  xy: 196, 154
-  size: 49, 28
-  orig: 49, 28
+  xy: 338, 2
+  size: 58, 38
+  orig: 58, 38
   offset: 0, 0
   index: -1
-Layer 893
+arm_upR
   rotate: false
-  xy: 288, 156
-  size: 44, 26
-  orig: 44, 26
+  xy: 418, 42
+  size: 69, 86
+  orig: 69, 86
   offset: 0, 0
   index: -1
-Layer 894
+body
   rotate: false
-  xy: 260, 14
-  size: 123, 131
-  orig: 123, 131
+  xy: 2, 6
+  size: 219, 191
+  orig: 219, 191
   offset: 0, 0
   index: -1
-Layer 895
+fx_atk1
   rotate: false
-  xy: 489, 45
-  size: 40, 42
-  orig: 40, 42
+  xy: 350, 130
+  size: 114, 235
+  orig: 114, 235
   offset: 0, 0
   index: -1
-Layer 896
+fx_atk2
   rotate: false
-  xy: 425, 163
-  size: 40, 44
-  orig: 40, 44
+  xy: 466, 130
+  size: 114, 235
+  orig: 114, 235
   offset: 0, 0
   index: -1
-Layer 897
+fx_ground
   rotate: false
-  xy: 334, 152
-  size: 38, 36
-  orig: 38, 36
+  xy: 377, 367
+  size: 219, 154
+  orig: 219, 154
   offset: 0, 0
   index: -1
-Layer 898
+fx_hand
   rotate: false
-  xy: 247, 147
-  size: 39, 35
-  orig: 39, 35
+  xy: 264, 181
+  size: 84, 185
+  orig: 84, 185
   offset: 0, 0
   index: -1
-Layer 900
+handR
   rotate: false
-  xy: 489, 89
-  size: 37, 50
-  orig: 37, 50
+  xy: 542, 77
+  size: 50, 51
+  orig: 50, 51
   offset: 0, 0
   index: -1
-Layer 901
+head_bot
   rotate: false
-  xy: 489, 141
-  size: 39, 52
-  orig: 39, 52
+  xy: 223, 95
+  size: 116, 84
+  orig: 116, 84
   offset: 0, 0
   index: -1
-Layer 902
+head_top
   rotate: false
-  xy: 400, 163
-  size: 23, 25
-  orig: 23, 25
+  xy: 2, 368
+  size: 373, 153
+  orig: 373, 153
   offset: 0, 0
   index: -1
-Layer 903
+legR
   rotate: false
-  xy: 374, 161
-  size: 24, 27
-  orig: 24, 27
-  offset: 0, 0
-  index: -1
-Layer 904
-  rotate: false
-  xy: 305, 190
-  size: 100, 82
-  orig: 100, 82
-  offset: 0, 0
-  index: -1
-atk1
-  rotate: false
-  xy: 2, 18
-  size: 127, 127
-  orig: 127, 127
-  offset: 0, 0
-  index: -1
-atk2
-  rotate: false
-  xy: 131, 18
-  size: 127, 127
-  orig: 127, 127
-  offset: 0, 0
-  index: -1
-leg
-  rotate: false
-  xy: 483, 195
-  size: 39, 77
-  orig: 39, 77
-  offset: 0, 0
-  index: -1
-riki
-  rotate: false
-  xy: 407, 209
-  size: 74, 63
-  orig: 74, 63
+  xy: 489, 40
+  size: 51, 88
+  orig: 51, 88
   offset: 0, 0
   index: -1
 shadow
   rotate: false
-  xy: 2, 147
-  size: 192, 125
-  orig: 192, 125
+  xy: 2, 199
+  size: 260, 167
+  orig: 260, 167
   offset: 0, 0
   index: -1
-weapon
+shoulder
   rotate: false
-  xy: 196, 184
-  size: 107, 88
-  orig: 107, 88
+  xy: 223, 9
+  size: 113, 84
+  orig: 113, 84
   offset: 0, 0
   index: -1

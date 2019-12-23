@@ -20,9 +20,11 @@ public class BulletController : MonoBehaviour
     public bool critical;
     public bool multishot;
     public bool quickhand;
-    EnemyController nearEnemy;
-    private float bounceRange = 3f;
-    private int numberBounce = 3;
+    public bool stun;
+    public EnemyController nearEnemy;
+    private float timeStun=2f;
+    protected float bounceRange = 5f;
+    protected int numberBounce = 3;
     private float percent_Slow = 20;
     #endregion
     protected virtual void Start()
@@ -54,10 +56,9 @@ public class BulletController : MonoBehaviour
             StartCoroutine(DelayDespawn(3));
         }
         else
-            //dir = Target.transform.position - transform.position;
+            dir = Target.transform.position - transform.position;
         if (dir == Vector3.zero)
             dir = new Vector3(0, 1, 0);
-
         Move(dir);
     }
     public void Move(Vector3 _dir)
@@ -90,7 +91,7 @@ public class BulletController : MonoBehaviour
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemyController = _Target.GetComponent<EnemyController>();
-            if (SeekTarget)
+            if (SeekTarget )
             {
                 Despawn();
             }
@@ -113,7 +114,8 @@ public class BulletController : MonoBehaviour
                     for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
                     {
                         float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject)
+                        if (distance > 0.4f &&distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject
+                            && GameplayController.Instance.PlayerController.listEnemies[i].isLive)
                         {
                             shortdistance = distance;
                             index = i;
@@ -123,20 +125,24 @@ public class BulletController : MonoBehaviour
                     {
                         nearEnemy = GameplayController.Instance.PlayerController.listEnemies[index];
                     }
-                    if (numberBounce > 0 && nearEnemy != null && nearEnemy.isLive)
+                    else
+                    {
+                        nearEnemy = null;
+                    }
+                    if (numberBounce > 0 && nearEnemy != null /*&& nearEnemy.isLive*/)
                     {
                         SetTarget(nearEnemy);
                         dir = nearEnemy.transform.position - transform.position;
                         Move(dir);
                         //nearEnemy.DealDamge(bullet.Damage, damagePlus);
-                        bullet.Damage = Mathf.Round(bullet.Damage * 90 / 100);
+                        bullet.Damage = Mathf.Round(bullet.Damage * 50 / 100);
                         numberBounce--;
-                        if (numberBounce < 0 || !nearEnemy.isLive)
+                        if (numberBounce <= 0 || !nearEnemy.isLive)
                         {
                             Despawn();
                         }
                     }
-                    else
+                    else if((numberBounce > 0 || nearEnemy != null))
                     {
                         Despawn();
                     }
@@ -148,6 +154,10 @@ public class BulletController : MonoBehaviour
                 enemyController.DealEffect(Effect.Slow, enemyController.transform.position, 2f);
                 enemyController.Move(enemyController.enemy.speed, percent_Slow);
                 Debug.Log("SlowEnemy");
+            }
+            if (stun)
+            {
+                enemyController.DealEffect(Effect.Stun, enemyController.transform.position, timeStun);
             }
         }
     }

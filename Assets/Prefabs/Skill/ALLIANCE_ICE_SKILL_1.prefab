@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10857cd7181e56e4b9e17a01d7cd0745, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c0162f37f920c54dbcd5daad540a601, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -92,7 +92,6 @@ MonoBehaviour:
   CountdownGo: {fileID: 0}
   CountdownTime: 10
   manaCost: 0
-  NummberBullet: 10
   variableJoystick: {fileID: 0}
   circle: {fileID: 4858672756582602106}
   bulletName: iceskill

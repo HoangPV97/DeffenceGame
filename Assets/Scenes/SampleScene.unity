@@ -967,7 +967,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10857cd7181e56e4b9e17a01d7cd0745, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c0162f37f920c54dbcd5daad540a601, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   - tag: W_4
     prefab: {fileID: 5556297814356171359, guid: 6aaafcf7cd1691e428a6860f09df7a9d,
       type: 3}
-  - tag: W_6
+  - tag: D_1
     prefab: {fileID: 8912908039463566854, guid: 2736130805ea0a8429c949e70ee4930b,
       type: 3}
   - tag: ALLIANCE_ICE_SKILL_1
@@ -4265,7 +4265,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3c0162f37f920c54dbcd5daad540a601, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10857cd7181e56e4b9e17a01d7cd0745, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5555,18 +5555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2b4eee9ded15f4886c6f4031457459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPosition: {x: 1.4, y: 0, z: 0}
-  SpawnTime: 4
-  slider: {fileID: 1770261808}
-  EnemyQuantum: 0
-  spawnPosition:
-  - {x: -3.88, y: 10.9}
-  - {x: -2.57, y: 10.9}
-  - {x: -1.08, y: 10.9}
-  - {x: 0.52, y: 10.9}
-  - {x: 1.66, y: 10.9}
-  - {x: 2.06, y: 10.9}
-  - {x: 3.83, y: 10.9}
 --- !u!1 &1227083201
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class GameEffect : MonoBehaviour
     {
         CurrentEffect = _effect;
     }
-    public GameObject GetEffect(Effect _effect, Vector3 _position, float _time)
+    public GameObject GetEffect(Effect _effect, Vector3 _position, float _time,GameObject parent=null)
     {
         CurrentEffect = _effect;
         GameObject effectObj = null;
@@ -30,7 +30,7 @@ public class GameEffect : MonoBehaviour
                 KnockBack(this.gameObject, _position);
                 break;
             case Effect.Stun:
-                effectObj = SpawnEffect("stuneffect", _position, _time);
+                effectObj = SpawnEffect("stuneffect", _position+new Vector3(0,1,0), _time);
                 break;
             case Effect.destroyFreeze:
                 effectObj = SpawnEffect("iceeffectend", _position, _time);

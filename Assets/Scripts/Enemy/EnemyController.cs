@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     public bool isMove = true, isAttack, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
-    protected float distancetoTower;
+    public float distancetoTower;
     protected float countdown;
     protected float distance;
     public GameEffect gameEffect;
@@ -110,12 +110,11 @@ public class EnemyController : MonoBehaviour
         }
         canvas.gameObject.SetActive(false); 
         boxCollider2D.enabled = false;
-        if (effectObj != null && effectObj.activeSelf)
+        if (effectObj != null)
         {
-            effectObj.SetActive(false);
+            Despawn(effectObj);
         }
         yield return new WaitForSeconds(1);
-
         GameController.Instance.OnEnemyDie(1);
         Debug.Log("Leave :" + GameController.Instance.EnemyLive);
         Despawn(gameObject);
@@ -143,7 +142,7 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        //gameEffect.CurrentEffect = _effect;
+        gameEffect.SetEffect(_effect);
         StartCoroutine(WaitingEffect(_time, () =>
        {
            if (_effect.Equals(Effect.Knockback))
@@ -162,12 +161,8 @@ public class EnemyController : MonoBehaviour
            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
            {
                isMove = false;
-               if (isAttack)
-               {
-                   isAttack = false;
-               }
                Move(enemy.speed);
-
+               CurrentState = EnemyState.Idle;
                effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
            else if (_effect.Equals(Effect.Poiton))
@@ -176,20 +171,16 @@ public class EnemyController : MonoBehaviour
            }
        }, () =>
        {
+           gameEffect.SetEffect( Effect.None);
            isMove = true;
-           if (_effect.Equals(Effect.Freeze))
+           if (_effect.Equals(Effect.Freeze) )
            {
-               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
-               if (!isAttack)
-               {
-                   isAttack = true;
-               }
+               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);   
            }
            if (!isAttack)
            {
                Move(enemy.speed);
            }
-           gameEffect.CurrentEffect = Effect.None;
        }));
     }
     protected IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
@@ -247,9 +238,13 @@ public class EnemyController : MonoBehaviour
         canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = true;
     }
-    public void DisableCanvas()
+    public bool Check_Stun_Freeze()
     {
-        canvas.gameObject.SetActive(false);
+        if(gameEffect.CurrentEffect.Equals(Effect.Stun) || gameEffect.CurrentEffect.Equals(Effect.Freeze))
+        {
+            return true;
+        }
+        return false;
     }
     public void Despawn(GameObject _Obj)
     {
@@ -260,11 +255,12 @@ public class EnemyController : MonoBehaviour
     {
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
 
-        if (distancetoTower < enemy.range && isLive)
+        if ((2.2f>distancetoTower|| distancetoTower < enemy.range) && isLive)
         {
-            if (!isAttack)
+            isAttack = true;
+            if (!Check_Stun_Freeze())
             {
-                isAttack = true;
+                //isAttack = true;
                 Rigidbody2D.velocity = Vector2.zero;
                 CurrentState = EnemyState.Idle;
                 CurrentState = EnemyState.Attack;
@@ -272,7 +268,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            isAttack = false;
+            //    isAttack = false;
             isMove = true;
         }
     }

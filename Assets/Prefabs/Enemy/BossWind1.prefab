@@ -54,8 +54,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4466090850024963634}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7185402, w: 0.69548553}
-  m_LocalPosition: {x: -0.63219434, y: -0.039662454, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.29944304, w: 0.9541142}
+  m_LocalPosition: {x: -0.49568665, y: -0.18832776, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8912908039463566855}
@@ -340,10 +340,10 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 126e3bb46f115d44d80b6c4a11857b08, type: 2}
   idle: {fileID: 11400000, guid: 0b0cb78ed81611940ad494cb2a83e208, type: 2}
   run: {fileID: 11400000, guid: 8475b5eee8fea5c49bf800054e0d7f18, type: 2}
-  hurt: {fileID: 11400000, guid: eb234618f56a71e4497984f911404aa7, type: 2}
+  hurt: {fileID: 0}
   die: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}
   isMove: 1
-  isAttack: 0
+  isAttack: 1
   isLive: 1
   gameEffect: {fileID: 6109840538386552089}
   Rigidbody2D: {fileID: 2121085402989365051}

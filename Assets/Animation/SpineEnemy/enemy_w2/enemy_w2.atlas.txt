@@ -1,139 +1,97 @@
 
 enemy_w2.png
-size: 300,524
+size: 272,412
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Layer 761 copy
+arm1
   rotate: false
-  xy: 282, 223
-  size: 16, 34
-  orig: 16, 34
+  xy: 191, 94
+  size: 40, 34
+  orig: 40, 34
   offset: 0, 0
   index: -1
-Layer 762
+arm2
   rotate: false
-  xy: 171, 45
-  size: 36, 78
-  orig: 36, 78
+  xy: 191, 130
+  size: 43, 39
+  orig: 43, 39
   offset: 0, 0
   index: -1
-Layer 763
+arm_down
   rotate: false
-  xy: 282, 191
-  size: 15, 30
-  orig: 15, 30
+  xy: 231, 51
+  size: 38, 41
+  orig: 38, 41
   offset: 0, 0
   index: -1
-Layer 764
+arm_up
   rotate: false
-  xy: 196, 402
-  size: 86, 120
-  orig: 86, 120
+  xy: 191, 37
+  size: 38, 55
+  orig: 38, 55
   offset: 0, 0
   index: -1
-Layer 766
+atk
   rotate: false
-  xy: 209, 50
-  size: 37, 73
-  orig: 37, 73
+  xy: 199, 262
+  size: 64, 148
+  orig: 64, 148
   offset: 0, 0
   index: -1
-Layer 768
+ear
   rotate: false
-  xy: 209, 2
-  size: 43, 46
-  orig: 43, 46
+  xy: 191, 171
+  size: 60, 46
+  orig: 60, 46
   offset: 0, 0
   index: -1
-Layer 769
+earing
   rotate: false
-  xy: 248, 75
-  size: 50, 48
-  orig: 50, 48
+  xy: 253, 203
+  size: 12, 14
+  orig: 12, 14
   offset: 0, 0
   index: -1
-Layer 771
+hat1
   rotate: false
-  xy: 254, 37
-  size: 39, 36
-  orig: 39, 36
+  xy: 2, 132
+  size: 136, 132
+  orig: 136, 132
   offset: 0, 0
   index: -1
-Layer 772
+head
   rotate: false
-  xy: 141, 15
-  size: 51, 28
-  orig: 51, 28
+  xy: 2, 15
+  size: 90, 115
+  orig: 90, 115
   offset: 0, 0
   index: -1
-Layer 773
+hurt
   rotate: false
-  xy: 80, 5
-  size: 59, 40
-  orig: 59, 40
+  xy: 191, 219
+  size: 76, 41
+  orig: 76, 41
   offset: 0, 0
   index: -1
-Layer 774
+leg
   rotate: false
-  xy: 80, 47
-  size: 89, 56
-  orig: 89, 56
-  offset: 0, 0
-  index: -1
-a1
-  rotate: false
-  xy: 2, 251
-  size: 142, 144
-  orig: 142, 144
-  offset: 0, 0
-  index: -1
-a2
-  rotate: false
-  xy: 2, 105
-  size: 142, 144
-  orig: 142, 144
-  offset: 0, 0
-  index: -1
-e0
-  rotate: false
-  xy: 2, 27
-  size: 76, 76
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
-eye
-  rotate: false
-  xy: 2, 9
-  size: 60, 16
-  orig: 60, 16
-  offset: 0, 0
-  index: -1
-s1
-  rotate: false
-  xy: 146, 125
-  size: 66, 132
-  orig: 66, 132
-  offset: 0, 0
-  index: -1
-s2
-  rotate: false
-  xy: 214, 125
-  size: 66, 132
-  orig: 66, 132
+  xy: 236, 99
+  size: 34, 70
+  orig: 34, 70
   offset: 0, 0
   index: -1
 shadow
   rotate: false
-  xy: 2, 397
-  size: 192, 125
-  orig: 192, 125
+  xy: 2, 266
+  size: 195, 144
+  orig: 195, 144
   offset: 0, 0
   index: -1
-smoke
+wp
   rotate: false
-  xy: 146, 259
-  size: 140, 136
-  orig: 140, 136
+  xy: 140, 2
+  size: 49, 262
+  orig: 49, 262
   offset: 0, 0
   index: -1

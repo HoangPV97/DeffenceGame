@@ -64,11 +64,17 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
         var listItem = gsd.WinReward[gameStage.HardMode - 1];
         for (int i = 0; i < listItem.items.Count; i++)
         {
-            var it = Instantiate(pfUIItem.gameObject, Vector3.zero, Quaternion.identity);
-            it.SetActive(true);
-            it.transform.SetParent(ItemContain);
-            it.transform.SetDefaultTransform();
-            it.GetComponent<UiItem>().SetUpData(listItem.items[i], 1);
+            if (listItem.items[i].Type != ITEM_TYPE.coin)
+            {
+                var it = Instantiate(pfUIItem.gameObject, Vector3.zero, Quaternion.identity);
+                it.SetActive(true);
+                it.transform.SetParent(ItemContain);
+                it.transform.SetDefaultTransform();
+                it.GetComponent<UiItem>().SetUpData(listItem.items[i], 1);
+            }
+            else {
+
+            }
         }
     }
     void BtnPlayClick()
