@@ -23,7 +23,7 @@ public class AllianceIceSkill : Skill
     {
         base.SetUpData(Level);
         this.Level = Level;
-        Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
+        Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swi1.GetManaCost(Tier, Level);
         CountdownTime = Swi1.GetCoolDown(Tier, Level);

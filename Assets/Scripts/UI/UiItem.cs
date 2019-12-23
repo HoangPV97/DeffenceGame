@@ -70,4 +70,14 @@ public class UiItem : MonoBehaviour
         txtNumber.text = Item.Quality.ToString();
         GetComponent<Image>().sprite = DataController.Instance.DefaultData.GetSpriteItem(ITEM_TYPE);
     }
+
+    public void SetUpData(Item item, int Current, int TypeInUI = 0)
+    {
+        this.TypeInUI = TypeInUI;
+        ITEM_TYPE = item.Type;
+        Item = item;
+        count = Item.Quality;
+        txtNumber.text = Current >= Item.Quality ? string.Format("<color=#65FF00FF>{0}</color>/{1}", Current, Item.Quality) : string.Format("<color=#FF0000FF>{0}</color>/{1}", Current, Item.Quality);
+        GetComponent<Image>().sprite = DataController.Instance.DefaultData.GetSpriteItem(ITEM_TYPE);
+    }
 }

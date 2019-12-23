@@ -27,7 +27,7 @@ public class PlaySkill1 : Skill
     {
         base.SetUpData(Level);
         this.Level = Level;
-        sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
+        sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
         Speed = sww1.GetSkillSpeed(Tier, Level);

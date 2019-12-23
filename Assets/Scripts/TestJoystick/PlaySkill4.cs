@@ -24,7 +24,7 @@ public class PlaySkill4 : Skill
     {
         base.SetUpData(Level);
         this.Level = Level;
-        Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextWeaponSkill(SkillID));
+        Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swf1.GetManaCost(Tier, Level);
         CountdownTime = Swf1.GetCoolDown(Tier, Level);

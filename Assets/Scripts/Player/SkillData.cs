@@ -8,6 +8,11 @@ public class SkillData
     /// SkillID = WEAPON_ICE_SKILL_1 || SkillID = ALLIANCE_ICE_SKILL_1
     /// </summary>
     public string SkillID;
+    /// <summary>
+    /// 0: active
+    /// 1: Passive
+    /// </summary>
+    public int SkillType;
     public List<BaseSkill> baseSkills;
     public float GetManaCost(int Tier, int Level)
     {

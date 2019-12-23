@@ -178,12 +178,30 @@ public class GameDataWeapon
     public int EXP;
     public SaveGameTierLevel WeaponTierLevel;
     public List<SaveGameTierLevel> SkillTierLevel;
+    public SaveGameTierLevel GetSkillTierLevel(string SkillID)
+    {
+        if (SkillTierLevel == null)
+            SkillTierLevel = new List<SaveGameTierLevel>();
+        for (int i = 0; i < SkillTierLevel.Count; i++)
+            if (SkillTierLevel[i].Des == SkillID)
+                return SkillTierLevel[i];
+
+        var ktl = new SaveGameTierLevel()
+        {
+            Tier = 1,
+            Level = 0,
+            Des = SkillID
+        };
+        SkillTierLevel.Add(ktl);
+        return ktl;
+    }
 }
 [System.Serializable]
 public class SaveGameTierLevel
 {
     public int Tier;
     public int Level;
+    public string Des;
 }
 [System.Serializable]
 public class GameStage

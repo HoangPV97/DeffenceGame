@@ -29,7 +29,6 @@ public class DefaultData : ScriptableObject
             Item = bundle;
         }
         return Item.LoadAsset<Sprite>(_TYPE.ToString());
-        return null;
     }
     public GameObject GetWeaponSkill(Elemental elemental, int index)
     {
@@ -66,7 +65,43 @@ public class DefaultData : ScriptableObject
         return null;
     }
 
-    public string GetTextWeaponSkill(string SkillID)
+    public List<string> GetWeaponSkillID(Elemental elemental)
+    {
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                return new List<string>() { "WEAPON_WIND_SKILL_1", "WEAPON_WIND_SKILL_2", "WEAPON_WIND_SKILL_3", "WEAPON_WIND_SKILL_4" };
+            case Elemental.Ice:
+                return new List<string>() { "WEAPON_ICE_SKILL_1", "WEAPON_ICE_SKILL_2", "WEAPON_ICE_SKILL_3", "WEAPON_ICE_SKILL_4" };
+            case Elemental.Earth:
+                return new List<string>() { "WEAPON_EARTH_SKILL_1", "WEAPON_EARTH_SKILL_2", "WEAPON_EARTH_SKILL_3", "WEAPON_EARTH_SKILL_4" };
+            case Elemental.Fire:
+                return new List<string>() { "WEAPON_FIRE_SKILL_1", "WEAPON_FIRE_SKILL_2", "WEAPON_FIRE_SKILL_3", "WEAPON_FIRE_SKILL_4" };
+        }
+        return null;
+    }
+
+    public List<string> GetAllianceSkillID(Elemental elemental)
+    {
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                return new List<string>() { "ALLIANCE_WIND_SKILL_1", "ALLIANCE_WIND_SKILL_2", "ALLIANCE_WIND_SKILL_3", "ALLIANCE_WIND_SKILL_4" };
+            case Elemental.Ice:
+                return new List<string>() { "ALLIANCE_ICE_SKILL_1", "ALLIANCE_ICE_SKILL_2", "ALLIANCE_ICE_SKILL_3", "ALLIANCE_ICE_SKILL_4" };
+            case Elemental.Earth:
+                return new List<string>() { "ALLIANCE_EARTH_SKILL_1", "ALLIANCE_EARTH_SKILL_2", "ALLIANCE_EARTH_SKILL_3", "ALLIANCE_EARTH_SKILL_4" };
+            case Elemental.Fire:
+                return new List<string>() { "ALLIANCE_FIRE_SKILL_1", "ALLIANCE_FIRE_SKILL_2", "ALLIANCE_FIRE_SKILL_3", "ALLIANCE_FIRE_SKILL_4" };
+        }
+        return null;
+    }
+
+    public string GetTextSkill(string SkillID)
     {
         for (int i = 0; i < TextWeaponSkills.Count; i++)
         {

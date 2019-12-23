@@ -121,14 +121,13 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
         }
     }
 
-    public string GetTextWeaponSkill(string SkillID)
+    public string GetTextSkill(string SkillID)
     {
         if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
-            return FirebaseRemoteConfig.GetValue(SkillID).StringValue;
-        else
-        {
-            return DataController.Instance.DefaultData.GetTextWeaponSkill(SkillID);
-        }
+            if (FirebaseRemoteConfig.GetValue(SkillID).StringValue != "")
+                return FirebaseRemoteConfig.GetValue(SkillID).StringValue;
+        return DataController.Instance.DefaultData.GetTextSkill(SkillID);
+
     }
 
     public string GetTextBaseDataBases()
@@ -157,11 +156,11 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
             Debug.Log(FirebaseRemoteConfig.GetValue("BossDataBase_Wind_1").StringValue);
             return FirebaseRemoteConfig.GetValue("BossDataBase_Wind_1").StringValue;
         }
-            
+
         else
         {
             return DataController.Instance.DefaultData.BossDataBase.text;
         }
-        
+
     }
 }

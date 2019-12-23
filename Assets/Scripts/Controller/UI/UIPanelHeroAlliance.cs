@@ -22,6 +22,14 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public bool isHero = true;
     public UIEvolveHero UIEvolveHero;
 
+    public Elemental SelectedElemental
+    {
+        get
+        {
+            return currentSelectedHero.elemental;
+        }
+    }
+
     #region Animation
     public void OnHide()
     {
@@ -149,6 +157,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
         if (!isHero && !showAliiance)
             UIHeroItems[0].OnSelected();
     }
+
     public void OnSelectHero(UIHeroItem UIHeroItems)
     {
         if (currentSelectedHero != null && currentSelectedHero != UIHeroItems)
@@ -218,7 +227,11 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
         PBEXP.fillAmount = data1.EXP * 1f / dataBase.Cost[dataBase.Cost.Count - 1];
 
         /// Set up Skill
-
+        var SkillList = DataController.Instance.DefaultData.GetWeaponSkillID(elemental);
+        for (int i = 0; i < UISkillItems.Length; i++)
+        {
+            UISkillItems[i].SetUpdata(SkillList[i]);
+        }
     }
 
 }
