@@ -65,9 +65,34 @@ public class StageEnemyDataBase
     public List<StageEnemy> stageEnemies;
 }
 [System.Serializable]
-public class SpawnEnemyBoss
+public class BossDataBase_Wind_1
 {
-    public List<StageEnemy> stageEnemies;
+    public List<WaveEnemyBoss_Wind_1> BossDataBase_Wind;
+    public WaveEnemyBoss_Wind_1 GetWaveEnemyBoss_Wind_1(int _hardMode)
+    {
+        for (int i = 0; i < BossDataBase_Wind.Count; i++)
+        {
+            if (BossDataBase_Wind[i].HardMode == _hardMode)
+            {
+                return BossDataBase_Wind[i];
+            }
+        }
+        return null;
+    }
+}
+
+[System.Serializable]
+public class WaveEnemyBoss_Wind_1 : WaveEnemyBoss
+{
+    public int DamagePlus;
+    public int SpeedPlus;
+    public int DelayAttack;
+}
+[System.Serializable]
+public class WaveEnemyBoss
+{
+    public int HardMode;
+    public StageEnemyDataBase stageEnemyDataBase;
 }
 [System.Serializable]
 public class StageEnemy

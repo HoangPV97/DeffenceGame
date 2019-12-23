@@ -1,0 +1,415 @@
+{
+  "waveEnemiesBoss": [
+    [
+      {
+        "HardMode": 1,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 2,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 3,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "HardMode": 1,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 2,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 3,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "HardMode": 1,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 2,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      },
+      {
+        "HardMode": 3,
+        "stageEnemies": [
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 1,
+            "RepeatTime": 3,
+            "Position": 999,
+            "Number": 15
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 10,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 11,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 12,
+            "RepeatTime": 10,
+            "Position": 999,
+            "Number": 4
+          },
+          {
+            "Type": "W_1",
+            "Level": 1,
+            "StartTime": 25,
+            "RepeatTime": 5,
+            "Position": 999,
+            "Number": 4
+          }
+        ]
+      }
+    ]
+  ]
+}

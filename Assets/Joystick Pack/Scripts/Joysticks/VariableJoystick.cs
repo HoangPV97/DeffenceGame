@@ -49,6 +49,7 @@ public class VariableJoystick : Joystick
                background.gameObject.SetActive(true);
            }*/
         base.OnPointerDown(eventData);
+        Time.timeScale = 0.6f;
     }
 
     public override void OnPointerUp(PointerEventData eventData)
@@ -58,6 +59,7 @@ public class VariableJoystick : Joystick
               */
         base.OnPointerUp(eventData);
         StartCoroutine(IEOnPointerUp());
+        Time.timeScale = 1;
     }
 
     protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)

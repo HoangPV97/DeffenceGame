@@ -150,8 +150,18 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
             return DataController.Instance.DefaultData.ItemDataBase.text;
         }
     }
-    public string GetTexSpawnEnemyBoss(int level)
+    public string GetTexSpawnEnemyBoss()
     {
-        return DataController.Instance.DefaultData.SpawnEnemyBoss[level].text;
+        if (ConfigInfo.LastFetchStatus == LastFetchStatus.Success)
+        {
+            Debug.Log(FirebaseRemoteConfig.GetValue("BossDataBase_Wind_1").StringValue);
+            return FirebaseRemoteConfig.GetValue("BossDataBase_Wind_1").StringValue;
+        }
+            
+        else
+        {
+            return DataController.Instance.DefaultData.BossDataBase.text;
+        }
+        
     }
 }

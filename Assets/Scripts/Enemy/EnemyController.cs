@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     protected float countdown;
     protected float distance;
     public GameEffect gameEffect;
-    GameObject effectObj;
+    protected GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
     [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
     {
         DirectionMove = _direction;
     }
-    public void SetUpdata(string type, int Level)
+    public virtual void SetUpdata(string type, int Level)
     {
         var md = DataController.Instance.GetMonsterData(type);
         float growth = 1 + md.Growth * (Level - 1);
@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
         {
             ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
         }
-        canvas.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false); 
         boxCollider2D.enabled = false;
         if (effectObj != null && effectObj.activeSelf)
         {
@@ -117,19 +117,23 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         GameController.Instance.OnEnemyDie(1);
+        Debug.Log("Leave :" + GameController.Instance.EnemyLive);
         Despawn(gameObject);
     }
     public void DealDamge(float _damage, float _damageplus = 0f)
     {
+        canvas.gameObject.SetActive(true);
         isHurt = true;
         //CurrentState = EnemyState.Hurt;
+        CancelInvoke("DisableCanvas");
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
-
+        Invoke("DisableCanvas", 2);
+        //StartCoroutine(IEDisableCanvas());
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
@@ -137,7 +141,7 @@ public class EnemyController : MonoBehaviour
         damageobj.transform.SetParent(canvas.gameObject.transform);
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
-    public void DealEffect(Effect _effect, Vector3 _position, float _time)
+    public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
         //gameEffect.CurrentEffect = _effect;
         StartCoroutine(WaitingEffect(_time, () =>
@@ -188,7 +192,7 @@ public class EnemyController : MonoBehaviour
            gameEffect.CurrentEffect = Effect.None;
        }));
     }
-    IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
+    protected IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
         _action1.Invoke();
         yield return new WaitForSeconds(_time);
@@ -240,8 +244,12 @@ public class EnemyController : MonoBehaviour
     }
     private void OnEnable()
     {
-        canvas.gameObject.SetActive(true);
+        canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = true;
+    }
+    public void DisableCanvas()
+    {
+        canvas.gameObject.SetActive(false);
     }
     public void Despawn(GameObject _Obj)
     {

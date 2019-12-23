@@ -338,7 +338,7 @@ MonoBehaviour:
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 4688615873598794641}
   attack: {fileID: 11400000, guid: 126e3bb46f115d44d80b6c4a11857b08, type: 2}
-  idle: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}
+  idle: {fileID: 11400000, guid: 0b0cb78ed81611940ad494cb2a83e208, type: 2}
   run: {fileID: 11400000, guid: 8475b5eee8fea5c49bf800054e0d7f18, type: 2}
   hurt: {fileID: 11400000, guid: eb234618f56a71e4497984f911404aa7, type: 2}
   die: {fileID: 11400000, guid: 166e34e9246b58a4d90efc545704802d, type: 2}

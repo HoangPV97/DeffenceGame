@@ -1,32 +1,21 @@
-﻿using System.Collections;
+﻿using InviGiant.Tools;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnEnemy : MonoBehaviour
+public class SpawnEnemy : Singleton<SpawnEnemy>
 {
-    public Vector3 SpawnPosition;
-    public float SpawnTime;
-    public Slider slider;
-    public float EnemyQuantum;
-    float temp;
-    float process;
-    [SerializeField]
-    List<Vector2> spawnPosition;
-    ObjectPoolManager poolManager;
-    // Start is called before the first frame update
-    void Start()
+    public void SpawnEnemyBoss_Wind_1()
     {
-        temp = EnemyQuantum;
-        poolManager = ObjectPoolManager.Instance;
-      
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        process = 1 - (EnemyQuantum / temp);
-        slider.value = process;
+        int HardMode = DataController.Instance.StageData.HardMode;
+        var sd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
+        for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
+        {
+            StartCoroutine(GameplayController.Instance.IESpawnEnemyBoss(sd.stageEnemyDataBase,
+                                                                        i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+            GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
+        }
     }
 
 }

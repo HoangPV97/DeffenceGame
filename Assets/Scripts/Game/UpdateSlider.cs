@@ -10,7 +10,7 @@ public class UpdateSlider : MonoBehaviour
     void Start()
     {
         SpawnEnemy = FindObjectOfType<SpawnEnemy>();
-        float m_EnemyQuantum = SpawnEnemy.EnemyQuantum;
+        float m_EnemyQuantum = GameController.Instance.EnemyLive;
         LoadingSlider(m_EnemyQuantum);
     }
 
@@ -21,9 +21,9 @@ public class UpdateSlider : MonoBehaviour
     }
     public void LoadingSlider(float _Quantum)
     {
-        while (SpawnEnemy.EnemyQuantum > 0)
+        while (GameController.Instance.EnemyLive > 0)
         {
-            float process = SpawnEnemy.EnemyQuantum / _Quantum;
+            float process = GameController.Instance.EnemyLive / _Quantum;
             this.GetComponent<Slider>().value = process;
         }
     }

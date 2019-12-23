@@ -44,4 +44,4 @@ MonoBehaviour:
       [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
   AssetBundleItem: {fileID: 4900000, guid: 3e3bf748a1a3d9e4193afc2e67652935, type: 3}
   Item: {fileID: 0}
-  SpawnEnemyBoss: []
+  BossDataBase: {fileID: 4900000, guid: a9c22dcd68cf23547b487ac7cbda1129, type: 3}

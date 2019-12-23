@@ -54,7 +54,7 @@ public class BulletController : MonoBehaviour
             StartCoroutine(DelayDespawn(3));
         }
         else
-            dir = Target.transform.position - transform.position;
+            //dir = Target.transform.position - transform.position;
         if (dir == Vector3.zero)
             dir = new Vector3(0, 1, 0);
 

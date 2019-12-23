@@ -14,11 +14,11 @@ public class BossWind1 : EnemyController
     public List<Vector3> pointList;
     bool frenetic_50, frenetic_25;
     Vector3 newpposition;
-
+    float timeDelayAttack=1f;
     // Update is called once per frame
     protected override void Start()
     {
-        InvokeRepeating("RandomPosition", 0, 4f);
+        InvokeRepeating("RandomPosition", 0, timeDelayAttack+2);
     }
     protected override void Update()
     {
@@ -27,10 +27,10 @@ public class BossWind1 : EnemyController
         //    RandomPosition();
         //    countdown = 4f;
         //}
-        //countdown -= Time.deltaTime;
-        if (!isAttack  && gameEffect.CurrentEffect == Effect.None)
+       // countdown -= Time.deltaTime;
+        if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None)
         {
-            MoveRandom();
+            Move(enemy.speed);
         }
         base.Update();
     }
@@ -44,67 +44,99 @@ public class BossWind1 : EnemyController
             m_EnemyBullet.SetDamage(enemy.damage);
         }
     }
-    public IEnumerator DelayAttack(float _time)
+    public override void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        yield return new WaitForSeconds(_time);
-        if (isLive && isAttack && gameEffect.CurrentEffect == Effect.None)
+        gameEffect.CurrentEffect = _effect;
+        StartCoroutine(WaitingEffect(_time, () =>
         {
-            CurrentState = EnemyState.Attack;
-        }
+            if (_effect.Equals(Effect.Slow))
+            {
+                Debug.Log("Slow");
+            }
+            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+            {
+                isMove = false;
+                if (isAttack)
+                {
+                    isAttack = false;
+                }
+                Move(enemy.speed);
+
+                effectObj = gameEffect.GetEffect(_effect, _position, _time);
+            }
+            else if (_effect.Equals(Effect.Poiton))
+            {
+                effectObj = gameEffect.GetEffect(_effect, _position, _time);
+            }
+        }, () =>
+        {
+            isMove = true;
+            if (_effect.Equals(Effect.Freeze))
+            {
+                gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+                if (!isAttack)
+                {
+                    isAttack = true;
+                }
+            }
+            if (!isAttack)
+            {
+                Move(enemy.speed);
+            }
+            gameEffect.CurrentEffect = Effect.None;
+        }));
     }
     public override void CheckAttack()
     {
-        distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
-        if (distancetoTower < enemy.range && isLive)
-        {
-            isAttack = true;
-            Rigidbody2D.velocity = Vector2.zero;
-            CurrentState = EnemyState.Idle;
-            CurrentState = EnemyState.Attack;
-
-        }
-
-        //else
-        //{
-        //    isAttack = false;
-        //    isMove = true;
-        //}
-
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
             float ChargeRatio = UnityEngine.Random.Range(0, 100);
-            int hardmode = DataController.Instance.StageData.HardMode;
-            var se = JsonUtility.FromJson<SpawnEnemyBoss>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss(hardmode));
-            var sd = DataController.Instance.StageData;
-            for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
-            {
-                StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
-                GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
-            }
+            SpawnEnemy.Instance.SpawnEnemyBoss_Wind_1();
+            frenetic_50 = true;
             if (ChargeRatio > 20 && frenetic_50)
             {
-                frenetic_50 = true;
+                timeDelayAttack = 2;
             }
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
             frenetic_25 = true;
-            enemy.speed += 20;
-            enemy.damage *= 3;
-            enemy.rateOfFire -= 20;
+            int HardMode = DataController.Instance.StageData.HardMode;
+            var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
+            enemy.speed += bd.SpeedPlus;
+            enemy.damage *= bd.DamagePlus;
+            timeDelayAttack = bd.DelayAttack;
+
         }
     }
     private void RandomPosition()
     {
-        isAttack = true;
-        skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
+        CurrentState = EnemyState.Attack;
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(IEMove());
+        }
+    }
+    IEnumerator IEMove()
+    {
+        yield return new WaitForSeconds(enemy.rateOfFire/100);
         int newPosition = UnityEngine.Random.Range(0, pointList.Count);
         newpposition = pointList[newPosition];
-    }
-    private void MoveRandom()
-    {
         isAttack = false;
+        isMove = true;
+    }
+    public override void Move(float _speed,float _percentSlow=100f)
+    {
+        isMove = true;
+        CurrentState = EnemyState.Run;
         gameObject.transform.position = Vector3.MoveTowards(transform.position, newpposition, enemy.speed / 5 * Time.deltaTime);
+        if (transform.position == newpposition)
+        {
+            CurrentState = EnemyState.Idle;
+            isAttack = true;
+            isMove = false;
+            return;
+        }
     }
     IEnumerator IEChargeAttack(float _time)
     {
@@ -123,22 +155,25 @@ public class BossWind1 : EnemyController
     public IEnumerator IESpawnEnemy(int i, float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
-        var se= JsonUtility.FromJson<SpawnEnemyBoss>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss(i));
-        se.stageEnemies[i].Number--;
-        int level = se.stageEnemies[i].Level;
-        if (DataController.Instance.StageData.HardMode == 2)
-            level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
-        else if (DataController.Instance.StageData.HardMode == 3)
-            level += DataController.Instance.StageData.stageEnemyDataBase.HellAddLevel;
+        int levelStage = DataController.Instance.StageData.Level;
+        int HardMode = DataController.Instance.StageData.HardMode;
+        var se = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode).stageEnemyDataBase.stageEnemies[i];
+        se.Number--;
+        Debug.Log(se.Number);
+        int level = se.Level;
+        //if (HardMode == 2)
+        //    level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
+        //else if (HardMode == 3)
+        //    level += DataController.Instance.StageData.stageEnemyDataBase.HellAddLevel;
         // spawnEnemy
-        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.stageEnemies[i].Type, se.stageEnemies[i].Position == 999 ? 
+        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.Type, se.Position == 999 ? 
             GameplayController.Instance.spawnPosition[UnityEngine.Random.Range(0, 8)].position : 
-            GameplayController.Instance.spawnPosition[se.stageEnemies[i].Position].position, transform.rotation);
-        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.stageEnemies[i].Type, level);
+            GameplayController.Instance.spawnPosition[se.Position].position, transform.rotation);
+        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
         //repeat
-        if (se.stageEnemies[i].Number > 0)
+        if (se.Number > 0)
         {
-            StartCoroutine(IESpawnEnemy(i, se.stageEnemies[i].RepeatTime));
+            StartCoroutine(IESpawnEnemy(i, se.RepeatTime));
         }
 
     }

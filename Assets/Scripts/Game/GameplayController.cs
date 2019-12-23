@@ -100,6 +100,26 @@ public class GameplayController : Singleton<GameplayController>
         }
 
     }
+    public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase,int i, float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        var se = stageEnemyDataBase.stageEnemies[i];
+        se.Number--;
+        Debug.Log(se.Number);
+        int level = se.Level;
+        if (DataController.Instance.StageData.HardMode == 2)
+            level += stageEnemyDataBase.NightMareAddLevel;
+        else if (DataController.Instance.StageData.HardMode == 3)
+            level += stageEnemyDataBase.HellAddLevel;
+        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.Type, se.Position == 999 ?
+            spawnPosition[UnityEngine.Random.Range(0, 8)].position :
+            spawnPosition[se.Position].position, transform.rotation);
+        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
+        if (se.Number > 0)
+        {
+            StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));
+        }
+    }
     #endregion
 
     #region SkillAction
