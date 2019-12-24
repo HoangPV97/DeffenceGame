@@ -12,6 +12,7 @@ public class GameData
     public int BaseShieldTier = 1;
     public int CurrentStage = 1;
     public int Gold;
+    public int Gem;
     public List<Item> Inventory;
     public List<GameDataWeapon> gameDataWeapons;
     public List<GameDataWeapon> gameDataAlliance;

@@ -72,6 +72,17 @@ public class DataController : Singleton<DataController>
             GameData.Gold = value;
         }
     }
+    public int Gem
+    {
+        get
+        {
+            return GameData.Gem;
+        }
+        set
+        {
+            GameData.Gem = value;
+        }
+    }
     #endregion
 
     #region in game
@@ -348,6 +359,18 @@ public class DataController : Singleton<DataController>
         gdw.EXP = 0;
         gdw.WeaponTierLevel.Level = 1;
         gdw.WeaponTierLevel.Tier++;
+    }
+
+    public void AddSkillLevel(string SkillID)
+    {
+        GetGameSkillData(SkillID).Level++;
+    }
+
+    public void AddSkillTier(string SkillID)
+    {
+        var gsd = GetGameSkillData(SkillID);
+        gsd.Level = 1;
+        gsd.Tier++;
     }
 
     public void AddWeaponLevel(Elemental elemental, int AddLevel, int CurrentEXP)
