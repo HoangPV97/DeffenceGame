@@ -73,7 +73,7 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
                 it.GetComponent<UiItem>().SetUpData(listItem.items[i], 1);
             }
             else {
-
+                DataController.Instance.GoldInGame = listItem.items[i].Quality;
             }
         }
     }

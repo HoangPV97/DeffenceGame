@@ -80,7 +80,7 @@ public class DataController : Singleton<DataController>
     public InGameWeapon inGameWeapons;
     public IngameAlliance IngameAlliance1, IngameAlliance2;
     public BaseData InGameBaseData;
-
+    public int GoldInGame;
     public int MaxStage
     {
         get

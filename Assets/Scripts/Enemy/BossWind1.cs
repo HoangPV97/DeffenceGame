@@ -18,7 +18,7 @@ public class BossWind1 : EnemyController
     // Update is called once per frame
     protected override void Start()
     {
-        InvokeRepeating("RandomPosition", 0, timeDelayAttack+2);
+        InvokeRepeating("RandomPosition", 0, timeDelayAttack+3);
     }
     protected override void Update()
     {

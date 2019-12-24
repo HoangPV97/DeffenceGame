@@ -12,7 +12,8 @@ public class GameplayController : Singleton<GameplayController>
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
     public List<Transform> spawnPosition;
-
+    public int GoldEachEnemy;
+    public int TotalGoldDrop;
     private void Start()
     {
         LoadDataGamePlay();
@@ -76,7 +77,7 @@ public class GameplayController : Singleton<GameplayController>
             StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
             GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
-
+        GoldEachEnemy = (int)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
     }
 
     #region Monster
