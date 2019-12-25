@@ -17,8 +17,8 @@ public class UIEvolveHero : MonoBehaviour
     Weapons dataBase;
     Weapons dataBase2;
     public Elemental heroElemental;
-    public Transform ItemsContain;
     int Gold = 0;
+    [SerializeField]
     bool canEvolve = true;
     List<Item> listItem;
     public bool IsHero
@@ -109,7 +109,7 @@ public class UIEvolveHero : MonoBehaviour
             if (listItem[i].Quality > itInInventory.Quality)
                 canEvolve = false;
         }
-        if (Gold < DataController.Instance.Gold)
+        if (Gold > DataController.Instance.Gold)
             canEvolve = false;
         GoldCost.text = Gold.ToString();
     }

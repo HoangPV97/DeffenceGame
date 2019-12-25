@@ -22,6 +22,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public bool isHero = true;
     public UIEvolveHero UIEvolveHero;
     public UiUpgradeSkill UiUpgradeSkill;
+    public UIEvolveSkill UIEvolveSkill;
     public Elemental SelectedElemental
     {
         get
@@ -241,5 +242,10 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     public void OnUpgradeSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
     {
         UiUpgradeSkill.SetUpData(skillData, saveGameTierLevel);
+    }
+
+    public void OnEvolveSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
+    {
+        UIEvolveSkill.SetUpData(skillData, saveGameTierLevel);
     }
 }

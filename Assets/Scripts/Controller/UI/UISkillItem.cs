@@ -43,7 +43,7 @@ public class UISkillItem : MonoBehaviour
 
     void OnBtnEvolveClick()
     {
-
+        MenuController.Instance.UIPanelHeroAlliance.OnEvolveSkill(skillData, sgtl);
     }
 
     private void OnBtnBuyClick()
@@ -105,13 +105,13 @@ public class UISkillItem : MonoBehaviour
         }
         //////////////////////////////////
         //Display Info
-        txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID);
+        txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(sgtl.Tier);
         if (skillData.SkillType == 0)
         {
             Active.gameObject.SetActive(true);
             txtMana.text = "Mana: " + skillData.GetManaCost(sgtl.Tier, sgtl.Level);
             txtCoolDown.text = "Cool Down: " + skillData.GetCoolDown(sgtl.Tier, sgtl.Level) + "s";
-            txtDes1.text = Language.GetKey("Des1_" + skillData.SkillID);
+            txtDes1.text = Language.GetKey("Des1_" + skillData.SkillID + "_" + sgtl.Tier);
             txtDes2[0].gameObject.SetActive(true);
             txtDes2[0].text = "Damage: " + skillData.GetDamage(sgtl.Tier, sgtl.Level);
             if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes != null)
@@ -124,7 +124,7 @@ public class UISkillItem : MonoBehaviour
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
                     txtDes2[2].gameObject.SetActive(true);
-                    txtDes2[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[sgtl.Level - 1];
+                    txtDes2[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[sgtl.Level - 1];
                 }
             }
         }

@@ -143,7 +143,8 @@ public class DataController : Singleton<DataController>
         GameData.SaveItem(ITEM_TYPE.IceObs_3, 10);
         GameData.SaveItem(ITEM_TYPE.FireObs_1, 10);
         GameData.SaveItem(ITEM_TYPE.EarthObs_2, 4);
-        Gold = 10000;
+        GameData.SaveItem(ITEM_TYPE.EarthObs_3, 244);
+        Gold = 1000000;
     }
 
     public void Save()
@@ -351,6 +352,10 @@ public class DataController : Singleton<DataController>
         gdw.EXP = 0;
         gdw.WeaponTierLevel.Level = 1;
         gdw.WeaponTierLevel.Tier++;
+        var SkillList = DefaultData.GetWeaponSkillID(elemental);
+        string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public void AddAllianceTier(Elemental elemental)
@@ -359,6 +364,10 @@ public class DataController : Singleton<DataController>
         gdw.EXP = 0;
         gdw.WeaponTierLevel.Level = 1;
         gdw.WeaponTierLevel.Tier++;
+        var SkillList = DefaultData.GetAllianceSkillID(elemental);
+        string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public void AddSkillLevel(string SkillID)

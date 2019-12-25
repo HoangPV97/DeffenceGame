@@ -127,7 +127,9 @@ public class BaseSkill
     {
         get
         {
-            return SkillAttributes[0].Value.Length;
+            if (SkillAttributes != null && SkillAttributes.Count > 0)
+                return SkillAttributes[0].Value.Length;
+            return UpgradeItems.Count;
         }
     }
 }
