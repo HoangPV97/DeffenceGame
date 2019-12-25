@@ -108,13 +108,15 @@ public class EnemyController : MonoBehaviour
         {
             ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
         }
-        canvas.gameObject.SetActive(false); 
+        canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = false;
+        if (effectObj != null)
+            effectObj.GetComponent<ParticleSystem>().Stop();
+        yield return new WaitForSeconds(1);
         if (effectObj != null)
         {
             Despawn(effectObj);
         }
-        yield return new WaitForSeconds(1);
         GameController.Instance.OnEnemyDie(1);
         Debug.Log("Leave :" + GameController.Instance.EnemyLive);
         Despawn(gameObject);
@@ -142,7 +144,7 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        gameEffect.SetEffect(_effect);
+
         StartCoroutine(WaitingEffect(_time, () =>
        {
            if (_effect.Equals(Effect.Knockback))
@@ -163,19 +165,23 @@ public class EnemyController : MonoBehaviour
                isMove = false;
                Move(enemy.speed);
                CurrentState = EnemyState.Idle;
-               effectObj = gameEffect.GetEffect(_effect, _position, _time);
+               if (effectObj == null || _effect != gameEffect.CurrentEffect)
+                   effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
            else if (_effect.Equals(Effect.Poiton))
            {
-               effectObj = gameEffect.GetEffect(_effect, _position, _time);
+               if (_effect != gameEffect.CurrentEffect)
+                   effectObj = gameEffect.GetEffect(_effect, _position, _time);
            }
+           gameEffect.SetEffect(_effect);
        }, () =>
        {
-           gameEffect.SetEffect( Effect.None);
+           gameEffect.SetEffect(Effect.None);
+           effectObj = null;
            isMove = true;
-           if (_effect.Equals(Effect.Freeze) )
+           if (_effect.Equals(Effect.Freeze))
            {
-               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);   
+               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
            }
            if (!isAttack)
            {
@@ -240,7 +246,7 @@ public class EnemyController : MonoBehaviour
     }
     public bool Check_Stun_Freeze()
     {
-        if(gameEffect.CurrentEffect.Equals(Effect.Stun) || gameEffect.CurrentEffect.Equals(Effect.Freeze))
+        if (gameEffect.CurrentEffect.Equals(Effect.Stun) || gameEffect.CurrentEffect.Equals(Effect.Freeze))
         {
             return true;
         }
@@ -255,7 +261,7 @@ public class EnemyController : MonoBehaviour
     {
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
 
-        if ((2.2f>distancetoTower|| distancetoTower < enemy.range) && isLive)
+        if ((2.2f > distancetoTower || distancetoTower < enemy.range) && isLive)
         {
             isAttack = true;
             if (!Check_Stun_Freeze())

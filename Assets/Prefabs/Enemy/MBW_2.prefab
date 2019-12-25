@@ -293,6 +293,7 @@ MonoBehaviour:
   isMove: 1
   isAttack: 0
   isLive: 1
+  distancetoTower: 0
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 2381826484690694014}
   canvas: {fileID: 7492994430957674414}
@@ -427,12 +428,12 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7.27
+      value: 5.4
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 139.32
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -447,7 +448,7 @@ PrefabInstance:
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 123.24
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

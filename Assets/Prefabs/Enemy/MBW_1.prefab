@@ -293,6 +293,7 @@ MonoBehaviour:
   isMove: 1
   isAttack: 0
   isLive: 1
+  distancetoTower: 0
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 7385684139614032846}
   canvas: {fileID: 3787182833335925224}

@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
     public bool quickhand;
     public bool stun;
     public EnemyController nearEnemy;
-    private float timeStun=2f;
+    private float timeStun = 2f;
     protected float bounceRange = 5f;
     protected int numberBounce = 3;
     private float percent_Slow = 20;
@@ -91,7 +91,7 @@ public class BulletController : MonoBehaviour
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemyController = _Target.GetComponent<EnemyController>();
-            if (SeekTarget )
+            if (SeekTarget)
             {
                 Despawn();
             }
@@ -114,7 +114,7 @@ public class BulletController : MonoBehaviour
                     for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
                     {
                         float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (distance > 0.4f &&distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject
+                        if (/*distance > 0.4f &&*/ distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject
                             && GameplayController.Instance.PlayerController.listEnemies[i].isLive)
                         {
                             shortdistance = distance;
@@ -134,7 +134,6 @@ public class BulletController : MonoBehaviour
                         SetTarget(nearEnemy);
                         dir = nearEnemy.transform.position - transform.position;
                         Move(dir);
-                        //nearEnemy.DealDamge(bullet.Damage, damagePlus);
                         bullet.Damage = Mathf.Round(bullet.Damage * 50 / 100);
                         numberBounce--;
                         if (numberBounce <= 0 || !nearEnemy.isLive)
@@ -142,7 +141,7 @@ public class BulletController : MonoBehaviour
                             Despawn();
                         }
                     }
-                    else if((numberBounce > 0 || nearEnemy != null))
+                    else 
                     {
                         Despawn();
                     }

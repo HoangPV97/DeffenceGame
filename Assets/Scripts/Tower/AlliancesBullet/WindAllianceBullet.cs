@@ -16,15 +16,19 @@ public class WindAllianceBullet : BulletController
             Despawn();
         }
         else
+        {
             dir = Target.transform.position - transform.position;
-        if (dir == Vector3.zero)
-            dir = new Vector3(0, 1, 0);
+            Move(dir);
+        }
+        if (dir.magnitude < 0.1f)
+        {
+            Despawn();
+        }
 
-        Move(dir);
     }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {
-        base.OnTriggerEnter2D(Target);
+        //base.OnTriggerEnter2D(Target);
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
@@ -38,7 +42,62 @@ public class WindAllianceBullet : BulletController
             {
                 enemy.DealDamge(bullet.Damage, 0);
             }
-            //Despawn();
+            if (bounce)
+            {
+                Bounce();
+            }
+        }
+
+    }
+    public void Bounce()
+    {
+        if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
+        {
+            nearEnemy = CheckNearEnemy(GameplayController.Instance.PlayerController.listEnemies, Target.GetComponent<EnemyController>());
+            if (numberBounce > 0 && nearEnemy != null)
+            {
+                SetTarget(nearEnemy);
+                Vector2 _dir = nearEnemy.transform.position - transform.position;
+                if (_dir.magnitude < 0.3f)
+                {
+                    Despawn();
+                }
+                bullet.Damage = Mathf.Round(bullet.Damage * 50 / 100);
+                numberBounce--;
+                if (numberBounce <= 0 || !nearEnemy.isLive)
+                {
+                    Despawn();
+                }
+            }
+            else
+            {
+                Despawn();
+            }
+            nearEnemy = null;
+        }
+    }
+    public EnemyController CheckNearEnemy(List<EnemyController> listEnemies, EnemyController curentEnemy)
+    {
+        nearEnemy = null;
+        int index = 0;
+        float shortdistance = Mathf.Infinity;
+        for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
+        {
+            float distance = Vector3.Distance(Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
+            if (distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != Target.gameObject
+                && GameplayController.Instance.PlayerController.listEnemies[i].isLive)
+            {
+                shortdistance = distance;
+                index = i;
+            }
+        }
+        if (shortdistance <= bounceRange)
+        {
+            return GameplayController.Instance.PlayerController.listEnemies[index];
+        }
+        else
+        {
+            return null;
         }
     }
 }
