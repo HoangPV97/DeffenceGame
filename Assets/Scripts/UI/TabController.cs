@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 public class TabController : MonoBehaviour
 {
     // Start is called before the first frame update
     TabItem[] TabItems;
     TabItem CurrentTabItems;
-    public List<UnityEvent> unityActions = new List<UnityEvent>();
-    public UnityEvent unityEvent;
     void Awake()
     {
         TabItems = GetComponentsInChildren<TabItem>();
@@ -30,12 +25,7 @@ public class TabController : MonoBehaviour
                 CurrentTabItems.OnDisableTab();
             tabItem.OnEnableTab();
             CurrentTabItems = tabItem;
-            if (tabItem.Tab == 0)
-            {
-                MenuController.Instance.UIPanelHeroAlliance.SetUpData(true);
-            }
-            else
-                MenuController.Instance.UIPanelHeroAlliance.SetUpData(false);
+            CurrentTabItems.unityEvent.Invoke();
         }
         else
         {

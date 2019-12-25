@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
+
 public class TabItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
+    public UnityEvent unityEvent;
     TabController TabController;
     public bool isNotScale = false;
     [SerializeField]

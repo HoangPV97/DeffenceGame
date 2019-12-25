@@ -39,8 +39,11 @@ public class GameplayController : Singleton<GameplayController>
         else
         {
             // set 2 skill button
+            var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0]);
+            var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
+            go1.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1]);
         }
-
         /// Load Alliance
         /// Load from resource
         ///Load slot 1
@@ -53,7 +56,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2]);
         }
 
         ///Load slot 2
@@ -67,7 +70,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance2.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[3]);
         }
 
         //spawn Enemy
@@ -101,7 +104,7 @@ public class GameplayController : Singleton<GameplayController>
         }
 
     }
-    public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase,int i, float timeDelay)
+    public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase, int i, float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
         var se = stageEnemyDataBase.stageEnemies[i];

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class LabelLanguages : MonoBehaviour
 {
-
 	public string KEY;
 
 	private Text current_label;
