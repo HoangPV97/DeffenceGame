@@ -30,7 +30,6 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     }
     public void WindImpactEffect(Vector3 _position)
     {
-        GameObject effect = ObjectPoolManager.Instance.SpawnObject("windimpact", _position, Quaternion.identity);
-        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
+        gameEffect.SpawnEffect("windimpact", _position, 0.3f);
     }
 }

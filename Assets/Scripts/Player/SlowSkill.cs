@@ -46,7 +46,7 @@ public class SlowSkill : BulletController
                     {
                         enemy.DealDamge(bullet.Damage);
                     }
-                    enemy.DealEffect(Effect.Knockback, new Vector3(0, KnockBackDistance, 0), 0);
+                    enemy.IsKnockback( new Vector3(0, KnockBackDistance, 0));
                     return;
                 }
 

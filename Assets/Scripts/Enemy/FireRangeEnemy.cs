@@ -32,7 +32,6 @@ public class FireRangeEnemy : EnemyController, IFireEffectable
 
     public void FireImpactEffect(Vector3 _position)
     {
-        GameObject effect = ObjectPoolManager.Instance.SpawnObject("fireimpact", _position, Quaternion.identity);
-        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
+        gameEffect.SpawnEffect("fireimpact", _position, 0.3f);
     }
 }

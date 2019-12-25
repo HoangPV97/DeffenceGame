@@ -27,7 +27,6 @@ public class IceMeleeEnemy : EnemyController,IIceEffectable
 
     public void IceImpactEffect(Vector3 _position)
     {
-        GameObject effect = ObjectPoolManager.Instance.SpawnObject("iceimpact", _position, Quaternion.identity);
-        StartCoroutine(WaitingDestroyEffect(effect, 0.3f));
+        gameEffect.SpawnEffect("iceimpact", _position, 0.3f);
     }
 }

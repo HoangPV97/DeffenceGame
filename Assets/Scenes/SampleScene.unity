@@ -1817,6 +1817,21 @@ MonoBehaviour:
   - tag: poison
     prefab: {fileID: 3316264382930781435, guid: 33d34f9d72f21a24b946985017be7469,
       type: 3}
+  - tag: B_W_1
+    prefab: {fileID: 8020962621357836206, guid: 34079708b7fa84c4880b6fb6ec80aad2,
+      type: 3}
+  - tag: B_W_2
+    prefab: {fileID: 1529785039770135921, guid: da00f0f55025e8c4484d6905818d732f,
+      type: 3}
+  - tag: B_W_3
+    prefab: {fileID: 7178071149278825015, guid: 0643422646c1abc46be5aef3c0e85c7c,
+      type: 3}
+  - tag: B_W_4
+    prefab: {fileID: 5556297814356171359, guid: 79d064134b6238d489813a72a2020d39,
+      type: 3}
+  - tag: B_W_5
+    prefab: {fileID: 6292061646329833501, guid: ab62bab9f6f8b0140ab4ce86ff842e9d,
+      type: 3}
 --- !u!4 &472097027
 Transform:
   m_ObjectHideFlags: 0

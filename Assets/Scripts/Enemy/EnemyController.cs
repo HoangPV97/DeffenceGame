@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
     private Vector2 DirectionMove;
+    bool Coroutine_running;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -118,7 +119,6 @@ public class EnemyController : MonoBehaviour
             Despawn(effectObj);
         }
         GameController.Instance.OnEnemyDie(1);
-        Debug.Log("Leave :" + GameController.Instance.EnemyLive);
         Despawn(gameObject);
     }
     public void DealDamge(float _damage, float _damageplus = 0f)
@@ -126,14 +126,13 @@ public class EnemyController : MonoBehaviour
         canvas.gameObject.SetActive(true);
         isHurt = true;
         //CurrentState = EnemyState.Hurt;
-        CancelInvoke("DisableCanvas");
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
-        Invoke("DisableCanvas", 2);
+        //Invoke("DisableCanvas", 2);
         //StartCoroutine(IEDisableCanvas());
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
@@ -142,63 +141,67 @@ public class EnemyController : MonoBehaviour
         damageobj.transform.SetParent(canvas.gameObject.transform);
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
+    public void IsKnockback(Vector3 _knockback)
+    {
+        gameEffect.KnockBack(gameObject, _knockback);
+        if (effectObj != null)
+        {
+            gameEffect.KnockBack(effectObj, _knockback);
+        }
+    }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
+         if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
+        {
+            StartCoroutine(WaitingEffect(_time, () =>
+            {
 
-        StartCoroutine(WaitingEffect(_time, () =>
-       {
-           if (_effect.Equals(Effect.Knockback))
-           {
-               gameEffect.KnockBack(gameObject, _position);
-               if (effectObj != null)
-               {
-                   gameEffect.KnockBack(effectObj, _position);
-                   return;
-               }
-           }
-           else if (_effect.Equals(Effect.Slow))
-           {
-               Debug.Log("Slow");
-           }
-           else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
-           {
-               isMove = false;
-               Move(enemy.speed);
-               CurrentState = EnemyState.Idle;
-               if (effectObj == null || _effect != gameEffect.CurrentEffect)
-                   effectObj = gameEffect.GetEffect(_effect, _position, _time);
-           }
-           else if (_effect.Equals(Effect.Poiton))
-           {
-               if (_effect != gameEffect.CurrentEffect)
-                   effectObj = gameEffect.GetEffect(_effect, _position, _time);
-           }
-           gameEffect.SetEffect(_effect);
-       }, () =>
-       {
-           gameEffect.SetEffect(Effect.None);
-           effectObj = null;
-           isMove = true;
-           if (_effect.Equals(Effect.Freeze))
-           {
-               gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
-           }
-           if (!isAttack)
-           {
-               Move(enemy.speed);
-           }
-       }));
+                Coroutine_running = true;
+                
+                if (_effect.Equals(Effect.Slow))
+                {
+                    Debug.Log("Slow");
+                }
+                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+                {
+                    isMove = false;
+                    Rigidbody2D.velocity = Vector2.zero;
+                    //Move(enemy.speed);
+                    CurrentState = EnemyState.Idle;
+                    skeletonAnimation.timeScale = 0;
+                    if (effectObj == null || _effect != gameEffect.CurrentEffect)
+                        effectObj = gameEffect.GetEffect(_effect, _position, _time);
+                }
+                else if (_effect.Equals(Effect.Poiton))
+                {
+                    if (_effect != gameEffect.CurrentEffect)
+                        effectObj = gameEffect.GetEffect(_effect, _position, _time);
+                }
+                gameEffect.SetEffect(_effect);
+            }, () =>
+            {
+                skeletonAnimation.timeScale = 1;
+                gameEffect.SetEffect(Effect.None);
+                Despawn(effectObj);
+                effectObj = null;
+                isMove = true;
+                if (_effect.Equals(Effect.Freeze))
+                {
+                    gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+                }
+                if (!isAttack)
+                {
+                    Move(enemy.speed);
+                }
+                Coroutine_running = false;
+            }));
+        }
     }
     protected IEnumerator WaitingEffect(float _time, Action _action1, Action _action2)
     {
         _action1.Invoke();
         yield return new WaitForSeconds(_time);
         _action2.Invoke();
-    }
-    protected IEnumerator WaitingDestroyEffect(GameObject _gameObject, float _time)
-    {
-        yield return new WaitForSeconds(_time);
-        Despawn(_gameObject);
     }
     public void ChangeState()
     {
@@ -229,13 +232,13 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collider2D)
+    private void OnTriggerenter2D(Collider2D collider2D)
     {
         if (collider2D.gameObject.tag.Equals("Tower"))
         {
             isMove = false;
-            Move(enemy.speed);
             isAttack = true;
+            Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Attack;
         }
     }
@@ -261,22 +264,22 @@ public class EnemyController : MonoBehaviour
     {
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
 
-        if ((2.2f > distancetoTower || distancetoTower < enemy.range) && isLive)
+        if ((distancetoTower <= 2.2f || distancetoTower <= enemy.range) && isLive)
         {
             isAttack = true;
+            isMove = false;
+            Rigidbody2D.velocity = Vector2.zero;
+            CurrentState = EnemyState.Idle;
             if (!Check_Stun_Freeze())
-            {
-                //isAttack = true;
-                Rigidbody2D.velocity = Vector2.zero;
-                CurrentState = EnemyState.Idle;
+            {   
                 CurrentState = EnemyState.Attack;
             }
         }
-        else
-        {
-            //    isAttack = false;
-            isMove = true;
-        }
+        //else
+        //{
+        //    isMove = true;
+        //    isAttack = false;
+        //}
     }
 
 }
