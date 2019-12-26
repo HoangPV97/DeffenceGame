@@ -20,7 +20,7 @@ public class PlaySkill4 : Skill
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Level);
         this.Level = Level;

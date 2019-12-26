@@ -18,15 +18,14 @@ public class Skill : MonoBehaviour
     public float manaCost;
     protected bool StartCountdown = false;
     protected float TimeLeft;
-
+    protected Vector3 positonEffect;
     // Start is called before the first frame update
     protected void Start()
     {
     }
 
-    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
+    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null,Vector3 _position = default )
     {
-
     }
 
     // Update is called once per frame
@@ -68,5 +67,16 @@ public class Skill : MonoBehaviour
         {
             Obj.GetComponent<DestroyEffect>().Start();
         }
+    }
+    public GameObject SpawnEffect(string _effectName, Vector3 _position, float _time)
+    {
+        GameObject effectObj;
+        effectObj = ObjectPoolManager.Instance.SpawnObject(_effectName, _position, Quaternion.identity);
+        var de = effectObj.GetComponent<DestroyEffect>();
+        if (de != null)
+            de.StartWaitingDestroyEffect(_time);
+        else
+            effectObj.AddComponent<DestroyEffect>()._time = _time;
+        return effectObj;
     }
 }

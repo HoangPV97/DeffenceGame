@@ -690,7 +690,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!224 &134694461
 RectTransform:
@@ -1831,6 +1831,18 @@ MonoBehaviour:
       type: 3}
   - tag: B_W_5
     prefab: {fileID: 6292061646329833501, guid: ab62bab9f6f8b0140ab4ce86ff842e9d,
+      type: 3}
+  - tag: BossBulletImpact
+    prefab: {fileID: 1407327231982256525, guid: 02ad783a1f74f2b439391b77e38fb2e3,
+      type: 3}
+  - tag: BossBullet
+    prefab: {fileID: 8783888702392315721, guid: 4f6b2518e3f517942ae24b481a8cec9f,
+      type: 3}
+  - tag: BossSkill
+    prefab: {fileID: 4224666956105874784, guid: 434f8dbd2f2357d438e71e100c86501e,
+      type: 3}
+  - tag: BossSkillImpact
+    prefab: {fileID: 2141139932449471191, guid: 5ca3fb35718f57345990584683411647,
       type: 3}
 --- !u!4 &472097027
 Transform:

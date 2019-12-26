@@ -34,15 +34,15 @@ public class GameplayController : Singleton<GameplayController>
             //set 1 skill button 
             // spawn skill controller
             var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0],PlayerController.transform.position);
         }
         else
         {
             // set 2 skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
             var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
-            go1.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1]);
+            go1.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1], PlayerController.transform.position);
         }
         /// Load Alliance
         /// Load from resource
@@ -56,7 +56,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2],Alliance_1.transform.position);
         }
 
         ///Load slot 2
@@ -70,7 +70,7 @@ public class GameplayController : Singleton<GameplayController>
                                      DataController.Instance.IngameAlliance2.BulletSpeed);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[3]);
+            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[3],Alliance_2.transform.position);
         }
 
         //spawn Enemy

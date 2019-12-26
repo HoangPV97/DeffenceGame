@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
-public class BossWindData : MonsterData
-{
-
-}
 public class BossWind1 : EnemyController
 {
     [SerializeField] private GameObject Barrel;
@@ -15,20 +10,24 @@ public class BossWind1 : EnemyController
     bool frenetic_50, frenetic_25;
     Vector3 newPosition;
     float timeDelayAttack = 1f;
+    public GameObject LeftHand, RightHand;
+    public GameObject boss_Fx;
+    string BulletBoss;
     // Update is called once per frame
     protected override void Start()
     {
+        BulletBoss = "BossBullet";
         timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
-        InvokeRepeating("RandomPosition", 0, timeDelayAttack);
+        //InvokeRepeating("RandomPosition", 0, timeDelayAttack);
     }
     protected override void Update()
     {
-        //if (isAttack && countdown <= 0)
-        //{
-        //    RandomPosition();
-        //    countdown = 4f;
-        //}
-        // countdown -= Time.deltaTime;
+        if ( countdown <= 0)
+        {
+            RandomPosition();
+            countdown = timeDelayAttack;
+        }
+        countdown -= Time.deltaTime;
         if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None)
         {
             Move(enemy.speed);
@@ -37,12 +36,13 @@ public class BossWind1 : EnemyController
     }
     public void Attack()
     {
-        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
+        GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("BossBullet", Barrel.transform.position, Quaternion.identity);
         EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
         if (m_EnemyBullet != null)
         {
             m_EnemyBullet.SetTarget(Tower.transform);
             m_EnemyBullet.SetDamage(enemy.damage);
+            m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
         }
     }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
@@ -103,15 +103,19 @@ public class BossWind1 : EnemyController
         {
 
             isMove = false;
-            newPosition = transform.position;
-            CurrentState = EnemyState.Idle;
+            //newPosition = transform.position;
+            //CurrentState = EnemyState.Idle;
             CurrentState = EnemyState.Skill;
+            StartCoroutine(IEChargeAttack(1.5f));
+            Instantiate(boss_Fx, LeftHand.transform.position, Quaternion.identity);
+            Instantiate(boss_Fx, RightHand.transform.position, Quaternion.identity);
             frenetic_25 = true;
             int HardMode = DataController.Instance.StageData.HardMode;
             var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
             enemy.speed += bd.SpeedPlus;
             enemy.damage *= bd.DamagePlus;
             timeDelayAttack = bd.DelayAttack - 1;
+            BulletBoss = "BulletSkillBoss";
         }
     }
     private void RandomPosition()
@@ -139,14 +143,16 @@ public class BossWind1 : EnemyController
         {
             CurrentState = EnemyState.Idle;
             isAttack = true;
-            isMove = false;
+            //isMove = false;
+            StartCoroutine(IEChargeAttack(timeDelayAttack));
             return;
         }
     }
     IEnumerator IEChargeAttack(float _time)
     {
+        isMove = false;
         yield return new WaitForSeconds(_time);
-
+        isMove = true;
     }
     IEnumerator IEFrenetic(float _time)
     {

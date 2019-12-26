@@ -9,7 +9,7 @@ public class SlowSkill : BulletController
     float effectedAoe;
     [SerializeField] BoxCollider2D collider2D;
     // Start is called before the first frame update
-    public void setDataSkill( float _knockback,float _effectAoe)
+    public void setDataSkill( float _knockback,float _effectAoe )
     {
         this.KnockBackDistance = _knockback;
         this.effectedAoe = _effectAoe;
@@ -26,7 +26,10 @@ public class SlowSkill : BulletController
     }
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
-        //base.OnTriggerEnter2D(_Target);
+        if (_Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            Despawn();
+        }
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             if (!listCheckColision.Contains(_Target.gameObject))
@@ -46,7 +49,7 @@ public class SlowSkill : BulletController
                     {
                         enemy.DealDamge(bullet.Damage);
                     }
-                    enemy.IsKnockback( new Vector3(0, KnockBackDistance, 0));
+                    enemy.KnockBack( new Vector3(0, KnockBackDistance, 0));
                     return;
                 }
 

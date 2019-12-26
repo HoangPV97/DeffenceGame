@@ -23,7 +23,7 @@ public class PlaySkill1 : Skill
         base.Start();
     }
 
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Level);
         this.Level = Level;
@@ -34,7 +34,7 @@ public class PlaySkill1 : Skill
         Debug.Log("Speed :" + Speed);
         Damage = sww1.GetDamage(Tier, Level);
         KnockBack = sww1.GetSkillAttributes("KnockbackDistance", Tier, Level);
-        EffectedAoe= sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
+        EffectedAoe = sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;

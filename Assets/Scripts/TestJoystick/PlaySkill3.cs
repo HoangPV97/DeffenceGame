@@ -20,15 +20,16 @@ public class PlaySkill3 : Skill
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        base.SetUpData(Level);
+        base.SetUpData( Level);
         this.Level = Level;
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swf1.GetManaCost(Tier, Level);
         CountdownTime = Swf1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
+        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
     }
     // Update is called once per frame
@@ -82,7 +83,7 @@ public class PlaySkill3 : Skill
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
         float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, positonEffect, Quaternion.identity);
         CheckDestroyEffect(effectStart, particleTime);
         CheckDestroyEffect(stunSkill, particleTime);
     }

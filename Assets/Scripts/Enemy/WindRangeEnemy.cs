@@ -24,6 +24,7 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
             {
                 m_EnemyBullet.SetTarget(Tower.transform);
                 m_EnemyBullet.SetDamage(enemy.damage);
+                m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
             }
         }
         

@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     public SkeletonAnimation skeletonAnimation;
     public AnimationReferenceAsset attack, idle, run, skill, die;
     public bool isMove = true, isAttack, isLive = true;
-    bool isHurt, isIdle;
+    bool isKnockBack, isIdle;
     protected GameObject Tower;
     public float distancetoTower;
     protected float countdown;
@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] BoxCollider2D boxCollider2D;
     private Vector2 DirectionMove;
     bool Coroutine_running;
+    public Vector3 KnockBackDistance;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -73,6 +74,15 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(Die());
         }
         CheckAttack();
+        if (isKnockBack)
+        {
+            isMove = true;
+            gameObject.transform.Translate(KnockBackDistance * 5 * Time.deltaTime);
+            if (effectObj != null)
+            {
+                effectObj.transform.Translate(KnockBackDistance * 5 * Time.deltaTime);
+            }
+        }
     }
     protected void SeekingTower()
     {
@@ -125,8 +135,6 @@ public class EnemyController : MonoBehaviour
     public void DealDamge(float _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
-        isHurt = true;
-        //CurrentState = EnemyState.Hurt;
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
@@ -134,7 +142,6 @@ public class EnemyController : MonoBehaviour
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
         //Invoke("DisableCanvas", 2);
-        //StartCoroutine(IEDisableCanvas());
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
@@ -142,24 +149,33 @@ public class EnemyController : MonoBehaviour
         damageobj.transform.SetParent(canvas.gameObject.transform);
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
-    public void IsKnockback(Vector3 _knockback)
+    public IEnumerator IsKnockback()
     {
-        isMove = true;
-        gameEffect.KnockBack(gameObject, _knockback);
-        if (effectObj != null)
-        {
-            gameEffect.KnockBack(effectObj, _knockback);
-        }
+        isKnockBack = true;
+        yield return new WaitForSeconds(0.3f);
+        isKnockBack = false;
+    }
+    public void KnockBack(Vector3 _backSpace)
+    {
+        KnockBackDistance = _backSpace;
+        isKnockBack = true;
+        StartCoroutine(IsKnockback());
+        //isMove = true;
+        //gameObject.transform.Translate(_backSpace * duration * Time.deltaTime);
+        //if(effectObj!=null)
+        //{
+        //    effectObj.transform.Translate(_backSpace * duration * Time.deltaTime);
+        //}
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-         if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
+        if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
         {
             StartCoroutine(WaitingEffect(_time, () =>
             {
 
                 Coroutine_running = true;
-                
+
                 if (_effect.Equals(Effect.Slow))
                 {
                     Debug.Log("Slow");
@@ -273,14 +289,14 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Idle;
             if (!Check_Stun_Freeze())
-            {   
+            {
                 CurrentState = EnemyState.Attack;
             }
         }
         else
         {
             isAttack = false;
-            if(isMove)     
+            if (isMove)
                 Move(enemy.speed);
         }
     }
