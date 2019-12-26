@@ -1,0 +1,69 @@
+
+boss1.png
+size: 504,856
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_downR
+  rotate: false
+  xy: 328, 489
+  size: 105, 146
+  orig: 105, 146
+  offset: 0, 0
+  index: -1
+arm_upR
+  rotate: false
+  xy: 129, 2
+  size: 77, 114
+  orig: 77, 114
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 118
+  size: 280, 210
+  orig: 280, 210
+  offset: 0, 0
+  index: -1
+fx1
+  rotate: false
+  xy: 284, 58
+  size: 200, 201
+  orig: 200, 201
+  offset: 0, 0
+  index: -1
+handR
+  rotate: false
+  xy: 2, 17
+  size: 125, 99
+  orig: 125, 99
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 531
+  size: 324, 321
+  orig: 324, 321
+  offset: 0, 0
+  index: -1
+leg
+  rotate: false
+  xy: 314, 261
+  size: 185, 226
+  orig: 185, 226
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 330
+  size: 310, 199
+  orig: 310, 199
+  offset: 0, 0
+  index: -1
+shoulderR
+  rotate: false
+  xy: 328, 637
+  size: 169, 215
+  orig: 169, 215
+  offset: 0, 0
+  index: -1

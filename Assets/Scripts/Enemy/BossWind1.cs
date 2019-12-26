@@ -13,12 +13,13 @@ public class BossWind1 : EnemyController
     [SerializeField] private GameObject Barrel;
     public List<Vector3> pointList;
     bool frenetic_50, frenetic_25;
-    Vector3 newpposition;
-    float timeDelayAttack=1f;
+    Vector3 newPosition;
+    float timeDelayAttack = 1f;
     // Update is called once per frame
     protected override void Start()
     {
-        InvokeRepeating("RandomPosition", 0, timeDelayAttack+3);
+        timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
+        InvokeRepeating("RandomPosition", 0, timeDelayAttack);
     }
     protected override void Update()
     {
@@ -27,7 +28,7 @@ public class BossWind1 : EnemyController
         //    RandomPosition();
         //    countdown = 4f;
         //}
-       // countdown -= Time.deltaTime;
+        // countdown -= Time.deltaTime;
         if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None)
         {
             Move(enemy.speed);
@@ -100,13 +101,17 @@ public class BossWind1 : EnemyController
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
+
+            isMove = false;
+            newPosition = transform.position;
+            CurrentState = EnemyState.Idle;
+            CurrentState = EnemyState.Skill;
             frenetic_25 = true;
             int HardMode = DataController.Instance.StageData.HardMode;
             var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
             enemy.speed += bd.SpeedPlus;
             enemy.damage *= bd.DamagePlus;
-            timeDelayAttack = bd.DelayAttack;
-
+            timeDelayAttack = bd.DelayAttack - 1;
         }
     }
     private void RandomPosition()
@@ -119,18 +124,18 @@ public class BossWind1 : EnemyController
     }
     IEnumerator IEMove()
     {
-        yield return new WaitForSeconds(enemy.rateOfFire/100);
-        int newPosition = UnityEngine.Random.Range(0, pointList.Count);
-        newpposition = pointList[newPosition];
+        yield return new WaitForSeconds(enemy.rateOfFire / 100);
+        int index = UnityEngine.Random.Range(0, pointList.Count);
+        newPosition = pointList[index];
         isAttack = false;
         isMove = true;
     }
-    public override void Move(float _speed,float _percentSlow=100f)
+    public override void Move(float _speed, float _percentSlow = 100f)
     {
         isMove = true;
         CurrentState = EnemyState.Run;
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, newpposition, enemy.speed / 5 * Time.deltaTime);
-        if (transform.position == newpposition)
+        gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3 * Time.deltaTime);
+        if (transform.position == newPosition)
         {
             CurrentState = EnemyState.Idle;
             isAttack = true;

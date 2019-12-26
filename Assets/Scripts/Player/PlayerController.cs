@@ -72,12 +72,13 @@ public class PlayerController : MonoBehaviour
         {
             case AutoMode.TurnOff:
                 //characterState = CharacterState.Idle;
-                direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-                rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+                
 
-                if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
+                if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()
                     && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                 {
+                    direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                     characterState = CharacterState.Attack;
                 }
                 else
@@ -141,49 +142,10 @@ public class PlayerController : MonoBehaviour
     public void UpdateEnemy()
     {
         shortestDistance = Mathf.Infinity;
-        //  _2ndShortestDistance = Mathf.Infinity;
-        // nearestEnemy = null;
-        // _2ndEnemy = null;
         if (listEnemies.Count > 0)
         {
             int index = 0;
             listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
-            //for (int i = 0; i < listEnemies.Count; i++)
-            //{
-                
-                //float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
-                //if (distancetoEnemy < shortestDistance)
-                //{
-                //    shortestDistance = distancetoEnemy;
-                //    index = i;
-                //}
-                /* if (distancetoEnemy < shortestDistance)
-                 {
-                     _2ndShortestDistance = shortestDistance;
-                     shortestDistance = distancetoEnemy;
-                     _2ndEnemy = nearestEnemy;
-                     nearestEnemy = listEnemies[i];
-                 }
-                 else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
-                 {
-                     _2ndShortestDistance = distancetoEnemy;
-                     _2ndEnemy = listEnemies[i];
-                 }
-                 if (nearestEnemy != null && nearestEnemy.isLive)
-                 {
-                     player.target = nearestEnemy;
-                 }
-                 else if (_2ndEnemy != null && !nearestEnemy.isLive)
-                 {
-                     nearestEnemy = _2ndEnemy;
-                     player.target = nearestEnemy;
-                 }
-                 if (!nearestEnemy.isLive && _2ndEnemy == null)
-                 {
-                     player.target = null;
-                     characterState = CharacterState.Idle;
-                 }*/
-            //}
             nearestEnemy = listEnemies[index];
             if (!nearestEnemy.isLive)
             {

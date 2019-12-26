@@ -283,6 +283,7 @@ MonoBehaviour:
     ManaRegen: 0
     ShieldBlockChance: 0
     ShieldBlockValue: 0
+  GoldInGame: 0
 --- !u!4 &184790057
 Transform:
   m_ObjectHideFlags: 0
