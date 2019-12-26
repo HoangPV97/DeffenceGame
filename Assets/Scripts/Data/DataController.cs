@@ -20,6 +20,7 @@ public class DataController : Singleton<DataController>
     #endregion
 
     #region Data Player
+    [SerializeField]
     private GameData GameData;
     public bool CanEquipAlliance
     {

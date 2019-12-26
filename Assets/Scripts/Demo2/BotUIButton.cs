@@ -22,11 +22,13 @@ public class BotUIButton : MonoBehaviour, IPointerClickHandler
     public Sprite SpriteOnDisable;
     public int ButtonState = 1;
     private Animator Animator;
+    public int Type;
     int soundIndex;
     public void Awake()
     {
         Suspend = false;
         Animator = GetComponent<Animator>();
+        Type = int.Parse(gameObject.name);
     }
 
     public void SetButton(bool enable)
@@ -95,6 +97,18 @@ public class BotUIButton : MonoBehaviour, IPointerClickHandler
                 canclick = true;
                 //   UIController.Instance.canClickCloseUI = true;
             }, true);
+
+            int cUI = (int)MenuController.Instance.CurrentUITYPE;
+            if (cUI < Type)
+            {
+                MenuController.Instance.OnHideLeftCurrentUI();
+                MenuController.Instance.OnShowFromRight((UITYPE)Type);
+            }
+            else if (cUI > Type)
+            {
+                MenuController.Instance.OnHideRightCurrentUI();
+                MenuController.Instance.OnShowFromLeft((UITYPE)Type);
+            }
         }
     }
     public void SetUpEvent(UnityAction action, int soundIndex = 0)

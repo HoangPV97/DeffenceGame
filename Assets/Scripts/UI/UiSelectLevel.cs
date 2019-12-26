@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
-public class UiSelectLevel : MonoBehaviour, IBaseUI
+public class UiSelectLevel : BaseUIView
 {
     public UISelectLevelItem[] uiSelectLevelItems;
 
@@ -72,7 +72,8 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
                 it.transform.SetDefaultTransform();
                 it.GetComponent<UiItem>().SetUpData(listItem.items[i], 1);
             }
-            else {
+            else
+            {
                 DataController.Instance.GoldInGame = listItem.items[i].Quality;
             }
         }
@@ -83,45 +84,21 @@ public class UiSelectLevel : MonoBehaviour, IBaseUI
         MenuController.Instance.OnBtnPlayClick();
     }
     #region Animation
-    public void OnHide()
-    {
-        gameObject.SetActive(false);
-    }
 
-    public void OnHideLeft(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public void OnHideRight(UnityAction unityAction = null)
+    public override void OnShowFromLeft(UnityAction unityAction = null)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnShow()
-    {
-        gameObject.SetActive(true);
+        base.OnShowFromLeft();
         SetUpData();
     }
 
-    public void OnShowFromLeft(UnityAction unityAction = null)
+    public override void OnShowFromRight(UnityAction unityAction = null)
     {
-        throw new System.NotImplementedException();
+        base.OnShowFromRight();
+        SetUpData();
     }
 
-    public void OnShowFromRight(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public void ReSetUI()
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public void UpDateData()
-    {
-        throw new System.NotImplementedException();
-    }
     #endregion
 }

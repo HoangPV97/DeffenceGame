@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
+public class UIPanelHeroAlliance : BaseUIView
 {
     [Header("Hero")]
     public GameObject PanelHero;
@@ -32,35 +32,7 @@ public class UIPanelHeroAlliance : MonoBehaviour, IBaseUI
     }
 
     #region Animation
-    public void OnHide()
-    {
-        gameObject.SetActive(false);
-    }
 
-    public void OnHideLeft(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnHideRight(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnShow()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void OnShowFromLeft(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnShowFromRight(UnityAction unityAction = null)
-    {
-        throw new System.NotImplementedException();
-    }
     #endregion
     void Awake()
     {

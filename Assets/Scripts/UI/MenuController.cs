@@ -3,10 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using InviGiant.Tools;
+using UnityEngine.Events;
+
 public class MenuController : Singleton<MenuController>
 {
     public UIPanelHeroAlliance UIPanelHeroAlliance;
     public UiSelectLevel UiSelectLevel;
+    public Stack<UITYPE> UIType = new Stack<UITYPE>();
+    public UITYPE CurrentUITYPE
+    {
+        get
+        {
+            if (UIType.Count == 0)
+            {
+                UIType.Push(UITYPE.selectLevel);
+            }
+            return UIType.Peek();
+
+        }
+    }
+    public BaseUIView CurrentBaseUIView
+    {
+        get
+        {
+            return GetBaseUIView(CurrentUITYPE);
+        }
+    }
+
     // Start is called before the first frame update
     IBaseUI CurrentUI
     {
@@ -24,7 +47,25 @@ public class MenuController : Singleton<MenuController>
         BottomBarController.Instance.BotUIButton[2].SetUpEvent(OnBtnMainPlayClick);
         BottomBarController.Instance.BotUIButton[3].SetUpEvent(OnBtnHeroClick);
     }
-
+    public BaseUIView GetBaseUIView(UITYPE uITYPE)
+    {
+        switch (uITYPE)
+        {
+            case UITYPE.none:
+                break;
+            case UITYPE.shop:
+                break;
+            case UITYPE.inventory:
+                break;
+            case UITYPE.selectLevel:
+                return UiSelectLevel;
+            case UITYPE.heroAlliance:
+                return UIPanelHeroAlliance;
+            case UITYPE.fortress:
+                break;
+        }
+        return null;
+    }
     public void OnBtnPlayClick()
     {
         DataController.Instance.LoadIngameStage();
@@ -33,15 +74,41 @@ public class MenuController : Singleton<MenuController>
 
     public void OnBtnHeroClick()
     {
-        if (CurrentUI != null)
-            CurrentUI.OnHide();
         UIPanelHeroAlliance.SetUpData(true);
     }
 
     public void OnBtnMainPlayClick()
     {
-        if (CurrentUI != null)
-            CurrentUI.OnHide();
         UiSelectLevel.SetUpData();
     }
+    public void OnHideLeftCurrentUI(UnityAction callBack = null)
+    {
+        CurrentBaseUIView.OnHideLeft();
+        if (callBack != null)
+            callBack();
+        UIType.Pop();
+    }
+    public void OnShowFromRight(UITYPE uITYPE, UnityAction callBack = null)
+    {
+        UIType.Push(uITYPE);
+        GetBaseUIView(uITYPE).OnShowFromRight();
+        if (callBack != null)
+            callBack();
+    }
+
+    public void OnShowFromLeft(UITYPE uITYPE, UnityAction callBack = null)
+    {
+        UIType.Push(uITYPE);
+        GetBaseUIView(uITYPE).OnShowFromLeft();
+        if (callBack != null)
+            callBack();
+    }
+    public void OnHideRightCurrentUI(UnityAction callBack = null)
+    {
+        CurrentBaseUIView.OnHideRight();
+        if (callBack != null)
+            callBack();
+        UIType.Pop();
+    }
+
 }

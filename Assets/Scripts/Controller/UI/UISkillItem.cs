@@ -108,23 +108,26 @@ public class UISkillItem : MonoBehaviour
         txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(sgtl.Tier);
         if (skillData.SkillType == 0)
         {
+            int Level = sgtl.Level;
+            if (sgtl.Level == 0)
+                Level = 1;
             Active.gameObject.SetActive(true);
-            txtMana.text = "Mana: " + skillData.GetManaCost(sgtl.Tier, sgtl.Level);
-            txtCoolDown.text = "Cool Down: " + skillData.GetCoolDown(sgtl.Tier, sgtl.Level) + "s";
+            txtMana.text = "Mana: " + skillData.GetManaCost(sgtl.Tier, Level);
+            txtCoolDown.text = "Cool Down: " + skillData.GetCoolDown(sgtl.Tier, Level) + "s";
             txtDes1.text = Language.GetKey("Des1_" + skillData.SkillID + "_" + sgtl.Tier);
             txtDes2[0].gameObject.SetActive(true);
-            txtDes2[0].text = "Damage: " + skillData.GetDamage(sgtl.Tier, sgtl.Level);
+            txtDes2[0].text = "Damage: " + skillData.GetDamage(sgtl.Tier, Level);
             if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes != null)
             {
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 1)
                 {
                     txtDes2[1].gameObject.SetActive(true);
-                    txtDes2[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[sgtl.Level - 1];
+                    txtDes2[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1];
                 }
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
                     txtDes2[2].gameObject.SetActive(true);
-                    txtDes2[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[sgtl.Level - 1];
+                    txtDes2[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1];
                 }
             }
         }

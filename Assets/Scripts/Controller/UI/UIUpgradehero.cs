@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class UIUpgradehero : MonoBehaviour
+public class UIUpgradehero : BaseUIView
 {
+    public Animator Anim;
     public TextMeshProUGUI txtHeroName, txtHeroLevel;
     public TextMeshProUGUI txtDamage, txtFireRate, txtEXP;
     public Image PBDamage, PBFireRate, PBEXP;
@@ -61,7 +62,10 @@ public class UIUpgradehero : MonoBehaviour
     }
     void Start()
     {
-        BtnClose.SetUpEvent(OnHide);
+        BtnClose.SetUpEvent(() =>
+        {
+            OnHide();
+        });
         for (int i = 0; i < ImgSlot.Length; i++)
         {
             BtnSlot[i] = ImgSlot[i].gameObject.GetComponent<UIButton>();
@@ -74,15 +78,11 @@ public class UIUpgradehero : MonoBehaviour
         BtnAuto.SetUpEvent(OnAutoSelectClick);
         BtnUpgrade.SetUpEvent(OnBtnUpgradetClick);
     }
-    public void OnHide()
-    {
-        gameObject.SetActive(false);
-    }
 
     public void SetUpData(Elemental elemental)
     {
         heroElemental = elemental;
-        gameObject.SetActive(true);
+        OnShow();
         if (IsHero)
         {
             data1 = DataController.Instance.GetGameDataWeapon(elemental);
@@ -241,10 +241,25 @@ public class UIUpgradehero : MonoBehaviour
             SetUpData(heroElemental);
             MenuController.Instance.UIPanelHeroAlliance.SetupUIHero(heroElemental);
             DataController.Instance.Save();
+            OnHide();
         }
         else
         {
 
         }
+    }
+    public override void OnHide()
+    {
+        base.OnHide();
+        Anim.SetTrigger("HidePanelSetting");
+        DG.Tweening.DOVirtual.DelayedCall(0.3f, () =>
+        {
+            gameObject.SetActive(false);
+        }, false);
+    }
+    public override void OnShow()
+    {
+        gameObject.SetActive(true);
+        Anim.SetTrigger("ShowPanelSetting");
     }
 }
