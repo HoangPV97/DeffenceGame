@@ -14379,7 +14379,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14422,6 +14422,16 @@ MonoBehaviour:
   SeekTarget: 0
   elementalBullet: 0
   damagePlus: 5
+  explosion: 0
+  bounce: 0
+  poison: 0
+  slow: 0
+  pierce: 0
+  critical: 0
+  multishot: 0
+  quickhand: 0
+  stun: 0
+  nearEnemy: {fileID: 0}
   stunTime: 3
 --- !u!58 &9008892596521694210
 CircleCollider2D:
