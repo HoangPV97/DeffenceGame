@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class UIEvolveSkill : MonoBehaviour
+public class UIEvolveSkill : BaseUIView
 {
+    public Animator Anim;
     public TextMeshProUGUI txtSkillName1, txtSkillName2;
     public TextMeshProUGUI txtDes1, txtDes2;
     public TextMeshProUGUI txtLevel1, txtLevel2;
@@ -20,6 +21,7 @@ public class UIEvolveSkill : MonoBehaviour
     bool canEvolve = true;
     List<Item> listItem;
     SkillData skillData;
+    [SerializeField]
     SaveGameTierLevel saveGameTierLevel;
     // Start is called before the first frame update
     private void Start()
@@ -51,18 +53,18 @@ public class UIEvolveSkill : MonoBehaviour
 
     private void OnBtnCloseClick()
     {
-        gameObject.SetActive(false);
+        OnHide();
     }
 
     public void SetUpData(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
     {
-        gameObject.SetActive(true);
+        OnShow();
         canEvolve = true;
         Gem = 0;
         this.skillData = skillData;
         this.saveGameTierLevel = saveGameTierLevel;
-        txtSkillName1.text = Language.GetKey("Name_" + skillData.SkillID) + ToolHelper.ToRoman(saveGameTierLevel.Tier);
-        txtSkillName2.text = Language.GetKey("Name_" + skillData.SkillID) + ToolHelper.ToRoman(saveGameTierLevel.Tier + 1);
+        txtSkillName1.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(saveGameTierLevel.Tier);
+        txtSkillName2.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(saveGameTierLevel.Tier + 1);
         txtLevel1.text = "Lv." + saveGameTierLevel.Level + "/" + skillData.baseSkills[saveGameTierLevel.Tier - 1].MaxLevel;
         txtLevel2.text = "Lv." + "1/" + skillData.baseSkills[saveGameTierLevel.Tier].MaxLevel;
 
@@ -93,5 +95,19 @@ public class UIEvolveSkill : MonoBehaviour
         if (Gem > DataController.Instance.Gem)
             canEvolve = false;
         GemCost.text = Gem.ToString();
+    }
+    public override void OnHide()
+    {
+        base.OnHide();
+        Anim.SetTrigger("HidePanelSetting");
+        DG.Tweening.DOVirtual.DelayedCall(0.3f, () =>
+        {
+            gameObject.SetActive(false);
+        }, false);
+    }
+    public override void OnShow()
+    {
+        gameObject.SetActive(true);
+        Anim.SetTrigger("ShowPanelSetting");
     }
 }

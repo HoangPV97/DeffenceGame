@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-public class UiUpgradeSkill : MonoBehaviour
+using DG.Tweening;
+
+public class UiUpgradeSkill : BaseUIView
 {
+    public Animator Anim;
     public TextMeshProUGUI txtDes, txtLevel, txtGemCost, txtSkillName;
     public TextMeshProUGUI[] txtItemNumber, txtAttribute, txtAttributeValue;
     public Image[] ItemIcon;
@@ -16,12 +19,13 @@ public class UiUpgradeSkill : MonoBehaviour
     public UIButton BtnUpgrade, BtnClose;
     SkillData skillData;
     SaveGameTierLevel saveGameTierLevel;
+
     private void Start()
     {
         BtnUpgrade.SetUpEvent(OnBtnUpgradeClick);
         BtnClose.SetUpEvent(() =>
         {
-            gameObject.SetActive(false);
+            OnHide();
         });
     }
 
@@ -36,7 +40,7 @@ public class UiUpgradeSkill : MonoBehaviour
                 DataController.Instance.AddItemQuality(ListItem[i].Type, -ListItem[i].Quality);
             }
             DataController.Instance.AddSkillLevel(skillData.SkillID);
-            gameObject.SetActive(false);
+            OnHide();
             MenuController.Instance.UIPanelHeroAlliance.SetupUIHero();
             DataController.Instance.Save();
         }
@@ -45,9 +49,10 @@ public class UiUpgradeSkill : MonoBehaviour
 
     public void SetUpData(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
     {
+        OnShow();
         this.skillData = skillData;
         this.saveGameTierLevel = saveGameTierLevel;
-        gameObject.SetActive(true);
+
         GemCost = 0;
         txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID);
         txtLevel.text = "Lv." + saveGameTierLevel.Level;
@@ -126,4 +131,19 @@ public class UiUpgradeSkill : MonoBehaviour
         txtGemCost.text = GemCost.ToString();
 
     }
+    public override void OnHide()
+    {
+        base.OnHide();
+        Anim.SetTrigger("HidePanelSetting");
+        DOVirtual.DelayedCall(0.3f, () =>
+        {
+            gameObject.SetActive(false);
+        }, false);
+    }
+    public override void OnShow()
+    {
+        gameObject.SetActive(true);
+        Anim.SetTrigger("ShowPanelSetting");
+    }
+
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIEvolveHero : MonoBehaviour
+public class UIEvolveHero : BaseUIView
 {
+    public Animator Anim;
     public TextMeshProUGUI txtHeroName1, txtHeroName2;
     public TextMeshProUGUI txtDamage1, txtDamage2;
     public TextMeshProUGUI txtFireRate1, txtFireRate2;
@@ -60,12 +61,12 @@ public class UIEvolveHero : MonoBehaviour
 
     void OnBtnCloseClick()
     {
-        gameObject.SetActive(false);
+        OnHide();
     }
     public void SetUpData(Elemental elemental)
     {
         heroElemental = elemental;
-        gameObject.SetActive(true);
+        OnShow();
         canEvolve = true;
         Gold = 0;
         if (IsHero)
@@ -112,5 +113,19 @@ public class UIEvolveHero : MonoBehaviour
         if (Gold > DataController.Instance.Gold)
             canEvolve = false;
         GoldCost.text = Gold.ToString();
+    }
+    public override void OnHide()
+    {
+        base.OnHide();
+        Anim.SetTrigger("HidePanelSetting");
+        DG.Tweening.DOVirtual.DelayedCall(0.3f, () =>
+        {
+            gameObject.SetActive(false);
+        }, false);
+    }
+    public override void OnShow()
+    {
+        gameObject.SetActive(true);
+        Anim.SetTrigger("ShowPanelSetting");
     }
 }
