@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     public Enemy enemy;
     protected EnemyState previousState, CurrentState;
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset attack, idle, run, hurt, die;
+    public AnimationReferenceAsset attack, idle, run, skill, die;
     public bool isMove = true, isAttack, isLive = true;
     bool isHurt, isIdle;
     protected GameObject Tower;
@@ -102,6 +102,7 @@ public class EnemyController : MonoBehaviour
 
         isLive = false;
         isAttack = false;
+        isMove = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
         var lText = GetComponentsInChildren<LoadingText>();
@@ -143,6 +144,7 @@ public class EnemyController : MonoBehaviour
     }
     public void IsKnockback(Vector3 _knockback)
     {
+        isMove = true;
         gameEffect.KnockBack(gameObject, _knockback);
         if (effectObj != null)
         {
@@ -215,9 +217,9 @@ public class EnemyController : MonoBehaviour
                 skeletonAnimation.timeScale = 1;
                 skeletonAnimation.AnimationState.SetAnimation(0, die, true);
                 break;
-            case EnemyState.Hurt:
+            case EnemyState.Skill:
                 skeletonAnimation.timeScale = 1;
-                skeletonAnimation.AnimationState.SetAnimation(0, hurt, true);
+                skeletonAnimation.AnimationState.SetAnimation(0, skill, true);
                 break;
             case EnemyState.Idle:
                 skeletonAnimation.timeScale = 1;
@@ -275,11 +277,12 @@ public class EnemyController : MonoBehaviour
                 CurrentState = EnemyState.Attack;
             }
         }
-        //else
-        //{
-        //    isMove = true;
-        //    isAttack = false;
-        //}
+        else
+        {
+            isAttack = false;
+            if(isMove)     
+                Move(enemy.speed);
+        }
     }
 
 }

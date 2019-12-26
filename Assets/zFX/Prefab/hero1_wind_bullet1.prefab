@@ -33257,5 +33257,5 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
-  stun: 1
+  stun: 0
   nearEnemy: {fileID: 0}
