@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1885894372038639825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 7856357515346073273}
   m_RootOrder: 2
@@ -19017,7 +19017,7 @@ Transform:
   m_GameObject: {fileID: 7856357515346073276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.404, y: -2.032, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 7856357515609570523}
   - {fileID: 7856357516175458272}
@@ -23853,6 +23853,16 @@ MonoBehaviour:
   SeekTarget: 1
   elementalBullet: 0
   damagePlus: 10
+  explosion: 0
+  bounce: 0
+  poison: 0
+  slow: 0
+  pierce: 0
+  critical: 0
+  multishot: 0
+  quickhand: 0
+  stun: 0
+  nearEnemy: {fileID: 0}
 --- !u!1 &7856357515609570524
 GameObject:
   m_ObjectHideFlags: 0
@@ -23880,7 +23890,7 @@ Transform:
   m_GameObject: {fileID: 7856357515609570524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 7856357515346073273}
   m_RootOrder: 0
@@ -28578,7 +28588,7 @@ Transform:
   m_GameObject: {fileID: 7856357516175458273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.094, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 7856357515346073273}
   m_RootOrder: 1
