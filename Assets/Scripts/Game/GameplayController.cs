@@ -12,8 +12,8 @@ public class GameplayController : Singleton<GameplayController>
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
     public List<Transform> spawnPosition;
-    public int GoldEachEnemy;
-    public int TotalGoldDrop;
+    public float GoldEachEnemy;
+    public float TotalGoldDrop;
     private void Start()
     {
         LoadDataGamePlay();
@@ -29,20 +29,25 @@ public class GameplayController : Singleton<GameplayController>
         /// Load Weapon
         PlayerController.SetDataWeapon();
         /// Check slot 
-        if (DataController.Instance.inGameWeapons.Tier == 1)
+        if (DataController.Instance.inGameWeapons.Tier >= 1)
         {
             //set 1 skill button 
             // spawn skill controller
             var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
             go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0],PlayerController.transform.position);
         }
-        else
+        if(DataController.Instance.inGameWeapons.Tier >= 2)
         {
             // set 2 skill button
-            var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
+            //var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
+            //go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
             var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
             go1.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1], PlayerController.transform.position);
+        }
+        if (DataController.Instance.inGameWeapons.Tier >= 3)
+        {
+            var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 2), this.transform);
+            go1.GetComponent<Skill>().SetUpData(1, 1);
         }
         /// Load Alliance
         /// Load from resource
@@ -80,7 +85,7 @@ public class GameplayController : Singleton<GameplayController>
             StartCoroutine(IESpawnEnemy(i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
             GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
         }
-        GoldEachEnemy = (int)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
+        GoldEachEnemy = (float)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
     }
 
     #region Monster

@@ -30,10 +30,12 @@ public class BulletController : MonoBehaviour
     protected virtual void Start()
     {
     }
-    public virtual void SetDataBullet(float _speed, float _damage)
+    public virtual void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
+        bullet.CriticalRatio = _critical_ratio;
+        bullet.CriticalDamage = _critical_damage;
         bounceRange = 5f;
         numberBounce = 3;
         percent_Slow = 20f;
@@ -141,7 +143,7 @@ public class BulletController : MonoBehaviour
                             Despawn();
                         }
                     }
-                    else 
+                    else
                     {
                         Despawn();
                     }

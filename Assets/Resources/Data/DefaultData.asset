@@ -21,7 +21,8 @@ MonoBehaviour:
   ItemDataBase: {fileID: 4900000, guid: a26ca0b4637dd05489076d881476b585, type: 3}
   WeaponWindSkills:
   - {fileID: 4205350128027674012, guid: 266d54d723e55404a93b4342d168f2dc, type: 3}
-  - {fileID: 4205350128027674012, guid: 266d54d723e55404a93b4342d168f2dc, type: 3}
+  - {fileID: 4205350128027674012, guid: ded689d8add767d43ab807d89a3b8b91, type: 3}
+  - {fileID: 4205350128027674012, guid: 578b91448b562db40979095a95333d5b, type: 3}
   WeaponIceSkills: []
   WeaponEarthSkills: []
   WeaponFireSkills:

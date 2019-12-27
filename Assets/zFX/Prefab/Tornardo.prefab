@@ -18872,8 +18872,8 @@ GameObject:
   - component: {fileID: 6761650371443875022}
   - component: {fileID: 6761650371443875017}
   - component: {fileID: 6761650371443875016}
-  - component: {fileID: 3756507828608661902}
   - component: {fileID: 7539911856651991480}
+  - component: {fileID: 1057508282866297898}
   m_Layer: 0
   m_Name: Tornardo
   m_TagString: Untagged
@@ -23565,19 +23565,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3756507828608661902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761650371443875019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be86386a4d00e344a9b71e6d2c37f6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  circleCollider2D: {fileID: 7539911856651991480}
 --- !u!58 &7539911856651991480
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23588,12 +23575,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.45}
   serializedVersion: 2
   m_Radius: 1.75
+--- !u!114 &1057508282866297898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761650371443875019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd609ce448691b2409476ef812a6feec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleCollider2D: {fileID: 7539911856651991480}
 --- !u!1 &7146249649659186387
 GameObject:
   m_ObjectHideFlags: 0

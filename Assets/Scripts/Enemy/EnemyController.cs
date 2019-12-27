@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
     private Vector2 DirectionMove;
-    bool Coroutine_running;
+    protected bool Coroutine_running;
     public Vector3 KnockBackDistance;
     // Start is called before the first frame update
     protected virtual void Start()
@@ -50,7 +50,6 @@ public class EnemyController : MonoBehaviour
         enemy.armor = md.Armor * growth;
         enemy.speed = md.MoveSpeed;
         enemy.rateOfFire = md.ATKSpeed;
-        Debug.Log("RateofFire :" + enemy.rateOfFire);
         enemy.bulletSpeed = md.BulletSpeed;
         enemy.range = md.Range;
         isMove = true;
@@ -69,14 +68,14 @@ public class EnemyController : MonoBehaviour
             ChangeState();
             previousState = CurrentState;
         }
-        if (enemy.health.CurrentHealth <= 0)
-        {
-            StartCoroutine(Die());
-        }
+        
         CheckAttack();
         if (isKnockBack)
         {
-            isMove = true;
+            if (isLive)
+            {
+                isMove = true;
+            }
             gameObject.transform.Translate(KnockBackDistance * 5 * Time.deltaTime);
             if (effectObj != null)
             {
@@ -109,7 +108,6 @@ public class EnemyController : MonoBehaviour
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
         GameplayController.Instance.Alliance_1?.listEnemies.Remove(this);
         GameplayController.Instance.Alliance_2?.listEnemies.Remove(this);
-
         isLive = false;
         isAttack = false;
         isMove = false;
@@ -141,6 +139,14 @@ public class EnemyController : MonoBehaviour
             SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
+        if (enemy.health.CurrentHealth <= 0)
+        {
+            isMove = true;
+            CurrentState = EnemyState.Idle;
+            StartCoroutine(Die());
+            gameEffect.SpawnEffect("dropcoin", this.transform.position, 1f);
+            return;
+        }
         //Invoke("DisableCanvas", 2);
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
@@ -160,12 +166,6 @@ public class EnemyController : MonoBehaviour
         KnockBackDistance = _backSpace;
         isKnockBack = true;
         StartCoroutine(IsKnockback());
-        //isMove = true;
-        //gameObject.transform.Translate(_backSpace * duration * Time.deltaTime);
-        //if(effectObj!=null)
-        //{
-        //    effectObj.transform.Translate(_backSpace * duration * Time.deltaTime);
-        //}
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
@@ -173,9 +173,7 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine(WaitingEffect(_time, () =>
             {
-
                 Coroutine_running = true;
-
                 if (_effect.Equals(Effect.Slow))
                 {
                     Debug.Log("Slow");
@@ -183,6 +181,7 @@ public class EnemyController : MonoBehaviour
                 else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
                 {
                     isMove = false;
+                    isAttack = false;
                     Rigidbody2D.velocity = Vector2.zero;
                     //Move(enemy.speed);
                     CurrentState = EnemyState.Idle;
@@ -200,8 +199,11 @@ public class EnemyController : MonoBehaviour
             {
                 skeletonAnimation.timeScale = 1;
                 gameEffect.SetEffect(Effect.None);
-                Despawn(effectObj);
-                effectObj = null;
+                if(effectObj != null)
+                {
+                    Despawn(effectObj);
+                    effectObj = null;
+                }              
                 isMove = true;
                 if (_effect.Equals(Effect.Freeze))
                 {

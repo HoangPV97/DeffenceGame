@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 [System.Serializable]
-#region Enemy
+#region Alliance
 public class Alliance
 {
     public string name { get => _name; set => _name = value; }

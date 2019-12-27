@@ -18,9 +18,8 @@ public class SlowSkill : BulletController
         //    collider2D.size = new Vector2(effectedAoe, 1);
         //}
     }
-    public override void SetDataBullet(float _speed, float _damage)
+    public override void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
     {
-        
         listCheckColision = new List<GameObject>();
         base.SetDataBullet(_speed, _damage);
     }
