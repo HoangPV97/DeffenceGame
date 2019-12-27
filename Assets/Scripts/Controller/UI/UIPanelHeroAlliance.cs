@@ -16,6 +16,7 @@ public class UIPanelHeroAlliance : BaseUIView
     public Image ElementalIcon;
     public UIHeroItem[] UIHeroItems;
     public UISkillItem[] UISkillItems;
+    public UISkillItem currentSelectedUISkillItems = null;
     UIHeroItem currentSelectedHero = null;
     public UIButton BtnEquip, BtnUpgrade, BtnUnEquip, BtnEvolve;
     public UIUpgradehero UIUpgradehero;
@@ -129,6 +130,18 @@ public class UIPanelHeroAlliance : BaseUIView
 
         if (!isHero && !showAliiance)
             UIHeroItems[0].OnSelected();
+        if (UISkillItems.Length == 0)
+        {
+            UISkillItems = GetComponentsInChildren<UISkillItem>();
+        }
+        UISkillItems[0].OnBtnSelectClick();
+    }
+    public void OnSelectSkill(UISkillItem uISkillItem)
+    {
+        if (currentSelectedUISkillItems != null && currentSelectedUISkillItems != uISkillItem)
+            currentSelectedUISkillItems.OnUnSelect();
+        if (currentSelectedUISkillItems != uISkillItem)
+            currentSelectedUISkillItems = uISkillItem;
     }
 
     public void OnSelectHero(UIHeroItem UIHeroItems)
@@ -204,11 +217,23 @@ public class UIPanelHeroAlliance : BaseUIView
         PBEXP.fillAmount = data1.EXP * 1f / dataBase.Cost[dataBase.Cost.Count - 1];
 
         /// Set up Skill
-        var SkillList = DataController.Instance.DefaultData.GetWeaponSkillID(elemental);
-        for (int i = 0; i < UISkillItems.Length; i++)
+        if (isHero)
         {
-            UISkillItems[i].SetUpdata(SkillList[i]);
+            var SkillList = DataController.Instance.DefaultData.GetWeaponSkillID(elemental);
+            for (int i = 0; i < UISkillItems.Length; i++)
+            {
+                UISkillItems[i].SetUpdata(SkillList[i]);
+            }
         }
+        else
+        {
+            var SkillList = DataController.Instance.DefaultData.GetAllianceSkillID(elemental);
+            for (int i = 0; i < UISkillItems.Length; i++)
+            {
+                UISkillItems[i].SetUpdata(SkillList[i]);
+            }
+        }
+
     }
 
     public void OnUpgradeSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)

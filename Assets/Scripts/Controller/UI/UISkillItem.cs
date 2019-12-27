@@ -8,16 +8,20 @@ using System;
 public class UISkillItem : MonoBehaviour
 {
     public Image Icon;
+    public GameObject Background;
     public TextMeshProUGUI txtSkillName, txtMana, txtCoolDown, txtDes1, txtLevel;
     public GameObject Unlock;
     public TextMeshProUGUI txtUnlockTier;
     public TextMeshProUGUI[] txtDes2;
+    public UIButton BtnSelect;
+    public GameObject[] Selected;
     public UIButton BtnUpgrade;
     public UIButton BtnEvolve;
     public UIButton Buy;
     public GameObject Active, Pasive;
     public TextMeshProUGUI txtDesPasive;
     public SkillData skillData;
+    public TextMeshProUGUI[] txtAttribute, txtAttributeValue;
     [SerializeField]
     SaveGameTierLevel sgtl;
     public bool isHero
@@ -39,6 +43,27 @@ public class UISkillItem : MonoBehaviour
         BtnUpgrade.SetUpEvent(OnBtnUpgradeClick);
         Buy.SetUpEvent(OnBtnBuyClick);
         BtnEvolve.SetUpEvent(OnBtnEvolveClick);
+        BtnSelect.SetUpEvent(OnBtnSelectClick);
+    }
+
+    public void OnUnSelect()
+    {
+        Background.SetActive(false);
+        Selected[0].SetActive(false);
+        Selected[1].SetActive(false);
+        var rt = BtnSelect.gameObject.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(0, rt.anchoredPosition.y);
+    }
+
+    public void OnBtnSelectClick()
+    {
+        Background.SetActive(true);
+        Selected[0].SetActive(true);
+        Selected[1].SetActive(true);
+        var rt = BtnSelect.gameObject.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(20, rt.anchoredPosition.y);
+        MenuController.Instance.UIPanelHeroAlliance.OnSelectSkill(this);
+
     }
 
     void OnBtnEvolveClick()
@@ -68,6 +93,11 @@ public class UISkillItem : MonoBehaviour
         //WEAPON_WIND_SKILL_1
         skillData = JsonUtility.FromJson<SkillData>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         sgtl = DataController.Instance.GetGameSkillData(SkillID);
+        for (int i = 0; i < txtAttribute.Length; i++)
+        {
+            txtAttribute[i].transform.parent.gameObject.SetActive(false);
+        }
+
         if (sgtl.Level == 0)
         {
             txtLevel.gameObject.SetActive(false);
@@ -115,19 +145,22 @@ public class UISkillItem : MonoBehaviour
             txtMana.text = "Mana: " + skillData.GetManaCost(sgtl.Tier, Level);
             txtCoolDown.text = "Cool Down: " + skillData.GetCoolDown(sgtl.Tier, Level) + "s";
             txtDes1.text = Language.GetKey("Des1_" + skillData.SkillID + "_" + sgtl.Tier);
-            txtDes2[0].gameObject.SetActive(true);
-            txtDes2[0].text = "Damage: " + skillData.GetDamage(sgtl.Tier, Level);
+            txtAttribute[0].transform.parent.gameObject.SetActive(true);
+            txtAttribute[0].text = "Damage: ";
+            txtAttributeValue[0].text = skillData.GetDamage(sgtl.Tier, Level).ToString();
             if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes != null)
             {
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 1)
                 {
-                    txtDes2[1].gameObject.SetActive(true);
-                    txtDes2[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1];
+                    txtAttribute[1].transform.parent.gameObject.SetActive(true);
+                    txtAttribute[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute);
+                    txtAttributeValue[1].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1].ToString();
                 }
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
-                    txtDes2[2].gameObject.SetActive(true);
-                    txtDes2[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute) + ": " + skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1];
+                    txtAttribute[2].transform.parent.gameObject.SetActive(true);
+                    txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
+                    txtAttributeValue[2].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1].ToString();
                 }
             }
         }
@@ -139,17 +172,26 @@ public class UISkillItem : MonoBehaviour
                 Level = 1;
             if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes != null)
             {
-                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count == 1)
+                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 1)
                 {
                     txtDesPasive.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1]);
+                    txtAttribute[0].transform.parent.gameObject.SetActive(true);
+                    txtAttribute[0].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute);
+                    txtAttributeValue[0].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1].ToString();
                 }
-                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count == 2)
+                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
                     txtDesPasive.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1], skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1]);
+                    txtAttribute[1].transform.parent.gameObject.SetActive(true);
+                    txtAttribute[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
+                    txtAttributeValue[1].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1].ToString();
                 }
-                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count == 3)
+                if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 3)
                 {
                     txtDesPasive.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1], skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1], skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Value[Level - 1]);
+                    txtAttribute[2].transform.parent.gameObject.SetActive(true);
+                    txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
+                    txtAttributeValue[2].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Value[Level - 1].ToString();
                 }
             }
         }
