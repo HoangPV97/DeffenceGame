@@ -92,21 +92,21 @@ public class UiUpgradeSkill : BaseUIView
                 Level = 1;
             if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes != null)
             {
-                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count == 1)
+                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count >= 1)
                 {
                     txtDes.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[0].Value[Level - 1]);
                     txtAttribute[0].transform.parent.gameObject.SetActive(true);
                     txtAttribute[0].text = Language.GetKey(skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[0].Attribute);
                     txtAttributeValue[0].text = string.Format("{0}<color=#65FF00FF>({1})</color>", skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[0].Value[saveGameTierLevel.Level - 1], skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[0].Value[saveGameTierLevel.Level]);
                 }
-                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count == 2)
+                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count >= 2)
                 {
                     txtDes.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[1].Value[Level - 1], skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[1].Value[Level - 1]);
                     txtAttribute[1].transform.parent.gameObject.SetActive(true);
                     txtAttribute[1].text = Language.GetKey(skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[1].Attribute);
                     txtAttributeValue[1].text = string.Format("{0}<color=#65FF00FF>({1})</color>", skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[1].Value[saveGameTierLevel.Level - 1], skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[1].Value[saveGameTierLevel.Level]);
                 }
-                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count == 3)
+                if (skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes.Count >= 3)
                 {
                     txtDes.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[2].Value[Level - 1], skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[2].Value[Level - 1], skillData.baseSkills[saveGameTierLevel.Tier - 1].SkillAttributes[2].Value[Level - 1]);
                     txtAttribute[2].transform.parent.gameObject.SetActive(true);
