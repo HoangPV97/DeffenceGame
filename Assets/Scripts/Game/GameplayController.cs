@@ -7,7 +7,7 @@ public class GameplayController : Singleton<GameplayController>
     public PlayerController PlayerController;
     public AllianceController Alliance_1, Alliance_2;
     public Tower Tower;
-    public GameObject Slot1, Slot2;
+    public GameObject Slot1, Slot2, Hero;
     [Header("Skill button")]
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
@@ -25,7 +25,7 @@ public class GameplayController : Singleton<GameplayController>
 
         ///SetUp Base first
         Tower.SetUpData();
-
+        PlayerController= ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.CurrentSelectedWeapon.ToString() + "Hero"), Hero.transform.position, Quaternion.identity).GetComponent<PlayerController>();
         /// Load Weapon
         PlayerController.SetDataWeapon();
         /// Check slot 

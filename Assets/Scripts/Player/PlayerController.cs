@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Shoot()
     {
-        ShootToDirection(direct, rotationZ, "tankbullet");
+        ShootToDirection(direct, rotationZ, player.Bullet);
     }
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)

@@ -11,11 +11,6 @@ public class Player
     public float rateOfFire { get => _rateOfFire; set => _rateOfFire = value; }
     public float Armor { get => _armor; set => _armor = value; }
     public string Bullet { get => bullet; set => bullet = value; }
-    public string Bullet_Skill_1 { get => bulletskill1; set => bulletskill1 = value; }
-    public string effectStart { get => _effectStart; set => _effectStart = value; }
-    public void Skill1() { }
-    public void Skill2() { }
-
     [SerializeField]
     private string bullet;
     [SerializeField]
@@ -30,8 +25,4 @@ public class Player
     private float _rateOfFire;
     [SerializeField]
     private float _armor;
-    [SerializeField]
-    private string bulletskill1;
-    [SerializeField]
-    private string _effectStart;
 }

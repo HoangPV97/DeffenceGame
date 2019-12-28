@@ -19,16 +19,16 @@ public class BossWind1 : EnemyController
         isAttack = false;
         BulletBoss = "BossBullet";
         timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
-        InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);
+        //InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);
     }
     protected override void Update()
     {
-        //if ( countdown <= 0)
-        //{
-        //    RandomPosition();
-        //    countdown = timeDelayAttack;
-        //}
-        //countdown -= Time.deltaTime;
+        if (countdown <= 0 )
+        {
+            RandomPosition();
+            countdown = timeDelayAttack;
+        }
+        countdown -= Time.deltaTime;
         if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None)
         {
             Move(enemy.speed);
@@ -132,18 +132,16 @@ public class BossWind1 : EnemyController
     }
     private void RandomPosition()
     {
-        if (isAttack && !isMove)
-        {
-            CurrentState = EnemyState.Attack;
-        }
         if (gameObject.activeSelf)
         {
+            CurrentState = EnemyState.Attack;
             StartCoroutine(IEMove());
         }
     }
     IEnumerator IEMove()
     {
         yield return new WaitForSeconds(enemy.rateOfFire / 100);
+        CurrentState = EnemyState.Idle;
         int index = UnityEngine.Random.Range(0, pointList.Count);
         newPosition = pointList[index];
         isAttack = false;
