@@ -36,17 +36,22 @@ public class UiSelectLevel : BaseUIView
 
     public void SetUpData()
     {
+        CurrentLevel = DataController.Instance.CurrentSelected;
         gameObject.SetActive(true);
         for (int i = 0; i < uiSelectLevelItems.Length; i++)
         {
             uiSelectLevelItems[i].SetUpData();
+            uiSelectLevelItems[i].OnShowAnimation(uiSelectLevelItems[i].Level == CurrentLevel);
         }
     }
 
+
     public void SetUpDataUILevelDetail(int Level)
     {
+        GetUISelectLevelItem(CurrentLevel).OnShowAnimation(false);
         LevelDetail.SetActive(true);
         CurrentLevel = Level;
+        GetUISelectLevelItem(CurrentLevel).OnShowAnimation(true);
         foreach (Transform child in ItemContain)
         {
             Destroy(child.gameObject);

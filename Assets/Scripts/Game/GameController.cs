@@ -92,15 +92,15 @@ public class GameController : MonoBehaviour
         }
         if (Level == 10)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Earth);
+            DataController.Instance.UnLockWeapon(Elemental.Earth);
         }
         if (Level == 20)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Ice);
+            DataController.Instance.UnLockWeapon(Elemental.Ice);
         }
         if (Level == 30)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Fire);
+            DataController.Instance.UnLockWeapon(Elemental.Fire);
         }
         DataController.Instance.Save();
         WingamePanel.SetActive(true);

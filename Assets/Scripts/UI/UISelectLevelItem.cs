@@ -43,4 +43,14 @@ public class UISelectLevelItem : MonoBehaviour
             MenuController.Instance.UiSelectLevel.SetUpDataUILevelDetail(Level);
         }
     }
+
+    public void OnShowAnimation(bool b)
+    {
+        SkeletonGraphic.gameObject.SetActive(b);
+        if (b)
+        {
+            SkeletonGraphic.AnimationState.SetAnimation(0, "idle", true);
+        }
+
+    }
 }

@@ -88,7 +88,17 @@ public class DataController : Singleton<DataController>
 
     #region in game
     public StageData StageData;
-    public int CurrentSelected;
+    public int CurrentSelected
+    {
+        get
+        {
+            return GameData.CurrentStage;
+        }
+        set
+        {
+            GameData.CurrentStage = value;
+        }
+    }
     public InGameWeapon inGameWeapons;
     public IngameAlliance IngameAlliance1, IngameAlliance2;
     public BaseData InGameBaseData;

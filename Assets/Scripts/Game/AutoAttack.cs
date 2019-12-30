@@ -9,7 +9,13 @@ public class AutoAttack : MonoBehaviour
     public Sprite autoImage, disableImage;
     public TextMeshProUGUI textMesh;
     public Button btnAuto;
-    public PlayerController player;
+    public PlayerController player
+    {
+        get
+        {
+             return GameplayController.Instance.PlayerController;
+        }
+    }
     public bool Status;
     int Count = 0;
     // Start is called before the first frame update
