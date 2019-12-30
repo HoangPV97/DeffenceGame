@@ -16,13 +16,14 @@ public class BossWind1 : EnemyController
     // Update is called once per frame
     protected override void Start()
     {
+        isAttack = false;
         BulletBoss = "BossBullet";
         timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
-        //InvokeRepeating("RandomPosition", 0, timeDelayAttack);
+        //InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);
     }
     protected override void Update()
     {
-        if ( countdown <= 0)
+        if (countdown <= 0 )
         {
             RandomPosition();
             countdown = timeDelayAttack;
@@ -32,7 +33,58 @@ public class BossWind1 : EnemyController
         {
             Move(enemy.speed);
         }
-        base.Update();
+        if (previousState != CurrentState)
+        {
+            ChangeState();
+            previousState = CurrentState;
+        }
+
+        CheckAttack();
+    }
+    public override void DealEffect(Effect _effect, Vector3 _position, float _time)
+    {
+        if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
+        {
+            StartCoroutine(WaitingEffect(_time, () =>
+            {
+                Coroutine_running = true;
+                if (_effect.Equals(Effect.Slow))
+                {
+                    Debug.Log("Slow");
+                }
+                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+                {
+                    skeletonAnimation.timeScale = 0;
+                    isMove = false;
+                    isAttack = false;
+                    Rigidbody2D.velocity = Vector2.zero;
+                    CurrentState = EnemyState.Idle; 
+                    if (effectObj == null || _effect != gameEffect.CurrentEffect)
+                    {
+                        effectObj = gameEffect.GetEffect(_effect, _position+new Vector3(0,1,0), _time);
+                        effectObj.transform.localScale = new Vector3(3, 1, 3);
+                    }
+                       
+                }
+                gameEffect.SetEffect(_effect);
+            }, () =>
+            {
+                
+                gameEffect.SetEffect(Effect.None);
+                if (effectObj != null)
+                {
+                    Despawn(effectObj);
+                    effectObj = null;
+                }
+                isMove = true;
+                if (_effect.Equals(Effect.Freeze))
+                {
+                    gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+                }
+                skeletonAnimation.timeScale = 1;
+                Coroutine_running = false;
+            }));
+        }
     }
     public void Attack()
     {
@@ -45,48 +97,7 @@ public class BossWind1 : EnemyController
             m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
         }
     }
-    public override void DealEffect(Effect _effect, Vector3 _position, float _time)
-    {
-        gameEffect.CurrentEffect = _effect;
-        StartCoroutine(WaitingEffect(_time, () =>
-        {
-            if (_effect.Equals(Effect.Slow))
-            {
-                Debug.Log("Slow");
-            }
-            else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
-            {
-                isMove = false;
-                if (isAttack)
-                {
-                    isAttack = false;
-                }
-                Move(enemy.speed);
-
-                effectObj = gameEffect.GetEffect(_effect, _position, _time);
-            }
-            else if (_effect.Equals(Effect.Poiton))
-            {
-                effectObj = gameEffect.GetEffect(_effect, _position, _time);
-            }
-        }, () =>
-        {
-            isMove = true;
-            if (_effect.Equals(Effect.Freeze))
-            {
-                gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
-                if (!isAttack)
-                {
-                    isAttack = true;
-                }
-            }
-            if (!isAttack)
-            {
-                Move(enemy.speed);
-            }
-            gameEffect.CurrentEffect = Effect.None;
-        }));
-    }
+    
     public override void CheckAttack()
     {
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
@@ -103,12 +114,13 @@ public class BossWind1 : EnemyController
         {
 
             isMove = false;
-            //newPosition = transform.position;
-            //CurrentState = EnemyState.Idle;
+            newPosition = transform.position;
+            CurrentState = EnemyState.Idle;
             CurrentState = EnemyState.Skill;
-            StartCoroutine(IEChargeAttack(1.5f));
-            Instantiate(boss_Fx, LeftHand.transform.position, Quaternion.identity);
-            Instantiate(boss_Fx, RightHand.transform.position, Quaternion.identity);
+            GameObject effectleftHand= Instantiate(boss_Fx, LeftHand.transform.position, Quaternion.identity);
+            effectleftHand.transform.SetParent(LeftHand.transform);
+            GameObject effectrightHand= Instantiate(boss_Fx, RightHand.transform.position, Quaternion.identity);
+            effectrightHand.transform.SetParent(RightHand.transform);
             frenetic_25 = true;
             int HardMode = DataController.Instance.StageData.HardMode;
             var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
@@ -120,15 +132,16 @@ public class BossWind1 : EnemyController
     }
     private void RandomPosition()
     {
-        CurrentState = EnemyState.Attack;
         if (gameObject.activeSelf)
         {
+            CurrentState = EnemyState.Attack;
             StartCoroutine(IEMove());
         }
     }
     IEnumerator IEMove()
     {
         yield return new WaitForSeconds(enemy.rateOfFire / 100);
+        CurrentState = EnemyState.Idle;
         int index = UnityEngine.Random.Range(0, pointList.Count);
         newPosition = pointList[index];
         isAttack = false;
@@ -143,16 +156,14 @@ public class BossWind1 : EnemyController
         {
             CurrentState = EnemyState.Idle;
             isAttack = true;
-            //isMove = false;
-            StartCoroutine(IEChargeAttack(timeDelayAttack));
+            isMove = false;
             return;
         }
     }
     IEnumerator IEChargeAttack(float _time)
     {
-        isMove = false;
         yield return new WaitForSeconds(_time);
-        isMove = true;
+
     }
     IEnumerator IEFrenetic(float _time)
     {

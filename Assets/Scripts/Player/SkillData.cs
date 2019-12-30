@@ -150,11 +150,18 @@ public class SkillWeaponWind2 : SkillData
     public const string EffectedAoe = "EffectedAoe";
     public List<SkillAttribute> SpecialSkillAttributes;
 }
+[System.Serializable]
+public class SkillWeaponWind3:SkillData
+{
+    public const string TimeEffect = "InscreaFireRate";
+}
+[System.Serializable]
 public class SkillWeaponFire1 : SkillData
 {
     public const string TimeEffect = "TimeEffect";
     public const string EffectedAoe = "EffectedAoe";
 }
+[System.Serializable]
 public class SkillWeaponIce1 : SkillData
 {
     public const string TimeEffect = "TimeEffect";

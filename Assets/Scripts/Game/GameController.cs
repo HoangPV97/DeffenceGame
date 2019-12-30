@@ -59,15 +59,15 @@ public class GameController : MonoBehaviour
         var listItem = gsd.WinReward[gameStage.HardMode - 1];
         for (int i = 0; i < listItem.items.Count; i++)
         {
-           /* if (listItem.items[i].Type == ITEM_TYPE.coin)
-            {
-                DataController.Instance.Gold += listItem.items[i].Quality;
-            }
-            else*/
-                DataController.Instance.AddItemQuality(listItem.items[i].Type, listItem.items[i].Quality);
+            /* if (listItem.items[i].Type == ITEM_TYPE.coin)
+             {
+                 DataController.Instance.Gold += listItem.items[i].Quality;
+             }
+             else*/
+            DataController.Instance.AddItemQuality(listItem.items[i].Type, listItem.items[i].Quality);
         }
-        DataController.Instance.Gold += GameplayController.Instance.TotalGoldDrop;
-       gameStage.HardMode++;
+        DataController.Instance.Gold += Mathf.RoundToInt(GameplayController.Instance.TotalGoldDrop);
+        gameStage.HardMode++;
         if (Level < DataController.Instance.MaxStage)
         {
             var gameStage2 = DataController.Instance.GetGameStage(Level + 1);
@@ -115,26 +115,13 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         PausePanel.SetActive(false);
     }
-    public void SpeedUp()
-    {
-        count++;
-        if (count % 2 == 0)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Time.timeScale = 1.5f;
-        }
-
-    }
 
     public void OnEnemyDie(int value)
     {
         if (
         GameplayController.Instance.TotalGoldDrop > DataController.Instance.GoldInGame)
         {
-            GameplayController.Instance.TotalGoldDrop = DataController.Instance.GoldInGame;
+            GameplayController.Instance.TotalGoldDrop = Mathf.RoundToInt(DataController.Instance.GoldInGame);
         }
         GameplayController.Instance.TotalGoldDrop += GameplayController.Instance.GoldEachEnemy;
         EnemyLive -= value;

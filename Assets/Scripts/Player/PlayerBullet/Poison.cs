@@ -35,7 +35,13 @@ public class Poison : MonoBehaviour
         }            
         circleCollider2D.radius = poison.Range;
     }
-
+    public void SetPoisonData(float _totalTime, float _inflictTime, float _dps, float _range)
+    {
+        poison.totalTime = _totalTime;
+        poison.inflictedTime = _inflictTime;
+        poison.DamagePerSecond = _dps;
+        poison.Range = _range;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -13,11 +13,8 @@ public enum AutoMode { TurnOn, TurnOff };
 public class PlayerController : MonoBehaviour
 {
     public List<EnemyController> listEnemies;
-
     public Player player;
-
     public AutoMode currentMode;
-    //public Elemental elementalPlayer;
     public ViewPlayerController ViewPlayer;
     private float coundown;
     public GameObject Barrel;
@@ -29,13 +26,12 @@ public class PlayerController : MonoBehaviour
     public string eventName;
     Vector2 direct;
     float rotationZ;
-    float shortestDistance = Mathf.Infinity;
-    //  float _2ndShortestDistance = Mathf.Infinity;
     EnemyController nearestEnemy = null;
-    // EnemyController _2ndEnemy = null;
     public float ATK;
     public float ATKspeed;
     public float BulletSpeed;
+    public float CriticalRatio;
+    public float CriticalDamage;
     public CircleCollider2D CircleCollider2D;
     bool idleStatus;
     // Start is called before the first frame update
@@ -56,6 +52,16 @@ public class PlayerController : MonoBehaviour
         ATK = DataController.Instance.inGameWeapons.ATK;
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
         BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
+    }
+    public void SetDataWeaPon(float _FireRate)
+    {
+        ATKspeed +=  (_FireRate* ATKspeed/100);
+    }
+    public void SetDataWeaPon(float _damage,float _FireRate, float _critical)
+    {
+        ATK = ATK + (_damage * ATK/100);
+        ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
+        CriticalRatio = _critical;
     }
     // Update is called once per frame
     private void Update()
@@ -105,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Shoot()
     {
-        ShootToDirection(direct, rotationZ, "tankbullet");
+        ShootToDirection(direct, rotationZ, player.Bullet);
     }
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
@@ -141,7 +147,6 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateEnemy()
     {
-        shortestDistance = Mathf.Infinity;
         if (listEnemies.Count > 0)
         {
             int index = 0;
@@ -175,7 +180,7 @@ public class PlayerController : MonoBehaviour
         BulletController mBullet = bullet.GetComponent<BulletController>();
         mBullet.SetTarget(player.target);
         mBullet.setDirection(_direction);
-        mBullet.SetDataBullet(BulletSpeed, ATK);
+        mBullet.SetDataBullet(BulletSpeed, ATK, CriticalRatio,CriticalDamage);
         mBullet.elementalBullet = elementalType;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)

@@ -238,6 +238,23 @@ MonoBehaviour:
     Items: []
   BossDataBase_Wind:
     BossDataBase_Wind: []
+  GameData:
+    BaseHPLevel: 1
+    BaseHPTier: 1
+    BaseManaLevel: 1
+    BaseManaTier: 1
+    BaseShieldLevel: 1
+    BaseShieldTier: 1
+    CurrentStage: 1
+    Gold: 0
+    Gem: 0
+    Inventory: []
+    gameDataWeapons: []
+    gameDataAlliance: []
+    gameStages: []
+    CurrentSelectedWeapon: 0
+    Slot1: 0
+    Slot2: 0
   StageData:
     Level: 0
     HardMode: 0
