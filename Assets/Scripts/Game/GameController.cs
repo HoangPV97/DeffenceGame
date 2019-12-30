@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
         }
         if (Level == 10)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Earth);
+            DataController.Instance.UnLockWeapon(Elemental.Earth);
         }
         if (Level == 20)
         {
