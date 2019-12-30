@@ -106,6 +106,7 @@ public class DataController : Singleton<DataController>
     {
         dataPath = Path.Combine(Application.persistentDataPath, "data.dat");
         DontDestroyOnLoad(gameObject);
+        Language.ChangeLanguage(Languages.en);
     }
 
     public MonsterData GetMonsterData(string type)

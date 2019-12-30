@@ -7,9 +7,10 @@ public class UIHeroItem : MonoBehaviour
 {
     public Elemental elemental;
     public Image Icon;
-    public TextMeshProUGUI txtLevel;
+    public TextMeshProUGUI txtLevel, txtUnlock;
     public GameObject[] Star;
-    public GameObject Selected, Lock;
+    public GameObject Lock, Equip;
+    public GameObject[] Selected;
     public UIButton btnButton;
     public Animator Animator;
     // Start is called before the first frame update
@@ -28,27 +29,68 @@ public class UIHeroItem : MonoBehaviour
     public void OnUnSelect()
     {
         Animator.Play("HeroItemDown");
-        Selected.SetActive(false);
+        Selected[0].SetActive(false);
+        Selected[1].SetActive(false);
     }
 
     public void OnSelected()
     {
         Animator.Play("HeroItemUp");
         MenuController.Instance.UIPanelHeroAlliance.OnSelectHero(this);
-        Selected.SetActive(true);
+        Selected[0].SetActive(true);
+        Selected[1].SetActive(true);
     }
     public void SetupData()
     {
         gameObject.SetActive(false);
         gameObject.SetActive(true);
-        Selected.SetActive(false);
+        Selected[0].SetActive(false);
+        Selected[1].SetActive(false);
         Animator.Play("HeroItemDefault");
+        Equip.gameObject.SetActive(false);
+        string unlock = "Clear - {0}\n to \n Unlock";
+        int LevelUnlock = 0;
         GameDataWeapon weapon;
-        if (IsHero)
-            weapon = DataController.Instance.GetGameDataWeapon(elemental);
-        else
-            weapon = DataController.Instance.GetGameAlliance(elemental);
 
+        if (IsHero)
+        {
+            weapon = DataController.Instance.GetGameDataWeapon(elemental);
+            Equip.gameObject.SetActive(elemental == DataController.Instance.CurrentSelectedWeapon);
+            if (elemental == Elemental.Earth)
+            {
+                LevelUnlock = 10;
+            }
+            if (elemental == Elemental.Ice)
+            {
+                LevelUnlock = 20;
+            }
+            if (elemental == Elemental.Fire)
+            {
+                LevelUnlock = 30;
+            }
+        }
+        else
+        {
+            weapon = DataController.Instance.GetGameAlliance(elemental);
+            Equip.gameObject.SetActive(elemental == DataController.Instance.ElementalSlot1 || elemental == DataController.Instance.ElementalSlot2);
+            if (elemental == Elemental.Wind)
+            {
+                LevelUnlock = 5;
+            }
+            if (elemental == Elemental.Earth)
+            {
+                LevelUnlock = 15;
+            }
+            if (elemental == Elemental.Ice)
+            {
+                LevelUnlock = 25;
+            }
+            if (elemental == Elemental.Fire)
+            {
+                LevelUnlock = 35;
+            }
+        }
+        txtUnlock.text = string.Format(unlock, LevelUnlock);
         Lock.SetActive(weapon.WeaponTierLevel.Tier == 1 && weapon.WeaponTierLevel.Level == 0);
         txtLevel.gameObject.SetActive(weapon.WeaponTierLevel.Level != 0);
         txtLevel.text = "Lv." + weapon.WeaponTierLevel.Level;

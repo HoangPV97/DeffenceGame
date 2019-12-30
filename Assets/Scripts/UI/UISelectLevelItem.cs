@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Spine.Unity;
 public class UISelectLevelItem : MonoBehaviour
 {
     public UIButton UIButton;
@@ -13,6 +13,7 @@ public class UISelectLevelItem : MonoBehaviour
     public int Level;
     [SerializeField]
     GameStage gameStage;
+    public SkeletonGraphic SkeletonGraphic;
     // Start is called before the first frame update
     void Awake()
     {

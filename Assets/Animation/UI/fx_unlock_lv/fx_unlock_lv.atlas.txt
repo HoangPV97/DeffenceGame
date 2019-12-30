@@ -1,0 +1,20 @@
+
+fx_unlock_lv.png
+size: 308,152
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+e0
+  rotate: false
+  xy: 2, 2
+  size: 164, 145
+  orig: 164, 145
+  offset: 0, 0
+  index: -1
+sword1
+  rotate: false
+  xy: 168, 5
+  size: 138, 142
+  orig: 138, 142
+  offset: 0, 0
+  index: -1

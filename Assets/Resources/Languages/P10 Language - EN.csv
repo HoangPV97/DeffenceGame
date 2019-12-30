@@ -1,0 +1,144 @@
+KEY,Value
+,
+Name_Wind,Ardella
+Name_Ice,Megan
+Name_Earth,Terra
+Name_Fire,Celes
+Name_Alliance_Wind,Aeilene
+Name_Alliance_Ice,Ellena
+Name_Alliance_Earth,Groggo
+Name_Alliance_Fire,Fairo
+,
+Name_WEAPON_WIND_SKILL_1,Wind Slash
+Des1_WEAPON_WIND_SKILL_1_1,The Elf shoot a powerful arrow that pierces through targets. Deal damage to enemies in front and repel them. 
+Des1_WEAPON_WIND_SKILL_1_2,The Elf shoot a powerful arrow that pierces through targets. Deal damage to enemies in front and repel them 2 times.
+Des1_WEAPON_WIND_SKILL_1_3,The Elf shoot a powerful arrow that pierces through targets. Deal damage to enemies in front and repel them 3 times. 
+Name_WEAPON_WIND_SKILL_2,Hurricane
+Des1_WEAPON_WIND_SKILL_2_1,"The Elf unleash the power of Wind, calling the Thunder Storm at the target location. This storm will leave a burning area and cause damage. "
+Des1_WEAPON_WIND_SKILL_2_2,"The Elf unleash the power of Wind, calling the Thunder Storm at the target location. This storm will leave a burning area and cause damage."
+Des1_WEAPON_WIND_SKILL_2_3,"The Elf unleash the power of Wind, calling the Thunder Storm at the target location. This storm will leave a burning area and cause damage."
+Name_WEAPON_WIND_SKILL_3,Whisper of Wind
+Des1_WEAPON_WIND_SKILL_3,Increase Ardella's attack speed {0}%.
+Name_WEAPON_WIND_SKILL_4,Speed of Hermes
+Des1_WEAPON_WIND_SKILL_4,"Increase all stats. ( Damage {0}%, Speed Attack {1}%, Crit Damage {2}%) "
+,
+Name_WEAPON_ICE_SKILL_1,Ice Spike
+Des1_WEAPON_ICE_SKILL_1_1,Create a massive explosion dealing damage and slowing.
+Des1_WEAPON_ICE_SKILL_1_2,Create a massive explosion dealing damage and slowing.
+Des1_WEAPON_ICE_SKILL_1_3,Create a massive explosion dealing damage and slowing.
+Name_WEAPON_ICE_SKILL_2,Ice Storm
+Des1_WEAPON_ICE_SKILL_2_1,"Calling the Snow Storm that deals damage every 0,5s to the enemy. "
+Des1_WEAPON_ICE_SKILL_2_2,"Calling the Snow Storm that deals damage every 0,5s to the enemy."
+Des1_WEAPON_ICE_SKILL_2_3,"Calling the Snow Storm that deals damage every 0,5s to the enemy."
+Name_WEAPON_ICE_SKILL_3,Ice Forest
+Des1_WEAPON_ICE_SKILL_3,"Deal damage poison every 0,5s for 2,5s"
+Name_WEAPON_ICE_SKILL_4,Ice Age
+Des1_WEAPON_ICE_SKILL_4,"Increase Damage {0}%, Attack Speed {1}% and MP Recover {2}% of Weapon and Alliance."
+,
+Name_WEAPON_EARTH_SKILL_1,Shockwave
+Des1_WEAPON_EARTH_SKILL_1_1,Deals damage and slowing the movespeed of the enemy.
+Des1_WEAPON_EARTH_SKILL_1_2,Deals damage and slowing the movespeed of the enemy.
+Des1_WEAPON_EARTH_SKILL_1_3,Deals damage and slowing the movespeed of the enemy.
+Name_WEAPON_EARTH_SKILL_2,Guard of Dragon
+Des1_WEAPON_EARTH_SKILL_2_1,Create 1 shield covering the tower. That shield can absorb all damage and heal within 3s
+Des1_WEAPON_EARTH_SKILL_2_2,"Create 1 shield covering the tower. That shield can absorb all damage and heal within 3,5s"
+Des1_WEAPON_EARTH_SKILL_2_3,Create 1 shield covering the tower. That shield can absorb all damage and heal within 4s
+Name_WEAPON_EARTH_SKILL_3,Power of Dragon
+Des1_WEAPON_EARTH_SKILL_3,Increase damage {0}%.
+Name_WEAPON_EARTH_SKILL_4,Heart of the Earth
+Des1_WEAPON_EARTH_SKILL_4,"Increase Attack {0}%, Attack Speed {1}% and Wall Repair {2}% of Weapon and Alliances."
+,
+Name_WEAPON_FIRE_SKILL_1,Rage of Fire
+Des1_WEAPON_FIRE_SKILL_1_1,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burning them. "
+Des1_WEAPON_FIRE_SKILL_1_2,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burning them."
+Des1_WEAPON_FIRE_SKILL_1_3,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burning them."
+Name_WEAPON_FIRE_SKILL_2,Hellfire
+Des1_WEAPON_FIRE_SKILL_2_1,"Create a Firewall causing damage to enemies, slowing and burning them."
+Des1_WEAPON_FIRE_SKILL_2_2,"Create a Firewall causing damage to enemies, slowing and burning them."
+Des1_WEAPON_FIRE_SKILL_2_3,"Create a Firewall causing damage to enemies, slowing and burning them."
+Name_WEAPON_FIRE_SKILL_3,Breath of Dragon
+Des1_WEAPON_EARTH_SKILL_3,Burning the enemy with each attack.
+Name_WEAPON_EARTH_SKILL_4,God of Fire
+Des1_WEAPON_EARTH_SKILL_4,Increase all stats of Weapon and Alliance
+,
+Name_ALLIANCE_WIND_SKILL_1,Thunderbolt
+Des1_ALLIANCE_WIND_SKILL_1_1,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+Des1_ALLIANCE_WIND_SKILL_1_2,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+Des1_ALLIANCE_WIND_SKILL_1_3,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+Name_ALLIANCE_WIND_SKILL_2,Thunderbolt
+Des1_ALLIANCE_WIND_SKILL_2,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+#REF!,#REF!
+#REF!,#REF!
+Name_ALLIANCE_WIND_SKILL_3,Thunderbolt
+Des1_ALLIANCE_WIND_SKILL_3,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+Name_ALLIANCE_WIND_SKILL_4,Thunderbolt
+Des1_ALLIANCE_WIND_SKILL_4,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
+,
+Name_ALLIANCE_ICE_SKILL_1,Frozen
+Des1_ALLIANCE_ICE_SKILL_1_1,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+Des1_ALLIANCE_ICE_SKILL_1_2,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+Des1_ALLIANCE_ICE_SKILL_1_3,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+Name_ALLIANCE_ICE_SKILL_2,Frozen
+Des1_ALLIANCE_ICE_SKILL_2,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+Name_ALLIANCE_ICE_SKILL_3,Frozen
+Des1_ALLIANCE_ICE_SKILL_3,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+Name_ALLIANCE_ICE_SKILL_4,Frozen
+Des1_ALLIANCE_ICE_SKILL_4,Call a Storm at the target location. Deals damage and freezes all enemies in that area.
+,
+Name_ALLIANCE_EARTH_SKILL_1,Reef
+Des1_ALLIANCE_EARTH_SKILL_1_1,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+Des1_ALLIANCE_EARTH_SKILL_1_2,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+Des1_ALLIANCE_EARTH_SKILL_1_3,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+Name_ALLIANCE_EARTH_SKILL_2,Reef
+Des1_ALLIANCE_EARTH_SKILL_2,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+Name_ALLIANCE_EARTH_SKILL_3,Reef
+Des1_ALLIANCE_EARTH_SKILL_3,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+Name_ALLIANCE_EARTH_SKILL_4,Reef
+Des1_ALLIANCE_EARTH_SKILL_4,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
+,#REF!
+Name_ALLIANCE_FIRE_SKILL_1,
+Des1_ALLIANCE_FIRE_SKILL_1_1,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
+Des1_ALLIANCE_FIRE_SKILL_1_2,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
+Des1_ALLIANCE_FIRE_SKILL_1_3,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
+Name_ALLIANCE_FIRE_SKILL_2,Volcano
+Des1_ALLIANCE_FIRE_SKILL_2,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
+Name_ALLIANCE_FIRE_SKILL_3,Volcano
+Name_ALLIANCE_FIRE_SKILL_4,Volcano
+Des1_ALLIANCE_FIRE_SKILL_4,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
+,
+Shop,Shop
+Inventory,Inventory
+Select_Level,Select Level
+Hero_Alliance,Collection
+Forstress,Fortress
+Level_Detail,Level Detail
+Rewards,Rewards
+Play,Paly
+Easy,Normal
+Normal,Nightmare
+Hard,Hellish
+Hero,Hero
+Alliance,Alliance
+Upgrade,Upgrade
+UnEquip,Unequip
+Equiped,Equiped
+Evolve,Evolve
+Active,Active
+Passive,Passive
+Damage,Damage
+CoolDown,Cooldown
+FireRate,FireRate
+Level,Level 
+Upgrade_Title,Upgrade Hero
+Upgrade_Des,Upgrade
+Upgrade_Skill_Title,Upgrade Skill
+Evolve_Skill_Title,Evolution
+Evolve_Hero_Title,Evolution Hero
+,
+KnockbackDistance,Knockback Distance
+KnockbackDuration,Knockback Duration
+EffectedAoe,Effected AOE
+TimeEffect,Time Effect
+IncreaseFireRate,Increase Fire Rate
+IncreaseDamage,Increase Damage
+IncreaseCrit,Increase Crit
