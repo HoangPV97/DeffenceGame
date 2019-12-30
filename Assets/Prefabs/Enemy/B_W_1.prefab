@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 1515290433891442312}
   - component: {fileID: 7122412737210867122}
   m_Layer: 0
-  m_Name: MBW_1
+  m_Name: B_W_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 19cbbec9c382695469216faf16f3cdb6, type: 2}
   idle: {fileID: 11400000, guid: 8f1f0c49b181aca49833084f9db17f86, type: 2}
   run: {fileID: 11400000, guid: 72f9a061ddec31b4fa7bced5f176a0f3, type: 2}
-  hurt: {fileID: 0}
+  skill: {fileID: 0}
   die: {fileID: 11400000, guid: 897a337d1ccc837429d936df582ed3a2, type: 2}
   isMove: 1
   isAttack: 0
@@ -298,6 +298,7 @@ MonoBehaviour:
   Rigidbody2D: {fileID: 7385684139614032846}
   canvas: {fileID: 3787182833335925224}
   boxCollider2D: {fileID: 8020962621357836202}
+  KnockBackDistance: {x: 0, y: 0, z: 0}
 --- !u!1001 &8389654243278130491
 PrefabInstance:
   m_ObjectHideFlags: 0

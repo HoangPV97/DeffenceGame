@@ -90,15 +90,15 @@ public class GameController : MonoBehaviour
         {
             DataController.Instance.UnLockAlliance(Elemental.Fire);
         }
-        if (Level == 11)
+        if (Level == 10)
         {
             DataController.Instance.UnLockAlliance(Elemental.Earth);
         }
-        if (Level == 21)
+        if (Level == 20)
         {
             DataController.Instance.UnLockAlliance(Elemental.Ice);
         }
-        if (Level == 31)
+        if (Level == 30)
         {
             DataController.Instance.UnLockAlliance(Elemental.Fire);
         }
