@@ -361,8 +361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listEnemies: []
   player:
-    bullet: tankbullet
-    _name: AAAAAAAAA
+    bullet: ICE_HERO_BULLET
+    _name: IceHero
     _level: 0
     _range: 16
     _target: {fileID: 0}

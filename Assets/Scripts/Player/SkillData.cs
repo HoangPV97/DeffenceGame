@@ -166,6 +166,14 @@ public class SkillWeaponIce1 : SkillData
 {
     public const string TimeEffect = "TimeEffect";
     public const string EffectedAoe = "EffectedAoe";
+    public const string SlowdownPercent = "SlowdownPercent";
+}
+[System.Serializable]
+public class SkillWeaponEarth1 : SkillData
+{
+    public const string TimeEffect = "TimeEffect";
+    public const string EffectedAoe = "EffectedAoe";
+    public const string SlowdownPercent = "SlowdownPercent";
 }
 [System.Serializable]
 public class SkillAttribute

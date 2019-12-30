@@ -33246,13 +33246,15 @@ MonoBehaviour:
     _speed: 20
     _damage: 5
     _targetTag: Enemy
+    _critical_Ratio: 0
+    _critical_Damage: 0
   SeekTarget: 1
   elementalBullet: 2
   damagePlus: 5
   explosion: 0
   bounce: 0
   poison: 0
-  slow: 0
+  slow: 1
   pierce: 0
   critical: 0
   multishot: 0

@@ -436,6 +436,22 @@ MonoBehaviour:
   LeftHand: {fileID: 6237725808187631938}
   RightHand: {fileID: 6405713388557411798}
   boss_Fx: {fileID: 7957953189328728797, guid: 5f3f228e5dbfc9a4cb01514c4beb4f94, type: 3}
+  EventOnFx:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8544436581021937800}
+        m_MethodName: ChargeAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8912908039809388894
 GameObject:
   m_ObjectHideFlags: 0

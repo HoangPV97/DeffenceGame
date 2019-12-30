@@ -138,10 +138,10 @@ public class DataController : Singleton<DataController>
             Debug.Log("<color=red> File not exist</color>");
             ResetData();
         }
-        GameData.SaveItem(ITEM_TYPE.WindObs_1, 10);
-        GameData.SaveItem(ITEM_TYPE.WindObs_2, 4);
-        GameData.SaveItem(ITEM_TYPE.WindObs_3, 1);
-        GameData.SaveItem(ITEM_TYPE.IceObs_3, 10);
+        GameData.SaveItem(ITEM_TYPE.WindObs_1, 200);
+        GameData.SaveItem(ITEM_TYPE.WindObs_2, 2000);
+        GameData.SaveItem(ITEM_TYPE.WindObs_3, 2000);
+        GameData.SaveItem(ITEM_TYPE.IceObs_3, 2000);
         GameData.SaveItem(ITEM_TYPE.FireObs_1, 10);
         GameData.SaveItem(ITEM_TYPE.EarthObs_2, 4);
         GameData.SaveItem(ITEM_TYPE.EarthObs_3, 244);

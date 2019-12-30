@@ -1721,6 +1721,12 @@ MonoBehaviour:
       type: 3}
   - tag: WEAPON_WIND_SKILL_1
     prefab: {fileID: 185990494516342514, guid: a0f5294d87d3a244f956e7b1edce2de1, type: 3}
+  - tag: WEAPON_ICE_SKILL_1
+    prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
+      type: 3}
+  - tag: WEAPON_EARTH_SKILL_1
+    prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
+      type: 3}
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
       type: 3}
@@ -4649,7 +4655,6 @@ MonoBehaviour:
   disableImage: {fileID: 21300000, guid: ebdcde06ac5e6684c937c96a2caf0063, type: 3}
   textMesh: {fileID: 0}
   btnAuto: {fileID: 1060103589}
-  player: {fileID: 0}
   Status: 0
 --- !u!114 &1060103589
 MonoBehaviour:
@@ -5405,7 +5410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1200454401
 RectTransform:
   m_ObjectHideFlags: 0

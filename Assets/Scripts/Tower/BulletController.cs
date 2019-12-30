@@ -152,8 +152,7 @@ public class BulletController : MonoBehaviour
             #endregion
             if (slow)
             {
-                enemyController.DealEffect(Effect.Slow, enemyController.transform.position, 2f);
-                enemyController.Move(enemyController.enemy.speed, percent_Slow);
+                enemyController.Deal_Slow_Effect( 2f, percent_Slow);
                 Debug.Log("SlowEnemy");
             }
             if (stun)
