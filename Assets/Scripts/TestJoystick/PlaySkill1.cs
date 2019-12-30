@@ -95,10 +95,10 @@ public class PlaySkill1 : Skill
         GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, gameObject.transform.position, Quaternion.identity);
         CheckDestroyEffect(effectStart, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
-        SlowSkill slowSkill = skill_1_player.GetComponent<SlowSkill>();
-        slowSkill.SetDataBullet(Speed, Damage);
-        slowSkill.setDirection(direction);
-        slowSkill.setDataSkill(KnockBack,EffectedAoe);
+        WindSlashSkill WindSlashSkill = skill_1_player.GetComponent<WindSlashSkill>();
+        WindSlashSkill.SetDataBullet(Speed, Damage);
+        WindSlashSkill.setDirection(direction);
+        WindSlashSkill.setDataSkill(KnockBack,EffectedAoe);
         //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
         //rigidbody.velocity = _direction.normalized * 40 * Speed * Time.deltaTime;
     }

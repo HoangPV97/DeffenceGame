@@ -87,14 +87,14 @@ public class EnemyController : MonoBehaviour
     {
         Tower = GameObject.FindGameObjectWithTag("Tower");
     }
-    public virtual void Move(float _speed, float percent_slow = 100f)
+    public virtual void Move(float _speed, float percent_slow = 0)
     {
         if (!isAttack)
         {
             if (isMove)
             {
                 CurrentState = EnemyState.Run;
-                Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed) * (percent_slow / 100);
+                Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed) * (1-percent_slow / 100);
             }
             else
             {
@@ -160,12 +160,39 @@ public class EnemyController : MonoBehaviour
         isKnockBack = true;
         yield return new WaitForSeconds(0.3f);
         isKnockBack = false;
+        if (gameEffect.CurrentEffect == Effect.None)
+        {
+            Move(enemy.speed);
+        }
     }
     public void KnockBack(Vector3 _backSpace)
     {
         KnockBackDistance = _backSpace;
         isKnockBack = true;
         StartCoroutine(IsKnockback());
+    }
+    public virtual void Deal_Slow_Effect(float _time, float _slowdown_percent)
+    {
+        StartCoroutine(WaitingEffect(_time, () =>
+        {
+            Coroutine_running = true;
+
+            Move(enemy.speed, _slowdown_percent);
+            gameEffect.SetEffect(Effect.Slow);
+        }, () =>
+        {
+            gameEffect.SetEffect(Effect.None);
+            if (effectObj != null)
+            {
+                Despawn(effectObj);
+                effectObj = null;
+            }
+            if (!isAttack && isMove)
+            {
+                Move(enemy.speed);
+            }
+            Coroutine_running = false;
+        }));
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
@@ -174,11 +201,7 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(WaitingEffect(_time, () =>
             {
                 Coroutine_running = true;
-                if (_effect.Equals(Effect.Slow))
-                {
-                    Debug.Log("Slow");
-                }
-                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+                if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
                 {
                     isMove = false;
                     isAttack = false;
@@ -298,8 +321,8 @@ public class EnemyController : MonoBehaviour
         else
         {
             isAttack = false;
-            if (isMove)
-                Move(enemy.speed);
+            //if (isMove)
+                //Move(enemy.speed);
         }
     }
 

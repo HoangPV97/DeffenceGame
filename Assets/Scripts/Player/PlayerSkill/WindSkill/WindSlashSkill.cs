@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowSkill : BulletController
+public class WindSlashSkill : BulletController
 {
     List<GameObject> listCheckColision;
     float KnockBackDistance;

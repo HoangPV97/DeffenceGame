@@ -13,7 +13,7 @@ public class AutoAttack : MonoBehaviour
     {
         get
         {
-             return GameplayController.Instance.PlayerController;
+            return GameplayController.Instance.PlayerController;
         }
     }
     public bool Status;
