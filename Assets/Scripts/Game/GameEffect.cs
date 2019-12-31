@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Effect {None, Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback};
+public enum Effect {None, Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback,StunBullet};
 public class GameEffect : MonoBehaviour
 {
     public Effect CurrentEffect;
@@ -38,6 +38,10 @@ public class GameEffect : MonoBehaviour
             case Effect.Poiton:
                 //spawn Effect
                 Debug.Log("EFFECT POITON");
+                break;
+            case Effect.StunBullet:
+                //spawn Effect
+                effectObj = SpawnEffect("stuneffect", _position + new Vector3(0, 1, 0), _time);
                 break;
         }
         return effectObj;

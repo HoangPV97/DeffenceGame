@@ -2,43 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayIceExplosionSkill : Skill
+public class DragAndDropSkill : Skill
 {
     public VariableJoystick variableJoystick;
     public GameObject circle;
     ObjectPoolManager poolManager;
     public string EffectName;
-    [SerializeField]
-    SkillWeaponIce1 Swi1;
-    protected float TimeEffect, SlowdownPercent, EffectedAoe, Damage;
     // Start is called before the first frame update
     /// <summary>
     /// get data sww1.ManaCost[Level-1]
     /// </summary>
     int Level;
-    void Start()
+    protected override void Start()
     {
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
-    {
-        base.SetUpData(Tier, Level);
-        this.Level = Level;
-        Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
-        this.variableJoystick = variableJoystick;
-        manaCost = Swi1.GetManaCost(Tier, Level);
-        TimeEffect = Swi1.GetSkillAttributes("TimeEffect", Tier, Level);
-        EffectedAoe = Swi1.GetSkillAttributes("EffectedAoe", Tier, Level);
-        SlowdownPercent = Swi1.GetSkillAttributes("SlowdownPercent", Tier, Level);
-        Damage = Swi1.GetDamage(Tier, Level);
-        CountdownTime = Swi1.GetCoolDown(Tier, Level);
-        variableJoystick.SetUpData(this);
-        positonEffect = _position;
-        CountdownGo = variableJoystick.CountDountMask;
-    }
+
     // Update is called once per frame
-    protected void Update()
+    protected override void Update()
     {
         base.Update();
         if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
@@ -66,7 +48,7 @@ public class PlayIceExplosionSkill : Skill
     {
 
     }
-    public virtual void Play()
+    public void Play()
     {
         TimeLeft = CountdownTime;
         StartCountdown = true;
@@ -75,14 +57,13 @@ public class PlayIceExplosionSkill : Skill
         PlaySkill(circle.transform.position);
         circle.SetActive(false);
     }
-
     public virtual void PlaySkill(Vector3 _position)
     {
-        GameObject Poison_Skill = SpawnEffect(SkillID, _position, TimeEffect);
-        Poison_Skill.GetComponent<SlowSkill>().SetSkillData(TimeEffect, SlowdownPercent, Damage, EffectedAoe);
-        float particleTime = Poison_Skill.GetComponentInChildren<ParticleSystem>().main.duration;
+        GameObject Skill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
+        float particleTime = Skill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart = SpawnEffect(EffectName, positonEffect, particleTime);
+        GameObject effectStart =SpawnEffect(EffectName, positonEffect, 1);
+        CheckDestroyEffect(Skill, particleTime);
     }
     public override void OnInvokeSkill()
     {

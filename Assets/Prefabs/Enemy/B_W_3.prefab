@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6182798970750317318}
   - component: {fileID: 1067331195766220398}
   m_Layer: 0
-  m_Name: MBW_3
+  m_Name: B_W_3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: bc05eeaf1e6353a4ea7032d44022df24, type: 2}
   idle: {fileID: 11400000, guid: ab05bd7f2a309fe4f872cfeac02641bc, type: 2}
   run: {fileID: 11400000, guid: 50345aa5af463904e9ea7200b5de2899, type: 2}
-  hurt: {fileID: 0}
+  skill: {fileID: 0}
   die: {fileID: 11400000, guid: c1fa49b0700b4da459b2d987c6a7833f, type: 2}
   isMove: 1
   isAttack: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   Rigidbody2D: {fileID: 379209336301220618}
   canvas: {fileID: 8746037125468653161}
   boxCollider2D: {fileID: 7178071149278825003}
+  KnockBackDistance: {x: 0, y: 0, z: 0}
 --- !u!1 &7178071149698590063
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +424,7 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 213.999
+      value: 190.99895
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -438,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 211.00034
+      value: 188.00021
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -453,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 211
+      value: 188
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

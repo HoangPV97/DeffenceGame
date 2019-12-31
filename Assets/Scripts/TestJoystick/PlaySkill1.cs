@@ -17,7 +17,7 @@ public class PlaySkill1 : Skill
     /// get data sww1.ManaCost[Level-1]
     /// </summary>
     int Level;
-    protected void Start()
+    protected override void Start()
     {
         poolManager = ObjectPoolManager.Instance;
         base.Start();
@@ -92,8 +92,7 @@ public class PlaySkill1 : Skill
     public void SlowSkill(Vector2 _direction, float _rotatioZ)
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(SkillID, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(EffectName, gameObject.transform.position, Quaternion.identity);
-        CheckDestroyEffect(effectStart, 0.7f);
+        GameObject effectStart = SpawnEffect(EffectName, gameObject.transform.position, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         WindSlashSkill WindSlashSkill = skill_1_player.GetComponent<WindSlashSkill>();
         WindSlashSkill.SetDataBullet(Speed, Damage);

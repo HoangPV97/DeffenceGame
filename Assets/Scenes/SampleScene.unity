@@ -1725,7 +1725,7 @@ MonoBehaviour:
     prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
       type: 3}
   - tag: WEAPON_EARTH_SKILL_1
-    prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
+    prefab: {fileID: 3892153920387240644, guid: 27ae298336f3cb5439c2193a2eebec82,
       type: 3}
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,

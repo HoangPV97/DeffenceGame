@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySkill4 : Skill
+public class PlaySkill4 : DragAndDropSkill
 {
-    public VariableJoystick variableJoystick;
-    public GameObject circle;
-    ObjectPoolManager poolManager;
-    public string bulletName, EffectName;
     [SerializeField]
     SkillWeaponFire1 Swf1; //Dùng tạm thời//
     // Start is called before the first frame update
@@ -15,11 +11,6 @@ public class PlaySkill4 : Skill
     /// get data sww1.ManaCost[Level-1]
     /// </summary>
     int Level;
-    void Start()
-    {
-        poolManager = ObjectPoolManager.Instance;
-        base.Start();
-    }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Level);
@@ -49,15 +40,6 @@ public class PlaySkill4 : Skill
         {
             // LowMana.SetActive(true);
         }
-
-    }
-    public void MoveObject(GameObject _object, Vector3 _postion)
-    {
-        _object.SetActive(true);
-        _object.transform.Translate(_postion);
-    }
-    public void FixedUpdate()
-    {
 
     }
     public void Play()

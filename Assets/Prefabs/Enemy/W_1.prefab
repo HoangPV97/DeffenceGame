@@ -288,15 +288,17 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: e35dde5d848bf9b4f923b85444d010fc, type: 2}
   idle: {fileID: 11400000, guid: 1a655c2165744ef48ae1fefe2b829df7, type: 2}
   run: {fileID: 11400000, guid: 80fadc4a41723414999ca38b1b54fba3, type: 2}
-  hurt: {fileID: 0}
+  skill: {fileID: 0}
   die: {fileID: 11400000, guid: 35e5d9c768593b3489957d5efcef5a86, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  distancetoTower: 0
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 7385684139614032846}
   canvas: {fileID: 3787182833335925224}
   boxCollider2D: {fileID: 8020962621357836202}
+  KnockBackDistance: {x: 0, y: 0, z: 0}
 --- !u!1001 &8389654243278130491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,12 +434,12 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 177
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 174
+      value: 133.00006
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -447,7 +449,7 @@ PrefabInstance:
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 172
+      value: 131.00005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

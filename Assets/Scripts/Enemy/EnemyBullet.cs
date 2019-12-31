@@ -33,11 +33,15 @@ public class EnemyBullet : MonoBehaviour
     {
         transform.Translate(Vector2.down * bullet.Speed * Time.deltaTime);
     }
-    private void OnTriggerEnter2D(Collider2D _Tower)
+    private void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (_Tower.gameObject.tag.Equals(bullet.TargetTag))
+        if (_Target.gameObject.tag.Equals("BlockPoint"))
         {
-            Tower tower = _Tower.GetComponent<Tower>();
+            ObjectPoolManager.Instance.DespawnObJect(gameObject);
+        }
+        else if (_Target.gameObject.tag.Equals(bullet.TargetTag))
+        {
+            Tower tower = _Target.GetComponent<Tower>();
             tower?.TakeDamage(bullet.Damage);
             GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
             Exposion.AddComponent<DestroyEffect>()._time = 0.5f;
@@ -45,7 +49,6 @@ public class EnemyBullet : MonoBehaviour
             ObjectPoolManager.Instance.DespawnObJect(gameObject);
         }
     }
-
     public void SetTarget(Transform _Target)
     {
         Target = _Target;

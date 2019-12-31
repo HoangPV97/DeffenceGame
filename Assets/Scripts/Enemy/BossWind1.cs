@@ -68,7 +68,7 @@ public class BossWind1 : EnemyController
                 {
                     Debug.Log("Slow");
                 }
-                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze) )
                 {
                     skeletonAnimation.timeScale = 0;
                     isMove = false;

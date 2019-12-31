@@ -40,13 +40,13 @@ public class TornardoSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Onstay && tempTime < 0)
+        if (Onstay && tempTime < 0 && enemies.Count > 0)
         {
-            foreach (var enemy in enemies)
+            for(int i=0;i<enemies.Count;i++)
             {
-                if (enemy.isLive)
+                if (enemies[i].isLive)
                 {
-                    enemy.DealDamge(Tornardo.DamagePerSecond);
+                    enemies[i].DealDamge(Tornardo.DamagePerSecond);
                 }
             }
 

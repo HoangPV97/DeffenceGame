@@ -32,9 +32,9 @@ public class SlowSkill : MonoBehaviour
     public virtual void SetSkillData(float EffectedTime, float SlownDownPercent, float Damage, float EffectedAoe)
     {
         SlowSkillData.EffectedTime = EffectedTime;
-        SlowSkillData.EffectedAoe = SlownDownPercent;
-        SlowSkillData.SLowdownPercent = Damage;
-        SlowSkillData.Damage = EffectedAoe;
+        SlowSkillData.EffectedAoe = EffectedAoe;
+        SlowSkillData.SLowdownPercent = SlownDownPercent;
+        SlowSkillData.Damage = Damage;
     }
     private void OnTriggerEnter2D(Collider2D _target)
     {

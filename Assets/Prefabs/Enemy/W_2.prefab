@@ -288,15 +288,17 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 44d8bf0bec6429446a296ce616b1d7b7, type: 2}
   idle: {fileID: 11400000, guid: 90a9d4354c094f84e8fc251bcae19f54, type: 2}
   run: {fileID: 11400000, guid: d978af135139b5d449c24e160e658d57, type: 2}
-  hurt: {fileID: 0}
+  skill: {fileID: 0}
   die: {fileID: 11400000, guid: a8b9cfe31ee5fe5448b04dffc4f26402, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  distancetoTower: 0
   gameEffect: {fileID: 0}
   Rigidbody2D: {fileID: 2381826484690694014}
   canvas: {fileID: 7492994430957674414}
   boxCollider2D: {fileID: 1529785039770135925}
+  KnockBackDistance: {x: 0, y: 0, z: 0}
 --- !u!1001 &2818332051281193853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -422,17 +424,32 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.8999815
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 137
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -37.1005
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 135
+      value: 110.000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

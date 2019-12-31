@@ -194,6 +194,17 @@ public class EnemyController : MonoBehaviour
             Coroutine_running = false;
         }));
     }
+    public virtual void Restrict( Effect _effect,Vector3 _position,float _time)
+    {
+        isMove = false;
+        isAttack = false;
+        Rigidbody2D.velocity = Vector2.zero;
+        //Move(enemy.speed);
+        CurrentState = EnemyState.Idle;
+        skeletonAnimation.timeScale = 0;
+        if (effectObj == null || _effect != gameEffect.CurrentEffect)
+            effectObj = gameEffect.GetEffect(_effect, _position, _time);
+    }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
         if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
@@ -201,21 +212,21 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(WaitingEffect(_time, () =>
             {
                 Coroutine_running = true;
-                if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
+                switch (_effect)
                 {
-                    isMove = false;
-                    isAttack = false;
-                    Rigidbody2D.velocity = Vector2.zero;
-                    //Move(enemy.speed);
-                    CurrentState = EnemyState.Idle;
-                    skeletonAnimation.timeScale = 0;
-                    if (effectObj == null || _effect != gameEffect.CurrentEffect)
-                        effectObj = gameEffect.GetEffect(_effect, _position, _time);
-                }
-                else if (_effect.Equals(Effect.Poiton))
-                {
-                    if (_effect != gameEffect.CurrentEffect)
-                        effectObj = gameEffect.GetEffect(_effect, _position, _time);
+                    case Effect.Stun:
+                        Restrict(Effect.Stun, _position , _time);
+                        break;
+                    case Effect.StunBullet:
+                        Restrict(Effect.StunBullet, _position, _time);
+                        break;
+                    case Effect.Freeze:
+                        Restrict(Effect.Freeze, _position, _time);
+                        break;
+                    case Effect.Poiton:
+                        if (Effect.Poiton != gameEffect.CurrentEffect)
+                            effectObj = gameEffect.GetEffect(_effect, _position, _time);
+                        break;
                 }
                 gameEffect.SetEffect(_effect);
             }, () =>

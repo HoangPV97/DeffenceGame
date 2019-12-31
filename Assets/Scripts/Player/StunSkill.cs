@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class StunSkill : BulletController
 {
-    [SerializeField]
-    private float stunTime=3;
+    public float EffectedTime, Damage, EffectedAoe;
     // Start is called before the first frame update
-
+    public virtual void SetSkillData(float _EffectedTime,  float _Damage, float _EffectedAoe)
+    {
+        EffectedTime = _EffectedTime;
+        Damage = _Damage;
+        EffectedAoe = _EffectedAoe;
+    }
     private void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
@@ -15,22 +19,8 @@ public class StunSkill : BulletController
             EnemyController enemy = Target.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                IWindEffectable elemental = enemy.GetComponent<IWindEffectable>();
-                if (elemental != null)
-                {
-                    elemental.WindImpactEffect(enemy.transform.position);
-                    enemy?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
-                }
-                else
-                {
-                    enemy?.DealDamge(bullet.Damage, 0);
-                }
-                enemy.DealEffect(Effect.Stun,enemy.transform.position+new Vector3(0,0.5f,0),3);
-            }
-            if (SeekTarget)
-            {
-
-                Despawn();
+                enemy?.DealDamge(bullet.Damage, 0);
+                enemy.DealEffect(Effect.Stun,enemy.transform.position+new Vector3(0,0.5f,0),EffectedTime);
             }
         }
     }

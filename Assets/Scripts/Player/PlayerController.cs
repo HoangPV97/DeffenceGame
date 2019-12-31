@@ -30,8 +30,13 @@ public class PlayerController : MonoBehaviour
     public float ATK;
     public float ATKspeed;
     public float BulletSpeed;
-    public float CriticalRatio;
     public float CriticalDamage;
+    public float Critical_Ratio;
+    public float Knockback_Ratio;
+    public float Multishot_Ratio;
+    public float QuickShot_Ratio;
+    public Vector3 Knockback_Distance;
+
     public CircleCollider2D CircleCollider2D;
     bool idleStatus;
     // Start is called before the first frame update
@@ -61,7 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         ATK = ATK + (_damage * ATK/100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
-        CriticalRatio = _critical;
+        Critical_Ratio = _critical;
     }
     // Update is called once per frame
     private void Update()
@@ -109,10 +114,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    public void Shoot()
-    {
-        ShootToDirection(direct, rotationZ, player.Bullet);
-    }
+    //public void Shoot()
+    //{
+    //    //SetDatabullet(direct, rotationZ, player.Bullet);
+    //}
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
     {
@@ -171,16 +176,51 @@ public class PlayerController : MonoBehaviour
             characterState = CharacterState.Idle;
         }
     }
-
-    public void ShootToDirection(Vector2 _direction, float _rotatioZ, string _bullet)
+    public BulletController SpawnBullet(Vector2 _direction, float _rotatioZ, string _bullet)
     {
-        ViewPlayer.SetPositionBone(direct);
-        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.identity);
-        bullet.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ - 90);
-        BulletController mBullet = bullet.GetComponent<BulletController>();
+        ViewPlayer.SetPositionBone(_direction);
+        BulletController mBullet = ObjectPoolManager.Instance.SpawnObject(_bullet, Barrel.transform.position, Quaternion.Euler(0, 0, _rotatioZ - 90)).GetComponent<BulletController>();
         mBullet.SetTarget(player.target);
         mBullet.setDirection(_direction);
-        mBullet.SetDataBullet(BulletSpeed, ATK, CriticalRatio,CriticalDamage);
+        mBullet.elementalBullet = elementalType;
+        mBullet.SetDataBullet(BulletSpeed, ATK);
+        return mBullet;
+    }
+    public void Shoot()
+    {
+        BulletController mBullet= SpawnBullet(direct, rotationZ, player.Bullet);    
+        //random Knockback
+        float RandomKnockBack = UnityEngine.Random.Range(0, 100);
+        if(RandomKnockBack < Knockback_Ratio)
+        {
+            mBullet.SetKnockBack(Knockback_Distance);
+        }
+        //Random QuickShot
+        float RandomQuickShot= UnityEngine.Random.Range(0, 100);
+        if (RandomQuickShot < QuickShot_Ratio)
+        {
+            SpawnBullet(direct, rotationZ, player.Bullet);
+        }
+        //Random Critical
+        float RandomCritical = UnityEngine.Random.Range(0, 100);
+        if (RandomCritical < Critical_Ratio)
+        {
+            mBullet.SetDataBullet(BulletSpeed, 2 * ATK);
+        }
+        //Random Multishot
+        float RandomMulti = UnityEngine.Random.Range(0, 100);
+        if (RandomMulti < Multishot_Ratio)
+        {
+            SpawnBullet(direct, rotationZ-5f, player.Bullet);
+            SpawnBullet(direct, rotationZ + 5f, player.Bullet);
+        }
+        if(RandomQuickShot < QuickShot_Ratio && RandomMulti < Multishot_Ratio)
+        {
+
+        }
+        mBullet.SetTarget(player.target);
+        mBullet.setDirection(direct);
+        mBullet.SetDataBullet(BulletSpeed, ATK, Critical_Ratio,CriticalDamage);
         mBullet.elementalBullet = elementalType;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)

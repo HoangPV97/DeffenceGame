@@ -20,6 +20,7 @@ public class BulletController : MonoBehaviour
     public bool critical;
     public bool multishot;
     public bool quickhand;
+    public bool knockback;
     public bool stun;
     public EnemyController nearEnemy;
     private float timeStun = 2f;
@@ -29,15 +30,17 @@ public class BulletController : MonoBehaviour
     #endregion
     protected virtual void Start()
     {
+        knockback = false;
+    }
+    public void SetKnockBack(Vector3 _Distance)
+    {
+        bullet.KnockbackDistance = _Distance;
     }
     public virtual void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
-        bullet.CriticalRatio = _critical_ratio;
         bullet.CriticalDamage = _critical_damage;
-        bounceRange = 5f;
-        numberBounce = 3;
         percent_Slow = 20f;
         checkCollision = false;
     }
@@ -104,60 +107,26 @@ public class BulletController : MonoBehaviour
                 Despawn();
             }
             #endregion
-            #region BounceBullet
-            if (bounce)
-            {
-                if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
-                {
-                    //listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
-                    nearEnemy = null;
-                    int index = 0;
-                    float shortdistance = Mathf.Infinity;
-                    for (int i = 0; i < GameplayController.Instance.PlayerController.listEnemies.Count; i++)
-                    {
-                        float distance = Vector3.Distance(_Target.gameObject.transform.position, GameplayController.Instance.PlayerController.listEnemies[i].transform.position);
-                        if (/*distance > 0.4f &&*/ distance < shortdistance && GameplayController.Instance.PlayerController.listEnemies[i].gameObject != _Target.gameObject
-                            && GameplayController.Instance.PlayerController.listEnemies[i].isLive)
-                        {
-                            shortdistance = distance;
-                            index = i;
-                        }
-                    }
-                    if (shortdistance <= bounceRange)
-                    {
-                        nearEnemy = GameplayController.Instance.PlayerController.listEnemies[index];
-                    }
-                    else
-                    {
-                        nearEnemy = null;
-                    }
-                    if (numberBounce > 0 && nearEnemy != null /*&& nearEnemy.isLive*/)
-                    {
-                        SetTarget(nearEnemy);
-                        dir = nearEnemy.transform.position - transform.position;
-                        Move(dir);
-                        bullet.Damage = Mathf.Round(bullet.Damage * 50 / 100);
-                        numberBounce--;
-                        if (numberBounce <= 0 || !nearEnemy.isLive)
-                        {
-                            Despawn();
-                        }
-                    }
-                    else
-                    {
-                        Despawn();
-                    }
-                }
-            }
-            #endregion
+            #region SlowBullet
             if (slow)
             {
-                enemyController.Deal_Slow_Effect( 2f, percent_Slow);
+                enemyController.Deal_Slow_Effect(2f, percent_Slow);
                 Debug.Log("SlowEnemy");
             }
+            #endregion
+            #region StunBullet
             if (stun)
             {
-                enemyController.DealEffect(Effect.Stun, enemyController.transform.position, timeStun);
+                enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, timeStun);
+            }
+            #endregion
+            if(bullet.KnockbackDistance != Vector3.zero)
+            {
+                enemyController.KnockBack(bullet.KnockbackDistance);
+            }
+            if (bullet.CriticalDamage > 0)
+            {
+
             }
         }
     }
