@@ -11,6 +11,18 @@ public class BaseData
     public float ManaRegen;
     public float ShieldBlockChance;
     public float ShieldBlockValue;
+    public int Damage;
+    public int Critical;
+    public int KnockBack;
+    public int AllianceDamage;
+    public int QuickHand;
+    public float QuickHandDamagePercent;
+    public bool MultiShot;
+    public float MultiShotDamage;
+    public float MultiShotAddedAttributePercent;
+    public float ReduceCooldown;
+    public float IncreaseSpellDamage;
+    public float BlockDamage;
 }
 [System.Serializable]
 public class BaseDatabase
