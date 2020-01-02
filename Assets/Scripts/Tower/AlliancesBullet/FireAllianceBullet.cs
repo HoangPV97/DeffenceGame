@@ -10,14 +10,14 @@ public class FireAllianceBullet : BulletController
         elementalBullet = Elemental.Fire;
         base.Start();
     }
-    private void Update()
+    protected override void FixedUpdate()
     {
         if (Target == null || !Target.isLive)
         {
             Despawn();
             return;
         }
-        base.Update();
+        base.FixedUpdate();
     }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {

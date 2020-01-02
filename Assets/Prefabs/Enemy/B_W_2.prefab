@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 4463209475855294817}
   - component: {fileID: 7884434622675878434}
   m_Layer: 0
-  m_Name: MBW_2
+  m_Name: B_W_2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.36, y: 0.93}
+  m_Size: {x: 0.65, y: 0.61}
   m_EdgeRadius: 0
 --- !u!50 &2381826484690694014
 Rigidbody2D:
@@ -288,7 +288,7 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 44d8bf0bec6429446a296ce616b1d7b7, type: 2}
   idle: {fileID: 11400000, guid: 90a9d4354c094f84e8fc251bcae19f54, type: 2}
   run: {fileID: 11400000, guid: d978af135139b5d449c24e160e658d57, type: 2}
-  hurt: {fileID: 0}
+  skill: {fileID: 0}
   die: {fileID: 11400000, guid: a8b9cfe31ee5fe5448b04dffc4f26402, type: 2}
   isMove: 1
   isAttack: 0
@@ -298,6 +298,7 @@ MonoBehaviour:
   Rigidbody2D: {fileID: 2381826484690694014}
   canvas: {fileID: 7492994430957674414}
   boxCollider2D: {fileID: 1529785039770135925}
+  KnockBackDistance: {x: 0, y: 0, z: 0}
 --- !u!1001 &2818332051281193853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,6 +421,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 133.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -80.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -449,16 +460,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 133.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -80.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

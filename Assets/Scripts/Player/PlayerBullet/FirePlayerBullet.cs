@@ -9,13 +9,13 @@ public class FirePlayerBullet : BulletController
     {
         base.Start();
     }
-    public void Update()
+    protected override void FixedUpdate()
     {
         if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)
             Move(dir);
         else
         {
-            base.Update();
+            base.FixedUpdate();
         }
     }
     public void DirectShooting(Vector2 _direction)

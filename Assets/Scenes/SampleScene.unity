@@ -6334,8 +6334,10 @@ MonoBehaviour:
   manaCost: 0
   variableJoystick: {fileID: 957591502}
   circle: {fileID: 1920795930}
-  bulletName: 
   EffectName: 
+  EffectTime: 0
+  EffectedAoe: 0
+  Damage: 0
   Swi1:
     SkillID: 
     SkillType: 0

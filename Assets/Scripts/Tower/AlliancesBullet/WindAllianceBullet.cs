@@ -8,7 +8,7 @@ public class WindAllianceBullet : BulletController
     {
         elementalBullet = Elemental.Wind;
     }
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         if (Target == null || !Target.isLive)
         {

@@ -52,8 +52,7 @@ public class BulletController : MonoBehaviour
     {
         dir = _dir;
     }
-    // Update is called once per frame
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (Target == null || !Target.isLive)
         {
@@ -65,6 +64,11 @@ public class BulletController : MonoBehaviour
         if (dir == Vector3.zero)
             dir = new Vector3(0, 1, 0);
         Move(dir);
+    }
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        
     }
     public void Move(Vector3 _dir)
     {

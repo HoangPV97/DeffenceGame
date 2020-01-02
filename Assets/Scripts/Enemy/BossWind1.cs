@@ -39,12 +39,12 @@ public class BossWind1 : EnemyController
 
     protected override void Update()
     {
-        if (countdown <= 0  && !isChargeAttack)
-        {
-            RandomPosition();
-            countdown = timeDelayAttack;
-        }
-        countdown -= Time.deltaTime;
+        //if (countdown <= 0  && !isChargeAttack)
+        //{
+        //    RandomPosition();
+        //    countdown = timeDelayAttack;
+        //}
+        //countdown -= Time.deltaTime;
         if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None && !isChargeAttack)
         {
             Move(enemy.speed);
@@ -104,9 +104,9 @@ public class BossWind1 : EnemyController
     }
     public void ChargeAttack()
     {
-        GameObject effectleftHand = Instantiate(boss_Fx, LeftHand.transform.position, Quaternion.identity);
+        GameObject effectleftHand = ObjectPoolManager.Instance.SpawnObject(boss_Fx, LeftHand.transform.position, Quaternion.identity);
         effectleftHand.transform.SetParent(LeftHand.transform);
-        GameObject effectrightHand = Instantiate(boss_Fx, RightHand.transform.position, Quaternion.identity);
+        GameObject effectrightHand = ObjectPoolManager.Instance.SpawnObject(boss_Fx, RightHand.transform.position, Quaternion.identity);
         effectrightHand.transform.SetParent(RightHand.transform);
     }
     public void Attack()
@@ -135,22 +135,15 @@ public class BossWind1 : EnemyController
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
-            isChargeAttack = true;
-            isMove = false;
-            BulletBoss = "BossSkill";
-            newPosition = transform.position;
-            CurrentState = EnemyState.Idle;
             frenetic_25 = true;
             int HardMode = DataController.Instance.StageData.HardMode;
             var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
             enemy.speed += bd.SpeedPlus;
             enemy.damage *= bd.DamagePlus;
             timeDelayAttack = bd.DelayAttack; 
-            CurrentState = EnemyState.Skill;
-            StartCoroutine(IEChargeAttack(2));
         }
     }
-    private void RandomPosition()
+    private void AttackAndMove()
     {
         if (gameObject.activeSelf)
         {
@@ -161,12 +154,18 @@ public class BossWind1 : EnemyController
             StartCoroutine(IEMove());
         }
     }
+    public void RandomPosition()
+    {
+        int index = UnityEngine.Random.Range(0, pointList.Count);
+        if(pointList[index]!=newPosition)
+            newPosition = pointList[index];
+    }
     IEnumerator IEMove()
     {
         yield return new WaitForSeconds(enemy.rateOfFire / 100);
         CurrentState = EnemyState.Idle;
-        int index = UnityEngine.Random.Range(0, pointList.Count);
-        newPosition = pointList[index];
+        yield return new WaitForSeconds(timeDelayAttack);
+        RandomPosition();
         isAttack = false;
         isMove = true;
     }
@@ -180,14 +179,33 @@ public class BossWind1 : EnemyController
             CurrentState = EnemyState.Idle;
             isAttack = true;
             isMove = false;
-            return;
+            //RandomPosition();
+            float ChargeRatio = UnityEngine.Random.Range(0, 100);
+            if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
+            {
+                    isChargeAttack = true;
+                    BulletBoss = "BossSkill";
+                    //newPosition = transform.position;
+                    CurrentState = EnemyState.Idle;
+                    CurrentState = EnemyState.Skill;
+                    StartCoroutine(IEChargeAttack(2f));
+            }
+            else
+            {
+                AttackAndMove();
+            }
         }
     }
     IEnumerator IEChargeAttack(float _time)
     {
         yield return new WaitForSeconds(_time);
+        CurrentState = EnemyState.Idle;
+        isMove = true;
+        isAttack = false;
+        RandomPosition();
         isChargeAttack = false;
         BulletBoss = "BossBullet";
+
     }
     IEnumerator IEFrenetic(float _time)
     {
