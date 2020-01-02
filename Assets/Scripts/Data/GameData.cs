@@ -4,12 +4,12 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int BaseHPLevel = 1;
-    public int BaseHPTier = 1;
-    public int BaseManaLevel = 1;
-    public int BaseManaTier = 1;
-    public int BaseShieldLevel = 1;
-    public int BaseShieldTier = 1;
+    public SaveGameTierLevel Archery;
+    public List<SaveGameTierLevel> ArcherySkillTierLevel;
+    public SaveGameTierLevel Temple;
+    public List<SaveGameTierLevel> TempleSkillTierLevel;
+    public SaveGameTierLevel Fortress;
+    public List<SaveGameTierLevel> FortressSkillTierLevel;
     public int CurrentStage = 1;
     public int Gold;
     public int Gem;
@@ -25,7 +25,9 @@ public class GameData
             gameStages = new List<GameStage>();
         for (int i = 0; i < gameStages.Count; i++)
             if (gameStages[i].Level == level)
+            {
                 return gameStages[i];
+            }
 
         GameStage gameStage = new GameStage
         {

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3235781747
+CRC: 1958375382
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3335f4e72c45db1bbd4fa7b6f6815953
+    Hash: b7824fb8c2a7d8764cd99274200c385b
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,18 +14,32 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Fire_2.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Wind_1.png
 - Assets/Texture/UI/icon_item/IceObs_1.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Earth_2.png
 - Assets/Texture/UI/icon_item/coin.png
 - Assets/Texture/UI/icon_item/WindObs_1.png
+- Assets/Texture/UI/icon_item/Evolve_Wind.png
+- Assets/Texture/UI/icon_item/Evolve_Fire.png
 - Assets/Texture/UI/icon_item/IceObs_3.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Earth_1.png
 - Assets/Texture/UI/icon_item/EarthObs_1.png
 - Assets/Texture/UI/icon_item/EarthObs_2.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Fire_1.png
 - Assets/Texture/UI/icon_item/WindObs_3.png
 - Assets/Texture/UI/icon_item/gem.png
 - Assets/Texture/UI/icon_item/IceObs_2.png
 - Assets/Texture/UI/icon_item/FireObs_2.png
+- Assets/Texture/UI/icon_item/Evolve_Ice.png
 - Assets/Texture/UI/icon_item/FireObs_3.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Ice_1.png
 - Assets/Texture/UI/icon_item/EarthObs_3.png
+- Assets/Texture/UI/icon_item/Evolve_Earth.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Ice_2.png
+- Assets/Texture/UI/icon_item/Upgrade_Spell_Wind_2.png
 - Assets/Texture/UI/icon_item/FireObs_1.png
+- Assets/Texture/UI/icon_item/Evolve_Spell.png
 - Assets/Texture/UI/icon_item/WindObs_2.png
+- Assets/Texture/UI/icon_item/Evolve_Weapon.png
 Dependencies: []
