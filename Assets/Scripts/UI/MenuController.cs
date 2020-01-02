@@ -9,6 +9,9 @@ public class MenuController : Singleton<MenuController>
 {
     public UIPanelHeroAlliance UIPanelHeroAlliance;
     public UiSelectLevel UiSelectLevel;
+    public UIPanelForstress UIPanelForstress;
+    public UIPanelInventory UIPanelInventory;
+    public UIPanelShop UIPanelShop;
     public Stack<UITYPE> UIType = new Stack<UITYPE>();
     public UITYPE CurrentUITYPE
     {
@@ -54,15 +57,15 @@ public class MenuController : Singleton<MenuController>
             case UITYPE.none:
                 break;
             case UITYPE.shop:
-                break;
+                return UIPanelShop;
             case UITYPE.inventory:
-                break;
+                return UIPanelInventory;
             case UITYPE.selectLevel:
                 return UiSelectLevel;
             case UITYPE.heroAlliance:
                 return UIPanelHeroAlliance;
             case UITYPE.fortress:
-                break;
+                return UIPanelForstress;
         }
         return null;
     }

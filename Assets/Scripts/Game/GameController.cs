@@ -68,12 +68,11 @@ public class GameController : MonoBehaviour
         }
         DataController.Instance.Gold += Mathf.RoundToInt(GameplayController.Instance.TotalGoldDrop);
         gameStage.HardMode++;
-        if (Level < DataController.Instance.MaxStage)
-        {
-            var gameStage2 = DataController.Instance.GetGameStage(Level + 1);
-            if (gameStage2.HardMode == 0)
-                gameStage2.HardMode = 1;
-        }
+
+        var gameStage2 = DataController.Instance.GetGameStage(Level + 1);
+        if (gameStage2.HardMode == 0)
+            gameStage2.HardMode = 1;
+
         if (Level == 5)
         {
             DataController.Instance.UnLockAlliance(Elemental.Wind);
@@ -102,8 +101,11 @@ public class GameController : MonoBehaviour
         {
             DataController.Instance.UnLockWeapon(Elemental.Fire);
         }
+        if (DataController.Instance.CurrentSelected < DataController.Instance.MaxStage)
+            DataController.Instance.CurrentSelected++;
         DataController.Instance.Save();
         WingamePanel.SetActive(true);
+
     }
     public void PauseGame()
     {

@@ -173,12 +173,21 @@ public class DataController : Singleton<DataController>
     {
         GameData = new GameData
         {
-            BaseHPLevel = 1,
-            BaseHPTier = 1,
-            BaseManaLevel = 1,
-            BaseManaTier = 1,
-            BaseShieldLevel = 1,
-            BaseShieldTier = 1,
+            Archery = new SaveGameTierLevel { Level = 1, Tier = 1 },
+            ArcherySkillTierLevel = new List<SaveGameTierLevel> { new SaveGameTierLevel { Level = 1, Tier = 1,Des = "ARCHERY_SKILL_1" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "ARCHERY_SKILL_2" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "ARCHERY_SKILL_3" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "ARCHERY_SKILL_4" }},
+            Temple = new SaveGameTierLevel { Level = 1, Tier = 1 },
+            TempleSkillTierLevel = new List<SaveGameTierLevel> { new SaveGameTierLevel { Level = 1, Tier = 1,Des = "TEMPLE_SKILL_1" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "TEMPLE_SKILL_2" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "TEMPLE_SKILL_3" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "TEMPLE_SKILL_4" }},
+            Fortress = new SaveGameTierLevel { Level = 1, Tier = 1 },
+            FortressSkillTierLevel = new List<SaveGameTierLevel> { new SaveGameTierLevel { Level = 1, Tier = 1,Des = "FORTRESS_SKILL_1" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "FORTRESS_SKILL_2" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "FORTRESS_SKILL_3" },
+            new SaveGameTierLevel { Level = 0, Tier = 1,Des = "FORTRESS_SKILL_4" }},
             CurrentStage = 1,
             gameDataWeapons = new List<GameDataWeapon> {
                 new GameDataWeapon
@@ -313,17 +322,17 @@ public class DataController : Singleton<DataController>
         }
 
         // load base
-        var bdbHP = BaseDatabases.GetBaseHpData(GameData.BaseHPTier);
-        var bdbMana = BaseDatabases.GetBaseManaData(GameData.BaseManaTier);
-        var bdbShield = BaseDatabases.GetBaseShieldData(GameData.BaseShieldTier);
+        var bdbHP = BaseDatabases.GetBaseHpData(GameData.Fortress.Level);
+        var bdbMana = BaseDatabases.GetBaseManaData(GameData.Temple.Level);
+        var bdbShield = BaseDatabases.GetBaseShieldData(GameData.Fortress.Level);
         InGameBaseData = new BaseData
         {
-            HP = bdbHP.Value1[GameData.BaseHPLevel - 1],
-            HPRegen = bdbHP.Value2[GameData.BaseHPLevel - 1],
-            Mana = bdbMana.Value1[GameData.BaseManaLevel - 1],
-            ManaRegen = bdbMana.Value2[GameData.BaseManaLevel - 1],
-            ShieldBlockValue = bdbShield.Value1[GameData.BaseShieldLevel - 1],
-            ShieldBlockChance = bdbShield.Value2[GameData.BaseShieldLevel - 1],
+            HP = bdbHP.Value1[GameData.Fortress.Level - 1],
+            HPRegen = bdbHP.Value2[GameData.Fortress.Level - 1],
+            Mana = bdbMana.Value1[GameData.Temple.Level - 1],
+            ManaRegen = bdbMana.Value2[GameData.Temple.Level - 1],
+            ShieldBlockValue = bdbShield.Value1[GameData.Fortress.Level - 1],
+            ShieldBlockChance = bdbShield.Value2[GameData.Fortress.Level - 1],
         };
 
     }
