@@ -26,12 +26,13 @@ public class TornardoSkill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemies = new List<EnemyController>();
         Tornardo = new TornardoData(Tornardo.totalTime, Tornardo.inflictedTime, Tornardo.DamagePerSecond, Tornardo.Range);
-        circleCollider2D.radius = Tornardo.Range;
+        //circleCollider2D.radius = Tornardo.Range;
+        gameObject.transform.localScale = new Vector3(Tornardo.Range,Tornardo.Range,Tornardo.Range);
     }
     public void SetTornardoData(float _totalTime, float _inflictTime, float _dps, float _range)
     {
+        enemies = new List<EnemyController>();
         Tornardo.totalTime = _totalTime;
         Tornardo.inflictedTime = _inflictTime;
         Tornardo.DamagePerSecond = _dps;
@@ -47,6 +48,10 @@ public class TornardoSkill : MonoBehaviour
                 if (enemies[i].isLive)
                 {
                     enemies[i].DealDamge(Tornardo.DamagePerSecond);
+                }
+                else
+                {
+                    enemies.RemoveAt(i);
                 }
             }
 
@@ -83,8 +88,10 @@ public class TornardoSkill : MonoBehaviour
     {
         if (_target.gameObject.tag.Equals("Enemy"))
         {
+
             Onstay = true;
             EnemyController enemy = _target.gameObject.GetComponent<EnemyController>();
+            enemy.DealDamge(Tornardo.DamagePerSecond);
             if (!enemies.Contains(enemy))
             {
                 enemies.Add(enemy);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DragAndDropSkill : Skill
 {
-    public VariableJoystick variableJoystick;
+    //public VariableJoystick variableJoystick;
     public GameObject circle;
     ObjectPoolManager poolManager;
     public string EffectName;

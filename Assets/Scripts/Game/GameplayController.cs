@@ -20,9 +20,7 @@ public class GameplayController : Singleton<GameplayController>
     }
     public void LoadDataGamePlay()
     {
-        //
-        //
-
+        Application.targetFrameRate = 60;
         ///SetUp Base first
         Tower.SetUpData();
         PlayerController= ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.CurrentSelectedWeapon.ToString() + "Hero"), Hero.transform.position, Quaternion.identity).GetComponent<PlayerController>();

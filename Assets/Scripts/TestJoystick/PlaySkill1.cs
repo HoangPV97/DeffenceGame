@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaySkill1 : Skill
 {
     public GameObject arrow;
-    public VariableJoystick variableJoystick;
+    //public VariableJoystick variableJoystick;
     private Vector2 direction;
     private float angle;
     ObjectPoolManager poolManager;
@@ -31,7 +31,6 @@ public class PlaySkill1 : Skill
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
         Speed = sww1.GetSkillSpeed(Tier, Level);
-        Debug.Log("Speed :" + Speed);
         Damage = sww1.GetDamage(Tier, Level);
         KnockBack = sww1.GetSkillAttributes("KnockbackDistance", Tier, Level);
         EffectedAoe = sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
@@ -50,10 +49,7 @@ public class PlaySkill1 : Skill
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             RotateArrow();
         }
-        if (Tower.Mana.CurrentMana > manaCost)
-        {
-            // LowMana.SetActive(false);
-        }
+        
         else
         {
             //  LowMana.SetActive(true);

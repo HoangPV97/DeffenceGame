@@ -13,12 +13,14 @@ public class Skill : MonoBehaviour
             return GameplayController.Instance.Tower;
         }
     }
+    public VariableJoystick variableJoystick;
     public Image CountdownGo;
     public float CountdownTime;
     public float manaCost;
     protected bool StartCountdown = false;
     protected float TimeLeft;
     protected Vector3 positonEffect;
+    bool isLowedMana;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -42,10 +44,20 @@ public class Skill : MonoBehaviour
             StartCountdown = false;
             CountdownGo?.gameObject.SetActive(false);
         }
+        if (Tower.Mana.CurrentMana < manaCost && !isLowedMana)
+        {
+            Debug.Log("Lowmana");
+            isLowedMana = true;
+            variableJoystick.LowMana.gameObject.SetActive(true);
+            float time = ((manaCost - Tower.Mana.CurrentMana) / Tower.Mana.RecoverManaValue) * Tower.Mana.RecoverManaTime;
+            StartCoroutine(WaitingRecoverMana(variableJoystick.LowMana.gameObject, time, false));
+            return;
+        }
     }
-    public IEnumerator WaitingActiveObject(GameObject _gameObject, float _time, bool status)
+    public IEnumerator WaitingRecoverMana(GameObject _gameObject, float _time, bool status)
     {
         yield return new WaitForSeconds(_time);
+        isLowedMana = false;
         _gameObject.SetActive(status);
     }
 

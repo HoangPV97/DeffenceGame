@@ -14,7 +14,7 @@ public class VariableJoystick : Joystick
 
     public Skill Skill;
     public Image CountDountMask;
-
+    public GameObject LowMana;
     public void SetUpData(Skill Skill)
     {
         this.Skill = Skill;
