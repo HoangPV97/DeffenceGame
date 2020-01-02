@@ -9,7 +9,7 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
     {
 
     }
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         if (Target == null || !Target.isLive)
         {

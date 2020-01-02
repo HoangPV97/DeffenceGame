@@ -32,9 +32,12 @@ public class EnemyController : MonoBehaviour
     private Vector2 DirectionMove;
     protected bool Coroutine_running;
     public Vector3 KnockBackDistance;
+    bool CheckLayerEnemy;
+    MeshRenderer renderer;
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        renderer =skeletonAnimation.GetComponent<MeshRenderer>();
         gameEffect = GetComponent<GameEffect>();
     }
     public void SetDirection(Vector2 _direction)
@@ -62,13 +65,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-
         if (previousState != CurrentState)
         {
             ChangeState();
             previousState = CurrentState;
         }
-        
+
         CheckAttack();
         if (isKnockBack)
         {
@@ -94,7 +96,7 @@ public class EnemyController : MonoBehaviour
             if (isMove)
             {
                 CurrentState = EnemyState.Run;
-                Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed) * (1-percent_slow / 100);
+                Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed) * (1 - percent_slow / 100);
             }
             else
             {
@@ -194,7 +196,7 @@ public class EnemyController : MonoBehaviour
             Coroutine_running = false;
         }));
     }
-    public virtual void Restrict( Effect _effect,Vector3 _position,float _time)
+    public virtual void Restrict(Effect _effect, Vector3 _position, float _time)
     {
         isMove = false;
         isAttack = false;
@@ -215,7 +217,7 @@ public class EnemyController : MonoBehaviour
                 switch (_effect)
                 {
                     case Effect.Stun:
-                        Restrict(Effect.Stun, _position , _time);
+                        Restrict(Effect.Stun, _position, _time);
                         break;
                     case Effect.StunBullet:
                         Restrict(Effect.StunBullet, _position, _time);
@@ -233,11 +235,11 @@ public class EnemyController : MonoBehaviour
             {
                 skeletonAnimation.timeScale = 1;
                 gameEffect.SetEffect(Effect.None);
-                if(effectObj != null)
+                if (effectObj != null)
                 {
                     Despawn(effectObj);
                     effectObj = null;
-                }              
+                }
                 isMove = true;
                 if (_effect.Equals(Effect.Freeze))
                 {
@@ -286,7 +288,7 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-    private void OnTriggerenter2D(Collider2D collider2D)
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.gameObject.tag.Equals("Tower"))
         {
@@ -294,6 +296,26 @@ public class EnemyController : MonoBehaviour
             isAttack = true;
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Attack;
+        }
+    }
+    public void OnTriggerStay2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.tag.Equals("Enemy"))
+        {
+            if (gameObject.transform.position.y < collider2D.gameObject.transform.position.y && !CheckLayerEnemy)
+            {
+                renderer.sortingOrder = 1;
+                collider2D.GetComponent<MeshRenderer>().sortingOrder = 0;
+                CheckLayerEnemy = true;
+            }
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.tag.Equals("Enemy") && CheckLayerEnemy)
+        {
+            renderer.sortingOrder = 0;
+            CheckLayerEnemy = false;
         }
     }
     private void OnEnable()
@@ -333,7 +355,7 @@ public class EnemyController : MonoBehaviour
         {
             isAttack = false;
             //if (isMove)
-                //Move(enemy.speed);
+            //Move(enemy.speed);
         }
     }
 

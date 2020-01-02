@@ -31,11 +31,12 @@ public class PlayerController : MonoBehaviour
     public float ATKspeed;
     public float BulletSpeed;
     public float CriticalDamage;
-    public float Critical_Ratio;
-    public float Knockback_Ratio;
-    public float Multishot_Ratio;
-    public float QuickShot_Ratio;
+    public int Critical_Ratio;
+    public int Knockback_Ratio;
+    public int Multishot_Ratio;
+    public int QuickShot_Ratio;
     public Vector3 Knockback_Distance;
+    public int Level;
 
     public CircleCollider2D CircleCollider2D;
     bool idleStatus;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         ATKspeed +=  (_FireRate* ATKspeed/100);
     }
-    public void SetDataWeaPon(float _damage,float _FireRate, float _critical)
+    public void SetDataWeaPon(float _damage,float _FireRate, int _critical)
     {
         ATK = ATK + (_damage * ATK/100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
