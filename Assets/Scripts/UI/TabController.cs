@@ -19,17 +19,10 @@ public class TabController : MonoBehaviour
 
     public void OnTabClick(TabItem tabItem)
     {
-        if (CurrentTabItems != tabItem)
-        {
-            if (CurrentTabItems != null)
-                CurrentTabItems.OnDisableTab();
-            tabItem.OnEnableTab();
-            CurrentTabItems = tabItem;
-            CurrentTabItems.unityEvent.Invoke();
-        }
-        else
-        {
-
-        }
+        if (CurrentTabItems != null)
+            CurrentTabItems.OnDisableTab();
+        tabItem.OnEnableTab();
+        CurrentTabItems = tabItem;
+        CurrentTabItems.unityEvent.Invoke();
     }
 }

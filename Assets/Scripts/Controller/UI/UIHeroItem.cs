@@ -37,6 +37,7 @@ public class UIHeroItem : MonoBehaviour
 
     public void OnSelected()
     {
+        Debug.Log(elemental.ToString());
         gameObject.SetActive(false);
         gameObject.SetActive(true);
         Animator.Play("HeroItemUp");
@@ -48,10 +49,10 @@ public class UIHeroItem : MonoBehaviour
     {
         gameObject.SetActive(false);
         gameObject.SetActive(true);
-        Selected[0].SetActive(false);
-        Selected[1].SetActive(false);
         Animator.Play("HeroItemDefault");
         Equip.gameObject.SetActive(false);
+        Selected[0].SetActive(false);
+        Selected[1].SetActive(false);
         string unlock = "Clear - {0}\n to \n Unlock";
         int LevelUnlock = 0;
         GameDataWeapon weapon;

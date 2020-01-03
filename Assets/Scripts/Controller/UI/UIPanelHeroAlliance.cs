@@ -98,13 +98,13 @@ public class UIPanelHeroAlliance : BaseUIView
     {
         this.isHero = isHero;
 
-        if (currentSelectedUISkillItems != null)
-            currentSelectedUISkillItems.OnUnSelect();
-        currentSelectedHero = null;
-
-        if (currentSelectedHero != null)
-            currentSelectedHero.OnUnSelect();
+        //  if (currentSelectedUISkillItems != null)
+        //      currentSelectedUISkillItems.OnUnSelect();
         currentSelectedUISkillItems = null;
+
+        //   if (currentSelectedHero != null)
+        //      currentSelectedHero.OnUnSelect();
+        currentSelectedHero = null;
 
         if (UISkillItems.Length == 0)
         {
@@ -120,6 +120,7 @@ public class UIPanelHeroAlliance : BaseUIView
 
         DG.Tweening.DOVirtual.DelayedCall(0.02f, () =>
         {
+            Debug.Log("?????????????????");
             UIHeroItems[0].OnSelected();
         });
 

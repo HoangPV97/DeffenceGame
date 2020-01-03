@@ -84,6 +84,7 @@ public class UISkillItem : MonoBehaviour
     // Start is called before the first frame update
     public void SetUpdata(string SkillID)
     {
+        OnUnSelect();
         Unlock[0].gameObject.SetActive(false);
         Unlock[1].gameObject.SetActive(false);
         Buy.gameObject.SetActive(false);
