@@ -437,6 +437,10 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataAlliance(elemental);
         if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
             gdw.WeaponTierLevel.Level = 1;
+        var SkillList = DefaultData.GetAllianceSkillID(elemental);
+        string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public void UnLockWeapon(Elemental elemental)
@@ -444,6 +448,10 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataWeapon(elemental);
         if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
             gdw.WeaponTierLevel.Level = 1;
+        var SkillList = DefaultData.GetWeaponSkillID(elemental);
+        string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public SaveGameTierLevel GetGameSkillData(string SkillID)

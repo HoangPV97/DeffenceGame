@@ -6,7 +6,7 @@ using TMPro;
 public class UiSelectLevel : BaseUIView
 {
     public UISelectLevelItem[] uiSelectLevelItems;
-
+    public Animator anim;
     [Header("Level Detail")]
     public GameObject LevelDetail;
     public TextMeshProUGUI txtLevel;
@@ -24,7 +24,7 @@ public class UiSelectLevel : BaseUIView
     }
     void OnBtnCloseLevelDetailClick()
     {
-        LevelDetail.SetActive(false);
+        OnLevelDetailHide();
     }
     public UISelectLevelItem GetUISelectLevelItem(int Level)
     {
@@ -48,8 +48,8 @@ public class UiSelectLevel : BaseUIView
 
     public void SetUpDataUILevelDetail(int Level)
     {
+        OnLevelDetailShow();
         GetUISelectLevelItem(CurrentLevel).OnShowAnimation(false);
-        LevelDetail.SetActive(true);
         CurrentLevel = Level;
         GetUISelectLevelItem(CurrentLevel).OnShowAnimation(true);
         foreach (Transform child in ItemContain)
@@ -103,7 +103,19 @@ public class UiSelectLevel : BaseUIView
         SetUpData();
     }
 
-
+    public void OnLevelDetailHide()
+    {
+        anim.SetTrigger("HidePanelSetting");
+        DG.Tweening.DOVirtual.DelayedCall(0.3f, () =>
+        {
+            LevelDetail.SetActive(false);
+        }, false);
+    }
+    public void OnLevelDetailShow()
+    {
+        LevelDetail.SetActive(true);
+        anim.SetTrigger("ShowPanelSetting");
+    }
 
     #endregion
 }

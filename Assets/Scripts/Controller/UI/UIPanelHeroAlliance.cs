@@ -10,6 +10,7 @@ public class UIPanelHeroAlliance : BaseUIView
 {
     [Header("Hero")]
     public GameObject PanelHero;
+    public TabController TabController;
     public TextMeshProUGUI txtHeroName, txtLevel;
     public TextMeshProUGUI txtDamage, txtFireRate, txtEXP;
     public Image PBDamage, PBFireRate, PBEXP;
@@ -37,8 +38,7 @@ public class UIPanelHeroAlliance : BaseUIView
     #endregion
     void Awake()
     {
-        UIHeroItems = GetComponentsInChildren<UIHeroItem>();
-        UISkillItems = GetComponentsInChildren<UISkillItem>();
+
         BtnUpgrade.SetUpEvent(Upgradehero);
         BtnEquip.SetUpEvent(OnEquip);
         BtnUnEquip.SetUpEvent(OnUnEquip);
@@ -96,45 +96,33 @@ public class UIPanelHeroAlliance : BaseUIView
 
     public void SetUpData(bool isHero = true)
     {
-        OnShow();
-        currentSelectedHero = null;
         this.isHero = isHero;
-        bool showAliiance = false;
 
-        for (int i = 0; i < UIHeroItems.Length; i++)
-        {
-            UIHeroItems[i].SetupData();
-            if (isHero)
-            {
-                if (UIHeroItems[i].elemental == DataController.Instance.CurrentSelectedWeapon)
-                {
-                    UIHeroItems[i].OnSelected();
-                }
-            }
-            else
-            {
-                if (DataController.Instance.ElementalSlot1 != Elemental.None && UIHeroItems[i].elemental == DataController.Instance.ElementalSlot1)
-                {
-                    UIHeroItems[i].OnSelected();
-                    showAliiance = true;
-                    break;
-                }
-                else if (DataController.Instance.ElementalSlot2 != Elemental.None && UIHeroItems[i].elemental == DataController.Instance.ElementalSlot2)
-                {
-                    UIHeroItems[i].OnSelected();
-                    showAliiance = true;
-                    break;
-                }
-            }
-        }
+        if (currentSelectedUISkillItems != null)
+            currentSelectedUISkillItems.OnUnSelect();
+        currentSelectedHero = null;
 
-        if (!isHero && !showAliiance)
-            UIHeroItems[0].OnSelected();
+        if (currentSelectedHero != null)
+            currentSelectedHero.OnUnSelect();
+        currentSelectedUISkillItems = null;
+
         if (UISkillItems.Length == 0)
         {
             UISkillItems = GetComponentsInChildren<UISkillItem>();
         }
-        UISkillItems[0].OnBtnSelectClick();
+        if (UIHeroItems.Length == 0)
+            UIHeroItems = GetComponentsInChildren<UIHeroItem>();
+
+        for (int i = 0; i < UIHeroItems.Length; i++)
+        {
+            UIHeroItems[i].SetupData();
+        }
+
+        DG.Tweening.DOVirtual.DelayedCall(0.02f, () =>
+        {
+            UIHeroItems[0].OnSelected();
+        });
+
     }
     public void OnSelectSkill(UISkillItem uISkillItem)
     {
@@ -163,6 +151,7 @@ public class UIPanelHeroAlliance : BaseUIView
             txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
         else
             txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
+
         GameDataWeapon data1;
         if (isHero)
             data1 = DataController.Instance.GetGameDataWeapon(elemental);
@@ -173,15 +162,14 @@ public class UIPanelHeroAlliance : BaseUIView
         if (isHero)
             dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
         else
-            // dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier);
             dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
 
         BtnUpgrade.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
+
         if (isHero)
         {
             BtnEquip.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1 && data1.Type != DataController.Instance.CurrentSelectedWeapon);
             BtnUnEquip.gameObject.SetActive(false);
-
         }
         else
         {
@@ -216,6 +204,8 @@ public class UIPanelHeroAlliance : BaseUIView
         txtEXP.text = data1.EXP.ToString();
         PBEXP.fillAmount = data1.EXP * 1f / dataBase.Cost[dataBase.Cost.Count - 1];
 
+        if (UISkillItems.Length == 0)
+            UISkillItems = GetComponentsInChildren<UISkillItem>();
         /// Set up Skill
         if (isHero)
         {
@@ -234,6 +224,7 @@ public class UIPanelHeroAlliance : BaseUIView
             }
         }
 
+        UISkillItems[0].OnBtnSelectClick();
     }
 
     public void OnUpgradeSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)

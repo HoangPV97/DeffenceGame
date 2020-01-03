@@ -46,6 +46,12 @@ public class TabItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IP
 
     public void OnTabClick()
     {
+        if (TabController == null)
+        {
+            TabController = transform.parent.parent.GetComponent<TabController>();
+            Image = GetComponent<Image>();
+            text = GetComponentInChildren<TextMeshProUGUI>();
+        }
         TabController.OnTabClick(this);
     }
 

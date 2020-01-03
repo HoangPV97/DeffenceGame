@@ -77,7 +77,7 @@ public class MenuController : Singleton<MenuController>
 
     public void OnBtnHeroClick()
     {
-        UIPanelHeroAlliance.SetUpData(true);
+        UIPanelHeroAlliance.TabController.TabItems[0].OnTabClick();
     }
 
     public void OnBtnMainPlayClick()

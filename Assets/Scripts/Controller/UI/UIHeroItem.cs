@@ -28,6 +28,8 @@ public class UIHeroItem : MonoBehaviour
 
     public void OnUnSelect()
     {
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         Animator.Play("HeroItemDown");
         Selected[0].SetActive(false);
         Selected[1].SetActive(false);
@@ -35,6 +37,8 @@ public class UIHeroItem : MonoBehaviour
 
     public void OnSelected()
     {
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         Animator.Play("HeroItemUp");
         MenuController.Instance.UIPanelHeroAlliance.OnSelectHero(this);
         Selected[0].SetActive(true);

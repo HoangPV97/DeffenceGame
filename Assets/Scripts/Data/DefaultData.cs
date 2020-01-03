@@ -83,6 +83,21 @@ public class DefaultData : ScriptableObject
         return null;
     }
 
+    public List<string> GetArcherySkillID()
+    {
+        return new List<string>() { "ARCHERY_SKILL_1", "ARCHERY_SKILL_2", "ARCHERY_SKILL_3", "ARCHERY_SKILL_4" };
+    }
+
+    public List<string> GetTempleSkillID()
+    {
+        return new List<string>() { "ARCHERY_SKILL_1", "ARCHERY_SKILL_2", "ARCHERY_SKILL_3", "ARCHERY_SKILL_4" };
+    }
+
+    public List<string> GetFortressSkillID()
+    {
+        return new List<string>() { "ARCHERY_SKILL_1", "ARCHERY_SKILL_2", "ARCHERY_SKILL_3", "ARCHERY_SKILL_4" };
+    }
+
     public List<string> GetAllianceSkillID(Elemental elemental)
     {
         switch (elemental)

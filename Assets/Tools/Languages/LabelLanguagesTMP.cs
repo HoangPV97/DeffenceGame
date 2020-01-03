@@ -4,11 +4,11 @@ using UnityEngine;
 using TMPro;
 public class LabelLanguagesTMP : LabelLanguages
 {
-    private TextMeshProUGUI current_label;
+    private TextMeshProUGUI current_labelTMP;
 
     void Awake()
     {
-        current_label = this.gameObject.GetComponent<TextMeshProUGUI>();
+        current_labelTMP = this.gameObject.GetComponent<TextMeshProUGUI>();
         Language.AddLableLanguage(this);
     }
 
@@ -20,14 +20,14 @@ public class LabelLanguagesTMP : LabelLanguages
     //Hàm gán lại text cho label
     public virtual void SetText()
     {
-        if (current_label == null)
+        if (current_labelTMP == null)
         {
             Debug.LogError("Null " + this.gameObject.name);
         }
         else
         {
             string str = Language.GetKey(KEY);
-            current_label.text = str.Trim();
+            current_labelTMP.text = str.Trim();
         }
     }
     //Lúc chuyển scene sẽ remove hết list

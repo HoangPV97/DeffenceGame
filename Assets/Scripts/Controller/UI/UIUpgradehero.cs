@@ -9,6 +9,7 @@ public class UIUpgradehero : BaseUIView
     public TextMeshProUGUI txtHeroName, txtHeroLevel;
     public TextMeshProUGUI txtDamage, txtFireRate, txtEXP;
     public Image PBDamage, PBFireRate, PBEXP;
+    public Image PBDamage2, PBFireRate2, PBEXP2;
     public Image ElementalIcon;
     public UIButton BtnClose;
     public UiItem[] uiItems;
@@ -96,10 +97,8 @@ public class UIUpgradehero : BaseUIView
             txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
         }
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
-        txtDamage.text = dataBase.ATK[Level - 1].ToString();
-        PBDamage.fillAmount = dataBase.ATK[Level - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
-        txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
-        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
+
+        SetTextAttribute(Level, 0);
         currentExp = data1.EXP;
         AddExp = 0;
         GoldCost = 0;
@@ -148,6 +147,23 @@ public class UIUpgradehero : BaseUIView
             txtHeroLevel.text = "Lv." + data1.WeaponTierLevel.Level;
         else
             txtHeroLevel.text = string.Format("Lv.{0} <color=#65FF00FF>(+{1})</color>", data1.WeaponTierLevel.Level, addLevel);
+        SetTextAttribute(data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1, addLevel);
+    }
+
+    public void SetTextAttribute(int Level, int addedLevel)
+    {
+        if (addedLevel > 0)
+            txtDamage.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.ATK[Level - 1], dataBase.ATK[Level + addedLevel - 1]);
+        else
+            txtDamage.text = dataBase.ATK[Level - 1].ToString();
+        PBDamage.fillAmount = dataBase.ATK[Level - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
+        PBDamage2.fillAmount = dataBase.ATK[Level + addedLevel - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
+        if (addedLevel > 0)
+            txtFireRate.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.ATKspeed[Level - 1], dataBase.ATKspeed[Level + addedLevel - 1]);
+        else
+            txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
+        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
+        PBFireRate2.fillAmount = dataBase.ATKspeed[Level + addedLevel - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
     }
 
     public void ResetItemSlot()

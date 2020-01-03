@@ -2,16 +2,16 @@
 public class TabController : MonoBehaviour
 {
     // Start is called before the first frame update
-    TabItem[] TabItems;
+    public TabItem[] TabItems;
     TabItem CurrentTabItems;
     void Awake()
     {
-        TabItems = GetComponentsInChildren<TabItem>();
+        //  TabItems = GetComponentsInChildren<TabItem>();
     }
 
     private void Start()
     {
-        TabItems[0].OnTabClick();
+        //  TabItems[0].OnTabClick();
         for (int i = 1; i < TabItems.Length; i++)
             TabItems[i].OnDisableTab();
     }
