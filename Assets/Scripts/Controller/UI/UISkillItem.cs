@@ -24,6 +24,8 @@ public class UISkillItem : MonoBehaviour
     public TextMeshProUGUI[] txtAttribute, txtAttributeValue;
     [SerializeField]
     SaveGameTierLevel sgtl;
+    [SerializeField]
+    bool TypeUI2 = false;
     public bool isHero
     {
         get
@@ -48,11 +50,14 @@ public class UISkillItem : MonoBehaviour
 
     public void OnUnSelect()
     {
-        Background.SetActive(false);
-        Selected[0].SetActive(false);
-        Selected[1].SetActive(false);
-        var rt = BtnSelect.gameObject.GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(0, rt.anchoredPosition.y);
+        if (!TypeUI2)
+        {
+            Background.SetActive(false);
+            Selected[0].SetActive(false);
+            Selected[1].SetActive(false);
+            var rt = BtnSelect.gameObject.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(0, rt.anchoredPosition.y);
+        }
     }
 
     public void OnBtnSelectClick()
@@ -78,12 +83,16 @@ public class UISkillItem : MonoBehaviour
 
     private void OnBtnUpgradeClick()
     {
-        MenuController.Instance.UIPanelHeroAlliance.OnUpgradeSkill(skillData, sgtl);
+        if (MenuController.Instance.UIPanelHeroAlliance.gameObject.activeSelf)
+            MenuController.Instance.UIPanelHeroAlliance.OnUpgradeSkill(skillData, sgtl);
+        else if (MenuController.Instance.UIPanelForstress.gameObject.activeSelf)
+            MenuController.Instance.UIPanelForstress.OnUpgradeSkill(skillData, sgtl);
     }
 
     // Start is called before the first frame update
-    public void SetUpdata(string SkillID)
+    public void SetUpdata(string SkillID, bool typeUI2 = false)
     {
+        TypeUI2 = typeUI2;
         OnUnSelect();
         Unlock[0].gameObject.SetActive(false);
         Unlock[1].gameObject.SetActive(false);
@@ -162,12 +171,20 @@ public class UISkillItem : MonoBehaviour
                     txtAttribute[1].transform.parent.gameObject.SetActive(true);
                     txtAttribute[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute);
                     txtAttributeValue[1].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1].ToString();
+                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Chance"))
+                    {
+                        txtAttributeValue[1].text += "%";
+                    }
                 }
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
                     txtAttribute[2].transform.parent.gameObject.SetActive(true);
                     txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
                     txtAttributeValue[2].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1].ToString();
+                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Chance"))
+                    {
+                        txtAttributeValue[2].text += "%";
+                    }
                 }
             }
         }
@@ -186,6 +203,10 @@ public class UISkillItem : MonoBehaviour
                     txtAttribute[0].transform.parent.gameObject.SetActive(true);
                     txtAttribute[0].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute);
                     txtAttributeValue[0].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1].ToString();
+                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Chance"))
+                    {
+                        txtAttributeValue[0].text += "%";
+                    }
                 }
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 2)
                 {
@@ -194,14 +215,22 @@ public class UISkillItem : MonoBehaviour
                     txtAttribute[1].transform.parent.gameObject.SetActive(true);
                     txtAttribute[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
                     txtAttributeValue[1].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1].ToString();
+                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Chance"))
+                    {
+                        txtAttributeValue[1].text += "%";
+                    }
                 }
                 if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count >= 3)
                 {
                     if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes.Count == 3)
                         txtDesPasive.text = string.Format(Language.GetKey("Des1_" + skillData.SkillID), skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1], skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1], skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Value[Level - 1]);
                     txtAttribute[2].transform.parent.gameObject.SetActive(true);
-                    txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
+                    txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Attribute);
                     txtAttributeValue[2].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Value[Level - 1].ToString();
+                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[2].Attribute.Contains("Chance"))
+                    {
+                        txtAttributeValue[2].text += "%";
+                    }
                 }
             }
         }

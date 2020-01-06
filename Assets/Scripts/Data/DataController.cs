@@ -327,12 +327,16 @@ public class DataController : Singleton<DataController>
         var bdbShield = BaseDatabases.GetBaseShieldData(GameData.Fortress.Level);
         InGameBaseData = new BaseData
         {
-            HP = bdbHP.Value1[GameData.Fortress.Level - 1],
-            HPRegen = bdbHP.Value2[GameData.Fortress.Level - 1],
-            Mana = bdbMana.Value1[GameData.Temple.Level - 1],
-            ManaRegen = bdbMana.Value2[GameData.Temple.Level - 1],
-            ShieldBlockValue = bdbShield.Value1[GameData.Fortress.Level - 1],
-            ShieldBlockChance = bdbShield.Value2[GameData.Fortress.Level - 1],
+            HP = bdbHP.GetAttributeValue("HP", GameData.Fortress.Level),
+            HPRegen = bdbHP.GetAttributeValue("HPRegen", GameData.Fortress.Level),
+            Mana = bdbMana.GetAttributeValue("Mana", GameData.Temple.Level),
+            ManaRegen = bdbMana.GetAttributeValue("ManaRegen", GameData.Temple.Level),
+            ShieldBlockValue = bdbMana.GetAttributeValue("ShieldBlockValue", GameData.Fortress.Level),
+            ShieldBlockChance = bdbMana.GetAttributeValue("ShieldBlockChance", GameData.Fortress.Level),
+            //   Mana = bdbMana.Value1[GameData.Temple.Level - 1],
+            //  ManaRegen = bdbMana.Value2[GameData.Temple.Level - 1],
+            //  ShieldBlockValue = bdbShield.Value1[GameData.Fortress.Level - 1],
+            //  ShieldBlockChance = bdbShield.Value2[GameData.Fortress.Level - 1],
         };
 
     }
@@ -373,7 +377,7 @@ public class DataController : Singleton<DataController>
         gdw.EXP = 0;
         gdw.WeaponTierLevel.Level = 1;
         gdw.WeaponTierLevel.Tier++;
-        var SkillList = DefaultData.GetWeaponSkillID(elemental);
+        var SkillList = GetWeaponSkillID(elemental);
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
@@ -385,7 +389,7 @@ public class DataController : Singleton<DataController>
         gdw.EXP = 0;
         gdw.WeaponTierLevel.Level = 1;
         gdw.WeaponTierLevel.Tier++;
-        var SkillList = DefaultData.GetAllianceSkillID(elemental);
+        var SkillList = GetAllianceSkillID(elemental);
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
@@ -437,7 +441,7 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataAlliance(elemental);
         if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
             gdw.WeaponTierLevel.Level = 1;
-        var SkillList = DefaultData.GetAllianceSkillID(elemental);
+        var SkillList = GetAllianceSkillID(elemental);
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
@@ -448,7 +452,7 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataWeapon(elemental);
         if (gdw.WeaponTierLevel.Tier == 1 && gdw.WeaponTierLevel.Level == 0)
             gdw.WeaponTierLevel.Level = 1;
-        var SkillList = DefaultData.GetWeaponSkillID(elemental);
+        var SkillList = GetWeaponSkillID(elemental);
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
@@ -456,14 +460,35 @@ public class DataController : Singleton<DataController>
 
     public SaveGameTierLevel GetGameSkillData(string SkillID)
     {
-        /// SkillID = WEAPON_ICE_SKILL_1 || SkillID = ALLIANCE_ICE_SKILL_1
+        /// SkillID = WEAPON_ICE_SKILL_1 || SkillID = ALLIANCE_ICE_SKILL_1 || "BASE_ARCHERY_SKILL_1"
         /// 
         var skillInfo = SkillID.Split('_');
         Elemental e = ConvertToElement(skillInfo[1]);
         if (skillInfo[0] == "WEAPON")
             return GetGameDataWeapon(e).GetSkillTierLevel(SkillID);
-        else
+        else if (skillInfo[0] == "ALLIANCE")
             return GetGameAlliance(e).GetSkillTierLevel(SkillID);
+        else if (skillInfo[0] == "BASE" && skillInfo[1] == "ARCHERY")
+        {
+            for (int i = 0; i < GameData.ArcherySkillTierLevel.Count; i++)
+            {
+                if (GameData.ArcherySkillTierLevel[i].Des == SkillID)
+                    return GameData.ArcherySkillTierLevel[i];
+            }
+            SaveGameTierLevel sgtl = new SaveGameTierLevel
+            {
+                Des = SkillID,
+                Tier = 1,
+                Level = 0
+            };
+            if (int.Parse(skillInfo[3]) == 1)
+            {
+                sgtl.Level = 1;
+            }
+            GameData.ArcherySkillTierLevel.Add(sgtl);
+            return sgtl;
+        }
+        return null;
     }
 
     public Elemental ConvertToElement(string srt)
@@ -481,6 +506,63 @@ public class DataController : Singleton<DataController>
         }
         return Elemental.None;
     }
+
+    public List<string> GetWeaponSkillID(Elemental elemental)
+    {
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                return new List<string>() { "WEAPON_WIND_SKILL_1", "WEAPON_WIND_SKILL_2", "WEAPON_WIND_SKILL_3", "WEAPON_WIND_SKILL_4" };
+            case Elemental.Ice:
+                return new List<string>() { "WEAPON_ICE_SKILL_1", "WEAPON_ICE_SKILL_2", "WEAPON_ICE_SKILL_3", "WEAPON_ICE_SKILL_4" };
+            case Elemental.Earth:
+                return new List<string>() { "WEAPON_EARTH_SKILL_1", "WEAPON_EARTH_SKILL_2", "WEAPON_EARTH_SKILL_3", "WEAPON_EARTH_SKILL_4" };
+            case Elemental.Fire:
+                return new List<string>() { "WEAPON_FIRE_SKILL_1", "WEAPON_FIRE_SKILL_2", "WEAPON_FIRE_SKILL_3", "WEAPON_FIRE_SKILL_4" };
+        }
+        return null;
+    }
+
+    public List<string> GetArcherySkillID()
+    {
+        return new List<string>() { "BASE_ARCHERY_SKILL_1", "BASE_ARCHERY_SKILL_2", "BASE_ARCHERY_SKILL_3", "BASE_ARCHERY_SKILL_4" };
+    }
+
+    public List<string> GetTempleSkillID()
+    {
+        return new List<string>() { "BASE_ARCHERY_SKILL_1", "BASE_ARCHERY_SKILL_2", "BASE_ARCHERY_SKILL_3", "BASE_ARCHERY_SKILL_4" };
+    }
+
+    public List<string> GetFortressSkillID()
+    {
+        return new List<string>() { "ARCHERY_SKILL_1", "ARCHERY_SKILL_2", "ARCHERY_SKILL_3", "ARCHERY_SKILL_4" };
+    }
+
+    public List<string> GetAllianceSkillID(Elemental elemental)
+    {
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                return new List<string>() { "ALLIANCE_WIND_SKILL_1", "ALLIANCE_WIND_SKILL_2", "ALLIANCE_WIND_SKILL_3", "ALLIANCE_WIND_SKILL_4" };
+            case Elemental.Ice:
+                return new List<string>() { "ALLIANCE_ICE_SKILL_1", "ALLIANCE_ICE_SKILL_2", "ALLIANCE_ICE_SKILL_3", "ALLIANCE_ICE_SKILL_4" };
+            case Elemental.Earth:
+                return new List<string>() { "ALLIANCE_EARTH_SKILL_1", "ALLIANCE_EARTH_SKILL_2", "ALLIANCE_EARTH_SKILL_3", "ALLIANCE_EARTH_SKILL_4" };
+            case Elemental.Fire:
+                return new List<string>() { "ALLIANCE_FIRE_SKILL_1", "ALLIANCE_FIRE_SKILL_2", "ALLIANCE_FIRE_SKILL_3", "ALLIANCE_FIRE_SKILL_4" };
+        }
+        return null;
+    }
+
+    public SaveGameTierLevel GetArcheryData()
+    {
+        return GameData.Archery;
+    }
+
 }
 
 

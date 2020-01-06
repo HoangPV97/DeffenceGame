@@ -210,7 +210,7 @@ public class UIPanelHeroAlliance : BaseUIView
         /// Set up Skill
         if (isHero)
         {
-            var SkillList = DataController.Instance.DefaultData.GetWeaponSkillID(elemental);
+            var SkillList = DataController.Instance.GetWeaponSkillID(elemental);
             for (int i = 0; i < UISkillItems.Length; i++)
             {
                 UISkillItems[i].SetUpdata(SkillList[i]);
@@ -218,7 +218,7 @@ public class UIPanelHeroAlliance : BaseUIView
         }
         else
         {
-            var SkillList = DataController.Instance.DefaultData.GetAllianceSkillID(elemental);
+            var SkillList = DataController.Instance.GetAllianceSkillID(elemental);
             for (int i = 0; i < UISkillItems.Length; i++)
             {
                 UISkillItems[i].SetUpdata(SkillList[i]);

@@ -28,29 +28,40 @@ public class BaseData
 public class BaseDatabase
 {
     public int Tier;
-    public float[] Value1;
-    public float[] Value2;
+    public List<SkillAttribute> Attributes;
     public int[] UpgradeLevelCost;
     public List<Item> EvolutionCost;
+    public float GetAttributeValue(string attribute, int Level)
+    {
+        if (Level == 0)
+            Level = 1;
+        for (int i = 0; i < Attributes.Count; i++)
+        {
+            if (Attributes[i].Attribute == attribute)
+                return Attributes[i].Value[Level - 1];
+        }
+        return 0;
+    }
 }
 
 public class BaseDatabases
 {
-    public List<BaseDatabase> BaseHpData;
-    public List<BaseDatabase> BaseManaData;
+    public List<BaseDatabase> BaseFortressData;
+    public List<BaseDatabase> BaseTempleData;
     public List<BaseDatabase> BaseShieldData;
+    public List<BaseDatabase> BaseArcheryData;
     public BaseDatabase GetBaseHpData(int tier)
     {
-        for (int i = 0; i < BaseHpData.Count; i++)
-            if (BaseHpData[i].Tier == tier)
-                return BaseHpData[i];
+        for (int i = 0; i < BaseFortressData.Count; i++)
+            if (BaseFortressData[i].Tier == tier)
+                return BaseFortressData[i];
         return null;
     }
     public BaseDatabase GetBaseManaData(int tier)
     {
-        for (int i = 0; i < BaseManaData.Count; i++)
-            if (BaseManaData[i].Tier == tier)
-                return BaseManaData[i];
+        for (int i = 0; i < BaseTempleData.Count; i++)
+            if (BaseTempleData[i].Tier == tier)
+                return BaseTempleData[i];
         return null;
     }
     public BaseDatabase GetBaseShieldData(int tier)
@@ -58,6 +69,13 @@ public class BaseDatabases
         for (int i = 0; i < BaseShieldData.Count; i++)
             if (BaseShieldData[i].Tier == tier)
                 return BaseShieldData[i];
+        return null;
+    }
+    public BaseDatabase GetBaseArcheryData(int tier)
+    {
+        for (int i = 0; i < BaseArcheryData.Count; i++)
+            if (BaseArcheryData[i].Tier == tier)
+                return BaseArcheryData[i];
         return null;
     }
 }

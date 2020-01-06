@@ -67,8 +67,6 @@ Des1_ALLIANCE_WIND_SKILL_1_2,Call a Thunderbolt at the target location. Deals da
 Des1_ALLIANCE_WIND_SKILL_1_3,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
 Name_ALLIANCE_WIND_SKILL_2,Thunderbolt
 Des1_ALLIANCE_WIND_SKILL_2,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
-#REF!,#REF!
-#REF!,#REF!
 Name_ALLIANCE_WIND_SKILL_3,Thunderbolt
 Des1_ALLIANCE_WIND_SKILL_3,Call a Thunderbolt at the target location. Deals damage and stuns all enemies in that area.
 Name_ALLIANCE_WIND_SKILL_4,Thunderbolt
@@ -95,8 +93,8 @@ Name_ALLIANCE_EARTH_SKILL_3,Reef
 Des1_ALLIANCE_EARTH_SKILL_3,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
 Name_ALLIANCE_EARTH_SKILL_4,Reef
 Des1_ALLIANCE_EARTH_SKILL_4,Create an Earthquake at the target location. Deals damage {0} and stuns {1} all enemies in that area.
-,#REF!
-Name_ALLIANCE_FIRE_SKILL_1,
+,
+Name_ALLIANCE_FIRE_SKILL_1,Volcano
 Des1_ALLIANCE_FIRE_SKILL_1_1,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
 Des1_ALLIANCE_FIRE_SKILL_1_2,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
 Des1_ALLIANCE_FIRE_SKILL_1_3,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
@@ -106,6 +104,33 @@ Name_ALLIANCE_FIRE_SKILL_3,Volcano
 Name_ALLIANCE_FIRE_SKILL_4,Volcano
 Des1_ALLIANCE_FIRE_SKILL_4,Create an Explosion at the target location. This explosion will leave a burning area and cause damage {0}
 ,
+Name_BASE_ARCHERY_SKILL_1,Crittical Arrow
+Des1_BASE_ARCHERY_SKILL_1,Increase Crit Rate of Hero
+Name_BASE_ARCHERY_SKILL_2,Great Arrow
+Des1_BASE_ARCHERY_SKILL_2,Increase Repel Rate of Hero
+Name_BASE_ARCHERY_SKILL_3,The Culling
+Des1_BASE_ARCHERY_SKILL_3,Will strike twice rate. The first shot deals less damage than the second shot.
+Name_BASE_ARCHERY_SKILL_4,Volley
+Des1_BASE_ARCHERY_SKILL_4,"Basic attacks on-attack fire additional bolts at up to 2 enemies in front of you. Bolts can Crit, Repel and apply The Culling's Effect."
+,
+Name_BASE_TEMPLE_SKILL_1,Jewel of the Sea
+Des1_BASE_TEMPLE_SKILL_1,Increase Maximum Mana of Hero.
+Name_BASE_TEMPLE_SKILL_2,Endless Energy
+Des1_BASE_TEMPLE_SKILL_2,Increase Base Mana Regeneration.
+Name_BASE_TEMPLE_SKILL_3,Ultimate Magic
+Des1_BASE_TEMPLE_SKILL_3,Increase Cooldown Reduction.
+Name_BASE_TEMPLE_SKILL_4,Grand Wizard
+Des1_BASE_TEMPLE_SKILL_4,Increase all spells damage.
+,
+Name_BASE_FORTRESS_SKILL_1,Immortal
+Des1_BASE_FORTRESS_SKILL_1,Increase Shield's stat of Tower
+Name_BASE_FORTRESS_SKILL_2,Young River
+Des1_BASE_FORTRESS_SKILL_2,Increase HP Regeneration of Tower
+Name_BASE_FORTRESS_SKILL_3,Death's Sleep
+Des1_BASE_FORTRESS_SKILL_3,Tower can block damage.
+Name_BASE_FORTRESS_SKILL_4,The Firm
+Des1_BASE_FORTRESS_SKILL_4,"Increase all stats of Tower. (HP, Shield, Block)"
+,
 Shop,Shop
 Inventory,Inventory
 Select_Level,Select Level
@@ -113,32 +138,7 @@ Hero_Alliance,Collection
 Forstress,Fortress
 Level_Detail,Level Detail
 Rewards,Rewards
-Play,Paly
+Play,Play
 Easy,Normal
 Normal,Nightmare
 Hard,Hellish
-Hero,Hero
-Alliance,Alliance
-Upgrade,Upgrade
-UnEquip,Unequip
-Equiped,Equiped
-Evolve,Evolve
-Active,Active
-Passive,Passive
-Damage,Damage
-CoolDown,Cooldown
-FireRate,FireRate
-Level,Level 
-Upgrade_Title,Upgrade Hero
-Upgrade_Des,Upgrade
-Upgrade_Skill_Title,Upgrade Skill
-Evolve_Skill_Title,Evolution
-Evolve_Hero_Title,Evolution Hero
-,
-KnockbackDistance,Knockback Distance
-KnockbackDuration,Knockback Duration
-EffectedAoe,Effected AOE
-TimeEffect,Time Effect
-IncreaseFireRate,Increase Fire Rate
-IncreaseDamage,Increase Damage
-IncreaseCrit,Increase Crit

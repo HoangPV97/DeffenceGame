@@ -109,6 +109,7 @@ public class BotUIButton : MonoBehaviour, IPointerClickHandler
                 MenuController.Instance.OnHideRightCurrentUI();
                 MenuController.Instance.OnShowFromLeft((UITYPE)Type);
             }
+            BottomBarController.Instance.SuspendAllBotButton();
         }
     }
     public void SetUpEvent(UnityAction action, int soundIndex = 0)
