@@ -8,13 +8,7 @@ public class AgileSkill : Skill
     public float FireRate;
     [SerializeField]
     SkillWeaponWind3 sww3;
-    PlayerController playerController
-    {
-        get
-        {
-            return GameplayController.Instance.PlayerController;
-        }
-    }
+
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         this.LevelSkill = Level;

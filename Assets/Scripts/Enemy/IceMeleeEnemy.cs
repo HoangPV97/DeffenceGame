@@ -21,7 +21,7 @@ public class IceMeleeEnemy : EnemyController,IIceEffectable
     {
             if (Tower != null)
             {
-                Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+                Tower.TakeDamage(enemy.damage);
             }
     }
 

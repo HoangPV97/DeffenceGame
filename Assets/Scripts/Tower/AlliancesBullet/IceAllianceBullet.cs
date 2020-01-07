@@ -5,6 +5,7 @@ using UnityEngine;
 public class IceAllianceBullet : BulletController
 {
     private float number_Bullet;
+    private float percent_Slow = 20;
     private void Start()
     {
         elementalBullet = Elemental.Ice;
@@ -22,6 +23,7 @@ public class IceAllianceBullet : BulletController
         {
             EnemyController enemy = _Target.GetComponent<EnemyController>();
             enemy.gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
+            enemy.Deal_Slow_Effect(2f, percent_Slow);
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
             {

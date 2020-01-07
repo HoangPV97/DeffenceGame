@@ -14419,8 +14419,10 @@ MonoBehaviour:
     _speed: 0
     _damage: 50
     _targetTag: Enemy
+    _knockbackDistance: 0
+    _critical_Damage: 0
   SeekTarget: 0
-  elementalBullet: 0
+  elementalBullet: 1
   damagePlus: 5
   explosion: 0
   bounce: 0
@@ -14430,9 +14432,12 @@ MonoBehaviour:
   critical: 0
   multishot: 0
   quickhand: 0
+  knockback: 0
   stun: 0
   nearEnemy: {fileID: 0}
-  stunTime: 3
+  EffectedTime: 0
+  Damage: 0
+  EffectedAoe: 0
 --- !u!58 &9008892596521694210
 CircleCollider2D:
   m_ObjectHideFlags: 0

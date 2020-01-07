@@ -106,7 +106,16 @@ MonoBehaviour:
       "EffectedAoe",           "Value": [             10,             20,             30           ]         }       ]     }   ]
       }'
   - SkillID: WEAPON_WIND_SKILL_4
-    SkillText: '{"SkillID":"WEAPON_WIND_SKILL_4","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"IncreaseFireRate","Value":[10]},{"Attribute":"IncreaseDamage","Value":[20]},{"Attribute":"IncreaseCrit","Value":[10]}]}],"SkillType":1}'
+    SkillText: '{   "SkillID": "WEAPON_WIND_SKILL_4",   "baseSkills": [     {       "Tier":
+      1,       "SkillAttributes": [         {           "Attribute": "IncreaseFireRate",           "Value":
+      [             10           ]         },         {           "Attribute": "IncreaseDamage",           "Value":
+      [             20           ]         },         {           "Attribute": "IncreaseCritical",           "Value":
+      [             10           ]         }       ],       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         },         {           "Type":
+      1,           "Quality": 2000         }       ]     }   ],   "SkillType": 1 }'
   - SkillID: WEAPON_WIND_SKILL_3
     SkillText: '{"SkillID":"WEAPON_WIND_SKILL_3","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"InscreaFireRate","Value":[2,4,6,8,10,12,14,16,18,20]}]}],"SkillType":1}'
   - SkillID: ALLIANCE_WIND_SKILL_1

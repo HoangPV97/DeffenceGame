@@ -11,10 +11,7 @@ public class EnemyBullet : MonoBehaviour
     string exploseEffect;
     protected Transform Target;
     public bool SeekTarget = false;
-
-    //public SkeletonAnimation skeletonAnimation;
-    //public AnimationReferenceAsset idle;
-
+    protected Tower Tower { get { return GameplayController.Instance.Tower; } }
     public void SetDamage(float _damage)
     {
         bullet.Damage = _damage;
@@ -41,11 +38,9 @@ public class EnemyBullet : MonoBehaviour
         }
         else if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            Tower tower = _Target.GetComponent<Tower>();
-            tower?.TakeDamage(bullet.Damage);
+            Tower?.TakeDamage(bullet.Damage);
             GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
             Exposion.AddComponent<DestroyEffect>()._time = 0.5f;
-            //  gameObject.SetActive(false);
             ObjectPoolManager.Instance.DespawnObJect(gameObject);
         }
     }

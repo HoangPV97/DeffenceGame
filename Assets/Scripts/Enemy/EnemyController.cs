@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     public AnimationReferenceAsset attack, idle, run, skill, die;
     public bool isMove = true, isAttack, isLive = true;
     bool isKnockBack, isIdle;
-    protected GameObject Tower;
+    protected Tower Tower { get { return GameplayController.Instance.Tower; } }
     public float distancetoTower;
     protected float countdown;
     protected float distance;
@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        renderer =skeletonAnimation.GetComponent<MeshRenderer>();
+        renderer = skeletonAnimation.GetComponent<MeshRenderer>();
         gameEffect = GetComponent<GameEffect>();
     }
     public void SetDirection(Vector2 _direction)
@@ -57,7 +57,6 @@ public class EnemyController : MonoBehaviour
         enemy.range = md.Range;
         isMove = true;
         isLive = true;
-        SeekingTower();
         distance = Vector3.Distance(transform.position, Tower.transform.position);
         DirectionMove = Vector2.down;
         Move(enemy.speed);
@@ -81,13 +80,9 @@ public class EnemyController : MonoBehaviour
             gameObject.transform.Translate(KnockBackDistance * Time.deltaTime);
             if (effectObj != null)
             {
-                effectObj.transform.Translate(KnockBackDistance  * Time.deltaTime);
+                effectObj.transform.Translate(KnockBackDistance * Time.deltaTime);
             }
         }
-    }
-    protected void SeekingTower()
-    {
-        Tower = GameObject.FindGameObjectWithTag("Tower");
     }
     public virtual void Move(float _speed, float percent_slow = 0)
     {
@@ -169,7 +164,7 @@ public class EnemyController : MonoBehaviour
     }
     public void KnockBack(float _backSpace)
     {
-        KnockBackDistance = new Vector3(0,_backSpace,0);
+        KnockBackDistance = new Vector3(0, _backSpace, 0);
         isKnockBack = true;
         StartCoroutine(IsKnockback());
     }

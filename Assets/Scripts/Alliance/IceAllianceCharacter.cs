@@ -133,7 +133,6 @@ public class IceAllianceCharacter : AllianceController
                 alianceBullet.setDirection(listEnemies[i].transform.position - transform.position);
                 alianceBullet.Move(listEnemies[i].transform.position - transform.position);
                 alianceBullet.SetDataBullet(BulletSpeed, ATK);
-                alianceBullet.slow = true;
             }
         }
     }

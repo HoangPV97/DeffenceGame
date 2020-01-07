@@ -156,6 +156,13 @@ public class SkillWeaponWind3:SkillData
     public const string TimeEffect = "InscreaFireRate";
 }
 [System.Serializable]
+public class SkillWeaponWind4:SkillData
+{
+    public const string IncreaseDamage = "IncreaseDamage";
+    public const string IncreaseFireRate = "IncreaseFireRate";
+    public const string IncreaseCritical = "IncreaseCritical";
+}
+[System.Serializable]
 public class SkillWeaponFire1 : SkillData
 {
     public const string TimeEffect = "TimeEffect";
@@ -174,6 +181,11 @@ public class SkillWeaponEarth1 : SkillData
     public const string TimeEffect = "TimeEffect";
     public const string EffectedAoe = "EffectedAoe";
     public const string SlowdownPercent = "SlowdownPercent";
+}
+[System.Serializable]
+public class SkillAllianceWind2 : SkillData
+{
+    public const string IncreaseTimeEffect = "IncreaseTimeEffect";
 }
 [System.Serializable]
 public class SkillAttribute

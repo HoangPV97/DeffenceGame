@@ -11,7 +11,7 @@ public class WindMeleeEnemy : EnemyController, IWindEffectable
     {
         if (Tower != null && isAttack)
         {
-            Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+            Tower.TakeDamage(enemy.damage);
         }
     }
 

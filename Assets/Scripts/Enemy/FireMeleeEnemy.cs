@@ -17,7 +17,7 @@ public class FireMeleeEnemy : EnemyController, IFireEffectable
     {
         if (Tower != null)
         {
-            Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+            Tower.TakeDamage(enemy.damage);
         }
     }
  

@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public bool MultiShotChance;
     public float MultiShotDamage;
     public float MultiShotAddedAttributePercent;
+    private bool quickShoot;
 
     // Start is called before the first frame update
     public void Awake()
@@ -66,13 +67,13 @@ public class PlayerController : MonoBehaviour
     }
     public void SetDataWeaPon(float _FireRate)
     {
-        ATKspeed +=  (_FireRate* ATKspeed/100);
+        ATKspeed += (_FireRate * ATKspeed / 100);
     }
-    public void SetDataWeaPon(float _damage,float _FireRate, int _critical)
+    public void SetDataWeaPon(float _damage, float _FireRate, int _critical)
     {
-        ATK = ATK + (_damage * ATK/100);
+        ATK = ATK + (_damage * ATK / 100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
-        CriticalChance = _critical;
+        CriticalChance = CriticalChance + _critical;
     }
     // Update is called once per frame
     private void Update()
@@ -89,18 +90,16 @@ public class PlayerController : MonoBehaviour
         {
             case AutoMode.TurnOff:
                 //characterState = CharacterState.Idle;
-                
+
 
                 if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                     && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                 {
-                    direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
-                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                     characterState = CharacterState.Attack;
                 }
                 else
                 {
-                    if(!idleStatus)
+                    if (!idleStatus)
                         idleStatus = true;
                 }
                 break;
@@ -108,8 +107,6 @@ public class PlayerController : MonoBehaviour
                 if (player.target != null)
                 {
                     characterState = CharacterState.Attack;
-                    direct = player.target.gameObject.transform.position - Barrel.transform.position;
-                    rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
                 }
                 else
                 {
@@ -126,9 +123,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)
     {
-        if (e.Data.Name.Equals(eventName))
+        if (e.Data.Name.Equals(eventName) && !quickShoot)
         {
-            Shoot(CriticalChance,KnockBackChance,QuickHandChance,MultiShotChance);
+            Shoot(CriticalChance, KnockBackChance, QuickHandChance, MultiShotChance);
         }
     }
     private void ChangeState()
@@ -161,7 +158,7 @@ public class PlayerController : MonoBehaviour
             int index = 0;
             listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
             nearestEnemy = listEnemies[index];
-            if (!nearestEnemy.isLive && listEnemies.Count>1)
+            if (!nearestEnemy.isLive && listEnemies.Count > 1)
             {
                 nearestEnemy = listEnemies[index + 1];
             }
@@ -190,12 +187,22 @@ public class PlayerController : MonoBehaviour
         mBullet.SetDataBullet(BulletSpeed, ATK);
         return mBullet;
     }
-    public void Shoot(float _critical,float _knockback,float _quickhand,bool _multiShot)
+    public void Shoot(float _critical, float _knockback, float _quickhand, bool _multiShot)
     {
-        BulletController mBullet= SpawnBullet(direct, rotationZ, player.Bullet);    
+        if (currentMode == AutoMode.TurnOff && Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f)
+        {
+            direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
+            rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+        }
+        else
+        {
+            direct = player.target.gameObject.transform.position - Barrel.transform.position;
+            rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+        }
+        BulletController mBullet = SpawnBullet(direct, rotationZ, player.Bullet);
         //random Knockback
         float RandomKnockBack = UnityEngine.Random.Range(0, 100);
-        if(RandomKnockBack < _knockback)
+        if (RandomKnockBack < _knockback)
         {
             mBullet.SetKnockBack(2.5f);
         }
@@ -213,28 +220,27 @@ public class PlayerController : MonoBehaviour
         }
         //Random QuickShot
         float RandomQuickHand = UnityEngine.Random.Range(0, 100);
-        if (RandomQuickHand < _quickhand &&  _multiShot)
+        if (RandomQuickHand < _quickhand && _multiShot)
         {
+            quickShoot = true;
             StartCoroutine(IEQuickHand(0.3f, _multiShot));
         }
         else if (RandomQuickHand < _quickhand && !_multiShot)
         {
-            StartCoroutine( IEQuickHand(0.3f, _multiShot));
+            StartCoroutine(IEQuickHand(0.3f, _multiShot));
         }
     }
     public void TwoMoreBullet()
     {
-        //float Ax = direct.x * Mathf.Cos(5) - direct.y* Mathf.Sin(5);
-        //float Ay = direct.x * Mathf.Sin(5) + direct.y * Mathf.Cos(5);
-        //Vector2 newDirection = new Vector3(Ax, Ay)- Barrel.transform.position;
-        Vector2 newDirection=Quaternion.AngleAxis(5,direct).eulerAngles;
-        BulletController mBullet1= SpawnBullet(newDirection, rotationZ , player.Bullet);
+        BulletController mBullet1 = SpawnBullet(Quaternion.Euler(0, 0, 5) * direct, rotationZ, player.Bullet);
         mBullet1.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
-        //BulletController mBullet2 = SpawnBullet(newDirection1, rotationZ , player.Bullet);
-        //mBullet2.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
+        BulletController mBullet2 = SpawnBullet(Quaternion.Euler(0, 0, -5) * direct, rotationZ, player.Bullet);
+        mBullet2.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
     }
-    public IEnumerator IEQuickHand(float _time,bool Multi)
+    public IEnumerator IEQuickHand(float _time, bool Multi)
     {
+        quickShoot = true;
+        skeletonAnimation.AnimationState.SetAnimation(0, "atk", false);
         yield return new WaitForSeconds(_time);
         if (!Multi)
         {
@@ -242,14 +248,18 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Shoot(CriticalChance * ReduceMultiShotPercent, KnockBackChance* ReduceMultiShotPercent,
-                QuickHandChance* ReduceMultiShotPercent, MultiShotChance);
+            Shoot(CriticalChance * ReduceMultiShotPercent, KnockBackChance * ReduceMultiShotPercent,
+                QuickHandChance * ReduceMultiShotPercent, MultiShotChance);
             TwoMoreBullet();
         }
+        characterState = CharacterState.Idle;
+        skeletonAnimation.timeScale = ATKspeed / 100;
+        quickShoot = false;
+
     }
     private float ReduceMultiShotPercent
     {
-        get{return MultiShotAddedAttributePercent / 100;}
+        get { return MultiShotAddedAttributePercent / 100; }
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {

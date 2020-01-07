@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class WindAllianceBullet : BulletController
 {
+    protected float bounceRange;
+    protected int numberBounce;
+    public bool bounce;
     protected override void Start()
     {
         elementalBullet = Elemental.Wind;
+    }
+    public override void SetDataBullet(float _speed, float _damage)
+    {
+        bounceRange = 5f;
+        numberBounce = 3;
+        base.SetDataBullet(_speed, _damage);
     }
     protected override void FixedUpdate()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySkill3 : DragAndDropSkill
+public class PlayThunderStrikeSkill : DragAndDropSkill
 {
     public float EffectTime, EffectedAoe,Damage;
     [SerializeField]
@@ -25,9 +25,16 @@ public class PlaySkill3 : DragAndDropSkill
     public override void PlaySkill(Vector3 _position)
     {
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
-        stunSkill.GetComponent<StunSkill>().SetSkillData(EffectTime, Damage, EffectedAoe);    
+        stunSkill.GetComponent<ThunderStrikeSkill>().SetSkillData(EffectTime, Damage, EffectedAoe);    
         float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1f);
         CheckDestroyEffect(stunSkill, particleTime);
+    }
+    public override void AddDatatAttribute(string _attribute, float _value)
+    {
+        if(_attribute== "TimeEffect")
+        {
+            EffectTime += _value;
+        }
     }
 }

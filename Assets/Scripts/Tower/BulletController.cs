@@ -13,24 +13,13 @@ public class BulletController : MonoBehaviour
     protected bool checkCollision;
     #region Attribute bullet
     public bool explosion;
-    public bool bounce;
     public bool poison;
-    public bool slow;
-    public bool pierce;
-    public bool critical;
-    public bool multishot;
-    public bool quickhand;
-    public bool knockback;
     public bool stun;
     public EnemyController nearEnemy;
     private float timeStun = 2f;
-    protected float bounceRange = 5f;
-    protected int numberBounce = 3;
-    private float percent_Slow = 20;
     #endregion
     protected virtual void Start()
     {
-        knockback = false;
     }
     public void SetKnockBack(float _Distance)
     {
@@ -40,9 +29,6 @@ public class BulletController : MonoBehaviour
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
-        bounceRange = 5f;
-        numberBounce = 3;
-        percent_Slow = 20f;
         checkCollision = false;
     }
     public void SetTarget(EnemyController _Target)
@@ -112,13 +98,6 @@ public class BulletController : MonoBehaviour
                 Despawn();
             }
             #endregion
-            #region SlowBullet
-            if (slow)
-            {
-                enemyController.Deal_Slow_Effect(2f, percent_Slow);
-                Debug.Log("SlowEnemy");
-            }
-            #endregion
             #region StunBullet
             if (stun)
             {
@@ -129,10 +108,6 @@ public class BulletController : MonoBehaviour
             {
                 enemyController.KnockBack(bullet.KnockbackDistance);
                 bullet.KnockbackDistance = 0;
-            }
-            if (bullet.CriticalDamage > 0)
-            {
-
             }
         }
     }

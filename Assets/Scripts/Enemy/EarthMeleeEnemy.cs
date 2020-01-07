@@ -8,7 +8,7 @@ public class EarthMeleeEnemy : EnemyController,IEarthEffectable
     {
         if (Tower != null && isAttack)
         {
-            Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+            Tower.TakeDamage(enemy.damage);
         }
     }
     public void EarthImpactEffect(Vector3 _position)

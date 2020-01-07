@@ -25,7 +25,7 @@ public class MeleeEnemy : EnemyController
             CurrentState = EnemyState.Attack;
             if (Tower != null)
             {
-                Tower.GetComponent<Tower>().TakeDamage(enemy.damage);
+                Tower.TakeDamage(enemy.damage);
             }
         }
     }

@@ -6,13 +6,7 @@ using UnityEngine.UI;
 public class Skill : MonoBehaviour
 {
     public string SkillID;
-    public Tower Tower
-    {
-        get
-        {
-            return GameplayController.Instance.Tower;
-        }
-    }
+    protected Tower Tower { get { return GameplayController.Instance.Tower; } }
     public VariableJoystick variableJoystick;
     public Image CountdownGo;
     public float CountdownTime;
@@ -21,12 +15,13 @@ public class Skill : MonoBehaviour
     protected float TimeLeft;
     protected Vector3 positonEffect;
     bool isLowedMana;
+    protected PlayerController playerController { get { return GameplayController.Instance.PlayerController; } }
     // Start is called before the first frame update
     protected virtual void Start()
     {
     }
 
-    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null,Vector3 _position = default )
+    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
     }
 
@@ -90,5 +85,9 @@ public class Skill : MonoBehaviour
         else
             effectObj.AddComponent<DestroyEffect>()._time = _time;
         return effectObj;
+    }
+    public virtual void AddDatatAttribute(string _attribute, float _value)
+    {
+
     }
 }

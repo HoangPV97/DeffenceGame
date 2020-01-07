@@ -14,6 +14,7 @@ public class GameplayController : Singleton<GameplayController>
     public List<Transform> spawnPosition;
     public float GoldEachEnemy;
     public float TotalGoldDrop;
+    public List<Skill> SkillList = new List<Skill>();
     private void Start()
     {
         LoadDataGamePlay();
@@ -23,7 +24,7 @@ public class GameplayController : Singleton<GameplayController>
         Application.targetFrameRate = 60;
         ///SetUp Base first
         Tower.SetUpData();
-        PlayerController= ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.CurrentSelectedWeapon.ToString() + "Hero"), Hero.transform.position, Quaternion.identity).GetComponent<PlayerController>();
+        PlayerController = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.CurrentSelectedWeapon.ToString() + "Hero"), Hero.transform.position, Quaternion.identity).GetComponent<PlayerController>();
         /// Load Weapon
         PlayerController.SetDataWeapon();
         /// Check slot 
@@ -31,22 +32,30 @@ public class GameplayController : Singleton<GameplayController>
         {
             //set 1 skill button 
             // spawn skill controller
-            var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0],PlayerController.transform.position);
+            var SplashSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
+            SplashSkill.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
         }
-        if(DataController.Instance.inGameWeapons.Tier >= 2)
+        if (DataController.Instance.inGameWeapons.Tier >= 2)
         {
             // set 2 skill button
             //var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
             //go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
-            var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
-            go1.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[1], PlayerController.transform.position);
+            var TornardoSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
+            var skill = TornardoSkill.GetComponent<Skill>();
+            skill.SetUpData(1, 1, SkillButtons[1], PlayerController.transform.position);
+            SkillList.Add(skill);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 3)
         {
-            var go1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 2), this.transform);
-            go1.GetComponent<Skill>().SetUpData(1, 1);
+            var AgileSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 2), this.transform);
+            AgileSkill.GetComponent<Skill>().SetUpData(1, 1);
         }
+        if (DataController.Instance.inGameWeapons.Tier >= 4)
+        {
+            var SoulOfWindSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type,3), this.transform);
+            SoulOfWindSkill.GetComponent<Skill>().SetUpData(1, 1);
+        }
+
         /// Load Alliance
         /// Load from resource
         ///Load slot 1
@@ -85,7 +94,6 @@ public class GameplayController : Singleton<GameplayController>
         }
         GoldEachEnemy = (float)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
     }
-
     #region Monster
     public IEnumerator IESpawnEnemy(int i, float timeDelay)
     {
@@ -141,4 +149,15 @@ public class GameplayController : Singleton<GameplayController>
         CancelSkill = true;
     }
     #endregion
+    public Skill GetSkill (string SkillID)
+    {
+        for(int i=0;i< SkillList.Count; i++)
+        {
+            if (SkillList[i].SkillID.Equals(SkillID))
+            {
+                return SkillList[i];
+            }
+        }
+        return null;
+    }
 }

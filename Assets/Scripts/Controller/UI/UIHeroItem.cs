@@ -49,6 +49,7 @@ public class UIHeroItem : MonoBehaviour
     {
         gameObject.SetActive(false);
         gameObject.SetActive(true);
+
         Animator.Play("HeroItemDefault");
         Equip.gameObject.SetActive(false);
         Selected[0].SetActive(false);

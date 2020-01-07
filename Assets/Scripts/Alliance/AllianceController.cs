@@ -95,12 +95,13 @@ public class AllianceController : MonoBehaviour
     }
     public virtual void UpdateEnemy()
     {
-        shortestDistance = Mathf.Infinity;
-        _2ndShortestDistance = Mathf.Infinity;
+
         // nearestEnemy = null;
         // _2ndEnemy = null;
         if (listEnemies.Count > 0)
         {
+            shortestDistance = Mathf.Infinity;
+            _2ndShortestDistance = Mathf.Infinity;
             if (listEnemies.Count > 1)
             {
                 listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();

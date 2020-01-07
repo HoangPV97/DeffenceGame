@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySkill1 : Skill
+public class PlayWindSlashSkill : Skill
 {
     public GameObject arrow;
     //public VariableJoystick variableJoystick;
