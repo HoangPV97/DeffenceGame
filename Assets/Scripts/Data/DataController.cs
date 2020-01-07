@@ -322,8 +322,8 @@ public class DataController : Singleton<DataController>
         }
 
         // load base
-        var bdbHP = BaseDatabases.GetBaseHpData(GameData.Fortress.Level);
-        var bdbMana = BaseDatabases.GetBaseManaData(GameData.Temple.Level);
+        var bdbHP = BaseDatabases.GetBaseFortressData(GameData.Fortress.Level);
+        var bdbMana = BaseDatabases.GetBaseTempleData(GameData.Temple.Level);
         var bdbShield = BaseDatabases.GetBaseShieldData(GameData.Fortress.Level);
         InGameBaseData = new BaseData
         {
@@ -421,6 +421,35 @@ public class DataController : Singleton<DataController>
         gdw.WeaponTierLevel.Level += AddLevel;
     }
 
+    public void AddArcheryLevel()
+    {
+        GetArcheryGameData().Level++;
+    }
+
+    public void AddArcheryTier()
+    {
+        GetArcheryGameData().Tier++;
+    }
+
+    public void AddTempleLevel()
+    {
+        GetTempleGameData().Level++;
+    }
+
+    public void AddTempleTier()
+    {
+        GetTempleGameData().Tier++;
+    }
+    public void AddFortressLevel()
+    {
+        GetFortressGameData().Level++;
+    }
+
+    public void AddFortressTier()
+    {
+        GetFortressGameData().Tier++;
+    }
+
     public void AddItemQuality(ITEM_TYPE type, int number)
     {
         GameData.AddItemQuality(type, number);
@@ -486,6 +515,46 @@ public class DataController : Singleton<DataController>
                 sgtl.Level = 1;
             }
             GameData.ArcherySkillTierLevel.Add(sgtl);
+            return sgtl;
+        }
+        else if (skillInfo[0] == "BASE" && skillInfo[1] == "TEMPLE")
+        {
+            for (int i = 0; i < GameData.TempleSkillTierLevel.Count; i++)
+            {
+                if (GameData.TempleSkillTierLevel[i].Des == SkillID)
+                    return GameData.TempleSkillTierLevel[i];
+            }
+            SaveGameTierLevel sgtl = new SaveGameTierLevel
+            {
+                Des = SkillID,
+                Tier = 1,
+                Level = 0
+            };
+            if (int.Parse(skillInfo[3]) == 1)
+            {
+                sgtl.Level = 1;
+            }
+            GameData.TempleSkillTierLevel.Add(sgtl);
+            return sgtl;
+        }
+        else if (skillInfo[0] == "BASE" && skillInfo[1] == "FORTRESS")
+        {
+            for (int i = 0; i < GameData.FortressSkillTierLevel.Count; i++)
+            {
+                if (GameData.FortressSkillTierLevel[i].Des == SkillID)
+                    return GameData.FortressSkillTierLevel[i];
+            }
+            SaveGameTierLevel sgtl = new SaveGameTierLevel
+            {
+                Des = SkillID,
+                Tier = 1,
+                Level = 0
+            };
+            if (int.Parse(skillInfo[3]) == 1)
+            {
+                sgtl.Level = 1;
+            }
+            GameData.FortressSkillTierLevel.Add(sgtl);
             return sgtl;
         }
         return null;
@@ -558,9 +627,19 @@ public class DataController : Singleton<DataController>
         return null;
     }
 
-    public SaveGameTierLevel GetArcheryData()
+    public SaveGameTierLevel GetArcheryGameData()
     {
         return GameData.Archery;
+    }
+
+    public SaveGameTierLevel GetTempleGameData()
+    {
+        return GameData.Temple;
+    }
+
+    public SaveGameTierLevel GetFortressGameData()
+    {
+        return GameData.Fortress;
     }
 
 }

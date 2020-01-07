@@ -78,7 +78,7 @@ public class UISkillItem : MonoBehaviour
 
     private void OnBtnBuyClick()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     private void OnBtnUpgradeClick()
@@ -87,6 +87,13 @@ public class UISkillItem : MonoBehaviour
             MenuController.Instance.UIPanelHeroAlliance.OnUpgradeSkill(skillData, sgtl);
         else if (MenuController.Instance.UIPanelForstress.gameObject.activeSelf)
             MenuController.Instance.UIPanelForstress.OnUpgradeSkill(skillData, sgtl);
+    }
+
+    public void ReSetUISkill()
+    {
+        SetUpdata(skillData.SkillID, TypeUI2);
+        if (!TypeUI2)
+            OnBtnSelectClick();
     }
 
     // Start is called before the first frame update

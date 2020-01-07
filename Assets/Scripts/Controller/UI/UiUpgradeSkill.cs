@@ -17,6 +17,7 @@ public class UiUpgradeSkill : BaseUIView
     public int GemCost;
     public bool canUprage = true;
     public UIButton BtnUpgrade, BtnClose;
+    [SerializeField]
     SkillData skillData;
     SaveGameTierLevel saveGameTierLevel;
 
@@ -41,7 +42,10 @@ public class UiUpgradeSkill : BaseUIView
             }
             DataController.Instance.AddSkillLevel(skillData.SkillID);
             OnHide();
-            MenuController.Instance.UIPanelHeroAlliance.SetupUIHero();
+            if (MenuController.Instance.UIPanelHeroAlliance.gameObject.activeSelf)
+                MenuController.Instance.UIPanelHeroAlliance.ReSetUISkill(skillData.SkillID);
+            else if (MenuController.Instance.UIPanelForstress.gameObject.activeSelf)
+                MenuController.Instance.UIPanelForstress.ReSetUISkill(skillData.SkillID);
             DataController.Instance.Save();
         }
     }
@@ -52,7 +56,7 @@ public class UiUpgradeSkill : BaseUIView
         OnShow();
         this.skillData = skillData;
         this.saveGameTierLevel = saveGameTierLevel;
-
+        canUprage = true;
         GemCost = 0;
         txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID);
         txtLevel.text = "Lv." + saveGameTierLevel.Level;

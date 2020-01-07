@@ -13,7 +13,7 @@ public class BaseData
     public float ShieldBlockValue;
     public int Damage;
     public int Critical;
-    public int KnockBack;
+    public int KnockBackChance;
     public int AllianceDamage;
     public int QuickHand;
     public float QuickHandDamagePercent;
@@ -30,7 +30,14 @@ public class BaseDatabase
     public int Tier;
     public List<SkillAttribute> Attributes;
     public int[] UpgradeLevelCost;
-    public List<Item> EvolutionCost;
+    public List<Item> CostEvolution;
+    public int MaxLevel
+    {
+        get
+        {
+            return UpgradeLevelCost.Length;
+        }
+    }
     public float GetAttributeValue(string attribute, int Level)
     {
         if (Level == 0)
@@ -50,14 +57,14 @@ public class BaseDatabases
     public List<BaseDatabase> BaseTempleData;
     public List<BaseDatabase> BaseShieldData;
     public List<BaseDatabase> BaseArcheryData;
-    public BaseDatabase GetBaseHpData(int tier)
+    public BaseDatabase GetBaseFortressData(int tier)
     {
         for (int i = 0; i < BaseFortressData.Count; i++)
             if (BaseFortressData[i].Tier == tier)
                 return BaseFortressData[i];
         return null;
     }
-    public BaseDatabase GetBaseManaData(int tier)
+    public BaseDatabase GetBaseTempleData(int tier)
     {
         for (int i = 0; i < BaseTempleData.Count; i++)
             if (BaseTempleData[i].Tier == tier)

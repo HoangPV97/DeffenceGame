@@ -44,7 +44,8 @@ public class UIEvolveSkill : BaseUIView
                     DataController.Instance.AddItemQuality(listItem[i].Type, -listItem[i].Quality);
                 }
             }
-            MenuController.Instance.UIPanelHeroAlliance.SetupUIHero();
+            if (MenuController.Instance.UIPanelHeroAlliance.gameObject.activeSelf)
+                MenuController.Instance.UIPanelHeroAlliance.ReSetUISkill(skillData.SkillID);
             DataController.Instance.Save();
             OnBtnCloseClick();
             // SetUpData(heroElemental);

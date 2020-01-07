@@ -228,6 +228,21 @@ public class UIPanelHeroAlliance : BaseUIView
         UISkillItems[0].OnBtnSelectClick();
     }
 
+    UISkillItem GetUISkillItem(string SkillID)
+    {
+        for (int i = 0; i < UISkillItems.Length; i++)
+        {
+            if (UISkillItems[i].skillData.SkillID == SkillID)
+                return UISkillItems[i];
+        }
+        return null;
+    }
+
+    public void ReSetUISkill(string SkillID)
+    {
+        GetUISkillItem(SkillID).ReSetUISkill();
+    }
+
     public void OnUpgradeSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
     {
         UiUpgradeSkill.SetUpData(skillData, saveGameTierLevel);
