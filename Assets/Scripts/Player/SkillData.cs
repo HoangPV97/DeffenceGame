@@ -181,3 +181,19 @@ public class SkillAttribute
     public string Attribute;
     public float[] Value;
 }
+[System.Serializable]
+public class ArcherySkillData1 : SkillData
+{
+    public const string CriticalRate = "CriticalRate";
+}
+[System.Serializable]
+public class ArcherySkillData2 : SkillData
+{
+    public const string KnockBackChance = "KnockBackChance";
+}
+[System.Serializable]
+public class ArcherySkillData3 : SkillData
+{
+    public const string QuickHandChance = "QuickHandChance";
+    public const string DamagePercent = "DamagePercent";
+}

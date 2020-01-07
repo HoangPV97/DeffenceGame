@@ -9,6 +9,9 @@ public interface IIceEffectable
 public interface IWindEffectable
 {
     void WindImpactEffect(Vector3 _position);
+}public interface IEarthEffectable
+{
+    void EarthImpactEffect(Vector3 _position);
 }
 public interface IFireEffectable
 {

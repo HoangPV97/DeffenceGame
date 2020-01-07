@@ -32,15 +32,16 @@ public class BulletController : MonoBehaviour
     {
         knockback = false;
     }
-    public void SetKnockBack(Vector3 _Distance)
+    public void SetKnockBack(float _Distance)
     {
         bullet.KnockbackDistance = _Distance;
     }
-    public virtual void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
+    public virtual void SetDataBullet(float _speed, float _damage)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
-        bullet.CriticalDamage = _critical_damage;
+        bounceRange = 5f;
+        numberBounce = 3;
         percent_Slow = 20f;
         checkCollision = false;
     }
@@ -124,9 +125,10 @@ public class BulletController : MonoBehaviour
                 enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, timeStun);
             }
             #endregion
-            if(bullet.KnockbackDistance != Vector3.zero)
+            if(bullet.KnockbackDistance != 0)
             {
                 enemyController.KnockBack(bullet.KnockbackDistance);
+                bullet.KnockbackDistance = 0;
             }
             if (bullet.CriticalDamage > 0)
             {

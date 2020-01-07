@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 public class LoadingText : MonoBehaviour
 {
-    public TextMeshProUGUI Damage;
+    public TextMeshPro Damage;
     public Animation Animation;
     // Start is called before the first frame update
 
     public void SetTextDamage(string _Damage)
     {
         if (Damage == null)
-            Damage = GetComponent<TextMeshProUGUI>();
+            Damage = GetComponent<TextMeshPro>();
         Damage.text = _Damage;
         Animation.Play();
         if (gameObject.activeInHierarchy)

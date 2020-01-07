@@ -61,6 +61,17 @@ public class GameEffect : MonoBehaviour
             effectObj.AddComponent<DestroyEffect>()._time = _time;
         return effectObj;
     }
+    public GameObject SpawnEffect(GameObject _effectObj, Vector3 _position, float _time)
+    {
+        GameObject effectObj;
+        effectObj = ObjectPoolManager.Instance.SpawnObject(_effectObj, _position, Quaternion.identity);
+        var de = effectObj.GetComponent<DestroyEffect>();
+        if (de != null)
+            de.StartWaitingDestroyEffect(_time);
+        else
+            effectObj.AddComponent<DestroyEffect>()._time = _time;
+        return effectObj;
+    }
 }
 public class DestroyEffect : MonoBehaviour
 {

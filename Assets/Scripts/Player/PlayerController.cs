@@ -27,19 +27,23 @@ public class PlayerController : MonoBehaviour
     Vector2 direct;
     float rotationZ;
     EnemyController nearestEnemy = null;
+    public CircleCollider2D CircleCollider2D;
+    bool idleStatus;
+    [Header("Weapon Data")]
     public float ATK;
     public float ATKspeed;
     public float BulletSpeed;
-    public float CriticalDamage;
-    public int Critical_Ratio;
-    public int Knockback_Ratio;
-    public int Multishot_Ratio;
-    public int QuickShot_Ratio;
-    public Vector3 Knockback_Distance;
-    public int Level;
+    [Header("Archery Data")]
+    public int ArcheryDamage;
+    public int CriticalChance;
+    public int KnockBackChance;
+    public int AllianceDamage;
+    public int QuickHandChance;
+    public float QuickHandDamagePercent;
+    public bool MultiShotChance;
+    public float MultiShotDamage;
+    public float MultiShotAddedAttributePercent;
 
-    public CircleCollider2D CircleCollider2D;
-    bool idleStatus;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -51,13 +55,14 @@ public class PlayerController : MonoBehaviour
         skeletonAnimation.AnimationState.Complete += OnAttack;
         currentMode = AutoMode.TurnOff;
     }
-
     public void SetDataWeapon()
     {
         this.elementalType = DataController.Instance.inGameWeapons.Type;
-        ATK = DataController.Instance.inGameWeapons.ATK;
+        ATK = DataController.Instance.inGameWeapons.ATK + DataController.Instance.InGameBaseData.Damage;
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
         BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
+        CriticalChance = DataController.Instance.InGameBaseData.Critical;
+        QuickHandChance = DataController.Instance.InGameBaseData.QuickHand;
     }
     public void SetDataWeaPon(float _FireRate)
     {
@@ -67,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         ATK = ATK + (_damage * ATK/100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
-        Critical_Ratio = _critical;
+        CriticalChance = _critical;
     }
     // Update is called once per frame
     private void Update()
@@ -86,7 +91,7 @@ public class PlayerController : MonoBehaviour
                 //characterState = CharacterState.Idle;
                 
 
-                if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()
+                if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                     && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                 {
                     direct = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Barrel.transform.position;
@@ -102,7 +107,6 @@ public class PlayerController : MonoBehaviour
             case AutoMode.TurnOn:
                 if (player.target != null)
                 {
-                    //AutoShootTarget();
                     characterState = CharacterState.Attack;
                     direct = player.target.gameObject.transform.position - Barrel.transform.position;
                     rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
@@ -124,9 +128,8 @@ public class PlayerController : MonoBehaviour
     {
         if (e.Data.Name.Equals(eventName))
         {
-            Shoot();
+            Shoot(CriticalChance,KnockBackChance,QuickHandChance,MultiShotChance);
         }
-        
     }
     private void ChangeState()
     {
@@ -158,7 +161,7 @@ public class PlayerController : MonoBehaviour
             int index = 0;
             listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
             nearestEnemy = listEnemies[index];
-            if (!nearestEnemy.isLive)
+            if (!nearestEnemy.isLive && listEnemies.Count>1)
             {
                 nearestEnemy = listEnemies[index + 1];
             }
@@ -187,42 +190,66 @@ public class PlayerController : MonoBehaviour
         mBullet.SetDataBullet(BulletSpeed, ATK);
         return mBullet;
     }
-    public void Shoot()
+    public void Shoot(float _critical,float _knockback,float _quickhand,bool _multiShot)
     {
         BulletController mBullet= SpawnBullet(direct, rotationZ, player.Bullet);    
         //random Knockback
         float RandomKnockBack = UnityEngine.Random.Range(0, 100);
-        if(RandomKnockBack < Knockback_Ratio)
+        if(RandomKnockBack < _knockback)
         {
-            mBullet.SetKnockBack(Knockback_Distance);
+            mBullet.SetKnockBack(2.5f);
         }
-        //Random QuickShot
-        float RandomQuickShot= UnityEngine.Random.Range(0, 100);
-        if (RandomQuickShot < QuickShot_Ratio)
-        {
-            SpawnBullet(direct, rotationZ, player.Bullet);
-        }
+
         //Random Critical
         float RandomCritical = UnityEngine.Random.Range(0, 100);
-        if (RandomCritical < Critical_Ratio)
+        if (RandomCritical < _critical)
         {
             mBullet.SetDataBullet(BulletSpeed, 2 * ATK);
         }
-        //Random Multishot
-        float RandomMulti = UnityEngine.Random.Range(0, 100);
-        if (RandomMulti < Multishot_Ratio)
+        // Multishot
+        if (_multiShot)
         {
-            SpawnBullet(direct, rotationZ-5f, player.Bullet);
-            SpawnBullet(direct, rotationZ + 5f, player.Bullet);
+            TwoMoreBullet();
         }
-        if(RandomQuickShot < QuickShot_Ratio && RandomMulti < Multishot_Ratio)
+        //Random QuickShot
+        float RandomQuickHand = UnityEngine.Random.Range(0, 100);
+        if (RandomQuickHand < _quickhand &&  _multiShot)
         {
-
+            StartCoroutine(IEQuickHand(0.3f, _multiShot));
         }
-        mBullet.SetTarget(player.target);
-        mBullet.setDirection(direct);
-        mBullet.SetDataBullet(BulletSpeed, ATK, Critical_Ratio,CriticalDamage);
-        mBullet.elementalBullet = elementalType;
+        else if (RandomQuickHand < _quickhand && !_multiShot)
+        {
+            StartCoroutine( IEQuickHand(0.3f, _multiShot));
+        }
+    }
+    public void TwoMoreBullet()
+    {
+        //float Ax = direct.x * Mathf.Cos(5) - direct.y* Mathf.Sin(5);
+        //float Ay = direct.x * Mathf.Sin(5) + direct.y * Mathf.Cos(5);
+        //Vector2 newDirection = new Vector3(Ax, Ay)- Barrel.transform.position;
+        Vector2 newDirection=Quaternion.AngleAxis(5,direct).eulerAngles;
+        BulletController mBullet1= SpawnBullet(newDirection, rotationZ , player.Bullet);
+        mBullet1.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
+        //BulletController mBullet2 = SpawnBullet(newDirection1, rotationZ , player.Bullet);
+        //mBullet2.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
+    }
+    public IEnumerator IEQuickHand(float _time,bool Multi)
+    {
+        yield return new WaitForSeconds(_time);
+        if (!Multi)
+        {
+            SpawnBullet(direct, rotationZ, player.Bullet);
+        }
+        else
+        {
+            Shoot(CriticalChance * ReduceMultiShotPercent, KnockBackChance* ReduceMultiShotPercent,
+                QuickHandChance* ReduceMultiShotPercent, MultiShotChance);
+            TwoMoreBullet();
+        }
+    }
+    private float ReduceMultiShotPercent
+    {
+        get{return MultiShotAddedAttributePercent / 100;}
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {

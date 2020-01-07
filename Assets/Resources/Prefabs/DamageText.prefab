@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7398410645671670575}
   - component: {fileID: 6392700433779022878}
   - component: {fileID: 9069913251625903626}
-  - component: {fileID: 5532690226466789148}
-  - component: {fileID: 2565759557502311922}
-  - component: {fileID: 3979723566397938803}
+  - component: {fileID: 8911827150875073214}
+  - component: {fileID: 3701410317760825482}
+  - component: {fileID: 2628655676979376306}
   m_Layer: 0
-  m_Name: ElementalDamage
+  m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107.81, y: 0}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: 0, y: 120}
+  m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7398410645671670575
 CanvasRenderer:
@@ -77,9 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8fb33b177e5e242b302bd083b43aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: {fileID: 3979723566397938803}
+  Damage: {fileID: 2628655676979376306}
   Animation: {fileID: 6392700433779022878}
---- !u!23 &5532690226466789148
+--- !u!23 &8911827150875073214
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &2565759557502311922
+--- !u!33 &3701410317760825482
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2406792519959080423}
   m_Mesh: {fileID: 0}
---- !u!114 &3979723566397938803
+--- !u!114 &2628655676979376306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 3979723566397938803}
+    textComponent: {fileID: 2628655676979376306}
     characterCount: 2
     spriteCount: 0
     spaceCount: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 5532690226466789148}
+  m_renderer: {fileID: 8911827150875073214}
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}

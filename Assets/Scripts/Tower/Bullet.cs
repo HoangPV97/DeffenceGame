@@ -11,13 +11,13 @@ public class Bullet
     [SerializeField]
     private string _targetTag;
     [SerializeField]
-    private Vector3 _knockbackDistance;
+    private float _knockbackDistance;
     [SerializeField]
     private float _critical_Damage;
 
     public float Speed { get => _speed; set => _speed = value; }
     public float Damage { get => _damage; set => _damage = value; }
     public string TargetTag { get => _targetTag; set => _targetTag = value; }
-    public Vector3 KnockbackDistance { get => _knockbackDistance; set => _knockbackDistance = value; }
+    public float KnockbackDistance { get => _knockbackDistance; set => _knockbackDistance = value; }
     public float CriticalDamage { get => _critical_Damage; set => _critical_Damage = value; }
 }

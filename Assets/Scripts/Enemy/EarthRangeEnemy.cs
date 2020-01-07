@@ -1,27 +1,13 @@
-﻿using Spine;
-using Spine.Unity;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindRangeEnemy : EnemyController, IWindEffectable
+public class EarthRangeEnemy : EnemyController,IEarthEffectable
 {
-    public override void SetUpdata(string type, int Level)
-    {
-        base.SetUpdata(type, Level);
-        enemy.range += Random.Range(-1,1);
-    }
     [SerializeField] private GameObject Barrel;
-    // Update is called once per frame
-    //protected override void Update()
-    //{
-        
-    //    base.Update();
-    //    CheckAttack();
-    //}
     public void Attack()
     {
-        if(isAttack)
+        if (isAttack)
         {
             GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
@@ -32,9 +18,9 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
                 m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
             }
         }
-        
+
     }
-    public void WindImpactEffect(Vector3 _position)
+    public void EarthImpactEffect(Vector3 _position)
     {
         gameEffect.SpawnEffect("windimpact", _position, 0.3f);
     }

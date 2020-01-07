@@ -13,7 +13,7 @@ public class WindAllianceBullet : BulletController
         if (Target == null || !Target.isLive)
         {
             Target = null;
-            Despawn();
+            Move(dir);
         }
         else
         {
@@ -28,10 +28,14 @@ public class WindAllianceBullet : BulletController
     }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {
-        //base.OnTriggerEnter2D(Target);
+        if (Target.gameObject.tag.Equals("BlockPoint"))
+        {
+            Despawn();
+        }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
+            SetTarget(enemy);
             enemy.gameEffect.SpawnEffect("windimpact", enemy.transform.position, 0.5f);
             IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
             if (elemental != null)
@@ -47,14 +51,13 @@ public class WindAllianceBullet : BulletController
                 Bounce();
             }
         }
-
     }
     public void Bounce()
     {
-        if (GameplayController.Instance.PlayerController.listEnemies.Count > 0)
+        if (GameplayController.Instance.PlayerController.listEnemies.Count > 0 && Target != null)
         {
             nearEnemy = CheckNearEnemy(GameplayController.Instance.PlayerController.listEnemies, Target.GetComponent<EnemyController>());
-            if (numberBounce > 0 && nearEnemy != null)
+            if (numberBounce > 0 && nearEnemy != null && nearEnemy.isLive)
             {
                 SetTarget(nearEnemy);
                 Vector2 _dir = nearEnemy.transform.position - transform.position;
@@ -73,8 +76,9 @@ public class WindAllianceBullet : BulletController
             {
                 Despawn();
             }
-            nearEnemy = null;
+            //nearEnemy = null;
         }
+
     }
     public EnemyController CheckNearEnemy(List<EnemyController> listEnemies, EnemyController curentEnemy)
     {

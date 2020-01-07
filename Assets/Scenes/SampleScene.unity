@@ -333,7 +333,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.8, y: 3.28}
+  m_Size: {x: 10.8, y: 2.72}
   m_EdgeRadius: 0
 --- !u!1 &55780895
 GameObject:
@@ -986,7 +986,7 @@ MonoBehaviour:
   joystickType: 0
   Skill: {fileID: 1459730916}
   CountDountMask: {fileID: 1778737472}
-  LowMana: {fileID: 0}
+  LowMana: {fileID: 1886691099}
 --- !u!1 &220588463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1729,7 @@ MonoBehaviour:
     prefab: {fileID: 3892153920387240644, guid: 27ae298336f3cb5439c2193a2eebec82,
       type: 3}
   - tag: damage
-    prefab: {fileID: 2406792519959080423, guid: d25f22934dde08c4aa373148159151e7,
+    prefab: {fileID: 2406792519959080423, guid: 877fab7edaba4d843aa8940df1d3ff75,
       type: 3}
   - tag: W_3
     prefab: {fileID: 7178071149278825015, guid: 632bd9b6a9f80db459ce828612406efb,
@@ -1754,6 +1754,21 @@ MonoBehaviour:
       type: 3}
   - tag: W_5
     prefab: {fileID: 6292061646329833501, guid: 5d4cf667f3187e34a8ee9e547f35d169,
+      type: 3}
+  - tag: E_1
+    prefab: {fileID: 8020962621357836206, guid: 0014b2ac4bd7f724db6a672ea2cca634,
+      type: 3}
+  - tag: E_2
+    prefab: {fileID: 1529785039770135921, guid: c7f0e20957170f244b2c9e80ffd6accb,
+      type: 3}
+  - tag: E_3
+    prefab: {fileID: 7178071149278825015, guid: 9d7feef708982dd48981001815eeca1c,
+      type: 3}
+  - tag: E_4
+    prefab: {fileID: 5556297814356171359, guid: b5e73695e6a74534e8f72b78a25272c5,
+      type: 3}
+  - tag: E_5
+    prefab: {fileID: 6292061646329833501, guid: ac711421f9b8f6045bacf32577008ae3,
       type: 3}
   - tag: iceimpact
     prefab: {fileID: 2358666650387642368, guid: 2d95c60b58f1b6846ae9ddbd6b39eacb,
@@ -1827,6 +1842,21 @@ MonoBehaviour:
       type: 3}
   - tag: B_W_5
     prefab: {fileID: 6292061646329833501, guid: ab62bab9f6f8b0140ab4ce86ff842e9d,
+      type: 3}
+  - tag: B_E_1
+    prefab: {fileID: 8020962621357836206, guid: 98072b7450d6adf4cabb1099163b5ef9,
+      type: 3}
+  - tag: B_E_2
+    prefab: {fileID: 1529785039770135921, guid: 07b6a331006b5ee45b27e39e75da0810,
+      type: 3}
+  - tag: B_E_3
+    prefab: {fileID: 7178071149278825015, guid: 11b4422f02729d446b592258568b3dd9,
+      type: 3}
+  - tag: B_E_4
+    prefab: {fileID: 5556297814356171359, guid: ad8326fa885a449418b57ec170d950ce,
+      type: 3}
+  - tag: B_E_5
+    prefab: {fileID: 6292061646329833501, guid: b4c11017ff7aa9441a5bd8c6d9e97e72,
       type: 3}
   - tag: BossBulletImpact
     prefab: {fileID: 1407327231982256525, guid: 02ad783a1f74f2b439391b77e38fb2e3,

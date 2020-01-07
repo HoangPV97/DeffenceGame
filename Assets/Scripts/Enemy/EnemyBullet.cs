@@ -53,4 +53,10 @@ public class EnemyBullet : MonoBehaviour
     {
         Target = _Target;
     }
+    private void OnEnable()
+    {
+        var trail = GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+            trail.Clear();
+    }
 }

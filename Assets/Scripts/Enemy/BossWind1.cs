@@ -26,9 +26,8 @@ public class BossWind1 : EnemyController
         timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
         //InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);\
         skeletonAnimation.AnimationState.Event += OnEventChargeAttack;
-        
+        base.Start();
     }
-
     private void OnEventChargeAttack(TrackEntry trackEntry, Spine.Event e)
     {
         if (e.Data.Name.Equals("onfx") && EventOnFx != null)
@@ -36,15 +35,8 @@ public class BossWind1 : EnemyController
             EventOnFx.Invoke();
         }
     }
-
     protected override void Update()
     {
-        //if (countdown <= 0  && !isChargeAttack)
-        //{
-        //    RandomPosition();
-        //    countdown = timeDelayAttack;
-        //}
-        //countdown -= Time.deltaTime;
         if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None && !isChargeAttack)
         {
             Move(enemy.speed);
@@ -68,24 +60,24 @@ public class BossWind1 : EnemyController
                 {
                     Debug.Log("Slow");
                 }
-                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze) )
+                else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
                 {
                     skeletonAnimation.timeScale = 0;
                     isMove = false;
                     isAttack = false;
                     Rigidbody2D.velocity = Vector2.zero;
-                    CurrentState = EnemyState.Idle; 
+                    CurrentState = EnemyState.Idle;
                     if (effectObj == null || _effect != gameEffect.CurrentEffect)
                     {
-                        effectObj = gameEffect.GetEffect(_effect, _position+new Vector3(0,1,0), _time);
+                        effectObj = gameEffect.GetEffect(_effect, _position + new Vector3(0, 1, 0), _time);
                         effectObj.transform.localScale = new Vector3(3, 1, 3);
                     }
-                       
+
                 }
                 gameEffect.SetEffect(_effect);
             }, () =>
             {
-                
+
                 gameEffect.SetEffect(Effect.None);
                 if (effectObj != null)
                 {
@@ -104,9 +96,9 @@ public class BossWind1 : EnemyController
     }
     public void ChargeAttack()
     {
-        GameObject effectleftHand = ObjectPoolManager.Instance.SpawnObject(boss_Fx, LeftHand.transform.position, Quaternion.identity);
+        GameObject effectleftHand = gameEffect.SpawnEffect(boss_Fx, LeftHand.transform.position, 1.3f);
         effectleftHand.transform.SetParent(LeftHand.transform);
-        GameObject effectrightHand = ObjectPoolManager.Instance.SpawnObject(boss_Fx, RightHand.transform.position, Quaternion.identity);
+        GameObject effectrightHand = gameEffect.SpawnEffect(boss_Fx, RightHand.transform.position, 1.3f);
         effectrightHand.transform.SetParent(RightHand.transform);
     }
     public void Attack()
@@ -120,7 +112,6 @@ public class BossWind1 : EnemyController
             m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
         }
     }
-    
     public override void CheckAttack()
     {
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
@@ -139,8 +130,7 @@ public class BossWind1 : EnemyController
             int HardMode = DataController.Instance.StageData.HardMode;
             var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
             enemy.speed += bd.SpeedPlus;
-            enemy.damage *= bd.DamagePlus;
-            timeDelayAttack = bd.DelayAttack; 
+            timeDelayAttack = bd.DelayAttack;
         }
     }
     private void AttackAndMove()
@@ -157,12 +147,17 @@ public class BossWind1 : EnemyController
     public void RandomPosition()
     {
         int index = UnityEngine.Random.Range(0, pointList.Count);
-        if(pointList[index]!=newPosition)
+        if (pointList[index] != newPosition)
+        {
             newPosition = pointList[index];
+            return;
+        }      
+        else
+            RandomPosition();
     }
     IEnumerator IEMove()
     {
-        yield return new WaitForSeconds(enemy.rateOfFire / 100);
+        yield return new WaitForSeconds(0.8f);
         CurrentState = EnemyState.Idle;
         yield return new WaitForSeconds(timeDelayAttack);
         RandomPosition();
@@ -173,7 +168,7 @@ public class BossWind1 : EnemyController
     {
         isMove = true;
         CurrentState = EnemyState.Run;
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3 *(_percentSlow/100) * Time.deltaTime);
+        gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3 * (_percentSlow / 100) * Time.deltaTime);
         if (transform.position == newPosition)
         {
             CurrentState = EnemyState.Idle;
@@ -183,12 +178,11 @@ public class BossWind1 : EnemyController
             float ChargeRatio = UnityEngine.Random.Range(0, 100);
             if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
             {
-                    isChargeAttack = true;
-                    BulletBoss = "BossSkill";
-                    //newPosition = transform.position;
-                    CurrentState = EnemyState.Idle;
-                    CurrentState = EnemyState.Skill;
-                    StartCoroutine(IEChargeAttack(2f));
+                isChargeAttack = true;
+                BulletBoss = "BossSkill";
+                enemy.damage *= 2;
+                CurrentState = EnemyState.Skill;
+                StartCoroutine(IEChargeAttack(2f));
             }
             else
             {
@@ -200,6 +194,7 @@ public class BossWind1 : EnemyController
     {
         yield return new WaitForSeconds(_time);
         CurrentState = EnemyState.Idle;
+        enemy.damage /= 2;
         isMove = true;
         isAttack = false;
         RandomPosition();

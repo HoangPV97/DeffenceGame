@@ -10,7 +10,7 @@ public class IceAllianceBullet : BulletController
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-    public override void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
+    public override void SetDataBullet(float _speed, float _damage)
     {
         base.SetDataBullet(_speed, _damage);
         number_Bullet = 3f;

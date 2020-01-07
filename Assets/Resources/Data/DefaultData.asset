@@ -47,7 +47,64 @@ MonoBehaviour:
       [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
       [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
   - SkillID: WEAPON_WIND_SKILL_2
-    SkillText: '{"SkillID":"WEAPON_WIND_SKILL_2","SkillType":0,"baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"KnockbackDistance","Value":[1,2,3,3,3]},{"Attribute":"KnockbackDuration","Value":[10,20,30,30,30]},{"Attribute":"EffectedAoe","Value":[10,20,30,30,30]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"SkillSpeed":[20,20,20,20,20],"Damage":[55,86,122,158,194]},{"Tier":2,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"KnockbackDistance","Value":[1,2,3]},{"Attribute":"KnockbackDuration","Value":[10,20,30]},{"Attribute":"EffectedAoe","Value":[10,20,30]}]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"KnockbackDistance","Value":[1,2,3]},{"Attribute":"KnockbackDuration","Value":[10,20,30]},{"Attribute":"EffectedAoe","Value":[10,20,30]}]},{"Tier":4,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"KnockbackDistance","Value":[1,2,3]},{"Attribute":"KnockbackDuration","Value":[10,20,30]},{"Attribute":"EffectedAoe","Value":[10,20,30]}]},{"Tier":5,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"SkillSpeed":[10,20,30],"Damage":[10,20,30],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"KnockbackDistance","Value":[1,2,3]},{"Attribute":"KnockbackDuration","Value":[10,20,30]},{"Attribute":"EffectedAoe","Value":[10,20,30]}]}]}'
+    SkillText: '{   "SkillID": "WEAPON_WIND_SKILL_2",   "SkillType": 0,   "baseSkills":
+      [     {       "Tier": 1,       "UpgradeItems": [         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         }       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 1         },         {           "Type":
+      12,           "Quality": 1         }       ],       "SkillAttributes": [         {           "Attribute":
+      "TimeEffect",           "Value": [             6,             6.8,             6.8,             7.5,             7.8           ]         },         {           "Attribute":
+      "InflictedTime",           "Value": [             2,             1.7,             1.7,             1.5,             1.3           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             3,             3,             4,             4,             5           ]         }       ],       "ManaCost":
+      [         30,         31,         32,         33,         34       ],       "CoolDown":
+      [         10,         10,         10,         10,         10       ],       "SkillSpeed":
+      [         30,         30,         30,         30,         30       ],       "Damage":
+      [         55,         86,         122,         158,         194       ]     },     {       "Tier":
+      2,       "ManaCost": [         10,         20,         30       ],       "CoolDown":
+      [         10,         20,         30       ],       "SkillSpeed": [         10,         20,         30       ],       "Damage":
+      [         10,         20,         30       ],       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             1,             2,             3           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             20,             30           ]         }       ]     },     {       "Tier":
+      3,       "ManaCost": [         10,         20,         30       ],       "CoolDown":
+      [         10,         20,         30       ],       "SkillSpeed": [         10,         20,         30       ],       "Damage":
+      [         10,         20,         30       ],       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             1,             2,             3           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             20,             30           ]         }       ]     },     {       "Tier":
+      4,       "ManaCost": [         10,         20,         30       ],       "CoolDown":
+      [         10,         20,         30       ],       "SkillSpeed": [         10,         20,         30       ],       "Damage":
+      [         10,         20,         30       ],       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             1,             2,             3           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             20,             30           ]         }       ]     },     {       "Tier":
+      5,       "ManaCost": [         10,         20,         30       ],       "CoolDown":
+      [         10,         20,         30       ],       "SkillSpeed": [         0,         0,         0       ],       "Damage":
+      [         10,         20,         30       ],       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             1,             2,             3           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             20,             30           ]         }       ]     }   ]
+      }'
   - SkillID: WEAPON_WIND_SKILL_4
     SkillText: '{"SkillID":"WEAPON_WIND_SKILL_4","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"IncreaseFireRate","Value":[10]},{"Attribute":"IncreaseDamage","Value":[20]},{"Attribute":"IncreaseCrit","Value":[10]}]}],"SkillType":1}'
   - SkillID: WEAPON_WIND_SKILL_3

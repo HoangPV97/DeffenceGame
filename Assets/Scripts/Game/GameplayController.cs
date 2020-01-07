@@ -112,7 +112,6 @@ public class GameplayController : Singleton<GameplayController>
         yield return new WaitForSeconds(timeDelay);
         var se = stageEnemyDataBase.stageEnemies[i];
         se.Number--;
-        Debug.Log(se.Number);
         int level = se.Level;
         if (DataController.Instance.StageData.HardMode == 2)
             level += stageEnemyDataBase.NightMareAddLevel;

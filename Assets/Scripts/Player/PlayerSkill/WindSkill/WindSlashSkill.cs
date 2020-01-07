@@ -18,7 +18,7 @@ public class WindSlashSkill : BulletController
         //    collider2D.size = new Vector2(effectedAoe, 1);
         //}
     }
-    public override void SetDataBullet(float _speed, float _damage, float _critical_ratio = 0, float _critical_damage = 0)
+    public override void SetDataBullet(float _speed, float _damage)
     {
         listCheckColision = new List<GameObject>();
         base.SetDataBullet(_speed, _damage);
@@ -48,7 +48,7 @@ public class WindSlashSkill : BulletController
                     {
                         enemy.DealDamge(bullet.Damage);
                     }
-                    enemy.KnockBack( new Vector3(0, KnockBackDistance, 0));
+                    enemy.KnockBack( KnockBackDistance);
                     return;
                 }
 

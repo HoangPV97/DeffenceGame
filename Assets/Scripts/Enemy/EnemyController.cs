@@ -78,10 +78,10 @@ public class EnemyController : MonoBehaviour
             {
                 isMove = true;
             }
-            gameObject.transform.Translate(KnockBackDistance * 5 * Time.deltaTime);
+            gameObject.transform.Translate(KnockBackDistance * Time.deltaTime);
             if (effectObj != null)
             {
-                effectObj.transform.Translate(KnockBackDistance * 5 * Time.deltaTime);
+                effectObj.transform.Translate(KnockBackDistance  * Time.deltaTime);
             }
         }
     }
@@ -147,14 +147,14 @@ public class EnemyController : MonoBehaviour
             CurrentState = EnemyState.Idle;
             StartCoroutine(Die());
             gameEffect.SpawnEffect("dropcoin", this.transform.position, 1f);
-            return;
+            //return;
         }
         //Invoke("DisableCanvas", 2);
     }
     private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
         GameObject damageobj = ObjectPoolManager.Instance.SpawnObject(tag, _postion, Quaternion.identity);
-        damageobj.transform.SetParent(canvas.gameObject.transform);
+        damageobj.transform.SetParent(gameObject.transform);
         damageobj.GetComponent<LoadingText>().SetTextDamage(_damage.ToString());
     }
     public IEnumerator IsKnockback()
@@ -167,9 +167,9 @@ public class EnemyController : MonoBehaviour
             Move(enemy.speed);
         }
     }
-    public void KnockBack(Vector3 _backSpace)
+    public void KnockBack(float _backSpace)
     {
-        KnockBackDistance = _backSpace;
+        KnockBackDistance = new Vector3(0,_backSpace,0);
         isKnockBack = true;
         StartCoroutine(IsKnockback());
     }
