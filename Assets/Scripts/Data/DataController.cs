@@ -322,23 +322,124 @@ public class DataController : Singleton<DataController>
         }
 
         // load base
-        var bdbHP = BaseDatabases.GetBaseFortressData(GameData.Fortress.Level);
-        var bdbMana = BaseDatabases.GetBaseTempleData(GameData.Temple.Level);
-        var bdbShield = BaseDatabases.GetBaseShieldData(GameData.Fortress.Level);
-        InGameBaseData = new BaseData
-        {
-            HP = bdbHP.GetAttributeValue("HP", GameData.Fortress.Level),
-            HPRegen = bdbHP.GetAttributeValue("HPRegen", GameData.Fortress.Level),
-            Mana = bdbMana.GetAttributeValue("Mana", GameData.Temple.Level),
-            ManaRegen = bdbMana.GetAttributeValue("ManaRegen", GameData.Temple.Level),
-            ShieldBlockValue = bdbMana.GetAttributeValue("ShieldBlockValue", GameData.Fortress.Level),
-            ShieldBlockChance = bdbMana.GetAttributeValue("ShieldBlockChance", GameData.Fortress.Level),
-            //   Mana = bdbMana.Value1[GameData.Temple.Level - 1],
-            //  ManaRegen = bdbMana.Value2[GameData.Temple.Level - 1],
-            //  ShieldBlockValue = bdbShield.Value1[GameData.Fortress.Level - 1],
-            //  ShieldBlockChance = bdbShield.Value2[GameData.Fortress.Level - 1],
-        };
+        InGameBaseData = new BaseData();
+        SaveGameTierLevel sgd, sgd1, sgd2, sgd3, sgd4;
+        BaseDatabase baseData;
+        List<string> Skills;
+        SkillData skillData1, skillData2, skillData3, skillData4;
+        /// Caculate ingame data
+        /// Fortress
+        sgd = GetFortressGameData();
+        baseData = BaseDatabases.GetBaseFortressData(sgd.Tier);
+        InGameBaseData.HP = (int)baseData.GetAttributeValue("HP", sgd.Level);
+        InGameBaseData.ShieldBlockValue = (int)baseData.GetAttributeValue("Shield", sgd.Level);
+        InGameBaseData.HPRegen = (int)baseData.GetAttributeValue("HPRegen", sgd.Level);
 
+        Skills = GetFortressSkillID();
+        sgd1 = GetGameSkillData(Skills[0]);
+        skillData1 = ConectingFireBase.Instance.GetSkillData(Skills[0]);
+        if (sgd1.Level > 0)
+        {
+            InGameBaseData.ShieldBlockValue += (int)skillData1.GetSkillAttributes("AddedShield", sgd1.Tier, sgd1.Level);
+        }
+
+        sgd2 = GetGameSkillData(Skills[1]);
+        skillData2 = ConectingFireBase.Instance.GetSkillData(Skills[1]);
+        if (sgd2.Level > 0)
+        {
+            InGameBaseData.HPRegen += (int)skillData2.GetSkillAttributes("AddedHPRegen", sgd2.Tier, sgd2.Level);
+        }
+
+        sgd3 = GetGameSkillData(Skills[2]);
+        skillData3 = ConectingFireBase.Instance.GetSkillData(Skills[2]);
+        if (sgd3.Level > 0)
+        {
+            InGameBaseData.ShieldBlockChance += (int)skillData3.GetSkillAttributes("Block100PercentDamageChance", sgd3.Tier, sgd3.Level);
+        }
+
+        sgd4 = GetGameSkillData(Skills[3]);
+        skillData4 = ConectingFireBase.Instance.GetSkillData(Skills[3]);
+        if (sgd4.Level > 0)
+        {
+            InGameBaseData.HP += (int)skillData4.GetSkillAttributes("AddedHP", sgd4.Tier, sgd4.Level);
+
+            InGameBaseData.ShieldBlockValue += (int)skillData4.GetSkillAttributes("AddedShield", sgd4.Tier, sgd4.Level);
+        }
+
+        /// Archery
+        sgd = GetArcheryGameData();
+        baseData = BaseDatabases.GetBaseArcheryData(sgd.Tier);
+        InGameBaseData.Damage = (int)baseData.GetAttributeValue("Damage", sgd.Level);
+        Skills = GetArcherySkillID();
+        sgd1 = GetGameSkillData(Skills[0]);
+        skillData1 = ConectingFireBase.Instance.GetSkillData(Skills[0]);
+        if (sgd1.Level > 0)
+        {
+            InGameBaseData.Critical += (int)skillData1.GetSkillAttributes("CriticalChance", sgd1.Tier, sgd1.Level);
+        }
+
+        sgd2 = GetGameSkillData(Skills[1]);
+        skillData2 = ConectingFireBase.Instance.GetSkillData(Skills[1]);
+        if (sgd2.Level > 0)
+        {
+            InGameBaseData.KnockBackChance += (int)skillData2.GetSkillAttributes("KnockBackChance", sgd2.Tier, sgd2.Level);
+        }
+
+        sgd3 = GetGameSkillData(Skills[2]);
+        skillData3 = ConectingFireBase.Instance.GetSkillData(Skills[2]);
+        if (sgd3.Level > 0)
+        {
+            InGameBaseData.QuickHand = (int)skillData3.GetSkillAttributes("QuickHandChance", sgd3.Tier, sgd3.Level);
+            InGameBaseData.QuickHandDamagePercent = (int)skillData3.GetSkillAttributes("DamagePercent", sgd3.Tier, sgd3.Level);
+        }
+
+        sgd4 = GetGameSkillData(Skills[3]);
+        skillData4 = ConectingFireBase.Instance.GetSkillData(Skills[3]);
+        if (sgd4.Level > 0)
+        {
+            InGameBaseData.MultiShot = true;
+            InGameBaseData.MultiShotDamage = (int)skillData4.GetSkillAttributes("DamagePercent", sgd4.Tier, sgd4.Level);
+            InGameBaseData.MultiShotAddedAttributePercent = InGameBaseData.MultiShotDamage;
+        }
+        else
+        {
+            InGameBaseData.MultiShot = false;
+        }
+
+        ///Temple
+        sgd = GetTempleGameData();
+        baseData = BaseDatabases.GetBaseTempleData(sgd.Tier);
+        InGameBaseData.AllianceDamage = (int)baseData.GetAttributeValue("AllianceDamage", sgd.Level);
+        InGameBaseData.Mana = (int)baseData.GetAttributeValue("Mana", sgd.Level);
+        InGameBaseData.ManaRegen = (int)baseData.GetAttributeValue("ManaRegen", sgd.Level);
+        Skills = GetArcherySkillID();
+        sgd1 = GetGameSkillData(Skills[0]);
+        skillData1 = ConectingFireBase.Instance.GetSkillData(Skills[0]);
+        if (sgd1.Level > 0)
+        {
+            InGameBaseData.Mana += (int)skillData1.GetSkillAttributes("AddedMana", sgd1.Tier, sgd1.Level);
+        }
+
+        sgd2 = GetGameSkillData(Skills[1]);
+        skillData2 = ConectingFireBase.Instance.GetSkillData(Skills[1]);
+        if (sgd2.Level > 0)
+        {
+            InGameBaseData.ManaRegen += (int)skillData2.GetSkillAttributes("AddedManaRegen", sgd2.Tier, sgd2.Level);
+        }
+
+        sgd3 = GetGameSkillData(Skills[2]);
+        skillData3 = ConectingFireBase.Instance.GetSkillData(Skills[2]);
+        if (sgd3.Level > 0)
+        {
+            InGameBaseData.ReduceCooldown = (int)skillData3.GetSkillAttributes("ReduceCoolDownRate", sgd3.Tier, sgd3.Level);
+        }
+
+        sgd4 = GetGameSkillData(Skills[3]);
+        skillData4 = ConectingFireBase.Instance.GetSkillData(Skills[3]);
+        if (sgd4.Level > 0)
+        {
+            InGameBaseData.IncreaseSpellDamage = (int)skillData4.GetSkillAttributes("IncreaseSpellDamageRate", sgd4.Tier, sgd4.Level);
+        }
     }
 
     public Weapons GetDataBaseWeapons(Elemental elemental, int Tier)
@@ -428,7 +529,13 @@ public class DataController : Singleton<DataController>
 
     public void AddArcheryTier()
     {
-        GetArcheryGameData().Tier++;
+        var sgd = GetArcheryGameData();
+        sgd.Tier++;
+        sgd.Level = 1;
+        var SkillList = GetArcherySkillID();
+        string skillID = SkillList[sgd.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public void AddTempleLevel()
@@ -438,7 +545,13 @@ public class DataController : Singleton<DataController>
 
     public void AddTempleTier()
     {
-        GetTempleGameData().Tier++;
+        var sgd = GetTempleGameData();
+        sgd.Tier++;
+        sgd.Level = 1;
+        var SkillList = GetTempleSkillID();
+        string skillID = SkillList[sgd.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
     public void AddFortressLevel()
     {
@@ -447,7 +560,13 @@ public class DataController : Singleton<DataController>
 
     public void AddFortressTier()
     {
-        GetFortressGameData().Tier++;
+        var sgd = GetFortressGameData();
+        sgd.Tier++;
+        sgd.Level = 1;
+        var SkillList = GetFortressSkillID();
+        string skillID = SkillList[sgd.Tier - 1];
+        var sgl = GetGameSkillData(skillID);
+        sgl.Level = 1;
     }
 
     public void AddItemQuality(ITEM_TYPE type, int number)
@@ -601,12 +720,12 @@ public class DataController : Singleton<DataController>
 
     public List<string> GetTempleSkillID()
     {
-        return new List<string>() { "BASE_ARCHERY_SKILL_1", "BASE_ARCHERY_SKILL_2", "BASE_ARCHERY_SKILL_3", "BASE_ARCHERY_SKILL_4" };
+        return new List<string>() { "BASE_TEMPLE_SKILL_1", "BASE_TEMPLE_SKILL_2", "BASE_TEMPLE_SKILL_3", "BASE_TEMPLE_SKILL_4" };
     }
 
     public List<string> GetFortressSkillID()
     {
-        return new List<string>() { "ARCHERY_SKILL_1", "ARCHERY_SKILL_2", "ARCHERY_SKILL_3", "ARCHERY_SKILL_4" };
+        return new List<string>() { "BASE_FORTRESS_SKILL_1", "BASE_FORTRESS_SKILL_2", "BASE_FORTRESS_SKILL_3", "BASE_FORTRESS_SKILL_4" };
     }
 
     public List<string> GetAllianceSkillID(Elemental elemental)

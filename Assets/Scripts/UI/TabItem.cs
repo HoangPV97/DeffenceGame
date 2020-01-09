@@ -55,13 +55,13 @@ public class TabItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IP
         TabController.OnTabClick(this);
     }
 
-    public void OnEnableTab()
+    public virtual void OnEnableTab()
     {
         Image.sprite = EnabldeSprite;
         text.color = EnableColorText;
     }
 
-    public void OnDisableTab()
+    public virtual void OnDisableTab()
     {
         Image.sprite = DisableSprite;
         text.color = DisableColorText;

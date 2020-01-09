@@ -7,14 +7,16 @@ using TMPro;
 public class UIEvolveFortress : BaseUIView
 {
     public Animator Anim;
-    public TextMeshProUGUI txtHeroName1, txtHeroName2;
-    public TextMeshProUGUI[] lb, txtValue;
+    public TextMeshProUGUI txtHeroName1, txtHeroName2, PopUpTitle;
+    public TextMeshProUGUI[] lb, txtValue, lb2, txtValue2;
     public TextMeshProUGUI GoldCost;
     public Transform ItemContain;
     public UIButton BtnEvolve, BtnClose;
     public UiItem pfUIItem;
     SaveGameTierLevel data1;
+    [SerializeField]
     BaseDatabase dataBase;
+    [SerializeField]
     BaseDatabase dataBase2;
 
     int Gold = 0;
@@ -42,12 +44,15 @@ public class UIEvolveFortress : BaseUIView
             {
                 case 1:
                     DataController.Instance.AddArcheryTier();
+                    MenuController.Instance.UIPanelForstress.OnTabArcheryClick();
                     break;
                 case 2:
                     DataController.Instance.AddTempleTier();
+                    MenuController.Instance.UIPanelForstress.OnTabTemplClick();
                     break;
                 case 3:
                     DataController.Instance.AddFortressTier();
+                    MenuController.Instance.UIPanelForstress.OnTabFortressClick();
                     break;
             }
 
@@ -81,25 +86,55 @@ public class UIEvolveFortress : BaseUIView
                 data1 = DataController.Instance.GetArcheryGameData();
                 dataBase = DataController.Instance.BaseDatabases.GetBaseArcheryData(data1.Tier);
                 dataBase2 = DataController.Instance.BaseDatabases.GetBaseArcheryData(data1.Tier + 1);
+                txtHeroName1.text = Language.GetKey("Archery") + "." + ToolHelper.ToRoman(data1.Tier);
+                txtHeroName2.text = Language.GetKey("Archery") + "." + ToolHelper.ToRoman(data1.Tier + 1);
+                PopUpTitle.text = Language.GetKey("Evolve_Archery_Title");
                 break;
             case 2:
                 data1 = DataController.Instance.GetTempleGameData();
                 dataBase = DataController.Instance.BaseDatabases.GetBaseTempleData(data1.Tier);
                 dataBase2 = DataController.Instance.BaseDatabases.GetBaseTempleData(data1.Tier + 1);
+                txtHeroName1.text = Language.GetKey("Temple") + "." + ToolHelper.ToRoman(data1.Tier);
+                txtHeroName2.text = Language.GetKey("Temple") + "." + ToolHelper.ToRoman(data1.Tier + 1);
+                PopUpTitle.text = Language.GetKey("Evolve_Temple_Title");
                 break;
             case 3:
                 data1 = DataController.Instance.GetFortressGameData();
                 dataBase = DataController.Instance.BaseDatabases.GetBaseFortressData(data1.Tier);
                 dataBase2 = DataController.Instance.BaseDatabases.GetBaseFortressData(data1.Tier + 1);
+                txtHeroName1.text = Language.GetKey("Fortress") + "." + ToolHelper.ToRoman(data1.Tier);
+                txtHeroName2.text = Language.GetKey("Fortress") + "." + ToolHelper.ToRoman(data1.Tier + 1);
+                PopUpTitle.text = Language.GetKey("Evolve_Fortress_Title");
                 break;
         }
 
         int Level = data1.Level > 0 ? data1.Level : 1;
-        /*  txtDamage1.text = dataBase.ATK[Level - 1].ToString();
-          txtFireRate1.text = dataBase.ATKspeed[Level - 1].ToString();
-          txtDamage2.text = dataBase2.ATK[0] > dataBase.ATK[Level - 1] ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.ATK[0]) : dataBase2.ATK[0].ToString();
-          txtFireRate2.text = dataBase2.ATKspeed[0] > dataBase.ATKspeed[Level - 1] ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.ATKspeed[0]) : dataBase2.ATKspeed[0].ToString();
-          */
+        //init attribute
+        for (int i = 0; i < 3; i++)
+        {
+            lb[i].gameObject.SetActive(false);
+            lb2[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < dataBase.Attributes.Count; i++)
+        {
+            if (i < 3)
+            {
+                lb[i].gameObject.SetActive(true);
+                lb[i].text = Language.GetKey(dataBase.Attributes[i].Attribute);
+                txtValue[i].text = dataBase.GetAttributeValue(dataBase.Attributes[i].Attribute, data1.Level).ToString();
+            }
+        }
+
+        for (int i = 0; i < dataBase2.Attributes.Count; i++)
+        {
+            if (i < 3)
+            {
+                lb2[i].gameObject.SetActive(true);
+                lb2[i].text = Language.GetKey(dataBase2.Attributes[i].Attribute);
+                txtValue2[i].text = dataBase2.GetAttributeValue(dataBase2.Attributes[i].Attribute, 1).ToString();
+            }
+        }
         /// init Item
         foreach (Transform child in ItemContain)
         {

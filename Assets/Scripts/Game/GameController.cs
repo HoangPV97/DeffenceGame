@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
     public void SetGoldText(float _gold)

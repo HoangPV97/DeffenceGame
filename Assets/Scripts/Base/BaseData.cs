@@ -22,7 +22,6 @@ public class BaseData
     public float MultiShotAddedAttributePercent;
     public float ReduceCooldown;
     public float IncreaseSpellDamage;
-    public float BlockDamage;
 }
 [System.Serializable]
 public class BaseDatabase
@@ -55,8 +54,28 @@ public class BaseDatabases
 {
     public List<BaseDatabase> BaseFortressData;
     public List<BaseDatabase> BaseTempleData;
-    public List<BaseDatabase> BaseShieldData;
     public List<BaseDatabase> BaseArcheryData;
+    public int MaxTierArchery
+    {
+        get
+        {
+            return BaseArcheryData.Count;
+        }
+    }
+    public int MaxTierTemple
+    {
+        get
+        {
+            return BaseTempleData.Count;
+        }
+    }
+    public int MaxTierFortress
+    {
+        get
+        {
+            return BaseFortressData.Count;
+        }
+    }
     public BaseDatabase GetBaseFortressData(int tier)
     {
         for (int i = 0; i < BaseFortressData.Count; i++)
@@ -69,13 +88,6 @@ public class BaseDatabases
         for (int i = 0; i < BaseTempleData.Count; i++)
             if (BaseTempleData[i].Tier == tier)
                 return BaseTempleData[i];
-        return null;
-    }
-    public BaseDatabase GetBaseShieldData(int tier)
-    {
-        for (int i = 0; i < BaseShieldData.Count; i++)
-            if (BaseShieldData[i].Tier == tier)
-                return BaseShieldData[i];
         return null;
     }
     public BaseDatabase GetBaseArcheryData(int tier)

@@ -109,7 +109,7 @@ public class UISkillItem : MonoBehaviour
         Active.gameObject.SetActive(false);
         Pasive.gameObject.SetActive(false);
         //WEAPON_WIND_SKILL_1
-        skillData = JsonUtility.FromJson<SkillData>(ConectingFireBase.Instance.GetTextSkill(SkillID));
+        skillData = ConectingFireBase.Instance.GetSkillData(SkillID);
         sgtl = DataController.Instance.GetGameSkillData(SkillID);
         for (int i = 0; i < txtAttribute.Length; i++)
         {
@@ -178,7 +178,7 @@ public class UISkillItem : MonoBehaviour
                     txtAttribute[1].transform.parent.gameObject.SetActive(true);
                     txtAttribute[1].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute);
                     txtAttributeValue[1].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Value[Level - 1].ToString();
-                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute.Contains("Chance"))
+                    if (CheckContainPercent(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[0].Attribute))
                     {
                         txtAttributeValue[1].text += "%";
                     }
@@ -188,7 +188,7 @@ public class UISkillItem : MonoBehaviour
                     txtAttribute[2].transform.parent.gameObject.SetActive(true);
                     txtAttribute[2].text = Language.GetKey(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute);
                     txtAttributeValue[2].text = skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Value[Level - 1].ToString();
-                    if (skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Percent") || skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute.Contains("Chance"))
+                    if (CheckContainPercent(skillData.baseSkills[sgtl.Tier - 1].SkillAttributes[1].Attribute))
                     {
                         txtAttributeValue[2].text += "%";
                     }
@@ -241,5 +241,10 @@ public class UISkillItem : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool CheckContainPercent(string str)
+    {
+        return str.Contains("Percent") || str.Contains("Chance") || str.Contains("Rate");
     }
 }

@@ -9,6 +9,7 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
 {
     // Start is called before the first frame update
     public ConfigInfo ConfigInfo;
+    public Dictionary<string, SkillData> skillDatas = new Dictionary<string, SkillData>();
     void Awake()
     {
         Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
@@ -119,6 +120,16 @@ public class ConectingFireBase : Singleton<ConectingFireBase>
         {
             return DataController.Instance.DefaultData.MonsterDataBases.text;
         }
+    }
+
+    public SkillData GetSkillData(string SkillID)
+    {
+        if (!skillDatas.ContainsKey(SkillID))
+        {
+            var sd = JsonUtility.FromJson<SkillData>(GetTextSkill(SkillID));
+            skillDatas.Add(SkillID, sd);
+        }
+        return skillDatas[SkillID];
     }
 
     public string GetTextSkill(string SkillID)

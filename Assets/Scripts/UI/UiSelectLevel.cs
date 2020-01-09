@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 public class UiSelectLevel : BaseUIView
 {
     public UISelectLevelItem[] uiSelectLevelItems;
@@ -16,6 +17,7 @@ public class UiSelectLevel : BaseUIView
     public UIButton BtnCloseLevelDetail;
     public Transform ItemContain;
     int CurrentLevel;
+    public InputField InputField;
     void Awake()
     {
         uiSelectLevelItems = GetComponentsInChildren<UISelectLevelItem>();
@@ -45,13 +47,23 @@ public class UiSelectLevel : BaseUIView
         }
     }
 
+    public void HackLevelClick()
+    {
+        SetUpDataUILevelDetail(int.Parse(InputField.text));
+    }
 
     public void SetUpDataUILevelDetail(int Level)
     {
         OnLevelDetailShow();
-        GetUISelectLevelItem(CurrentLevel).OnShowAnimation(false);
+        var uiLv = GetUISelectLevelItem(CurrentLevel);
+        if (uiLv != null)
+            uiLv.OnShowAnimation(false);
+
         CurrentLevel = Level;
-        GetUISelectLevelItem(CurrentLevel).OnShowAnimation(true);
+
+        var uiLv2 = GetUISelectLevelItem(CurrentLevel);
+        if (uiLv2 != null)
+            uiLv2.OnShowAnimation(true);
         foreach (Transform child in ItemContain)
         {
             Destroy(child.gameObject);
