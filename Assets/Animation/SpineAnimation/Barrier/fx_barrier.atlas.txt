@@ -1,0 +1,104 @@
+
+fx_barrier.png
+size: 576,692
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+e1
+  rotate: false
+  xy: 411, 173
+  size: 160, 291
+  orig: 160, 291
+  offset: 0, 0
+  index: -1
+earth
+  rotate: false
+  xy: 109, 93
+  size: 100, 105
+  orig: 100, 105
+  offset: 0, 0
+  index: -1
+shield_light
+  rotate: false
+  xy: 2, 200
+  size: 407, 283
+  orig: 407, 283
+  offset: 0, 0
+  index: -1
+stone1
+  rotate: false
+  xy: 411, 74
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+stone2
+  rotate: false
+  xy: 312, 9
+  size: 96, 93
+  orig: 96, 93
+  offset: 0, 0
+  index: -1
+stone3
+  rotate: false
+  xy: 2, 3
+  size: 100, 98
+  orig: 100, 98
+  offset: 0, 0
+  index: -1
+stone4
+  rotate: false
+  xy: 104, 2
+  size: 90, 89
+  orig: 90, 89
+  offset: 0, 0
+  index: -1
+stone5
+  rotate: false
+  xy: 437, 571
+  size: 118, 118
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+stone_shield
+  rotate: false
+  xy: 2, 485
+  size: 433, 204
+  orig: 433, 204
+  offset: 0, 0
+  index: -1
+stoneb1
+  rotate: false
+  xy: 312, 104
+  size: 97, 94
+  orig: 97, 94
+  offset: 0, 0
+  index: -1
+stoneb2
+  rotate: false
+  xy: 211, 101
+  size: 99, 97
+  orig: 99, 97
+  offset: 0, 0
+  index: -1
+stoneb3
+  rotate: false
+  xy: 2, 103
+  size: 105, 95
+  orig: 105, 95
+  offset: 0, 0
+  index: -1
+stoneb4
+  rotate: false
+  xy: 437, 466
+  size: 118, 103
+  orig: 118, 103
+  offset: 0, 0
+  index: -1
+stoneb5
+  rotate: false
+  xy: 211, 8
+  size: 96, 91
+  orig: 96, 91
+  offset: 0, 0
+  index: -1

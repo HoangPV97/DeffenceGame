@@ -32,28 +32,26 @@ public class GameplayController : Singleton<GameplayController>
         {
             //set 1 skill button 
             // spawn skill controller
-            var SplashSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
-            SplashSkill.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
+            var WeaponSkill_1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform).GetComponent<Skill>();
+            SetUpSkill(WeaponSkill_1, DataController.Instance.inGameWeapons.Type,SkillButtons[0],PlayerController.transform.position);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 2)
         {
             // set 2 skill button
             //var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
             //go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
-            var TornardoSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform);
-            var skill = TornardoSkill.GetComponent<Skill>();
-            skill.SetUpData(1, 1, SkillButtons[1], PlayerController.transform.position);
-            SkillList.Add(skill);
+            var WeaponSkill_2 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform).GetComponent<Skill>();
+            SetUpSkill(WeaponSkill_2, DataController.Instance.inGameWeapons.Type,SkillButtons[1],PlayerController.transform.position);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 3)
         {
-            var AgileSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 2), this.transform);
-            AgileSkill.GetComponent<Skill>().SetUpData(1, 1);
+            var WeaponSkill_3 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 2), this.transform).GetComponent<Skill>();
+            SetUpSkill(WeaponSkill_3, DataController.Instance.inGameWeapons.Type);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 4)
         {
-            var SoulOfWindSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type,3), this.transform);
-            SoulOfWindSkill.GetComponent<Skill>().SetUpData(1, 1);
+            var SoulOfWeaponSkill = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 3), this.transform).GetComponent<Skill>();
+            SetUpSkill(SoulOfWeaponSkill, DataController.Instance.inGameWeapons.Type);
         }
 
         /// Load Alliance
@@ -66,9 +64,20 @@ public class GameplayController : Singleton<GameplayController>
                                     DataController.Instance.IngameAlliance1.ATKspeed,
                                     DataController.Instance.IngameAlliance1.ATK,
                                      DataController.Instance.IngameAlliance1.BulletSpeed);
+            
             // set  skill button
-            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[2],Alliance_1.transform.position);
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,0), this.transform).GetComponent<Skill>();
+            SetUpSkill(go, DataController.Instance.IngameAlliance1.Type, SkillButtons[2], Alliance_1.transform.position);
+            if (DataController.Instance.IngameAlliance1.Tier >= 2)
+            {
+                var Skill2 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,1), this.transform).GetComponent<Skill>();
+                SetUpSkill(Skill2, DataController.Instance.IngameAlliance1.Type);
+            }
+            if(DataController.Instance.IngameAlliance1.Tier >= 3)
+            {
+                var Skill3 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,2), this.transform).GetComponent<Skill>();
+                SetUpSkill(Skill3, DataController.Instance.IngameAlliance1.Type);
+            }
         }
 
         ///Load slot 2
@@ -81,10 +90,9 @@ public class GameplayController : Singleton<GameplayController>
                                     DataController.Instance.IngameAlliance2.ATK,
                                      DataController.Instance.IngameAlliance2.BulletSpeed);
             // set  skill button
-            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type), this.transform);
-            go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[3],Alliance_2.transform.position);
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type,0), this.transform).GetComponent<Skill>();
+            SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], Alliance_2.transform.position);
         }
-
         //spawn Enemy
         var sd = DataController.Instance.StageData;
         for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
@@ -94,12 +102,19 @@ public class GameplayController : Singleton<GameplayController>
         }
         GoldEachEnemy = (float)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
     }
+    public void SetUpSkill( Skill skill, Elemental _element, VariableJoystick variableJoystick=null, Vector3 position=default)
+    {
+        skill.elemental = _element;
+        skill.SetUpData(1, 1, variableJoystick, position);
+        SkillList.Add(skill);
+    }
     #region Monster
     public IEnumerator IESpawnEnemy(int i, float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
         var se = DataController.Instance.StageData.stageEnemyDataBase.stageEnemies[i];
         se.Number--;
+        Debug.Log("Enemy Number : " + se.Number);
         int level = se.Level;
         if (DataController.Instance.StageData.HardMode == 2)
             level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
@@ -149,9 +164,9 @@ public class GameplayController : Singleton<GameplayController>
         CancelSkill = true;
     }
     #endregion
-    public Skill GetSkill (string SkillID)
+    public Skill GetSkill(string SkillID)
     {
-        for(int i=0;i< SkillList.Count; i++)
+        for (int i = 0; i < SkillList.Count; i++)
         {
             if (SkillList[i].SkillID.Equals(SkillID))
             {
@@ -159,5 +174,17 @@ public class GameplayController : Singleton<GameplayController>
             }
         }
         return null;
+    }
+    public List<Skill> GetElementSkills(Elemental _elemental)
+    {
+        List<Skill> elementSkill = new List<Skill>();
+        for(int i = 0; i < SkillList.Count; i++)
+        {
+            if (SkillList[i].elemental.Equals(_elemental))
+            {
+                elementSkill.Add(SkillList[i]);
+            }
+        }
+        return elementSkill;
     }
 }

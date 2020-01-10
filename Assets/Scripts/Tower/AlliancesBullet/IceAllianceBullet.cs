@@ -6,12 +6,12 @@ public class IceAllianceBullet : BulletController
 {
     private float number_Bullet;
     private float percent_Slow = 20;
-    private void Start()
+    protected override void Start()
     {
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-    public override void SetDataBullet(float _speed, float _damage)
+    public override void SetDataBullet(float _speed, int _damage)
     {
         base.SetDataBullet(_speed, _damage);
         number_Bullet = 3f;

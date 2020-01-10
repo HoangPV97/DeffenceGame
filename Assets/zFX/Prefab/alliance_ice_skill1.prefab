@@ -19055,6 +19055,7 @@ GameObject:
   - component: {fileID: 3892153920387240646}
   - component: {fileID: 1544787562777578068}
   - component: {fileID: 2444946500082550550}
+  - component: {fileID: 852059271920260861}
   m_Layer: 0
   m_Name: alliance_ice_skill1
   m_TagString: Untagged
@@ -23829,21 +23830,20 @@ MonoBehaviour:
     _speed: 0
     _damage: 50
     _targetTag: Enemy
+    _knockbackDistance: 0
+    _critical_Damage: 0
   SeekTarget: 0
   elementalBullet: 0
   damagePlus: 10
   explosion: 0
-  bounce: 0
   poison: 0
-  slow: 0
-  pierce: 0
-  critical: 0
-  multishot: 0
-  quickhand: 0
   stun: 0
   nearEnemy: {fileID: 0}
-  particleSystem: {fileID: 0}
+  ParticleSystem: {fileID: 3892153920387240647}
+  ParticleScaler: {fileID: 852059271920260861}
   stunTime: 3
+  EffectTime: 3
+  EffectedAoe: 10
 --- !u!58 &2444946500082550550
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23860,3 +23860,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.2
+--- !u!114 &852059271920260861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892153920387240644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,11 +10,9 @@ public class PlaySkill4 : DragAndDropSkill
     /// <summary>
     /// get data sww1.ManaCost[Level-1]
     /// </summary>
-    int Level;
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Level);
-        this.Level = Level;
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swf1.GetManaCost(Tier, Level);

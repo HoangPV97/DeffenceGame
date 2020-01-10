@@ -12,10 +12,10 @@ public class DefaultData : ScriptableObject
     public List<GameObject> WeaponIceSkills;
     public List<GameObject> WeaponEarthSkills;
     public List<GameObject> WeaponFireSkills;
-    public GameObject AllianceWindSkills;
-    public GameObject AllianceIceSkills;
-    public GameObject AllianceEarthSkills;
-    public GameObject AllianceFireSkills;
+    public List<GameObject> AllianceWindSkills;
+    public List<GameObject> AllianceIceSkills;
+    public List<GameObject> AllianceEarthSkills;
+    public List<GameObject> AllianceFireSkills;
     public List<DefaultDataSkill> TextWeaponSkills;
     public TextAsset AssetBundleItem;
     public AssetBundle Item;
@@ -47,20 +47,20 @@ public class DefaultData : ScriptableObject
         }
         return null;
     }
-    public GameObject GetAllianceSkill(Elemental elemental)
+    public GameObject GetAllianceSkill(Elemental elemental, int index)
     {
         switch (elemental)
         {
             case Elemental.None:
                 return null;
             case Elemental.Wind:
-                return AllianceWindSkills;
+                return AllianceWindSkills[index];
             case Elemental.Ice:
-                return AllianceIceSkills;
+                return AllianceIceSkills[index];
             case Elemental.Fire:
-                return AllianceFireSkills;
+                return AllianceFireSkills[index];
             case Elemental.Earth:
-                return AllianceEarthSkills;
+                return AllianceEarthSkills[index];
         }
         return null;
     }

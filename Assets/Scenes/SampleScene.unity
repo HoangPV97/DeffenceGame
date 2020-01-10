@@ -1270,7 +1270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 8.290039}
   m_SizeDelta: {x: 0, y: 368}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &278957565
@@ -1414,6 +1414,7 @@ MonoBehaviour:
   - {fileID: 1744286989}
   GoldEachEnemy: 0
   TotalGoldDrop: 0
+  SkillList: []
 --- !u!1 &314805338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1727,10 @@ MonoBehaviour:
     prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
       type: 3}
   - tag: WEAPON_EARTH_SKILL_1
-    prefab: {fileID: 3892153920387240644, guid: 27ae298336f3cb5439c2193a2eebec82,
+    prefab: {fileID: 5690069378365063656, guid: f78097eb7524bbc4f9300d4d57d7fea9,
+      type: 3}
+  - tag: WEAPON_EARTH_SKILL_2
+    prefab: {fileID: 3892153920387240644, guid: 22b828e69860d8641a028443a207cf27,
       type: 3}
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: 877fab7edaba4d843aa8940df1d3ff75,
@@ -1786,6 +1790,9 @@ MonoBehaviour:
   - tag: ALLIANCE_WIND_SKILL_1
     prefab: {fileID: 2625949087083810963, guid: 56311b1c93261424aa408a6a24f6efee,
       type: 3}
+  - tag: ALLIANCE_WIND_SKILL_2
+    prefab: {fileID: 3346026367710059841, guid: 0b9f8b5b2e7c51740aa2d35daa272b72,
+      type: 3}
   - tag: windalliancebullet
     prefab: {fileID: 6761650371443875019, guid: 2c1aa140fd034a248af42a0d72bb96d6,
       type: 3}
@@ -1798,8 +1805,11 @@ MonoBehaviour:
   - tag: stuneffectstart
     prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
       type: 3}
-  - tag: windeffectstart
+  - tag: HERO_WIND_SKILL_START
     prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
+      type: 3}
+  - tag: HERO_EARTH_SKILL_START
+    prefab: {fileID: 4057672117551481266, guid: a62c376847366054bae2a65aa9e4cac6,
       type: 3}
   - tag: iceeffectend
     prefab: {fileID: 1248681905678545692, guid: 9de50726d80a91247b1e1ca349d8311e,
@@ -1871,7 +1881,7 @@ MonoBehaviour:
     prefab: {fileID: 2141139932449471191, guid: 5ca3fb35718f57345990584683411647,
       type: 3}
   - tag: WEAPON_WIND_SKILL_2
-    prefab: {fileID: 6761650371443875019, guid: ef62e787d8871b44c91cb43498655ce3,
+    prefab: {fileID: 5937893838479093701, guid: 72eaa27456891ab4cbfc5a9853342ec6,
       type: 3}
   - tag: dropcoin
     prefab: {fileID: 1493198791445031203, guid: d34cd9753163e4b449de86ae675e0cd1,
@@ -6600,11 +6610,12 @@ MonoBehaviour:
   CountdownGo: {fileID: 832016660}
   CountdownTime: 2
   manaCost: 0
+  Damage: 0
+  elemental: 0
   circle: {fileID: 1920795930}
   EffectName: 
   EffectTime: 0
   EffectedAoe: 0
-  Damage: 0
   Swi1:
     SkillID: 
     SkillType: 0

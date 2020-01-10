@@ -31,10 +31,10 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
             //if (enemyController.Equals(GameplayController.Instance.PlayerController.player.target))
             //{
             enemyController.gameEffect.SpawnEffect("windimpact", enemyController.transform.position, 0.5f);
-            IIceEffectable elemental = enemyController?.GetComponent<IIceEffectable>();
+            IEarthEffectable elemental = enemyController?.GetComponent<IEarthEffectable>();
             if (elemental != null)
             {
-                elemental.IceImpactEffect(enemyController.transform.position);
+                elemental.EarthImpactEffect(enemyController.transform.position);
                 enemyController?.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
             }
             else

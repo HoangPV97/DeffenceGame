@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4205350128027674013}
-  - component: {fileID: 5226926556711033115}
+  - component: {fileID: 4205350128027674014}
   m_Layer: 5
-  m_Name: WEAPON_EARTH_SKILL_1
+  m_Name: WEAPON_WIND_SKILL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -6.36}
   m_SizeDelta: {x: 156, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5226926556711033115
+--- !u!114 &4205350128027674014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,24 +46,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4205350128027674012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e442201c4844943b870d95aa402455, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e8177f8e25764b40bf97ba8b5bdf118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillID: WEAPON_EARTH_SKILL_1
-  CountdownGo: {fileID: 0}
-  CountdownTime: 0
-  manaCost: 0
+  SkillID: WEAPON_WIND_SKILL_1
   variableJoystick: {fileID: 0}
-  circle: {fileID: 4393101909493608331}
-  EffectName: iceeffectstart
-  Swi1:
+  CountdownGo: {fileID: 0}
+  CountdownTime: 10
+  manaCost: 0
+  Damage: 0
+  elemental: 0
+  arrow: {fileID: 4393101909493608331}
+  bulletName: slowskill
+  EffectName: HERO_WIND_SKILL_START
+  sww1:
     SkillID: 
     SkillType: 0
     baseSkills: []
-  Swe1:
-    SkillID: 
-    SkillType: 0
-    baseSkills: []
+    SpecialSkillAttributes: []
 --- !u!1 &4393101909493608331
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6944106697135792157}
   - component: {fileID: 7077154429193005326}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Arrow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4a1a1084cf10dff4da0d618d9aece259, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cde4b307be322140844650d19f362b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

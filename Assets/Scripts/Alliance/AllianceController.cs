@@ -43,9 +43,8 @@ public class AllianceController : MonoBehaviour
     public AnimationReferenceAsset attack, idle;
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
-    public PlayerController playerController;
     public List<EnemyController> listEnemies;
-    public float ATK;
+    public int ATK;
     public float ATKspeed;
     public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
@@ -53,13 +52,12 @@ public class AllianceController : MonoBehaviour
     {
         CircleCollider2D.radius = Alliance.range;
         listEnemies = new List<EnemyController>();
-        playerController = GameplayController.Instance.PlayerController;
         skeletonAnimation.AnimationState.Event += OnEvent;
     }
     public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
     {
         this.elementalType = elemental;
-        ATK = atk;
+        ATK = (int)atk;
         ATKspeed = Atkspeed;
         this.BulletSpeed = BulletSpeed;
     }
@@ -76,8 +74,6 @@ public class AllianceController : MonoBehaviour
             return;
         }
         CheckShoot();
-        //AutoShoot();
-
     }
     private void ChangeCharacterState()
     {
@@ -95,9 +91,6 @@ public class AllianceController : MonoBehaviour
     }
     public virtual void UpdateEnemy()
     {
-
-        // nearestEnemy = null;
-        // _2ndEnemy = null;
         if (listEnemies.Count > 0)
         {
             shortestDistance = Mathf.Infinity;
@@ -186,15 +179,15 @@ public class AllianceController : MonoBehaviour
 
     public virtual void Shoot()
     {
-        characterState = CharacterState.Attack;
-        GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
-        var alianceBullet = bullet.GetComponent<BulletController>();
-        if (alianceBullet != null)
-        {
-            alianceBullet.elementalBullet = elementalType;
-            alianceBullet.SetTarget(Alliance.target);
-            alianceBullet.SetDataBullet(BulletSpeed, ATK);
-        }
+        //characterState = CharacterState.Attack;
+        //GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
+        //var alianceBullet = bullet.GetComponent<BulletController>();
+        //if (alianceBullet != null)
+        //{
+        //    alianceBullet.elementalBullet = elementalType;
+        //    alianceBullet.SetTarget(Alliance.target);
+        //    alianceBullet.SetDataBullet(BulletSpeed, ATK);
+        //}
     }
 
     private void OnEvent(TrackEntry trackEntry, Spine.Event e)

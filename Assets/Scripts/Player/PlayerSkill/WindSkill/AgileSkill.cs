@@ -20,7 +20,7 @@ public class AgileSkill : Skill
     // Start is called before the first frame update
     void Start()
     {
-        playerController.SetDataWeaPon( FireRate);
+        GameplayController.Instance.PlayerController.SetDataWeaPon( FireRate);
     }
 
     // Update is called once per frame

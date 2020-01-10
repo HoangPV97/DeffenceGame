@@ -12,7 +12,7 @@ public class EnemyBullet : MonoBehaviour
     protected Transform Target;
     public bool SeekTarget = false;
     protected Tower Tower { get { return GameplayController.Instance.Tower; } }
-    public void SetDamage(float _damage)
+    public void SetDamage(int _damage)
     {
         bullet.Damage = _damage;
     }
@@ -32,17 +32,21 @@ public class EnemyBullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (_Target.gameObject.tag.Equals("BlockPoint"))
+        if (_Target.gameObject.tag.Equals("ShieldTower"))
         {
-            ObjectPoolManager.Instance.DespawnObJect(gameObject);
+            SpawneffectAndDespawnBullet();
         }
         else if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             Tower?.TakeDamage(bullet.Damage);
-            GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
-            Exposion.AddComponent<DestroyEffect>()._time = 0.5f;
-            ObjectPoolManager.Instance.DespawnObJect(gameObject);
+            SpawneffectAndDespawnBullet();
         }
+    }
+    public void SpawneffectAndDespawnBullet()
+    {
+        GameObject Exposion = ObjectPoolManager.Instance.SpawnObject(exploseEffect, gameObject.transform.position, Quaternion.identity);
+        Exposion.AddComponent<DestroyEffect>()._time = 0.5f;
+        ObjectPoolManager.Instance.DespawnObJect(gameObject);
     }
     public void SetTarget(Transform _Target)
     {

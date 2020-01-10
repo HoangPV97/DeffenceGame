@@ -7,7 +7,12 @@ public class WindSlashSkill : BulletController
     List<GameObject> listCheckColision;
     float KnockBackDistance;
     float effectedAoe;
-    [SerializeField] BoxCollider2D collider2D;
+    public ParticleScaler particleScaler;
+    public ParticleSystem ParticleSystem;
+    public void Start()
+    {
+        particleScaler.ScaleByTransform(ParticleSystem, (effectedAoe/10), true);
+    }
     // Start is called before the first frame update
     public void setDataSkill( float _knockback,float _effectAoe )
     {
@@ -18,7 +23,7 @@ public class WindSlashSkill : BulletController
         //    collider2D.size = new Vector2(effectedAoe, 1);
         //}
     }
-    public override void SetDataBullet(float _speed, float _damage)
+    public override void SetDataBullet(float _speed, int _damage)
     {
         listCheckColision = new List<GameObject>();
         base.SetDataBullet(_speed, _damage);

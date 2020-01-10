@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
         var md = DataController.Instance.GetMonsterData(type);
         float growth = 1 + md.Growth * (Level - 1);
         enemy.health.Init(md.HP * growth, 0);
-        enemy.damage = md.ATK * growth;
+        enemy.damage = (int)(md.ATK * growth);
         enemy.armor = md.Armor * growth;
         enemy.speed = md.MoveSpeed;
         enemy.rateOfFire = md.ATKSpeed;
@@ -110,16 +110,17 @@ public class EnemyController : MonoBehaviour
         isMove = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
-        var lText = GetComponentsInChildren<LoadingText>();
-        for (int i = 0; i < lText.Length; i++)
-        {
-            ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
-        }
+        
         canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = false;
         if (effectObj != null)
             effectObj.GetComponent<ParticleSystem>().Stop();
         yield return new WaitForSeconds(1);
+        //var lText = GetComponentsInChildren<LoadingText>();
+        //for (int i = 0; i < lText.Length; i++)
+        //{
+        //    ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
+        //}
         if (effectObj != null)
         {
             Despawn(effectObj);
@@ -130,10 +131,14 @@ public class EnemyController : MonoBehaviour
     public void DealDamge(float _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
+        if (_damage > enemy.health.CurrentHealth)
+        {
+            _damage = enemy.health.CurrentHealth ;
+        }
         SpawnDamageText("damage", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
-            SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0, 0.2f, 0), _damageplus);
+            SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0.4f, 1f, 0), _damageplus);
         }
         enemy.health.ReduceHealth(_damage + _damageplus);
         if (enemy.health.CurrentHealth <= 0)

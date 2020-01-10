@@ -28397,6 +28397,7 @@ GameObject:
   - component: {fileID: 2817752262629327310}
   - component: {fileID: 8304591641678869357}
   - component: {fileID: 8898499708412842702}
+  - component: {fileID: 1448733429004643100}
   m_Layer: 0
   m_Name: hero1_wind_bullet1
   m_TagString: Bullet
@@ -33246,18 +33247,26 @@ MonoBehaviour:
     _speed: 20
     _damage: 5
     _targetTag: Enemy
-    _critical_Ratio: 0
+    _knockbackDistance: 0
     _critical_Damage: 0
   SeekTarget: 1
   elementalBullet: 2
   damagePlus: 5
   explosion: 0
-  bounce: 0
   poison: 0
-  slow: 0
-  pierce: 0
-  critical: 0
-  multishot: 0
-  quickhand: 0
   stun: 0
   nearEnemy: {fileID: 0}
+  ParticleScaler: {fileID: 1448733429004643100}
+  ParticleSystem: {fileID: 8531190558834038730}
+--- !u!114 &1448733429004643100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531190558834038732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

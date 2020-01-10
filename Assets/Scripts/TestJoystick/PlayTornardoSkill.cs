@@ -6,7 +6,7 @@ public class PlayTornardoSkill : DragAndDropSkill
 {
     [SerializeField]
     SkillWeaponWind2 Sww2;
-    float TimeEffect, InflictedTime, EffectedAoe, Damage;
+    float InflictedTime;
 
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
@@ -14,11 +14,10 @@ public class PlayTornardoSkill : DragAndDropSkill
         Sww2 = JsonUtility.FromJson<SkillWeaponWind2>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Sww2.GetManaCost(Tier, Level);
-        TimeEffect = Sww2.GetSkillAttributes("TimeEffect", Tier, Level);
+        EffectTime = Sww2.GetSkillAttributes("TimeEffect", Tier, Level);
         EffectedAoe = Sww2.GetSkillAttributes("EffectedAoe", Tier, Level);
         InflictedTime = Sww2.GetSkillAttributes("InflictedTime", Tier, Level);
         Damage = Sww2.GetDamage(Tier, Level);
-        Debug.Log("tornardoDamage : " + Damage);
         CountdownTime = Sww2.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         positonEffect = _position;
@@ -27,8 +26,8 @@ public class PlayTornardoSkill : DragAndDropSkill
 
     public override void PlaySkill(Vector3 _position)
     {
-        GameObject Poison_Skill = SpawnEffect(SkillID, _position, TimeEffect);
-        Poison_Skill.GetComponent<TornardoSkill>().SetTornardoData(TimeEffect, InflictedTime, Damage, EffectedAoe);
+        GameObject Poison_Skill = SpawnEffect(SkillID, _position, EffectTime);
+        Poison_Skill.GetComponent<TornardoSkill>().SetTornardoData(EffectTime, InflictedTime, Damage, EffectedAoe);
         float particleTime = Poison_Skill.GetComponentInChildren<ParticleSystem>().main.duration;
         SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, particleTime);

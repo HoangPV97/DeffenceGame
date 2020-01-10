@@ -9,7 +9,7 @@ public class Enemy
     [SerializeField]
     private string _name;
     [SerializeField]
-    private float _damage;
+    private int _damage;
     [SerializeField]
     private float _range;
     [SerializeField]
@@ -28,7 +28,7 @@ public class Enemy
     public float bulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
     public string name { get => _name; set => _name = value; }
     public float speed { get => _speed; set => _speed = value; }
-    public float damage { get => _damage; set => _damage = value; }
+    public int damage { get => _damage; set => _damage = value; }
     public float range { get => _range; set => _range = value; }
     public float price { get => _price; set => _price = value; }
     public float armor { get => _armor; set => _armor = value; }

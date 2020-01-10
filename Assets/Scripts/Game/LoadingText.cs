@@ -11,6 +11,7 @@ public class LoadingText : MonoBehaviour
 
     public void SetTextDamage(string _Damage)
     {
+        gameObject.layer = 1;
         if (Damage == null)
             Damage = GetComponent<TextMeshPro>();
         Damage.text = _Damage;

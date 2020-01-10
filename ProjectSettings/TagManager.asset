@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Bullet
-  - GoldPanel
   - BlockPoint
   - Tower
+  - ShieldTower
   layers:
   - Default
   - TransparentFX

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class WindAllianceBullet : BulletController
 {
-    protected float bounceRange;
-    protected int numberBounce;
+    public float bounceRange;
+    public int numberBounce;
     public bool bounce;
     protected override void Start()
     {
         elementalBullet = Elemental.Wind;
     }
-    public override void SetDataBullet(float _speed, float _damage)
+    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce)
     {
-        bounceRange = 5f;
-        numberBounce = 3;
+        bounceRange = _bounceRange;
+        numberBounce = _numberBounce;
         base.SetDataBullet(_speed, _damage);
     }
     protected override void FixedUpdate()
@@ -74,7 +74,7 @@ public class WindAllianceBullet : BulletController
                 {
                     Despawn();
                 }
-                bullet.Damage = Mathf.Round(bullet.Damage * 50 / 100);
+                bullet.Damage = (int)Mathf.Round(bullet.Damage * 50 / 100);
                 numberBounce--;
                 if (numberBounce <= 0 || !nearEnemy.isLive)
                 {

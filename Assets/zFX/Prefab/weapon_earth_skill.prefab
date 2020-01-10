@@ -19055,8 +19055,9 @@ GameObject:
   - component: {fileID: 3892153920387240646}
   - component: {fileID: 2444946500082550550}
   - component: {fileID: 5157115518173375310}
+  - component: {fileID: 7909592573197910193}
   m_Layer: 0
-  m_Name: weapon_ice_skill1
+  m_Name: weapon_earth_skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19094,7 +19095,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -23844,6 +23845,19 @@ MonoBehaviour:
   SlowSkillData:
     EffectedTime: 0
     EffectedAoe: 0
-    SLowdownPercent: 0
+    SlowdownPercent: 0
     Damage: 0
-  circleCollider2D: {fileID: 2444946500082550550}
+  ParticleScaler: {fileID: 7909592573197910193}
+  ParticleSystem: {fileID: 3892153920387240647}
+--- !u!114 &7909592573197910193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892153920387240644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -310,7 +310,7 @@ MonoBehaviour:
     ShieldBlockValue: 0
     Damage: 0
     Critical: 0
-    KnockBack: 0
+    KnockBackChance: 0
     AllianceDamage: 0
     QuickHand: 0
     QuickHandDamagePercent: 0
@@ -319,7 +319,6 @@ MonoBehaviour:
     MultiShotAddedAttributePercent: 0
     ReduceCooldown: 0
     IncreaseSpellDamage: 0
-    BlockDamage: 0
   GoldInGame: 0
 --- !u!4 &184790057
 Transform:

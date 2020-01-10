@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1697683326898580204}
   - component: {fileID: 2165886148831242406}
   - component: {fileID: 7993048504946233663}
+  - component: {fileID: 7155721844811323335}
   m_Layer: 0
   m_Name: hero1_wind_skill1
   m_TagString: Untagged
@@ -4790,23 +4791,29 @@ MonoBehaviour:
     _speed: 25
     _damage: 50
     _targetTag: Enemy
-    _knockbackDistance: {x: 0, y: 0, z: 0}
+    _knockbackDistance: 0
     _critical_Damage: 0
   SeekTarget: 0
   elementalBullet: 2
   damagePlus: 5
   explosion: 0
-  bounce: 0
   poison: 0
-  slow: 0
-  pierce: 0
-  critical: 0
-  multishot: 0
-  quickhand: 0
-  knockback: 0
   stun: 0
   nearEnemy: {fileID: 0}
-  collider2D: {fileID: 1697683326898580204}
+  particleScaler: {fileID: 7155721844811323335}
+  ParticleSystem: {fileID: 185990494516342516}
+--- !u!114 &7155721844811323335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185990494516342514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185990495333401746
 GameObject:
   m_ObjectHideFlags: 0

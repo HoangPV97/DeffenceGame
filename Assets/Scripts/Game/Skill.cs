@@ -11,11 +11,13 @@ public class Skill : MonoBehaviour
     public Image CountdownGo;
     public float CountdownTime;
     public float manaCost;
+    public int Damage;
+    public Elemental elemental;
     protected bool StartCountdown = false;
     protected float TimeLeft;
     protected Vector3 positonEffect;
     bool isLowedMana;
-    protected PlayerController playerController { get { return GameplayController.Instance.PlayerController; } }
+    //protected PlayerController playerController { get { return GameplayController.Instance.PlayerController; } }
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -26,7 +28,7 @@ public class Skill : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    public virtual void Update()
     {
         if (TimeLeft > 0 && StartCountdown == true && CountdownGo != null)
         {

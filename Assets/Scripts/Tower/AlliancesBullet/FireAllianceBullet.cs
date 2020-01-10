@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireAllianceBullet : BulletController
 {
     Transform Taget;
-    private void Start()
+    protected override void Start()
     {
         elementalBullet = Elemental.Fire;
         base.Start();

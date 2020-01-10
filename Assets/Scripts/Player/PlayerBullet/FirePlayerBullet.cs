@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class FirePlayerBullet : BulletController
 {
-    // Start is called before the first frame update
-    public void Start()
-    {
-        base.Start();
-    }
     protected override void FixedUpdate()
     {
         if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)

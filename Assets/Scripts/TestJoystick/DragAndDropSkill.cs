@@ -6,8 +6,9 @@ public class DragAndDropSkill : Skill
 {
     //public VariableJoystick variableJoystick;
     public GameObject circle;
-    ObjectPoolManager poolManager;
+    protected ObjectPoolManager poolManager;
     public string EffectName;
+    public float EffectTime, EffectedAoe;
     // Start is called before the first frame update
     /// <summary>
     /// get data sww1.ManaCost[Level-1]
@@ -15,12 +16,13 @@ public class DragAndDropSkill : Skill
     int Level;
     protected override void Start()
     {
+        circle.transform.localScale *= EffectedAoe / 10;
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
 
     // Update is called once per frame
-    protected override void Update()
+    public override void Update()
     {
         base.Update();
         if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)

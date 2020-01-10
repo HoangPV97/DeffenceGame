@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class TankBullet : BulletController
 {
-    public void Start()
-    {
-        base.Start();
-    }
-    private void Update()
-    {
-
-        //base.Update();
-    }
-    protected void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag) || Target.gameObject.tag.Equals("BlockPoint"))
         {

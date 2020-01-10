@@ -19,7 +19,8 @@ public class TornardoData
 public class TornardoSkill : MonoBehaviour
 {
     public TornardoData Tornardo;
-    public CircleCollider2D circleCollider2D;
+    public ParticleScaler ParticleScaler;
+    public ParticleSystem ParticleSystem;
     bool Onstay;
     List<EnemyController> enemies;
     float tempTime;
@@ -27,8 +28,7 @@ public class TornardoSkill : MonoBehaviour
     void Start()
     {
         Tornardo = new TornardoData(Tornardo.totalTime, Tornardo.inflictedTime, Tornardo.DamagePerSecond, Tornardo.Range);
-        //circleCollider2D.radius = Tornardo.Range;
-        gameObject.transform.localScale = new Vector3(Tornardo.Range,Tornardo.Range,Tornardo.Range);
+        ParticleScaler.ScaleByTransform(ParticleSystem, Tornardo.Range/10, true);
     }
     public void SetTornardoData(float _totalTime, float _inflictTime, float _dps, float _range)
     {

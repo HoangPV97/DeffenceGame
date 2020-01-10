@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public CircleCollider2D CircleCollider2D;
     bool idleStatus;
     [Header("Weapon Data")]
-    public float ATK;
+    public int ATK;
     public float ATKspeed;
     public float BulletSpeed;
     [Header("Archery Data")]
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public void SetDataWeapon()
     {
         this.elementalType = DataController.Instance.inGameWeapons.Type;
-        ATK = DataController.Instance.inGameWeapons.ATK + DataController.Instance.InGameBaseData.Damage;
+        ATK =(int) (DataController.Instance.inGameWeapons.ATK + DataController.Instance.InGameBaseData.Damage);
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
         BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
         CriticalChance = DataController.Instance.InGameBaseData.Critical;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         ATKspeed += (_FireRate * ATKspeed / 100);
     }
-    public void SetDataWeaPon(float _damage, float _FireRate, int _critical)
+    public void SetDataWeaPon(int _damage, float _FireRate, int _critical)
     {
         ATK = ATK + (_damage * ATK / 100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
@@ -84,14 +84,10 @@ public class PlayerController : MonoBehaviour
             ChangeState();
             preCharacterState = characterState;
         }
-        // if (coundown < 0)
-        //  {
+
         switch (currentMode)
         {
             case AutoMode.TurnOff:
-                //characterState = CharacterState.Idle;
-
-
                 if (Input.GetMouseButton(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/
                     && (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -5.5f))
                 {
@@ -233,9 +229,9 @@ public class PlayerController : MonoBehaviour
     public void TwoMoreBullet()
     {
         BulletController mBullet1 = SpawnBullet(Quaternion.Euler(0, 0, 5) * direct, rotationZ, player.Bullet);
-        mBullet1.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
+        mBullet1.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100));
         BulletController mBullet2 = SpawnBullet(Quaternion.Euler(0, 0, -5) * direct, rotationZ, player.Bullet);
-        mBullet2.SetDataBullet(BulletSpeed, ATK * MultiShotDamage / 100);
+        mBullet2.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100));
     }
     public IEnumerator IEQuickHand(float _time, bool Multi)
     {

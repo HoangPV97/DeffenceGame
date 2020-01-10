@@ -10,7 +10,7 @@ public class PlayWindSlashSkill : Skill
     private float angle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
-    float Speed, Damage, KnockBack,EffectedAoe ;
+    float Speed, KnockBack,EffectedAoe ;
     [SerializeField]
     SkillWeaponWind1 sww1;
     /// <summary>
@@ -19,6 +19,7 @@ public class PlayWindSlashSkill : Skill
     int Level;
     protected override void Start()
     {
+        arrow.transform.localScale *= (EffectedAoe / 10);
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
@@ -39,7 +40,7 @@ public class PlayWindSlashSkill : Skill
         CountdownGo = variableJoystick.CountDountMask;
     }
 
-    protected void Update()
+    public override void Update()
     {
         base.Update();
 

@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class IceSkill : BulletController
 {
-    public ParticleSystem particleSystem;
+    public ParticleSystem ParticleSystem;
+    public ParticleScaler ParticleScaler;
     [SerializeField]
     private float stunTime=3;
+    public float EffectTime=3, EffectedAoe=10;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        ParticleScaler.ScaleByTransform(ParticleSystem, EffectedAoe/10, true);
         elementalBullet = Elemental.Ice;   
     }
 
 
-    private void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {

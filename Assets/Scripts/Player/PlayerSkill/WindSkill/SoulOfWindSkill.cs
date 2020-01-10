@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SoulOfWindSkill : Skill
 {
-    public float Damage;
     public float FireRate;
     public int Critical;
     [SerializeField] SkillWeaponWind4 Sww4;
@@ -24,7 +23,7 @@ public class SoulOfWindSkill : Skill
     {
         Sww4 = JsonUtility.FromJson<SkillWeaponWind4>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         base.SetUpData(Tier, Level, variableJoystick, _position);
-        Damage = Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
+        Damage = (int)Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
         FireRate = Sww4.GetSkillAttributes("IncreaseFireRate", Tier, Level);
         Critical = (int)Sww4.GetSkillAttributes("IncreaseCritical", Tier, Level);
     }

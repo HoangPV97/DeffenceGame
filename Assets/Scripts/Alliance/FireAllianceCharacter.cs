@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FireAllianceCharacter : AllianceController
 {
-    private void Start()
+    public override void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
         base.Start();

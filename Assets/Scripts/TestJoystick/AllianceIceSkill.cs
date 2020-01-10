@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AllianceIceSkill : DragAndDropSkill
 {
-    public float EffectTime, EffectedAoe, Damage;
     [SerializeField]
     SkillWeaponIce1 Swi1;
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)

@@ -64,7 +64,7 @@ public class SkillData
         return 0;
     }
 
-    public float GetDamage(int Tier, int Level)
+    public int GetDamage(int Tier, int Level)
     {
         if (Level == 0)
             Level = 1;
@@ -118,7 +118,7 @@ public class BaseSkill
     public int Tier;
     public float[] ManaCost;
     public float[] CoolDown;
-    public float[] Damage;
+    public int[] Damage;
     public float[] SkillSpeed;
     public List<ListItem> UpgradeItems;
     public List<Item> EvolutionItems;
@@ -183,9 +183,21 @@ public class SkillWeaponEarth1 : SkillData
     public const string SlowdownPercent = "SlowdownPercent";
 }
 [System.Serializable]
+public class SkillWeaponEarth2 : SkillData
+{
+    public const string TimeEffect = "TimeEffect";
+    public const string EffectedAoe = "EffectedAoe";
+    public const string HealthRecover = "HealthRecover";
+}
+[System.Serializable]
 public class SkillAllianceWind2 : SkillData
 {
     public const string IncreaseTimeEffect = "IncreaseTimeEffect";
+}
+[System.Serializable]
+public class SkillAllianceWind3 : SkillData
+{
+    public const string IncreaseDamage = "IncreaseDamage";
 }
 [System.Serializable]
 public class SkillAttribute

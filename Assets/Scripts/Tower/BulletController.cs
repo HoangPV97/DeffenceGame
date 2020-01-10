@@ -25,7 +25,7 @@ public class BulletController : MonoBehaviour
     {
         bullet.KnockbackDistance = _Distance;
     }
-    public virtual void SetDataBullet(float _speed, float _damage)
+    public virtual void SetDataBullet(float _speed, int _damage)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
@@ -55,7 +55,6 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        
     }
     public void Move(Vector3 _dir)
     {
@@ -104,7 +103,7 @@ public class BulletController : MonoBehaviour
                 enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, timeStun);
             }
             #endregion
-            if(bullet.KnockbackDistance != 0)
+            if (bullet.KnockbackDistance != 0)
             {
                 enemyController.KnockBack(bullet.KnockbackDistance);
                 bullet.KnockbackDistance = 0;

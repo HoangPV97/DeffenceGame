@@ -11,7 +11,7 @@ public class BaseData
     public float ManaRegen;
     public float ShieldBlockChance;
     public float ShieldBlockValue;
-    public int Damage;
+    public float Damage;
     public int Critical;
     public int KnockBackChance;
     public int AllianceDamage;

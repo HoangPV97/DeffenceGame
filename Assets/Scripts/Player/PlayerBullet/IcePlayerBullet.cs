@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class IcePlayerBullet : BulletController
 {
-    public void Start()
-    {
-        base.Start();
-    }
     protected override void FixedUpdate()
     {
         if (GameplayController.Instance.PlayerController.currentMode == AutoMode.TurnOff)
