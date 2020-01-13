@@ -14,13 +14,11 @@ public class SoulOfWindSkill : Skill
             return GameplayController.Instance.PlayerController;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
+        var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
         Sww4 = JsonUtility.FromJson<SkillWeaponWind4>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         base.SetUpData(Tier, Level, variableJoystick, _position);
         Damage = (int)Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
@@ -28,8 +26,9 @@ public class SoulOfWindSkill : Skill
         Critical = (int)Sww4.GetSkillAttributes("IncreaseCritical", Tier, Level);
     }
     // Update is called once per frame
-    void Update()
+    protected override void Start ()
     {
-        playerController.SetDataWeaPon(Damage, FireRate, Critical);
+        playerController.SetDataWeaPon(Damage, FireRate);
+        playerController.SetCriticalWeaPon(Critical);
     }
 }

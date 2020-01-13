@@ -61,7 +61,7 @@ public class AllianceController : MonoBehaviour
         ATKspeed = Atkspeed;
         this.BulletSpeed = BulletSpeed;
     }
-    protected void Update()
+    protected virtual void Update()
     {
             UpdateEnemy();
         if (preCharacterState != characterState)

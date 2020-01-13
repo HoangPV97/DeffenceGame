@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class PlayBarrierSkill : DragAndDropSkill
 {
-    protected float  HealthRecover;
+    protected float HealthRecover;
     [SerializeField] SkillWeaponEarth2 Swe2;
     // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+        circle.transform.localScale = new Vector3((EffectTime - 1) / 2, 1, 0); //time=3s ~ scale=1//time=4s ~ scale=1.5
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
+        {
+            float MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            Vector3 Target = new Vector3(MousePosition, -4, 0) - circle.transform.position;
+            circle.SetActive(true);
+            circle.transform.Translate(Target);
+        }
+    }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Tier, Level);
@@ -21,12 +37,13 @@ public class PlayBarrierSkill : DragAndDropSkill
         CountdownGo = variableJoystick.CountDountMask;
         positonEffect = _position;
     }
-    // Update is called once per frame
+    // Update is called once per framef
     public override void PlaySkill(Vector3 _position)
     {
-        GameObject Skill =SpawnEffect(SkillID, _position, EffectTime);
-        Skill.GetComponent<BarrierSkill>().SetDataBarrierSkill(EffectTime, HealthRecover, EffectedAoe);
-        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
+        GameObject Skill = SpawnEffect(SkillID, _position, EffectTime + 1.2f);
+        BarrierSkill barrierSkill = Skill.GetComponent<BarrierSkill>();
+        barrierSkill.SetDataBarrierSkill(EffectTime, HealthRecover, EffectedAoe);
+        barrierSkill.InvokeSkill();
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
     }
 }

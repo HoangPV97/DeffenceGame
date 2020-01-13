@@ -65,15 +65,22 @@ public class PlayerController : MonoBehaviour
         CriticalChance = DataController.Instance.InGameBaseData.Critical;
         QuickHandChance = DataController.Instance.InGameBaseData.QuickHand;
     }
-    public void SetDataWeaPon(float _FireRate)
+    public void SetFireRateWeaPon(float _FireRate)
     {
         ATKspeed += (_FireRate * ATKspeed / 100);
     }
-    public void SetDataWeaPon(int _damage, float _FireRate, int _critical)
+    public void SetDamageWeaPon(float _ATK)
+    {
+        ATK += (int)(_ATK * ATK / 100);
+    }
+    public void SetCriticalWeaPon(float _critical)
+    {
+        CriticalChance += (int)(_critical * CriticalChance / 100);
+    }
+    public void SetDataWeaPon(int _damage, float _FireRate)
     {
         ATK = ATK + (_damage * ATK / 100);
         ATKspeed = ATKspeed + (_FireRate * ATKspeed / 100);
-        CriticalChance = CriticalChance + _critical;
     }
     // Update is called once per frame
     private void Update()

@@ -21,6 +21,7 @@ public class Skill : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        variableJoystick.txtMana.text = manaCost.ToString();
     }
 
     public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
@@ -53,9 +54,11 @@ public class Skill : MonoBehaviour
     }
     public IEnumerator WaitingRecoverMana(GameObject _gameObject, float _time, bool status)
     {
+        variableJoystick.txtMana.color = Color.red;
         yield return new WaitForSeconds(_time);
         isLowedMana = false;
         _gameObject.SetActive(status);
+        variableJoystick.txtMana.color = Color.white;
     }
 
     public virtual void OnInvokeSkill()

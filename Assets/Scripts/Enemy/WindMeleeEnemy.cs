@@ -9,7 +9,7 @@ public class WindMeleeEnemy : EnemyController, IWindEffectable
 
     public void Attack()
     {
-        if (Tower != null && isAttack)
+        if (Tower != null && isAttack && !disableAttack)
         {
             Tower.TakeDamage(enemy.damage);
         }

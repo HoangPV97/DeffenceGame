@@ -6,13 +6,12 @@ public class BounceBullet : BulletController
 {
     GameObject nearestEnemy;
     public List<GameObject> EnemyinRange;
-    int index = 0;
-    private void Start()
+    protected override void Start()
     {
         EnemyinRange = new List<GameObject>();
         EnemyinRange.Clear();
     }
-    private void Update()
+    protected override void Update()
     {
         //if (EnemyinRange.Count == 0 || !Target.isLive)
         //{

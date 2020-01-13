@@ -8,7 +8,7 @@ public class BuffDamageWindSpell : Skill
     [SerializeField] SkillAllianceWind3 SkillAllianceWind3;
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        var SkilldataSaver = DataController.Instance.GetGameAlliance(Elemental.Wind).GetSkillTierLevel("ALLIANCE_WIND_SKILL_3");
+        var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         SkillAllianceWind3 = JsonUtility.FromJson<SkillAllianceWind3>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         BuffStats = (int)SkillAllianceWind3.GetSkillAttributes("IncreaseDamage", SkilldataSaver.Tier, SkilldataSaver.Level);
         base.SetUpData(SkilldataSaver.Tier, SkilldataSaver.Level);

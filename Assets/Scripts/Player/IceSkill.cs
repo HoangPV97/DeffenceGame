@@ -6,8 +6,6 @@ public class IceSkill : BulletController
 {
     public ParticleSystem ParticleSystem;
     public ParticleScaler ParticleScaler;
-    [SerializeField]
-    private float stunTime=3;
     public float EffectTime=3, EffectedAoe=10;
     // Start is called before the first frame update
     protected override void Start()
@@ -34,7 +32,7 @@ public class IceSkill : BulletController
                 {
                     enemy?.DealDamge(bullet.Damage, 0);
                 }
-                enemy.DealEffect(Effect.Freeze, enemy.transform.position,3);
+                enemy.DealEffect(Effect.Freeze, enemy.transform.position, EffectTime);
             }
             if (SeekTarget)
             {

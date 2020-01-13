@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayEarthDragonSkill : DragAndDropSkill
 {
     protected float SlowdownPercent;
-    float EffectRow;
+    [SerializeField] float EffectRow;
     [SerializeField] SkillWeaponEarth1 Swe1;
     protected override void Start()
     {
-        poolManager = ObjectPoolManager.Instance;
+        circle.transform.localScale = new Vector3(2, EffectRow, 0);
+        base.Start();
     }
     public override void Update()
     {
@@ -29,6 +30,7 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         {
             // LowMana.SetActive(true);
         }
+
         base.Update();
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
@@ -52,6 +54,7 @@ public class PlayEarthDragonSkill : DragAndDropSkill
     }
     public override void PlaySkill(Vector3 _position)
     {
+        GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
         switch (EffectRow)
         {
             case 2:
@@ -64,8 +67,8 @@ public class PlayEarthDragonSkill : DragAndDropSkill
                 SpawnSkill(_position + new Vector3(0, -1.5f, 0));
                 break;
             case 4:
-                SpawnSkill(_position + new Vector3(0, 1f, 0));
-                SpawnSkill(_position + new Vector3(0, -1f, 0));
+                SpawnSkill(_position + new Vector3(0, 0.8f, 0));
+                SpawnSkill(_position + new Vector3(0, -0.8f, 0));
                 SpawnSkill(_position + new Vector3(0, 2.5f, 0));
                 SpawnSkill(_position + new Vector3(0, -2.5f, 0));
                 break;
@@ -75,7 +78,5 @@ public class PlayEarthDragonSkill : DragAndDropSkill
     {
         GameObject Earth_Dragon_Skill = SpawnEffect(SkillID, _position, 0.5f);
         Earth_Dragon_Skill.GetComponent<SlowSkill>().SetSkillData(EffectTime, SlowdownPercent, Damage, EffectedAoe);
-        float particleTime = Earth_Dragon_Skill.GetComponentInChildren<ParticleSystem>().main.duration;
-        GameObject effectStart = SpawnEffect(EffectName, positonEffect, particleTime);
     }
 }

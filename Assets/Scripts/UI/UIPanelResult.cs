@@ -36,6 +36,7 @@ public class UIPanelResult : BaseUIView
                 gameObject.SetActive(false);
             }, false);
         }
+        GameController.Instance.Restart();
     }
 
     // Start is called before the first frame update

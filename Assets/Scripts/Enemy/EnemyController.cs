@@ -18,8 +18,8 @@ public class EnemyController : MonoBehaviour
     protected EnemyState previousState, CurrentState;
     public SkeletonAnimation skeletonAnimation;
     public AnimationReferenceAsset attack, idle, run, skill, die;
-    public bool isMove = true, isAttack, isLive = true;
-    bool isKnockBack, isIdle;
+    public bool isMove = true, isAttack, isLive = true, disableAttack;
+    protected bool isKnockBack, isIdle;
     protected Tower Tower { get { return GameplayController.Instance.Tower; } }
     public float distancetoTower;
     protected float countdown;
@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
     public Vector3 KnockBackDistance;
     bool CheckLayerEnemy;
     MeshRenderer renderer;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -297,6 +298,11 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Attack;
         }
+        //if (collider2D.gameObject.tag.Equals("ShieldTower"))
+        //{
+        //    disableAttack = true;
+        //    Debug.Log("DisableAttack :" + disableAttack);
+        //}
     }
     public void OnTriggerStay2D(Collider2D collider2D)
     {
@@ -317,6 +323,11 @@ public class EnemyController : MonoBehaviour
             renderer.sortingOrder = 0;
             CheckLayerEnemy = false;
         }
+        //if (collider2D.gameObject.tag.Equals("ShieldTower"))
+        //{
+        //    disableAttack = false;
+        //    Debug.Log("DisableAttack :" + disableAttack);
+        //}
     }
     private void OnEnable()
     {
@@ -357,6 +368,18 @@ public class EnemyController : MonoBehaviour
             //if (isMove)
             //Move(enemy.speed);
         }
+    }
+    public void DisableAttackIntimeInterval(float _time)
+    {
+        StartCoroutine(IEdisableAttack(_time));
+    }
+    IEnumerator IEdisableAttack(float _time)
+    {
+        disableAttack = true;
+        Debug.Log("DisableAttack :" + disableAttack);
+        yield return new WaitForSeconds(_time);
+        disableAttack = false;
+        Debug.Log("DisableAttack :" + disableAttack);
     }
 
 }

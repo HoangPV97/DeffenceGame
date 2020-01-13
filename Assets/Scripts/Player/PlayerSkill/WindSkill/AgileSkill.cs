@@ -18,14 +18,8 @@ public class AgileSkill : Skill
         Debug.Log("FireRate :" + FireRate);
     }
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        GameplayController.Instance.PlayerController.SetDataWeaPon( FireRate);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameplayController.Instance.PlayerController.SetFireRateWeaPon( FireRate);
     }
 }

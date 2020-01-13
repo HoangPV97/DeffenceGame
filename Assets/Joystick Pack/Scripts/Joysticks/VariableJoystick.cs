@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class VariableJoystick : Joystick
     public Skill Skill;
     public Image CountDountMask;
     public GameObject LowMana;
+    public TextMeshProUGUI txtMana;
     public void SetUpData(Skill Skill)
     {
         this.Skill = Skill;

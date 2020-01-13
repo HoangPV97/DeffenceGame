@@ -16,31 +16,30 @@ public class DragAndDropSkill : Skill
     int Level;
     protected override void Start()
     {
-        circle.transform.localScale *= EffectedAoe / 10;
         poolManager = ObjectPoolManager.Instance;
         base.Start();
     }
 
     // Update is called once per frame
-    public override void Update()
-    {
-        base.Update();
-        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
-        {
-            Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = MousePosition - circle.transform.position;
-            MoveObject(circle, direction);
-        }
-        if (Tower.Mana.CurrentMana > manaCost)
-        {
-            //  LowMana.SetActive(false);
-        }
-        else
-        {
-            // LowMana.SetActive(true);
-        }
+    //public override void Update()
+    //{
+    //    base.Update();
+    //    if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
+    //    {
+    //        Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //        Vector2 direction = MousePosition - circle.transform.position;
+    //        MoveObject(circle, direction);
+    //    }
+    //    if (Tower.Mana.CurrentMana > manaCost)
+    //    {
+    //        //  LowMana.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        // LowMana.SetActive(true);
+    //    }
 
-    }
+    //}
     public void MoveObject(GameObject _object, Vector3 _postion)
     {
         _object.SetActive(true);

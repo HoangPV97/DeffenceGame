@@ -9,7 +9,7 @@ public class WindSlashSkill : BulletController
     float effectedAoe;
     public ParticleScaler particleScaler;
     public ParticleSystem ParticleSystem;
-    public void Start()
+    protected override void Start()
     {
         particleScaler.ScaleByTransform(ParticleSystem, (effectedAoe/10), true);
     }

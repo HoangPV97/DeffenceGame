@@ -10,7 +10,7 @@ public class BuffWindAlliance : Skill
     public float EffecttimeStats=0.5f;
     GameObject WindAlliance;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         if (GameplayController.Instance.Alliance_1.elementalType == Elemental.Wind)
         {
@@ -25,11 +25,5 @@ public class BuffWindAlliance : Skill
         WindAlly.ATK += DamageStats;
         WindAlly.ATKspeed += WindAlly.ATKspeed * FirerateStats / 100;
         GameplayController.Instance.GetSkill("ALLIANCE_WIND_SKILL_1").AddDatatAttribute("TimeEffect", EffecttimeStats);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

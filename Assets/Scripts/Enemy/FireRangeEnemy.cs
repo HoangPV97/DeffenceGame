@@ -7,18 +7,18 @@ using UnityEngine;
 
 public class FireRangeEnemy : EnemyController, IFireEffectable
 {
-    void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         CheckAttack();
         base.Update();
     }
-    public new void Attack()
+    public void Attack()
     {
         GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("fireenemybullet", transform.position, Quaternion.identity);
         EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();

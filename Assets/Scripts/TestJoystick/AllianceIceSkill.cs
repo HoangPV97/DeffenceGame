@@ -6,6 +6,29 @@ public class AllianceIceSkill : DragAndDropSkill
 {
     [SerializeField]
     SkillWeaponIce1 Swi1;
+    protected override void Start()
+    {
+        circle.transform.localScale *= EffectedAoe / 10;
+        base.Start();
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
+        {
+            Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = MousePosition - circle.transform.position;
+            MoveObject(circle, direction);
+        }
+        if (Tower.Mana.CurrentMana > manaCost)
+        {
+            //  LowMana.SetActive(false);
+        }
+        else
+        {
+            // LowMana.SetActive(true);
+        }
+    }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Level);

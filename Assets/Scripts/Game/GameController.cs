@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    public UIPanelResult UIPanelResult;
     public float EnemyLive;
     public GameObject GameoverPanel, WingamePanel, PausePanel;
     public Text GoldText, WinGold;
@@ -32,8 +33,10 @@ public class GameController : MonoBehaviour
     }
     public void EndGame()
     {
-        GameoverPanel.SetActive(true);
+       // GameoverPanel.SetActive(true);
         Time.timeScale = 0;
+
+        UIPanelResult.SetUpDataFailed(10, 20, 50);
     }
     public void Restart()
     {
@@ -104,8 +107,9 @@ public class GameController : MonoBehaviour
         if (DataController.Instance.CurrentSelected < DataController.Instance.MaxStage)
             DataController.Instance.CurrentSelected++;
         DataController.Instance.Save();
-        WingamePanel.SetActive(true);
+        //  WingamePanel.SetActive(true);
 
+        UIPanelResult.SetUpdataVictory(10,20,50);
     }
     public void PauseGame()
     {

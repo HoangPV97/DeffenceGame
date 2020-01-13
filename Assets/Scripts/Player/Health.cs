@@ -90,6 +90,10 @@ public class Health
         }
         UpdateValueText();
     }
+    public void IncreaseRecoverHealthValue(float _Value)
+    {
+        recoverHealthValue += recoverHealthValue * _Value / 100;
+    }
     public void UpdateValueText()
     {
         if (healthValueText != null)

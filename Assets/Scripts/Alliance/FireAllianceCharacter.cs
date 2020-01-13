@@ -19,13 +19,8 @@ public class FireAllianceCharacter : AllianceController
             Shoot();
         }
     }
-    private void Update()
-    {
-        CheckShoot();
-        //UpdateEnemy(Alliance.target, Alliance.range);
-        base.Update();
-    }
-    public void Shoot()
+
+    public override void Shoot()
     {
         characterState = CharacterState.Attack;
         GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
@@ -37,7 +32,7 @@ public class FireAllianceCharacter : AllianceController
             allianceBullet.SetTarget(Alliance.target);
         }
     }
-    void CheckShoot()
+    public override void CheckShoot()
     {
         if (Alliance.target != null)
         {

@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        base.Start();
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         AutoAttack();
         base.Update();

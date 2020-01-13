@@ -190,6 +190,18 @@ public class SkillWeaponEarth2 : SkillData
     public const string HealthRecover = "HealthRecover";
 }
 [System.Serializable]
+public class SkillWeaponEarth4 : SkillData
+{
+    public const string IncreaseDamage = "IncreaseDamage";
+    public const string IncreaseFireRate = "IncreaseFireRate";
+    public const string IncreaseHealthRecover = "IncreaseHealthRecover";
+}
+//[System.Serializable]
+//public class SkillWeaponEarth3: SkillData
+//{
+//    public const string InscreaDamage = "InscreaDamage";
+//}
+[System.Serializable]
 public class SkillAllianceWind2 : SkillData
 {
     public const string IncreaseTimeEffect = "IncreaseTimeEffect";

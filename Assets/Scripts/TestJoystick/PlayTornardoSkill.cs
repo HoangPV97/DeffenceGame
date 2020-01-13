@@ -7,7 +7,21 @@ public class PlayTornardoSkill : DragAndDropSkill
     [SerializeField]
     SkillWeaponWind2 Sww2;
     float InflictedTime;
-
+    protected override void Start()
+    {
+        circle.transform.localScale *= EffectedAoe / 10;
+        base.Start();
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
+        {
+            Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = MousePosition - circle.transform.position;
+            MoveObject(circle, direction);
+        }
+    }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         base.SetUpData(Tier, Level);

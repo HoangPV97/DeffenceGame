@@ -20,7 +20,7 @@ MonoBehaviour:
   showHierarchyIcons: 1
   setTextureImporterSettings: 1
   atlasTxtImportWarning: 1
-  textureImporterWarning: 1
+  textureImporterWarning: 0
   autoReloadSceneSkeletons: 1
   handleScale: 1
   mecanimEventIncludeFolderName: 1

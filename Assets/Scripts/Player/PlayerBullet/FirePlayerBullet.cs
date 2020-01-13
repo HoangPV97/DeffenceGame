@@ -18,7 +18,7 @@ public class FirePlayerBullet : BulletController
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
     }
-    protected void OnTriggerEnter2D(Collider2D Target)
+    protected override void OnTriggerEnter2D(Collider2D Target)
     {
         if (Target.gameObject.tag.Equals("BlockPoint"))
         {

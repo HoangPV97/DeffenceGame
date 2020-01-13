@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FireMeleeEnemy : EnemyController, IFireEffectable
 {
-    void Start()
+    protected override void Start()
     {
         base.Start();
     }
