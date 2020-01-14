@@ -1,0 +1,34 @@
+
+UI_wind_alliance.png
+size: 1328,416
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 364, 13
+  size: 333, 401
+  orig: 333, 401
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 2, 7
+  size: 360, 407
+  orig: 360, 407
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 1017, 2
+  size: 306, 412
+  orig: 306, 412
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 699, 6
+  size: 316, 408
+  orig: 316, 408
+  offset: 0, 0
+  index: -1

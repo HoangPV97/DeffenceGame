@@ -25,7 +25,13 @@ public class ObjectPoolManager : MonoBehaviour
         for (int i = 0; i < Pools.Count; i++)
             if (Pools[i].tag == tag)
                 return Pools[i].prefab;
-        return null;
+        var go = Resources.Load<GameObject>(tag);
+        Pools.Add(new ObjectPool()
+        {
+            tag = tag,
+            prefab = go
+        });
+        return go;
     }
     public GameObject SpawnObject(string tag, Vector3 _position, Quaternion _quaternion)
     {

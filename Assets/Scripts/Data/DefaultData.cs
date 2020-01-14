@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Spine.Unity;
 [CreateAssetMenu(fileName = "DefaultData", menuName = "ScriptableObjects/SpawnManagerScriptableObject", order = 1)]
 [System.Serializable]
 public class DefaultData : ScriptableObject
@@ -20,6 +20,7 @@ public class DefaultData : ScriptableObject
     public TextAsset AssetBundleItem;
     public AssetBundle Item;
     public TextAsset BossDataBase;
+    public SkeletonDataAsset[] WeaponsUISkeletonDataAsset, AllianceUISkeletonDataAsset;
     public Sprite GetSpriteItem(ITEM_TYPE _TYPE)
     {
         if (Item == null)

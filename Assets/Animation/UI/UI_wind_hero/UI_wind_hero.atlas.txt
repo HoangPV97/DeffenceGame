@@ -1,0 +1,34 @@
+
+UI_wind_hero.png
+size: 628,872
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 340, 454
+  size: 266, 413
+  orig: 266, 413
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 321, 4
+  size: 303, 413
+  orig: 303, 413
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 2, 2
+  size: 317, 415
+  orig: 317, 415
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 2, 419
+  size: 336, 448
+  orig: 336, 448
+  offset: 0, 0
+  index: -1

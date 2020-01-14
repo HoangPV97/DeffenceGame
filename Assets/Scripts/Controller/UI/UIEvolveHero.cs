@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Spine.Unity;
 public class UIEvolveHero : BaseUIView
 {
     public Animator Anim;
+    public SkeletonGraphic sg1, sg2;
     public TextMeshProUGUI txtHeroName1, txtHeroName2;
     public TextMeshProUGUI txtDamage1, txtDamage2;
     public TextMeshProUGUI txtFireRate1, txtFireRate2;
@@ -22,6 +23,7 @@ public class UIEvolveHero : BaseUIView
     [SerializeField]
     bool canEvolve = true;
     List<Item> listItem;
+    SkeletonDataAsset SkeletonDataAsset;
     public bool IsHero
     {
         get
@@ -76,6 +78,7 @@ public class UIEvolveHero : BaseUIView
             dataBase2 = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier + 1);
             txtHeroName1.text = Language.GetKey("Name_" + elemental.ToString()) + "." + ToolHelper.ToRoman(data1.WeaponTierLevel.Tier);
             txtHeroName2.text = Language.GetKey("Name_" + elemental.ToString()) + "." + ToolHelper.ToRoman(data1.WeaponTierLevel.Tier + 1);
+            SkeletonDataAsset = DataController.Instance.DefaultData.WeaponsUISkeletonDataAsset[(int)elemental - 1];
         }
         else
         {
@@ -84,6 +87,7 @@ public class UIEvolveHero : BaseUIView
             dataBase2 = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier + 1).weapons;
             txtHeroName1.text = Language.GetKey("Name_Alliance_" + elemental.ToString()) + "." + ToolHelper.ToRoman(data1.WeaponTierLevel.Tier);
             txtHeroName2.text = Language.GetKey("Name_Alliance_" + elemental.ToString()) + "." + ToolHelper.ToRoman(data1.WeaponTierLevel.Tier + 1);
+            SkeletonDataAsset = DataController.Instance.DefaultData.AllianceUISkeletonDataAsset[(int)elemental - 1];
         }
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
         txtDamage1.text = dataBase.ATK[Level - 1].ToString();
@@ -113,6 +117,14 @@ public class UIEvolveHero : BaseUIView
         if (Gold > DataController.Instance.Gold)
             canEvolve = false;
         GoldCost.text = Gold.ToString();
+        sg1.skeletonDataAsset = SkeletonDataAsset;
+        sg2.skeletonDataAsset = SkeletonDataAsset;
+        sg1.Initialize(true);
+        sg2.Initialize(true);
+        sg1.Skeleton.SetSkin("tier" + (data1.WeaponTierLevel.Tier));
+        sg2.Skeleton.SetSkin("tier" + (data1.WeaponTierLevel.Tier + 1));
+        sg1.AnimationState.SetAnimation(0, "idle", true);
+        sg2.AnimationState.SetAnimation(0, "idle", true);
     }
     public override void OnHide()
     {

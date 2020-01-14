@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Spine.Unity;
 
 public class UIPanelHeroAlliance : BaseUIView
 {
@@ -25,6 +26,9 @@ public class UIPanelHeroAlliance : BaseUIView
     public UIEvolveHero UIEvolveHero;
     public UiUpgradeSkill UiUpgradeSkill;
     public UIEvolveSkill UIEvolveSkill;
+    public SkeletonGraphic sg1;
+    SkeletonDataAsset SkeletonDataAsset;
+    public GameObject[] Star;
     public Elemental SelectedElemental
     {
         get
@@ -148,32 +152,23 @@ public class UIPanelHeroAlliance : BaseUIView
 
     public void SetupUIHero(Elemental elemental)
     {
-        if (isHero)
-            txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
-        else
-            txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
-
         GameDataWeapon data1;
-        if (isHero)
-            data1 = DataController.Instance.GetGameDataWeapon(elemental);
-        else
-            data1 = DataController.Instance.GetGameAlliance(elemental);
-
         Weapons dataBase;
-        if (isHero)
-            dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
-        else
-            dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
-
-        BtnUpgrade.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
 
         if (isHero)
         {
+            txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
+            data1 = DataController.Instance.GetGameDataWeapon(elemental);
+            dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
             BtnEquip.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1 && data1.Type != DataController.Instance.CurrentSelectedWeapon);
             BtnUnEquip.gameObject.SetActive(false);
+            SkeletonDataAsset = DataController.Instance.DefaultData.WeaponsUISkeletonDataAsset[(int)elemental - 1];
         }
         else
         {
+            txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
+            data1 = DataController.Instance.GetGameAlliance(elemental);
+            dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
             if (data1.Type == DataController.Instance.ElementalSlot1 || data1.Type == DataController.Instance.ElementalSlot2)
             {
                 BtnUnEquip.gameObject.SetActive(true);
@@ -184,7 +179,10 @@ public class UIPanelHeroAlliance : BaseUIView
                 BtnUnEquip.gameObject.SetActive(false);
                 BtnEquip.gameObject.SetActive(DataController.Instance.CanEquipAlliance && data1.WeaponTierLevel.Level >= 1);
             }
+            SkeletonDataAsset = DataController.Instance.DefaultData.AllianceUISkeletonDataAsset[(int)elemental - 1];
         }
+
+        BtnUpgrade.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
         if (data1.WeaponTierLevel.Level == dataBase.MaxLevel && data1.EXP == dataBase.MaxEXP)
         {
             BtnEvolve.gameObject.SetActive(data1.WeaponTierLevel.Tier < 3);
@@ -226,6 +224,14 @@ public class UIPanelHeroAlliance : BaseUIView
         }
 
         UISkillItems[0].OnBtnSelectClick();
+        sg1.skeletonDataAsset = SkeletonDataAsset;
+        sg1.Initialize(true);
+        sg1.Skeleton.SetSkin("tier" + (data1.WeaponTierLevel.Tier));
+        sg1.AnimationState.SetAnimation(0, "idle", true);
+        for (int i = 0; i < Star.Length; i++)
+        {
+            Star[i].SetActive(i < data1.WeaponTierLevel.Tier);
+        }
     }
 
     UISkillItem GetUISkillItem(string SkillID)

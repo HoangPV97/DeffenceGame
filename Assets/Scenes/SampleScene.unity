@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1709,73 +1709,17 @@ MonoBehaviour:
   - tag: icealliancebullet
     prefab: {fileID: 7856357515346073276, guid: dd632dc9fe5ea5d4d81835e9f0709d24,
       type: 3}
-  - tag: WIND_HERO_BULLET
-    prefab: {fileID: 8531190558834038732, guid: 0425d98558237a941b746eb896156085,
-      type: 3}
-  - tag: ICE_HERO_BULLET
-    prefab: {fileID: 8531190558834038732, guid: 0425d98558237a941b746eb896156085,
-      type: 3}
-  - tag: FIRE_HERO_BULLET
-    prefab: {fileID: 8531190558834038732, guid: 0425d98558237a941b746eb896156085,
-      type: 3}
-  - tag: EARTH_HERO_BULLET
-    prefab: {fileID: 8531190558834038732, guid: 0425d98558237a941b746eb896156085,
-      type: 3}
   - tag: fireenemybullet
     prefab: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb,
       type: 3}
-  - tag: WEAPON_WIND_SKILL_1
-    prefab: {fileID: 185990494516342514, guid: a0f5294d87d3a244f956e7b1edce2de1, type: 3}
-  - tag: WEAPON_ICE_SKILL_1
-    prefab: {fileID: 3892153920387240644, guid: 8d1a84e72f655f348a2008a17ef6726a,
-      type: 3}
-  - tag: WEAPON_EARTH_SKILL_1
-    prefab: {fileID: 5690069378365063656, guid: f78097eb7524bbc4f9300d4d57d7fea9,
-      type: 3}
-  - tag: WEAPON_EARTH_SKILL_2
-    prefab: {fileID: 3892153920387240644, guid: 22b828e69860d8641a028443a207cf27,
-      type: 3}
   - tag: damage
     prefab: {fileID: 2406792519959080423, guid: 877fab7edaba4d843aa8940df1d3ff75,
-      type: 3}
-  - tag: W_3
-    prefab: {fileID: 7178071149278825015, guid: 632bd9b6a9f80db459ce828612406efb,
-      type: 3}
-  - tag: W_4
-    prefab: {fileID: 5556297814356171359, guid: 6aaafcf7cd1691e428a6860f09df7a9d,
-      type: 3}
-  - tag: D_1
-    prefab: {fileID: 8912908039463566854, guid: 2736130805ea0a8429c949e70ee4930b,
       type: 3}
   - tag: ALLIANCE_ICE_SKILL_1
     prefab: {fileID: 3892153920387240644, guid: a9347b55fa576574daa4e76e3b5ad825,
       type: 3}
   - tag: elementaldamage
     prefab: {fileID: 2406792519959080423, guid: e7fb4304775423a49b4a895e59289947,
-      type: 3}
-  - tag: W_1
-    prefab: {fileID: 8020962621357836206, guid: 0b98e80e53dedd741a0c9e6ab999dbfe,
-      type: 3}
-  - tag: W_2
-    prefab: {fileID: 1529785039770135921, guid: 3da9603081489f845bf9f249911be413,
-      type: 3}
-  - tag: W_5
-    prefab: {fileID: 6292061646329833501, guid: 5d4cf667f3187e34a8ee9e547f35d169,
-      type: 3}
-  - tag: E_1
-    prefab: {fileID: 8020962621357836206, guid: 0014b2ac4bd7f724db6a672ea2cca634,
-      type: 3}
-  - tag: E_2
-    prefab: {fileID: 1529785039770135921, guid: c7f0e20957170f244b2c9e80ffd6accb,
-      type: 3}
-  - tag: E_3
-    prefab: {fileID: 7178071149278825015, guid: 9d7feef708982dd48981001815eeca1c,
-      type: 3}
-  - tag: E_4
-    prefab: {fileID: 5556297814356171359, guid: b5e73695e6a74534e8f72b78a25272c5,
-      type: 3}
-  - tag: E_5
-    prefab: {fileID: 6292061646329833501, guid: ac711421f9b8f6045bacf32577008ae3,
       type: 3}
   - tag: iceimpact
     prefab: {fileID: 2358666650387642368, guid: 2d95c60b58f1b6846ae9ddbd6b39eacb,
@@ -1840,36 +1784,6 @@ MonoBehaviour:
       type: 3}
   - tag: poison
     prefab: {fileID: 3316264382930781435, guid: 33d34f9d72f21a24b946985017be7469,
-      type: 3}
-  - tag: B_W_1
-    prefab: {fileID: 8020962621357836206, guid: 34079708b7fa84c4880b6fb6ec80aad2,
-      type: 3}
-  - tag: B_W_2
-    prefab: {fileID: 1529785039770135921, guid: da00f0f55025e8c4484d6905818d732f,
-      type: 3}
-  - tag: B_W_3
-    prefab: {fileID: 7178071149278825015, guid: 0643422646c1abc46be5aef3c0e85c7c,
-      type: 3}
-  - tag: B_W_4
-    prefab: {fileID: 5556297814356171359, guid: 79d064134b6238d489813a72a2020d39,
-      type: 3}
-  - tag: B_W_5
-    prefab: {fileID: 6292061646329833501, guid: ab62bab9f6f8b0140ab4ce86ff842e9d,
-      type: 3}
-  - tag: B_E_1
-    prefab: {fileID: 8020962621357836206, guid: 98072b7450d6adf4cabb1099163b5ef9,
-      type: 3}
-  - tag: B_E_2
-    prefab: {fileID: 1529785039770135921, guid: 07b6a331006b5ee45b27e39e75da0810,
-      type: 3}
-  - tag: B_E_3
-    prefab: {fileID: 7178071149278825015, guid: 11b4422f02729d446b592258568b3dd9,
-      type: 3}
-  - tag: B_E_4
-    prefab: {fileID: 5556297814356171359, guid: ad8326fa885a449418b57ec170d950ce,
-      type: 3}
-  - tag: B_E_5
-    prefab: {fileID: 6292061646329833501, guid: b4c11017ff7aa9441a5bd8c6d9e97e72,
       type: 3}
   - tag: BossBulletImpact
     prefab: {fileID: 1407327231982256525, guid: 02ad783a1f74f2b439391b77e38fb2e3,

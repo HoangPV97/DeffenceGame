@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Spine.Unity;
+
 public class UIUpgradehero : BaseUIView
 {
     public Animator Anim;
+    public SkeletonGraphic sg1;
+    SkeletonDataAsset SkeletonDataAsset;
     public TextMeshProUGUI txtHeroName, txtHeroLevel;
     public TextMeshProUGUI txtDamage, txtFireRate, txtEXP;
     public Image PBDamage, PBFireRate, PBEXP;
@@ -89,12 +93,14 @@ public class UIUpgradehero : BaseUIView
             data1 = DataController.Instance.GetGameDataWeapon(elemental);
             dataBase = DataController.Instance.GetDataBaseWeapons(elemental, data1.WeaponTierLevel.Tier);
             txtHeroName.text = Language.GetKey("Name_" + elemental.ToString());
+            SkeletonDataAsset = DataController.Instance.DefaultData.WeaponsUISkeletonDataAsset[(int)elemental - 1];
         }
         else
         {
             data1 = DataController.Instance.GetGameAlliance(elemental);
             dataBase = DataController.Instance.GetAllianceDataBases(elemental, data1.WeaponTierLevel.Tier).weapons;
             txtHeroName.text = Language.GetKey("Name_Alliance_" + elemental.ToString());
+            SkeletonDataAsset = DataController.Instance.DefaultData.AllianceUISkeletonDataAsset[(int)elemental - 1];
         }
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
 
@@ -115,6 +121,10 @@ public class UIUpgradehero : BaseUIView
         {
             ItemDatabase.Add(uiItems[i].ITEM_TYPE, DataController.Instance.GetItemDataBase(uiItems[i].ITEM_TYPE));
         }
+        sg1.skeletonDataAsset = SkeletonDataAsset;
+        sg1.Initialize(true);
+        sg1.Skeleton.SetSkin("tier" + (data1.WeaponTierLevel.Tier));
+        sg1.AnimationState.SetAnimation(0, "idle", true);
     }
     public void SetTextExp()
     {
