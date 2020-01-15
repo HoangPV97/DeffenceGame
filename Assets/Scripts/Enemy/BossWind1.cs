@@ -22,7 +22,7 @@ public class BossWind1 : EnemyController
     protected override void Start()
     {
         isAttack = false;
-        BulletBoss = "BossBullet";
+        BulletBoss = "BOSS_WIND_BULLET";
         timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
         //InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);\
         skeletonAnimation.AnimationState.Event += OnEventChargeAttack;
@@ -94,6 +94,7 @@ public class BossWind1 : EnemyController
             }));
         }
     }
+
     public void ChargeAttack()
     {
         GameObject effectleftHand = gameEffect.SpawnEffect(boss_Fx, LeftHand.transform.position, 1.3f);
@@ -117,12 +118,19 @@ public class BossWind1 : EnemyController
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
             float ChargeRatio = UnityEngine.Random.Range(0, 100);
-            SpawnEnemy.Instance.SpawnEnemyBoss_Wind_1();
-            frenetic_50 = true;
-            if (ChargeRatio > 20 && frenetic_50)
+            //SpawnEnemy.Instance.SpawnEnemyBoss_Wind_1();
+            int HardMode = DataController.Instance.StageData.HardMode;
+            var sd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
+            for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
             {
-                timeDelayAttack = 2;
+                StartCoroutine(IESpawnEnemyBoss(sd.stageEnemyDataBase, i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+                //GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
             }
+            frenetic_50 = true;
+            //if (ChargeRatio > 20 )
+            //{
+            //    timeDelayAttack = 2;
+            //}
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
@@ -151,7 +159,7 @@ public class BossWind1 : EnemyController
         {
             newPosition = pointList[index];
             return;
-        }      
+        }
         else
             RandomPosition();
     }
@@ -179,7 +187,7 @@ public class BossWind1 : EnemyController
             if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
             {
                 isChargeAttack = true;
-                BulletBoss = "BossSkill";
+                BulletBoss = "BOSS_WIND_SKILL";
                 enemy.damage *= 2;
                 CurrentState = EnemyState.Skill;
                 StartCoroutine(IEChargeAttack(2f));
@@ -199,15 +207,36 @@ public class BossWind1 : EnemyController
         isAttack = false;
         RandomPosition();
         isChargeAttack = false;
-        BulletBoss = "BossBullet";
+        BulletBoss = "BOSS_WIND_BULLET";
 
-    }
-    IEnumerator IEFrenetic(float _time)
-    {
-        yield return new WaitForSeconds(_time);
     }
     public void WindImpactEffect(Vector3 _position)
     {
         gameEffect.SpawnEffect("windimpact", _position, 0.3f);
+    }
+    public override IEnumerator Die()
+    {
+        GameplayController.Instance.StopCoroutine("IESpawnEnemyBoss");
+        return base.Die();
+    }
+    public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase, int i, float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        var se = stageEnemyDataBase.stageEnemies[i];
+        se.Number--;
+        int level = se.Level;
+        if (DataController.Instance.StageData.HardMode == 2)
+            level += stageEnemyDataBase.NightMareAddLevel;
+        else if (DataController.Instance.StageData.HardMode == 3)
+            level += stageEnemyDataBase.HellAddLevel;
+        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.Type, se.Position == 999 ?
+            GameplayController.Instance.spawnPosition[UnityEngine.Random.Range(0, 8)].position :
+            GameplayController.Instance.spawnPosition[se.Position].position, transform.rotation);
+        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
+        GameController.Instance.EnemyLive += 1;
+        if (se.Number > 0)
+        {
+            StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));
+        }
     }
 }

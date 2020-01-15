@@ -267,8 +267,8 @@ public class DataController : Singleton<DataController>
         {
             Level = CurrentSelected,
             HardMode = GameData.GetGameStage(CurrentSelected).HardMode,
-            stageDataBase = GameStageDataBase.GetStageDataBase(CurrentSelected),
-            stageEnemyDataBase = GameEnemyDataBase.GetStageEnemyDataBase(CurrentSelected)
+            stageDataBase = GameStageDataBase.GetStageDataBase(CurrentSelected).Clone(),
+            stageEnemyDataBase = GameEnemyDataBase.GetStageEnemyDataBase(CurrentSelected).Clone()
         };
 
         // load Weapon data
@@ -299,6 +299,7 @@ public class DataController : Singleton<DataController>
                 Level = sl1.WeaponTierLevel.Level,
                 ATK = wp1.weapons.ATK[sl1.WeaponTierLevel.Level - 1],
                 ATKspeed = wp1.weapons.ATKspeed[slwp.WeaponTierLevel.Level - 1],
+                ATKRange = wp1.ATKRange[slwp.WeaponTierLevel.Level - 1],
                 BulletSpeed = wp1.weapons.BulletSpeed
             };
         }

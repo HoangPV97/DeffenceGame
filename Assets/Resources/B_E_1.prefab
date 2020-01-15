@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92, y: 0.72}
+  m_Size: {x: 0.98, y: 0.85}
   m_EdgeRadius: 0
 --- !u!50 &7385684139614032846
 Rigidbody2D:
@@ -148,7 +148,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4a3e78e380e123438e6a4d1f246ad2f, type: 2}
+  - {fileID: 2100000, guid: 285d0aa711fb2764690935781073d949, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: ee681084267a29a4f9dbad3eb37a3b07, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 534132f37c454194aaa082b26d77920c, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -285,14 +285,15 @@ MonoBehaviour:
     _elemental: 3
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 401669831}
-  attack: {fileID: 11400000, guid: 19cbbec9c382695469216faf16f3cdb6, type: 2}
-  idle: {fileID: 11400000, guid: 8f1f0c49b181aca49833084f9db17f86, type: 2}
-  run: {fileID: 11400000, guid: 72f9a061ddec31b4fa7bced5f176a0f3, type: 2}
+  attack: {fileID: 11400000, guid: a2173210e32b709448aa7755fa906a43, type: 2}
+  idle: {fileID: 11400000, guid: 8e4e70dcc0c142f4287a5600ba8a05f4, type: 2}
+  run: {fileID: 11400000, guid: dbb248e31c2fb824eaadd3cc3e39ca3b, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: 897a337d1ccc837429d936df582ed3a2, type: 2}
+  die: {fileID: 11400000, guid: eeee893737c13214f83c22c6815f8205, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 2882613129840932449}
   Rigidbody2D: {fileID: 7385684139614032846}
@@ -441,6 +442,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 132
       objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 137.99908
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -465,21 +481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 134.99904
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 137.99908
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

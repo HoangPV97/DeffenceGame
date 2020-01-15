@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public Text GoldText, WinGold;
     float Gold = 0;
     float count = 0;
+    public float EnemyNumber;
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +25,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        EnemyNumber = EnemyLive;
     }
 
     public void SaveGame()
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
        // GameoverPanel.SetActive(true);
         Time.timeScale = 0;
 
-        UIPanelResult.SetUpDataFailed(10, 20, 50);
+        UIPanelResult.SetUpDataFailed((int)(EnemyNumber - EnemyLive), GameplayController.Instance.Tower.Health.CurrentHealth, (int)GameplayController.Instance.TotalGoldDrop);
     }
     public void Restart()
     {
@@ -78,7 +79,7 @@ public class GameController : MonoBehaviour
 
         if (Level == 5)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Wind);
+            DataController.Instance.UnLockAlliance(Elemental.Wind);//Wind
         }
         if (Level == 15)
         {
@@ -109,7 +110,7 @@ public class GameController : MonoBehaviour
         DataController.Instance.Save();
         //  WingamePanel.SetActive(true);
 
-        UIPanelResult.SetUpdataVictory(10,20,50);
+        UIPanelResult.SetUpdataVictory((int)(EnemyNumber-EnemyLive),GameplayController.Instance.Tower.Health.CurrentHealth, (int)GameplayController.Instance.TotalGoldDrop);
     }
     public void PauseGame()
     {

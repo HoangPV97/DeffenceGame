@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3346026367710059847}
   - component: {fileID: 3346026367710059855}
   m_Layer: 5
-  m_Name: ALLIANCE_FIRE_SKILL_1
+  m_Name: ALLIANCE_WIND_SKILL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,12 +93,17 @@ MonoBehaviour:
   CountdownGo: {fileID: 0}
   CountdownTime: 13
   manaCost: 0
+  Damage: 0
+  elemental: 0
   circle: {fileID: 4858672756582602106}
-  EffectName: stuneffectstart
+  EffectName: HERO_EARTH_SKILL_START
   EffectTime: 0
   EffectedAoe: 0
-  Damage: 0
   Swf1:
+    SkillID: 
+    SkillType: 0
+    baseSkills: []
+  SkillAllianceWind2:
     SkillID: 
     SkillType: 0
     baseSkills: []

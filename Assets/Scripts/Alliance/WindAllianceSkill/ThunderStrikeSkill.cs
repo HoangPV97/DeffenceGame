@@ -24,7 +24,7 @@ public class ThunderStrikeSkill : MonoBehaviour
             EnemyController enemy = Target.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy?.DealDamge(Damage, 0);
+                enemy?.DealDamge((int)Damage, 0);
                 enemy.DealEffect(Effect.Stun, enemy.transform.position + new Vector3(0, 0.5f, 0), EffectedTime);
             }
         }

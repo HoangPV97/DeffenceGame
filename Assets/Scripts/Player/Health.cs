@@ -8,17 +8,17 @@ using UnityEngine.UI;
 public class Health
 {
     [SerializeField]
-    private float mHealth;
+    private int mHealth;
     [SerializeField]
-    private float currentHealth;
+    private int currentHealth;
     [SerializeField]
-    private float recoverHealthValue;
+    private int recoverHealthValue;
     [SerializeField]
     private float recoverHealthTime;
     public Image healthBar;
     public Image effecthealthBar;
     public TextMeshProUGUI healthValueText;
-    public float health
+    public int health
     {
         get
         {
@@ -29,7 +29,7 @@ public class Health
             this.mHealth = value;
         }
     }
-    public float CurrentHealth
+    public int CurrentHealth
     {
         get
         {
@@ -40,7 +40,7 @@ public class Health
             this.currentHealth = value;
         }
     }
-    public float RecoverHealthValue
+    public int RecoverHealthValue
     {
         get
         {
@@ -62,7 +62,7 @@ public class Health
             this.recoverHealthTime = value;
         }
     }
-    public void Init(float Hp, float HpRegen)
+    public void Init(int Hp, int HpRegen)
     {
         health = Hp;
         CurrentHealth = health;
@@ -70,10 +70,10 @@ public class Health
         UpdateValueText();
         healthBar.fillAmount = 1;
     }
-    public void ReduceHealth(float _damage)
+    public void ReduceHealth(int _damage)
     {
         CurrentHealth -= _damage;
-        healthBar.fillAmount = CurrentHealth / health * 1.0f;
+        healthBar.fillAmount = (float)CurrentHealth / health * 1.0f;
         UpdateValueText();
     }
     public void EffectHealth()
@@ -90,7 +90,7 @@ public class Health
         }
         UpdateValueText();
     }
-    public void IncreaseRecoverHealthValue(float _Value)
+    public void IncreaseRecoverHealthValue(int _Value)
     {
         recoverHealthValue += recoverHealthValue * _Value / 100;
     }

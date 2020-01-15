@@ -7,6 +7,7 @@ public class PlayEarthDragonSkill : DragAndDropSkill
     protected float SlowdownPercent;
     [SerializeField] float EffectRow;
     [SerializeField] SkillWeaponEarth1 Swe1;
+    private const int EffectSize = 2;
     protected override void Start()
     {
         circle.transform.localScale = new Vector3(2, EffectRow, 0);
@@ -17,27 +18,17 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         if (TimeLeft <= 0 && Tower.Mana.CurrentMana >= manaCost && variableJoystick.Vertical != 0)
         {
             float MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-            Vector3 Target = new Vector3(0, MousePosition,0)-circle.transform.position;
+            Vector3 Target = new Vector3(0, MousePosition, 0) - circle.transform.position;
             circle.SetActive(true);
             circle.transform.Translate(Target);
-            //circle.transform.position = Vector3.MoveTowards(transform.position, Target, 100 * Time.deltaTime);
         }
-        if (Tower.Mana.CurrentMana > manaCost)
-        {
-            //  LowMana.SetActive(false);
-        }
-        else
-        {
-            // LowMana.SetActive(true);
-        }
-
         base.Update();
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        //var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
-        //Tier = SkilldataSaver.Tier;
-        //Level = SkilldataSaver.Level;
+        var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
         base.SetUpData(Level);
         Swe1 = JsonUtility.FromJson<SkillWeaponEarth1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
@@ -55,23 +46,40 @@ public class PlayEarthDragonSkill : DragAndDropSkill
     public override void PlaySkill(Vector3 _position)
     {
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
-        switch (EffectRow)
+        if (EffectRow % 2 == 0)
         {
-            case 2:
-                SpawnSkill(_position + new Vector3(0, 1, 0));
-                SpawnSkill(_position + new Vector3(0, -1, 0));
-                break;
-            case 3:
-                SpawnSkill(_position);
-                SpawnSkill(_position + new Vector3(0, 1.5f, 0));
-                SpawnSkill(_position + new Vector3(0, -1.5f, 0));
-                break;
-            case 4:
-                SpawnSkill(_position + new Vector3(0, 0.8f, 0));
-                SpawnSkill(_position + new Vector3(0, -0.8f, 0));
-                SpawnSkill(_position + new Vector3(0, 2.5f, 0));
-                SpawnSkill(_position + new Vector3(0, -2.5f, 0));
-                break;
+            SpawnAllEffect(EffectRow,_position, new Vector3(0, EffectSize / 2));
+        }
+        else
+        {
+            SpawnSkill(_position);
+            SpawnAllEffect(EffectRow-1, _position, new Vector3(0, EffectSize));
+        }
+    }
+    public void SpawnAllEffect(float EffectRow, Vector3 _position, Vector3 alpha)
+    {
+        int x = 0, tempt = 0;
+        for (int i = 0; i < EffectRow; i++)
+        {
+            tempt += 1;
+            SpawnParity(i, _position, alpha);
+            if (tempt == 2)
+            {
+                x += EffectSize;
+                alpha += new Vector3(0, x);
+                tempt = 0;
+            }
+        }
+    }
+    void SpawnParity(int i, Vector3 _position, Vector3 _alpha)
+    {
+        if (i % 2 == 0)
+        {
+            SpawnSkill(_position + _alpha);
+        }
+        else
+        {
+            SpawnSkill(_position - _alpha);
         }
     }
     public void SpawnSkill(Vector3 _position)

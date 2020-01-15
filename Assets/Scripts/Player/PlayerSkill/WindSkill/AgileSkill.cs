@@ -15,7 +15,6 @@ public class AgileSkill : Skill
         base.SetUpData(Tier, Level);
         sww3 = JsonUtility.FromJson<SkillWeaponWind3>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         FireRate = sww3.GetSkillAttributes("InscreaFireRate", Tier, LevelSkill);
-        Debug.Log("FireRate :" + FireRate);
     }
     // Start is called before the first frame update
     protected override void Start()

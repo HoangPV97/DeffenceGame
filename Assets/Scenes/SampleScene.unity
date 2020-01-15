@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1706,102 +1706,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pools:
-  - tag: icealliancebullet
-    prefab: {fileID: 7856357515346073276, guid: dd632dc9fe5ea5d4d81835e9f0709d24,
-      type: 3}
-  - tag: fireenemybullet
-    prefab: {fileID: 1526769224090359338, guid: 1518827d24226284781a2abe341c04eb,
-      type: 3}
-  - tag: damage
+  - tag: DAMAGE
     prefab: {fileID: 2406792519959080423, guid: 877fab7edaba4d843aa8940df1d3ff75,
       type: 3}
-  - tag: ALLIANCE_ICE_SKILL_1
-    prefab: {fileID: 3892153920387240644, guid: a9347b55fa576574daa4e76e3b5ad825,
-      type: 3}
-  - tag: elementaldamage
+  - tag: ELEMENT_DAMAGE
     prefab: {fileID: 2406792519959080423, guid: e7fb4304775423a49b4a895e59289947,
       type: 3}
-  - tag: iceimpact
-    prefab: {fileID: 2358666650387642368, guid: 2d95c60b58f1b6846ae9ddbd6b39eacb,
-      type: 3}
-  - tag: windimpact
-    prefab: {fileID: 529602048673010497, guid: fc9e10cb667bdb8458164c7b37c119e7, type: 3}
-  - tag: fireimpact
-    prefab: {fileID: 529602048673010497, guid: fc9e10cb667bdb8458164c7b37c119e7, type: 3}
-  - tag: freezeffect
-    prefab: {fileID: 3779653558240659971, guid: 66e753b25b649a04db7d6c344e1165f8,
-      type: 3}
-  - tag: stuneffect
-    prefab: {fileID: 4485175983094295713, guid: 30ecef1dc4b52bf4f982dd6c31689e41,
-      type: 3}
-  - tag: ALLIANCE_WIND_SKILL_1
-    prefab: {fileID: 2625949087083810963, guid: 56311b1c93261424aa408a6a24f6efee,
-      type: 3}
-  - tag: ALLIANCE_WIND_SKILL_2
-    prefab: {fileID: 3346026367710059841, guid: 0b9f8b5b2e7c51740aa2d35daa272b72,
-      type: 3}
-  - tag: windalliancebullet
-    prefab: {fileID: 6761650371443875019, guid: 2c1aa140fd034a248af42a0d72bb96d6,
-      type: 3}
-  - tag: exploseeffectenemy
-    prefab: {fileID: 3316264382930781435, guid: 8425809d6cc52cc46a422cfc7b3cfe8e,
-      type: 3}
-  - tag: iceeffectstart
-    prefab: {fileID: 4347381270211962999, guid: 3c2e9ff2e89a38c409292bd5b44f6eac,
-      type: 3}
-  - tag: stuneffectstart
-    prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
-      type: 3}
-  - tag: HERO_WIND_SKILL_START
-    prefab: {fileID: 1527834268680974005, guid: 064afa3aba3fa684cb9ab908e3e488f0,
-      type: 3}
-  - tag: HERO_EARTH_SKILL_START
-    prefab: {fileID: 4057672117551481266, guid: a62c376847366054bae2a65aa9e4cac6,
-      type: 3}
-  - tag: iceeffectend
-    prefab: {fileID: 1248681905678545692, guid: 9de50726d80a91247b1e1ca349d8311e,
-      type: 3}
-  - tag: iceeffectenemy
-    prefab: {fileID: 3051739942749450383, guid: 651ad56631158644f92c6e7aba5933ad,
-      type: 3}
-  - tag: windeffectenemy
-    prefab: {fileID: 2408482012950447412, guid: 365e64976f08d0d479f28aba98f8536d,
-      type: 3}
-  - tag: iceenemybullet
-    prefab: {fileID: 6697626865610046919, guid: 76e856c087741364a9b4458e9713c68a,
-      type: 3}
-  - tag: windenemybullet
-    prefab: {fileID: 5257514012312268338, guid: b9309557100c2544b9be954c4398f8ff,
-      type: 3}
-  - tag: WindMeleeImpact
-    prefab: {fileID: 2892912235544848691, guid: cb5d7217908d41042ad39510ff8d1211,
-      type: 3}
-  - tag: explosionBullet
-    prefab: {fileID: 6164340513003871311, guid: 97a69aa2cbef32549832caee96303489,
-      type: 3}
-  - tag: bounceBullet
-    prefab: {fileID: 6164340513003871311, guid: fde2656eb558d374e95aa965c3601847,
-      type: 3}
-  - tag: poison
-    prefab: {fileID: 3316264382930781435, guid: 33d34f9d72f21a24b946985017be7469,
-      type: 3}
-  - tag: BossBulletImpact
-    prefab: {fileID: 1407327231982256525, guid: 02ad783a1f74f2b439391b77e38fb2e3,
-      type: 3}
-  - tag: BossBullet
-    prefab: {fileID: 8783888702392315721, guid: 4f6b2518e3f517942ae24b481a8cec9f,
-      type: 3}
-  - tag: BossSkill
-    prefab: {fileID: 4224666956105874784, guid: 434f8dbd2f2357d438e71e100c86501e,
-      type: 3}
-  - tag: BossSkillImpact
-    prefab: {fileID: 2141139932449471191, guid: 5ca3fb35718f57345990584683411647,
-      type: 3}
-  - tag: WEAPON_WIND_SKILL_2
-    prefab: {fileID: 5937893838479093701, guid: 72eaa27456891ab4cbfc5a9853342ec6,
-      type: 3}
-  - tag: dropcoin
-    prefab: {fileID: 1493198791445031203, guid: d34cd9753163e4b449de86ae675e0cd1,
+  - tag: DROP_COIN
+    prefab: {fileID: 1493198791445031203, guid: 55d70ffe4d937b344b5ca171f14fa157,
       type: 3}
 --- !u!4 &472097027
 Transform:

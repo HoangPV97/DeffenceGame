@@ -17,7 +17,7 @@ public class Tower : MonoBehaviour
         InvokeRepeating("RecoverMana", 0, Mana.RecoverManaTime);
         InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
     }
-    public void TakeDamage(float _damage)
+    public void TakeDamage(int _damage)
     {
         TowerEffect.SetActive(true);
         Health.ReduceHealth(_damage);
@@ -30,7 +30,7 @@ public class Tower : MonoBehaviour
 
     public void SetUpData()
     {
-        Health.Init(DataController.Instance.InGameBaseData.HP, DataController.Instance.InGameBaseData.HPRegen);
+        Health.Init((int)DataController.Instance.InGameBaseData.HP,(int) DataController.Instance.InGameBaseData.HPRegen);
         Mana.Init(DataController.Instance.InGameBaseData.Mana, DataController.Instance.InGameBaseData.ManaRegen);
     }
 

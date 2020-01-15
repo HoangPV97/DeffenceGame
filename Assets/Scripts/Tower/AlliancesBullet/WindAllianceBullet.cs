@@ -11,10 +11,11 @@ public class WindAllianceBullet : BulletController
     {
         elementalBullet = Elemental.Wind;
     }
-    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce)
+    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce,int _Increasedamage)
     {
         bounceRange = _bounceRange;
         numberBounce = _numberBounce;
+        damagePlus = _Increasedamage;
         base.SetDataBullet(_speed, _damage);
     }
     protected override void FixedUpdate()

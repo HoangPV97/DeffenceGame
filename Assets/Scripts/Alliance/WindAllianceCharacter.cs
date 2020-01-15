@@ -7,9 +7,21 @@ using UnityEngine;
 
 public class WindAllianceCharacter : AllianceController
 {
-    public float bounceRange=5;
-    public int numberBounce=3;
+    [SerializeField] private float bounceRange = 5;
+    [SerializeField] private int DecreaseDamageBounce;
+    [SerializeField] private int IncreaseElementDamage;
+    public int bounceNumber = 3;
     public bool bounce;
+
+    public override void Start()
+    {
+        int tier = DataController.Instance.GetGameDataWeapon(elementalType).WeaponTierLevel.Tier;
+        bounceRange = GetAttributeData("BouceRange", Elemental.Wind, tier);
+        bounceNumber = (int)GetAttributeData("BounceNumber", Elemental.Wind, tier);
+        DecreaseDamageBounce = (int)GetAttributeData("DecreaseDamageBounce", Elemental.Wind, tier);
+        IncreaseElementDamage = (int)GetAttributeData("IncreaseElementDamage", Elemental.Wind, tier);
+        base.Start();
+    }
     public override void Shoot()
     {
         characterState = CharacterState.Attack;
@@ -19,7 +31,7 @@ public class WindAllianceCharacter : AllianceController
         {
             WindallyBullet.elementalBullet = elementalType;
             WindallyBullet.SetTarget(Alliance.target);
-            WindallyBullet.SetDataBullet(BulletSpeed, ATK,bounceRange,numberBounce);
+            WindallyBullet.SetDataBullet(BulletSpeed, ATK, bounceRange, bounceNumber, IncreaseElementDamage);
         }
     }
     public void StunSkill(Vector3 _position)

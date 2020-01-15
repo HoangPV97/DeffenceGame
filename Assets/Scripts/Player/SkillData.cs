@@ -212,6 +212,13 @@ public class SkillAllianceWind3 : SkillData
     public const string IncreaseDamage = "IncreaseDamage";
 }
 [System.Serializable]
+public class SkillAllianceEarth1 : SkillData
+{
+    public const string TimeEffect = "TimeEffect";
+    public const string EffectedAoe = "EffectedAoe";
+    public const string MeteorNumber = "MeteorNumber";
+}
+[System.Serializable]
 public class SkillAttribute
 {
     public string Attribute;

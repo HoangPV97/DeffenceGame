@@ -20,7 +20,7 @@ public class GameEffect : MonoBehaviour
         switch (CurrentEffect)
         {
             case Effect.Freeze:
-                effectObj = SpawnEffect("freezeffect", _position, _time);
+                effectObj = SpawnEffect("ALLIANCE_ICE_SKILL_IMPACT", _position, _time);
                 break;
             case Effect.Slow:
                 Debug.Log("SLOW_EFFECT");
@@ -30,10 +30,10 @@ public class GameEffect : MonoBehaviour
                 KnockBack(this.gameObject, _position);
                 break;
             case Effect.Stun:
-                effectObj = SpawnEffect("stuneffect", _position+new Vector3(0,1,0), _time);
+                effectObj = SpawnEffect("STUN_EFFECT", _position+new Vector3(0,1,0), _time);
                 break;
             case Effect.destroyFreeze:
-                effectObj = SpawnEffect("iceeffectend", _position, _time);
+                effectObj = SpawnEffect("ALLIANCE_ICE_SKILL_END", _position, _time);
                 break;
             case Effect.Poiton:
                 //spawn Effect
@@ -41,7 +41,7 @@ public class GameEffect : MonoBehaviour
                 break;
             case Effect.StunBullet:
                 //spawn Effect
-                effectObj = SpawnEffect("stuneffect", _position + new Vector3(0, 1, 0), _time);
+                effectObj = SpawnEffect("STUN_EFFECT", _position + new Vector3(0, 1, 0), _time);
                 break;
         }
         return effectObj;

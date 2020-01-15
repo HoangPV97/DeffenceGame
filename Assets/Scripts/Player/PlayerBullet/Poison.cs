@@ -47,7 +47,7 @@ public class Poison : MonoBehaviour
     {
         if (Onstay && tempTime < 0 && enemy != null)
         {
-            enemy.DealDamge(poison.DamagePerSecond);
+            enemy.DealDamge((int)poison.DamagePerSecond);
             tempTime = poison.inflictedTime;
         }
         tempTime -= Time.deltaTime;
@@ -59,7 +59,7 @@ public class Poison : MonoBehaviour
         while (_countdown > 0)
         {
             yield return new WaitForSeconds(poison.inflictedTime);
-            _enemy.DealDamge(poison.DamagePerSecond);
+            _enemy.DealDamge((int)poison.DamagePerSecond);
             _countdown -= Time.deltaTime;
         }      
         yield return new WaitForSeconds(poison.totalTime);

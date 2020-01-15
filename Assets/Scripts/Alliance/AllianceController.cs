@@ -54,12 +54,13 @@ public class AllianceController : MonoBehaviour
         listEnemies = new List<EnemyController>();
         skeletonAnimation.AnimationState.Event += OnEvent;
     }
-    public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
+    public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed,float _range)
     {
         this.elementalType = elemental;
         ATK = (int)atk;
         ATKspeed = Atkspeed;
         this.BulletSpeed = BulletSpeed;
+        Alliance.range = _range;
     }
     protected virtual void Update()
     {
@@ -198,5 +199,14 @@ public class AllianceController : MonoBehaviour
             Shoot();
         }
     }
-
+    public float GetAttributeData(string attribute,Elemental elemental, int tier)
+    {
+        var Attributes = DataController.Instance.GetAllianceDataBases(elemental, tier).SkillAttributes;
+        for (int i = 0; i < Attributes.Count; i++)
+        {
+            if (Attributes[i].Attribute.Equals( attribute))
+                return Attributes[i].Value[0];
+        }
+        return 0;
+    }
 }

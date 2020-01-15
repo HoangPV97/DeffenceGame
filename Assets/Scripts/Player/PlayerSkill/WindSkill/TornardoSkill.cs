@@ -47,7 +47,7 @@ public class TornardoSkill : MonoBehaviour
             {
                 if (enemies[i].isLive)
                 {
-                    enemies[i].DealDamge(Tornardo.DamagePerSecond);
+                    enemies[i].DealDamge((int)Tornardo.DamagePerSecond);
                 }
                 else
                 {
@@ -66,7 +66,7 @@ public class TornardoSkill : MonoBehaviour
         while (_countdown > 0)
         {
             yield return new WaitForSeconds(Tornardo.inflictedTime);
-            _enemy.DealDamge(Tornardo.DamagePerSecond);
+            _enemy.DealDamge((int)Tornardo.DamagePerSecond);
             _countdown -= Time.deltaTime;
         }
         yield return new WaitForSeconds(Tornardo.totalTime);
@@ -91,7 +91,7 @@ public class TornardoSkill : MonoBehaviour
 
             Onstay = true;
             EnemyController enemy = _target.gameObject.GetComponent<EnemyController>();
-            enemy.DealDamge(Tornardo.DamagePerSecond);
+            enemy.DealDamge((int)Tornardo.DamagePerSecond);
             if (!enemies.Contains(enemy))
             {
                 enemies.Add(enemy);

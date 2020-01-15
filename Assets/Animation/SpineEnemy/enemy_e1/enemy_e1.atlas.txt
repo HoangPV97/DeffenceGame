@@ -1,0 +1,111 @@
+
+enemy_e1.png
+size: 680,300
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a1
+  rotate: false
+  xy: 196, 154
+  size: 142, 144
+  orig: 142, 144
+  offset: 0, 0
+  index: -1
+a2
+  rotate: false
+  xy: 2, 27
+  size: 142, 144
+  orig: 142, 144
+  offset: 0, 0
+  index: -1
+armL_down
+  rotate: false
+  xy: 521, 95
+  size: 64, 82
+  orig: 64, 82
+  offset: 0, 0
+  index: -1
+armL_up
+  rotate: false
+  xy: 266, 48
+  size: 82, 104
+  orig: 82, 104
+  offset: 0, 0
+  index: -1
+armR_down
+  rotate: false
+  xy: 598, 170
+  size: 79, 128
+  orig: 79, 128
+  offset: 0, 0
+  index: -1
+armR_up
+  rotate: false
+  xy: 454, 80
+  size: 65, 95
+  orig: 65, 95
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 340, 177
+  size: 133, 121
+  orig: 133, 121
+  offset: 0, 0
+  index: -1
+body_item
+  rotate: false
+  xy: 146, 30
+  size: 118, 122
+  orig: 118, 122
+  offset: 0, 0
+  index: -1
+bot
+  rotate: false
+  xy: 350, 10
+  size: 108, 65
+  orig: 108, 65
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 475, 179
+  size: 121, 119
+  orig: 121, 119
+  offset: 0, 0
+  index: -1
+legL_down
+  rotate: false
+  xy: 642, 114
+  size: 33, 54
+  orig: 33, 54
+  offset: 0, 0
+  index: -1
+legL_up
+  rotate: false
+  xy: 587, 92
+  size: 53, 76
+  orig: 53, 76
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 173
+  size: 192, 125
+  orig: 192, 125
+  offset: 0, 0
+  index: -1
+shoulderR
+  rotate: false
+  xy: 350, 77
+  size: 102, 98
+  orig: 102, 98
+  offset: 0, 0
+  index: -1
+wp
+  rotate: false
+  xy: 460, 2
+  size: 122, 76
+  orig: 122, 76
+  offset: 0, 0
+  index: -1

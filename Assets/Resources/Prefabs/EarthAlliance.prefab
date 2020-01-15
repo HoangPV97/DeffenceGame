@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786888695544119822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00248565, y: 2.5182016, z: 0}
+  m_LocalPosition: {x: -0.0024856988, y: 1.7978123, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1786888695913067429}
@@ -143,8 +143,8 @@ GameObject:
   - component: {fileID: 1786888695913067431}
   - component: {fileID: 1786888695913067428}
   - component: {fileID: 1786888695913067425}
-  - component: {fileID: 1786888695913067430}
   - component: {fileID: 8404775333394181250}
+  - component: {fileID: 8508815431667948506}
   m_Layer: 0
   m_Name: EarthAlliance
   m_TagString: Untagged
@@ -267,42 +267,6 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: 0eeb741b5b6217d4ea7fbf6c428c05bb, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 399572f80af1bd749979717dea99d93c, type: 2}
---- !u!114 &1786888695913067430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786888695913067435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc8b1150501369a48acf0aaf7280dadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Alliance:
-    bullet: windalliancebullet
-    _name: 
-    _level: 0
-    _range: 13
-    _target: {fileID: 0}
-    _rateOfFire: 1
-    _armor: 2
-    _bulletSkill: stunskill
-    _effectStart: stuneffectstart
-  Barrel: {fileID: 1786888695544119822}
-  elementalType: 1
-  characterState: 0
-  preCharacterState: 0
-  skeletonAnimation: {fileID: 1786888695913067428}
-  attack: {fileID: 11400000, guid: 0eeb741b5b6217d4ea7fbf6c428c05bb, type: 2}
-  idle: {fileID: 11400000, guid: 399572f80af1bd749979717dea99d93c, type: 2}
-  eventName: onatk
-  playerController: {fileID: 0}
-  listEnemies: []
-  ATK: 0
-  ATKspeed: 0
-  BulletSpeed: 0
-  CircleCollider2D: {fileID: 8404775333394181250}
 --- !u!58 &8404775333394181250
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -319,3 +283,38 @@ CircleCollider2D:
   m_Offset: {x: 0.44388026, y: 0.9357096}
   serializedVersion: 2
   m_Radius: 1.3359432
+--- !u!114 &8508815431667948506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786888695913067435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e1851d8404c5446bb379229f676514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Alliance:
+    bullet: EARTH_ALLIANCE_BULLET
+    _name: 
+    _level: 0
+    _range: 0
+    _target: {fileID: 0}
+    _rateOfFire: 0
+    _armor: 0
+    _bulletSkill: 
+    _effectStart: 
+  Barrel: {fileID: 1786888695544119822}
+  elementalType: 3
+  characterState: 0
+  preCharacterState: 0
+  skeletonAnimation: {fileID: 1786888695913067428}
+  attack: {fileID: 11400000, guid: 0eeb741b5b6217d4ea7fbf6c428c05bb, type: 2}
+  idle: {fileID: 11400000, guid: 399572f80af1bd749979717dea99d93c, type: 2}
+  eventName: onatk
+  listEnemies: []
+  ATK: 0
+  ATKspeed: 0
+  BulletSpeed: 0
+  CircleCollider2D: {fileID: 8404775333394181250}

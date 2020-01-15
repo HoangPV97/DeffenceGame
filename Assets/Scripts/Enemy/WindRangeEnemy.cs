@@ -23,7 +23,7 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     {
         if(isAttack)
         {
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("WIND_ENEMY_BULLET", Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {

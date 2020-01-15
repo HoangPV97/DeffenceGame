@@ -44,7 +44,7 @@ public class SlowSkill : MonoBehaviour
             EnemyController enemyController = _target.gameObject.GetComponent<EnemyController>();
             enemyController.Deal_Slow_Effect( SlowSkillData.EffectedTime, SlowSkillData.SlowdownPercent);
             //enemyController.Move(enemyController.enemy.speed, SlowSkillData.SLowdownPercent);
-            enemyController.DealDamge(SlowSkillData.Damage);
+            enemyController.DealDamge((int)SlowSkillData.Damage);
         }
         //ObjectPoolManager.Instance.DespawnObJect(this.gameObject);
     }

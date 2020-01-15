@@ -45,7 +45,7 @@ public class BarrierSkill : MonoBehaviour
     }
     public void RecoverHealthTower()
     {
-        Tower.Health.CurrentHealth += HealthRecover;
+        Tower.Health.CurrentHealth += (int)HealthRecover;
         Tower.Health.healthBar.fillAmount += HealthRecover / Tower.Health.health;
         if (Tower.Health.CurrentHealth > Tower.Health.health)
         {

@@ -44,6 +44,7 @@ public class AllianceData
 {
     public Weapons weapons;
     public List<float> ATKRange;
+    public List<SkillAttribute> SkillAttributes;
 }
 
 public class AllianceDataBase

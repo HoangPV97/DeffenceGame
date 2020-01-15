@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
     {
         var md = DataController.Instance.GetMonsterData(type);
         float growth = 1 + md.Growth * (Level - 1);
-        enemy.health.Init(md.HP * growth, 0);
+        enemy.health.Init((int)(md.HP * growth), 0);
         enemy.damage = (int)(md.ATK * growth);
         enemy.armor = md.Armor * growth;
         enemy.speed = md.MoveSpeed;
@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    IEnumerator Die()
+    public virtual IEnumerator Die()
     {
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
         GameplayController.Instance.Alliance_1?.listEnemies.Remove(this);
@@ -111,7 +111,6 @@ public class EnemyController : MonoBehaviour
         isMove = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
-        
         canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = false;
         if (effectObj != null)
@@ -126,28 +125,29 @@ public class EnemyController : MonoBehaviour
         {
             Despawn(effectObj);
         }
+       
         GameController.Instance.OnEnemyDie(1);
         Despawn(gameObject);
     }
-    public void DealDamge(float _damage, float _damageplus = 0f)
+    public void DealDamge(int _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
         if (_damage > enemy.health.CurrentHealth)
         {
-            _damage = enemy.health.CurrentHealth ;
+            _damage = (int)enemy.health.CurrentHealth ;
         }
-        SpawnDamageText("damage", gameObject.transform.position, _damage);
+        SpawnDamageText("DAMAGE", gameObject.transform.position, _damage);
         if (_damageplus > 0)
         {
-            SpawnDamageText("elementaldamage", gameObject.transform.position + new Vector3(0.4f, 1f, 0), _damageplus);
+            SpawnDamageText("ELEMENT_DAMAGE", gameObject.transform.position + new Vector3(0.4f, 1f, 0), (int)_damageplus);
         }
-        enemy.health.ReduceHealth(_damage + _damageplus);
+        enemy.health.ReduceHealth(_damage + (int)_damageplus);
         if (enemy.health.CurrentHealth <= 0)
         {
             isMove = true;
             CurrentState = EnemyState.Idle;
             StartCoroutine(Die());
-            gameEffect.SpawnEffect("dropcoin", this.transform.position, 1f);
+            gameEffect.SpawnEffect("DROP_COIN", this.transform.position, 1f);
             //return;
         }
         //Invoke("DisableCanvas", 2);
@@ -199,14 +199,21 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void Restrict(Effect _effect, Vector3 _position, float _time)
     {
-        isMove = false;
-        isAttack = false;
-        Rigidbody2D.velocity = Vector2.zero;
-        //Move(enemy.speed);
-        CurrentState = EnemyState.Idle;
-        skeletonAnimation.timeScale = 0;
-        if (effectObj == null || _effect != gameEffect.CurrentEffect)
-            effectObj = gameEffect.GetEffect(_effect, _position, _time);
+        if (isLive)
+        {
+            isMove = false;
+            isAttack = false;
+            Rigidbody2D.velocity = Vector2.zero;
+            //Move(enemy.speed);
+            CurrentState = EnemyState.Idle;
+            skeletonAnimation.timeScale = 0;
+            if (effectObj == null || _effect != gameEffect.CurrentEffect)
+                effectObj = gameEffect.GetEffect(_effect, _position, _time);
+        }
+        else
+        {
+            CurrentState = EnemyState.Die;
+        }
     }
     public virtual void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
@@ -241,15 +248,23 @@ public class EnemyController : MonoBehaviour
                     Despawn(effectObj);
                     effectObj = null;
                 }
-                isMove = true;
-                if (_effect.Equals(Effect.Freeze))
+                if (isLive)
                 {
-                    gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+                    isMove = true;
+                    if (_effect.Equals(Effect.Freeze))
+                    {
+                        gameEffect.GetEffect(Effect.destroyFreeze, _position, _time);
+                    }
+                    if (!isAttack)
+                    {
+                        Move(enemy.speed);
+                    }
                 }
-                if (!isAttack)
+                else
                 {
-                    Move(enemy.speed);
+                    CurrentState = EnemyState.Die;
                 }
+                
                 Coroutine_running = false;
             }));
         }
@@ -298,11 +313,6 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D.velocity = Vector2.zero;
             CurrentState = EnemyState.Attack;
         }
-        //if (collider2D.gameObject.tag.Equals("ShieldTower"))
-        //{
-        //    disableAttack = true;
-        //    Debug.Log("DisableAttack :" + disableAttack);
-        //}
     }
     public void OnTriggerStay2D(Collider2D collider2D)
     {
@@ -323,11 +333,6 @@ public class EnemyController : MonoBehaviour
             renderer.sortingOrder = 0;
             CheckLayerEnemy = false;
         }
-        //if (collider2D.gameObject.tag.Equals("ShieldTower"))
-        //{
-        //    disableAttack = false;
-        //    Debug.Log("DisableAttack :" + disableAttack);
-        //}
     }
     private void OnEnable()
     {
@@ -376,10 +381,8 @@ public class EnemyController : MonoBehaviour
     IEnumerator IEdisableAttack(float _time)
     {
         disableAttack = true;
-        Debug.Log("DisableAttack :" + disableAttack);
         yield return new WaitForSeconds(_time);
         disableAttack = false;
-        Debug.Log("DisableAttack :" + disableAttack);
     }
 
 }

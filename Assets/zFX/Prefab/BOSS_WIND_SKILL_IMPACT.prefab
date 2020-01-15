@@ -19170,7 +19170,7 @@ GameObject:
   - component: {fileID: 2266009316924888381}
   - component: {fileID: 2266284758660142103}
   m_Layer: 0
-  m_Name: boss1_skill_bullet_impact
+  m_Name: BOSS_WIND_SKILL_IMPACT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

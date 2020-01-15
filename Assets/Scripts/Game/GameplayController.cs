@@ -60,10 +60,8 @@ public class GameplayController : Singleton<GameplayController>
         if (DataController.Instance.ElementalSlot1 != Elemental.None)
         {
             Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot1.ToString() + "Alliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
-            Alliance_1.SetDataWeapon(DataController.Instance.IngameAlliance1.Type,
-                                    DataController.Instance.IngameAlliance1.ATKspeed,
-                                    DataController.Instance.IngameAlliance1.ATK,
-                                     DataController.Instance.IngameAlliance1.BulletSpeed);
+            var Alliance1 = DataController.Instance.IngameAlliance1;
+            Alliance_1.SetDataWeapon(Alliance1.Type, Alliance1.ATKspeed,Alliance1.ATK,Alliance1.BulletSpeed, Alliance1.ATKRange);
             
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,0), this.transform).GetComponent<Skill>();
@@ -85,10 +83,8 @@ public class GameplayController : Singleton<GameplayController>
         {
             Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot2.ToString() + "Alliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
             //load
-            Alliance_2.SetDataWeapon(DataController.Instance.IngameAlliance2.Type,
-                                    DataController.Instance.IngameAlliance2.ATKspeed,
-                                    DataController.Instance.IngameAlliance2.ATK,
-                                     DataController.Instance.IngameAlliance2.BulletSpeed);
+            var Alliance2 = DataController.Instance.IngameAlliance2;
+            Alliance_2.SetDataWeapon(Alliance2.Type, Alliance2.ATKspeed, Alliance2.ATK, Alliance2.BulletSpeed, Alliance2.ATKRange);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type,0), this.transform).GetComponent<Skill>();
             SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], Alliance_2.transform.position);
@@ -114,7 +110,6 @@ public class GameplayController : Singleton<GameplayController>
         yield return new WaitForSeconds(timeDelay);
         var se = DataController.Instance.StageData.stageEnemyDataBase.stageEnemies[i];
         se.Number--;
-        Debug.Log("Enemy Number : " + se.Number);
         int level = se.Level;
         if (DataController.Instance.StageData.HardMode == 2)
             level += DataController.Instance.StageData.stageEnemyDataBase.NightMareAddLevel;
@@ -127,26 +122,6 @@ public class GameplayController : Singleton<GameplayController>
         if (se.Number > 0)
         {
             StartCoroutine(IESpawnEnemy(i, se.RepeatTime));
-        }
-
-    }
-    public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase, int i, float timeDelay)
-    {
-        yield return new WaitForSeconds(timeDelay);
-        var se = stageEnemyDataBase.stageEnemies[i];
-        se.Number--;
-        int level = se.Level;
-        if (DataController.Instance.StageData.HardMode == 2)
-            level += stageEnemyDataBase.NightMareAddLevel;
-        else if (DataController.Instance.StageData.HardMode == 3)
-            level += stageEnemyDataBase.HellAddLevel;
-        GameObject m_Enemy = ObjectPoolManager.Instance.SpawnObject(se.Type, se.Position == 999 ?
-            spawnPosition[UnityEngine.Random.Range(0, 8)].position :
-            spawnPosition[se.Position].position, transform.rotation);
-        m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
-        if (se.Number > 0)
-        {
-            StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));
         }
     }
     #endregion
