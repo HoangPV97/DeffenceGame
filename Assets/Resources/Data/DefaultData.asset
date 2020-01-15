@@ -185,3 +185,365 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
+  dailyQuestDatabases:
+  - _TYPE: 0
+    Target: c8000000f4010000e8030000b80b000088130000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    Reward1:
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    Reward2:
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    Reward3:
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+  - _TYPE: 1
+    Target: 03000000040000000500000006000000070000000800000009000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    Reward1:
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 3
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 4
+      ITEMs: 0100000004000000070000000a000000
+    Reward2:
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    Reward3:
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+  - _TYPE: 2
+    Target: 0a000000140000001e0000002800000032000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    Reward1:
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 3
+      ITEMs: 15000000160000001800000017000000
+    - Number: 3
+      ITEMs: 15000000160000001800000017000000
+    Reward2:
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    Reward3:
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 11000000120000001300000014000000
+    - Number: 2
+      ITEMs: 10000000
+  - _TYPE: 3
+    Target: 0100000002000000030000000400000005000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    - items:
+      - Type: 13
+        Quality: 1000
+    Reward1:
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 2
+      ITEMs: 15000000160000001800000017000000
+    - Number: 3
+      ITEMs: 15000000160000001800000017000000
+    - Number: 3
+      ITEMs: 15000000160000001800000017000000
+    Reward2:
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    Reward3:
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 11000000120000001300000014000000
+    - Number: 2
+      ITEMs: 10000000
+  - _TYPE: 4
+    Target: 01000000020000000300000005000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    - items:
+      - Type: 13
+        Quality: 5000
+    Reward1:
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 3
+      ITEMs: 0100000004000000070000000a000000
+    Reward2:
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    Reward3:
+    - Number: 2
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 2
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 3
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 4
+      ITEMs: 11000000120000001300000014000000
+  - _TYPE: 5
+    Target: 3c0000005a00000078000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    Reward1:
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 2
+      ITEMs: 0100000004000000070000000a000000
+    - Number: 3
+      ITEMs: 0100000004000000070000000a000000
+    Reward2:
+    - Number: 1
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    - Number: 2
+      ITEMs: 0200000005000000080000000b000000
+    Reward3:
+    - Number: 1
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 2
+      ITEMs: 0300000006000000090000000c000000
+    - Number: 3
+      ITEMs: 0300000006000000090000000c000000
+  - _TYPE: 6
+    Target: 0100000002000000030000000400000005000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    - items:
+      - Type: 13
+        Quality: 2000
+    Reward1:
+    - Number: 2
+      ITEMs: 15000000160000001700000018000000
+    - Number: 2
+      ITEMs: 15000000160000001700000018000000
+    - Number: 2
+      ITEMs: 15000000160000001700000018000000
+    - Number: 3
+      ITEMs: 15000000160000001700000018000000
+    - Number: 3
+      ITEMs: 15000000160000001700000018000000
+    Reward2:
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 1
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    Reward3:
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 2
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 190000001a0000001b0000001c000000
+    - Number: 3
+      ITEMs: 11000000120000001300000014000000
+    - Number: 4
+      ITEMs: 10000000
+  - _TYPE: 7
+    Target: 010000000200000003000000
+    BaseReward:
+    - items:
+      - Type: 13
+        Quality: 1000
+      - Type: 14
+        Quality: 5
+    - items:
+      - Type: 13
+        Quality: 2000
+      - Type: 14
+        Quality: 5
+    - items:
+      - Type: 13
+        Quality: 2000
+      - Type: 14
+        Quality: 10
+    Reward1: []
+    Reward2: []
+    Reward3: []

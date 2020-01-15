@@ -21,6 +21,7 @@ public class DefaultData : ScriptableObject
     public AssetBundle Item;
     public TextAsset BossDataBase;
     public SkeletonDataAsset[] WeaponsUISkeletonDataAsset, AllianceUISkeletonDataAsset;
+    public List<DailyQuestDatabase> dailyQuestDatabases;
     public Sprite GetSpriteItem(ITEM_TYPE _TYPE)
     {
         if (Item == null)
@@ -81,4 +82,31 @@ public class DefaultData : ScriptableObject
 public class DefaultDataSkill
 {
     public string SkillID, SkillText;
+}
+[System.Serializable]
+public class DailyQuestDatabase
+{
+    public QUEST_TYPE _TYPE;
+    public List<int> Target;
+    public List<ListItem> BaseReward;
+    public List<QuestReward> Reward1;
+    public List<QuestReward> Reward2;
+    public List<QuestReward> Reward3;
+}
+public enum QUEST_TYPE
+{
+    QUEST_1,
+    QUEST_2,
+    QUEST_3,
+    QUEST_4,
+    QUEST_5,
+    QUEST_6,
+    QUEST_7,
+    QUEST_8
+}
+[System.Serializable]
+public class QuestReward
+{
+    public int Number;
+    public List<ITEM_TYPE> ITEMs;
 }
