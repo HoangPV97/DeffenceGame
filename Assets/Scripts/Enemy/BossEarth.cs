@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class BossEarth : EnemyController
 {
     public List<Vector3> pointList;
-    bool frenetic_75,frenetic_50, frenetic_25;
+    bool frenetic_75, frenetic_50, frenetic_25;
     Vector3 newPosition;
     float timeDelayAttack = 1f;
     public GameObject LeftHand, RightHand;
@@ -102,17 +102,24 @@ public class BossEarth : EnemyController
         {
             gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 1, 0), 0.5f);
             Tower.TakeDamage(enemy.damage);
+            if (isChargeAttack)
+            {
+                DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
+                isChargeAttack = false;   
+            }
         }
     }
     public override void CheckAttack()
     {
-        if(enemy.health.CurrentHealth <= enemy.health.health*0.75f && !frenetic_75)
+        if (enemy.health.CurrentHealth <= enemy.health.health * 0.75f && !frenetic_75)
         {
+            isChargeAttack = true;
             frenetic_75 = true;
-            enemy.speed += enemy.speed*0.2f;
+            enemy.speed += enemy.speed * 0.2f;
         }
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
+            isChargeAttack = true;
             float ChargeRatio = UnityEngine.Random.Range(0, 100);
             int HardMode = DataController.Instance.StageData.HardMode;
             var sd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
@@ -125,9 +132,10 @@ public class BossEarth : EnemyController
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
+            isChargeAttack = true;
             enemy.speed += enemy.speed * 0.2f;
             frenetic_25 = true;
-            
+
         }
     }
     private void AttackAndMove()
@@ -165,38 +173,37 @@ public class BossEarth : EnemyController
     {
         isMove = true;
         CurrentState = EnemyState.Run;
+        //Rigidbody2D.velocity = DirectionMove * (distance / enemy.speed);
         gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3 * (_percentSlow / 100) * Time.deltaTime);
-        if (transform.position == newPosition)
+        if (transform.position == newPosition && isAttack)
         {
-            CurrentState = EnemyState.Idle;
-            isAttack = true;
-            isMove = false;
-            //RandomPosition();
-            float ChargeRatio = UnityEngine.Random.Range(0, 100);
-            if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
-            {
-                isChargeAttack = true;
-                enemy.damage *= 2;
-                CurrentState = EnemyState.Skill;
-                StartCoroutine(IEChargeAttack(2f));
-            }
-            else
-            {
-                AttackAndMove();
-            }
+            CurrentState = EnemyState.Attack;
+        }
+        ////RandomPosition();
+        //float ChargeRatio = UnityEngine.Random.Range(0, 100);
+        //if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
+        //{
+        //    isChargeAttack = true;
+        //    enemy.damage *= 2;
+        //    CurrentState = EnemyState.Skill;
+        //    StartCoroutine(IEChargeAttack(2f));
+        //}
+        else if (transform.position == newPosition && isChargeAttack)
+        {
+            enemy.damage *= 2;
+            CurrentState = EnemyState.Skill;
+            StartCoroutine(IEChargeAttack(2f));
         }
     }
     IEnumerator IEChargeAttack(float _time)
     {
+        enemy.speed *= 2;
         yield return new WaitForSeconds(_time);
-        CurrentState = EnemyState.Idle;
+        newPosition = Tower.transform.position;
         enemy.damage /= 2;
+        enemy.speed /= 2;
         isMove = true;
         isAttack = false;
-        RandomPosition();
-        isChargeAttack = false;
-
-
     }
     public void WindImpactEffect(Vector3 _position)
     {

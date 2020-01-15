@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D Rigidbody2D;
     [SerializeField] Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
-    private Vector2 DirectionMove;
+    protected Vector2 DirectionMove;
     protected bool Coroutine_running;
     public Vector3 KnockBackDistance;
     bool CheckLayerEnemy;
