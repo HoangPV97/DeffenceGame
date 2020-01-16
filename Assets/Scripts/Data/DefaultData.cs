@@ -22,6 +22,17 @@ public class DefaultData : ScriptableObject
     public TextAsset BossDataBase;
     public SkeletonDataAsset[] WeaponsUISkeletonDataAsset, AllianceUISkeletonDataAsset;
     public List<DailyQuestDatabase> dailyQuestDatabases;
+
+    public DailyQuestDatabase GetDailyQuestDatabase(QUEST_TYPE _TYPE)
+    {
+        for (int i = 0; i < dailyQuestDatabases.Count; i++)
+        {
+            if (dailyQuestDatabases[i]._TYPE == _TYPE)
+                return dailyQuestDatabases[i];
+        }
+        return dailyQuestDatabases[0];
+    }
+
     public Sprite GetSpriteItem(ITEM_TYPE _TYPE)
     {
         if (Item == null)
@@ -92,10 +103,90 @@ public class DailyQuestDatabase
     public List<QuestReward> Reward1;
     public List<QuestReward> Reward2;
     public List<QuestReward> Reward3;
+    public int MAX_LEVEL
+    {
+        get
+        {
+            return Target.Count - 1;
+        }
+    }
+    public List<Item> GetRandomReward(int Level)
+    {
+        List<Item> items = new List<Item>();
+        items.AddRange(BaseReward[Level].items);
+        if (Reward1.Count > 0)
+        {
+            int ran = Random.Range(0, 2);
+            if (ran > 0)
+            {
+                var item1 = InviGiant.Tools.IGMaths.GetRandom(Reward1[Level].ITEMs, Reward1[Level].Number);
+                for (int i = 0; i < item1.Count; i++)
+                {
+                    bool b = true;
+                    for (int j = 0; j < items.Count; j++)
+                    {
+                        if (items[j].Type == item1[i])
+                        {
+                            items[j].Quality++;
+                            b = false;
+                        }
+                    }
+                    if (b)
+                        items.Add(new Item()
+                        {
+                            Quality = 1,
+                            Type = item1[i]
+                        });
+                }
+                var item2 = InviGiant.Tools.IGMaths.GetRandom(Reward2[Level].ITEMs, Reward2[Level].Number);
+                for (int i = 0; i < item2.Count; i++)
+                {
+                    bool b = true;
+                    for (int j = 0; j < items.Count; j++)
+                    {
+                        if (items[j].Type == item2[i])
+                        {
+                            items[j].Quality++;
+                            b = false;
+                        }
+                    }
+                    if (b)
+                        items.Add(new Item()
+                        {
+                            Quality = 1,
+                            Type = item2[i]
+                        });
+                }
+            }
+            else
+            {
+                var item2 = InviGiant.Tools.IGMaths.GetRandom(Reward3[Level].ITEMs, Reward3[Level].Number);
+                for (int i = 0; i < item2.Count; i++)
+                {
+                    bool b = true;
+                    for (int j = 0; j < items.Count; j++)
+                    {
+                        if (items[j].Type == item2[i])
+                        {
+                            items[j].Quality++;
+                            b = false;
+                        }
+                    }
+                    if (b)
+                        items.Add(new Item()
+                        {
+                            Quality = 1,
+                            Type = item2[i]
+                        });
+                }
+            }
+        }
+        return items;
+    }
 }
 public enum QUEST_TYPE
 {
-    QUEST_1,
+    QUEST_1 = 0,
     QUEST_2,
     QUEST_3,
     QUEST_4,

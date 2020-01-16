@@ -5,6 +5,8 @@ using InviGiant.Tools;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using System;
+using Newtonsoft.Json;
 public class DataController : Singleton<DataController>
 {
     #region DataBase
@@ -135,7 +137,7 @@ public class DataController : Singleton<DataController>
                 try
                 {
                     data = (string)binaryFormatter.Deserialize(fileStream);
-                    GameData = JsonUtility.FromJson<GameData>(data);
+                    GameData = JsonConvert.DeserializeObject<GameData>(data);
                 }
                 catch (System.Exception e)
                 {
@@ -157,11 +159,28 @@ public class DataController : Singleton<DataController>
         GameData.SaveItem(ITEM_TYPE.EarthObs_2, 4);
         GameData.SaveItem(ITEM_TYPE.EarthObs_3, 244);
         Gold = 1000000;
+
+        CheckDailyQuest();
+    }
+
+    public void CheckDailyQuest()
+    {
+        float offlineTotalSeconds = (float)((DateTime.Now - GameData.timeStamp).TotalSeconds);
+        Debug.Log(GameData.timeStamp);
+        Debug.Log(offlineTotalSeconds);
+        if (offlineTotalSeconds > 0)
+            if ((float)((DateTime.Now - GameData.timeStamp).TotalSeconds) >= 24 * 60 * 60 || DateTime.Now.Hour < GameData.timeStamp.Hour)
+            {
+                GameData.ResetDailyQuest();
+                Save();
+            }
     }
 
     public void Save()
     {
-        string origin = JsonUtility.ToJson(GameData);
+        Debug.Log("Save():" + DateTime.Now);
+        GameData.timeStamp = DateTime.Now;
+        string origin = JsonConvert.SerializeObject(GameData);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         using (FileStream fileStream = File.Open(dataPath, FileMode.OpenOrCreate))
         {
@@ -500,6 +519,7 @@ public class DataController : Singleton<DataController>
     public void AddSkillLevel(string SkillID)
     {
         GetGameSkillData(SkillID).Level++;
+        CheckDailyQuest(QUEST_TYPE.QUEST_4, 1);
     }
 
     public void AddSkillTier(string SkillID)
@@ -514,6 +534,7 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataWeapon(elemental);
         gdw.EXP = CurrentEXP;
         gdw.WeaponTierLevel.Level += AddLevel;
+        CheckDailyQuest(QUEST_TYPE.QUEST_2, AddLevel);
     }
 
     public void AddAllianceLevel(Elemental elemental, int AddLevel, int CurrentEXP)
@@ -521,6 +542,7 @@ public class DataController : Singleton<DataController>
         var gdw = GameData.GetGameDataAlliance(elemental);
         gdw.EXP = CurrentEXP;
         gdw.WeaponTierLevel.Level += AddLevel;
+        CheckDailyQuest(QUEST_TYPE.QUEST_2, AddLevel);
     }
 
     public void AddArcheryLevel()
@@ -762,6 +784,38 @@ public class DataController : Singleton<DataController>
         return GameData.Fortress;
     }
 
+    public DailyQuestDatabase GetDailyQuestDatabase(QUEST_TYPE _TYPE)
+    {
+        return DefaultData.GetDailyQuestDatabase(_TYPE);
+    }
+
+    public List<GameDataQuest> GetGameDataQuests()
+    {
+        return GameData.gameDataQuests;
+    }
+
+    public void CheckDailyQuest(QUEST_TYPE _TYPE, int value)
+    {
+        for (int i = 0; i < GameData.gameDataQuests.Count; i++)
+        {
+            if (GameData.gameDataQuests[i].QUEST_TYPE == _TYPE)
+            {
+                GameData.gameDataQuests[i].AddCurrent(value);
+            }
+        }
+    }
+
+    public void ClaimDailyQuestReward(QUEST_TYPE _TYPE)
+    {
+        for (int i = 0; i < GameData.gameDataQuests.Count; i++)
+        {
+            if (GameData.gameDataQuests[i].QUEST_TYPE == _TYPE)
+            {
+                GameData.gameDataQuests[i].ClaimReward();
+            }
+        }
+        GameData.gameDataQuestLevels[(int)_TYPE]++;
+    }
 }
 
 

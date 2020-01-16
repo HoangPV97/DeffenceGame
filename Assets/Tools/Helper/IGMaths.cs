@@ -349,6 +349,17 @@ namespace InviGiant.Tools
             }
             return lt;
         }
+        public static List<T> GetRandom<T>(this List<T> List, int Number)
+        {
+            var listTmp = List.Clone();
+            List<T> lt = new List<T>();
+            for (int i = 0; i < Number; i++)
+            {
+                int ran = UnityEngine.Random.Range(0, listTmp.Count);
+                lt.Add(listTmp[ran]);
+            }
+            return lt;
+        }
 
         public static List<float> SolveCubicFunction(float a, float b, float c, float d)
         {

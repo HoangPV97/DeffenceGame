@@ -201,7 +201,7 @@ public class UIPanelHeroAlliance : BaseUIView
         txtFireRate.text = dataBase.GetATKspeed(Level).ToString();
         PBFireRate.fillAmount = dataBase.GetATKspeed(Level) * 1f / dataBase.GetATKspeed(dataBase.ATKspeed.Count);
         txtEXP.text = data1.EXP.ToString();
-        PBEXP.fillAmount = data1.EXP * 1f / dataBase.GetCost(dataBase.Cost.Count);
+        PBEXP.fillAmount = data1.EXP * 1f / dataBase.GetCost(data1.WeaponTierLevel.Level);
 
         if (UISkillItems.Length == 0)
             UISkillItems = GetComponentsInChildren<UISkillItem>();

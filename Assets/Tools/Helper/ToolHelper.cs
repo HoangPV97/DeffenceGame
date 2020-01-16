@@ -62,7 +62,6 @@ public static class ToolHelper
         throw new ArgumentOutOfRangeException("something bad happened");
     }
 
-
     public static string FormatDouble2(double number)
     {
         if (number == 0)
@@ -107,7 +106,6 @@ public static class ToolHelper
             return number.ToString("0.00e0");
         }
     }
-
 
     // returns a string representation of the total multiplier
     public static string FormatMultiplier(double number)
@@ -169,7 +167,6 @@ public static class ToolHelper
         }
         return html;
     }
-
     public static void SetDefaultTransform(this Transform transform)
     {
         transform.gameObject.SetActive(true);
@@ -179,33 +176,10 @@ public static class ToolHelper
 
     public static string GetTextTime(double sec, bool isOfflineReward = false)
     {
-        //var TimeSpan1 = TimeSpan.FromSeconds(sec);
-        //if (TimeSpan1.Days > 0)
-        //{
-        //    return string.Format("{0}d{1}h{2}m{3}s", TimeSpan1.Days, TimeSpan1.Hours, TimeSpan1.Minutes, TimeSpan1.Seconds);
-        //}
-        //if(TimeSpan1.Hours >0)
-        //{
-        //    return string.Format("{0}h{1}m{2}s",TimeSpan1.Hours, TimeSpan1.Minutes, TimeSpan1.Seconds);
-        //}
-        //if(TimeSpan1.Minutes >0)
-        //{
-        //    return string.Format("{0}m{1}s",  TimeSpan1.Minutes, TimeSpan1.Seconds);
-        //}
-        //if(TimeSpan1.Seconds >= 0)
-        //{
-        //    return string.Format("{0}s",  TimeSpan1.Seconds);
-        //}
-        //return "";
         var TimeSpan1 = TimeSpan.FromSeconds(sec);
         string timeOffline = "";
         if (TimeSpan1.Hours > 0)
         {
-            /*if (TimeSpan1.Hours == 6 && isOfflineReward)
-            {
-                timeOffline = "06:00:00";
-                return timeOffline;
-            }*/
             if (TimeSpan1.Hours < 10)
             {
                 timeOffline = "0" + TimeSpan1.Hours.ToString();

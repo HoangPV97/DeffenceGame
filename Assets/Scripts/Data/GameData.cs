@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
@@ -19,7 +20,12 @@ public class GameData
     public List<GameStage> gameStages;
     public Elemental CurrentSelectedWeapon;
     public Elemental Slot1, Slot2;
-   
+
+    [SerializeField]
+    public DateTime timeStamp;
+
+    public List<GameDataQuest> gameDataQuests;
+    public List<int> gameDataQuestLevels;
     public GameStage GetGameStage(int level)
     {
         if (gameStages == null)
@@ -170,6 +176,38 @@ public class GameData
         gameDataAlliance.Add(gdw);
         return gdw;
     }
+
+    public void ResetDailyQuest()
+    {
+        Debug.Log("ResetDailyQuest");
+        gameDataQuests = new List<GameDataQuest>();
+        List<QUEST_TYPE> ListQuest = new List<QUEST_TYPE>() { QUEST_TYPE.QUEST_1,QUEST_TYPE.QUEST_2,QUEST_TYPE.QUEST_3,
+                        QUEST_TYPE.QUEST_4,QUEST_TYPE.QUEST_5,QUEST_TYPE.QUEST_6,QUEST_TYPE.QUEST_7,QUEST_TYPE.QUEST_8};
+        var randoms = InviGiant.Tools.IGMaths.GetRandomNoDuplicate(ListQuest, 3);
+        for (int i = 0; i < randoms.Count; i++)
+        {
+            int Level = GetQuestLevel(randoms[i]);
+            var data = DataController.Instance.GetDailyQuestDatabase(randoms[i]);
+            if (Level > data.MAX_LEVEL)
+                Level = data.MAX_LEVEL;
+            GameDataQuest gameDataQuest = new GameDataQuest()
+            {
+                QUEST_TYPE = randoms[i],
+                Target = data.Target[Level],
+                Current = 0,
+                Rewards = data.GetRandomReward(Level),
+                Status = 0
+            };
+            gameDataQuests.Add(gameDataQuest);
+        }
+    }
+    public int GetQuestLevel(QUEST_TYPE _TYPE)
+    {
+        if (gameDataQuestLevels == null || gameDataQuestLevels.Count == 0)
+            gameDataQuestLevels = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+        return gameDataQuestLevels[(int)_TYPE];
+
+    }
 }
 
 /**/
@@ -212,4 +250,49 @@ public class GameStage
 {
     public int Level;
     public int HardMode;
+}
+
+[System.Serializable]
+public class GameDataQuest
+{
+    public QUEST_TYPE QUEST_TYPE;
+    public int Target;
+    public int Current;
+    public List<Item> Rewards;
+    /// <summary>
+    /// 0:undone 1:done 2:Finish
+    /// </summary>
+    public int Status;
+
+    public void AddCurrent(int value)
+    {
+        if (Status == 0)
+        {
+            Current += value;
+            if (Current >= Target)
+            {
+                Current = Target;
+                Status = 1;
+            }
+        }
+    }
+
+    public void ClaimReward()
+    {
+        Status = 2;
+        for (int i = 0; i < Rewards.Count; i++)
+        {
+            if (Rewards[i].Type == ITEM_TYPE.coin)
+            {
+                DataController.Instance.Gold += Rewards[i].Quality;
+            }
+            if (Rewards[i].Type == ITEM_TYPE.gem)
+            {
+                DataController.Instance.Gem += Rewards[i].Quality;
+            }
+            else
+                DataController.Instance.AddItemQuality(Rewards[i].Type, Rewards[i].Quality);
+        }
+        DataController.Instance.Save();
+    }
 }

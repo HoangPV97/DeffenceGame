@@ -143,18 +143,21 @@ public class UIUpgradehero : BaseUIView
             {
                 if (i == dataBase.Cost.Count - 1)
                 {
-                    RemainEXP = (int)dataBase.Cost[i];
+                    RemainEXP = (int)dataBase.GetCost(i);
                 }
                 else
                 {
                     addLevel++;
-                    preExp += (int)dataBase.Cost[i];
+                    preExp += (int)dataBase.GetCost(i);
                     RemainEXP = (int)(AddExp + currentExp - preExp);
                 }
             }
         }
         if (addLevel == 0)
+        {
             txtHeroLevel.text = "Lv." + data1.WeaponTierLevel.Level;
+            RemainEXP = (int)(AddExp + currentExp);
+        }
         else
             txtHeroLevel.text = string.Format("Lv.{0} <color=#65FF00FF>(+{1})</color>", data1.WeaponTierLevel.Level, addLevel);
         SetTextAttribute(data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1, addLevel);

@@ -10,7 +10,7 @@ public class PlayWindSlashSkill : Skill
     private float angle;
     ObjectPoolManager poolManager;
     public string bulletName, EffectName;
-    float Speed, KnockBack,EffectedAoe ;
+    float Speed, KnockBack, EffectedAoe;
     [SerializeField]
     SkillWeaponWind1 sww1;
     /// <summary>
@@ -50,7 +50,7 @@ public class PlayWindSlashSkill : Skill
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             RotateArrow();
         }
-        
+
         else
         {
             //  LowMana.SetActive(true);
@@ -75,6 +75,7 @@ public class PlayWindSlashSkill : Skill
 
     public override void OnInvokeSkill()
     {
+        base.OnInvokeSkill();
         arrow.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {
@@ -94,7 +95,7 @@ public class PlayWindSlashSkill : Skill
         WindSlashSkill WindSlashSkill = skill_1_player.GetComponent<WindSlashSkill>();
         WindSlashSkill.SetDataBullet(Speed, Damage);
         WindSlashSkill.setDirection(direction);
-        WindSlashSkill.setDataSkill(KnockBack,EffectedAoe);
+        WindSlashSkill.setDataSkill(KnockBack, EffectedAoe);
         //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();
         //rigidbody.velocity = _direction.normalized * 40 * Speed * Time.deltaTime;
     }

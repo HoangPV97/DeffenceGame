@@ -13,6 +13,8 @@ public class MenuController : Singleton<MenuController>
     public UIPanelInventory UIPanelInventory;
     public UIPanelShop UIPanelShop;
     public Stack<UITYPE> UIType = new Stack<UITYPE>();
+    public UIDailyQuest UIDailyQuest;
+    public UIButton BtnQuest;
     public UITYPE CurrentUITYPE
     {
         get
@@ -49,6 +51,7 @@ public class MenuController : Singleton<MenuController>
     {
         BottomBarController.Instance.BotUIButton[2].SetUpEvent(OnBtnMainPlayClick);
         BottomBarController.Instance.BotUIButton[3].SetUpEvent(OnBtnHeroClick);
+        BtnQuest.SetUpEvent(OnBtnQuestClick);
     }
     public BaseUIView GetBaseUIView(UITYPE uITYPE)
     {
@@ -113,5 +116,8 @@ public class MenuController : Singleton<MenuController>
             callBack();
         UIType.Pop();
     }
-
+    public void OnBtnQuestClick()
+    {
+        UIDailyQuest.SetUpData();
+    }
 }

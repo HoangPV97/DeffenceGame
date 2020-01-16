@@ -68,6 +68,7 @@ public class DragAndDropSkill : Skill
     }
     public override void OnInvokeSkill()
     {
+        base.OnInvokeSkill();
         circle.SetActive(false);
         if (Tower.Mana.CurrentMana >= manaCost && TimeLeft <= 0)
         {

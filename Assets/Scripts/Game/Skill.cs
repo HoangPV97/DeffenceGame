@@ -63,6 +63,7 @@ public class Skill : MonoBehaviour
 
     public virtual void OnInvokeSkill()
     {
+        DataController.Instance.CheckDailyQuest(QUEST_TYPE.QUEST_3, 1);
     }
 
     public virtual void OnCancelSkill()
