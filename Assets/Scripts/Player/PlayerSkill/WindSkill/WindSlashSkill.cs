@@ -42,11 +42,10 @@ public class WindSlashSkill : BulletController
                 listCheckColision.Add(_Target.gameObject);
                 if (enemy != null)
                 {
-
-                    IIceEffectable elemental = enemy.GetComponent<IIceEffectable>();
+                    enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
+                    IEarthEffectable elemental = enemy.GetComponent<IEarthEffectable>();
                     if (elemental != null)
                     {
-                        elemental.IceImpactEffect(enemy.transform.position);
                         enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
                     }
                     else

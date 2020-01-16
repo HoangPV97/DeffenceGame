@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4688615873598794641}
   - component: {fileID: 7872905782356698868}
   - component: {fileID: 8892257356590604000}
-  - component: {fileID: 8544436581021937800}
+  - component: {fileID: 7939793688215181864}
   m_Layer: 0
   m_Name: D_2
   m_TagString: Enemy
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8912908039463566854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 1.38, z: 0}
+  m_LocalPosition: {x: 0.76, y: 2.05, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 8912908039809388895}
@@ -353,7 +353,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8544436581021937800}
+      - m_Target: {fileID: 7939793688215181864}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 5414677219417791486}
---- !u!114 &8544436581021937800
+--- !u!114 &7939793688215181864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,12 +388,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912908039463566854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0819f6aec40b13844836c88ef3cfc78b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b2bde1133c731e41bd279ba6453a3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
     _speed: 0
-    _name: Boss
+    _name: 
     _damage: 0
     _range: 0
     _price: 0
@@ -407,16 +407,16 @@ MonoBehaviour:
       healthBar: {fileID: 5240803140074681237}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
-    _elemental: 0
+    _elemental: 3
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 4688615873598794641}
-  attack: {fileID: 11400000, guid: a2173210e32b709448aa7755fa906a43, type: 2}
-  idle: {fileID: 11400000, guid: 8e4e70dcc0c142f4287a5600ba8a05f4, type: 2}
-  run: {fileID: 11400000, guid: dbb248e31c2fb824eaadd3cc3e39ca3b, type: 2}
+  attack: {fileID: 11400000, guid: 4916b48c62a5a44469eb97812f180dcd, type: 2}
+  idle: {fileID: 11400000, guid: 4d06d946745b4024fbd6a860c04e235e, type: 2}
+  run: {fileID: 11400000, guid: 3b9aef6c2ed1c9d4aae8d97d657159b9, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: eeee893737c13214f83c22c6815f8205, type: 2}
+  die: {fileID: 11400000, guid: f9a8c0fad72d2bb468e828dacbae5dfc, type: 2}
   isMove: 1
-  isAttack: 1
+  isAttack: 0
   isLive: 1
   disableAttack: 0
   distancetoTower: 0
@@ -425,34 +425,20 @@ MonoBehaviour:
   canvas: {fileID: 5240803140284971041}
   boxCollider2D: {fileID: 8912908039463566874}
   KnockBackDistance: {x: 0, y: 0, z: 0}
-  Barrel: {fileID: 4466090850024963634}
   pointList:
-  - {x: 0, y: 3.32, z: 0}
-  - {x: -2.39, y: 1.78, z: 0}
-  - {x: 2.4, y: 1.78, z: 0}
-  - {x: -2.5, y: 6.7, z: 0}
-  - {x: 2.5, y: 6.7, z: 0}
-  - {x: 0, y: 6.79, z: 0}
-  - {x: -1.5, y: 5, z: 0}
-  LeftHand: {fileID: 6237725808187631938}
-  RightHand: {fileID: 6405713388557411798}
+  - {x: 0, y: 2, z: 0}
+  - {x: -2.5, y: 5, z: 0}
+  - {x: 2.5, y: 5, z: 0}
+  - {x: 0, y: 3, z: 0}
+  LeftHand: {fileID: 0}
+  RightHand: {fileID: 0}
   boss_Fx: {fileID: 0}
   EventOnFx:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8544436581021937800}
-        m_MethodName: ChargeAttack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  isChargeAttack: 0
 --- !u!1 &8912908039809388894
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,12 +551,12 @@ PrefabInstance:
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -615,12 +601,12 @@ PrefabInstance:
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 448.59998
+      value: 133
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -137.40002
+      value: -123
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -635,12 +621,12 @@ PrefabInstance:
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 448.6
+      value: 133.00003
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -105.1
+      value: -90.69997
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -655,12 +641,12 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 451.6
+      value: 136.00003
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -18.7
+      value: -4.299967
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

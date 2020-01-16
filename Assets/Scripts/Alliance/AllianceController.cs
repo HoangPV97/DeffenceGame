@@ -94,36 +94,12 @@ public class AllianceController : MonoBehaviour
     {
         if (listEnemies.Count > 0)
         {
-            shortestDistance = Mathf.Infinity;
-            _2ndShortestDistance = Mathf.Infinity;
-            if (listEnemies.Count > 1)
-            {
-                listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
-            }
             int index = 0;
-
-            for (int i = 0; i < listEnemies.Count; i++)
+            listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
+            nearestEnemy = listEnemies[index];
+            if (!nearestEnemy.isLive && listEnemies.Count > 1)
             {
-                float distancetoEnemy = Vector3.Distance(transform.position, listEnemies[i].transform.position);
-                if (distancetoEnemy < shortestDistance)
-                {
-                    shortestDistance = distancetoEnemy;
-                    index = i;
-                }
-                else if (distancetoEnemy < _2ndShortestDistance && distancetoEnemy != shortestDistance)
-                {
-                    _2ndShortestDistance = distancetoEnemy;
-                    _2ndEnemy = listEnemies[i];
-                }
-            }
-            if (_2ndEnemy != null && !nearestEnemy.isLive)
-            {
-                nearestEnemy = _2ndEnemy;
-                Alliance.target = nearestEnemy;
-            }
-            if (nearestEnemy != listEnemies[index])
-            {
-                nearestEnemy = listEnemies[index];
+                nearestEnemy = listEnemies[index + 1];
             }
             if (nearestEnemy != null && nearestEnemy.isLive)
             {

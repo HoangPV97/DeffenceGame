@@ -66,6 +66,7 @@ public class TornardoSkill : MonoBehaviour
         while (_countdown > 0)
         {
             yield return new WaitForSeconds(Tornardo.inflictedTime);
+            _enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _enemy.transform.position, 0.5f);
             _enemy.DealDamge((int)Tornardo.DamagePerSecond);
             _countdown -= Time.deltaTime;
         }

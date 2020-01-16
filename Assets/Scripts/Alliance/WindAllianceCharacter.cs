@@ -15,7 +15,7 @@ public class WindAllianceCharacter : AllianceController
 
     public override void Start()
     {
-        int tier = DataController.Instance.GetGameDataWeapon(elementalType).WeaponTierLevel.Tier;
+        int tier = DataController.Instance.GetGameAlliance(elementalType).WeaponTierLevel.Tier;
         bounceRange = GetAttributeData("BouceRange", Elemental.Wind, tier);
         bounceNumber = (int)GetAttributeData("BounceNumber", Elemental.Wind, tier);
         DecreaseDamageBounce = (int)GetAttributeData("DecreaseDamageBounce", Elemental.Wind, tier);

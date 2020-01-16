@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     public GameEffect gameEffect;
     protected GameObject effectObj;
     public Rigidbody2D Rigidbody2D;
-    [SerializeField] Canvas canvas;
+    public Canvas canvas;
     [SerializeField] BoxCollider2D boxCollider2D;
     protected Vector2 DirectionMove;
     protected bool Coroutine_running;
@@ -129,7 +129,7 @@ public class EnemyController : MonoBehaviour
         GameController.Instance.OnEnemyDie(1);
         Despawn(gameObject);
     }
-    public void DealDamge(int _damage, float _damageplus = 0f)
+    public virtual void DealDamge(int _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
         if (_damage > enemy.health.CurrentHealth)
@@ -152,7 +152,7 @@ public class EnemyController : MonoBehaviour
         }
         //Invoke("DisableCanvas", 2);
     }
-    private void SpawnDamageText(string tag, Vector2 _postion, float _damage)
+    protected void SpawnDamageText(string tag, Vector2 _postion, float _damage)
     {
         GameObject damageobj = ObjectPoolManager.Instance.SpawnObject(tag, _postion, Quaternion.identity);
         damageobj.transform.SetParent(gameObject.transform);
