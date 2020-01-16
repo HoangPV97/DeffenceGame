@@ -105,7 +105,13 @@ public class BossEarth : EnemyController
             if (isChargeAttack)
             {
                 DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
-                isChargeAttack = false;   
+                isChargeAttack = false;
+            }
+            else
+            {
+                RandomPosition();
+                isAttack = false;
+                isMove = true;
             }
         }
     }
@@ -151,7 +157,7 @@ public class BossEarth : EnemyController
     }
     public void RandomPosition()
     {
-        int index = UnityEngine.Random.Range(0, pointList.Count);
+        int index = Random.Range(0, pointList.Count);
         if (pointList[index] != newPosition)
         {
             newPosition = pointList[index];

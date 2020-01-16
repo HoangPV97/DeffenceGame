@@ -73,6 +73,10 @@ public class Health
     public void ReduceHealth(int _damage)
     {
         CurrentHealth -= _damage;
+        if (CurrentHealth < 0)
+        {
+            CurrentHealth = 0;
+        }
         healthBar.fillAmount = (float)CurrentHealth / health * 1.0f;
         UpdateValueText();
     }
@@ -83,7 +87,7 @@ public class Health
     public void RecoverHealth()
     {
         CurrentHealth += RecoverHealthValue;
-        healthBar.fillAmount += RecoverHealthValue / health;
+        healthBar.fillAmount += (float)RecoverHealthValue / health;
         if (CurrentHealth > health)
         {
             CurrentHealth = health;

@@ -9,18 +9,20 @@ public class Tower : MonoBehaviour
     public Mana Mana;
     public static bool Islive;
     public GameObject TowerEffect;
+    bool StartRecoverHealth,StarRecoverMana;
     private void Start()
     {
         Islive = true;
-        // Mana.Init();
-        //  Health.Init();
-        InvokeRepeating("RecoverMana", 0, Mana.RecoverManaTime);
-        InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
     }
     public void TakeDamage(int _damage)
     {
         TowerEffect.SetActive(true);
         Health.ReduceHealth(_damage);
+        if (!StartRecoverHealth)
+        {
+            InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
+            StartRecoverHealth = true;
+        }
         StartCoroutine(WaitingEffectHealth());
         if (Health.CurrentHealth <= 0)
         {
@@ -37,6 +39,11 @@ public class Tower : MonoBehaviour
     public void ReduceMana(float _mana)
     {
         Mana.ConsumeMana(_mana);
+        if (!StarRecoverMana)
+        {
+            InvokeRepeating("RecoverMana", 0, Mana.RecoverManaTime);
+            StarRecoverMana = true;
+        }
     }
 
     IEnumerator WaitingRecoverMana()
@@ -55,6 +62,11 @@ public class Tower : MonoBehaviour
         {
             Mana.RecoverMana();
         }
+        else
+        {
+            StarRecoverMana = false;
+            StopRecoverMana();
+        }
     }
     IEnumerator WaitingEffectHealth()
     {
@@ -68,5 +80,18 @@ public class Tower : MonoBehaviour
         {
             Health.RecoverHealth();
         }
+        else if(Health.CurrentHealth > Health.health || Health.CurrentHealth<=0)
+        {
+            StarRecoverMana = false;
+            StopRecoverHealth();
+        }
+    }
+    public void StopRecoverHealth()
+    {
+        CancelInvoke("RecoverHealth");
+    }
+    public void StopRecoverMana()
+    {
+        CancelInvoke("RecoverMana");
     }
 }

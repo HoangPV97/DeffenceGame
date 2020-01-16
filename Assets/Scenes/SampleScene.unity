@@ -1557,6 +1557,7 @@ MonoBehaviour:
   PausePanel: {fileID: 238731158}
   GoldText: {fileID: 898778030}
   WinGold: {fileID: 1413364948}
+  EnemyNumber: 0
 --- !u!4 &337705443
 Transform:
   m_ObjectHideFlags: 0

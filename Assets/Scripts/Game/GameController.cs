@@ -36,8 +36,9 @@ public class GameController : MonoBehaviour
     {
        // GameoverPanel.SetActive(true);
         Time.timeScale = 0;
-
-        UIPanelResult.SetUpDataFailed((int)(EnemyNumber - EnemyLive), GameplayController.Instance.Tower.Health.CurrentHealth, (int)GameplayController.Instance.TotalGoldDrop);
+        UIPanelResult.SetUpDataFailed((int)(EnemyNumber - EnemyLive), 0, (int)GameplayController.Instance.TotalGoldDrop);
+        GameplayController.Instance.Tower.StopRecoverHealth();
+        GameplayController.Instance.Tower.StopRecoverMana();
     }
     public void Restart()
     {
@@ -109,8 +110,12 @@ public class GameController : MonoBehaviour
             DataController.Instance.CurrentSelected++;
         DataController.Instance.Save();
         //  WingamePanel.SetActive(true);
+        float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health)*100;
 
-        UIPanelResult.SetUpdataVictory((int)(EnemyNumber-EnemyLive),GameplayController.Instance.Tower.Health.CurrentHealth, (int)GameplayController.Instance.TotalGoldDrop);
+        UIPanelResult.SetUpdataVictory((int)(EnemyNumber-EnemyLive), (int)healthPercent, (int)GameplayController.Instance.TotalGoldDrop);
+
+        GameplayController.Instance.Tower.StopRecoverHealth();
+        GameplayController.Instance.Tower.StopRecoverMana();
     }
     public void PauseGame()
     {

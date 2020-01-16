@@ -43,7 +43,7 @@ public class UIPanelResult : BaseUIView
     public void SetUpdataVictory(int KillNumber, int LifePercent, int Coin)
     {
         txtKills[0].text = KillNumber.ToString();
-        txtLife[0].text = LifePercent.ToString();
+        txtLife[0].text = LifePercent.ToString() + " %";
         txtCoin[0].text = Coin.ToString();
         index = 0;
         foreach (Transform child in ItemContain)

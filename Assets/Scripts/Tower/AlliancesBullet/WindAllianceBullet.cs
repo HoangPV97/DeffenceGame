@@ -46,8 +46,8 @@ public class WindAllianceBullet : BulletController
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
             SetTarget(enemy);
-            enemy.gameEffect.SpawnEffect("windimpact", enemy.transform.position, 0.5f);
-            IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
+            enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
+            IEarthEffectable elemental = enemy?.GetComponent<IEarthEffectable>();
             if (elemental != null)
             {
                 enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
