@@ -108,7 +108,7 @@ public class UIUpgradehero : BaseUIView
         currentExp = data1.EXP;
         AddExp = 0;
         GoldCost = 0;
-        MaxExp = dataBase.Cost[Level - 1];
+        MaxExp = dataBase.GetCost(Level);
         SetTextExp();
         ResetItemSlot();
         CheckBtnUpgrade();
@@ -139,7 +139,7 @@ public class UIUpgradehero : BaseUIView
         RemainEXP = 0;
         for (int i = data1.WeaponTierLevel.Level - 1; i < dataBase.Cost.Count; i++)
         {
-            if (AddExp + currentExp - preExp > dataBase.Cost[i])
+            if (AddExp + currentExp - preExp > dataBase.GetCost(i))
             {
                 if (i == dataBase.Cost.Count - 1)
                 {
@@ -163,17 +163,17 @@ public class UIUpgradehero : BaseUIView
     public void SetTextAttribute(int Level, int addedLevel)
     {
         if (addedLevel > 0)
-            txtDamage.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.ATK[Level - 1], dataBase.ATK[Level + addedLevel - 1]);
+            txtDamage.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.GetATK(Level), dataBase.GetATK(Level + addedLevel));
         else
-            txtDamage.text = dataBase.ATK[Level - 1].ToString();
-        PBDamage.fillAmount = dataBase.ATK[Level - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
-        PBDamage2.fillAmount = dataBase.ATK[Level + addedLevel - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
+            txtDamage.text = dataBase.GetATK(Level).ToString();
+        PBDamage.fillAmount = dataBase.GetATK(Level) * 1f / dataBase.GetATK(dataBase.ATK.Count);
+        PBDamage2.fillAmount = dataBase.GetATK(Level + addedLevel) * 1f / dataBase.GetATK(dataBase.ATK.Count);
         if (addedLevel > 0)
-            txtFireRate.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.ATKspeed[Level - 1], dataBase.ATKspeed[Level + addedLevel - 1]);
+            txtFireRate.text = string.Format("{0}<color=#65FF00FF>({1})</color>", dataBase.GetATKspeed(Level), dataBase.GetATKspeed(Level + addedLevel));
         else
-            txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
-        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
-        PBFireRate2.fillAmount = dataBase.ATKspeed[Level + addedLevel - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
+            txtFireRate.text = dataBase.GetATKspeed(Level).ToString();
+        PBFireRate.fillAmount = dataBase.GetATKspeed(Level) * 1f / dataBase.GetATKspeed(dataBase.ATKspeed.Count);
+        PBFireRate2.fillAmount = dataBase.GetATKspeed(Level + addedLevel) * 1f / dataBase.GetATKspeed(dataBase.ATKspeed.Count);
     }
 
     public void ResetItemSlot()

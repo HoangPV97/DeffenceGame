@@ -90,10 +90,10 @@ public class UIEvolveHero : BaseUIView
             SkeletonDataAsset = DataController.Instance.DefaultData.AllianceUISkeletonDataAsset[(int)elemental - 1];
         }
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
-        txtDamage1.text = dataBase.ATK[Level - 1].ToString();
-        txtFireRate1.text = dataBase.ATKspeed[Level - 1].ToString();
-        txtDamage2.text = dataBase2.ATK[0] > dataBase.ATK[Level - 1] ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.ATK[0]) : dataBase2.ATK[0].ToString();
-        txtFireRate2.text = dataBase2.ATKspeed[0] > dataBase.ATKspeed[Level - 1] ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.ATKspeed[0]) : dataBase2.ATKspeed[0].ToString();
+        txtDamage1.text = dataBase.GetATK(Level).ToString();
+        txtFireRate1.text = dataBase.GetATKspeed(Level).ToString();
+        txtDamage2.text = dataBase2.GetATK(0) > dataBase.GetATK(Level) ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.GetATK(0)) : dataBase2.GetATK(0).ToString();
+        txtFireRate2.text = dataBase2.GetATKspeed(0) > dataBase.GetATKspeed(Level) ? string.Format("<color=#65FF00FF>{0}</color>", dataBase2.GetATKspeed(0)) : dataBase2.GetATKspeed(0).ToString();
 
         /// init Item
         foreach (Transform child in ItemContain)

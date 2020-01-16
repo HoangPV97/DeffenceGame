@@ -51,6 +51,5 @@ public class UISelectLevelItem : MonoBehaviour
         {
             SkeletonGraphic.AnimationState.SetAnimation(0, "idle", true);
         }
-
     }
 }

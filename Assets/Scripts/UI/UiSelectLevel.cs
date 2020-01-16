@@ -18,6 +18,8 @@ public class UiSelectLevel : BaseUIView
     public Transform ItemContain;
     int CurrentLevel;
     public InputField InputField;
+    public RectTransform SelectContent;
+    public float DeltaY;
     void Awake()
     {
         uiSelectLevelItems = GetComponentsInChildren<UISelectLevelItem>();
@@ -33,7 +35,7 @@ public class UiSelectLevel : BaseUIView
         for (int i = 0; i < uiSelectLevelItems.Length; i++)
             if (uiSelectLevelItems[i].Level == Level)
                 return uiSelectLevelItems[i];
-        return null;
+        return uiSelectLevelItems[0];
     }
 
     public void SetUpData()
@@ -45,7 +47,9 @@ public class UiSelectLevel : BaseUIView
             uiSelectLevelItems[i].SetUpData();
             uiSelectLevelItems[i].OnShowAnimation(uiSelectLevelItems[i].Level == CurrentLevel);
         }
+        SetSelectItem2Center();
     }
+
 
     public void HackLevelClick()
     {
@@ -94,6 +98,8 @@ public class UiSelectLevel : BaseUIView
                 DataController.Instance.GoldInGame = listItem.items[i].Quality;
             }
         }
+
+        SetSelectItem2Center();
     }
     void BtnPlayClick()
     {
@@ -130,4 +136,13 @@ public class UiSelectLevel : BaseUIView
     }
 
     #endregion
+
+    public void SetSelectItem2Center()
+    {
+        var it = GetUISelectLevelItem(CurrentLevel);
+        float Height = -SelectContent.rect.height;
+        float raito = Screen.height / 2 - DeltaY;
+        Vector2 pos = new Vector2(0, Height - it.transform.parent.GetComponent<RectTransform>().anchoredPosition.y - it.GetComponent<RectTransform>().anchoredPosition.y + raito);
+        SelectContent.anchoredPosition = pos;
+    }
 }
