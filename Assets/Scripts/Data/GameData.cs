@@ -19,6 +19,7 @@ public class GameData
     public List<GameStage> gameStages;
     public Elemental CurrentSelectedWeapon;
     public Elemental Slot1, Slot2;
+   
     public GameStage GetGameStage(int level)
     {
         if (gameStages == null)

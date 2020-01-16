@@ -45,6 +45,12 @@ public class AllianceData
     public Weapons weapons;
     public List<float> ATKRange;
     public List<SkillAttribute> SkillAttributes;
+    public float GetATKRange(int Level)
+    {
+        if (Level < ATKRange.Count)
+            return ATKRange[Level - 1];
+        return ATKRange[ATKRange.Count - 1];
+    }
 }
 
 public class AllianceDataBase

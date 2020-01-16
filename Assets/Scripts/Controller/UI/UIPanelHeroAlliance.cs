@@ -196,12 +196,12 @@ public class UIPanelHeroAlliance : BaseUIView
         txtLevel.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
         int Level = data1.WeaponTierLevel.Level > 0 ? data1.WeaponTierLevel.Level : 1;
         txtLevel.text = Language.GetKey("Level") + " " + data1.WeaponTierLevel.Level + "/" + dataBase.ATKspeed.Count;
-        txtDamage.text = dataBase.ATK[Level - 1].ToString();
-        PBDamage.fillAmount = dataBase.ATK[Level - 1] * 1f / dataBase.ATK[dataBase.ATK.Count - 1];
-        txtFireRate.text = dataBase.ATKspeed[Level - 1].ToString();
-        PBFireRate.fillAmount = dataBase.ATKspeed[Level - 1] * 1f / dataBase.ATKspeed[dataBase.ATKspeed.Count - 1];
+        txtDamage.text = dataBase.GetATK(Level).ToString();
+        PBDamage.fillAmount = dataBase.GetATK(Level) * 1f / dataBase.GetATK(dataBase.ATK.Count);
+        txtFireRate.text = dataBase.GetATKspeed(Level).ToString();
+        PBFireRate.fillAmount = dataBase.GetATKspeed(Level) * 1f / dataBase.GetATKspeed(dataBase.ATKspeed.Count);
         txtEXP.text = data1.EXP.ToString();
-        PBEXP.fillAmount = data1.EXP * 1f / dataBase.Cost[dataBase.Cost.Count - 1];
+        PBEXP.fillAmount = data1.EXP * 1f / dataBase.GetCost(dataBase.Cost.Count);
 
         if (UISkillItems.Length == 0)
             UISkillItems = GetComponentsInChildren<UISkillItem>();

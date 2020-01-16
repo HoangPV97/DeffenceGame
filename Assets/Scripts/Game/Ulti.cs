@@ -57,6 +57,25 @@ public class Weapons
             return Cost[Cost.Count - 1];
         }
     }
+
+    public float GetATK(int Level)
+    {
+        if (Level < ATK.Count)
+            return ATK[Level - 1];
+        return ATK[ATK.Count - 1];
+    }
+    public float GetATKspeed(int Level)
+    {
+        if (Level < ATKspeed.Count)
+            return ATKspeed[Level - 1];
+        return ATKspeed[ATKspeed.Count - 1];
+    }
+    public float GetCost(int Level)
+    {
+        if (Level < Cost.Count)
+            return Cost[Level - 1];
+        return Cost[Cost.Count - 1];
+    }
 }
 [System.Serializable]
 public class Item
