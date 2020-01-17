@@ -22,6 +22,17 @@ public class DefaultData : ScriptableObject
     public TextAsset BossDataBase;
     public SkeletonDataAsset[] WeaponsUISkeletonDataAsset, AllianceUISkeletonDataAsset;
     public List<DailyQuestDatabase> dailyQuestDatabases;
+    public List<AchievementDatabase> achievementDatabases;
+
+    public AchievementDatabase GetAchievementDatabase(ACHIEVEMENT_TYPE _TYPE)
+    {
+        for (int i = 0; i < achievementDatabases.Count; i++)
+        {
+            if (achievementDatabases[i]._TYPE == _TYPE)
+                return achievementDatabases[i];
+        }
+        return achievementDatabases[0];
+    }
 
     public DailyQuestDatabase GetDailyQuestDatabase(QUEST_TYPE _TYPE)
     {
@@ -195,9 +206,47 @@ public enum QUEST_TYPE
     QUEST_7,
     QUEST_8
 }
+public enum ACHIEVEMENT_TYPE
+{
+    ACHIEVEMENT_1 = 0,
+    ACHIEVEMENT_2,
+    ACHIEVEMENT_3,
+    ACHIEVEMENT_4,
+    ACHIEVEMENT_5,
+    ACHIEVEMENT_6,
+    ACHIEVEMENT_7,
+    ACHIEVEMENT_8,
+    ACHIEVEMENT_9,
+    ACHIEVEMENT_10,
+    ACHIEVEMENT_11,
+    ACHIEVEMENT_12,
+    ACHIEVEMENT_13,
+    ACHIEVEMENT_14,
+    ACHIEVEMENT_15
+}
 [System.Serializable]
 public class QuestReward
 {
     public int Number;
     public List<ITEM_TYPE> ITEMs;
+}
+[System.Serializable]
+public class AchievementDatabase
+{
+    public ACHIEVEMENT_TYPE _TYPE;
+    public List<int> Target;
+    public List<int> Reward;
+    public int MAX_LEVEL { get { return Reward.Count; } }
+    public int GetTarget(int Level)
+    {
+        if (Level == 0)
+            return 0;
+        return Target[Level - 1];
+    }
+    public int GetReward(int Level)
+    {
+        if (Level == 0)
+            return 0;
+        return Reward[Level - 1];
+    }
 }

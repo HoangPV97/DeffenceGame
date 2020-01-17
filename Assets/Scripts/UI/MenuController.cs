@@ -10,7 +10,7 @@ public class MenuController : Singleton<MenuController>
     public UIPanelHeroAlliance UIPanelHeroAlliance;
     public UiSelectLevel UiSelectLevel;
     public UIPanelForstress UIPanelForstress;
-    public UIPanelInventory UIPanelInventory;
+    public UIPanelAchievement UIPanelInventory;
     public UIPanelShop UIPanelShop;
     public Stack<UITYPE> UIType = new Stack<UITYPE>();
     public UIDailyQuest UIDailyQuest;
@@ -61,7 +61,7 @@ public class MenuController : Singleton<MenuController>
                 break;
             case UITYPE.shop:
                 return UIPanelShop;
-            case UITYPE.inventory:
+            case UITYPE.achievement:
                 return UIPanelInventory;
             case UITYPE.selectLevel:
                 return UiSelectLevel;

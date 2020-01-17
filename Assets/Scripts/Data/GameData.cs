@@ -26,6 +26,21 @@ public class GameData
 
     public List<GameDataQuest> gameDataQuests;
     public List<int> gameDataQuestLevels;
+
+    public List<GameDataAchievement> gameDataAchievements;
+    public GameDataAchievement GetGameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
+    {
+        if (gameDataAchievements == null)
+            gameDataAchievements = new List<GameDataAchievement>();
+        for (int i = 0; i < gameDataAchievements.Count; i++)
+        {
+            if (gameDataAchievements[i]._TYPE == _TYPE)
+                return gameDataAchievements[i];
+        }
+        var gda = new GameDataAchievement(_TYPE);
+        gameDataAchievements.Add(gda);
+        return gda;
+    }
     public GameStage GetGameStage(int level)
     {
         if (gameStages == null)
@@ -294,5 +309,41 @@ public class GameDataQuest
                 DataController.Instance.AddItemQuality(Rewards[i].Type, Rewards[i].Quality);
         }
         DataController.Instance.Save();
+    }
+}
+
+[System.Serializable]
+public class GameDataAchievement
+{
+    public ACHIEVEMENT_TYPE _TYPE;
+    public int Level;
+    public int Target;
+    public int Current;
+    public GameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
+    {
+        this._TYPE = _TYPE;
+        Level = 0;
+        Current = 0;
+        var ad = DataController.Instance.GetAchievementDatabase(_TYPE);
+        Target = ad.GetTarget(Level + 1);
+    }
+    public void AddCurrent(int value)
+    {
+        Current += value;
+        if (Current >= Target)
+        {
+            Level++;
+            var ad = DataController.Instance.GetAchievementDatabase(_TYPE);
+            if (Level >= ad.MAX_LEVEL)
+            {
+                Level = ad.MAX_LEVEL;
+                Current = Target;
+            }
+            else
+            {
+                Target = ad.GetTarget(Level + 1);
+            }
+        }
+
     }
 }

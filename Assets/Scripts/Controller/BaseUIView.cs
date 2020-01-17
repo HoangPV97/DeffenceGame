@@ -82,7 +82,7 @@ public enum UITYPE
 {
     none = 0,
     shop,
-    inventory,
+    achievement,
     selectLevel,
     heroAlliance,
     fortress

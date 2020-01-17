@@ -783,6 +783,14 @@ public class DataController : Singleton<DataController>
     {
         return GameData.Fortress;
     }
+    public GameDataAchievement GetGameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
+    {
+        return GameData.GetGameDataAchievement(_TYPE);
+    }
+    public AchievementDatabase GetAchievementDatabase(ACHIEVEMENT_TYPE _TYPE)
+    {
+        return DefaultData.GetAchievementDatabase(_TYPE);
+    }
 
     public DailyQuestDatabase GetDailyQuestDatabase(QUEST_TYPE _TYPE)
     {
