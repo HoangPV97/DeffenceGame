@@ -14,12 +14,13 @@ public class UIItemAchievement : MonoBehaviour
     {
         int index = transform.GetSiblingIndex();
         _TYPE = (ACHIEVEMENT_TYPE)index;
+        var gda = DataController.Instance.GetGameDataAchievement(_TYPE);
+        var gdb = DataController.Instance.GetAchievementDatabase(_TYPE);
         Debug.Log(index + ":" + _TYPE);
         txtName.text = Language.GetKey("NAME_" + _TYPE);
-        txtDes1.text = Language.GetKey("DES1_" + _TYPE);
-        txtDes2.text = Language.GetKey("DES2_" + _TYPE);
-        txtDes3.text = Language.GetKey("DES3_" + _TYPE);
-        var gda = DataController.Instance.GetGameDataAchievement(_TYPE);
+        txtDes1.text = string.Format(Language.GetKey("DES1_" + _TYPE), gda.Target);
+        txtDes2.text = string.Format(Language.GetKey("DES2_" + _TYPE), gdb.GetReward(gda.Level));
+        txtDes3.text = string.Format(Language.GetKey("DES3_" + _TYPE), gdb.GetReward(gda.Level + 1));
         for (int i = 0; i < Star.Length; i++)
         {
             Star[i].SetActive(i < gda.Level);

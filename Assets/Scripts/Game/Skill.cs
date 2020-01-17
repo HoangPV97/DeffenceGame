@@ -64,6 +64,23 @@ public class Skill : MonoBehaviour
     public virtual void OnInvokeSkill()
     {
         DataController.Instance.CheckDailyQuest(QUEST_TYPE.QUEST_3, 1);
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_3, 1);
+                break;
+            case Elemental.Ice:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_5, 1);
+                break;
+            case Elemental.Earth:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_4, 1);
+                break;
+            case Elemental.Fire:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_6, 1);
+                break;
+        }
     }
 
     public virtual void OnCancelSkill()

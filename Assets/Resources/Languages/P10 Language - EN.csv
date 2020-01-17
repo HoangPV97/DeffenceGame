@@ -9,57 +9,57 @@ Name_Alliance_Ice,Ellena
 Name_Alliance_Earth,Groggo
 Name_Alliance_Fire,Fairo
 ,
-Name_HERO_WIND_SKILL_1,Wind Slash
-Des1_HERO_WIND_SKILL_1_1,Shoot 1 powerful arrow that deals damage and rolls enemies back.
-Des1_HERO_WIND_SKILL_1_2,Shoot 2 powerful arrows that deal damage and roll enemies back.
-Des1_HERO_WIND_SKILL_1_3,Shoot 3 powerful arrows that deal damage and roll enemies back.
-Name_HERO_WIND_SKILL_2,Tornado
-Des1_HERO_WIND_SKILL_2_1,Create a tornado that causes damage to all enemies at the target location.
-Des1_HERO_WIND_SKILL_2_2,Create a tornado that causes damage to all enemies at the target location.
-Des1_HERO_WIND_SKILL_2_3,Create a tornado that causes damage to all enemies at the target location.
-Name_HERO_WIND_SKILL_3,Agile
-Des1_HERO_WIND_SKILL_3,Increase Ardella's Attack speed by {0}%.
-Name_HERO_WIND_SKILL_4,Soul of Wind
-Des1_HERO_WIND_SKILL_4,"Enhance Ardella's abilities( Damage {0}%, Speed Attack {1}%, Crit Damage {2}%). "
+Name_WEAPON_WIND_SKILL_1,Wind Slash
+Des1_WEAPON_WIND_SKILL_1_1,Shoot 1 powerful arrow that deals damage and rolls enemies back.
+Des1_WEAPON_WIND_SKILL_1_2,Shoot 2 powerful arrows that deal damage and roll enemies back.
+Des1_WEAPON_WIND_SKILL_1_3,Shoot 3 powerful arrows that deal damage and roll enemies back.
+Name_WEAPON_WIND_SKILL_2,Tornado
+Des1_WEAPON_WIND_SKILL_2_1,Create a tornado that causes damage to all enemies at the target location.
+Des1_WEAPON_WIND_SKILL_2_2,Create a tornado that causes damage to all enemies at the target location.
+Des1_WEAPON_WIND_SKILL_2_3,Create a tornado that causes damage to all enemies at the target location.
+Name_WEAPON_WIND_SKILL_3,Agile
+Des1_WEAPON_WIND_SKILL_3,Increase Ardella's Attack speed by {0}%.
+Name_WEAPON_WIND_SKILL_4,Soul of Wind
+Des1_WEAPON_WIND_SKILL_4,"Enhance Ardella's abilities( Damage {0}%, Speed Attack {1}%, Crit Damage {2}%). "
 ,
-Name_HERO_ICE_SKILL_1,Ice Explosion
-Des1_HERO_ICE_SKILL_1_1,Create a massive explosion that deals damage and slows enemies.
-Des1_HERO_ICE_SKILL_1_2,Create a massive explosion that deals damage and slows enemies.
-Des1_HERO_ICE_SKILL_1_3,Create a massive explosion that deals damage and slows enemies.
-Name_HERO_ICE_SKILL_2,Blizzard
-Des1_HERO_ICE_SKILL_2_1,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
-Des1_HERO_ICE_SKILL_2_2,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
-Des1_HERO_ICE_SKILL_2_3,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
-Name_HERO_ICE_SKILL_3,Poision
-Des1_HERO_ICE_SKILL_3,"Deal {0} damage as poison every 0,5s for 2,5s."
-Name_HERO_ICE_SKILL_4,Soul of Ice
-Des1_HERO_ICE_SKILL_4,"Enhance Megan's abilities( Damage {0}%, Speed Attack {1}%, Mana Recover {2}%)."
+Name_WEAPON_ICE_SKILL_1,Ice Explosion
+Des1_WEAPON_ICE_SKILL_1_1,Create a massive explosion that deals damage and slows enemies.
+Des1_WEAPON_ICE_SKILL_1_2,Create a massive explosion that deals damage and slows enemies.
+Des1_WEAPON_ICE_SKILL_1_3,Create a massive explosion that deals damage and slows enemies.
+Name_WEAPON_ICE_SKILL_2,Blizzard
+Des1_WEAPON_ICE_SKILL_2_1,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
+Des1_WEAPON_ICE_SKILL_2_2,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
+Des1_WEAPON_ICE_SKILL_2_3,Create a snow storm that deals damage to all enemies every 0.5s for 5s.
+Name_WEAPON_ICE_SKILL_3,Poision
+Des1_WEAPON_ICE_SKILL_3,"Deal {0} damage as poison every 0,5s for 2,5s."
+Name_WEAPON_ICE_SKILL_4,Soul of Ice
+Des1_WEAPON_ICE_SKILL_4,"Enhance Megan's abilities( Damage {0}%, Speed Attack {1}%, Mana Recover {2}%)."
 ,
-Name_HERO_EARTH_SKILL_1,Earth Dragon
-Des1_HERO_EARTH_SKILL_1_1,Deal damage and reduces enemy's movespeed by 50% in 2s.
-Des1_HERO_EARTH_SKILL_1_2,Deal damage and reduces enemy's movespeed by 60% in 3s.
-Des1_HERO_EARTH_SKILL_1_3,Deal damage and reduces enemy's movespeed by 70% in 3.5s.
-Name_HERO_EARTH_SKILL_2,Barrier
-Des1_HERO_EARTH_SKILL_2_1,"Create a 4-block shield around the tower, which absorbs all damage and heals within 3s."
-Des1_HERO_EARTH_SKILL_2_2,"Create a 5-block shield around the tower, which absorbs all damage and heals within 4s."
-Des1_HERO_EARTH_SKILL_2_3,"Create a 6-block shield around the tower, which absorbs all damage and heals within 5s."
-Name_HERO_EARTH_SKILL_3,Power Boost
-Des1_HERO_EARTH_SKILL_3,Increase damage by {0}%.
-Name_HERO_EARTH_SKILL_4,Soul of Earth
-Des1_HERO_EARTH_SKILL_4,"Enhance Terra's abilities( Damage {0}%, Speed Attack {1}%, Wall Repair {2}%)."
+Name_WEAPON_EARTH_SKILL_1,Earth Dragon
+Des1_WEAPON_EARTH_SKILL_1_1,Deal damage and reduces enemy's movespeed by 50% in 2s.
+Des1_WEAPON_EARTH_SKILL_1_2,Deal damage and reduces enemy's movespeed by 60% in 3s.
+Des1_WEAPON_EARTH_SKILL_1_3,Deal damage and reduces enemy's movespeed by 70% in 3.5s.
+Name_WEAPON_EARTH_SKILL_2,Barrier
+Des1_WEAPON_EARTH_SKILL_2_1,"Create a 4-block shield around the tower, which absorbs all damage and heals within 3s."
+Des1_WEAPON_EARTH_SKILL_2_2,"Create a 5-block shield around the tower, which absorbs all damage and heals within 4s."
+Des1_WEAPON_EARTH_SKILL_2_3,"Create a 6-block shield around the tower, which absorbs all damage and heals within 5s."
+Name_WEAPON_EARTH_SKILL_3,Power Boost
+Des1_WEAPON_EARTH_SKILL_3,Increase damage by {0}%.
+Name_WEAPON_EARTH_SKILL_4,Soul of Earth
+Des1_WEAPON_EARTH_SKILL_4,"Enhance Terra's abilities( Damage {0}%, Speed Attack {1}%, Wall Repair {2}%)."
 ,
-Name_HERO_FIRE_SKILL_1,Phoenix
-Des1_HERO_FIRE_SKILL_1_1,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them. "
-Des1_HERO_FIRE_SKILL_1_2,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them."
-Des1_HERO_FIRE_SKILL_1_3,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them. "
-Name_HERO_FIRE_SKILL_2,Fire Wall
-Des1_HERO_FIRE_SKILL_2_1,"Create a Firewall that deals damage to enemies, slows and burns them."
-Des1_HERO_FIRE_SKILL_2_2,"Create a Firewall that deals damage to enemies, slows and burns them."
-Des1_HERO_FIRE_SKILL_2_3,"Create a Firewall that deals damage to enemies, slows and burns them."
-Name_HERO_FIRE_SKILL_3,Flame Arrow
-Des1_HERO_EARTH_SKILL_3,"Burn enemies every single arrow. Deals {0} damage as poison every 0,5s for 2,5s."
-Name_HERO_EARTH_SKILL_4,Soul of Fire
-Des1_HERO_EARTH_SKILL_4,"Enhance Celes's abilities( Damage {0}%, Speed Attack {1}%, Explosion {2}%)."
+Name_WEAPON_FIRE_SKILL_1,Phoenix
+Des1_WEAPON_FIRE_SKILL_1_1,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them. "
+Des1_WEAPON_FIRE_SKILL_1_2,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them."
+Des1_WEAPON_FIRE_SKILL_1_3,"Summon a Fire Phoenix that deals damage to enemies in front, repel and burn them. "
+Name_WEAPON_FIRE_SKILL_2,Fire Wall
+Des1_WEAPON_FIRE_SKILL_2_1,"Create a Firewall that deals damage to enemies, slows and burns them."
+Des1_WEAPON_FIRE_SKILL_2_2,"Create a Firewall that deals damage to enemies, slows and burns them."
+Des1_WEAPON_FIRE_SKILL_2_3,"Create a Firewall that deals damage to enemies, slows and burns them."
+Name_WEAPON_FIRE_SKILL_3,Flame Arrow
+Des1_WEAPON_EARTH_SKILL_3,"Burn enemies every single arrow. Deals {0} damage as poison every 0,5s for 2,5s."
+Name_WEAPON_EARTH_SKILL_4,Soul of Fire
+Des1_WEAPON_EARTH_SKILL_4,"Enhance Celes's abilities( Damage {0}%, Speed Attack {1}%, Explosion {2}%)."
 ,
 Name_ALLIANCE_WIND_SKILL_1,Thunder Strikes
 Des1_ALLIANCE_WIND_SKILL_1_1,"Strike multiple bolts of lightning, dealing damage and stunning all enemies in target area."
@@ -159,3 +159,61 @@ DES_QUEST_5,Complete {0} stages in Boss Mode.
 DES_QUEST_6,Play Endless Mode within {0} seconds.
 DES_QUEST_7,Complete {0} Hellish stages.
 DES_QUEST_8,Buy materials in Shop by Gem {0} times.
+,
+,
+NAME_ACHIEVEMENT_1,Investor
+DES1_ACHIEVEMENT_1,Spend {0} gold to Upgrade.
+DES2_ACHIEVEMENT_1,Add {0} gold for each Killed-Monster.
+DES3_ACHIEVEMENT_1,Next: +{0} gold.
+NAME_ACHIEVEMENT_2,Monter Killer
+DES1_ACHIEVEMENT_2,Kill {0} enemies.
+DES2_ACHIEVEMENT_2,"Add {0}% damage for Hero, Alliance."
+DES3_ACHIEVEMENT_2,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_3,Wind Caster
+DES1_ACHIEVEMENT_3,Cast Wind spells required times.
+DES2_ACHIEVEMENT_3,Add {0}% damage for Wind active spells.
+DES3_ACHIEVEMENT_3,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_4,Earth Caster
+DES1_ACHIEVEMENT_4,Cast Earth spells required times.
+DES2_ACHIEVEMENT_4,Add {0}% damage for Earth active spells.
+DES3_ACHIEVEMENT_4,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_5,Ice Caster
+DES1_ACHIEVEMENT_5,Cast Ice spells required times.
+DES2_ACHIEVEMENT_5,Add {0}% damage for Ice active spells.
+DES3_ACHIEVEMENT_5,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_6,Fire Caster
+DES1_ACHIEVEMENT_6,Cast Fire spells required times.
+DES2_ACHIEVEMENT_6,Add {0}% damage for Fire active spells.
+DES3_ACHIEVEMENT_6,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_7,Wind Master
+DES1_ACHIEVEMENT_7,Complete stages using Wind Ally.
+DES2_ACHIEVEMENT_7,Add {0}% damage for Wind Ally.
+DES3_ACHIEVEMENT_7,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_8,Earth Master
+DES1_ACHIEVEMENT_8,Complete stages using Earth Ally.
+DES2_ACHIEVEMENT_8,Add {0}% damage for Earth Ally.
+DES3_ACHIEVEMENT_8,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_9,Ice Master
+DES1_ACHIEVEMENT_9,Complete stages using Ice Ally.
+DES2_ACHIEVEMENT_9,Add {0}% damage for Ice Ally.
+DES3_ACHIEVEMENT_9,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_10,Fire Master
+DES1_ACHIEVEMENT_10,Complete stages using Fire Ally.
+DES2_ACHIEVEMENT_10,Add {0}% damage for Fire Ally.
+DES3_ACHIEVEMENT_10,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_11,Hero Evolution
+DES1_ACHIEVEMENT_11,Evolve Hero to Tier 4.
+DES2_ACHIEVEMENT_11,Add {0}% damage for all Heros.
+DES3_ACHIEVEMENT_11,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_12,Ally Evolution
+DES1_ACHIEVEMENT_12,Evolve Ally to Tier 4.
+DES2_ACHIEVEMENT_12,Add {0}% damage for all Allies.
+DES3_ACHIEVEMENT_12,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_13,Hero Upgrade
+DES1_ACHIEVEMENT_13,Upgrade Hero to level 100.
+DES2_ACHIEVEMENT_13,Add {0}% damage for all Heros.
+DES3_ACHIEVEMENT_13,Next: +{0}% dmg.
+NAME_ACHIEVEMENT_14,Ally Upgrade
+DES1_ACHIEVEMENT_14,Upgrade Ally to level 100.
+DES2_ACHIEVEMENT_14,Add {0}% damage for all Allies.
+DES3_ACHIEVEMENT_14,Next: +{0}% dmg.

@@ -221,8 +221,7 @@ public enum ACHIEVEMENT_TYPE
     ACHIEVEMENT_11,
     ACHIEVEMENT_12,
     ACHIEVEMENT_13,
-    ACHIEVEMENT_14,
-    ACHIEVEMENT_15
+    ACHIEVEMENT_14
 }
 [System.Serializable]
 public class QuestReward
