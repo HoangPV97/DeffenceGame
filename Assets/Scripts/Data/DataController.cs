@@ -72,6 +72,8 @@ public class DataController : Singleton<DataController>
         }
         set
         {
+            if (value < 0)
+                CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_1, -value);
             GameData.Gold = value;
         }
     }
@@ -460,6 +462,18 @@ public class DataController : Singleton<DataController>
         {
             InGameBaseData.IncreaseSpellDamage = (int)skillData4.GetSkillAttributes("IncreaseSpellDamageRate", sgd4.Tier, sgd4.Level);
         }
+        InGameBaseData.achi_AddedGoldKilled += (int)GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_1);
+        InGameBaseData.achi_AddedDmgWeaponAlliance += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_2) / 100;
+        InGameBaseData.achi_AddedDmgSpellWind += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_3) / 100;
+        InGameBaseData.achi_AddedDmgSpellEarth += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_4) / 100;
+        InGameBaseData.achi_AddedDmgSpellIce += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_5) / 100;
+        InGameBaseData.achi_AddedDmgSpellFire += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_6) / 100;
+        InGameBaseData.achi_AddedDmgAllianceWind += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_7) / 100;
+        InGameBaseData.achi_AddedDmgAllianceEarth += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_8) / 100;
+        InGameBaseData.achi_AddedDmgAllianceIce += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_9) / 100;
+        InGameBaseData.achi_AddedDmgAllianceFire += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_10) / 100;
+        InGameBaseData.achi_AddedDmgWeapon += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_11) / 100 + GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_13) / 100;
+        InGameBaseData.achi_AddedDmgAlliance += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_12) / 100 + GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_14) / 100;
     }
 
     public Weapons GetDataBaseWeapons(Elemental elemental, int Tier)
@@ -502,6 +516,10 @@ public class DataController : Singleton<DataController>
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
+        if (gdw.WeaponTierLevel.Tier == 3)
+        {
+            CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_11, 1);
+        }
     }
 
     public void AddAllianceTier(Elemental elemental)
@@ -514,6 +532,10 @@ public class DataController : Singleton<DataController>
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
+        if (gdw.WeaponTierLevel.Tier == 3)
+        {
+            CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_12, 1);
+        }
     }
 
     public void AddSkillLevel(string SkillID)
@@ -535,6 +557,8 @@ public class DataController : Singleton<DataController>
         gdw.EXP = CurrentEXP;
         gdw.WeaponTierLevel.Level += AddLevel;
         CheckDailyQuest(QUEST_TYPE.QUEST_2, AddLevel);
+        if (gdw.WeaponTierLevel.Level == 100)
+            CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_13, 1);
     }
 
     public void AddAllianceLevel(Elemental elemental, int AddLevel, int CurrentEXP)
@@ -543,6 +567,8 @@ public class DataController : Singleton<DataController>
         gdw.EXP = CurrentEXP;
         gdw.WeaponTierLevel.Level += AddLevel;
         CheckDailyQuest(QUEST_TYPE.QUEST_2, AddLevel);
+        if (gdw.WeaponTierLevel.Level == 100)
+            CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_14, 1);
     }
 
     public void AddArcheryLevel()
@@ -813,6 +839,11 @@ public class DataController : Singleton<DataController>
         }
     }
 
+    public void CheckAchievement(ACHIEVEMENT_TYPE _TYPE, int value)
+    {
+        GetGameDataAchievement(_TYPE).AddCurrent(value);
+    }
+
     public void ClaimDailyQuestReward(QUEST_TYPE _TYPE)
     {
         for (int i = 0; i < GameData.gameDataQuests.Count; i++)
@@ -823,6 +854,13 @@ public class DataController : Singleton<DataController>
             }
         }
         GameData.gameDataQuestLevels[(int)_TYPE]++;
+    }
+
+    public float GetAchivementReward(ACHIEVEMENT_TYPE _TYPE)
+    {
+        var gda = GetGameDataAchievement(_TYPE);
+        var adb = GetAchievementDatabase(_TYPE);
+        return adb.GetReward(gda.Level);
     }
 }
 

@@ -119,9 +119,26 @@ public class GameController : MonoBehaviour
         float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health) * 100;
 
         UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, (int)GameplayController.Instance.TotalGoldDrop);
-
+        switch (DataController.Instance.ElementalSlot1)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_7, 1);
+                break;
+            case Elemental.Ice:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_9, 1);
+                break;
+            case Elemental.Earth:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_8, 1);
+                break;
+            case Elemental.Fire:
+                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_10, 1);
+                break;
+        }
         GameplayController.Instance.Tower.StopRecoverHealth();
         GameplayController.Instance.Tower.StopRecoverMana();
+
     }
     public void PauseGame()
     {
@@ -146,5 +163,6 @@ public class GameController : MonoBehaviour
         if (EnemyLive == 0)
             WinGame();
         DataController.Instance.CheckDailyQuest(QUEST_TYPE.QUEST_1, 1);
+        DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_2, 1);
     }
 }

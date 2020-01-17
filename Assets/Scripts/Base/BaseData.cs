@@ -22,6 +22,33 @@ public class BaseData
     public float MultiShotAddedAttributePercent;
     public float ReduceCooldown;
     public float IncreaseSpellDamage;
+    public int achi_AddedGoldKilled;
+    public float achi_AddedDmgWeaponAlliance;
+    public float achi_AddedDmgSpellWind;
+    public float achi_AddedDmgSpellEarth;
+    public float achi_AddedDmgSpellIce;
+    public float achi_AddedDmgSpellFire;
+    public float achi_AddedDmgAllianceWind;
+    public float achi_AddedDmgAllianceEarth;
+    public float achi_AddedDmgAllianceIce;
+    public float achi_AddedDmgAllianceFire;
+    public float achi_AddedDmgWeapon;
+    public float achi_AddedDmgAlliance;
+    public BaseData()
+    {
+        achi_AddedGoldKilled = 0;
+        achi_AddedDmgWeaponAlliance = 1;
+        achi_AddedDmgSpellWind = 1;
+        achi_AddedDmgSpellEarth = 1;
+        achi_AddedDmgSpellIce = 1;
+        achi_AddedDmgSpellFire = 1;
+        achi_AddedDmgAllianceWind = 1;
+        achi_AddedDmgAllianceEarth = 1;
+        achi_AddedDmgAllianceIce = 1;
+        achi_AddedDmgAllianceFire = 1;
+        achi_AddedDmgWeapon = 1;
+        achi_AddedDmgAlliance = 1;
+    }
 }
 [System.Serializable]
 public class BaseDatabase
