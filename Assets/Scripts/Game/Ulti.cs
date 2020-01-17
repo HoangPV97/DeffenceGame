@@ -72,9 +72,7 @@ public class Weapons
     }
     public float GetCost(int Level)
     {
-        if (Level < Cost.Count)
-            return Cost[Level - 1];
-        return Cost[Cost.Count - 1];
+        return Cost[Level];
     }
 }
 [System.Serializable]

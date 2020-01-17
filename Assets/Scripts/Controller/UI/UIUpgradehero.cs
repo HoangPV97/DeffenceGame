@@ -108,7 +108,7 @@ public class UIUpgradehero : BaseUIView
         currentExp = data1.EXP;
         AddExp = 0;
         GoldCost = 0;
-        MaxExp = dataBase.GetCost(Level);
+        MaxExp = dataBase.Cost[Level - 1];
         SetTextExp();
         ResetItemSlot();
         CheckBtnUpgrade();
@@ -139,6 +139,7 @@ public class UIUpgradehero : BaseUIView
         RemainEXP = 0;
         for (int i = data1.WeaponTierLevel.Level - 1; i < dataBase.Cost.Count; i++)
         {
+
             if (AddExp + currentExp - preExp > dataBase.GetCost(i))
             {
                 if (i == dataBase.Cost.Count - 1)
