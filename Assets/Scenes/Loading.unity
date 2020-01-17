@@ -264,6 +264,8 @@ MonoBehaviour:
     CurrentSelectedWeapon: 0
     Slot1: 0
     Slot2: 0
+    gameDataQuests: []
+    gameDataQuestLevels: 
   StageData:
     Level: 0
     HardMode: 0

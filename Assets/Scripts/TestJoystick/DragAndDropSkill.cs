@@ -54,7 +54,7 @@ public class DragAndDropSkill : Skill
         TimeLeft = CountdownTime;
         StartCountdown = true;
         CountdownGo?.gameObject.SetActive(true);
-        Tower.Mana.ConsumeMana(manaCost);
+        Tower.ReduceMana(manaCost);
         PlaySkill(circle.transform.position);
         circle.SetActive(false);
     }

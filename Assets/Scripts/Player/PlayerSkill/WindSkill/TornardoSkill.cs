@@ -28,7 +28,7 @@ public class TornardoSkill : MonoBehaviour
     void Start()
     {
         Tornardo = new TornardoData(Tornardo.totalTime, Tornardo.inflictedTime, Tornardo.DamagePerSecond, Tornardo.Range);
-        ParticleScaler.ScaleByTransform(ParticleSystem, Tornardo.Range/10, true);
+        ParticleScaler.ScaleByTransform(ParticleSystem, Tornardo.Range*0.3f, true);
     }
     public void SetTornardoData(float _totalTime, float _inflictTime, float _dps, float _range)
     {

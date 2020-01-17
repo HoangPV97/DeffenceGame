@@ -9,7 +9,7 @@ public class PlayTornardoSkill : DragAndDropSkill
     float InflictedTime;
     protected override void Start()
     {
-        circle.transform.localScale *= EffectedAoe / 10;
+        circle.transform.localScale *= EffectedAoe *0.3f;
         base.Start();
     }
     public override void Update()
@@ -24,6 +24,9 @@ public class PlayTornardoSkill : DragAndDropSkill
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
+        var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
         base.SetUpData(Tier, Level);
         Sww2 = JsonUtility.FromJson<SkillWeaponWind2>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;

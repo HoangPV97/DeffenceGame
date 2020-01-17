@@ -23,7 +23,7 @@ public class BossWind1 : EnemyController
     {
         isAttack = false;
         BulletBoss = "BOSS_WIND_BULLET";
-        timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
+        timeDelayAttack = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(DataController.Instance.StageData.Level).DelayAttack;
         //InvokeRepeating("RandomPosition", 0, timeDelayAttack+1);\
         skeletonAnimation.AnimationState.Event += OnEventChargeAttack;
         base.Start();
@@ -117,28 +117,22 @@ public class BossWind1 : EnemyController
     {
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
-            float ChargeRatio = UnityEngine.Random.Range(0, 100);
-            //SpawnEnemy.Instance.SpawnEnemyBoss_Wind_1();
-            int HardMode = DataController.Instance.StageData.HardMode;
-            var sd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
+            int LevelBoss = DataController.Instance.StageData.Level;
+            var sd = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
             for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
             {
                 StartCoroutine(IESpawnEnemyBoss(sd.stageEnemyDataBase, i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
-                //GameController.Instance.EnemyLive += sd.stageEnemyDataBase.stageEnemies[i].Number;
             }
             frenetic_50 = true;
-            //if (ChargeRatio > 20 )
-            //{
-            //    timeDelayAttack = 2;
-            //}
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
             frenetic_25 = true;
-            int HardMode = DataController.Instance.StageData.HardMode;
-            var bd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
-            enemy.speed += bd.SpeedPlus;
-            timeDelayAttack = bd.DelayAttack;
+            int LevelBoss = DataController.Instance.StageData.Level;
+            var bd = DataController.Instance.BossStageDataBase;
+            enemy.speed += bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
+            enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
+            timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
         }
     }
     private void AttackAndMove()
@@ -216,7 +210,7 @@ public class BossWind1 : EnemyController
     }
     public override IEnumerator Die()
     {
-        GameplayController.Instance.StopCoroutine("IESpawnEnemyBoss");
+        StopCoroutine("IESpawnEnemyBoss");
         return base.Die();
     }
     public IEnumerator IESpawnEnemyBoss(StageEnemyDataBase stageEnemyDataBase, int i, float timeDelay)

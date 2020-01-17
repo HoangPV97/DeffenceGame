@@ -13,14 +13,13 @@ public class BossEarth : EnemyController
     public GameObject LeftHand, RightHand;
     public GameObject boss_Fx;
     public UnityEvent EventOnFx;
-    [SerializeField] bool RollAttack;
-    bool IsImmortal;
+    [SerializeField] bool RollAttack, IsPower, IsImmortal;
+    BossStageDataBase BossStageDataBase;
     // Update is called once per frame
     protected override void Start()
     {
         newPosition = Tower.transform.position;
         isAttack = false;
-        timeDelayAttack = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(DataController.Instance.StageData.HardMode).DelayAttack;
         //skeletonAnimation.AnimationState.Event += OnEventChargeAttack;
         base.Start();
     }
@@ -33,16 +32,30 @@ public class BossEarth : EnemyController
     }
     protected override void Update()
     {
-        if (!isAttack && isMove && !RollAttack)
+        if (!isAttack && isMove)
         {
             Move(enemy.speed);
+        }
+        if(RollAttack && !isAttack && isMove)
+        {
+            newPosition = new Vector3(0, 3, 0);
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3  * Time.deltaTime);
+            if (transform.position == newPosition)
+            {
+                isMove = false;
+                enemy.damage *= 2;
+                IsImmortal = true;
+                CurrentState = EnemyState.Attack;
+                newPosition = Tower.transform.position;
+                StartCoroutine(IERollAttack(2f));
+                return;
+            }
         }
         if (previousState != CurrentState)
         {
             ChangeState();
             previousState = CurrentState;
         }
-
         CheckAttack();
     }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
@@ -110,22 +123,20 @@ public class BossEarth : EnemyController
         {
             gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 1, 0), 0.5f);
             Tower.TakeDamage(enemy.damage);
-            if (RollAttack)
+            if (IsPower)
             {
-                DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
-                RollAttack = false;
+                DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);                
                 enemy.damage /= 2;
-                enemy.speed /= 2;
-                IsImmortal = false;
-                Debug.Log("CHARGED ATTACK!!!!!!");
+                enemy.speed /= 4;
                 RandomPosition();
+                IsPower = false;
+                isAttack = false;
             }
             else
             {
                 RandomPosition();
                 isAttack = false;
                 isMove = true;
-                Debug.Log("ATTACKED!!!");
             }
         }
     }
@@ -140,9 +151,10 @@ public class BossEarth : EnemyController
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
             RollAttack = true;
-            float ChargeRatio = UnityEngine.Random.Range(0, 100);
-            int HardMode = DataController.Instance.StageData.HardMode;
-            var sd = DataController.Instance.BossDataBase_Wind.GetWaveEnemyBoss_Wind_1(HardMode);
+            int LevelBoss = DataController.Instance.StageData.Level;
+            BossStageDataBase = JsonUtility.FromJson<BossStageDataBase>(ConectingFireBase.Instance.GetTextBossStageDatabase());
+            var sd = BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
+
             for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
             {
                 StartCoroutine(IESpawnEnemyBoss(sd.stageEnemyDataBase, i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
@@ -158,17 +170,6 @@ public class BossEarth : EnemyController
 
         }
     }
-    //private void AttackAndMove()
-    //{
-    //    if (gameObject.activeSelf)
-    //    {
-    //        if (isAttack)
-    //        {
-    //            CurrentState = EnemyState.Attack;
-    //        }
-    //        StartCoroutine(IEMove());
-    //    }
-    //}
     public void RandomPosition()
     {
         int index = Random.Range(0, pointList.Count);
@@ -198,29 +199,15 @@ public class BossEarth : EnemyController
             isMove = true;
             newPosition = Tower.transform.position;
         }
-        ////RandomPosition();
-        //float ChargeRatio = UnityEngine.Random.Range(0, 100);
-        //if (enemy.health.CurrentHealth <= enemy.health.health / 4 && ChargeRatio < 20)
-        //{
-        //    isChargeAttack = true;
-        //    enemy.damage *= 2;
-        //    CurrentState = EnemyState.Skill;
-        //    StartCoroutine(IEChargeAttack(2f));
-        //}
-        /*else*/
-        if (transform.position == newPosition && RollAttack)
-        {
-            enemy.damage *= 2;
-            CurrentState = EnemyState.Attack;// skill
-            StartCoroutine(IERollAttack(2f));
-        }
     }
     IEnumerator IERollAttack(float _time)
     {
-        enemy.speed *= 2;
-        IsImmortal = true;
-        RollAttack = false;
+        enemy.speed *= 4;
+        
         yield return new WaitForSeconds(_time);
+        RollAttack = false;
+        IsPower = true;
+        IsImmortal = false;
         newPosition = Tower.transform.position;
         isMove = true;
         isAttack = false;

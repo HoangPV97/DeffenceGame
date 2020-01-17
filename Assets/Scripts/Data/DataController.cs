@@ -18,7 +18,7 @@ public class DataController : Singleton<DataController>
     public BaseDatabases BaseDatabases;
     public DefaultData DefaultData;
     public ItemDataBase ItemDataBase;
-    public BossDataBase_Wind_1 BossDataBase_Wind;
+    public BossStageDataBase BossStageDataBase;
     #endregion
 
     #region Data Player
@@ -271,7 +271,7 @@ public class DataController : Singleton<DataController>
         AllianceDataBases = JsonUtility.FromJson<AllianceDataBase>(ConectingFireBase.Instance.GetTextAllianceDatabase());
         BaseDatabases = JsonUtility.FromJson<BaseDatabases>(ConectingFireBase.Instance.GetTextBaseDataBases());
         ItemDataBase = JsonUtility.FromJson<ItemDataBase>(ConectingFireBase.Instance.GetTextItemDataBase());
-        BossDataBase_Wind = JsonUtility.FromJson<BossDataBase_Wind_1>(ConectingFireBase.Instance.GetTexSpawnEnemyBoss());
+        BossStageDataBase = JsonUtility.FromJson<BossStageDataBase>(ConectingFireBase.Instance.GetTextBossStageDatabase());
         ///Load data 
         Load();
 

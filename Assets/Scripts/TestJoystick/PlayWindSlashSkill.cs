@@ -26,8 +26,10 @@ public class PlayWindSlashSkill : Skill
 
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        base.SetUpData(Level);
-        this.Level = Level;
+        var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
+        base.SetUpData(Tier,Level);
         sww1 = JsonUtility.FromJson<SkillWeaponWind1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = sww1.GetManaCost(Tier, Level);
@@ -69,7 +71,7 @@ public class PlayWindSlashSkill : Skill
         CountdownGo?.gameObject.SetActive(true);
         StartCountdown = true;
         TimeLeft = CountdownTime;
-        Tower.Mana.ConsumeMana(manaCost);
+        Tower.ReduceMana(manaCost);
         arrow.SetActive(false);
     }
 

@@ -10,6 +10,8 @@ public class PowerBoostSkill : Skill
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
         base.SetUpData(Tier, Level);
         swe3 = JsonUtility.FromJson<SkillAllianceWind3>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         Increasedamage = swe3.GetSkillAttributes("InscreaFireRate", SkilldataSaver.Tier, SkilldataSaver.Level);
