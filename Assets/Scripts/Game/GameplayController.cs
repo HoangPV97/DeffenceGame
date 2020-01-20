@@ -5,7 +5,7 @@ using InviGiant.Tools;
 public class GameplayController : Singleton<GameplayController>
 {
     public PlayerController PlayerController;
-    public AllianceController Alliance_1, Alliance_2;
+    public List<AllianceController> AllianceController ;
     public Tower Tower;
     public GameObject Slot1, Slot2, Hero;
     [Header("Skill button")]
@@ -59,13 +59,13 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 1
         if (DataController.Instance.ElementalSlot1 != Elemental.None)
         {
-            Alliance_1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot1.ToString() + "Alliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+            AllianceController.Add(ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot1.ToString() + "Alliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>());
             var Alliance1 = DataController.Instance.IngameAlliance1;
-            Alliance_1.SetDataWeapon(Alliance1.Type, Alliance1.ATKspeed,Alliance1.ATK,Alliance1.BulletSpeed, Alliance1.ATKRange);
+            AllianceController[0].SetDataWeapon(Alliance1.Type, Alliance1.ATKspeed,Alliance1.ATK,Alliance1.BulletSpeed, Alliance1.ATKRange);
             
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,0), this.transform).GetComponent<Skill>();
-            SetUpSkill(go, DataController.Instance.IngameAlliance1.Type, SkillButtons[2], Alliance_1.transform.position);
+            SetUpSkill(go, DataController.Instance.IngameAlliance1.Type, SkillButtons[2], AllianceController[0].transform.position);
             if (DataController.Instance.IngameAlliance1.Tier >= 2)
             {
                 var Skill2 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,1), this.transform).GetComponent<Skill>();
@@ -81,13 +81,13 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 2
         if (DataController.Instance.ElementalSlot2 != Elemental.None)
         {
-            Alliance_2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot2.ToString() + "Alliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+            AllianceController.Add(ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot2.ToString() + "Alliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>());
             //load
             var Alliance2 = DataController.Instance.IngameAlliance2;
-            Alliance_2.SetDataWeapon(Alliance2.Type, Alliance2.ATKspeed, Alliance2.ATK, Alliance2.BulletSpeed, Alliance2.ATKRange);
+            AllianceController[1].SetDataWeapon(Alliance2.Type, Alliance2.ATKspeed, Alliance2.ATK, Alliance2.BulletSpeed, Alliance2.ATKRange);
             // set  skill button
             var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type,0), this.transform).GetComponent<Skill>();
-            SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], Alliance_2.transform.position);
+            SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], AllianceController[1].transform.position);
         }
         //spawn Enemy
         var sd = DataController.Instance.StageData;

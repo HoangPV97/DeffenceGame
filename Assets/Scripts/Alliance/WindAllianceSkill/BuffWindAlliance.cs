@@ -12,15 +12,8 @@ public class BuffWindAlliance : Skill
     // Start is called before the first frame update
     protected override void Start()
     {
-        if (GameplayController.Instance.Alliance_1.elementalType == Elemental.Wind)
-        {
-            WindAlliance = GameplayController.Instance.Alliance_1.gameObject;
-        }
-        else if (GameplayController.Instance.Alliance_2.elementalType == Elemental.Wind)
-        {
-            WindAlliance = GameplayController.Instance.Alliance_2.gameObject;
-        }
-        var WindAlly = WindAlliance.GetComponent<WindAllianceCharacter>();
+ 
+        var WindAlly = GetWindAlliance();
         if (WindAlly != null)
         {
             WindAlly.bounceNumber += 1;
@@ -28,5 +21,16 @@ public class BuffWindAlliance : Skill
             WindAlly.ATKspeed += WindAlly.ATKspeed * FirerateStats / 100;
             GameplayController.Instance.GetSkill("ALLIANCE_WIND_SKILL_1").AddDatatAttribute("TimeEffect", EffecttimeStats);
         }
+    }
+    public WindAllianceCharacter GetWindAlliance()
+    {
+        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
+        {
+            if (GameplayController.Instance.AllianceController[i].elementalType == Elemental.Wind)
+            {
+                return GameplayController.Instance.AllianceController[i].gameObject.GetComponent<WindAllianceCharacter>();
+            }
+        }
+        return null;
     }
 }

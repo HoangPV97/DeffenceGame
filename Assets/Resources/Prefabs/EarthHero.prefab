@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177385284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000023810415, y: 3.4990966, z: 0}
+  m_LocalPosition: {x: 0.00000020471732, y: 3.0084555, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3968810716353410867}
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 21300000, guid: cdf9cc93558f2ad40b5235cf94fc6840, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -243,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd47e2dca851abb428bd7eb550b94254, type: 2}
+  - {fileID: 2100000, guid: 5b94bb63a0062f746bf6402b00a1b53d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 320a106e22bf90346b5a15e719d0d031, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 9c21c0a2c119b6a46b2d748833adb397, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -375,15 +375,22 @@ MonoBehaviour:
   characterState: 0
   preCharacterState: 0
   skeletonAnimation: {fileID: 3968810716353410819}
-  attack: {fileID: 11400000, guid: 0244968817adaa641b728e16f03e032f, type: 2}
-  idle: {fileID: 11400000, guid: 2c2b7a8d947a99445bbc917099831cee, type: 2}
+  attack: {fileID: 11400000, guid: 1bd678868c2f0664f94a564435a348d8, type: 2}
+  idle: {fileID: 11400000, guid: 4a866a5ba310ca04388357d90b379d23, type: 2}
   eventName: onatk
+  CircleCollider2D: {fileID: 3968810717896949311}
   ATK: 0
   ATKspeed: 0
   BulletSpeed: 0
-  CriticalRatio: 0
-  CriticalDamage: 0
-  CircleCollider2D: {fileID: 3968810717896949311}
+  ArcheryDamage: 0
+  CriticalChance: 0
+  KnockBackChance: 0
+  AllianceDamage: 0
+  QuickHandChance: 0
+  QuickHandDamagePercent: 0
+  MultiShotChance: 0
+  MultiShotDamage: 0
+  MultiShotAddedAttributePercent: 0
 --- !u!50 &3968810717896949309
 Rigidbody2D:
   serializedVersion: 4

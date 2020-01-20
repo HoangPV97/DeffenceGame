@@ -75,7 +75,6 @@ public class GameController : MonoBehaviour
         DataController.Instance.Gold += Mathf.RoundToInt(GameplayController.Instance.TotalGoldDrop);
         if (gameStage.HardMode == 3)
             DataController.Instance.CheckDailyQuest(QUEST_TYPE.QUEST_7, 1);
-        gameStage.HardMode++;
 
         if (Level % 10 == 0)
             DataController.Instance.CheckDailyQuest(QUEST_TYPE.QUEST_5, 1);
@@ -112,33 +111,36 @@ public class GameController : MonoBehaviour
         {
             DataController.Instance.UnLockWeapon(Elemental.Fire);
         }
-        if (DataController.Instance.CurrentSelected < DataController.Instance.MaxStage)
-            DataController.Instance.CurrentSelected++;
-        DataController.Instance.Save();
         //  WingamePanel.SetActive(true);
         float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health) * 100;
 
         UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, (int)GameplayController.Instance.TotalGoldDrop);
-        switch (DataController.Instance.ElementalSlot1)
+        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
         {
-            case Elemental.None:
-                break;
-            case Elemental.Wind:
-                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_7, 1);
-                break;
-            case Elemental.Ice:
-                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_9, 1);
-                break;
-            case Elemental.Earth:
-                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_8, 1);
-                break;
-            case Elemental.Fire:
-                DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_10, 1);
-                break;
+            switch (GameplayController.Instance.AllianceController[i].elementalType)
+            {
+                case Elemental.None:
+                    break;
+                case Elemental.Wind:
+                    DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_7, 1);
+                    break;
+                case Elemental.Ice:
+                    DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_9, 1);
+                    break;
+                case Elemental.Earth:
+                    DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_8, 1);
+                    break;
+                case Elemental.Fire:
+                    DataController.Instance.CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_10, 1);
+                    break;
+            }
         }
         GameplayController.Instance.Tower.StopRecoverHealth();
         GameplayController.Instance.Tower.StopRecoverMana();
-
+        if (DataController.Instance.CurrentSelected < DataController.Instance.MaxStage)
+            DataController.Instance.CurrentSelected++;
+        gameStage.HardMode++;
+        DataController.Instance.Save();
     }
     public void PauseGame()
     {

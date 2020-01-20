@@ -73,15 +73,15 @@ public class EnemyController : MonoBehaviour
 
         CheckAttack();
         if (isKnockBack)
-        {
-            if (isLive)
-            {
-                isMove = true;
-            }
+        {  
             gameObject.transform.Translate(KnockBackDistance * Time.deltaTime);
             if (effectObj != null)
             {
                 effectObj.transform.Translate(KnockBackDistance * Time.deltaTime);
+            }
+            if (isLive)
+            {
+                isMove = true;
             }
         }
     }
@@ -104,8 +104,12 @@ public class EnemyController : MonoBehaviour
     public virtual IEnumerator Die()
     {
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
-        GameplayController.Instance.Alliance_1?.listEnemies.Remove(this);
-        GameplayController.Instance.Alliance_2?.listEnemies.Remove(this);
+        for(int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
+        {
+            GameplayController.Instance.AllianceController[i].listEnemies.Remove(this);
+        }
+        //GameplayController.Instance.Alliance_1?.listEnemies.Remove(this);
+        //GameplayController.Instance.Alliance_2?.listEnemies.Remove(this);
         isLive = false;
         isAttack = false;
         isMove = false;
@@ -116,11 +120,6 @@ public class EnemyController : MonoBehaviour
         if (effectObj != null)
             effectObj.GetComponent<ParticleSystem>().Stop();
         yield return new WaitForSeconds(1);
-        //var lText = GetComponentsInChildren<LoadingText>();
-        //for (int i = 0; i < lText.Length; i++)
-        //{
-        //    ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
-        //}
         if (effectObj != null)
         {
             Despawn(effectObj);
@@ -161,11 +160,17 @@ public class EnemyController : MonoBehaviour
     public IEnumerator IsKnockback()
     {
         isKnockBack = true;
+        
         yield return new WaitForSeconds(0.3f);
         isKnockBack = false;
         if (gameEffect.CurrentEffect == Effect.None)
         {
             Move(enemy.speed);
+        }
+        if (!isLive)
+        {
+            isMove = false;
+            CurrentState = EnemyState.Die;
         }
     }
     public void KnockBack(float _backSpace)

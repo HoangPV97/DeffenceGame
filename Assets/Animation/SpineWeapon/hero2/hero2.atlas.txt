@@ -1,0 +1,90 @@
+
+hero2.png
+size: 348,300
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armL
+  rotate: false
+  xy: 215, 102
+  size: 70, 97
+  orig: 70, 97
+  offset: 0, 0
+  index: -1
+armL_down
+  rotate: false
+  xy: 190, 11
+  size: 61, 58
+  orig: 61, 58
+  offset: 0, 0
+  index: -1
+armL_up
+  rotate: false
+  xy: 280, 215
+  size: 66, 81
+  orig: 66, 81
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 123, 71
+  size: 90, 98
+  orig: 90, 98
+  offset: 0, 0
+  index: -1
+bot
+  rotate: false
+  xy: 123, 6
+  size: 65, 63
+  orig: 65, 63
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 37
+  size: 119, 132
+  orig: 119, 132
+  offset: 0, 0
+  index: -1
+legL
+  rotate: false
+  xy: 287, 155
+  size: 51, 58
+  orig: 51, 58
+  offset: 0, 0
+  index: -1
+legR
+  rotate: false
+  xy: 293, 47
+  size: 43, 58
+  orig: 43, 58
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 171
+  size: 192, 125
+  orig: 192, 125
+  offset: 0, 0
+  index: -1
+shoulderL
+  rotate: false
+  xy: 196, 201
+  size: 82, 95
+  orig: 82, 95
+  offset: 0, 0
+  index: -1
+wpL
+  rotate: false
+  xy: 287, 107
+  size: 32, 46
+  orig: 32, 46
+  offset: 0, 0
+  index: -1
+wpR
+  rotate: false
+  xy: 253, 2
+  size: 38, 98
+  orig: 38, 98
+  offset: 0, 0
+  index: -1

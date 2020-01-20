@@ -36,6 +36,7 @@ public class BaseData
     public float achi_AddedDmgAlliance;
     public BaseData()
     {
+        ReduceCooldown = 1;
         achi_AddedGoldKilled = 0;
         achi_AddedDmgWeaponAlliance = 1;
         achi_AddedDmgSpellWind = 1;
