@@ -233,4 +233,8 @@ public class BossWind1 : EnemyController
             StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));
         }
     }
+    public override void DealDamge(int _damage, float _damageplus = 0)
+    {
+        base.DealDamge(_damage, _damageplus);
+    }
 }

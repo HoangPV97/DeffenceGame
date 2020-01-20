@@ -27,7 +27,6 @@ public class PlayTornardoSkill : DragAndDropSkill
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Tier, Level);
         Sww2 = JsonUtility.FromJson<SkillWeaponWind2>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Sww2.GetManaCost(Tier, Level);
@@ -39,6 +38,7 @@ public class PlayTornardoSkill : DragAndDropSkill
         variableJoystick.SetUpData(this);
         positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier, Level);
     }
 
     public override void PlaySkill(Vector3 _position)

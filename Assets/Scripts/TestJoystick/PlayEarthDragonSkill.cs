@@ -29,7 +29,6 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Level);
         Swe1 = JsonUtility.FromJson<SkillWeaponEarth1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swe1.GetManaCost(Tier, Level);
@@ -42,6 +41,7 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
         EffectRow = Tier + 1;
+        base.SetUpData(Tier,Level);
     }
     public override void PlaySkill(Vector3 _position)
     {

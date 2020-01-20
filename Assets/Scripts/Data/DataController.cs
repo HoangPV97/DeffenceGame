@@ -301,7 +301,7 @@ public class DataController : Singleton<DataController>
             Type = wp.Type,
             Tier = wp.Tier,
             Level = slwp.WeaponTierLevel.Level,
-            ATK = wp.GetATK(slwp.WeaponTierLevel.Level),
+            ATK =( wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage )* InGameBaseData.achi_AddedDmgWeaponAlliance*InGameBaseData.achi_AddedDmgWeapon,
             ATKspeed = wp.GetATKspeed(slwp.WeaponTierLevel.Level),
             BulletSpeed = wp.BulletSpeed,
         };
@@ -318,7 +318,7 @@ public class DataController : Singleton<DataController>
                 Type = wp1.weapons.Type,
                 Tier = wp1.weapons.Tier,
                 Level = sl1.WeaponTierLevel.Level,
-                ATK = wp1.weapons.GetATK(sl1.WeaponTierLevel.Level),
+                ATK = wp1.weapons.GetATK(sl1.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
                 ATKspeed = wp1.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
                 ATKRange = wp1.GetATKRange(slwp.WeaponTierLevel.Level),
                 BulletSpeed = wp1.weapons.BulletSpeed
@@ -336,7 +336,7 @@ public class DataController : Singleton<DataController>
                 Type = wp2.weapons.Type,
                 Tier = wp2.weapons.Tier,
                 Level = sl2.WeaponTierLevel.Level,
-                ATK = wp2.weapons.GetATK(sl2.WeaponTierLevel.Level),
+                ATK = wp2.weapons.GetATK(sl2.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
                 ATKspeed = wp2.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
                 ATKRange = wp2.GetATKRange(slwp.WeaponTierLevel.Level),
                 BulletSpeed = wp2.weapons.BulletSpeed

@@ -14,10 +14,10 @@ public class SoulOfEarthSkill : Skill
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
         Swe4 = JsonUtility.FromJson<SkillWeaponEarth4>(ConectingFireBase.Instance.GetTextSkill(SkillID));
-        base.SetUpData(Tier, Level);
         IncreaseDamage = (int)Swe4.GetSkillAttributes("IncreaseDamage", Tier, Level);
         IncreaseFireRate = Swe4.GetSkillAttributes("IncreaseFireRate", Tier, Level);
         IncreaseHealthRecover = (int)Swe4.GetSkillAttributes("IncreaseHealthRecover", Tier, Level);
+        base.SetUpData(Tier, Level);
     }
     // Update is called once per frame
     protected override void Start()

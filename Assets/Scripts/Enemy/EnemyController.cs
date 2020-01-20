@@ -356,7 +356,7 @@ public class EnemyController : MonoBehaviour
     {
         distancetoTower = Mathf.Abs(transform.position.y - Tower.transform.position.y);
 
-        if ((distancetoTower <= 2.2f || distancetoTower <= enemy.range) && isLive)
+        if ((distancetoTower <= 1.7f || distancetoTower <= enemy.range) && isLive)
         {
             isAttack = true;
             isMove = false;

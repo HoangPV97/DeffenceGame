@@ -29,7 +29,6 @@ public class PlayThunderStrikeSkill : DragAndDropSkill
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Tier, Level);
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swf1.GetManaCost(Tier, Level);
@@ -40,6 +39,7 @@ public class PlayThunderStrikeSkill : DragAndDropSkill
         variableJoystick.SetUpData(this);
         positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier, Level);
     }
     public override void PlaySkill(Vector3 _position)
     {

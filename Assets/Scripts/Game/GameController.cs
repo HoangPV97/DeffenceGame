@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
         {
             GameplayController.Instance.TotalGoldDrop = Mathf.RoundToInt(DataController.Instance.GoldInGame);
         }
-        GameplayController.Instance.TotalGoldDrop += GameplayController.Instance.GoldEachEnemy;
+        GameplayController.Instance.TotalGoldDrop += GameplayController.Instance.GoldEachEnemy + DataController.Instance.InGameBaseData.achi_AddedGoldKilled;
         EnemyLive -= value;
         if (EnemyLive == 0)
             WinGame();

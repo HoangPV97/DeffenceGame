@@ -38,12 +38,15 @@ public class WindAllianceBullet : BulletController
     }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {
+        Debug.Log("Target : " + Target.gameObject.name);
         if (Target.gameObject.tag.Equals("BlockPoint"))
         {
             Despawn();
+            Debug.Log("Target0 : " + Target.gameObject.name);
         }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
+            Debug.Log("Target1 : " + Target.gameObject.name);
             EnemyController enemy = Target.GetComponent<EnemyController>();
             SetTarget(enemy);
             enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);

@@ -24,7 +24,6 @@ public class PlayIceExplosionSkill : DragAndDropSkill
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        base.SetUpData(Tier, Level);
         Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swi1.GetManaCost(Tier, Level);
@@ -36,6 +35,7 @@ public class PlayIceExplosionSkill : DragAndDropSkill
         variableJoystick.SetUpData(this);
         positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier, Level);
     }
 
     public override void PlaySkill(Vector3 _position)

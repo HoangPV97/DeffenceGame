@@ -27,6 +27,7 @@ public class IceAllianceCharacter : AllianceController
         base.Start();
         targetList = new List<EnemyController>();
     }
+    #region comment
     //public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
     //{
     //    numberTarget = 3;
@@ -35,7 +36,7 @@ public class IceAllianceCharacter : AllianceController
     //public override void UpdateEnemy()
     //{
     //    base.Update();
-        
+
     //    //if (listEnemies.Count > 0)
     //    //{
     //    //    listEnemies = listEnemies.OrderBy(obj => (obj.transform.position - transform.position).magnitude).ToList();
@@ -115,6 +116,13 @@ public class IceAllianceCharacter : AllianceController
     //    //    characterState = CharacterState.Idle;
     //    //}
     //}
+    #endregion
+
+    public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
+    {
+        ATK = (int)(atk* DataController.Instance.InGameBaseData.achi_AddedDmgAllianceIce);
+        base.SetDataWeapon(elemental, Atkspeed, atk, BulletSpeed, _range);
+    }
     public override void Shoot()
     {
         for (int i = 0; i < listEnemies.Count; i++)

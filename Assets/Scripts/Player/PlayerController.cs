@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public void SetDataWeapon()
     {
         this.elementalType = DataController.Instance.inGameWeapons.Type;
-        ATK =(int) (DataController.Instance.inGameWeapons.ATK + DataController.Instance.InGameBaseData.Damage);
+        ATK =(int) (DataController.Instance.inGameWeapons.ATK );
         ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
         BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
         CriticalChance = DataController.Instance.InGameBaseData.Critical;
