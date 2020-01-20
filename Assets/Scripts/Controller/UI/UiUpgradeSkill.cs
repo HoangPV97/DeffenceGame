@@ -126,17 +126,23 @@ public class UiUpgradeSkill : BaseUIView
         //Setup Item;
         for (int i = 0; i < ListItem.Count; i++)
         {
-            ItemIcon[i].sprite = DataController.Instance.DefaultData.GetSpriteItem(ListItem[i].Type);
-            int current = DataController.Instance.GetGameItemData(ListItem[i].Type).Quality;
-            var Idb = DataController.Instance.GetItemDataBase(ListItem[i].Type);
-            txtItemNumber[i].gameObject.SetActive(true);
-            if (current < ListItem[i].Quality)
-                canUprage = false;
-            txtItemNumber[i].text = current >= ListItem[i].Quality ? string.Format("<color=#65FF00FF>{0}</color>/{1}", current, ListItem[i].Quality) : string.Format("<color=#FF0000FF>{0}</color>/{1}", current, ListItem[i].Quality);
-            GemCost += Idb.GemCost;
+            if (ListItem[i].Type != ITEM_TYPE.gem)
+            {
+                var Idb = DataController.Instance.GetItemDataBase(ListItem[i].Type);
+                ItemIcon[i].sprite = DataController.Instance.DefaultData.GetSpriteItem(ListItem[i].Type);
+                int current = DataController.Instance.GetGameItemData(ListItem[i].Type).Quality;
+                txtItemNumber[i].gameObject.SetActive(true);
+                if (current < ListItem[i].Quality)
+                    canUprage = false;
+                txtItemNumber[i].text = current >= ListItem[i].Quality ? string.Format("<color=#65FF00FF>{0}</color>/{1}", current, ListItem[i].Quality) : string.Format("<color=#FF0000FF>{0}</color>/{1}", current, ListItem[i].Quality);
+
+                GemCost += Idb.UseGemCost;
+            }
+            else
+                GemCost += ListItem[i].Quality;
         }
         txtGemCost.text = GemCost.ToString();
-
+        SkillIcon.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_" + skillData.SkillID + "_" + saveGameTierLevel.Tier);
     }
     public override void OnHide()
     {

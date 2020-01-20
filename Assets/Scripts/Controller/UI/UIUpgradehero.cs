@@ -140,7 +140,7 @@ public class UIUpgradehero : BaseUIView
         for (int i = data1.WeaponTierLevel.Level - 1; i < dataBase.Cost.Count; i++)
         {
 
-            if (AddExp + currentExp - preExp > dataBase.GetCost(i))
+            if (AddExp + currentExp - preExp >= dataBase.GetCost(i))
             {
                 if (i == dataBase.Cost.Count - 1)
                 {
@@ -216,8 +216,8 @@ public class UIUpgradehero : BaseUIView
     public int AddExpByType(ITEM_TYPE _TYPE, int value)
     {
         if (_TYPE.ToString().ToLower().Contains(heroElemental.ToString().ToLower()))
-            return value;
-        return (int)(value * 0.5);
+            return (int)(value * 1.2f);
+        return value;
     }
 
     UiItem GetUiItem(ITEM_TYPE _TYPE)

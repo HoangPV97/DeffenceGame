@@ -301,7 +301,7 @@ public class DataController : Singleton<DataController>
             Type = wp.Type,
             Tier = wp.Tier,
             Level = slwp.WeaponTierLevel.Level,
-            ATK =( wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage )* InGameBaseData.achi_AddedDmgWeaponAlliance*InGameBaseData.achi_AddedDmgWeapon,
+            ATK = (wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage) * InGameBaseData.achi_AddedDmgWeaponAlliance * InGameBaseData.achi_AddedDmgWeapon,
             ATKspeed = wp.GetATKspeed(slwp.WeaponTierLevel.Level),
             BulletSpeed = wp.BulletSpeed,
         };
@@ -642,6 +642,7 @@ public class DataController : Singleton<DataController>
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
+        SetStringUNLOCK_UI("Alliance_" + elemental.ToString());
     }
 
     public void UnLockWeapon(Elemental elemental)
@@ -653,6 +654,7 @@ public class DataController : Singleton<DataController>
         string skillID = SkillList[gdw.WeaponTierLevel.Tier - 1];
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
+        SetStringUNLOCK_UI("Weapon_" + elemental.ToString());
     }
 
     public SaveGameTierLevel GetGameSkillData(string SkillID)
@@ -861,6 +863,16 @@ public class DataController : Singleton<DataController>
         var gda = GetGameDataAchievement(_TYPE);
         var adb = GetAchievementDatabase(_TYPE);
         return adb.GetReward(gda.Level);
+    }
+
+    public void SetStringUNLOCK_UI(string str)
+    {
+        GameData.UNLOCK_UI = str;
+    }
+
+    public string GetStringUNLOCK_UI()
+    {
+        return GameData.UNLOCK_UI;
     }
 }
 

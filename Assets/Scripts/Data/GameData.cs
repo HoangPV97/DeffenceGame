@@ -20,7 +20,7 @@ public class GameData
     public List<GameStage> gameStages;
     public Elemental CurrentSelectedWeapon;
     public Elemental Slot1, Slot2;
-
+    public string UNLOCK_UI = "NONE";
     [SerializeField]
     public DateTime timeStamp;
 

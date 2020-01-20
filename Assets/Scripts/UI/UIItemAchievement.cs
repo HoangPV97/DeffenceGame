@@ -27,5 +27,6 @@ public class UIItemAchievement : MonoBehaviour
         }
         txtNumber.text = string.Format("{0}/{1}", gda.Current, gda.Target);
         PGBar.fillAmount = gda.Current * 1f / gda.Target;
+        Icon.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_" + _TYPE + "_" + gda.Level);
     }
 }

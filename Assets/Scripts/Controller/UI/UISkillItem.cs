@@ -108,6 +108,7 @@ public class UISkillItem : MonoBehaviour
         BtnUpgrade.gameObject.SetActive(false);
         Active.gameObject.SetActive(false);
         Pasive.gameObject.SetActive(false);
+
         //WEAPON_WIND_SKILL_1
         skillData = ConectingFireBase.Instance.GetSkillData(SkillID);
         sgtl = DataController.Instance.GetGameSkillData(SkillID);
@@ -241,6 +242,11 @@ public class UISkillItem : MonoBehaviour
                 }
             }
         }
+        var spr = DataController.Instance.DefaultData.LoadSprite("ICON_" + SkillID + "_" + sgtl.Tier);
+        Icon.sprite = spr;
+        var tf = Icon.transform.Find("Unlock");
+        if (tf != null)
+            tf.GetComponent<Image>().sprite = spr;
     }
 
     public bool CheckContainPercent(string str)

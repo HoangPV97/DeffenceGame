@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
 
         if (Level == 5)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Wind);//Wind
+            DataController.Instance.UnLockAlliance(Elemental.Wind);//Wind            
         }
         if (Level == 15)
         {

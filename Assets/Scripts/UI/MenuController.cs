@@ -14,6 +14,7 @@ public class MenuController : Singleton<MenuController>
     public UIPanelShop UIPanelShop;
     public Stack<UITYPE> UIType = new Stack<UITYPE>();
     public UIDailyQuest UIDailyQuest;
+    public UIUnlockWeaponAlliance UIUnlockWeaponAlliance;
     public UIButton BtnQuest;
     public UITYPE CurrentUITYPE
     {
@@ -52,6 +53,16 @@ public class MenuController : Singleton<MenuController>
         BottomBarController.Instance.BotUIButton[2].SetUpEvent(OnBtnMainPlayClick);
         BottomBarController.Instance.BotUIButton[3].SetUpEvent(OnBtnHeroClick);
         BtnQuest.SetUpEvent(OnBtnQuestClick);
+        CheckUNLOCK_UI();
+    }
+
+    void CheckUNLOCK_UI()
+    {
+        var str = DataController.Instance.GetStringUNLOCK_UI();
+        if (str != null && str != "NONE")
+        {
+            UIUnlockWeaponAlliance.SetUpData(str);
+        }
     }
     public BaseUIView GetBaseUIView(UITYPE uITYPE)
     {

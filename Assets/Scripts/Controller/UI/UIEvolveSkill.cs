@@ -96,6 +96,8 @@ public class UIEvolveSkill : BaseUIView
         if (Gem > DataController.Instance.Gem)
             canEvolve = false;
         GemCost.text = Gem.ToString();
+        Icon1.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_" + skillData.SkillID + "_" + saveGameTierLevel.Tier);
+        Icon2.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_" + skillData.SkillID + "_" + saveGameTierLevel.Tier + 1);
     }
     public override void OnHide()
     {
