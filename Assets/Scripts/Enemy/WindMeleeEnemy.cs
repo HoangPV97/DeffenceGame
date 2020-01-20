@@ -11,7 +11,7 @@ public class WindMeleeEnemy : EnemyController, IWindEffectable
     {
         if (Tower != null && isAttack && !disableAttack)
         {
-            gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 1, 0), 0.5f);
+            gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 0.5f, 0), 0.5f);
             Tower.TakeDamage(enemy.damage);
         }
     }

@@ -14,6 +14,11 @@ public class EarthAllianceCharacter : AllianceController
         IncreaseElementDamage = (int)GetAttributeData("IncreaseElementDamage", elementalType, tier);
         base.Start();
     }
+    public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
+    {
+        ATK = (int)(atk * DataController.Instance.InGameBaseData.achi_AddedDmgAllianceWind);
+        base.SetDataWeapon(elemental, Atkspeed, atk, BulletSpeed, _range);
+    }
 
     public override void Shoot()
     {

@@ -287,6 +287,7 @@ MonoBehaviour:
     recoverManaTime: 1
     manaBar: {fileID: 220588465}
     manaValueText: {fileID: 1268821496}
+  Shield: 0
   TowerEffect: {fileID: 1629958316}
 --- !u!50 &18398009
 Rigidbody2D:
@@ -322,7 +323,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.33}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}

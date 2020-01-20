@@ -28,7 +28,6 @@ public class PlayBarrierSkill : DragAndDropSkill
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Tier, Level);
         Swe2 = JsonUtility.FromJson<SkillWeaponEarth2>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swe2.GetManaCost(Tier, Level);
@@ -39,6 +38,7 @@ public class PlayBarrierSkill : DragAndDropSkill
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
         positonEffect = _position;
+        base.SetUpData(Tier, Level);
     }
     // Update is called once per framef
     public override void PlaySkill(Vector3 _position)

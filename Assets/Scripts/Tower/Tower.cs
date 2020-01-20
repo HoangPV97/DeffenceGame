@@ -2,22 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tower : MonoBehaviour
 {
     public Health Health;
     public Mana Mana;
     public static bool Islive;
+    public int ShieldBlockValue;
+    public int ShieldBlockChance;
     public GameObject TowerEffect;
-    bool StartRecoverHealth,StarRecoverMana;
+    bool StartRecoverHealth, StarRecoverMana;
     private void Start()
     {
         Islive = true;
     }
     public void TakeDamage(int _damage)
     {
+        int BlockChance = Random.Range(0, 100);
+        _damage -= ShieldBlockValue;
+        if (_damage < 0 || BlockChance<ShieldBlockChance)
+            _damage = 0;
         TowerEffect.SetActive(true);
-        Health.ReduceHealth(_damage);
+        Health.ReduceHealth((_damage));
         if (!StartRecoverHealth)
         {
             InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
@@ -29,11 +36,13 @@ public class Tower : MonoBehaviour
             Die();
         }
     }
-
     public void SetUpData()
     {
-        Health.Init((int)DataController.Instance.InGameBaseData.HP,(int) DataController.Instance.InGameBaseData.HPRegen);
-        Mana.Init(DataController.Instance.InGameBaseData.Mana, DataController.Instance.InGameBaseData.ManaRegen);
+        var BaseData= DataController.Instance.InGameBaseData;
+        Health.Init((int)BaseData.HP,(int)BaseData.HPRegen);
+        Mana.Init(BaseData.Mana, BaseData.ManaRegen);
+        ShieldBlockValue = (int)BaseData.ShieldBlockValue;
+        ShieldBlockChance = (int)BaseData.ShieldBlockChance;
     }
 
     public void ReduceMana(float _mana)

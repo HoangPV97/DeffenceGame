@@ -21,7 +21,7 @@ public class BuffDamageEarthSpell : Skill
         List<Skill> EarthSpells = GameplayController.Instance.GetElementSkills(Elemental.Earth);
         for (int i = 0; i < EarthSpells.Count; i++)
         {
-            EarthSpells[i].Damage += (int)BuffStats * EarthSpells[i].Damage / 100;
+            EarthSpells[i].Damage *= (1+ (int)BuffStats / 100);
         }
     }
 }

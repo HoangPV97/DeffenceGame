@@ -39,7 +39,6 @@ public class PlayMeteorSkill : DragAndDropSkill
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Tier, Level);
         Sae1 = JsonUtility.FromJson<SkillAllianceEarth1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Sae1.GetManaCost(Tier, Level);
@@ -51,6 +50,7 @@ public class PlayMeteorSkill : DragAndDropSkill
         variableJoystick.SetUpData(this);
         positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier, Level);
     }
     public override void PlaySkill(Vector3 _position)
     {

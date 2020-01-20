@@ -24,13 +24,13 @@ public class PlaySkill4 : DragAndDropSkill
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        base.SetUpData(Level);
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swf1.GetManaCost(Tier, Level);
         CountdownTime = Swf1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier,Level);
     }
 
     public void StunSkill(Vector3 _position)

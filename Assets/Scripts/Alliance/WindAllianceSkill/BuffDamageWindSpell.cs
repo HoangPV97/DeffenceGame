@@ -21,7 +21,7 @@ public class BuffDamageWindSpell : Skill
         List<Skill> WindSkills = GameplayController.Instance.GetElementSkills(Elemental.Wind);
         for (int i = 0; i < WindSkills.Count; i++)
         {
-            WindSkills[i].Damage += (int)BuffStats * WindSkills[i].Damage / 100;
+            WindSkills[i].Damage *= (1+(int)BuffStats  / 100);
         }
     }
 

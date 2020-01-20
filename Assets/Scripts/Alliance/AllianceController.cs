@@ -56,8 +56,9 @@ public class AllianceController : MonoBehaviour
     }
     public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed,float _range)
     {
+        ATK *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgAlliance ;
+        ATK += (int)DataController.Instance.InGameBaseData.AllianceDamage;
         this.elementalType = elemental;
-        ATK = (int)atk;
         ATKspeed = Atkspeed;
         this.BulletSpeed = BulletSpeed;
         Alliance.range = _range;

@@ -31,7 +31,6 @@ public class AllianceIceSkill : DragAndDropSkill
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
-        base.SetUpData(Level);
         Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swi1.GetManaCost(Tier, Level);
@@ -41,6 +40,7 @@ public class AllianceIceSkill : DragAndDropSkill
         CountdownTime = Swi1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
+        base.SetUpData(Tier, Level);
     }
     public override void PlaySkill (Vector3 _position)
     {

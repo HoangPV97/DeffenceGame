@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SoulOfWindSkill : Skill
 {
-    public float FireRate;
-    public int Critical;
+    public float IncreaseDamage;
+    public float IncreaseFireRate;
+    public int IncreaseCritical;
     [SerializeField] SkillWeaponWind4 Sww4;
     PlayerController playerController
     {
@@ -20,15 +21,15 @@ public class SoulOfWindSkill : Skill
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
         Sww4 = JsonUtility.FromJson<SkillWeaponWind4>(ConectingFireBase.Instance.GetTextSkill(SkillID));
+        IncreaseDamage = Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
+        IncreaseFireRate = Sww4.GetSkillAttributes("IncreaseFireRate", Tier, Level);
+        IncreaseCritical = (int)Sww4.GetSkillAttributes("IncreaseCritical", Tier, Level);
         base.SetUpData(Tier, Level, variableJoystick, _position);
-        Damage = (int)Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
-        FireRate = Sww4.GetSkillAttributes("IncreaseFireRate", Tier, Level);
-        Critical = (int)Sww4.GetSkillAttributes("IncreaseCritical", Tier, Level);
     }
     // Update is called once per frame
     protected override void Start ()
     {
-        playerController.SetDataWeaPon(Damage, FireRate);
-        playerController.SetCriticalWeaPon(Critical);
+        playerController.SetDataWeaPon((int)IncreaseDamage, IncreaseFireRate);
+        playerController.SetCriticalWeaPon(IncreaseCritical);
     }
 }

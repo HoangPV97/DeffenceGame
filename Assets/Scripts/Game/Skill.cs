@@ -22,10 +22,29 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         variableJoystick.txtMana.text = manaCost.ToString();
+
     }
 
     public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
     {
+        switch (elemental)
+        {
+            case Elemental.None:
+                break;
+            case Elemental.Wind:
+                Damage*= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellWind;
+                break;
+            case Elemental.Ice:
+                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellIce;
+                break;
+            case Elemental.Earth:
+                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellEarth;
+                break;
+            case Elemental.Fire:
+                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellFire;
+                break;
+        }
+        CountdownTime *= DataController.Instance.InGameBaseData.ReduceCooldown;
     }
 
     // Update is called once per frame

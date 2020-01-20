@@ -14,9 +14,9 @@ public class AgileSkill : Skill
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
         Level = SkilldataSaver.Level;
-        base.SetUpData(Tier, Level);
         sww3 = JsonUtility.FromJson<SkillWeaponWind3>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         FireRate = sww3.GetSkillAttributes("InscreaFireRate", Tier, LevelSkill);
+        base.SetUpData(Tier, Level);
     }
     // Start is called before the first frame update
     protected override void Start()
