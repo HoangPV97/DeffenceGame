@@ -72,8 +72,8 @@ public class DataController : Singleton<DataController>
         }
         set
         {
-            if (value < 0)
-                CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_1, -value);
+            if (value < GameData.Gold)
+                CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_1, GameData.Gold - value);
             GameData.Gold = value;
         }
     }
