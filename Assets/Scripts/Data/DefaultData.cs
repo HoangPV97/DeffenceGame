@@ -89,6 +89,16 @@ public class DefaultData : ScriptableObject
         return null;
     }
 
+    public Sprite LoadSprite(string str)
+    {
+        if (Item == null)
+        {
+            byte[] bundleData = AssetBundleItem.bytes.Clone() as byte[];
+            var bundle = AssetBundle.LoadFromMemory(bundleData);
+            Item = bundle;
+        }
+        return Item.LoadAsset<Sprite>(str);
+    }
     public string GetTextSkill(string SkillID)
     {
         for (int i = 0; i < TextWeaponSkills.Count; i++)

@@ -9,6 +9,7 @@ using System;
 public class UIPanelForstress : BaseUIView
 {
     public UISkillItem[] UISkillItems;
+    public Image Avatar;
     public UISkillItem currentSelectedUISkillItems = null;
     public int TabIndex = 0;
     public TabController TabController;
@@ -159,6 +160,8 @@ public class UIPanelForstress : BaseUIView
             Value3 = 0;
         }
         SetTextValue();
+        Avatar.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_Archery_" + sgd.Tier);
+        Avatar.SetNativeSize();
     }
 
 
@@ -231,6 +234,8 @@ public class UIPanelForstress : BaseUIView
             Value3Max += (int)skillData2.GetSkillAttributes("AddedManaRegen", sgd2.Tier, sgd2.Level);
         }
         SetTextValue();
+        Avatar.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_Temple_" + sgd.Tier);
+        Avatar.SetNativeSize();
     }
     public void OnTabFortressClick()
     {
@@ -303,6 +308,8 @@ public class UIPanelForstress : BaseUIView
             Value2Max += (int)skillData3.GetSkillAttributes("AddedShield", sgd3.Tier, sgd3.Level);
         }
         SetTextValue();
+        Avatar.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_Fortress_" + sgd.Tier);
+        Avatar.SetNativeSize();
     }
     public void OnUpgradeSkill(SkillData skillData, SaveGameTierLevel saveGameTierLevel)
     {

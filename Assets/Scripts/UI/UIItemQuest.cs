@@ -12,6 +12,7 @@ public class UIItemQuest : MonoBehaviour
     public UIButton btnClaim;
     public GameObject Completed;
     GameDataQuest gameDataQuest;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -59,5 +60,6 @@ public class UIItemQuest : MonoBehaviour
             it.transform.SetDefaultTransform();
             it.GetComponent<UiItem>().SetUpData(gdq.Rewards[i], 1);
         }
+        GetComponent<Image>().sprite = DataController.Instance.DefaultData.LoadSprite("BACKGROUND_" + gdq.QUEST_TYPE);
     }
 }
