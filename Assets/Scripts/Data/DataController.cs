@@ -433,8 +433,8 @@ public class DataController : Singleton<DataController>
         baseData = BaseDatabases.GetBaseTempleData(sgd.Tier);
         InGameBaseData.AllianceDamage = (int)baseData.GetAttributeValue("AllianceDamage", sgd.Level);
         InGameBaseData.Mana = (int)baseData.GetAttributeValue("Mana", sgd.Level);
-        InGameBaseData.ManaRegen = (int)baseData.GetAttributeValue("ManaRegen", sgd.Level);
-        Skills = GetArcherySkillID();
+        InGameBaseData.ManaRegen = (int)baseData.GetAttributeValue("ManaRegen", sgd.Level) + 1;
+        Skills = GetTempleSkillID();
         sgd1 = GetGameSkillData(Skills[0]);
         skillData1 = ConectingFireBase.Instance.GetSkillData(Skills[0]);
         if (sgd1.Level > 0)

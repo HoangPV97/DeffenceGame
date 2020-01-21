@@ -204,7 +204,6 @@ public class UIPanelForstress : BaseUIView
         }
 
         Value1Max = (int)baseTemple.GetAttributeValue("AllianceDamage", baseTemple.MaxLevel);
-        Value2Max = (int)baseTemple.GetAttributeValue("Mana", baseTemple.MaxLevel);
         Value3Max = (int)baseTemple.GetAttributeValue("ManaRegen", baseTemple.MaxLevel);
 
         //SetUp Skill
@@ -223,7 +222,7 @@ public class UIPanelForstress : BaseUIView
         if (sgd1.Level > 0)
         {
             Value2 += (int)skillData1.GetSkillAttributes("AddedMana", sgd1.Tier, sgd1.Level);
-            Value2Max += (int)skillData1.GetSkillAttributes("AddedMana", sgd1.Tier, sgd1.Level);
+            Value2Max = (int)skillData1.GetSkillAttributes("AddedMana", sgd1.Tier, skillData1.baseSkills[0].MaxLevel);
         }
         //KnockBack
         var sgd2 = DataController.Instance.GetGameSkillData(Skills[1]);
@@ -346,7 +345,6 @@ public class UIPanelForstress : BaseUIView
             var skillData2 = ConectingFireBase.Instance.GetSkillData(SkillID);
             int a = (int)skillData2.GetSkillAttributes("AddedMana", sgd2.Tier, sgd2.Level) - (int)skillData2.GetSkillAttributes("AddedMana", sgd2.Tier, sgd2.Level - 1);
             Value2 += a;
-            Value2Max += a;
         }
         else if (SkillID == "BASE_TEMPLE_SKILL_2")
         {
