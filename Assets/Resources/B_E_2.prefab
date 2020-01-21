@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6eb3c3b9ccd4cf840bee3a0e191841d2, type: 2}
+  - {fileID: 2100000, guid: fb87f5c26bd1db644994082510caf9dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 09f02a3c8b1217f498cdd5378e2fc7ef, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 495277100c0239a4dbcc983caac17ea6, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -285,14 +285,15 @@ MonoBehaviour:
     _elemental: 3
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 4975697748422171678}
-  attack: {fileID: 11400000, guid: 8670cb5aac334b74691880567c5adc11, type: 2}
-  idle: {fileID: 11400000, guid: 58e4ea3cc8cdeb34fa9d970d00014573, type: 2}
-  run: {fileID: 11400000, guid: 4a13db5ebda0b4340a6dfe3b0d5176f8, type: 2}
+  attack: {fileID: 11400000, guid: ecdd6c9c586620f42b7f14dbb8a09722, type: 2}
+  idle: {fileID: 11400000, guid: 265d8ebb586a5af4d9821b22ad5c6d7f, type: 2}
+  run: {fileID: 11400000, guid: 0a0934bb83cab1a40b0036efc63c8722, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: 75fe04a3a14be314e9d3d7c2946c5b51, type: 2}
+  die: {fileID: 11400000, guid: 47c1bf8562a567d4dba3ee31ad2d7609, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 8405747404023622455}
   Rigidbody2D: {fileID: 2381826484690694014}
@@ -421,16 +422,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 133.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -80.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -460,6 +451,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 133.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -80.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

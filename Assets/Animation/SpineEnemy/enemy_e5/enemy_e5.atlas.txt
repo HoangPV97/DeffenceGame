@@ -1,0 +1,41 @@
+
+enemy_e5.png
+size: 200,312
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body1
+  rotate: false
+  xy: 144, 28
+  size: 54, 134
+  orig: 54, 134
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 2
+  size: 49, 90
+  orig: 49, 90
+  offset: 0, 0
+  index: -1
+leg
+  rotate: false
+  xy: 53, 29
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 164
+  size: 193, 144
+  orig: 193, 144
+  offset: 0, 0
+  index: -1
+wing_L
+  rotate: false
+  xy: 2, 94
+  size: 140, 68
+  orig: 140, 68
+  offset: 0, 0
+  index: -1

@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6eb3c3b9ccd4cf840bee3a0e191841d2, type: 2}
+  - {fileID: 2100000, guid: fb87f5c26bd1db644994082510caf9dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 09f02a3c8b1217f498cdd5378e2fc7ef, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 495277100c0239a4dbcc983caac17ea6, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -285,14 +285,15 @@ MonoBehaviour:
     _elemental: 3
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 4975697748422171678}
-  attack: {fileID: 11400000, guid: 44d8bf0bec6429446a296ce616b1d7b7, type: 2}
-  idle: {fileID: 11400000, guid: 90a9d4354c094f84e8fc251bcae19f54, type: 2}
-  run: {fileID: 11400000, guid: d978af135139b5d449c24e160e658d57, type: 2}
+  attack: {fileID: 11400000, guid: af9e9b05a7ad7c040bd16b2f73e946d2, type: 2}
+  idle: {fileID: 11400000, guid: ff21ce9cfe516e842b8775e7cf91f4fe, type: 2}
+  run: {fileID: 11400000, guid: 35fb8d7f0fd4b914a8a8b61e8c45852c, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: a8b9cfe31ee5fe5448b04dffc4f26402, type: 2}
+  die: {fileID: 11400000, guid: d85f4561d2c41f243838de11f894a4cb, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 8405747404023622455}
   Rigidbody2D: {fileID: 2381826484690694014}
@@ -314,8 +315,14 @@ PrefabInstance:
     - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_Type
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
+        type: 3}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -421,15 +428,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 110.000015
+      value: 112
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -59
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -439,17 +446,17 @@ PrefabInstance:
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.8999815
+      value: 2.0004678
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 112
+      value: 110.000015
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -37.1005
+      value: -65.89951
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}
