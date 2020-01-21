@@ -287,7 +287,8 @@ MonoBehaviour:
     recoverManaTime: 1
     manaBar: {fileID: 220588465}
     manaValueText: {fileID: 1268821496}
-  Shield: 0
+  ShieldBlockValue: 0
+  ShieldBlockChance: 0
   TowerEffect: {fileID: 1629958316}
 --- !u!50 &18398009
 Rigidbody2D:
@@ -1394,8 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 1881591650}
-  Alliance_1: {fileID: 0}
-  Alliance_2: {fileID: 0}
+  AllianceController: []
   Tower: {fileID: 18398008}
   Slot1: {fileID: 704362106}
   Slot2: {fileID: 291958627}

@@ -126,7 +126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 94ca00a35f7d3524f87bbe7ed6836dcf, type: 2}
+  - {fileID: 2100000, guid: 6f4a766486fe52845982d464e07b2e20, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 9611991d58b3b894183f7eb15a67c9a9, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 5d4d276cc55522e4ea95a9d6a76e5742, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -255,14 +255,15 @@ MonoBehaviour:
     _elemental: 1
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 9124661697560551847}
-  attack: {fileID: 11400000, guid: ed2aa6b3af3c2554e9f2b4e0c20de38a, type: 2}
-  idle: {fileID: 11400000, guid: dafd7a7a67b67544fb102b8a362af8e3, type: 2}
-  run: {fileID: 11400000, guid: fac16bb23fc78474bbfc4018b1747c48, type: 2}
+  attack: {fileID: 11400000, guid: b5cc8d51b15b8044eb6fef1a674c08ff, type: 2}
+  idle: {fileID: 11400000, guid: 0b7af659f2ada6742943adb4ac57aeaf, type: 2}
+  run: {fileID: 11400000, guid: 69d4598f6cb94484d8ce1b18e7aa20c3, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: 6e5332dbe2bd6e745b6a7a832044c4a9, type: 2}
+  die: {fileID: 11400000, guid: 70394ccbee6b70a4880a2bbf1c98006d, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 8658844840670544642}
   Rigidbody2D: {fileID: 3571211530392899872}
@@ -325,8 +326,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7857216459765961333}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0006423072, y: -0.59703857, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7002951, w: 0.7138535}
+  m_LocalPosition: {x: 0.0010348319, y: 0.21135573, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6292061646329833500}
@@ -474,16 +475,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -84
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 132.001
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -513,6 +504,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 132.00136
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 132.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}
