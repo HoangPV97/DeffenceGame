@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using InviGiant.Tools;
 using UnityEngine.Events;
-
+using TMPro;
 public class MenuController : Singleton<MenuController>
 {
     public UIPanelHeroAlliance UIPanelHeroAlliance;
@@ -16,6 +16,7 @@ public class MenuController : Singleton<MenuController>
     public UIDailyQuest UIDailyQuest;
     public UIUnlockWeaponAlliance UIUnlockWeaponAlliance;
     public UIButton BtnQuest;
+    public TextMeshProUGUI txtGold, txtGem;
     public UITYPE CurrentUITYPE
     {
         get
@@ -54,6 +55,8 @@ public class MenuController : Singleton<MenuController>
         BottomBarController.Instance.BotUIButton[3].SetUpEvent(OnBtnHeroClick);
         BtnQuest.SetUpEvent(OnBtnQuestClick);
         CheckUNLOCK_UI();
+        ResetTextGem();
+        ResetTextGold();
     }
 
     void CheckUNLOCK_UI()
@@ -130,5 +133,13 @@ public class MenuController : Singleton<MenuController>
     public void OnBtnQuestClick()
     {
         UIDailyQuest.SetUpData();
+    }
+    public void ResetTextGold()
+    {
+        txtGold.text = DataController.Instance.Gold.ToString();
+    }
+    public void ResetTextGem()
+    {
+        txtGold.text = DataController.Instance.Gem.ToString();
     }
 }

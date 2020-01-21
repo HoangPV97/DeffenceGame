@@ -139,7 +139,7 @@ public class UISkillItem : MonoBehaviour
         else
         {
             /// check Max
-            if (skillData.baseSkills.Count == sgtl.Tier && skillData.baseSkills[sgtl.Tier - 1].MaxLevel == sgtl.Level)
+            if (skillData.MaxTier == sgtl.Tier && skillData.baseSkills[sgtl.Tier - 1].MaxLevel == sgtl.Level)
             {
                 ///max mie no roi
             }
@@ -159,7 +159,10 @@ public class UISkillItem : MonoBehaviour
         }
         //////////////////////////////////
         //Display Info
-        txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(sgtl.Tier);
+        if (skillData.MaxTier > 1)
+            txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID) + "." + ToolHelper.ToRoman(sgtl.Tier);
+        else
+            txtSkillName.text = Language.GetKey("Name_" + skillData.SkillID);
         if (skillData.SkillType == 0)
         {
             int Level = sgtl.Level;

@@ -2655,7 +2655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dbf9e1bf9247b42b72e5669d33c317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KEY: Shop
+  KEY: Quest
 --- !u!114 &4220891291653461417
 MonoBehaviour:
   m_ObjectHideFlags: 0

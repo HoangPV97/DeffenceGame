@@ -183,7 +183,7 @@ public class UIPanelHeroAlliance : BaseUIView
         }
 
         BtnUpgrade.gameObject.SetActive(data1.WeaponTierLevel.Level >= 1);
-        if (data1.WeaponTierLevel.Level == dataBase.MaxLevel && data1.EXP == dataBase.MaxEXP)
+        if (data1.WeaponTierLevel.Level == dataBase.MaxLevel && data1.EXP >= dataBase.MaxEXP)
         {
             BtnEvolve.gameObject.SetActive(data1.WeaponTierLevel.Tier < 3);
             BtnUpgrade.gameObject.SetActive(false);

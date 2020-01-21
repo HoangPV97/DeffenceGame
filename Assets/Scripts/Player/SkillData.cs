@@ -14,6 +14,13 @@ public class SkillData
     /// </summary>
     public int SkillType;
     public List<BaseSkill> baseSkills;
+    public int MaxTier
+    {
+        get
+        {
+            return baseSkills.Count;
+        }
+    }
     public float GetManaCost(int Tier, int Level)
     {
         if (Level == 0)
@@ -151,12 +158,12 @@ public class SkillWeaponWind2 : SkillData
     public List<SkillAttribute> SpecialSkillAttributes;
 }
 [System.Serializable]
-public class SkillWeaponWind3:SkillData
+public class SkillWeaponWind3 : SkillData
 {
     public const string TimeEffect = "InscreaFireRate";
 }
 [System.Serializable]
-public class SkillWeaponWind4:SkillData
+public class SkillWeaponWind4 : SkillData
 {
     public const string IncreaseDamage = "IncreaseDamage";
     public const string IncreaseFireRate = "IncreaseFireRate";

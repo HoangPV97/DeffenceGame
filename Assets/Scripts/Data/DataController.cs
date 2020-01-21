@@ -75,6 +75,10 @@ public class DataController : Singleton<DataController>
             if (value < GameData.Gold)
                 CheckAchievement(ACHIEVEMENT_TYPE.ACHIEVEMENT_1, GameData.Gold - value);
             GameData.Gold = value;
+            if (MenuController.Instance != null && MenuController.Instance.gameObject.activeSelf)
+            {
+                MenuController.Instance.ResetTextGold();
+            }
         }
     }
     public int Gem
@@ -86,6 +90,10 @@ public class DataController : Singleton<DataController>
         set
         {
             GameData.Gem = value;
+            if (MenuController.Instance != null && MenuController.Instance.gameObject.activeSelf)
+            {
+                MenuController.Instance.ResetTextGem();
+            }
         }
     }
     #endregion
