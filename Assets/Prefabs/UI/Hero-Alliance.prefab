@@ -3684,6 +3684,7 @@ MonoBehaviour:
   Buy: {fileID: 9037274700840323006}
   Active: {fileID: 4543203207466170651}
   Pasive: {fileID: 5611074229216089619}
+  txtSkillType: {fileID: 5052973710735232671}
   txtDesPasive: {fileID: 1359365782209183383}
   skillData:
     SkillID: 
@@ -6517,6 +6518,7 @@ MonoBehaviour:
   Buy: {fileID: 7750118374305182901}
   Active: {fileID: 6541420753091725495}
   Pasive: {fileID: 5542728574998518545}
+  txtSkillType: {fileID: 7737819484289828900}
   txtDesPasive: {fileID: 4044821471813779276}
   skillData:
     SkillID: 
@@ -15465,7 +15467,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Equiped
+  m_text: Equip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98d9f3424fa78794da8b582a7fa7e8d8, type: 2}
   m_sharedMaterial: {fileID: 21929297568694156, guid: 98d9f3424fa78794da8b582a7fa7e8d8,
@@ -15535,7 +15537,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3414438290969555728}
-    characterCount: 7
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -22891,6 +22893,7 @@ MonoBehaviour:
   Buy: {fileID: 1410822287665358594}
   Active: {fileID: 1131460267860174525}
   Pasive: {fileID: 8901525777518205010}
+  txtSkillType: {fileID: 6363274305290606198}
   txtDesPasive: {fileID: 4542220780589159386}
   skillData:
     SkillID: 
@@ -31457,6 +31460,7 @@ MonoBehaviour:
   Buy: {fileID: 8104907306652343955}
   Active: {fileID: 698234723552404624}
   Pasive: {fileID: 6233939759403978121}
+  txtSkillType: {fileID: 775493669815330422}
   txtDesPasive: {fileID: 7185087649945926350}
   skillData:
     SkillID: 
@@ -45799,7 +45803,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Un-Equip
+  m_text: Remove
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98d9f3424fa78794da8b582a7fa7e8d8, type: 2}
   m_sharedMaterial: {fileID: 21929297568694156, guid: 98d9f3424fa78794da8b582a7fa7e8d8,
@@ -45869,7 +45873,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5390756822794652497}
-    characterCount: 8
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

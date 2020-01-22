@@ -1,4 +1,4 @@
-KEY,Value
+Des1_WEAPON_ICE_SKILL_1_1,Value
 ,
 Name_Wind,Ardella
 Name_Ice,Megan
@@ -20,7 +20,7 @@ Des1_WEAPON_WIND_SKILL_2_3,Create a tornado that causes damage to all enemies at
 Name_WEAPON_WIND_SKILL_3,Agile
 Des1_WEAPON_WIND_SKILL_3,Increase Ardella's Attack speed by {0}%.
 Name_WEAPON_WIND_SKILL_4,Soul of Wind
-Des1_WEAPON_WIND_SKILL_4,"Enhance Ardella's abilities (Damage {0}%, Speed Attack {1}%, Crit Damage {2}%). "
+Des1_WEAPON_WIND_SKILL_4,"Enhance Ardella's abilities (Damage {1}%, Speed Attack {0}%, Crit Damage {2}%). "
 ,
 Name_WEAPON_ICE_SKILL_1,Ice Explosion
 Des1_WEAPON_ICE_SKILL_1_1,Create a massive explosion that deals damage and slows enemies.
@@ -101,6 +101,7 @@ Des1_ALLIANCE_FIRE_SKILL_1_3,Create an explosion that deals damage and burns ene
 Name_ALLIANCE_FIRE_SKILL_2,Enhance Blaze
 Des1_ALLIANCE_FIRE_SKILL_2,Increase the burning damage by {0}%.
 Name_ALLIANCE_FIRE_SKILL_3,Enhance Fire
+Des1_ALLIANCE_FIRE_SKILL_3,Increase the damage of Fire spells by {0}%.
 Name_ALLIANCE_FIRE_SKILL_4,Enhance Fairo
 Des1_ALLIANCE_FIRE_SKILL_4,Enhance Fairo's abilities.
 ,
@@ -142,6 +143,47 @@ Play,PLAY
 Easy,NORMAL
 Normal,NIGHTMARE
 Hard,HELLISH
+Hero,HEROES
+Alliance,ALLIES
+Upgrade,Upgrade
+UnEquip,Remove
+Equiped,Equip
+Evolve,Evolve
+Active,Active Spell
+Passive,Passive
+Damage,Damage
+CoolDown,Cooldown
+FireRate,ATK Speed
+Level,Level 
+Upgrade_Title,UPGRADE
+Upgrade_Des,Upgrade
+Upgrade_Skill_Title,UPGRADE
+Evolve_Skill_Title,EVOLUTION
+Evolve_Hero_Title,EVOLUTION
+Evolve_Archery_Title,EVOLUTION
+Evolve_Temple_Title,EVOLUTION
+Evolve_Fortress_Title,EVOLUTION
+Archery,ARCHERY
+Temple,TEMPLE
+,
+,
+,
+KnockbackDistance,Knockback distance
+KnockbackDuration,Knockback duration
+EffectedAoe,Area of effect
+TimeEffect,Duration
+IncreaseFireRate,Increasing ATK speed
+IncreaseDamage,Increasing damage
+IncreaseCrit,Increasing critical hit
+SlowdownPercent,Slowdown percent
+HealthRecover,Health recover
+MeteorNumber,Meteors
+AddedMana,Current mana 
+AddedManaRegen,Mana recover
+CriticalChance,Critical chance
+QuickHandChance,Quickhand chance
+KnockBackChance,Knockback chance
+,
 ,
 NAME_QUEST_1,Monster Hunter
 NAME_QUEST_2,Blacksmith
@@ -219,10 +261,10 @@ DES2_ACHIEVEMENT_14,Add {0}% damage for all Allies.
 DES3_ACHIEVEMENT_14,Next: +{0}% dmg.
 ,
 Des_Unlock_Weapon_Wind,"You've owned Ardella, the Wind Goddess!"
-Des_Unlock_Weapon_Earth,"You've owned Terra, the Earth Guadian!"
+Des_Unlock_Weapon_Earth,"You've owned Terra, the Earth Guardian!"
 Des_Unlock_Weapon_Ice,"You've owned Megan, the Ice Queen!"
 Des_Unlock_Weapon_Fire,"You've owned Celes, the Fire Emblem!"
 Des_Unlock_Alliance_Wind,Aeilene will accompany with you!
-Des_Unlock_Alliance_Earth,Ellena will accompany with you!
-Des_Unlock_Alliance_Ice,Groggo will accompany with you!
+Des_Unlock_Alliance_Earth,Groggo will accompany with you!
+Des_Unlock_Alliance_Ice,Ellena will accompany with you!
 Des_Unlock_Alliance_Fire,Fairo will accompany with you!
