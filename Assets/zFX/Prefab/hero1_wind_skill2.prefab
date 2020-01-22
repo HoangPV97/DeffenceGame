@@ -9407,9 +9407,6 @@ GameObject:
   - component: {fileID: 5937893838479093696}
   - component: {fileID: 5937893838479093703}
   - component: {fileID: 5937893838479093702}
-  - component: {fileID: 7706061217471216056}
-  - component: {fileID: 5519512046327042350}
-  - component: {fileID: 9155584802400424192}
   m_Layer: 0
   m_Name: hero1_wind_skill2
   m_TagString: Untagged
@@ -14119,53 +14116,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7706061217471216056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937893838479093701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd609ce448691b2409476ef812a6feec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tornardo:
-    totalTime: 0
-    DamagePerSecond: 0
-    inflictedTime: 0
-    Range: 0
-  ParticleScaler: {fileID: 5519512046327042350}
-  ParticleSystem: {fileID: 5937893838479093703}
---- !u!114 &5519512046327042350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937893838479093701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &9155584802400424192
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937893838479093701}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.88
 --- !u!1 &6239409724012152207
 GameObject:
   m_ObjectHideFlags: 0

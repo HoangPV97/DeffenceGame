@@ -19,6 +19,7 @@ public class UISkillItem : MonoBehaviour
     public UIButton BtnEvolve;
     public UIButton Buy;
     public GameObject Active, Pasive;
+    public TextMeshProUGUI txtSkillType;
     public TextMeshProUGUI txtDesPasive;
     public SkillData skillData;
     public TextMeshProUGUI[] txtAttribute, txtAttributeValue;
@@ -198,9 +199,13 @@ public class UISkillItem : MonoBehaviour
                     }
                 }
             }
+            if (txtSkillType != null)
+                txtSkillType.text = Language.GetKey("Active");
         }
         else
         {
+            if (txtSkillType != null)
+                txtSkillType.text = Language.GetKey("Passive");
             Pasive.SetActive(true);
             int Level = sgtl.Level;
             if (sgtl.Level == 0)
@@ -250,6 +255,7 @@ public class UISkillItem : MonoBehaviour
         var tf = Icon.transform.Find("Unlock");
         if (tf != null)
             tf.GetComponent<Image>().sprite = spr;
+
     }
 
     public bool CheckContainPercent(string str)

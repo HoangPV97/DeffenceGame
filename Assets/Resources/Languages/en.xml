@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Language>
-  <item key="KEY">Value </item>
+  <item key="Des1_WEAPON_ICE_SKILL_1_1">Value </item>
   <item key=""></item>
   <item key="Name_Wind">Ardella </item>
   <item key="Name_Ice">Megan </item>
@@ -22,7 +22,7 @@
   <item key="Name_WEAPON_WIND_SKILL_3">Agile </item>
   <item key="Des1_WEAPON_WIND_SKILL_3">Increase Ardella's Attack speed by {0}%. </item>
   <item key="Name_WEAPON_WIND_SKILL_4">Soul of Wind </item>
-  <item key="Des1_WEAPON_WIND_SKILL_4">Enhance Ardella's abilities (Damage {0}%, Speed Attack {1}%, Crit Damage {2}%).  </item>
+  <item key="Des1_WEAPON_WIND_SKILL_4">Enhance Ardella's abilities (Damage {1}%, Speed Attack {0}%, Crit Damage {2}%).  </item>
   <item key=""></item>
   <item key="Name_WEAPON_ICE_SKILL_1">Ice Explosion </item>
   <item key="Des1_WEAPON_ICE_SKILL_1_1">Create a massive explosion that deals damage and slows enemies. </item>
@@ -103,6 +103,7 @@
   <item key="Name_ALLIANCE_FIRE_SKILL_2">Enhance Blaze </item>
   <item key="Des1_ALLIANCE_FIRE_SKILL_2">Increase the burning damage by {0}%. </item>
   <item key="Name_ALLIANCE_FIRE_SKILL_3">Enhance Fire </item>
+  <item key="Des1_ALLIANCE_FIRE_SKILL_3">Increase the damage of Fire spells by {0}%. </item>
   <item key="Name_ALLIANCE_FIRE_SKILL_4">Enhance Fairo </item>
   <item key="Des1_ALLIANCE_FIRE_SKILL_4">Enhance Fairo's abilities. </item>
   <item key=""></item>
@@ -144,6 +145,47 @@
   <item key="Easy">NORMAL </item>
   <item key="Normal">NIGHTMARE </item>
   <item key="Hard">HELLISH </item>
+  <item key="Hero">HEROES </item>
+  <item key="Alliance">ALLIES </item>
+  <item key="Upgrade">Upgrade </item>
+  <item key="UnEquip">Remove </item>
+  <item key="Equiped">Equip </item>
+  <item key="Evolve">Evolve </item>
+  <item key="Active">Active Spell </item>
+  <item key="Passive">Passive </item>
+  <item key="Damage">Damage </item>
+  <item key="CoolDown">Cooldown </item>
+  <item key="FireRate">ATK Speed </item>
+  <item key="Level">Level  </item>
+  <item key="Upgrade_Title">UPGRADE </item>
+  <item key="Upgrade_Des">Upgrade </item>
+  <item key="Upgrade_Skill_Title">UPGRADE </item>
+  <item key="Evolve_Skill_Title">EVOLUTION </item>
+  <item key="Evolve_Hero_Title">EVOLUTION </item>
+  <item key="Evolve_Archery_Title">EVOLUTION </item>
+  <item key="Evolve_Temple_Title">EVOLUTION </item>
+  <item key="Evolve_Fortress_Title">EVOLUTION </item>
+  <item key="Archery">ARCHERY </item>
+  <item key="Temple">TEMPLE </item>
+  <item key=""></item>
+  <item key=""></item>
+  <item key=""></item>
+  <item key="KnockbackDistance">Knockback distance </item>
+  <item key="KnockbackDuration">Knockback duration </item>
+  <item key="EffectedAoe">Area of effect </item>
+  <item key="TimeEffect">Duration </item>
+  <item key="IncreaseFireRate">Increasing ATK speed </item>
+  <item key="IncreaseDamage">Increasing damage </item>
+  <item key="IncreaseCrit">Increasing critical hit </item>
+  <item key="SlowdownPercent">Slowdown percent </item>
+  <item key="HealthRecover">Health recover </item>
+  <item key="MeteorNumber">Meteors </item>
+  <item key="AddedMana">Current mana  </item>
+  <item key="AddedManaRegen">Mana recover </item>
+  <item key="CriticalChance">Critical chance </item>
+  <item key="QuickHandChance">Quickhand chance </item>
+  <item key="KnockBackChance">Knockback chance </item>
+  <item key=""></item>
   <item key=""></item>
   <item key="NAME_QUEST_1">Monster Hunter </item>
   <item key="NAME_QUEST_2">Blacksmith </item>
@@ -221,11 +263,11 @@
   <item key="DES3_ACHIEVEMENT_14">Next: +{0}% dmg. </item>
   <item key=""></item>
   <item key="Des_Unlock_Weapon_Wind">You've owned Ardella, the Wind Goddess! </item>
-  <item key="Des_Unlock_Weapon_Earth">You've owned Terra, the Earth Guadian! </item>
+  <item key="Des_Unlock_Weapon_Earth">You've owned Terra, the Earth Guardian! </item>
   <item key="Des_Unlock_Weapon_Ice">You've owned Megan, the Ice Queen! </item>
   <item key="Des_Unlock_Weapon_Fire">You've owned Celes, the Fire Emblem! </item>
   <item key="Des_Unlock_Alliance_Wind">Aeilene will accompany with you! </item>
-  <item key="Des_Unlock_Alliance_Earth">Ellena will accompany with you! </item>
-  <item key="Des_Unlock_Alliance_Ice">Groggo will accompany with you! </item>
+  <item key="Des_Unlock_Alliance_Earth">Groggo will accompany with you! </item>
+  <item key="Des_Unlock_Alliance_Ice">Ellena will accompany with you! </item>
   <item key="Des_Unlock_Alliance_Fire">Fairo will accompany with you!</item>
 </Language>
