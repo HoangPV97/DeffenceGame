@@ -6,7 +6,7 @@ public class BuffMeteorSkill : Skill
 {
     [SerializeField] private float BuffStats;
     [SerializeField] SkillAllianceWind2 SkillAllianceWind2;
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         SkillAllianceWind2 = JsonUtility.FromJson<SkillAllianceWind2>(ConectingFireBase.Instance.GetTextSkill(SkillID));

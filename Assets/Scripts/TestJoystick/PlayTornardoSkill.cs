@@ -22,7 +22,7 @@ public class PlayTornardoSkill : DragAndDropSkill
             MoveObject(circle, direction);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -36,7 +36,6 @@ public class PlayTornardoSkill : DragAndDropSkill
         Damage = Sww2.GetDamage(Tier, Level);
         CountdownTime = Sww2.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
-        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
         base.SetUpData(Tier, Level);
     }

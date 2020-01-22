@@ -11,23 +11,12 @@ public class BuffEarthAlliance : Skill
     // Start is called before the first frame update
     protected override void Start()
     {
-        var EarthAlliance = GetEarthAlliance();
+        var EarthAlliance = GetAlliance(Elemental.Earth)?.GetComponent<EarthAllianceCharacter>();
         if (EarthAlliance != null)
         {
             EarthAlliance.ATK += DamageStats;
             EarthAlliance.ATKspeed += EarthAlliance.ATKspeed * FirerateStats / 100;
             GameplayController.Instance.GetSkill("ALLIANCE_EARTH_SKILL_1").AddDatatAttribute("TimeEffect", EffecttimeStats);
         }
-    }
-    public EarthAllianceCharacter GetEarthAlliance()
-    {
-        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
-        {
-            if (GameplayController.Instance.AllianceController[i].elementalType == Elemental.Earth)
-            {
-                return GameplayController.Instance.AllianceController[i].gameObject.GetComponent<EarthAllianceCharacter>();
-            }
-        }
-        return null;
     }
 }

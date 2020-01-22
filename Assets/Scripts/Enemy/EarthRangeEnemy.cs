@@ -9,7 +9,7 @@ public class EarthRangeEnemy : EnemyController,IEarthEffectable
     {
         if (isAttack)
         {
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("windenemybullet", Barrel.transform.position, Quaternion.identity);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("WIND_ENEMY_BULLET", Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {
@@ -22,6 +22,6 @@ public class EarthRangeEnemy : EnemyController,IEarthEffectable
     }
     public void EarthImpactEffect(Vector3 _position)
     {
-        gameEffect.SpawnEffect("windimpact", _position, 0.3f);
+        gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _position, 0.3f);
     }
 }

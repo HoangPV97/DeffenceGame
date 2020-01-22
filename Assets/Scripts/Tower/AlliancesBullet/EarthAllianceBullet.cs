@@ -13,8 +13,7 @@ public class EarthAllianceBullet : BulletController
     public void SetDataBullet(float _speed, int _damage, float _stunTime, int _increasedamage)
     {
         StunTime = _stunTime;
-        damagePlus = _increasedamage;
-        base.SetDataBullet(_speed, _damage);
+        base.SetDataBullet(_speed, _damage, _increasedamage);
     }
     protected override void FixedUpdate()
     {
@@ -47,7 +46,7 @@ public class EarthAllianceBullet : BulletController
             IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
             if (elemental != null)
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {
@@ -56,6 +55,10 @@ public class EarthAllianceBullet : BulletController
             if (stun)
             {
                 enemy.DealEffect(Effect.StunBullet, enemy.transform.position, StunTime);
+            }
+            if (SeekTarget)
+            {
+                Despawn();
             }
         }
     }

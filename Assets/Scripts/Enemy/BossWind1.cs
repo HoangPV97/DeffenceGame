@@ -130,7 +130,7 @@ public class BossWind1 : EnemyController
             frenetic_25 = true;
             int LevelBoss = DataController.Instance.StageData.Level;
             var bd = DataController.Instance.BossStageDataBase;
-            enemy.speed += bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
+            enemy.speed *= 1.5f;
             enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
             timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
         }

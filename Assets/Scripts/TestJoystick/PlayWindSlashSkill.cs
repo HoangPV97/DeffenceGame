@@ -24,7 +24,7 @@ public class PlayWindSlashSkill : Skill
         base.Start();
     }
 
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -34,6 +34,7 @@ public class PlayWindSlashSkill : Skill
         manaCost = sww1.GetManaCost(Tier, Level);
         Speed = sww1.GetSkillSpeed(Tier, Level);
         Damage = sww1.GetDamage(Tier, Level);
+        DamagePlus=
         KnockBack = sww1.GetSkillAttributes("KnockbackDistance", Tier, Level);
         EffectedAoe = sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
@@ -92,10 +93,10 @@ public class PlayWindSlashSkill : Skill
     public void SlowSkill(Vector2 _direction, float _rotatioZ)
     {
         GameObject skill_1_player = ObjectPoolManager.Instance.SpawnObject(SkillID, gameObject.transform.position, Quaternion.identity);
-        GameObject effectStart = SpawnEffect(EffectName, gameObject.transform.position, 0.7f);
+        GameObject effectStart = SpawnEffect(EffectName, GameplayController.Instance.PlayerController.transform.position, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         WindSlashSkill WindSlashSkill = skill_1_player.GetComponent<WindSlashSkill>();
-        WindSlashSkill.SetDataBullet(Speed, Damage);
+        WindSlashSkill.SetDataBullet(Speed, Damage,DamagePlus);
         WindSlashSkill.setDirection(direction);
         WindSlashSkill.setDataSkill(KnockBack, EffectedAoe);
         //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();

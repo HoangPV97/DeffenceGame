@@ -310,6 +310,7 @@ public class DataController : Singleton<DataController>
             Tier = wp.Tier,
             Level = slwp.WeaponTierLevel.Level,
             ATK = (wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage) * InGameBaseData.achi_AddedDmgWeaponAlliance * InGameBaseData.achi_AddedDmgWeapon,
+            ATKplus=wp.ATKplus,
             ATKspeed = wp.GetATKspeed(slwp.WeaponTierLevel.Level),
             BulletSpeed = wp.BulletSpeed,
         };

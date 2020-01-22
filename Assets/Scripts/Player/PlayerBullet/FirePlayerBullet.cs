@@ -31,7 +31,7 @@ public class FirePlayerBullet : BulletController
             IWindEffectable elemental = enemy.GetComponent<IWindEffectable>();
             if (elemental != null)
             {
-                enemy.DealDamge( bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                enemy.DealDamge( bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {

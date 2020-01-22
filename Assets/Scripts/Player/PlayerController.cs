@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public int ATK;
     public float ATKspeed;
     public float BulletSpeed;
+    public float ATKplus;
     [Header("Archery Data")]
     public int ArcheryDamage;
     public int CriticalChance;
@@ -58,12 +59,15 @@ public class PlayerController : MonoBehaviour
     }
     public void SetDataWeapon()
     {
-        this.elementalType = DataController.Instance.inGameWeapons.Type;
-        ATK =(int) (DataController.Instance.inGameWeapons.ATK );
-        ATKspeed = DataController.Instance.inGameWeapons.ATKspeed;
-        BulletSpeed = DataController.Instance.inGameWeapons.BulletSpeed;
-        CriticalChance = DataController.Instance.InGameBaseData.Critical;
-        QuickHandChance = DataController.Instance.InGameBaseData.QuickHand;
+        var IngameWeapon = DataController.Instance.inGameWeapons;
+        var InGameBaseData = DataController.Instance.InGameBaseData;
+        this.elementalType = IngameWeapon.Type;
+        ATK = (int)(IngameWeapon.ATK + InGameBaseData.Damage);
+        ATKspeed = IngameWeapon.ATKspeed;
+        ATKplus = IngameWeapon.ATKplus;
+        BulletSpeed = IngameWeapon.BulletSpeed;
+        CriticalChance = InGameBaseData.Critical;
+        QuickHandChance = InGameBaseData.QuickHand;
     }
     public void SetFireRateWeaPon(float _FireRate)
     {
@@ -187,7 +191,7 @@ public class PlayerController : MonoBehaviour
         mBullet.SetTarget(player.target);
         mBullet.setDirection(_direction);
         mBullet.elementalBullet = elementalType;
-        mBullet.SetDataBullet(BulletSpeed, ATK);
+        mBullet.SetDataBullet(BulletSpeed, ATK,ATKplus);
         return mBullet;
     }
     public void Shoot(float _critical, float _knockback, float _quickhand, bool _multiShot)
@@ -214,7 +218,7 @@ public class PlayerController : MonoBehaviour
         float RandomCritical = UnityEngine.Random.Range(0, 100);
         if (RandomCritical < _critical)
         {
-            mBullet.SetDataBullet(BulletSpeed, 2 * ATK);
+            mBullet.SetDataBullet(BulletSpeed, 2 * ATK, ATKplus);
         }
         // Multishot
         if (_multiShot)
@@ -236,9 +240,9 @@ public class PlayerController : MonoBehaviour
     public void TwoMoreBullet()
     {
         BulletController mBullet1 = SpawnBullet(Quaternion.Euler(0, 0, 5) * direct, rotationZ, player.Bullet);
-        mBullet1.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100));
+        mBullet1.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100), ATKplus);
         BulletController mBullet2 = SpawnBullet(Quaternion.Euler(0, 0, -5) * direct, rotationZ, player.Bullet);
-        mBullet2.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100));
+        mBullet2.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100),ATKplus);
     }
     public IEnumerator IEQuickHand(float _time, bool Multi)
     {

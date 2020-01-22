@@ -26,7 +26,7 @@ public class IceSkill : BulletController
                 if (elemental != null)
                 {
                     elemental.FireImpactEffect(enemy.transform.position);
-                    enemy?.DealDamge(bullet.Damage,Mathf.Round( damagePlus * bullet.Damage / 100));
+                    enemy?.DealDamge(bullet.Damage,Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
                 }
                 else
                 {

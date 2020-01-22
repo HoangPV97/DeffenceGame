@@ -23,10 +23,10 @@ public class WindSlashSkill : BulletController
         //    collider2D.size = new Vector2(effectedAoe, 1);
         //}
     }
-    public override void SetDataBullet(float _speed, int _damage)
+    public override void SetDataBullet(float _speed, int _damage, float _atkplus)
     {
         listCheckColision = new List<GameObject>();
-        base.SetDataBullet(_speed, _damage);
+        base.SetDataBullet(_speed, _damage, _atkplus);
     }
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
@@ -46,7 +46,7 @@ public class WindSlashSkill : BulletController
                     IEarthEffectable elemental = enemy.GetComponent<IEarthEffectable>();
                     if (elemental != null)
                     {
-                        enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                        enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
                     }
                     else
                     {

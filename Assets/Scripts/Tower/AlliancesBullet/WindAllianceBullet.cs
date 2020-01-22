@@ -15,8 +15,7 @@ public class WindAllianceBullet : BulletController
     {
         bounceRange = _bounceRange;
         numberBounce = _numberBounce;
-        damagePlus = _Increasedamage;
-        base.SetDataBullet(_speed, _damage);
+        base.SetDataBullet(_speed, _damage,_Increasedamage);
     }
     protected override void FixedUpdate()
     {
@@ -38,22 +37,19 @@ public class WindAllianceBullet : BulletController
     }
     protected override void OnTriggerEnter2D(Collider2D Target)
     {
-        Debug.Log("Target : " + Target.gameObject.name);
         if (Target.gameObject.tag.Equals("BlockPoint"))
         {
             Despawn();
-            Debug.Log("Target0 : " + Target.gameObject.name);
         }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            Debug.Log("Target1 : " + Target.gameObject.name);
             EnemyController enemy = Target.GetComponent<EnemyController>();
             SetTarget(enemy);
             enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
             IEarthEffectable elemental = enemy?.GetComponent<IEarthEffectable>();
             if (elemental != null)
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {

@@ -21,6 +21,7 @@ public class IceAllianceCharacter : AllianceController
     }
     #endregion
     int numberTarget = 3;
+    float DamagePlus;
     public List<EnemyController> targetList;
     public override void Start()
     {
@@ -140,7 +141,7 @@ public class IceAllianceCharacter : AllianceController
                 alianceBullet.SetTarget(listEnemies[i]);
                 alianceBullet.setDirection(listEnemies[i].transform.position - transform.position);
                 alianceBullet.Move(listEnemies[i].transform.position - transform.position);
-                alianceBullet.SetDataBullet(BulletSpeed, ATK);
+                alianceBullet.SetDataBullet(BulletSpeed, ATK,DamagePlus);
             }
         }
     }

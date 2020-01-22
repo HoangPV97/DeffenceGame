@@ -34,7 +34,7 @@ public class PlayMeteorSkill : DragAndDropSkill
             MoveObject(circle, direction);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -48,9 +48,8 @@ public class PlayMeteorSkill : DragAndDropSkill
         EffectedAoe = Sae1.GetSkillAttributes("EffectedAoe", Tier, Level);
         MeteorNumber = Sae1.GetSkillAttributes("MeteorNumber", Tier, Level);
         variableJoystick.SetUpData(this);
-        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
-        base.SetUpData(Tier, Level);
+        base.SetUpData(Tier, Level,variableJoystick);
     }
     public override void PlaySkill(Vector3 _position)
     {

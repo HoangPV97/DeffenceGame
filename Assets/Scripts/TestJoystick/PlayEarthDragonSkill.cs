@@ -24,7 +24,7 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         }
         base.Update();
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -38,10 +38,9 @@ public class PlayEarthDragonSkill : DragAndDropSkill
         Damage = Swe1.GetDamage(Tier, Level);
         CountdownTime = Swe1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
-        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
         EffectRow = Tier + 1;
-        base.SetUpData(Tier,Level);
+        base.SetUpData(Tier, Level);
     }
     public override void PlaySkill(Vector3 _position)
     {

@@ -22,7 +22,7 @@ public class PlayIceExplosionSkill : DragAndDropSkill
             MoveObject(circle, direction);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
@@ -33,7 +33,6 @@ public class PlayIceExplosionSkill : DragAndDropSkill
         Damage = Swi1.GetDamage(Tier, Level);
         CountdownTime = Swi1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
-        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
         base.SetUpData(Tier, Level);
     }

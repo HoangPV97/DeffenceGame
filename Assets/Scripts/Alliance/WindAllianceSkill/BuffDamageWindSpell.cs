@@ -6,7 +6,7 @@ public class BuffDamageWindSpell : Skill
 {
     private int BuffStats;
     [SerializeField] SkillAllianceWind3 SkillAllianceWind3;
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;

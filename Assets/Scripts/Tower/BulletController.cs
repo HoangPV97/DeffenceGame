@@ -25,10 +25,11 @@ public class BulletController : MonoBehaviour
     {
         bullet.KnockbackDistance = _Distance;
     }
-    public virtual void SetDataBullet(float _speed, int _damage)
+    public virtual void SetDataBullet(float _speed, int _damage, float _atkplus)
     {
         bullet.Speed = _speed;
         bullet.Damage = _damage;
+        bullet.ATKplus = _atkplus;
         checkCollision = false;
     }
     public void SetTarget(EnemyController _Target)

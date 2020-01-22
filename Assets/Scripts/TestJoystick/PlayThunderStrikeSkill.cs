@@ -24,7 +24,7 @@ public class PlayThunderStrikeSkill : DragAndDropSkill
             MoveObject(circle, direction);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameAlliance(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -37,17 +37,15 @@ public class PlayThunderStrikeSkill : DragAndDropSkill
         Damage = Swf1.GetDamage(Tier, Level);
         EffectedAoe = Swf1.GetSkillAttributes("EffectedAoe", Tier, Level);
         variableJoystick.SetUpData(this);
-        positonEffect = _position;
         CountdownGo = variableJoystick.CountDountMask;
-        base.SetUpData(Tier, Level);
+        base.SetUpData(Tier, Level,variableJoystick);
     }
     public override void PlaySkill(Vector3 _position)
     {
         GameObject stunSkill = ObjectPoolManager.Instance.SpawnObject(SkillID, _position, Quaternion.identity);
-        stunSkill.GetComponent<ThunderStrikeSkill>().SetSkillData(EffectTime, Damage, EffectedAoe);    
-        float particleTime = stunSkill.GetComponentInChildren<ParticleSystem>().main.duration;
+        stunSkill.GetComponent<ThunderStrikeSkill>().SetSkillData(EffectTime, Damage, EffectedAoe);
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1f);
-        CheckDestroyEffect(stunSkill, particleTime);
+        CheckDestroyEffect(stunSkill, 1);
     }
     public override void AddDatatAttribute(string _attribute, float _value)
     {

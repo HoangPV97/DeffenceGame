@@ -12,6 +12,7 @@ public class Skill : MonoBehaviour
     public float CountdownTime;
     public float manaCost;
     public int Damage;
+    public float DamagePlus;
     public Elemental elemental;
     protected bool StartCountdown = false;
     protected float TimeLeft;
@@ -22,10 +23,10 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         variableJoystick.txtMana.text = manaCost.ToString();
-
+        SetpositonEffect();
     }
 
-    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public virtual void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         switch (elemental)
         {
@@ -131,5 +132,32 @@ public class Skill : MonoBehaviour
     public virtual void AddDatatAttribute(string _attribute, float _value)
     {
 
+    }
+    public GameObject GetAlliance( Elemental _elemental)
+    {
+        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
+        {
+            if (GameplayController.Instance.AllianceController[i].elementalType == _elemental)
+            {
+                return GameplayController.Instance.AllianceController[i].gameObject;
+            }
+        }
+        return null;
+    }
+    public void SetpositonEffect()
+    {
+        string[] strList = SkillID.Split('_');
+        string ID = strList[0];
+        if (ID.Equals("WEAPON"))
+        {
+            positonEffect = GameplayController.Instance.PlayerController.transform.position;
+            DamagePlus = GameplayController.Instance.PlayerController.ATKplus;
+        }
+        else
+        {
+            var alliance = GetAlliance(elemental);
+            positonEffect = alliance.transform.position;
+            DamagePlus = alliance.GetComponent<AllianceController>().ATKplus;
+        }
     }
 }

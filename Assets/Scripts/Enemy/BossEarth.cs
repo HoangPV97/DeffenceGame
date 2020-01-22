@@ -14,7 +14,6 @@ public class BossEarth : EnemyController
     public GameObject boss_Fx;
     public UnityEvent EventOnFx;
     [SerializeField] bool RollAttack, IsPower, IsImmortal;
-    BossStageDataBase BossStageDataBase;
     // Update is called once per frame
     protected override void Start()
     {
@@ -45,7 +44,7 @@ public class BossEarth : EnemyController
                 isMove = false;
                 enemy.damage *= 2;
                 IsImmortal = true;
-                CurrentState = EnemyState.Attack;
+                skeletonAnimation.AnimationState.SetAnimation(0, "skill_start", false);
                 newPosition = Tower.transform.position;
                 StartCoroutine(IERollAttack(2f));
                 return;
@@ -121,16 +120,12 @@ public class BossEarth : EnemyController
     {
         if (Tower != null && isAttack && !disableAttack)
         {
+            skeletonAnimation.AnimationState.SetAnimation(0, "skill_end", false);
             gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 1, 0), 0.5f);
             Tower.TakeDamage(enemy.damage);
             if (IsPower)
             {
-                DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);                
-                enemy.damage /= 2;
-                enemy.speed /= 4;
-                RandomPosition();
-                IsPower = false;
-                isAttack = false;
+                StartCoroutine(IEWaitingStun());
             }
             else
             {
@@ -152,9 +147,7 @@ public class BossEarth : EnemyController
         {
             RollAttack = true;
             int LevelBoss = DataController.Instance.StageData.Level;
-            BossStageDataBase = JsonUtility.FromJson<BossStageDataBase>(ConectingFireBase.Instance.GetTextBossStageDatabase());
-            var sd = BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
-
+            var sd = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
             for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
             {
                 StartCoroutine(IESpawnEnemyBoss(sd.stageEnemyDataBase, i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
@@ -203,13 +196,24 @@ public class BossEarth : EnemyController
     IEnumerator IERollAttack(float _time)
     {
         enemy.speed *= 4;
-        
+        //skeletonAnimation.AnimationState.SetAnimation(0,"skill_start",false);
         yield return new WaitForSeconds(_time);
         RollAttack = false;
         IsPower = true;
         IsImmortal = false;
         newPosition = Tower.transform.position;
+        skeletonAnimation.AnimationState.SetAnimation(0, "skill_loop", false);
         isMove = true;
+        isAttack = false;
+    }
+    IEnumerator IEWaitingStun()
+    {
+        yield return new WaitForSeconds(1);
+        DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
+        enemy.damage /= 2;
+        enemy.speed /= 4;
+        RandomPosition();
+        IsPower = false;
         isAttack = false;
     }
     public void WindImpactEffect(Vector3 _position)
@@ -241,4 +245,5 @@ public class BossEarth : EnemyController
             StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));
         }
     }
+
 }

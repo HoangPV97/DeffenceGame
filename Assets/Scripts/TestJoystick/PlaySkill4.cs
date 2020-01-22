@@ -22,7 +22,7 @@ public class PlaySkill4 : DragAndDropSkill
             MoveObject(circle, direction);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         Swf1 = JsonUtility.FromJson<SkillWeaponFire1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
@@ -30,7 +30,7 @@ public class PlaySkill4 : DragAndDropSkill
         CountdownTime = Swf1.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
-        base.SetUpData(Tier,Level);
+        base.SetUpData(Tier, Level);
     }
 
     public void StunSkill(Vector3 _position)

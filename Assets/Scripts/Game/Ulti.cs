@@ -27,6 +27,7 @@ public class InGameWeapon
     public int Tier;
     public int Level;
     public float ATK;
+    public float ATKplus;
     public float ATKspeed;
     public float BulletSpeed;
     public float CritChance;
@@ -39,6 +40,7 @@ public class Weapons
     public Elemental Type;
     public int Tier;
     public float BulletSpeed;
+    public float ATKplus;
     public List<float> ATK;
     public List<float> ATKspeed;
     public List<float> Cost;

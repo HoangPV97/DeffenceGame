@@ -118,7 +118,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 14
   m_Sprite: {fileID: 21300000, guid: baf5e57a3b288fd4d80fcac0222f427b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -297,7 +297,6 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 31c722c5cffc5b343a35ba5849b1323c, type: 2}
   idle: {fileID: 11400000, guid: fc75cfc5185c3a348a2c08ec493b8681, type: 2}
   eventName: onatk
-  playerController: {fileID: 0}
   listEnemies: []
   ATK: 0
   ATKspeed: 0

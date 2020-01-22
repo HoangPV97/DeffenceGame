@@ -75,13 +75,15 @@ public class Mana
     public void ConsumeMana(float _mana)
     {
         CurrentMana -= _mana;
-        manaBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentMana / maxMana * 1.0f), Height);
+        // manaBar.rectTransform.sizeDelta = new Vector2(Width * (CurrentMana / maxMana * 1.0f), Height);
+        manaBar.fillAmount = (float)CurrentMana / maxMana;
         UpdateValueText();
     }
     public void RecoverMana()
     {
         CurrentMana += RecoverManaValue;
-        manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * Width), Height);
+        //manaBar.rectTransform.sizeDelta = new Vector2(manaBar.rectTransform.rect.width + (RecoverManaValue / maxMana * Width), Height);
+        manaBar.fillAmount += (float)RecoverManaValue / maxMana;
         if (CurrentMana > maxMana)
         {
             CurrentMana = maxMana;

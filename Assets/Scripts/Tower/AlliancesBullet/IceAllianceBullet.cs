@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IceAllianceBullet : BulletController
 {
+    private float IncreaseDamage;
     private float number_Bullet;
     private float percent_Slow = 20;
     protected override void Start()
@@ -11,9 +12,9 @@ public class IceAllianceBullet : BulletController
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-    public override void SetDataBullet(float _speed, int _damage)
+    public override void SetDataBullet(float _speed, int _damage, float _atkplus)
     {
-        base.SetDataBullet(_speed, _damage);
+        base.SetDataBullet(_speed, _damage, _atkplus);
         number_Bullet = 3f;
     }
 
@@ -27,7 +28,7 @@ public class IceAllianceBullet : BulletController
             IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
             if (elemental != null)
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(damagePlus * bullet.Damage / 100));
+                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {

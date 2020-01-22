@@ -15,7 +15,7 @@ public class SoulOfWindSkill : Skill
             return GameplayController.Instance.PlayerController;
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -24,7 +24,7 @@ public class SoulOfWindSkill : Skill
         IncreaseDamage = Sww4.GetSkillAttributes("IncreaseDamage", Tier, Level);
         IncreaseFireRate = Sww4.GetSkillAttributes("IncreaseFireRate", Tier, Level);
         IncreaseCritical = (int)Sww4.GetSkillAttributes("IncreaseCritical", Tier, Level);
-        base.SetUpData(Tier, Level, variableJoystick, _position);
+        base.SetUpData(Tier, Level, variableJoystick);
     }
     // Update is called once per frame
     protected override void Start ()

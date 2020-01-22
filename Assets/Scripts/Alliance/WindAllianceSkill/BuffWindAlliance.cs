@@ -13,7 +13,7 @@ public class BuffWindAlliance : Skill
     protected override void Start()
     {
  
-        var WindAlly = GetWindAlliance();
+        var WindAlly = GetAlliance(Elemental.Wind)?.GetComponent<WindAllianceCharacter>();
         if (WindAlly != null)
         {
             WindAlly.bounceNumber += 1;
@@ -22,15 +22,5 @@ public class BuffWindAlliance : Skill
             GameplayController.Instance.GetSkill("ALLIANCE_WIND_SKILL_1").AddDatatAttribute("TimeEffect", EffecttimeStats);
         }
     }
-    public WindAllianceCharacter GetWindAlliance()
-    {
-        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
-        {
-            if (GameplayController.Instance.AllianceController[i].elementalType == Elemental.Wind)
-            {
-                return GameplayController.Instance.AllianceController[i].gameObject.GetComponent<WindAllianceCharacter>();
-            }
-        }
-        return null;
-    }
+
 }

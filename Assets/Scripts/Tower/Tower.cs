@@ -19,18 +19,19 @@ public class Tower : MonoBehaviour
     }
     public void TakeDamage(int _damage)
     {
+        if (!StartRecoverHealth /*&& Health.CurrentHealth < Health.health*/)
+        {
+            InvokeRepeating("RecoverHealth", 0, Health.RecoverHealthTime);
+            StartRecoverHealth = true;
+        }
         int BlockChance = Random.Range(0, 100);
         _damage -= ShieldBlockValue;
         if (_damage < 0 || BlockChance<ShieldBlockChance)
             _damage = 0;
+        Health.ReduceHealth(_damage);
         TowerEffect.SetActive(true);
-        Health.ReduceHealth((_damage));
-        if (!StartRecoverHealth)
-        {
-            InvokeRepeating("RecoverHealth", 0, Mana.RecoverManaTime);
-            StartRecoverHealth = true;
-        }
         StartCoroutine(WaitingEffectHealth());
+        
         if (Health.CurrentHealth <= 0)
         {
             Die();

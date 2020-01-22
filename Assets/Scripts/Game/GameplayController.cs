@@ -5,7 +5,8 @@ using InviGiant.Tools;
 public class GameplayController : Singleton<GameplayController>
 {
     public PlayerController PlayerController;
-    public List<AllianceController> AllianceController ;
+    public AllianceController Alliance1, Alliance2;
+    public List<AllianceController> AllianceController;
     public Tower Tower;
     public GameObject Slot1, Slot2, Hero;
     [Header("Skill button")]
@@ -18,6 +19,7 @@ public class GameplayController : Singleton<GameplayController>
     private void Start()
     {
         LoadDataGamePlay();
+        ArrangeAlliance_Hero();
     }
     public void LoadDataGamePlay()
     {
@@ -33,7 +35,7 @@ public class GameplayController : Singleton<GameplayController>
             //set 1 skill button 
             // spawn skill controller
             var WeaponSkill_1 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform).GetComponent<Skill>();
-            SetUpSkill(WeaponSkill_1, DataController.Instance.inGameWeapons.Type,SkillButtons[0],PlayerController.transform.position);
+            SetUpSkill(WeaponSkill_1, DataController.Instance.inGameWeapons.Type, SkillButtons[0], PlayerController.transform.position);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 2)
         {
@@ -41,7 +43,7 @@ public class GameplayController : Singleton<GameplayController>
             //var go = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 0), this.transform);
             //go.GetComponent<Skill>().SetUpData(1, 1, SkillButtons[0], PlayerController.transform.position);
             var WeaponSkill_2 = Instantiate(DataController.Instance.DefaultData.GetWeaponSkill(DataController.Instance.inGameWeapons.Type, 1), this.transform).GetComponent<Skill>();
-            SetUpSkill(WeaponSkill_2, DataController.Instance.inGameWeapons.Type,SkillButtons[1],PlayerController.transform.position);
+            SetUpSkill(WeaponSkill_2, DataController.Instance.inGameWeapons.Type, SkillButtons[1], PlayerController.transform.position);
         }
         if (DataController.Instance.inGameWeapons.Tier >= 3)
         {
@@ -59,21 +61,21 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 1
         if (DataController.Instance.ElementalSlot1 != Elemental.None)
         {
-            AllianceController.Add(ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot1.ToString() + "Alliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>());
-            var Alliance1 = DataController.Instance.IngameAlliance1;
-            AllianceController[0].SetDataWeapon(Alliance1.Type, Alliance1.ATKspeed,Alliance1.ATK,Alliance1.BulletSpeed, Alliance1.ATKRange);
-            
+            Alliance1 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot1.ToString() + "Alliance"), Slot1.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+            var ingamgeAlliance = DataController.Instance.IngameAlliance1;
+            Alliance1.SetDataWeapon(ingamgeAlliance.Type, ingamgeAlliance.ATKspeed, ingamgeAlliance.ATK, ingamgeAlliance.BulletSpeed, ingamgeAlliance.ATKRange);
+            AllianceController.Add(Alliance1);
             // set  skill button
-            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,0), this.transform).GetComponent<Skill>();
-            SetUpSkill(go, DataController.Instance.IngameAlliance1.Type, SkillButtons[2], AllianceController[0].transform.position);
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type, 0), this.transform).GetComponent<Skill>();
+            SetUpSkill(go, DataController.Instance.IngameAlliance1.Type, SkillButtons[2], Alliance1.transform.position);
             if (DataController.Instance.IngameAlliance1.Tier >= 2)
             {
-                var Skill2 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,1), this.transform).GetComponent<Skill>();
+                var Skill2 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type, 1), this.transform).GetComponent<Skill>();
                 SetUpSkill(Skill2, DataController.Instance.IngameAlliance1.Type);
             }
-            if(DataController.Instance.IngameAlliance1.Tier >= 3)
+            if (DataController.Instance.IngameAlliance1.Tier >= 3)
             {
-                var Skill3 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type,2), this.transform).GetComponent<Skill>();
+                var Skill3 = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance1.Type, 2), this.transform).GetComponent<Skill>();
                 SetUpSkill(Skill3, DataController.Instance.IngameAlliance1.Type);
             }
         }
@@ -81,13 +83,14 @@ public class GameplayController : Singleton<GameplayController>
         ///Load slot 2
         if (DataController.Instance.ElementalSlot2 != Elemental.None)
         {
-            AllianceController.Add(ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot2.ToString() + "Alliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>());
+            Alliance2 = ObjectPoolManager.Instance.SpawnObject(Resources.Load<GameObject>("Prefabs/" + DataController.Instance.ElementalSlot2.ToString() + "Alliance"), Slot2.transform.position, Quaternion.identity).GetComponent<AllianceController>();
+            AllianceController.Add(Alliance2);
             //load
-            var Alliance2 = DataController.Instance.IngameAlliance2;
-            AllianceController[1].SetDataWeapon(Alliance2.Type, Alliance2.ATKspeed, Alliance2.ATK, Alliance2.BulletSpeed, Alliance2.ATKRange);
+            var ingameAlliance = DataController.Instance.IngameAlliance2;
+            Alliance2.SetDataWeapon(ingameAlliance.Type, ingameAlliance.ATKspeed, ingameAlliance.ATK, ingameAlliance.BulletSpeed, ingameAlliance.ATKRange);
             // set  skill button
-            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type,0), this.transform).GetComponent<Skill>();
-            SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], AllianceController[1].transform.position);
+            var go = Instantiate(DataController.Instance.DefaultData.GetAllianceSkill(DataController.Instance.IngameAlliance2.Type, 0), this.transform).GetComponent<Skill>();
+            SetUpSkill(go, DataController.Instance.IngameAlliance2.Type, SkillButtons[3], Alliance2.transform.position);
         }
         //spawn Enemy
         var sd = DataController.Instance.StageData;
@@ -98,10 +101,10 @@ public class GameplayController : Singleton<GameplayController>
         }
         GoldEachEnemy = (float)(DataController.Instance.GoldInGame / GameController.Instance.EnemyLive);
     }
-    public void SetUpSkill( Skill skill, Elemental _element, VariableJoystick variableJoystick=null, Vector3 position=default)
+    public void SetUpSkill(Skill skill, Elemental _element, VariableJoystick variableJoystick = null, Vector3 position = default)
     {
         skill.elemental = _element;
-        skill.SetUpData(1, 1, variableJoystick, position);
+        skill.SetUpData(1, 1, variableJoystick);
         SkillList.Add(skill);
     }
     #region Monster
@@ -153,7 +156,7 @@ public class GameplayController : Singleton<GameplayController>
     public List<Skill> GetElementSkills(Elemental _elemental)
     {
         List<Skill> elementSkill = new List<Skill>();
-        for(int i = 0; i < SkillList.Count; i++)
+        for (int i = 0; i < SkillList.Count; i++)
         {
             if (SkillList[i].elemental.Equals(_elemental))
             {
@@ -161,5 +164,38 @@ public class GameplayController : Singleton<GameplayController>
             }
         }
         return elementSkill;
+    }
+    public void ArrangeAlliance_Hero()
+    {
+        float SpaceX = 10.6f / (AllianceController.Count + 2);
+        if (AllianceController.Count % 2 == 0)
+        {
+            Vector3 StartPos = new Vector3(0, -6.97f, 0);
+            PlayerController.transform.position = StartPos;
+            SetPos(StartPos, SpaceX);
+        }
+        else
+        {
+            Vector3 StartPos = new Vector3(SpaceX / 2, -6.97f, 0);
+            PlayerController.transform.position = StartPos;
+            SetPos(StartPos, SpaceX);
+        }
+    }
+    private void SetPos(Vector3 StartPos, float SpaceX)
+    {
+        for (int i = 0; i < AllianceController.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                StartPos -= new Vector3(SpaceX, 0, 0) * (i + 1);
+                AllianceController[i].transform.position = StartPos;
+
+            }
+            else
+            {
+                StartPos += new Vector3(SpaceX, 0, 0) * (i + 1);
+                AllianceController[i].transform.position = StartPos;
+            }
+        }
     }
 }

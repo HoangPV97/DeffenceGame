@@ -36,6 +36,6 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     }
     public void WindImpactEffect(Vector3 _position)
     {
-        gameEffect.SpawnEffect("windimpact", _position, 0.3f);
+        gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _position, 0.3f);
     }
 }

@@ -46,6 +46,7 @@ public class AllianceController : MonoBehaviour
     public List<EnemyController> listEnemies;
     public int ATK;
     public float ATKspeed;
+    public float ATKplus;
     public float BulletSpeed;
     public CircleCollider2D CircleCollider2D;
     public virtual void Start()

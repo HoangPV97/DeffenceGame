@@ -23,7 +23,7 @@ public class PlayBarrierSkill : DragAndDropSkill
             circle.transform.Translate(Target);
         }
     }
-    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null, Vector3 _position = default)
+    public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
         var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
         Tier = SkilldataSaver.Tier;
@@ -37,7 +37,6 @@ public class PlayBarrierSkill : DragAndDropSkill
         CountdownTime = Swe2.GetCoolDown(Tier, Level);
         variableJoystick.SetUpData(this);
         CountdownGo = variableJoystick.CountDountMask;
-        positonEffect = _position;
         base.SetUpData(Tier, Level);
     }
     // Update is called once per framef
@@ -47,6 +46,7 @@ public class PlayBarrierSkill : DragAndDropSkill
         BarrierSkill barrierSkill = Skill.GetComponent<BarrierSkill>();
         barrierSkill.SetDataBarrierSkill(EffectTime, HealthRecover, EffectedAoe);
         barrierSkill.InvokeSkill();
+        positonEffect = GetAlliance(elemental).transform.position;
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
     }
 }
