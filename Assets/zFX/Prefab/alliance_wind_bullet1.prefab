@@ -9423,7 +9423,7 @@ Transform:
   m_GameObject: {fileID: 6370561847941666092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4320241285599284860}
   - {fileID: 4096139124271969775}
@@ -9682,7 +9682,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10373,7 +10373,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 3
+        scalar: 2
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -23582,19 +23582,18 @@ MonoBehaviour:
     _speed: 10
     _damage: 15
     _targetTag: Enemy
+    _knockbackDistance: 0
+    _critical_Damage: 0
   SeekTarget: 0
   elementalBullet: 2
   damagePlus: 10
   explosion: 0
-  bounce: 1
   poison: 0
-  slow: 0
-  pierce: 0
-  critical: 0
-  multishot: 0
-  quickhand: 0
   stun: 0
   nearEnemy: {fileID: 0}
+  bounceRange: 0
+  numberBounce: 0
+  bounce: 1
 --- !u!61 &219139974746340187
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23864,7 +23863,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4257725, g: 1, b: 0.0990566, a: 1}
+      maxColor: {r: 0.4257725, g: 1, b: 0.0990566, a: 0.5019608}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24617,7 +24616,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 1
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -28575,7 +28574,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
+      scalar: 2
       minScalar: 4
       maxCurve:
         serializedVersion: 2
@@ -28691,7 +28690,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.6
+      scalar: 0.4
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -29073,7 +29072,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -90, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
