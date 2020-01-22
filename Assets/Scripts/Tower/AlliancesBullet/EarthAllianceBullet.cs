@@ -42,7 +42,7 @@ public class EarthAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
+            enemy.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemy.transform.position, 0.5f);
             IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
             if (elemental != null)
             {

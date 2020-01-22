@@ -4710,11 +4710,8 @@ GameObject:
   - component: {fileID: 1703263011276936064}
   - component: {fileID: 1703263011276936065}
   - component: {fileID: 427024985165567609}
-  - component: {fileID: 4476961610975090516}
-  - component: {fileID: 3348374308917329228}
-  - component: {fileID: 1741497612215078991}
   m_Layer: 0
-  m_Name: EARTH_ALLIANCE_BULLET
+  m_Name: alliance_earth_bullet1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9500,70 +9497,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.01
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &4476961610975090516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703263011276936070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbae3d1888ee9c49b7a6b0dc289602c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet:
-    _speed: 10
-    _damage: 0
-    _targetTag: Enemy
-    _knockbackDistance: 0
-    _critical_Damage: 0
-    _damagePlus: 0
-  SeekTarget: 1
-  elementalBullet: 3
-  damagePlus: 0
-  explosion: 0
-  poison: 0
-  stun: 1
-  nearEnemy: {fileID: 0}
-  StunTime: 0
---- !u!58 &3348374308917329228
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703263011276936070}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49699998
---- !u!50 &1741497612215078991
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703263011276936070}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1703263012121393883
 GameObject:
   m_ObjectHideFlags: 0

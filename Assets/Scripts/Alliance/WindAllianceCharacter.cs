@@ -36,7 +36,7 @@ public class WindAllianceCharacter : AllianceController
         {
             WindallyBullet.elementalBullet = elementalType;
             WindallyBullet.SetTarget(Alliance.target);
-            WindallyBullet.SetDataBullet(BulletSpeed, ATK, bounceRange, bounceNumber, IncreaseElementDamage);
+            WindallyBullet.SetDataBullet(BulletSpeed, ATK, bounceRange, bounceNumber, IncreaseElementDamage,DecreaseDamageBounce);
         }
     }
     public void StunSkill(Vector3 _position)

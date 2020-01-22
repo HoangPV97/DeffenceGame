@@ -13,6 +13,6 @@ public class EarthMeleeEnemy : EnemyController,IEarthEffectable
     }
     public void EarthImpactEffect(Vector3 _position)
     {
-        gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _position, 0.3f);
+        gameEffect.SpawnEffect("ENEMY_EARTH_MELEE_IMPACT", _position, 0.3f);
     }
 }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EarthRangeEnemy : EnemyController,IEarthEffectable
 {
+    [SerializeField] private string BulletName;
     [SerializeField] private GameObject Barrel;
     public void Attack()
     {
         if (isAttack)
         {
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("WIND_ENEMY_BULLET", Barrel.transform.position, Quaternion.identity);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject(BulletName, Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {
@@ -22,6 +23,6 @@ public class EarthRangeEnemy : EnemyController,IEarthEffectable
     }
     public void EarthImpactEffect(Vector3 _position)
     {
-        gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _position, 0.3f);
+        gameEffect.SpawnEffect("ENEMY_EARTH_IMPACT", _position, 0.3f);
     }
 }

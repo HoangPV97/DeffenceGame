@@ -301,6 +301,7 @@ MonoBehaviour:
   canvas: {fileID: 4436636802151869745}
   boxCollider2D: {fileID: 5556297814356171331}
   KnockBackDistance: {x: 0, y: 0, z: 0}
+  BulletName: ENEMY_EARTH_BULLET_1
   Barrel: {fileID: 8075261382934254517}
 --- !u!1 &8075261382934254517
 GameObject:
@@ -475,15 +476,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 114
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 116.99864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 114
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

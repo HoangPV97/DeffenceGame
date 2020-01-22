@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class WindRangeEnemy : EnemyController, IWindEffectable
 {
+    [SerializeField] private string BulletName;
     public override void SetUpdata(string type, int Level)
     {
         base.SetUpdata(type, Level);
@@ -23,7 +24,7 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
     {
         if(isAttack)
         {
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("WIND_ENEMY_BULLET", Barrel.transform.position, Quaternion.identity);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject(BulletName, Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {

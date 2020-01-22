@@ -6,15 +6,17 @@ public class WindAllianceBullet : BulletController
 {
     public float bounceRange;
     public int numberBounce;
+    public float DecreaseDamageBounce;
     public bool bounce;
     protected override void Start()
     {
         elementalBullet = Elemental.Wind;
     }
-    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce,int _Increasedamage)
+    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce,int _Increasedamage,float _DecreaseDamage)
     {
         bounceRange = _bounceRange;
         numberBounce = _numberBounce;
+        DecreaseDamageBounce = _DecreaseDamage;
         base.SetDataBullet(_speed, _damage,_Increasedamage);
     }
     protected override void FixedUpdate()
@@ -45,7 +47,7 @@ public class WindAllianceBullet : BulletController
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
             SetTarget(enemy);
-            enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
+            enemy.gameEffect.SpawnEffect("ALLIANCE_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
             IEarthEffectable elemental = enemy?.GetComponent<IEarthEffectable>();
             if (elemental != null)
             {
@@ -74,7 +76,7 @@ public class WindAllianceBullet : BulletController
                 {
                     Despawn();
                 }
-                bullet.Damage = (int)Mathf.Round(bullet.Damage * 50 / 100);
+                bullet.Damage = (int)Mathf.Round(bullet.Damage * DecreaseDamageBounce / 100);
                 numberBounce--;
                 if (numberBounce <= 0 || !nearEnemy.isLive)
                 {

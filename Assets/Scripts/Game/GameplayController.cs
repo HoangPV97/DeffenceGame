@@ -19,7 +19,7 @@ public class GameplayController : Singleton<GameplayController>
     private void Start()
     {
         LoadDataGamePlay();
-        ArrangeAlliance_Hero();
+        //ArrangeAlliance_Hero();
     }
     public void LoadDataGamePlay()
     {

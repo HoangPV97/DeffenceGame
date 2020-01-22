@@ -263,12 +263,14 @@ MonoBehaviour:
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 8658844840670544642}
   Rigidbody2D: {fileID: 3571211530392899872}
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
   KnockBackDistance: {x: 0, y: 0, z: 0}
+  BulletName: ENEMY_WIND_BULLET_2
   Barrel: {fileID: 7857216459765961333}
 --- !u!1 &6292061646712227653
 GameObject:
@@ -474,11 +476,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 142.00098
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -488,6 +485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 142.00133
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 142.00098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}
