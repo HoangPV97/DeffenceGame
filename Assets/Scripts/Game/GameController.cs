@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public Text GoldText, WinGold;
     float Gold = 0;
     float count = 0;
+    //float maxGold = 0;
     public float EnemyNumber;
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         EnemyNumber = EnemyLive;
+        //maxGold = DataController.Instance.GoldInGame + DataController.Instance.InGameBaseData.achi_AddedGoldKilled * EnemyLive;
     }
 
     public void SaveGame()
@@ -114,7 +116,7 @@ public class GameController : MonoBehaviour
         //  WingamePanel.SetActive(true);
         float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health) * 100;
 
-        UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, (int)GameplayController.Instance.TotalGoldDrop);
+        UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, Mathf.RoundToInt( GameplayController.Instance.TotalGoldDrop));
         for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
         {
             switch (GameplayController.Instance.AllianceController[i].elementalType)
@@ -155,12 +157,14 @@ public class GameController : MonoBehaviour
 
     public void OnEnemyDie(int value)
     {
-        if (
-        GameplayController.Instance.TotalGoldDrop > DataController.Instance.GoldInGame)
-        {
-            GameplayController.Instance.TotalGoldDrop = Mathf.RoundToInt(DataController.Instance.GoldInGame);
-        }
+        //if (
+        //GameplayController.Instance.TotalGoldDrop > maxGold)
+        //{
+        //    GameplayController.Instance.TotalGoldDrop = maxGold;
+        //}
+
         GameplayController.Instance.TotalGoldDrop += GameplayController.Instance.GoldEachEnemy + DataController.Instance.InGameBaseData.achi_AddedGoldKilled;
+        Debug.Log("Total Gold Drop In Game : " + GameplayController.Instance.TotalGoldDrop);
         EnemyLive -= value;
         if (EnemyLive == 0)
             WinGame();

@@ -51,7 +51,7 @@ public class BossWind1 : EnemyController
     }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
+        if ((!Coroutine_running || _effect != gameEffect.CurrentEffect ) && _effect!=Effect.StunBullet)
         {
             StartCoroutine(WaitingEffect(_time, () =>
             {
@@ -131,7 +131,7 @@ public class BossWind1 : EnemyController
             frenetic_25 = true;
             int LevelBoss = DataController.Instance.StageData.Level;
             var bd = DataController.Instance.BossStageDataBase;
-            enemy.speed *= 1.5f;
+            enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
             timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
         }
     }
@@ -184,7 +184,7 @@ public class BossWind1 : EnemyController
                 BulletBoss = "BOSS_WIND_SKILL";
                 int LevelBoss = DataController.Instance.StageData.Level;
                 var bd = DataController.Instance.BossStageDataBase;
-                enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
+                //enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
                 enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
                 timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
                 CurrentState = EnemyState.Skill;

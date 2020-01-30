@@ -35,10 +35,10 @@ public class BossEarth : EnemyController
         {
             Move(enemy.speed);
         }
-        if(RollAttack && !isAttack && isMove)
+        if (RollAttack && !isAttack && isMove)
         {
             newPosition = new Vector3(0, 3, 0);
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3  * Time.deltaTime);
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, enemy.speed / 3 * Time.deltaTime);
             if (transform.position == newPosition)
             {
                 isMove = false;
@@ -59,7 +59,7 @@ public class BossEarth : EnemyController
     }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        if (!Coroutine_running || _effect != gameEffect.CurrentEffect)
+        if ((!Coroutine_running || _effect != gameEffect.CurrentEffect) && _effect != Effect.StunBullet)
         {
             StartCoroutine(WaitingEffect(_time, () =>
             {
@@ -122,9 +122,11 @@ public class BossEarth : EnemyController
         {
             skeletonAnimation.AnimationState.SetAnimation(0, "skill_end", false);
             gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 1, 0), 0.5f);
-            Tower.TakeDamage(enemy.damage);
+            int LevelBoss = DataController.Instance.StageData.Level;
+            var bd = DataController.Instance.BossStageDataBase;
             if (IsPower)
             {
+                enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
                 StartCoroutine(IEWaitingStun());
             }
             else
@@ -133,6 +135,7 @@ public class BossEarth : EnemyController
                 isAttack = false;
                 isMove = true;
             }
+            Tower.TakeDamage(enemy.damage);
         }
     }
     public override void CheckAttack()
@@ -195,7 +198,9 @@ public class BossEarth : EnemyController
     }
     IEnumerator IERollAttack(float _time)
     {
-        enemy.speed *= 4;
+        int LevelBoss = DataController.Instance.StageData.Level;
+        var bd = DataController.Instance.BossStageDataBase;
+        enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
         //skeletonAnimation.AnimationState.SetAnimation(0,"skill_start",false);
         yield return new WaitForSeconds(_time);
         RollAttack = false;
@@ -209,9 +214,11 @@ public class BossEarth : EnemyController
     IEnumerator IEWaitingStun()
     {
         yield return new WaitForSeconds(1);
+        int LevelBoss = DataController.Instance.StageData.Level;
+        var bd = DataController.Instance.BossStageDataBase;
         DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
-        enemy.damage /= 2;
-        enemy.speed /= 4;
+        enemy.damage /= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
+        enemy.speed /= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
         RandomPosition();
         IsPower = false;
         isAttack = false;
