@@ -270,6 +270,7 @@ MonoBehaviour:
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
   KnockBackDistance: {x: 0, y: 0, z: 0}
+  BulletName: ENEMY_EARTH_BULLET_2
   Barrel: {fileID: 7857216459765961333}
 --- !u!1 &6292061646712227653
 GameObject:

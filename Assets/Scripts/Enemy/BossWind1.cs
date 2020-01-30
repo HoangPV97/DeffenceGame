@@ -62,6 +62,7 @@ public class BossWind1 : EnemyController
                 }
                 else if (_effect.Equals(Effect.Stun) || _effect.Equals(Effect.Freeze))
                 {
+                    Debug.Log("STUN");
                     skeletonAnimation.timeScale = 0;
                     isMove = false;
                     isAttack = false;
@@ -131,7 +132,6 @@ public class BossWind1 : EnemyController
             int LevelBoss = DataController.Instance.StageData.Level;
             var bd = DataController.Instance.BossStageDataBase;
             enemy.speed *= 1.5f;
-            enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
             timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
         }
     }
@@ -182,7 +182,11 @@ public class BossWind1 : EnemyController
             {
                 isChargeAttack = true;
                 BulletBoss = "BOSS_WIND_SKILL";
-                enemy.damage *= 2;
+                int LevelBoss = DataController.Instance.StageData.Level;
+                var bd = DataController.Instance.BossStageDataBase;
+                enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
+                enemy.damage *= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
+                timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
                 CurrentState = EnemyState.Skill;
                 StartCoroutine(IEChargeAttack(2f));
             }
@@ -196,7 +200,9 @@ public class BossWind1 : EnemyController
     {
         yield return new WaitForSeconds(_time);
         CurrentState = EnemyState.Idle;
-        enemy.damage /= 2;
+        int LevelBoss = DataController.Instance.StageData.Level;
+        var bd = DataController.Instance.BossStageDataBase;
+        enemy.damage /=(int) bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
         isMove = true;
         isAttack = false;
         RandomPosition();

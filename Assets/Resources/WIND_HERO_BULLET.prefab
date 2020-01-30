@@ -28399,7 +28399,7 @@ GameObject:
   - component: {fileID: 8898499708412842702}
   - component: {fileID: 1448733429004643100}
   m_Layer: 0
-  m_Name: hero1_wind_bullet1
+  m_Name: WIND_HERO_BULLET
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33208,7 +33208,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.3, y: 0.65}
   m_EdgeRadius: 0
 --- !u!50 &8304591641678869357
 Rigidbody2D:
@@ -33249,6 +33249,7 @@ MonoBehaviour:
     _targetTag: Enemy
     _knockbackDistance: 0
     _critical_Damage: 0
+    _damagePlus: 0
   SeekTarget: 1
   elementalBullet: 2
   damagePlus: 5
@@ -33256,8 +33257,6 @@ MonoBehaviour:
   poison: 0
   stun: 0
   nearEnemy: {fileID: 0}
-  ParticleScaler: {fileID: 1448733429004643100}
-  ParticleSystem: {fileID: 8531190558834038730}
 --- !u!114 &1448733429004643100
 MonoBehaviour:
   m_ObjectHideFlags: 0

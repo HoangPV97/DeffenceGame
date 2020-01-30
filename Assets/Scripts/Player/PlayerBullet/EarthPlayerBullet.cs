@@ -31,7 +31,7 @@ public class EarthPlayerBullet : BulletController, IExplosionBullet
             //if (enemyController.Equals(GameplayController.Instance.PlayerController.player.target))
             //{
             enemyController.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemyController.transform.position, 0.5f);
-            IEarthEffectable elemental = enemyController.GetComponent<IEarthEffectable>();
+            IIceEffectable elemental = enemyController.GetComponent<IIceEffectable>();
             if (elemental != null)
             {
                 //elemental.EarthImpactEffect(enemyController.transform.position);

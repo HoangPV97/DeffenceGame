@@ -26,6 +26,7 @@ public class EarthAllianceBullet : BulletController
         {
             dir = Target.transform.position - transform.position;
             Move(dir);
+            return;
         }
         if (dir.magnitude < 0.1f)
         {
@@ -39,8 +40,9 @@ public class EarthAllianceBullet : BulletController
         {
             Despawn();
         }
-        if (Target.gameObject.tag.Equals(bullet.TargetTag))
+        if (Target.gameObject.tag.Equals(bullet.TargetTag) && !checkCollision)
         {
+            checkCollision = true;
             EnemyController enemy = Target.GetComponent<EnemyController>();
             enemy.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemy.transform.position, 0.5f);
             IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();

@@ -5164,7 +5164,7 @@ MonoBehaviour:
   joystickType: 0
   Skill: {fileID: 1459730916}
   CountDountMask: {fileID: 1833242983}
-  LowMana: {fileID: 0}
+  LowMana: {fileID: 651536981}
   txtMana: {fileID: 2061819628}
 --- !u!1 &1107625114
 GameObject:
@@ -5175,7 +5175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1107625115}
-  - component: {fileID: 1107625116}
   m_Layer: 0
   m_Name: SpawnPos
   m_TagString: Untagged
@@ -5208,22 +5207,6 @@ Transform:
   m_Father: {fileID: 297382516}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1107625116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107625114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2b4eee9ded15f4886c6f4031457459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PositionList:
-  - {fileID: 719426}
-  - {fileID: 704362106}
-  - {fileID: 291958627}
 --- !u!1 &1115820975
 GameObject:
   m_ObjectHideFlags: 0
@@ -6604,6 +6587,7 @@ MonoBehaviour:
   CountdownTime: 2
   manaCost: 0
   Damage: 0
+  DamagePlus: 0
   elemental: 0
   circle: {fileID: 1920795930}
   EffectName: 

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5257514012312268340}
   - component: {fileID: 5257514012312268341}
   - component: {fileID: 5257514012312268342}
-  - component: {fileID: 2455077673029485861}
   - component: {fileID: 1257820060279861292}
   - component: {fileID: 6608291324172498366}
+  - component: {fileID: 7821949763509989745}
   m_Layer: 0
   m_Name: WIND_ENEMY_BULLET
   m_TagString: Untagged
@@ -4798,22 +4798,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.01
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!58 &2455077673029485861
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5257514012312268338}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
 --- !u!50 &1257820060279861292
 Rigidbody2D:
   serializedVersion: 4
@@ -4853,8 +4837,35 @@ MonoBehaviour:
     _targetTag: Tower
     _knockbackDistance: 0
     _critical_Damage: 0
+    _damagePlus: 0
   exploseEffect: WIND_ENEMY_BULLET_IMPACT
   SeekTarget: 1
+--- !u!61 &7821949763509989745
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257514012312268338}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.28, y: 0.44}
+  m_EdgeRadius: 0
 --- !u!1 &5257514013114123346
 GameObject:
   m_ObjectHideFlags: 0
