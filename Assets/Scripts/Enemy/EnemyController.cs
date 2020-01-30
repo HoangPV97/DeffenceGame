@@ -49,8 +49,9 @@ public class EnemyController : MonoBehaviour
     {
         var md = DataController.Instance.GetMonsterData(type);
         float growth = 1 + md.Growth * (Level - 1);
+        float growthATK = md.GrowthATK * (Level - 1);
         enemy.health.Init((int)(md.HP * growth), 0);
-        enemy.damage = (int)(md.ATK * growth);
+        enemy.damage = (int)(md.ATK + growthATK);
         enemy.armor = md.Armor * growth;
         enemy.speed = md.MoveSpeed;
         enemy.rateOfFire = md.ATKSpeed;
@@ -73,7 +74,7 @@ public class EnemyController : MonoBehaviour
 
         CheckAttack();
         if (isKnockBack)
-        {  
+        {
             gameObject.transform.Translate(KnockBackDistance * Time.deltaTime);
             if (effectObj != null)
             {
@@ -104,7 +105,7 @@ public class EnemyController : MonoBehaviour
     public virtual IEnumerator Die()
     {
         GameplayController.Instance.PlayerController.listEnemies.Remove(this);
-        for(int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
+        for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
         {
             GameplayController.Instance.AllianceController[i].listEnemies.Remove(this);
         }
@@ -124,24 +125,23 @@ public class EnemyController : MonoBehaviour
         {
             Despawn(effectObj);
         }
-       
+
         GameController.Instance.OnEnemyDie(1);
         Despawn(gameObject);
     }
     public virtual void DealDamge(int _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
-        int TotalDamage = _damage + Mathf.RoundToInt(_damageplus);
-        if (TotalDamage > enemy.health.CurrentHealth)
+        if (_damage > enemy.health.CurrentHealth)
         {
-            TotalDamage = (int)enemy.health.CurrentHealth ;
+            _damage = (int)enemy.health.CurrentHealth;
         }
-        SpawnDamageText("DAMAGE", gameObject.transform.position, TotalDamage);
-        //if (_damageplus > 0)
-        //{
-        //    SpawnDamageText("ELEMENT_DAMAGE", gameObject.transform.position + new Vector3(0.6f, 1f, 0), Mathf.RoundToInt(_damageplus));
-        //}
-        enemy.health.ReduceHealth(TotalDamage);
+        SpawnDamageText("DAMAGE", gameObject.transform.position, _damage);
+        if (_damageplus > 0)
+        {
+            SpawnDamageText("ELEMENT_DAMAGE", gameObject.transform.position + new Vector3(0.4f, 1f, 0), (int)_damageplus);
+        }
+        enemy.health.ReduceHealth(_damage + (int)_damageplus);
         if (enemy.health.CurrentHealth <= 0)
         {
             isMove = true;
@@ -161,7 +161,7 @@ public class EnemyController : MonoBehaviour
     public IEnumerator IsKnockback()
     {
         isKnockBack = true;
-        
+
         yield return new WaitForSeconds(0.3f);
         isKnockBack = false;
         if (gameEffect.CurrentEffect == Effect.None)
@@ -270,7 +270,7 @@ public class EnemyController : MonoBehaviour
                 {
                     CurrentState = EnemyState.Die;
                 }
-                
+
                 Coroutine_running = false;
             }));
         }
