@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         var IngameWeapon = DataController.Instance.inGameWeapons;
         var InGameBaseData = DataController.Instance.InGameBaseData;
         this.elementalType = IngameWeapon.Type;
-        ATK = (int)(IngameWeapon.ATK + InGameBaseData.Damage);
+        ATK = (int)(IngameWeapon.ATK );
         ATKspeed = IngameWeapon.ATKspeed;
         ATKplus = IngameWeapon.ATKplus;
         BulletSpeed = IngameWeapon.BulletSpeed;

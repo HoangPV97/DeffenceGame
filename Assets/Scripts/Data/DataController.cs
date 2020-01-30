@@ -300,58 +300,6 @@ public class DataController : Singleton<DataController>
             stageEnemyDataBase = GameEnemyDataBase.GetStageEnemyDataBase(CurrentSelected).Clone()
         };
 
-        // load Weapon data
-        // GameData.CurrentSelectedWeapon
-        var slwp = GetGameDataWeapon(GameData.CurrentSelectedWeapon);
-        var wp = GetDataBaseWeapons(slwp.Type, slwp.WeaponTierLevel.Tier);
-        inGameWeapons = new InGameWeapon
-        {
-            Type = wp.Type,
-            Tier = wp.Tier,
-            Level = slwp.WeaponTierLevel.Level,
-            ATK = (wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage) * InGameBaseData.achi_AddedDmgWeaponAlliance * InGameBaseData.achi_AddedDmgWeapon,
-            ATKplus=wp.ATKplus,
-            ATKspeed = wp.GetATKspeed(slwp.WeaponTierLevel.Level),
-            BulletSpeed = wp.BulletSpeed,
-        };
-
-        // load alliance data
-        //Load slot 1
-        if (GameData.Slot1 != Elemental.None)
-        {
-            //load
-            var sl1 = GetGameAlliance(GameData.Slot1);
-            var wp1 = GetAllianceDataBases(sl1.Type, sl1.WeaponTierLevel.Tier);
-            IngameAlliance1 = new IngameAlliance
-            {
-                Type = wp1.weapons.Type,
-                Tier = wp1.weapons.Tier,
-                Level = sl1.WeaponTierLevel.Level,
-                ATK = wp1.weapons.GetATK(sl1.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
-                ATKspeed = wp1.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
-                ATKRange = wp1.GetATKRange(slwp.WeaponTierLevel.Level),
-                BulletSpeed = wp1.weapons.BulletSpeed
-            };
-        }
-
-        //Load slot 2
-        if (GameData.Slot2 != Elemental.None)
-        {
-            //load
-            var sl2 = GetGameAlliance(GameData.Slot2);
-            var wp2 = GetAllianceDataBases(sl2.Type, sl2.WeaponTierLevel.Tier);
-            IngameAlliance2 = new IngameAlliance
-            {
-                Type = wp2.weapons.Type,
-                Tier = wp2.weapons.Tier,
-                Level = sl2.WeaponTierLevel.Level,
-                ATK = wp2.weapons.GetATK(sl2.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
-                ATKspeed = wp2.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
-                ATKRange = wp2.GetATKRange(slwp.WeaponTierLevel.Level),
-                BulletSpeed = wp2.weapons.BulletSpeed
-            };
-        }
-
         // load base
         InGameBaseData = new BaseData();
         SaveGameTierLevel sgd, sgd1, sgd2, sgd3, sgd4;
@@ -483,6 +431,58 @@ public class DataController : Singleton<DataController>
         InGameBaseData.achi_AddedDmgAllianceFire += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_10) / 100;
         InGameBaseData.achi_AddedDmgWeapon += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_11) / 100 + GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_13) / 100;
         InGameBaseData.achi_AddedDmgAlliance += GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_12) / 100 + GetAchivementReward(ACHIEVEMENT_TYPE.ACHIEVEMENT_14) / 100;
+
+        // load Weapon data
+        // GameData.CurrentSelectedWeapon
+        var slwp = GetGameDataWeapon(GameData.CurrentSelectedWeapon);
+        var wp = GetDataBaseWeapons(slwp.Type, slwp.WeaponTierLevel.Tier);
+        inGameWeapons = new InGameWeapon
+        {
+            Type = wp.Type,
+            Tier = wp.Tier,
+            Level = slwp.WeaponTierLevel.Level,
+            ATK = (wp.GetATK(slwp.WeaponTierLevel.Level) + InGameBaseData.Damage) * InGameBaseData.achi_AddedDmgWeaponAlliance * InGameBaseData.achi_AddedDmgWeapon,
+            ATKplus = wp.ATKplus,
+            ATKspeed = wp.GetATKspeed(slwp.WeaponTierLevel.Level),
+            BulletSpeed = wp.BulletSpeed,
+        };
+
+        // load alliance data
+        //Load slot 1
+        if (GameData.Slot1 != Elemental.None)
+        {
+            //load
+            var sl1 = GetGameAlliance(GameData.Slot1);
+            var wp1 = GetAllianceDataBases(sl1.Type, sl1.WeaponTierLevel.Tier);
+            IngameAlliance1 = new IngameAlliance
+            {
+                Type = wp1.weapons.Type,
+                Tier = wp1.weapons.Tier,
+                Level = sl1.WeaponTierLevel.Level,
+                ATK = wp1.weapons.GetATK(sl1.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
+                ATKspeed = wp1.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
+                ATKRange = wp1.GetATKRange(slwp.WeaponTierLevel.Level),
+                BulletSpeed = wp1.weapons.BulletSpeed
+            };
+        }
+
+        //Load slot 2
+        if (GameData.Slot2 != Elemental.None)
+        {
+            //load
+            var sl2 = GetGameAlliance(GameData.Slot2);
+            var wp2 = GetAllianceDataBases(sl2.Type, sl2.WeaponTierLevel.Tier);
+            IngameAlliance2 = new IngameAlliance
+            {
+                Type = wp2.weapons.Type,
+                Tier = wp2.weapons.Tier,
+                Level = sl2.WeaponTierLevel.Level,
+                ATK = wp2.weapons.GetATK(sl2.WeaponTierLevel.Level) * InGameBaseData.achi_AddedDmgWeaponAlliance,
+                ATKspeed = wp2.weapons.GetATKspeed(slwp.WeaponTierLevel.Level),
+                ATKRange = wp2.GetATKRange(slwp.WeaponTierLevel.Level),
+                BulletSpeed = wp2.weapons.BulletSpeed
+            };
+        }
     }
 
     public Weapons GetDataBaseWeapons(Elemental elemental, int Tier)
