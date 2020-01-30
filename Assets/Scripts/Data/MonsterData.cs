@@ -12,6 +12,7 @@ public class MonsterData
     public float MoveSpeed;
     public float Armor;
     public float Growth;
+    public float GrowthATK;
     public float BulletSpeed;
 }
 [System.Serializable]
@@ -52,7 +53,7 @@ public class AllianceData
         return ATKRange[ATKRange.Count - 1];
     }
 }
-
+[System.Serializable]
 public class AllianceDataBase
 {
     public List<AllianceData> AllianceData;
