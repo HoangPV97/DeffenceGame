@@ -40,6 +40,7 @@ public class EnemyController : MonoBehaviour
     {
         renderer = skeletonAnimation.GetComponent<MeshRenderer>();
         gameEffect = GetComponent<GameEffect>();
+        gameEffect.SetEffect(Effect.None);
     }
     public void SetDirection(Vector2 _direction)
     {
@@ -132,16 +133,17 @@ public class EnemyController : MonoBehaviour
     public virtual void DealDamge(int _damage, float _damageplus = 0f)
     {
         canvas.gameObject.SetActive(true);
-        if (_damage > enemy.health.CurrentHealth)
+        int TotalDamage = _damage + Mathf.RoundToInt(_damageplus);
+        if (TotalDamage > enemy.health.CurrentHealth)
         {
-            _damage = (int)enemy.health.CurrentHealth;
+            TotalDamage = (int)enemy.health.CurrentHealth;
         }
-        SpawnDamageText("DAMAGE", gameObject.transform.position, _damage);
-        if (_damageplus > 0)
-        {
-            SpawnDamageText("ELEMENT_DAMAGE", gameObject.transform.position + new Vector3(0.4f, 1f, 0), (int)_damageplus);
-        }
-        enemy.health.ReduceHealth(_damage + (int)_damageplus);
+        SpawnDamageText("DAMAGE", gameObject.transform.position, TotalDamage);
+        //if (_damageplus > 0)
+        //{
+        //    SpawnDamageText("ELEMENT_DAMAGE", gameObject.transform.position + new Vector3(0.6f, 1f, 0), Mathf.RoundToInt(_damageplus));
+        //}
+        enemy.health.ReduceHealth(TotalDamage);
         if (enemy.health.CurrentHealth <= 0)
         {
             isMove = true;

@@ -85,33 +85,36 @@ public class GameController : MonoBehaviour
         if (gameStage2.HardMode == 0)
             gameStage2.HardMode = 1;
 
-        if (Level == 5)
+        if (gameStage.HardMode == 1)
         {
-            DataController.Instance.UnLockAlliance(Elemental.Wind);//Wind            
-        }
-        if (Level == 15)
-        {
-            DataController.Instance.UnLockAlliance(Elemental.Earth);
-        }
-        if (Level == 25)
-        {
-            DataController.Instance.UnLockAlliance(Elemental.Ice);
-        }
-        if (Level == 35)
-        {
-            DataController.Instance.UnLockAlliance(Elemental.Fire);
-        }
-        if (Level == 10)
-        {
-            DataController.Instance.UnLockWeapon(Elemental.Earth);
-        }
-        if (Level == 20)
-        {
-            DataController.Instance.UnLockWeapon(Elemental.Ice);
-        }
-        if (Level == 30)
-        {
-            DataController.Instance.UnLockWeapon(Elemental.Fire);
+            if (Level == 5)
+            {
+                DataController.Instance.UnLockAlliance(Elemental.Wind);//Wind            
+            }
+            if (Level == 15)
+            {
+                DataController.Instance.UnLockAlliance(Elemental.Earth);
+            }
+            if (Level == 25)
+            {
+                DataController.Instance.UnLockAlliance(Elemental.Ice);
+            }
+            if (Level == 35)
+            {
+                DataController.Instance.UnLockAlliance(Elemental.Fire);
+            }
+            if (Level == 10)
+            {
+                DataController.Instance.UnLockWeapon(Elemental.Earth);
+            }
+            if (Level == 20)
+            {
+                DataController.Instance.UnLockWeapon(Elemental.Ice);
+            }
+            if (Level == 30)
+            {
+                DataController.Instance.UnLockWeapon(Elemental.Fire);
+            }
         }
         //  WingamePanel.SetActive(true);
         float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health) * 100;
@@ -164,7 +167,6 @@ public class GameController : MonoBehaviour
         //}
 
         GameplayController.Instance.TotalGoldDrop += GameplayController.Instance.GoldEachEnemy + DataController.Instance.InGameBaseData.achi_AddedGoldKilled;
-        Debug.Log("Total Gold Drop In Game : " + GameplayController.Instance.TotalGoldDrop);
         EnemyLive -= value;
         if (EnemyLive == 0)
             WinGame();

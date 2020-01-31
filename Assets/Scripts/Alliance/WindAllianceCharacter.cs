@@ -24,7 +24,7 @@ public class WindAllianceCharacter : AllianceController
     }
     public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
     {
-        ATK = (int)(atk * DataController.Instance.InGameBaseData.achi_AddedDmgAllianceWind);
+        ATK =Mathf.RoundToInt(atk * DataController.Instance.InGameBaseData.achi_AddedDmgAllianceWind);
         base.SetDataWeapon(elemental, Atkspeed, atk, BulletSpeed, _range);
     }
     public override void Shoot()

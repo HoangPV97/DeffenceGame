@@ -121,7 +121,7 @@ public class IceAllianceCharacter : AllianceController
 
     public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
     {
-        ATK = (int)(atk* DataController.Instance.InGameBaseData.achi_AddedDmgAllianceIce);
+        ATK = Mathf.RoundToInt(atk* DataController.Instance.InGameBaseData.achi_AddedDmgAllianceIce);
         base.SetDataWeapon(elemental, Atkspeed, atk, BulletSpeed, _range);
     }
     public override void Shoot()

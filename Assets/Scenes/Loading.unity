@@ -233,11 +233,13 @@ MonoBehaviour:
     MaxStage: 0
   GameEnemyDataBase:
     stageEnemies: []
+  AllianceDataBases:
+    AllianceData: []
   DefaultData: {fileID: 0}
   ItemDataBase:
     Items: []
-  BossDataBase_Wind:
-    BossDataBase_Wind: []
+  BossStageDataBase:
+    StageEnemiesBossDataBase: []
   GameData:
     Archery:
       Tier: 0
@@ -264,8 +266,10 @@ MonoBehaviour:
     CurrentSelectedWeapon: 0
     Slot1: 0
     Slot2: 0
+    UNLOCK_UI: NONE
     gameDataQuests: []
     gameDataQuestLevels: 
+    gameDataAchievements: []
   StageData:
     Level: 0
     HardMode: 0
@@ -283,6 +287,7 @@ MonoBehaviour:
     Tier: 0
     Level: 0
     ATK: 0
+    ATKplus: 0
     ATKspeed: 0
     BulletSpeed: 0
     CritChance: 0
@@ -321,6 +326,18 @@ MonoBehaviour:
     MultiShotAddedAttributePercent: 0
     ReduceCooldown: 0
     IncreaseSpellDamage: 0
+    achi_AddedGoldKilled: 0
+    achi_AddedDmgWeaponAlliance: 1
+    achi_AddedDmgSpellWind: 1
+    achi_AddedDmgSpellEarth: 1
+    achi_AddedDmgSpellIce: 1
+    achi_AddedDmgSpellFire: 1
+    achi_AddedDmgAllianceWind: 1
+    achi_AddedDmgAllianceEarth: 1
+    achi_AddedDmgAllianceIce: 1
+    achi_AddedDmgAllianceFire: 1
+    achi_AddedDmgWeapon: 1
+    achi_AddedDmgAlliance: 1
   GoldInGame: 0
 --- !u!4 &184790057
 Transform:

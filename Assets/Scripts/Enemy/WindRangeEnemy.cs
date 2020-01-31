@@ -13,13 +13,6 @@ public class WindRangeEnemy : EnemyController, IWindEffectable
         enemy.range += Random.Range(-1,1);
     }
     [SerializeField] private GameObject Barrel;
-    // Update is called once per frame
-    //protected override void Update()
-    //{
-        
-    //    base.Update();
-    //    CheckAttack();
-    //}
     public void Attack()
     {
         if(isAttack)

@@ -42,7 +42,6 @@ public class BossEarth : EnemyController
             if (transform.position == newPosition)
             {
                 isMove = false;
-                enemy.damage *= 2;
                 IsImmortal = true;
                 skeletonAnimation.AnimationState.SetAnimation(0, "skill_start", false);
                 newPosition = Tower.transform.position;
@@ -59,7 +58,7 @@ public class BossEarth : EnemyController
     }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
-        if ((!Coroutine_running || _effect != gameEffect.CurrentEffect) && _effect != Effect.StunBullet)
+        if ((!Coroutine_running || _effect != gameEffect.CurrentEffect) && _effect != Effect.StunBullet && !IsImmortal)
         {
             StartCoroutine(WaitingEffect(_time, () =>
             {
@@ -205,11 +204,11 @@ public class BossEarth : EnemyController
         yield return new WaitForSeconds(_time);
         RollAttack = false;
         IsPower = true;
-        IsImmortal = false;
         newPosition = Tower.transform.position;
         skeletonAnimation.AnimationState.SetAnimation(0, "skill_loop", false);
         isMove = true;
         isAttack = false;
+        IsImmortal = false;
     }
     IEnumerator IEWaitingStun()
     {
@@ -217,6 +216,7 @@ public class BossEarth : EnemyController
         int LevelBoss = DataController.Instance.StageData.Level;
         var bd = DataController.Instance.BossStageDataBase;
         DealEffect(Effect.Stun, transform.position + new Vector3(0, 0.5f, 0), 2);
+        IsImmortal = false;
         enemy.damage /= (int)bd.GetWaveEnemyBoss(LevelBoss).DamagePlus;
         enemy.speed /= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
         RandomPosition();
@@ -247,6 +247,7 @@ public class BossEarth : EnemyController
             GameplayController.Instance.spawnPosition[se.Position].position, transform.rotation);
         m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
         GameController.Instance.EnemyLive += 1;
+        GameController.Instance.EnemyNumber += 1;
         if (se.Number > 0)
         {
             StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));

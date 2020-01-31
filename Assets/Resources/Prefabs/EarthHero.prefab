@@ -376,12 +376,14 @@ MonoBehaviour:
   preCharacterState: 0
   skeletonAnimation: {fileID: 3968810716353410819}
   attack: {fileID: 11400000, guid: 1bd678868c2f0664f94a564435a348d8, type: 2}
+  attack2: {fileID: 11400000, guid: b2cc54a2b2ce19b4797df29fea14837d, type: 2}
   idle: {fileID: 11400000, guid: 4a866a5ba310ca04388357d90b379d23, type: 2}
   eventName: onatk
   CircleCollider2D: {fileID: 3968810717896949311}
   ATK: 0
   ATKspeed: 0
   BulletSpeed: 0
+  ATKplus: 0
   ArcheryDamage: 0
   CriticalChance: 0
   KnockBackChance: 0

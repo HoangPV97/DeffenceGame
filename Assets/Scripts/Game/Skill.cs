@@ -11,7 +11,7 @@ public class Skill : MonoBehaviour
     public Image CountdownGo;
     public float CountdownTime;
     public float manaCost;
-    public int Damage;
+    public float Damage;
     public float DamagePlus;
     public Elemental elemental;
     protected bool StartCountdown = false;
@@ -33,16 +33,16 @@ public class Skill : MonoBehaviour
             case Elemental.None:
                 break;
             case Elemental.Wind:
-                Damage*= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellWind;
+                Damage*= DataController.Instance.InGameBaseData.achi_AddedDmgSpellWind;
                 break;
             case Elemental.Ice:
-                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellIce;
+                Damage *= DataController.Instance.InGameBaseData.achi_AddedDmgSpellIce;
                 break;
             case Elemental.Earth:
-                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellEarth;
+                Damage *= DataController.Instance.InGameBaseData.achi_AddedDmgSpellEarth;
                 break;
             case Elemental.Fire:
-                Damage *= (int)DataController.Instance.InGameBaseData.achi_AddedDmgSpellFire;
+                Damage *=DataController.Instance.InGameBaseData.achi_AddedDmgSpellFire;
                 break;
         }
         CountdownTime *= DataController.Instance.InGameBaseData.ReduceCooldown;
@@ -64,7 +64,6 @@ public class Skill : MonoBehaviour
         }
         if (Tower.Mana.CurrentMana < manaCost && !isLowedMana)
         {
-            Debug.Log("Lowmana");
             isLowedMana = true;
             variableJoystick.LowMana.gameObject.SetActive(true);
             float time = ((manaCost - Tower.Mana.CurrentMana) / Tower.Mana.RecoverManaValue) * Tower.Mana.RecoverManaTime;

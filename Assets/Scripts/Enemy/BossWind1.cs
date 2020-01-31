@@ -37,7 +37,7 @@ public class BossWind1 : EnemyController
     }
     protected override void Update()
     {
-        if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None && !isChargeAttack)
+        if (!isAttack && isMove && gameEffect.CurrentEffect == Effect.None && !isChargeAttack && isLive)
         {
             Move(enemy.speed);
         }
@@ -119,20 +119,21 @@ public class BossWind1 : EnemyController
         if (enemy.health.CurrentHealth <= enemy.health.health / 2 && enemy.health.CurrentHealth > enemy.health.health / 4 && !frenetic_50)
         {
             int LevelBoss = DataController.Instance.StageData.Level;
-            var sd = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
-            for (int i = 0; i < sd.stageEnemyDataBase.stageEnemies.Count; i++)
+            var bd = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
+            for (int i = 0; i < bd.stageEnemyDataBase.stageEnemies.Count; i++)
             {
-                StartCoroutine(IESpawnEnemyBoss(sd.stageEnemyDataBase, i, sd.stageEnemyDataBase.stageEnemies[i].StartTime));
+                StartCoroutine(IESpawnEnemyBoss(bd.stageEnemyDataBase, i, bd.stageEnemyDataBase.stageEnemies[i].StartTime));
             }
+            enemy.speed *= bd.SpeedPlus;
             frenetic_50 = true;
         }
         else if (enemy.health.CurrentHealth <= enemy.health.health / 4 && !frenetic_25)
         {
             frenetic_25 = true;
             int LevelBoss = DataController.Instance.StageData.Level;
-            var bd = DataController.Instance.BossStageDataBase;
-            enemy.speed *= bd.GetWaveEnemyBoss(LevelBoss).SpeedPlus;
-            timeDelayAttack = bd.GetWaveEnemyBoss(LevelBoss).DelayAttack;
+            var bd = DataController.Instance.BossStageDataBase.GetWaveEnemyBoss(LevelBoss);
+            enemy.speed *= bd.SpeedPlus;
+            timeDelayAttack = bd.DelayAttack;
         }
     }
     private void AttackAndMove()

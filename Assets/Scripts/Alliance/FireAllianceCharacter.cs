@@ -22,7 +22,7 @@ public class FireAllianceCharacter : AllianceController
     }
     public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
     {
-        ATK = (int)(atk* DataController.Instance.InGameBaseData.achi_AddedDmgAllianceFire);
+        ATK =Mathf.RoundToInt(atk* DataController.Instance.InGameBaseData.achi_AddedDmgAllianceFire);
         base.SetDataWeapon(elemental, Atkspeed, atk, BulletSpeed, _range);
     }
     public override void Shoot()

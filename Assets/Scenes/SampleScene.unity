@@ -1402,6 +1402,7 @@ MonoBehaviour:
   Slot1: {fileID: 704362106}
   Slot2: {fileID: 291958627}
   Hero: {fileID: 719426}
+  BackgroundIngame: {fileID: 1892586426}
   CancelSkill: 0
   SkillButtons:
   - {fileID: 2052314187}

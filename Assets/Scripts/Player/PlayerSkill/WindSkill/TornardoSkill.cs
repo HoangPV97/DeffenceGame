@@ -55,7 +55,7 @@ public class TornardoSkill : MonoBehaviour
                 }
             }
 
-            tempTime = Tornardo.inflictedTime;
+            tempTime = 1f;
         }
         tempTime -= Time.deltaTime;
     }
@@ -65,7 +65,7 @@ public class TornardoSkill : MonoBehaviour
         float _countdown = Tornardo.totalTime;
         while (_countdown > 0)
         {
-            yield return new WaitForSeconds(Tornardo.inflictedTime);
+            yield return new WaitForSeconds(1f);
             _enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _enemy.transform.position, 0.5f);
             _enemy.DealDamge((int)Tornardo.DamagePerSecond);
             _countdown -= Time.deltaTime;

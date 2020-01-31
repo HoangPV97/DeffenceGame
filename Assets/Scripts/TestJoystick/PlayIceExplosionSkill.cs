@@ -24,6 +24,9 @@ public class PlayIceExplosionSkill : DragAndDropSkill
     }
     public override void SetUpData(int Tier = 1, int Level = 1, VariableJoystick variableJoystick = null)
     {
+        var SkilldataSaver = DataController.Instance.GetGameDataWeapon(elemental).GetSkillTierLevel(SkillID);
+        Tier = SkilldataSaver.Tier;
+        Level = SkilldataSaver.Level;
         Swi1 = JsonUtility.FromJson<SkillWeaponIce1>(ConectingFireBase.Instance.GetTextSkill(SkillID));
         this.variableJoystick = variableJoystick;
         manaCost = Swi1.GetManaCost(Tier, Level);

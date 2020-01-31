@@ -34,7 +34,6 @@ public class PlayWindSlashSkill : Skill
         manaCost = sww1.GetManaCost(Tier, Level);
         Speed = sww1.GetSkillSpeed(Tier, Level);
         Damage = sww1.GetDamage(Tier, Level);
-        DamagePlus=
         KnockBack = sww1.GetSkillAttributes("KnockbackDistance", Tier, Level);
         EffectedAoe = sww1.GetSkillAttributes("EffectedAoe", Tier, Level);
         CountdownTime = sww1.GetCoolDown(Tier, Level);
@@ -96,7 +95,7 @@ public class PlayWindSlashSkill : Skill
         GameObject effectStart = SpawnEffect(EffectName, GameplayController.Instance.PlayerController.transform.position, 0.7f);
         skill_1_player.transform.rotation = Quaternion.Euler(0, 0, _rotatioZ);
         WindSlashSkill WindSlashSkill = skill_1_player.GetComponent<WindSlashSkill>();
-        WindSlashSkill.SetDataBullet(Speed, Damage,DamagePlus);
+        WindSlashSkill.SetDataBullet(Speed, Mathf.RoundToInt(Damage),DamagePlus);
         WindSlashSkill.setDirection(direction);
         WindSlashSkill.setDataSkill(KnockBack, EffectedAoe);
         //Rigidbody2D rigidbody = skill_1_player.GetComponent<Rigidbody2D>();

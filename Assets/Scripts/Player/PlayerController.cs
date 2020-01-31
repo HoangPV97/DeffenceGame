@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 public enum CharacterState { Idle, Attack };
 public enum AutoMode { TurnOn, TurnOff };
 public class PlayerController : MonoBehaviour
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public Elemental elementalType;
     public CharacterState characterState, preCharacterState;
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset attack, idle;
+    public AnimationReferenceAsset attack, attack2, idle;
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string eventName;
     Vector2 direct;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         var IngameWeapon = DataController.Instance.inGameWeapons;
         var InGameBaseData = DataController.Instance.InGameBaseData;
         this.elementalType = IngameWeapon.Type;
-        ATK = (int)(IngameWeapon.ATK );
+        ATK = Mathf.RoundToInt(IngameWeapon.ATK );
         ATKspeed = IngameWeapon.ATKspeed;
         ATKplus = IngameWeapon.ATKplus;
         BulletSpeed = IngameWeapon.BulletSpeed;
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
     }
     public void SetDamageWeaPon(float _ATK)
     {
-        ATK += (int)(_ATK * ATK / 100);
+        ATK += Mathf.RoundToInt(_ATK * ATK / 100);
     }
     public void SetCriticalWeaPon(float _critical)
     {
@@ -135,12 +136,25 @@ public class PlayerController : MonoBehaviour
             Shoot(CriticalChance, KnockBackChance, QuickHandChance, MultiShotChance);
         }
     }
+    void GetAnimAttack()
+    {
+        if (attack2 != null)
+        {
+            int rdm = UnityEngine.Random.Range(0, 3);
+            if (rdm == 2)
+                skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
+            else
+                skeletonAnimation.AnimationState.SetAnimation(0, attack2, true);
+        }
+        else
+            skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
+        skeletonAnimation.timeScale = ATKspeed / 100;
+    }
     private void ChangeState()
     {
         if (characterState.Equals(CharacterState.Attack))
         {
-            skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-            skeletonAnimation.timeScale = ATKspeed / 100;
+            GetAnimAttack();
         }
         else if (characterState.Equals(CharacterState.Idle))
         {
@@ -156,6 +170,10 @@ public class PlayerController : MonoBehaviour
             idleStatus = false;
             characterState = CharacterState.Idle;
         }
+        else
+        {
+            GetAnimAttack();
+        }       
     }
 
     public void UpdateEnemy()
@@ -240,9 +258,9 @@ public class PlayerController : MonoBehaviour
     public void TwoMoreBullet()
     {
         BulletController mBullet1 = SpawnBullet(Quaternion.Euler(0, 0, 5) * direct, rotationZ, player.Bullet);
-        mBullet1.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100), ATKplus);
+        mBullet1.SetDataBullet(BulletSpeed, Mathf.RoundToInt(ATK * MultiShotDamage / 100), ATKplus);
         BulletController mBullet2 = SpawnBullet(Quaternion.Euler(0, 0, -5) * direct, rotationZ, player.Bullet);
-        mBullet2.SetDataBullet(BulletSpeed, (int)(ATK * MultiShotDamage / 100),ATKplus);
+        mBullet2.SetDataBullet(BulletSpeed, Mathf.RoundToInt(ATK * MultiShotDamage / 100),ATKplus);
     }
     public IEnumerator IEQuickHand(float _time, bool Multi)
     {

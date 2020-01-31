@@ -9,6 +9,7 @@ public class GameplayController : Singleton<GameplayController>
     public List<AllianceController> AllianceController;
     public Tower Tower;
     public GameObject Slot1, Slot2, Hero;
+    public SpriteRenderer BackgroundIngame;
     [Header("Skill button")]
     public bool CancelSkill = false;
     public List<VariableJoystick> SkillButtons = new List<VariableJoystick>();
@@ -20,6 +21,7 @@ public class GameplayController : Singleton<GameplayController>
     {
         LoadDataGamePlay();
         //ArrangeAlliance_Hero();
+        SetBackGroundIngame();
     }
     public void LoadDataGamePlay()
     {
@@ -197,5 +199,14 @@ public class GameplayController : Singleton<GameplayController>
                 AllianceController[i].transform.position = StartPos;
             }
         }
+    }
+    public void SetBackGroundIngame()
+    {
+        int level = 0;
+        if (DataController.Instance.StageData.Level % 10 == 0)
+            level = DataController.Instance.StageData.Level / 10;
+        else
+            level = DataController.Instance.StageData.Level / 10 + 1;
+        BackgroundIngame.sprite = Resources.Load<Sprite>("BackgroundIngame/bg_map" + level);
     }
 }
