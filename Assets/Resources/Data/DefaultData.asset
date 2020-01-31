@@ -222,12 +222,12 @@ MonoBehaviour:
   WeaponsUISkeletonDataAsset:
   - {fileID: 11400000, guid: 7e1b506072821c8459cf6bebea453b56, type: 2}
   - {fileID: 11400000, guid: 7e1b506072821c8459cf6bebea453b56, type: 2}
-  - {fileID: 11400000, guid: 7e1b506072821c8459cf6bebea453b56, type: 2}
+  - {fileID: 11400000, guid: 47376191fff54d248ae805356d7e8452, type: 2}
   - {fileID: 11400000, guid: 7e1b506072821c8459cf6bebea453b56, type: 2}
   AllianceUISkeletonDataAsset:
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
-  - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
+  - {fileID: 11400000, guid: 4b8c27b18ea41af468826df6466d172d, type: 2}
   - {fileID: 11400000, guid: b9ed013f14442d546bc0c517c9dacfe3, type: 2}
   dailyQuestDatabases:
   - _TYPE: 0

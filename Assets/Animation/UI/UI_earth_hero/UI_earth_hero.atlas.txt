@@ -1,0 +1,34 @@
+
+UI_earth_hero.png
+size: 964,932
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 2, 24
+  size: 462, 453
+  orig: 462, 453
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 2, 479
+  size: 477, 451
+  orig: 477, 451
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 481, 478
+  size: 465, 452
+  orig: 465, 452
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 466, 2
+  size: 493, 474
+  orig: 493, 474
+  offset: 0, 0
+  index: -1

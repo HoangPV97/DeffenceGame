@@ -45,15 +45,17 @@ public class UIHeroItem : MonoBehaviour
         Selected[0].SetActive(true);
         Selected[1].SetActive(true);
     }
-    public void SetupData()
+    public void SetupData(bool ignoreChange = false)
     {
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
-
-        Animator.Play("HeroItemDefault");
-        Equip.gameObject.SetActive(false);
-        Selected[0].SetActive(false);
-        Selected[1].SetActive(false);
+        if (!ignoreChange)
+        {
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            Animator.Play("HeroItemDefault");
+            Equip.gameObject.SetActive(false);
+            Selected[0].SetActive(false);
+            Selected[1].SetActive(false);
+        }
         string unlock = "Clear - {0}\n to \n Unlock";
         int LevelUnlock = 0;
         GameDataWeapon weapon;
@@ -74,6 +76,7 @@ public class UIHeroItem : MonoBehaviour
             {
                 LevelUnlock = 30;
             }
+            Icon.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_WEAPON_" + elemental.ToString().ToUpper()+ weapon.WeaponTierLevel.Tier);
         }
         else
         {
@@ -95,6 +98,7 @@ public class UIHeroItem : MonoBehaviour
             {
                 LevelUnlock = 35;
             }
+            Icon.sprite = DataController.Instance.DefaultData.LoadSprite("ICON_ALLIANCE_" + elemental.ToString().ToUpper() + weapon.WeaponTierLevel.Tier);
         }
         txtUnlock.text = string.Format(unlock, LevelUnlock);
         Lock.SetActive(weapon.WeaponTierLevel.Tier == 1 && weapon.WeaponTierLevel.Level == 0);
