@@ -234,6 +234,17 @@ public class UIPanelHeroAlliance : BaseUIView
         {
             Star[i].SetActive(i < data1.WeaponTierLevel.Tier);
         }
+        GetUIHeroItem(elemental).SetupData(true);
+    }
+
+    public UIHeroItem GetUIHeroItem(Elemental elemental)
+    {
+        for (int i = 0; i < UIHeroItems.Length; i++)
+        {
+            if (UIHeroItems[i].elemental == elemental)
+                return UIHeroItems[i];
+        }
+        return UIHeroItems[0];
     }
 
     UISkillItem GetUISkillItem(string SkillID)

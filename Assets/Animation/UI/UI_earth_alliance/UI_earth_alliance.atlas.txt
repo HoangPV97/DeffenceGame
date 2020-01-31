@@ -1,0 +1,34 @@
+
+UI_earth_alliance.png
+size: 932,860
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 475, 2
+  size: 453, 421
+  orig: 453, 421
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 475, 425
+  size: 453, 431
+  orig: 453, 431
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 2, 21
+  size: 453, 394
+  orig: 453, 394
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 2, 417
+  size: 471, 439
+  orig: 471, 439
+  offset: 0, 0
+  index: -1
