@@ -1,0 +1,41 @@
+
+fx_gacha.png
+size: 872,396
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arrow
+  rotate: false
+  xy: 660, 223
+  size: 163, 169
+  orig: 163, 169
+  offset: 0, 0
+  index: -1
+flagL
+  rotate: false
+  xy: 2, 2
+  size: 305, 390
+  orig: 305, 390
+  offset: 0, 0
+  index: -1
+shield
+  rotate: false
+  xy: 309, 41
+  size: 349, 351
+  orig: 349, 351
+  offset: 0, 0
+  index: -1
+spearB
+  rotate: false
+  xy: 660, 99
+  size: 152, 122
+  orig: 152, 122
+  offset: 0, 0
+  index: -1
+spearT
+  rotate: false
+  xy: 814, 75
+  size: 53, 146
+  orig: 53, 146
+  offset: 0, 0
+  index: -1
