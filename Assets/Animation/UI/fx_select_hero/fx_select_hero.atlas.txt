@@ -1,0 +1,13 @@
+
+fx_select_hero.png
+size: 172,328
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light
+  rotate: false
+  xy: 2, 2
+  size: 166, 323
+  orig: 166, 323
+  offset: 0, 0
+  index: -1
