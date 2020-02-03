@@ -94,9 +94,10 @@ MonoBehaviour:
   CountdownTime: 13
   manaCost: 0
   Damage: 0
+  DamagePlus: 0
   elemental: 0
   circle: {fileID: 4858672756582602106}
-  EffectName: HERO_EARTH_SKILL_START
+  EffectName: HERO_WIND_SKILL_START
   EffectTime: 0
   EffectedAoe: 0
   Swf1:

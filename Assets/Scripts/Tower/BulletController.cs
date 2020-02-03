@@ -11,13 +11,10 @@ public class BulletController : MonoBehaviour
     public float damagePlus;
     protected Vector3 dir = Vector3.zero;
     protected bool checkCollision;
-    #region Attribute bullet
-    public bool explosion;
-    public bool poison;
-    public bool stun;
-    public EnemyController nearEnemy;
-    private float timeStun = 2f;
-    #endregion
+    //#region Attribute bullet
+    //public bool explosion;
+    //public bool poison;
+    //#endregion
     protected virtual void Start()
     {
     }
@@ -91,24 +88,24 @@ public class BulletController : MonoBehaviour
             {
                 Despawn();
             }
-            #region Explosion Bullet
-            if (explosion)
-            {
-                ObjectPoolManager.Instance.SpawnObject("explosionBullet", this.transform.position, Quaternion.identity);
-                Despawn();
-            }
-            #endregion
-            #region StunBullet
-            if (stun)
-            {
-                enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, timeStun);
-            }
-            #endregion
-            if (bullet.KnockbackDistance != 0)
-            {
-                enemyController.KnockBack(bullet.KnockbackDistance);
-                bullet.KnockbackDistance = 0;
-            }
+            //#region Explosion Bullet
+            //if (explosion)
+            //{
+            //    ObjectPoolManager.Instance.SpawnObject("explosionBullet", this.transform.position, Quaternion.identity);
+            //    Despawn();
+            //}
+            //#endregion
+            //#region StunBullet
+            //if (stun)
+            //{
+            //    enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, timeStun);
+            //}
+            //#endregion
+            //if (bullet.KnockbackDistance != 0)
+            //{
+            //    enemyController.KnockBack(bullet.KnockbackDistance);
+            //    bullet.KnockbackDistance = 0;
+            //}
         }
     }
 }

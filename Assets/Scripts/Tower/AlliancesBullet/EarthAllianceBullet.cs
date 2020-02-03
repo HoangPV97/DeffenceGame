@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EarthAllianceBullet : BulletController
 {
+    public bool stun;
     public float StunTime;
     // Start is called before the first frame update
     protected override void Start()

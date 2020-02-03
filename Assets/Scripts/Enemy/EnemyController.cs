@@ -39,7 +39,6 @@ public class EnemyController : MonoBehaviour
     protected virtual void Start()
     {
         renderer = skeletonAnimation.GetComponent<MeshRenderer>();
-        gameEffect = GetComponent<GameEffect>();
         gameEffect.SetEffect(Effect.None);
     }
     public void SetDirection(Vector2 _direction)
@@ -62,6 +61,7 @@ public class EnemyController : MonoBehaviour
         isLive = true;
         distance = Vector3.Distance(transform.position, Tower.transform.position);
         DirectionMove = Vector2.down;
+        gameEffect.SetEffect(Effect.None);
         Move(enemy.speed);
     }
     // Update is called once per frame

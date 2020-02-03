@@ -20,13 +20,16 @@ public class IceAllianceCharacter : AllianceController
         }
     }
     #endregion
-    int numberTarget = 3;
-    float DamagePlus;
-    public List<EnemyController> targetList;
+    [SerializeField] private int SlowPercent=0;
+    [SerializeField] private int IncreaseElementDamage=0;
+    [SerializeField] private int numberTarget = 0;
     public override void Start()
     {
         base.Start();
-        targetList = new List<EnemyController>();
+        int tier = DataController.Instance.GetGameAlliance(elementalType).WeaponTierLevel.Tier;
+        SlowPercent = (int)GetAttributeData("SlowPercent", Elemental.Ice, tier);
+        IncreaseElementDamage = (int)GetAttributeData("IncreaseElementDamage", Elemental.Ice, tier);
+        numberTarget = (int)GetAttributeData("BulletNumber", Elemental.Ice, tier);
     }
     #region comment
     //public override void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed)
@@ -134,24 +137,15 @@ public class IceAllianceCharacter : AllianceController
             }
             characterState = CharacterState.Attack;
             GameObject bullet = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet, Barrel.transform.position, Quaternion.identity);
-            var alianceBullet = bullet.GetComponent<BulletController>();
+            var alianceBullet = bullet.GetComponent<IceAllianceBullet>();
             if (alianceBullet != null)
             {
                 alianceBullet.elementalBullet = elementalType;
                 alianceBullet.SetTarget(listEnemies[i]);
                 alianceBullet.setDirection(listEnemies[i].transform.position - transform.position);
                 alianceBullet.Move(listEnemies[i].transform.position - transform.position);
-                alianceBullet.SetDataBullet(BulletSpeed, ATK,DamagePlus);
+                alianceBullet.SetDataAllyBullet(BulletSpeed, ATK, IncreaseElementDamage,SlowPercent);
             }
         }
-    }
-    public void IceSkill(Vector3 _position)
-    {
-        GameObject iceskill = ObjectPoolManager.Instance.SpawnObject(Alliance.Bullet_Skill, _position, Quaternion.identity);
-        float particleTime = iceskill.GetComponentInChildren<ParticleSystem>().main.duration;
-        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
-        GameObject effectStart = ObjectPoolManager.Instance.SpawnObject(Alliance.EffectStart, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-        CheckDestroyEffect(effectStart, particleTime);
-        CheckDestroyEffect(iceskill, particleTime);
     }
 }

@@ -25,12 +25,12 @@ MonoBehaviour:
   - {fileID: 4205350128027674012, guid: 578b91448b562db40979095a95333d5b, type: 3}
   - {fileID: 4205350128027674012, guid: 3d3d0b22b6106c04cbf89c98bf232d74, type: 3}
   WeaponIceSkills:
-  - {fileID: 4205350128027674012, guid: 1d105355261a2c9479bc620aa02f2f2f, type: 3}
+  - {fileID: 4205350128027674012, guid: 8259b18ab80dfe249874ad51c15ddd12, type: 3}
   WeaponEarthSkills:
   - {fileID: 4205350128027674012, guid: 282b2ac3977791148b7c20d3d744668d, type: 3}
   - {fileID: 4205350128027674012, guid: 04bc9496d908321428a941af0d8f67ec, type: 3}
   - {fileID: 4205350128027674012, guid: 989a63fe24810b64e8fa20c12fac8d18, type: 3}
-  - {fileID: 4205350128027674012, guid: 04bc9496d908321428a941af0d8f67ec, type: 3}
+  - {fileID: 4205350128027674012, guid: 1142945a3b889fe4f89c07f0a47da5df, type: 3}
   WeaponFireSkills:
   - {fileID: 3346026367710059841, guid: f3f5b7611f7d04340951ff9fb9da7877, type: 3}
   AllianceWindSkills:
@@ -39,7 +39,10 @@ MonoBehaviour:
   - {fileID: 3346026367710059841, guid: a9b21560553b64141a81c7bef4dd8bd3, type: 3}
   - {fileID: 3346026367710059841, guid: 4e0e862d0984d3949baf8b78d5514470, type: 3}
   AllianceIceSkills:
-  - {fileID: 3346026367710059841, guid: 47fd60ea0241956409dfffd53b3aa6bd, type: 3}
+  - {fileID: 3346026367710059841, guid: d9bc2cf7fa2cf734b9c3f6fa8f352e9d, type: 3}
+  - {fileID: 3346026367710059841, guid: 8431ee5e7df212740995af3caf7fc78b, type: 3}
+  - {fileID: 3346026367710059841, guid: 45b2b7bdf20650c42b9728e4206926c1, type: 3}
+  - {fileID: 3346026367710059841, guid: bf4d15f0cdde732459e87cf9339a62ca, type: 3}
   AllianceEarthSkills:
   - {fileID: 3346026367710059841, guid: dcd297b28ff5eb14799ee3007b941be3, type: 3}
   AllianceFireSkills:
@@ -51,6 +54,34 @@ MonoBehaviour:
     SkillText: '{   "SkillID": "ALLIANCE_ICE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
       [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
       [     10,     20,     30   ],   "TimeEffect": [     3,     4,     5   ] }'
+  - SkillID: ALLIANCE_ICE_SKILL_2
+    SkillText: '{   "SkillID": "ALLIANCE_ICE_SKILL_2",   "SkillType": 1,   "baseSkills":
+      [     {       "Tier": 1,       "UpgradeItems": [         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         },         {           "Type":
+      1,           "Quality": 2000         }       ],       "SkillAttributes": [         {           "Attribute":
+      "IncreaseTimeEffect",           "Value": [             20,             40,             60,             80,             100,             120,             140,             160,             180,             200           ]         }       ]     }   ]
+      }'
+  - SkillID: ALLIANCE_ICE_SKILL_3
+    SkillText: '{"SkillID":"ALLIANCE_ICE_SKILL_3","SkillType":1,"baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"IncreaseDamage","Value":[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60]}]}]}'
+  - SkillID: ALLIANCE_ICE_SKILL_4
+    SkillText: '{   "SkillID": "ALLIANCE_ICE_SKILL_4",   "SkillType": 1,   "baseSkills":
+      [     {       "Tier": 1,       "EvolutionItems": [         {           "Type":
+      1,           "Quality": 2000         },         {           "Type": 1,           "Quality":
+      2000         }       ],       "SkillAttributes": [         {           "Attribute":
+      "IncreaseDamage",           "Value": [             20           ]         },         {           "Attribute":
+      "IncreaseEffectedTime",           "Value": [             0.5           ]         },         {           "Attribute":
+      "IncreaseFirerate",           "Value": [             20           ]         }       ]     }   ]
+      }'
   - SkillID: ALLIANCE_FIRE_SKILL_1
     SkillText: '{   "SkillID": "ALLIANCE_FIRE_SKILL_1",   "ManaCost": [     10,     20,     30   ],   "CoolDown":
       [     10,     20,     30   ],   "Damage": [     10,     20,     30   ],   "EffectedAoe":
@@ -215,7 +246,14 @@ MonoBehaviour:
   - SkillID: ALLIANCE_EARTH_SKILL_3
     SkillText: '{"SkillID":"ALLIANCE_EARTH_SKILL_3","SkillType":0,"baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}],"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}]}'
   - SkillID: ALLIANCE_EARTH_SKILL_4
-    SkillText: '{"SkillID":"ALLIANCE_EARTH_SKILL_4","SkillType":0,"baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}],"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}]}'
+    SkillText: '{   "SkillID": "ALLIANCE_WIND_SKILL_4",   "SkillType": 1,   "baseSkills":
+      [     {       "Tier": 1,       "EvolutionItems": [         {           "Type":
+      1,           "Quality": 2000         },         {           "Type": 1,           "Quality":
+      2000         }       ],       "SkillAttributes": [         {           "Attribute":
+      "IncreaseDamage",           "Value": [             20           ]         },         {           "Attribute":
+      "IncreaseEffectedTime",           "Value": [             0.5           ]         },         {           "Attribute":
+      "IncreaseFirerate",           "Value": [             20           ]         }       ]     }   ]
+      }'
   AssetBundleItem: {fileID: 4900000, guid: 3e3bf748a1a3d9e4193afc2e67652935, type: 3}
   Item: {fileID: 0}
   BossDataBase: {fileID: 4900000, guid: a9c22dcd68cf23547b487ac7cbda1129, type: 3}

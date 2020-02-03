@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alliance:
-    bullet: icealliancebullet
+    bullet: ICE_ALLIANCE_BULLET
     _name: 
     _level: 0
     _range: 12
@@ -300,9 +300,12 @@ MonoBehaviour:
   listEnemies: []
   ATK: 0
   ATKspeed: 0
+  ATKplus: 0
   BulletSpeed: 0
   CircleCollider2D: {fileID: 1397725713964813292}
-  targetList: []
+  SlowPercent: 0
+  IncreaseElementDamage: 0
+  numberTarget: 0
 --- !u!58 &1397725713964813292
 CircleCollider2D:
   m_ObjectHideFlags: 0

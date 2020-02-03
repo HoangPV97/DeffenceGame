@@ -8,6 +8,7 @@ public class WindAllianceBullet : BulletController
     public int numberBounce;
     public float DecreaseDamageBounce;
     public bool bounce;
+    public EnemyController nearEnemy;
     protected override void Start()
     {
         elementalBullet = Elemental.Wind;

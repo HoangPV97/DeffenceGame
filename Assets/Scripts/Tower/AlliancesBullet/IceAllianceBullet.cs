@@ -4,37 +4,37 @@ using UnityEngine;
 
 public class IceAllianceBullet : BulletController
 {
-    private float IncreaseDamage;
-    private float number_Bullet;
-    private float percent_Slow = 20;
+    private float SlowPercent = 0;
     protected override void Start()
     {
         elementalBullet = Elemental.Ice;
         base.Start();
     }
-    public override void SetDataBullet(float _speed, int _damage, float _atkplus)
+    public void SetDataAllyBullet(float _speed, int _damage, float _atkplus, int _slowPercent)
     {
+        SlowPercent = _slowPercent;
         base.SetDataBullet(_speed, _damage, _atkplus);
-        number_Bullet = 3f;
     }
 
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
         if (_Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            EnemyController enemy = _Target.GetComponent<EnemyController>();
-            enemy.gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
-            enemy.Deal_Slow_Effect(2f, percent_Slow);
-            IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
-            if (elemental != null)
+            EnemyController enemyController = _Target.GetComponent<EnemyController>();
+            if (enemyController != null)
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
-            }
-            else
-            {
-                enemy.DealDamge(bullet.Damage, 0);
-            }
-            Despawn();
+                enemyController.gameEffect.SpawnEffect("HERO_ICE_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+                enemyController.Deal_Slow_Effect(2f, SlowPercent);
+                if (enemyController.enemy.elemental.Equals(Elemental.Fire))
+                {
+                    enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                }
+                else
+                {
+                    enemyController.DealDamge(bullet.Damage, 0);
+                }
+                Despawn();
+            }     
         }
         base.OnTriggerEnter2D(_Target);
     }

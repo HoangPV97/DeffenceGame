@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public float MultiShotAddedAttributePercent;
     private bool quickShoot;
 
+    [SerializeField] private bool ChangeAttackHand = true;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -56,14 +57,16 @@ public class PlayerController : MonoBehaviour
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
         skeletonAnimation.AnimationState.Complete += OnAttack;
+        skeletonAnimation.AnimationState.Event += ChangeHand;
         currentMode = AutoMode.TurnOff;
     }
+
     public void SetDataWeapon()
     {
         var IngameWeapon = DataController.Instance.inGameWeapons;
         var InGameBaseData = DataController.Instance.InGameBaseData;
         this.elementalType = IngameWeapon.Type;
-        ATK = Mathf.RoundToInt(IngameWeapon.ATK );
+        ATK = Mathf.RoundToInt(IngameWeapon.ATK);
         ATKspeed = IngameWeapon.ATKspeed;
         ATKplus = IngameWeapon.ATKplus;
         BulletSpeed = IngameWeapon.BulletSpeed;
@@ -138,13 +141,9 @@ public class PlayerController : MonoBehaviour
     }
     void GetAnimAttack()
     {
-        if (attack2 != null)
+        if (attack2 != null && ChangeAttackHand)
         {
-            int rdm = UnityEngine.Random.Range(0, 3);
-            if (rdm == 2)
-                skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
-            else
-                skeletonAnimation.AnimationState.SetAnimation(0, attack2, true);
+            skeletonAnimation.AnimationState.SetAnimation(0, attack2, true);
         }
         else
             skeletonAnimation.AnimationState.SetAnimation(0, attack, true);
@@ -162,7 +161,13 @@ public class PlayerController : MonoBehaviour
             skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
         }
     }
-
+    private void ChangeHand(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name.Equals(eventName))
+        {
+            ChangeAttackHand = !ChangeAttackHand;
+        }
+    }
     private void OnAttack(TrackEntry trackEntry)
     {
         if (idleStatus)
@@ -170,10 +175,6 @@ public class PlayerController : MonoBehaviour
             idleStatus = false;
             characterState = CharacterState.Idle;
         }
-        else
-        {
-            GetAnimAttack();
-        }       
     }
 
     public void UpdateEnemy()
@@ -199,6 +200,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (listEnemies.Count <= 0 && currentMode == AutoMode.TurnOn)
         {
+            player.target = null;
             characterState = CharacterState.Idle;
         }
     }
@@ -209,7 +211,7 @@ public class PlayerController : MonoBehaviour
         mBullet.SetTarget(player.target);
         mBullet.setDirection(_direction);
         mBullet.elementalBullet = elementalType;
-        mBullet.SetDataBullet(BulletSpeed, ATK,ATKplus);
+        mBullet.SetDataBullet(BulletSpeed, ATK, ATKplus);
         return mBullet;
     }
     public void Shoot(float _critical, float _knockback, float _quickhand, bool _multiShot)
@@ -221,8 +223,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            direct = player.target.gameObject.transform.position - Barrel.transform.position;
-            rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+            if (player.target != null)
+            {
+                direct = player.target.gameObject.transform.position - Barrel.transform.position;
+                rotationZ = Mathf.Atan2(direct.y, direct.x) * Mathf.Rad2Deg;
+            }
         }
         BulletController mBullet = SpawnBullet(direct, rotationZ, player.Bullet);
         //random Knockback
@@ -260,7 +265,7 @@ public class PlayerController : MonoBehaviour
         BulletController mBullet1 = SpawnBullet(Quaternion.Euler(0, 0, 5) * direct, rotationZ, player.Bullet);
         mBullet1.SetDataBullet(BulletSpeed, Mathf.RoundToInt(ATK * MultiShotDamage / 100), ATKplus);
         BulletController mBullet2 = SpawnBullet(Quaternion.Euler(0, 0, -5) * direct, rotationZ, player.Bullet);
-        mBullet2.SetDataBullet(BulletSpeed, Mathf.RoundToInt(ATK * MultiShotDamage / 100),ATKplus);
+        mBullet2.SetDataBullet(BulletSpeed, Mathf.RoundToInt(ATK * MultiShotDamage / 100), ATKplus);
     }
     public IEnumerator IEQuickHand(float _time, bool Multi)
     {

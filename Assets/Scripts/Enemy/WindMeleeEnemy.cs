@@ -6,7 +6,11 @@ using UnityEngine;
 
 public class WindMeleeEnemy : EnemyController, IWindEffectable
 {
+    protected override void Start()
+    {
 
+        base.Start();
+    }
     public void Attack()
     {
         if (Tower != null && isAttack && !disableAttack)

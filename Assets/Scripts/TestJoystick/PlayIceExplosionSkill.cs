@@ -44,7 +44,6 @@ public class PlayIceExplosionSkill : DragAndDropSkill
     {
         GameObject Poison_Skill = SpawnEffect(SkillID, _position, EffectTime);
         Poison_Skill.GetComponent<SlowSkill>().SetSkillData(EffectTime, SlowdownPercent, Damage, EffectedAoe);
-        SoundManager.Instance.PlayClipOneShot(SoundManager.Instance.Explosion);
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
     }
 }

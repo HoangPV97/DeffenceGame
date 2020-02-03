@@ -13,31 +13,29 @@ public class IcePlayerBullet : BulletController
             base.FixedUpdate();
         }
     }
-    public void DirectShooting(Vector2 _direction)
-    {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<Rigidbody2D>().velocity = _direction.normalized * 50 * bullet.Speed * Time.deltaTime;
-    }
     protected override void OnTriggerEnter2D(Collider2D _Target)
     {
-        if (_Target.gameObject.tag.Equals(bullet.TargetTag))
-        {
-            EnemyController enemy = _Target.GetComponent<EnemyController>();
-           // gameEffect.SpawnEffect("iceimpact", enemy.transform.position, 0.5f);
-            IFireEffectable elemental = enemy.GetComponent<IFireEffectable>();
-            if (elemental != null)
-            {
-                enemy.DealDamge( bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
-            }
-            else
-            {
-                enemy.DealDamge(bullet.Damage, 0);
-            }
-            if (SeekTarget)
-            {
-                Despawn();
-            }
-        }
         base.OnTriggerEnter2D(_Target);
+        if (_Target.gameObject.tag.Equals(bullet.TargetTag) && !checkCollision)
+        {
+            checkCollision = true;
+            EnemyController enemyController = _Target.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                enemyController.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+                if (enemyController.enemy.elemental == Elemental.Fire)
+                {
+                    enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                }
+                else
+                {
+                    enemyController.DealDamge(bullet.Damage, 0);
+                }
+                if (SeekTarget)
+                {
+                    Despawn();
+                }
+            }   
+        }
     }
 }

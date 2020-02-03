@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffDamageWindSpell : Skill
+public class BuffDamageIceSpell : Skill
 {
     private int BuffStats;
     [SerializeField] SkillAllianceWind3 SkillAllianceWind3;
@@ -18,11 +18,10 @@ public class BuffDamageWindSpell : Skill
     // Start is called before the first frame update
     protected override void Start()
     {
-        List<Skill> WindSkills = GameplayController.Instance.GetElementSkills(Elemental.Wind);
-        for (int i = 0; i < WindSkills.Count; i++)
+        List<Skill> IceSkills = GameplayController.Instance.GetElementSkills(Elemental.Wind);
+        for (int i = 0; i < IceSkills.Count; i++)
         {
-            WindSkills[i].Damage *= (1 + BuffStats / 100);
+            IceSkills[i].Damage *= (1 + BuffStats / 100);
         }
     }
-
 }

@@ -15,7 +15,6 @@ public class Alliance
     public float rateOfFire { get => _rateOfFire; set => _rateOfFire = value; }
     public float Armor { get => _armor; set => _armor = value; }
     public string Bullet { get => bullet; set => bullet = value; }
-    public string Bullet_Skill { get => _bulletSkill; set => _bulletSkill = value; }
     public string EffectStart { get => _effectStart; set => _effectStart = value; }
 
     [SerializeField] private string bullet;
@@ -25,7 +24,6 @@ public class Alliance
     [SerializeField] private EnemyController _target;
     [SerializeField] private float _rateOfFire;
     [SerializeField] private float _armor;
-    [SerializeField] private string _bulletSkill;
     [SerializeField] private string _effectStart;
 
 }

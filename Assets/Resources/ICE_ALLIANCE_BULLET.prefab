@@ -23700,7 +23700,7 @@ GameObject:
   - component: {fileID: 6247332766306735023}
   - component: {fileID: 5301230275727484932}
   m_Layer: 0
-  m_Name: alliance_ice_bullet1
+  m_Name: ICE_ALLIANCE_BULLET
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28551,7 +28551,7 @@ MonoBehaviour:
     _knockbackDistance: 0
     _critical_Damage: 0
     _damagePlus: 0
-  SeekTarget: 0
+  SeekTarget: 1
   elementalBullet: 2
   damagePlus: 0
   explosion: 0

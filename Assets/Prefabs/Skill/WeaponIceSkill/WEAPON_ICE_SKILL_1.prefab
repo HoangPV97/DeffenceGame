@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205350128027674013}
   - component: {fileID: 9089203309815037579}
+  - component: {fileID: 7147165303385691776}
   m_Layer: 5
   m_Name: WEAPON_ICE_SKILL_1
   m_TagString: Untagged
@@ -58,13 +59,21 @@ MonoBehaviour:
   DamagePlus: 0
   elemental: 2
   circle: {fileID: 4393101909493608331}
-  EffectName: HERO_EARTH_SKILL_START
+  EffectName: HERO_ICE_SKILL_START
   EffectTime: 0
   EffectedAoe: 0
   Swi1:
     SkillID: 
     SkillType: 0
     baseSkills: []
+--- !u!222 &7147165303385691776
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205350128027674012}
+  m_CullTransparentMesh: 0
 --- !u!1 &4393101909493608331
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 07e88f46d2fafd347b44b6f98dd6f7b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a1a1084cf10dff4da0d618d9aece259, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
