@@ -35,6 +35,7 @@ public class UiUpgradeSkill : BaseUIView
         if (canUprage)
         {
             DataController.Instance.Gem -= GemCost;
+            DataController.Instance.SaveLastPlayGacha();
             var ListItem = skillData.GetUpgradeItems(saveGameTierLevel.Tier, saveGameTierLevel.Level);
             for (int i = 0; i < ListItem.Count; i++)
             {
@@ -48,6 +49,8 @@ public class UiUpgradeSkill : BaseUIView
                 MenuController.Instance.UIPanelForstress.ReSetUISkill(skillData.SkillID);
             DataController.Instance.Save();
         }
+        else
+            MenuController.Instance.GachafailUpgrade = true;
     }
 
 

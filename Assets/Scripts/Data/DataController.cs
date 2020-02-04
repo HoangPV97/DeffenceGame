@@ -24,6 +24,45 @@ public class DataController : Singleton<DataController>
     #region Data Player
     [SerializeField]
     private GameData GameData;
+    public int HighestLevelMode1
+    {
+        get
+        {
+            int lv = 0;
+            for (int i = 0; i < GameData.gameStages.Count; i++)
+                if (GameData.gameStages[i].HardMode >= 1 && GameData.gameStages[i].Level > lv)
+                {
+                    lv = GameData.gameStages[i].Level;
+                }
+            return lv;
+        }
+    }
+    public int HighestLevelMode2
+    {
+        get
+        {
+            int lv = 0;
+            for (int i = 0; i < GameData.gameStages.Count; i++)
+                if (GameData.gameStages[i].HardMode >= 2 && GameData.gameStages[i].Level > lv)
+                {
+                    lv = GameData.gameStages[i].Level;
+                }
+            return lv;
+        }
+    }
+    public int HighestLevelMode3
+    {
+        get
+        {
+            int lv = 0;
+            for (int i = 0; i < GameData.gameStages.Count; i++)
+                if (GameData.gameStages[i].HardMode >= 3 && GameData.gameStages[i].Level > lv)
+                {
+                    lv = GameData.gameStages[i].Level;
+                }
+            return lv;
+        }
+    }
     public bool CanEquipAlliance
     {
         get
@@ -124,11 +163,16 @@ public class DataController : Singleton<DataController>
     }
     #endregion
     private string dataPath = "";
+
+    public int WinGachaCount;
+    public bool ShowGachaFail;
     private void Start()
     {
         dataPath = Path.Combine(Application.persistentDataPath, "data.dat");
         DontDestroyOnLoad(gameObject);
         Language.ChangeLanguage(Languages.en);
+        WinGachaCount = 0;
+        ShowGachaFail = false;
     }
 
     public MonsterData GetMonsterData(string type)
@@ -627,6 +671,21 @@ public class DataController : Singleton<DataController>
         sgl.Level = 1;
     }
 
+    public void AddItemQuality(Item item)
+    {
+        if (item.Type == ITEM_TYPE.coin)
+        {
+            Gold += item.Quality;
+            return;
+        }
+        if (item.Type == ITEM_TYPE.gem)
+        {
+            Gem += item.Quality;
+            return;
+        }
+        GameData.AddItemQuality(item.Type, item.Quality);
+    }
+
     public void AddItemQuality(ITEM_TYPE type, int number)
     {
         GameData.AddItemQuality(type, number);
@@ -882,6 +941,16 @@ public class DataController : Singleton<DataController>
     public string GetStringUNLOCK_UI()
     {
         return GameData.UNLOCK_UI;
+    }
+
+    public float CheckLastPlayGacha()
+    {
+        return (float)(DateTime.Now - GameData.LastPlayGacha).TotalSeconds - 5 * 60;
+        //return (float)(DateTime.Now - GameData.LastPlayGacha).TotalSeconds - 1 * 60;
+    }
+    public void SaveLastPlayGacha()
+    {
+        GameData.LastPlayGacha = DateTime.Now;
     }
 }
 

@@ -6,6 +6,9 @@ using System;
 
 public class FortuneWheelManager : MonoBehaviour
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public int[] RewardChance;
     int NumberOfReward
     {
@@ -14,13 +17,20 @@ public class FortuneWheelManager : MonoBehaviour
             return RewardChance.Length;
         }
     }
-    private bool _isStarted;
+    public bool _isStarted;
+    public GameObject Circle;
     private float[] _sectorsAngles;
     private float _finalAngle;
     private float _startAngle = 0;
     private float _currentLerpRotationTime;
-    public GameObject Circle;
     private int Result = 0;
+    public delegate void TrackDelegate(int Result);
+    public event TrackDelegate Complete;
+
+    private void Start()
+    {
+        _isStarted = false;
+    }
     public void TurnWheel()
     {
         _currentLerpRotationTime = 0f;
@@ -45,11 +55,6 @@ public class FortuneWheelManager : MonoBehaviour
         _isStarted = true;
     }
 
-    private void GiveAwardByAngle()
-    {
-        Debug.Log(Result);
-    }
-
     void Update()
     {
         if (!_isStarted)
@@ -61,7 +66,7 @@ public class FortuneWheelManager : MonoBehaviour
             _currentLerpRotationTime = maxLerpRotationTime;
             _isStarted = false;
             _startAngle = _finalAngle % 360;
-            GiveAwardByAngle();
+            Complete(Result);
         }
         float t = _currentLerpRotationTime / maxLerpRotationTime;
         t = t * t * t * (t * (6f * t - 15f) + 10f);

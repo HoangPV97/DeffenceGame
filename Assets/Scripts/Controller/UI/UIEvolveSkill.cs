@@ -35,7 +35,7 @@ public class UIEvolveSkill : BaseUIView
         if (canEvolve)
         {
             DataController.Instance.AddSkillTier(skillData.SkillID);
-
+            DataController.Instance.SaveLastPlayGacha();
             DataController.Instance.Gem -= Gem;
             for (int i = 0; i < listItem.Count; i++)
             {
@@ -50,6 +50,8 @@ public class UIEvolveSkill : BaseUIView
             OnBtnCloseClick();
             // SetUpData(heroElemental);
         }
+        else
+            MenuController.Instance.GachafailUpgrade = true;
     }
 
     private void OnBtnCloseClick()

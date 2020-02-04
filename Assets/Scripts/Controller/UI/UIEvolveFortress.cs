@@ -69,6 +69,8 @@ public class UIEvolveFortress : BaseUIView
             OnBtnCloseClick();
             // SetUpData(heroElemental);
         }
+        else
+            MenuController.Instance.GachafailUpgrade = true;
     }
 
     void OnBtnCloseClick()

@@ -15,8 +15,25 @@ public class MenuController : Singleton<MenuController>
     public Stack<UITYPE> UIType = new Stack<UITYPE>();
     public UIDailyQuest UIDailyQuest;
     public UIUnlockWeaponAlliance UIUnlockWeaponAlliance;
+    public UIGacha UIGacha;
+    public UIButton BtnGacha;
     public UIButton BtnQuest;
+    public UIReward UIReward;
     public TextMeshProUGUI txtGold, txtGem;
+    bool _GachafailUpgrade;
+    public bool GachafailUpgrade
+    {
+        set
+        {
+            _GachafailUpgrade = value;
+            if (value)
+                CheckEnableGacha();
+        }
+        get
+        {
+            return _GachafailUpgrade;
+        }
+    }
     public UITYPE CurrentUITYPE
     {
         get
@@ -57,6 +74,49 @@ public class MenuController : Singleton<MenuController>
         CheckUNLOCK_UI();
         ResetTextGem();
         ResetTextGold();
+        BtnGacha.SetUpEvent(OnBtnGachaClick);
+        CheckEnableGacha();
+    }
+
+    public void CheckEnableGacha()
+    {
+        StopAllCoroutines();
+        bool enable = true;
+        enable &= DataController.Instance.HighestLevelMode1 >= 5;
+        float ti = DataController.Instance.CheckLastPlayGacha();
+        if (enable)
+        {
+            if (ti >= 0)
+            {
+                BtnGacha.gameObject.SetActive(true);
+                return;
+            }
+            else
+            {
+                StartCoroutine(RepeatCheckBtnGacha(1 - ti));
+            }
+            if (DataController.Instance.ShowGachaFail)
+            {
+                BtnGacha.gameObject.SetActive(true);
+                return;
+            }
+            if (DataController.Instance.WinGachaCount >= 2)
+            {
+                BtnGacha.gameObject.SetActive(true);
+                return;
+            }
+        }
+    }
+    IEnumerator RepeatCheckBtnGacha(float time)
+    {
+        yield return new WaitForSeconds(time);
+        CheckEnableGacha();
+    }
+
+    public void HideBtnGacha()
+    {
+        BtnGacha.gameObject.SetActive(false);
+        CheckEnableGacha();
     }
 
     void CheckUNLOCK_UI()
@@ -86,6 +146,17 @@ public class MenuController : Singleton<MenuController>
         }
         return null;
     }
+
+    public void OnShowReward(List<Item> items)
+    {
+        UIReward.SetUpData(items);
+    }
+
+    public void OnBtnGachaClick()
+    {
+        UIGacha.OnShow();
+    }
+
     public void OnBtnPlayClick()
     {
         DataController.Instance.LoadIngameStage();
@@ -140,6 +211,6 @@ public class MenuController : Singleton<MenuController>
     }
     public void ResetTextGem()
     {
-        txtGold.text = DataController.Instance.Gem.ToString();
+        txtGem.text = DataController.Instance.Gem.ToString();
     }
 }

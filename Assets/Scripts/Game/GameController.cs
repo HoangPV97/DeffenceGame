@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
         GameplayController.Instance.Tower.StopRecoverHealth();
         GameplayController.Instance.Tower.StopRecoverMana();
         DataController.Instance.Save();
+        DataController.Instance.ShowGachaFail = true;
     }
     public void Restart()
     {
@@ -60,6 +61,7 @@ public class GameController : MonoBehaviour
     }
     public void WinGame()
     {
+        DataController.Instance.WinGachaCount++;
         // Add Item
         int Level = DataController.Instance.CurrentSelected;
         var gameStage = DataController.Instance.GetGameStage(Level);
@@ -119,7 +121,7 @@ public class GameController : MonoBehaviour
         //  WingamePanel.SetActive(true);
         float healthPercent = ((float)GameplayController.Instance.Tower.Health.CurrentHealth / (float)GameplayController.Instance.Tower.Health.health) * 100;
 
-        UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, Mathf.RoundToInt( GameplayController.Instance.TotalGoldDrop));
+        UIPanelResult.SetUpdataVictory((int)(EnemyNumber - EnemyLive), (int)healthPercent, Mathf.RoundToInt(GameplayController.Instance.TotalGoldDrop));
         for (int i = 0; i < GameplayController.Instance.AllianceController.Count; i++)
         {
             switch (GameplayController.Instance.AllianceController[i].elementalType)

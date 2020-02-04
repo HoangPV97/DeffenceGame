@@ -14,6 +14,8 @@ public class UiItem : MonoBehaviour
     /// <summary>
     /// TypeInUI =0 : UIPanelHeroAlliance.UIUpgradehero
     /// TypeInUI =1 : SelectLevel.LevelDetail
+    /// TypeInUI =2 : Evol
+    /// TypeInUI =3 : Reward
     /// </summary>
     public int TypeInUI = 0;
     public UIUpgradehero UIUpgradehero
@@ -67,7 +69,10 @@ public class UiItem : MonoBehaviour
         ITEM_TYPE = item.Type;
         Item = item;
         count = Item.Quality;
-        txtNumber.text = Item.Quality.ToString();
+        if (TypeInUI != 3)
+            txtNumber.text = Item.Quality.ToString();
+        else
+            txtNumber.text = "x" + Item.Quality.ToString();
         GetComponent<Image>().sprite = DataController.Instance.DefaultData.GetSpriteItem(ITEM_TYPE);
     }
 

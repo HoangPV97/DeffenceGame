@@ -54,11 +54,14 @@ public class UIEvolveHero : BaseUIView
                     DataController.Instance.AddItemQuality(listItem[i].Type, -listItem[i].Quality);
                 }
             }
+            DataController.Instance.SaveLastPlayGacha();
             MenuController.Instance.UIPanelHeroAlliance.SetupUIHero(heroElemental);
             DataController.Instance.Save();
             OnBtnCloseClick();
             // SetUpData(heroElemental);
         }
+        else
+            MenuController.Instance.GachafailUpgrade = true;
     }
 
     void OnBtnCloseClick()

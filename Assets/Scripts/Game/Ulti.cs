@@ -82,6 +82,10 @@ public class Item
 {
     public ITEM_TYPE Type;
     public int Quality;
+    public override string ToString()
+    {
+        return "Type:" + Type.ToString() + " Quality:" + Quality;
+    }
 }
 [System.Serializable]
 public enum ITEM_TYPE

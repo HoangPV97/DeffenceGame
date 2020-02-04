@@ -23,7 +23,7 @@ public class GameData
     public string UNLOCK_UI = "NONE";
     [SerializeField]
     public DateTime timeStamp;
-
+    public DateTime LastPlayGacha;
     public List<GameDataQuest> gameDataQuests;
     public List<int> gameDataQuestLevels;
 

@@ -259,7 +259,7 @@ public class UIUpgradehero : BaseUIView
                 DataController.Instance.AddWeaponLevel(heroElemental, addLevel, RemainEXP);
             else
                 DataController.Instance.AddAllianceLevel(heroElemental, addLevel, RemainEXP);
-
+            DataController.Instance.SaveLastPlayGacha();
             DataController.Instance.Gold -= GoldCost;
             for (int i = 0; i < Slots.Length; i++)
             {
@@ -274,9 +274,7 @@ public class UIUpgradehero : BaseUIView
             OnHide();
         }
         else
-        {
-
-        }
+            MenuController.Instance.GachafailUpgrade = true;
     }
     public override void OnHide()
     {
