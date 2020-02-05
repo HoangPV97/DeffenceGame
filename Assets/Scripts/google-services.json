@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:229519990104:android:9b301d4334993669c1d92d",
+        "mobilesdk_app_id": "1:229519990104:android:dd7f2a0298727fe3c1d92d",
         "android_client_info": {
-          "package_name": "com.cscmobi.herodefense"
+          "package_name": "com.cscmobi.kingdomwar"
         }
       },
       "oauth_client": [

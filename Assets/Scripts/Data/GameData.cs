@@ -26,7 +26,8 @@ public class GameData
     public DateTime LastPlayGacha;
     public List<GameDataQuest> gameDataQuests;
     public List<int> gameDataQuestLevels;
-
+    public int Stamina;
+    public DateTime LastSaveStamina;
     public List<GameDataAchievement> gameDataAchievements;
     public GameDataAchievement GetGameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
     {
@@ -59,7 +60,6 @@ public class GameData
         gameStages.Add(gameStage);
         return gameStage;
     }
-
     public void SaveGameStage(int level, int hardMode = 0)
     {
         var gs = GetGameStage(level);
@@ -75,7 +75,6 @@ public class GameData
             gameStages.Add(gameStage);
         }
     }
-
     public Item GetItem(ITEM_TYPE Type)
     {
         if (Inventory == null)
@@ -87,7 +86,6 @@ public class GameData
         Inventory.Add(item);
         return item;
     }
-
     public void AddItemQuality(ITEM_TYPE type, int number)
     {
         var it = GetItem(type);
@@ -95,7 +93,6 @@ public class GameData
         if (it.Quality < 0)
             it.Quality = 0;
     }
-
     public void SaveItem(ITEM_TYPE type, int number)
     {
         var it = GetItem(type);
@@ -111,7 +108,6 @@ public class GameData
             Inventory.Add(item);
         }
     }
-
     public GameDataWeapon GetGameDataWeapon(Elemental elemental)
     {
         for (int i = 0; i < gameDataWeapons.Count; i++)
@@ -151,7 +147,6 @@ public class GameData
         gameDataWeapons.Add(gdw);
         return gdw;
     }
-
     public GameDataWeapon GetGameDataAlliance(Elemental elemental)
     {
         for (int i = 0; i < gameDataAlliance.Count; i++)
@@ -191,7 +186,6 @@ public class GameData
         gameDataAlliance.Add(gdw);
         return gdw;
     }
-
     public void ResetDailyQuest()
     {
         Debug.Log("ResetDailyQuest");
