@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7217215102349845420}
   - component: {fileID: 7132351225821463034}
   - component: {fileID: 6182798970750317318}
-  - component: {fileID: 1067331195766220398}
+  - component: {fileID: 462700116114658448}
   m_Layer: 0
   m_Name: B_W_3
   m_TagString: Enemy
@@ -197,7 +197,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1067331195766220398}
+      - m_Target: {fileID: 462700116114658448}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 8863071847773889974}
---- !u!114 &1067331195766220398
+--- !u!114 &462700116114658448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,19 +232,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7178071149278825015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983b938ec8dd1c843b864a7cedfc7cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    _speed: 13
-    _name: FFFF
-    _damage: 4
-    _range: 1
-    _price: 2
-    _armor: 1
-    _rateOfFire: 1
+    _speed: 0
+    _name: 
+    _damage: 0
+    _range: 0
+    _price: 0
+    _armor: 0
+    _rateOfFire: 0
     _health:
-      mHealth: 110
+      mHealth: 0
       currentHealth: 0
       recoverHealthValue: 0
       recoverHealthTime: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 5541152226216747304}
   Rigidbody2D: {fileID: 379209336301220618}

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9124661697560551847}
   - component: {fileID: 6864730306257849177}
   - component: {fileID: 3171938695651895084}
-  - component: {fileID: 2372918430968196350}
+  - component: {fileID: 8493980126034712470}
   m_Layer: 0
   m_Name: E_5
   m_TagString: Enemy
@@ -198,7 +198,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2372918430968196350}
+      - m_Target: {fileID: 8493980126034712470}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 1128049083510756001}
---- !u!114 &2372918430968196350
+--- !u!114 &8493980126034712470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292061646329833501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea60d688af4bc241ac8cc757fc0a2d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e73aa182886756448a80739331a82d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
@@ -366,17 +366,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
         type: 3}
-    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -482,6 +482,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 142.00098
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -491,11 +496,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 142.00133
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 142.00098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

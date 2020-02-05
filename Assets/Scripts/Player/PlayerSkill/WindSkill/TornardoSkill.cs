@@ -28,22 +28,24 @@ public class TornardoSkill : MonoBehaviour
     void Start()
     {
         Tornardo = new TornardoData(Tornardo.totalTime, Tornardo.inflictedTime, Tornardo.DamagePerSecond, Tornardo.Range);
-        ParticleScaler.ScaleByTransform(ParticleSystem, Tornardo.Range*0.3f, true);
+        ParticleScaler.ScaleByTransform(ParticleSystem, Tornardo.Range * 0.3f, true);
     }
+
     public void SetTornardoData(float _totalTime, float _inflictTime, float _dps, float _range)
     {
         enemies = new List<EnemyController>();
         Tornardo.totalTime = _totalTime;
-        Tornardo.inflictedTime = _inflictTime;
+        //Tornardo.inflictedTime = _inflictTime;
         Tornardo.DamagePerSecond = _dps;
         Tornardo.Range = _range;
     }
+
     // Update is called once per frame
     void Update()
     {
         if (Onstay && tempTime < 0 && enemies.Count > 0)
         {
-            for(int i=0;i<enemies.Count;i++)
+            for (int i = 0; i < enemies.Count; i++)
             {
                 if (enemies[i].isLive)
                 {
@@ -54,8 +56,7 @@ public class TornardoSkill : MonoBehaviour
                     enemies.RemoveAt(i);
                 }
             }
-
-            tempTime = 1f;
+            tempTime = Tornardo.inflictedTime;
         }
         tempTime -= Time.deltaTime;
     }
@@ -72,6 +73,7 @@ public class TornardoSkill : MonoBehaviour
         }
         yield return new WaitForSeconds(Tornardo.totalTime);
     }
+
     private void OnTriggerStay2D(Collider2D _target)
     {
         if (_target.gameObject.tag.Equals("Enemy"))
@@ -92,7 +94,7 @@ public class TornardoSkill : MonoBehaviour
 
             Onstay = true;
             EnemyController enemy = _target.gameObject.GetComponent<EnemyController>();
-            enemy.DealDamge((int)Tornardo.DamagePerSecond);
+            //enemy.DealDamge((int)Tornardo.DamagePerSecond);
             if (!enemies.Contains(enemy))
             {
                 enemies.Add(enemy);

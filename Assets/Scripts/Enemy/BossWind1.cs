@@ -49,6 +49,10 @@ public class BossWind1 : EnemyController
 
         CheckAttack();
     }
+    public override void Deal_Slow_Effect(float _time, float _slowdown_percent)
+    {
+        
+    }
     public override void DealEffect(Effect _effect, Vector3 _position, float _time)
     {
         if ((!Coroutine_running || _effect != gameEffect.CurrentEffect ) && _effect!=Effect.StunBullet)

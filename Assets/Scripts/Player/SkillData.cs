@@ -203,6 +203,13 @@ public class SkillWeaponEarth4 : SkillData
     public const string IncreaseFireRate = "IncreaseFireRate";
     public const string IncreaseHealthRecover = "IncreaseHealthRecover";
 }
+[System.Serializable]
+public class SkillWeaponIce4 : SkillData
+{
+    public const string IncreaseDamage = "IncreaseDamage";
+    public const string IncreaseFireRate = "IncreaseFireRate";
+    public const string IncreaseManaRecover = "IncreaseManaRecover";
+}
 //[System.Serializable]
 //public class SkillWeaponEarth3: SkillData
 //{

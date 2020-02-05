@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4975697748422171678}
   - component: {fileID: 1983052066646033201}
   - component: {fileID: 4463209475855294817}
-  - component: {fileID: 5047419618650076603}
+  - component: {fileID: 6344781338904914359}
   m_Layer: 0
   m_Name: E_2
   m_TagString: Enemy
@@ -228,7 +228,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5047419618650076603}
+      - m_Target: {fileID: 6344781338904914359}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 7233810359316233329}
---- !u!114 &5047419618650076603
+--- !u!114 &6344781338904914359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,12 +263,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529785039770135921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f5b4185e21e07438b09854fa7342b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
     _speed: 0
-    _name: MeleeEarth2
+    _name: 
     _damage: 0
     _range: 0
     _price: 0
@@ -312,17 +312,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
         type: 3}
+    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -428,16 +428,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -44
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -447,6 +437,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 2.0004678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

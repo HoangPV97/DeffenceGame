@@ -28,13 +28,9 @@ public class EarthPlayerBullet : BulletController, IExplosionBullet
         {
             checkCollision = true;
             EnemyController enemyController = _Target.GetComponent<EnemyController>();
-            //if (enemyController.Equals(GameplayController.Instance.PlayerController.player.target))
-            //{
             enemyController.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemyController.transform.position, 0.5f);
-            IIceEffectable elemental = enemyController.GetComponent<IIceEffectable>();
-            if (elemental != null)
+            if (enemyController.enemy.elemental.Equals(Elemental.Ice))
             {
-                //elemental.EarthImpactEffect(enemyController.transform.position);
                 enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else

@@ -80,7 +80,7 @@ public class Poison : MonoBehaviour
             EnemyController enemy = _target.gameObject.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy.DealEffect(Effect.Poiton, enemy.transform.position, poison.totalTime);
+                enemy.DealEffect(Effect.Poison, enemy.transform.position, poison.totalTime);
                 StartCoroutine(IEPoison(enemy));
             }
         }

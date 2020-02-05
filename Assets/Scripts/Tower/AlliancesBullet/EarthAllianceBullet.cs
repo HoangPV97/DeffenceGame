@@ -44,25 +44,21 @@ public class EarthAllianceBullet : BulletController
         if (Target.gameObject.tag.Equals(bullet.TargetTag) && !checkCollision)
         {
             checkCollision = true;
-            EnemyController enemy = Target.GetComponent<EnemyController>();
-            enemy.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemy.transform.position, 0.5f);
-            IIceEffectable elemental = enemy?.GetComponent<IIceEffectable>();
-            if (elemental != null)
+            EnemyController enemyController = Target.GetComponent<EnemyController>();
+            enemyController.gameEffect.SpawnEffect("HERO_EARTH_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+            if (enemyController.enemy.elemental.Equals(Elemental.Ice))
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {
-                enemy.DealDamge(bullet.Damage, 0);
+                enemyController.DealDamge(bullet.Damage, 0);
             }
             if (stun)
             {
-                enemy.DealEffect(Effect.StunBullet, enemy.transform.position, StunTime);
+                enemyController.DealEffect(Effect.StunBullet, enemyController.transform.position, StunTime);
             }
-            if (SeekTarget)
-            {
-                Despawn();
-            }
+            Despawn();
         }
     }
 }

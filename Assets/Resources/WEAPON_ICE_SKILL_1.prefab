@@ -19054,10 +19054,10 @@ GameObject:
   - component: {fileID: 3892153920387240647}
   - component: {fileID: 3892153920387240646}
   - component: {fileID: 2444946500082550550}
-  - component: {fileID: 5157115518173375310}
   - component: {fileID: 9005757760189014185}
+  - component: {fileID: 135238880649429805}
   m_Layer: 0
-  m_Name: weapon_ice_skill1
+  m_Name: WEAPON_ICE_SKILL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23830,25 +23830,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.2
---- !u!114 &5157115518173375310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892153920387240644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e616708f796a674e91dd72bd05f2cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SlowSkillData:
-    EffectedTime: 0
-    EffectedAoe: 0
-    SlowdownPercent: 0
-    Damage: 0
-  ParticleScaler: {fileID: 9005757760189014185}
-  ParticleSystem: {fileID: 3892153920387240647}
 --- !u!114 &9005757760189014185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23861,3 +23842,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57cd78d179de9345a8a86e1fffe53eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &135238880649429805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892153920387240644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68acde4878f0ec44bd2d3f1becea27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlowSkillData:
+    EffectedTime: 0
+    EffectedAoe: 0
+    SlowdownPercent: 0
+    Damage: 0
+  ParticleScaler: {fileID: 9005757760189014185}
+  ParticleSystem: {fileID: 3892153920387240647}

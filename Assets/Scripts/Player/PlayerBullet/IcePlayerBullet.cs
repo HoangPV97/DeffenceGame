@@ -31,11 +31,12 @@ public class IcePlayerBullet : BulletController
                 {
                     enemyController.DealDamge(bullet.Damage, 0);
                 }
-                if (SeekTarget)
+                if (poison)
                 {
-                    Despawn();
+                    enemyController.DealPoison(poisonDamage, 2.5f);
                 }
-            }   
+                Despawn();
+            }
         }
     }
 }

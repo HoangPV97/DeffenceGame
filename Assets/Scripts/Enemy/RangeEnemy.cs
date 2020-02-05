@@ -4,36 +4,25 @@ using UnityEngine;
 
 public class RangeEnemy : EnemyController
 {
-    // Update is called once per frame
-    protected override void Update()
+    [SerializeField] private string BulletName;
+    public override void SetUpdata(string type, int Level)
     {
-        AutoAttack();
-        base.Update();
+        base.SetUpdata(type, Level);
+        enemy.range += Random.Range(-1, 1);
     }
+    [SerializeField] private GameObject Barrel;
     public void Attack()
-    {  
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range )
+    {
+        if (isAttack)
         {
-            CurrentState = EnemyState.Attack;
-            isMove = false;
-            Move(enemy.speed); 
-            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject("enemybullet", transform.position, Quaternion.identity);
+            GameObject EnemyBullet = ObjectPoolManager.Instance.SpawnObject(BulletName, Barrel.transform.position, Quaternion.identity);
             EnemyBullet m_EnemyBullet = EnemyBullet.GetComponent<EnemyBullet>();
             if (m_EnemyBullet != null)
             {
                 m_EnemyBullet.SetTarget(Tower.transform);
                 m_EnemyBullet.SetDamage(enemy.damage);
+                m_EnemyBullet.SetSpeed(enemy.bulletSpeed);
             }
         }
-    }
-    public void AutoAttack()
-    {
-        if (countdown <= 0f)
-        {
-            Attack();
-            countdown = enemy.rateOfFire;
-        }
-        countdown -= Time.deltaTime;
     }
 }

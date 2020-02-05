@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 401669831}
   - component: {fileID: 581701557619374305}
   - component: {fileID: 1515290433891442312}
-  - component: {fileID: 8189529184543317897}
+  - component: {fileID: 6217482529317252103}
   m_Layer: 0
   m_Name: E_1
   m_TagString: Enemy
@@ -228,7 +228,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8189529184543317897}
+      - m_Target: {fileID: 6217482529317252103}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 3967979371172600375}
---- !u!114 &8189529184543317897
+--- !u!114 &6217482529317252103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,12 +263,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8020962621357836206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f5b4185e21e07438b09854fa7342b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
     _speed: 0
-    _name: MeleeEarth
+    _name: 
     _damage: 0
     _range: 0
     _price: 0
@@ -312,6 +312,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
+        type: 3}
     - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_Type
@@ -327,12 +333,6 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
-        type: 3}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -438,10 +438,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 131.00005
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -453,10 +453,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -46
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 136
+      value: 131.00005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

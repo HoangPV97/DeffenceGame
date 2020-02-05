@@ -13,12 +13,12 @@ public class WindAllianceBullet : BulletController
     {
         elementalBullet = Elemental.Wind;
     }
-    public void SetDataBullet(float _speed, int _damage,float _bounceRange,int _numberBounce,int _Increasedamage,float _DecreaseDamage)
+    public void SetDataBullet(float _speed, int _damage, float _bounceRange, int _numberBounce, int _Increasedamage, float _DecreaseDamage)
     {
         bounceRange = _bounceRange;
         numberBounce = _numberBounce;
         DecreaseDamageBounce = _DecreaseDamage;
-        base.SetDataBullet(_speed, _damage,_Increasedamage);
+        base.SetDataBullet(_speed, _damage, _Increasedamage);
     }
     protected override void FixedUpdate()
     {
@@ -46,17 +46,16 @@ public class WindAllianceBullet : BulletController
         }
         if (Target.gameObject.tag.Equals(bullet.TargetTag))
         {
-            EnemyController enemy = Target.GetComponent<EnemyController>();
-            SetTarget(enemy);
-            enemy.gameEffect.SpawnEffect("ALLIANCE_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
-            IEarthEffectable elemental = enemy?.GetComponent<IEarthEffectable>();
-            if (elemental != null)
+            EnemyController enemyController = Target.GetComponent<EnemyController>();
+            SetTarget(enemyController);
+            enemyController.gameEffect.SpawnEffect("ALLIANCE_WIND_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+            if (enemyController.enemy.elemental.Equals(Elemental.Earth))
             {
-                enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else
             {
-                enemy.DealDamge(bullet.Damage, 0);
+                enemyController.DealDamge(bullet.Damage, 0);
             }
             if (bounce)
             {

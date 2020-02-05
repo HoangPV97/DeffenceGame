@@ -9411,7 +9411,7 @@ GameObject:
   - component: {fileID: 5519512046327042350}
   - component: {fileID: 9155584802400424192}
   m_Layer: 0
-  m_Name: hero1_wind_skill2
+  m_Name: WEAPON_WIND_SKILL_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14134,7 +14134,7 @@ MonoBehaviour:
   Tornardo:
     totalTime: 0
     DamagePerSecond: 0
-    inflictedTime: 0
+    inflictedTime: 1
     Range: 0
   ParticleScaler: {fileID: 5519512046327042350}
   ParticleSystem: {fileID: 5937893838479093703}

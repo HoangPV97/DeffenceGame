@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9124661697560551847}
   - component: {fileID: 6864730306257849177}
   - component: {fileID: 3171938695651895084}
-  - component: {fileID: 3196201080331221289}
+  - component: {fileID: 7561543153926957575}
   m_Layer: 0
   m_Name: B_W_5
   m_TagString: Enemy
@@ -198,7 +198,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3196201080331221289}
+      - m_Target: {fileID: 7561543153926957575}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 1128049083510756001}
---- !u!114 &3196201080331221289
+--- !u!114 &7561543153926957575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,26 +233,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292061646329833501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b547f42b1ac0d40bcff74f92190331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e73aa182886756448a80739331a82d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    _speed: 17
-    _name: BBB
-    _damage: 7
-    _range: 9
-    _price: 2
-    _armor: 2
-    _rateOfFire: 2.2
+    _speed: 0
+    _name: 
+    _damage: 0
+    _range: 0
+    _price: 0
+    _armor: 0
+    _rateOfFire: 0
     _health:
-      mHealth: 140
+      mHealth: 0
       currentHealth: 0
       recoverHealthValue: 0
       recoverHealthTime: 0
       healthBar: {fileID: 880590222804794058}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
-    _elemental: 1
+    _elemental: 2
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 9124661697560551847}
   attack: {fileID: 11400000, guid: ed2aa6b3af3c2554e9f2b4e0c20de38a, type: 2}
@@ -270,7 +270,7 @@ MonoBehaviour:
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
   KnockBackDistance: {x: 0, y: 0, z: 0}
-  BulletName: ENEMY_WIND_BULLET_2
+  BulletName: ENEMY_ICE_BULLET_1
   Barrel: {fileID: 7857216459765961333}
 --- !u!1 &6292061646712227653
 GameObject:
@@ -476,6 +476,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 132.001
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -505,16 +515,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 132.00136
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -84
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 132.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

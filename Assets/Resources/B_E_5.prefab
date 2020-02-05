@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9124661697560551847}
   - component: {fileID: 6864730306257849177}
   - component: {fileID: 3171938695651895084}
-  - component: {fileID: 336517862578511587}
+  - component: {fileID: 67487732182345895}
   m_Layer: 0
   m_Name: B_E_5
   m_TagString: Enemy
@@ -198,7 +198,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 336517862578511587}
+      - m_Target: {fileID: 67487732182345895}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 1128049083510756001}
---- !u!114 &336517862578511587
+--- !u!114 &67487732182345895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292061646329833501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea60d688af4bc241ac8cc757fc0a2d6, type: 3}
+  m_Script: {fileID: 11500000, guid: a1759da3b9a9d97488c2e3f21dbfa060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
@@ -252,13 +252,13 @@ MonoBehaviour:
       healthBar: {fileID: 880590222804794058}
       effecthealthBar: {fileID: 0}
       healthValueText: {fileID: 0}
-    _elemental: 3
+    _elemental: 2
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 9124661697560551847}
   attack: {fileID: 11400000, guid: b5cc8d51b15b8044eb6fef1a674c08ff, type: 2}
   idle: {fileID: 11400000, guid: 0b7af659f2ada6742943adb4ac57aeaf, type: 2}
   run: {fileID: 11400000, guid: 69d4598f6cb94484d8ce1b18e7aa20c3, type: 2}
-  skill: {fileID: 0}
+  skill: {fileID: 11400000, guid: 70394ccbee6b70a4880a2bbf1c98006d, type: 2}
   die: {fileID: 11400000, guid: 70394ccbee6b70a4880a2bbf1c98006d, type: 2}
   isMove: 1
   isAttack: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
   KnockBackDistance: {x: 0, y: 0, z: 0}
-  BulletName: ENEMY_EARTH_BULLET_2
+  BulletName: ENEMY_ICE_BULLET_1
   Barrel: {fileID: 7857216459765961333}
 --- !u!1 &6292061646712227653
 GameObject:
@@ -476,20 +476,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -57.54
+      value: -84
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 115
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132.00136
+      value: 132.001
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
@@ -506,15 +501,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 135
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -84
+      value: -57.54
       objectReference: {fileID: 0}
-    - target: {fileID: 6292745800884490818, guid: 047aa3e3016052441b4c2a011841725b,
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132.001
+      value: 132.00136
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

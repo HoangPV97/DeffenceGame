@@ -22,8 +22,8 @@ public class SlowSkillData
 public class SlowSkill : MonoBehaviour
 {
     public SlowSkillData SlowSkillData;
-    public ParticleScaler ParticleScaler;
-    public ParticleSystem ParticleSystem;
+    //public ParticleScaler ParticleScaler;
+    //public ParticleSystem ParticleSystem;
     //List<EnemyController> enemies;
     // Start is called before the first frame update
     void Start()

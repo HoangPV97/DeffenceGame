@@ -26,6 +26,9 @@ MonoBehaviour:
   - {fileID: 4205350128027674012, guid: 3d3d0b22b6106c04cbf89c98bf232d74, type: 3}
   WeaponIceSkills:
   - {fileID: 4205350128027674012, guid: 8259b18ab80dfe249874ad51c15ddd12, type: 3}
+  - {fileID: 4205350128027674012, guid: a610454855fb2694aaa2462483d84f3d, type: 3}
+  - {fileID: 4205350128027674012, guid: 37cea8bc2969d0949abc2890fb8dceca, type: 3}
+  - {fileID: 4205350128027674012, guid: 64ff06fd556804e40bcfecec473aa1da, type: 3}
   WeaponEarthSkills:
   - {fileID: 4205350128027674012, guid: 282b2ac3977791148b7c20d3d744668d, type: 3}
   - {fileID: 4205350128027674012, guid: 04bc9496d908321428a941af0d8f67ec, type: 3}
@@ -169,13 +172,97 @@ MonoBehaviour:
   - SkillID: ALLIANCE_WIND_SKILL_4
     SkillText: '{"SkillID":"ALLIANCE_WIND_SKILL_4","baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"InscreaFireRate","Value":[2,4,6,8,10,12,14,16,18,20]}]}],"SkillType":1}'
   - SkillID: WEAPON_ICE_SKILL_1
-    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_1","baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}],"SkillType":0}'
+    SkillText: '{   "SkillID": "WEAPON_ICE_SKILL_1",   "SkillType": 0,   "baseSkills":
+      [     {       "Tier": 1,       "UpgradeItems": [         {           "items":
+      [             {               "Type": 23,               "Quality": 2             }           ]         }       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 1         },         {           "Type":
+      12,           "Quality": 1         }       ],       "SkillAttributes": [         {           "Attribute":
+      "TimeEffect",           "Value": [             3           ]         },         {           "Attribute":
+      "SlowdownPercent",           "Value": [             30           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             20           ]         }       ],       "ManaCost":
+      [         35       ],       "CoolDown": [         10       ],       "Damage":
+      [         50       ]     },     {       "Tier": 2,       "UpgradeItems": [         [           {             "Type":
+      23,             "Quality": 2           },           {             "Type": 27,             "Quality":
+      2           }         ],         [           {             "Type": 23,             "Quality":
+      2           },           {             "Type": 27,             "Quality": 2           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             4           ]         },         {           "Attribute":
+      "SlowdownPercent",           "Value": [             60           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             30           ]         }       ],       "ManaCost":
+      [         35       ],       "CoolDown": [         11       ],       "Damage":
+      [         100       ]     },     {       "Tier": 3,       "UpgradeItems": [         [           {             "Type":
+      23,             "Quality": 2           },           {             "Type": 27,             "Quality":
+      2           },           {             "Type": 19,             "Quality": 2           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             4           ]         },         {           "Attribute":
+      "SlowdownPercent",           "Value": [             80           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             40           ]         }       ],       "ManaCost":
+      [         50       ],       "CoolDown": [         20       ],       "Damage":
+      [         200       ]     }   ] }'
   - SkillID: WEAPON_ICE_SKILL_2
-    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_2","baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}],"SkillType":0}'
+    SkillText: '{   "SkillID": "WEAPON_ICE_SKILL_2",   "SkillType": 0,   "baseSkills":
+      [     {       "Tier": 1,       "UpgradeItems": [         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         },         {           "items":
+      [             {               "Type": 1,               "Quality": 2             },             {               "Type":
+      12,               "Quality": 4             }           ]         }       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 1         },         {           "Type":
+      12,           "Quality": 1         }       ],       "SkillAttributes": [         {           "Attribute":
+      "TimeEffect",           "Value": [             5,             5,             5,             5,             5           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             10,             10,             10,             10           ]         }       ],       "ManaCost":
+      [         50,         51,         52,         53,         54       ],       "CoolDown":
+      [         10,         10,         10,         10,         10       ],       "Damage":
+      [         50,         55,         60,         65,         70       ]     },     {       "Tier":
+      2,       "UpgradeItems": [         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ],         [           {             "Type": 1,             "Quality":
+      2000           }         ]       ],       "EvolutionItems": [         {           "Type":
+      1,           "Quality": 2000         }       ],       "SkillAttributes": [         {           "Attribute":
+      "TimeEffect",           "Value": [             6,             6,             6,             6,             6,             6,             6,             6,             6,             6           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             10,             10,             10,             10,             10,             10,             10,             10,             10           ]         }       ],       "ManaCost":
+      [         60,         61,         62,         63,         64,         65,         66,         67,         68,         69       ],       "CoolDown":
+      [         13,         13,         13,         13,         13,         13,         13,         13,         13,         13       ],       "Damage":
+      [         100,         105,         110,         115,         120,         125,         130,         135,         140,         145       ]     },     {       "Tier":
+      3,       "ManaCost": [         80,         81,         82,         83,         84,         85,         6,         87,         88,         89,         90,         91,         92,         93,         94       ],       "CoolDown":
+      [         20,         20,         20,         20,         20,         20,         20,         20,         20,         20,         20,         20,         20,         20,         20       ],       "Damage":
+      [         150,         153,         156,         159,         162,         165,         168,         171,         174,         177,         180,         183,         186,         189,         192       ],       "UpgradeItems":
+      [         [           {             "Type": 1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ],         [           {             "Type":
+      1,             "Quality": 2000           }         ]       ],       "EvolutionItems":
+      [         {           "Type": 1,           "Quality": 2000         }       ],       "SkillAttributes":
+      [         {           "Attribute": "TimeEffect",           "Value": [             7,             7,             7,             7,             7,             7,             7,             7,             7,             7,             7,             7,             7,             7,             7           ]         },         {           "Attribute":
+      "EffectedAoe",           "Value": [             10,             10,             10,             10,             10,             10,             10,             10,             10,             10,             10,             10,             10,             10,             10           ]         }       ]     }   ]
+      }'
   - SkillID: WEAPON_ICE_SKILL_3
-    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_3","baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}],"SkillType":0}'
+    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_3","SkillType":1,"baseSkills":[{"Tier":1,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"IncreaseDamage","Value":[15,30,45,60,75,90,105,120,135,150]}]}]}'
   - SkillID: WEAPON_ICE_SKILL_4
-    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_4","baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}],"SkillType":0}'
+    SkillText: '{"SkillID":"WEAPON_ICE_SKILL_4","SkillType":1,"baseSkills":[{"Tier":1,"EvolutionItems":[{"Type":1,"Quality":2000},{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"IncreaseFireRate","Value":[10]},{"Attribute":"IncreaseDamage","Value":[20]},{"Attribute":"IncreaseManaRecover","Value":[10]}],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]]}]}'
   - SkillID: WEAPON_EARTH_SKILL_1
     SkillText: '{"SkillID":"WEAPON_EARTH_SKILL_1","SkillType":0,"baseSkills":[{"Tier":1,"UpgradeItems":[{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]},{"items":[{"Type":1,"Quality":2},{"Type":12,"Quality":4}]}],"EvolutionItems":[{"Type":1,"Quality":1},{"Type":12,"Quality":1}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[30,30,30]},{"Attribute":"EffectedAoe","Value":[5,5,5]}],"ManaCost":[30,31,32,33,34],"CoolDown":[10,10,10,10,10],"Damage":[40,50,60,70,80]},{"Tier":2,"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[3,3,3]},{"Attribute":"SlowdownPercent","Value":[60,60,60]},{"Attribute":"EffectedAoe","Value":[7,7,7]}],"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[90,100,110]},{"Tier":3,"ManaCost":[10,20,30],"CoolDown":[10,20,30],"Damage":[120,130,140],"UpgradeItems":[[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}],[{"Type":1,"Quality":2000}]],"EvolutionItems":[{"Type":1,"Quality":2000}],"SkillAttributes":[{"Attribute":"TimeEffect","Value":[4,4,4]},{"Attribute":"SlowdownPercent","Value":[80,80,80]},{"Attribute":"EffectedAoe","Value":[10,10,10]}]}]}'
   - SkillID: WEAPON_EARTH_SKILL_2

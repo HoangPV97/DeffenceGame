@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4975697748422171678}
   - component: {fileID: 1983052066646033201}
   - component: {fileID: 4463209475855294817}
-  - component: {fileID: 7884434622675878434}
+  - component: {fileID: 5241489446800192968}
   m_Layer: 0
   m_Name: B_W_2
   m_TagString: Enemy
@@ -228,7 +228,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7884434622675878434}
+      - m_Target: {fileID: 5241489446800192968}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 7233810359316233329}
---- !u!114 &7884434622675878434
+--- !u!114 &5241489446800192968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,19 +263,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529785039770135921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983b938ec8dd1c843b864a7cedfc7cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    _speed: 13
-    _name: FFFF
-    _damage: 4
-    _range: 1
-    _price: 2
-    _armor: 1
-    _rateOfFire: 1
+    _speed: 0
+    _name: 
+    _damage: 0
+    _range: 0
+    _price: 0
+    _armor: 0
+    _rateOfFire: 0
     _health:
-      mHealth: 110
+      mHealth: 0
       currentHealth: 0
       recoverHealthValue: 0
       recoverHealthTime: 0
@@ -285,14 +285,15 @@ MonoBehaviour:
     _elemental: 1
     _bulletSpeed: 0
   skeletonAnimation: {fileID: 4975697748422171678}
-  attack: {fileID: 11400000, guid: 44d8bf0bec6429446a296ce616b1d7b7, type: 2}
-  idle: {fileID: 11400000, guid: 90a9d4354c094f84e8fc251bcae19f54, type: 2}
-  run: {fileID: 11400000, guid: d978af135139b5d449c24e160e658d57, type: 2}
+  attack: {fileID: 11400000, guid: 8670cb5aac334b74691880567c5adc11, type: 2}
+  idle: {fileID: 11400000, guid: 58e4ea3cc8cdeb34fa9d970d00014573, type: 2}
+  run: {fileID: 11400000, guid: 4a13db5ebda0b4340a6dfe3b0d5176f8, type: 2}
   skill: {fileID: 0}
-  die: {fileID: 11400000, guid: a8b9cfe31ee5fe5448b04dffc4f26402, type: 2}
+  die: {fileID: 11400000, guid: 75fe04a3a14be314e9d3d7c2946c5b51, type: 2}
   isMove: 1
   isAttack: 0
   isLive: 1
+  disableAttack: 0
   distancetoTower: 0
   gameEffect: {fileID: 8405747404023622455}
   Rigidbody2D: {fileID: 2381826484690694014}

@@ -28,13 +28,9 @@ public class WindPlayerBullet : BulletController, IExplosionBullet
         {
             checkCollision = true;
             EnemyController enemyController = _Target.GetComponent<EnemyController>();
-            //if (enemyController.Equals(GameplayController.Instance.PlayerController.player.target))
-            //{
             enemyController.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemyController.transform.position, 0.5f);
-            IEarthEffectable elemental = enemyController.GetComponent<IEarthEffectable>();
-            if (elemental != null)
+            if (enemyController.enemy.elemental == Elemental.Earth)
             {
-                //elemental.EarthImpactEffect(enemyController.transform.position);
                 enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
             }
             else

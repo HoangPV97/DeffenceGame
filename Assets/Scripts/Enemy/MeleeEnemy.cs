@@ -4,32 +4,17 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyController
 {
-    // Update is called once per frame
-    protected override void Update()
+    protected override void Start()
     {
-        AutoAttack();
-        base.Update();
+
+        base.Start();
     }
     public void Attack()
     {
-
-        distancetoTower = Vector3.Distance(transform.position, Tower.transform.position);
-        if (distancetoTower < enemy.range )
+        if (Tower != null && isAttack && !disableAttack)
         {
-            CurrentState = EnemyState.Attack;
-            if (Tower != null)
-            {
-                Tower.TakeDamage(enemy.damage);
-            }
+            gameEffect.SpawnEffect("WIND_MELEE_IMPACT", gameObject.transform.position - new Vector3(0, 0.5f, 0), 0.5f);
+            Tower.TakeDamage(enemy.damage);
         }
-    }
-    protected void AutoAttack()
-    {
-        if (countdown <= 0f)
-        {
-            Attack();
-            countdown = enemy.rateOfFire;
-        }
-        countdown -= Time.deltaTime;
     }
 }

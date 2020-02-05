@@ -42,8 +42,8 @@ public class PlayIceExplosionSkill : DragAndDropSkill
 
     public override void PlaySkill(Vector3 _position)
     {
-        GameObject Poison_Skill = SpawnEffect(SkillID, _position, EffectTime);
-        Poison_Skill.GetComponent<SlowSkill>().SetSkillData(EffectTime, SlowdownPercent, Damage, EffectedAoe);
+        GameObject Poison_Skill = SpawnEffect(SkillID, _position, 1);
+        Poison_Skill.GetComponent<IceExplosionSkill>().SetSkillData(EffectTime, SlowdownPercent, Damage, EffectedAoe);
         GameObject effectStart = SpawnEffect(EffectName, positonEffect, 1);
     }
 }

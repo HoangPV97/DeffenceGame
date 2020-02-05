@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Effect {None, Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poiton,Knockback,StunBullet};
+public enum Effect {None, Stun, Freeze, Slow, destroyFreeze, destroyStun ,Poison,Knockback,StunBullet};
 public class GameEffect : MonoBehaviour
 {
     public Effect CurrentEffect;
@@ -35,7 +35,7 @@ public class GameEffect : MonoBehaviour
             case Effect.destroyFreeze:
                 effectObj = SpawnEffect("ALLIANCE_ICE_SKILL_END", _position, _time);
                 break;
-            case Effect.Poiton:
+            case Effect.Poison:
                 //spawn Effect
                 Debug.Log("EFFECT POITON");
                 break;

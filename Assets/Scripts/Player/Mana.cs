@@ -90,6 +90,10 @@ public class Mana
         }
         UpdateValueText();
     }
+    public void IncreaseManaRecoverValue(int _Value)
+    {
+        RecoverManaValue *= (1 + _Value / 100);
+    }
     public void UpdateValueText()
     {
         manaValueText.text = CurrentMana.ToString() + "/" + maxMana.ToString();

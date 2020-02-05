@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 401669831}
   - component: {fileID: 581701557619374305}
   - component: {fileID: 1515290433891442312}
-  - component: {fileID: 6837810874004773231}
+  - component: {fileID: 5983556812657154258}
   m_Layer: 0
   m_Name: B_E_1
   m_TagString: Enemy
@@ -228,7 +228,7 @@ MonoBehaviour:
   EventAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6837810874004773231}
+      - m_Target: {fileID: 5983556812657154258}
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elematalImage: {fileID: 3967979371172600375}
---- !u!114 &6837810874004773231
+--- !u!114 &5983556812657154258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8020962621357836206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f5b4185e21e07438b09854fa7342b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ff465e812ef55764c9355687197446e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
@@ -442,21 +442,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 132
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 137.99908
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -75
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -481,6 +466,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 134.99904
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 137.99908
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

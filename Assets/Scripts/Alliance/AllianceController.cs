@@ -53,9 +53,9 @@ public class AllianceController : MonoBehaviour
         listEnemies = new List<EnemyController>();
         skeletonAnimation.AnimationState.Event += OnEvent;
     }
-    public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed,float _range)
+    public virtual void SetDataWeapon(Elemental elemental, float Atkspeed, float atk, float BulletSpeed, float _range)
     {
-        ATK =Mathf.RoundToInt(ATK*DataController.Instance.InGameBaseData.achi_AddedDmgAlliance) ;
+        ATK = Mathf.RoundToInt(ATK * DataController.Instance.InGameBaseData.achi_AddedDmgAlliance);
         ATK += (int)DataController.Instance.InGameBaseData.AllianceDamage;
         this.elementalType = elemental;
         ATKspeed = Atkspeed;
@@ -64,7 +64,7 @@ public class AllianceController : MonoBehaviour
     }
     protected virtual void Update()
     {
-            UpdateEnemy();
+        UpdateEnemy();
         if (preCharacterState != characterState)
         {
             ChangeCharacterState();
@@ -138,7 +138,11 @@ public class AllianceController : MonoBehaviour
     {
         if (collider2D.gameObject.tag.Equals("Enemy"))
         {
-            listEnemies.Add(collider2D.gameObject.GetComponent<EnemyController>());
+            var enemyController = collider2D.GetComponent<EnemyController>();
+            if (enemyController != null && !listEnemies.Contains(enemyController))
+            {
+                listEnemies.Add(enemyController);
+            }
         }
     }
 
@@ -175,12 +179,12 @@ public class AllianceController : MonoBehaviour
             Shoot();
         }
     }
-    public float GetAttributeData(string attribute,Elemental elemental, int tier)
+    public float GetAttributeData(string attribute, Elemental elemental, int tier)
     {
         var Attributes = DataController.Instance.GetAllianceDataBases(elemental, tier).SkillAttributes;
         for (int i = 0; i < Attributes.Count; i++)
         {
-            if (Attributes[i].Attribute.Equals( attribute))
+            if (Attributes[i].Attribute.Equals(attribute))
                 return Attributes[i].Value[0];
         }
         return 0;

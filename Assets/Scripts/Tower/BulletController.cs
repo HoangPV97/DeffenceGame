@@ -13,7 +13,8 @@ public class BulletController : MonoBehaviour
     protected bool checkCollision;
     //#region Attribute bullet
     //public bool explosion;
-    //public bool poison;
+    public bool poison;
+    public int poisonDamage;
     //#endregion
     protected virtual void Start()
     {

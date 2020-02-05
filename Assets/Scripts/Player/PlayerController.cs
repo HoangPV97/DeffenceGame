@@ -46,14 +46,15 @@ public class PlayerController : MonoBehaviour
     public float MultiShotDamage;
     public float MultiShotAddedAttributePercent;
     private bool quickShoot;
-
+    public bool Poison;
+    public int PoisonDamage;
     [SerializeField] private bool ChangeAttackHand = true;
     // Start is called before the first frame update
     public void Awake()
     {
         CircleCollider2D.radius = player.range;
     }
-    void Start()
+    protected virtual void Start()
     {
         skeletonAnimation.AnimationState.Event += OnEvent;
         skeletonAnimation.AnimationState.Complete += OnAttack;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         currentMode = AutoMode.TurnOff;
     }
 
-    public void SetDataWeapon()
+    public virtual void SetDataWeapon()
     {
         var IngameWeapon = DataController.Instance.inGameWeapons;
         var InGameBaseData = DataController.Instance.InGameBaseData;
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                player.target = null;
+                //player.target = null;
                 characterState = CharacterState.Idle;
             }
         }
@@ -212,6 +213,11 @@ public class PlayerController : MonoBehaviour
         mBullet.setDirection(_direction);
         mBullet.elementalBullet = elementalType;
         mBullet.SetDataBullet(BulletSpeed, ATK, ATKplus);
+        if (Poison)
+        {
+            mBullet.poison = true;
+            mBullet.poisonDamage = PoisonDamage;
+        }
         return mBullet;
     }
     public void Shoot(float _critical, float _knockback, float _quickhand, bool _multiShot)
@@ -295,7 +301,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collider2D.gameObject.tag.Equals("Enemy"))
         {
-            listEnemies.Add(collider2D.gameObject.GetComponent<EnemyController>());
+            var enemyController = collider2D.GetComponent<EnemyController>();
+            if (enemyController != null && !listEnemies.Contains(enemyController))
+            {
+                listEnemies.Add(enemyController);
+            }
         }
     }
 }
