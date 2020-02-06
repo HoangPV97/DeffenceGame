@@ -65,7 +65,7 @@ public  class ParticleScaler :MonoBehaviour
         {
             var shape = particles.shape;
             shape.radius *= scale;
-            shape.box = shape.box * scale;
+            shape.scale = shape.scale * scale;
         }
 
         /* Currently disabled due to a bug in Unity 5.3.4. 
