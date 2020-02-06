@@ -49,7 +49,7 @@ public class TornardoSkill : MonoBehaviour
             {
                 if (enemies[i].isLive)
                 {
-                    enemies[i].DealDamge((int)Tornardo.DamagePerSecond);
+                    Hurted(enemies[i]);
                 }
                 else
                 {
@@ -108,6 +108,23 @@ public class TornardoSkill : MonoBehaviour
         if (enemies.Contains(enemy))
         {
             enemies.Remove(enemy);
+        }
+    }
+    public void Hurted(EnemyController _enemyCtr)
+    {
+        _enemyCtr.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _enemyCtr.transform.position, 0.5f);
+        if (_enemyCtr.enemy.elemental.Equals(Elemental.Wind) && _enemyCtr.enemy.Resistance)
+        {
+            _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond / 2));
+        }
+        else if (_enemyCtr.enemy.elemental.Equals(Elemental.Earth))
+        {
+            float damageplus = DataController.Instance.inGameWeapons.ATKplus;
+            _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond),damageplus);
+        }
+        else
+        {
+            _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond));
         }
     }
 }

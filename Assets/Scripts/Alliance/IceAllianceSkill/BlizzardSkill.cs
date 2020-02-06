@@ -27,14 +27,19 @@ public class BlizzardSkill : BulletController
             EnemyController enemyController = Target.GetComponent<EnemyController>();
             if (enemyController != null)
             {
-                //enemyController.gameEffect.SpawnEffect("ALLIANCE_ICE_BULLET_IMPACT", enemyController.transform.position, 0.5f);
-                if (enemyController.enemy.elemental.Equals(Elemental.Fire))
+                enemyController.gameEffect.SpawnEffect("ALLIANCE_ICE_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+                var element = enemyController.enemy.elemental;
+                if (!element.Equals(Elemental.Ice) && enemyController.enemy.Resistance)
                 {
-                    enemyController?.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                    enemyController.DealDamge(Mathf.RoundToInt(bullet.Damage / 2));
+                }
+                else if (element.Equals(Elemental.Fire))
+                {
+                    enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
                 }
                 else
                 {
-                    enemyController?.DealDamge(bullet.Damage, 0);
+                    enemyController.DealDamge(bullet.Damage);
                 }
                 enemyController.DealEffect(Effect.Freeze, enemyController.transform.position, EffectedTime);
             }

@@ -57,6 +57,7 @@ public class EnemyController : MonoBehaviour
         enemy.rateOfFire = md.ATKSpeed;
         enemy.bulletSpeed = md.BulletSpeed;
         enemy.range = md.Range;
+        enemy.Resistance = md.Resistance;
         isMove = true;
         isLive = true;
         isPoison = false;

@@ -24,8 +24,26 @@ public class IceExplosionSkill : MonoBehaviour
         if (_target.gameObject.tag.Equals("Enemy"))
         {
             EnemyController enemyController = _target.gameObject.GetComponent<EnemyController>();
-            enemyController.Deal_Slow_Effect(SlowSkillData.EffectedTime, SlowSkillData.SlowdownPercent);
-            enemyController.DealDamge((int)SlowSkillData.Damage);
+            if (enemyController != null)
+            {
+                enemyController.gameEffect.SpawnEffect("ALLIANCE_ICE_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+                enemyController.Deal_Slow_Effect(SlowSkillData.EffectedTime, SlowSkillData.SlowdownPercent);
+                var element = enemyController.enemy.elemental;
+                int _damage = (int)SlowSkillData.Damage;
+                int _damageplus = (int)DataController.Instance.inGameWeapons.ATKplus;
+                if (!element.Equals(Elemental.Ice) && enemyController.enemy.Resistance)
+                {
+                    enemyController.DealDamge(_damage / 2);
+                }
+                else if (element.Equals(Elemental.Fire))
+                {
+                    enemyController.DealDamge(_damage, Mathf.Round(_damageplus * _damage / 100));
+                }
+                else
+                {
+                    enemyController.DealDamge(_damage);
+                }
+            }
         }
     }
 }

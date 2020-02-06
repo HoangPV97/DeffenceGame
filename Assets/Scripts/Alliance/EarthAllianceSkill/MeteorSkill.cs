@@ -16,9 +16,24 @@ public class MeteorSkill : MonoBehaviour
         if (Target.gameObject.tag.Equals("Enemy"))
         {
             EnemyController enemy = Target.GetComponent<EnemyController>();
-            if (enemy != null)
+            int tier = DataController.Instance.GetGameAlliance(Elemental.Wind).WeaponTierLevel.Tier;
+            float _damageplus = (int)DataController.Instance.AllianceDataBases.GetAlliance(Elemental.Wind, tier).weapons.ATKplus;
+            EnemyController enemyController = Target.GetComponent<EnemyController>();
+            if (enemyController != null)
             {
-                enemy?.DealDamge((int)Damage, 0);
+                var element = enemyController.enemy.elemental;
+                if (!element.Equals(Elemental.Earth) && enemyController.enemy.Resistance)
+                {
+                    enemyController.DealDamge(Mathf.RoundToInt(Damage / 2));
+                }
+                else if (element.Equals(Elemental.Ice))
+                {
+                    enemyController.DealDamge((int)Damage, (int)(_damageplus * Damage / 100));
+                }
+                else
+                {
+                    enemyController.DealDamge(Mathf.RoundToInt(Damage));
+                }
                 enemy.DealEffect(Effect.Stun, enemy.transform.position + new Vector3(0, 0.5f, 0), EffectedTime);
             }
         }

@@ -24,6 +24,7 @@ public class Enemy
     private Elemental _elemental;
     [SerializeField]
     private float _bulletSpeed;
+    public bool _resistance;
 
     public float bulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
     public string name { get => _name; set => _name = value; }
@@ -33,6 +34,7 @@ public class Enemy
     public float price { get => _price; set => _price = value; }
     public float armor { get => _armor; set => _armor = value; }
     public float rateOfFire { get => _rateOfFire; set => _rateOfFire = value; }
+    public bool Resistance { get => _resistance; set => _resistance = value; }
     public Health health { get => _health; set => _health = value; }
     public Elemental elemental { get => _elemental; set => _elemental = value; }
 }

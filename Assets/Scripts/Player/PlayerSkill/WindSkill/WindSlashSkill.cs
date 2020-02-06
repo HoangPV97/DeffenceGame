@@ -11,10 +11,10 @@ public class WindSlashSkill : BulletController
     public ParticleSystem ParticleSystem;
     protected override void Start()
     {
-        particleScaler.ScaleByTransform(ParticleSystem, (effectedAoe/10), true);
+        particleScaler.ScaleByTransform(ParticleSystem, (effectedAoe / 10), true);
     }
     // Start is called before the first frame update
-    public void setDataSkill( float _knockback,float _effectAoe )
+    public void setDataSkill(float _knockback, float _effectAoe)
     {
         this.KnockBackDistance = _knockback;
         this.effectedAoe = _effectAoe;
@@ -38,26 +38,28 @@ public class WindSlashSkill : BulletController
         {
             if (!listCheckColision.Contains(_Target.gameObject))
             {
-                EnemyController enemy = _Target.GetComponent<EnemyController>();
+                EnemyController enemyController = _Target.GetComponent<EnemyController>();
                 listCheckColision.Add(_Target.gameObject);
-                if (enemy != null)
+                if (enemyController != null)
                 {
-                    enemy.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemy.transform.position, 0.5f);
-                    IEarthEffectable elemental = enemy.GetComponent<IEarthEffectable>();
-                    if (elemental != null)
+                    enemyController.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", enemyController.transform.position, 0.5f);
+                    var element = enemyController.enemy.elemental;
+                    if (!element.Equals(Elemental.Wind) && enemyController.enemy.Resistance)
                     {
-                        enemy.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
+                        enemyController.DealDamge(Mathf.RoundToInt(bullet.Damage / 2));
+                    }
+                    else if (element.Equals(Elemental.Earth))
+                    {
+                        enemyController.DealDamge(bullet.Damage, Mathf.Round(bullet.ATKplus * bullet.Damage / 100));
                     }
                     else
                     {
-                        enemy.DealDamge(bullet.Damage);
+                        enemyController.DealDamge(bullet.Damage);
                     }
-                    enemy.KnockBack( KnockBackDistance);
+                    enemyController.KnockBack(KnockBackDistance);
                     return;
                 }
-
             }
         }
     }
-
 }

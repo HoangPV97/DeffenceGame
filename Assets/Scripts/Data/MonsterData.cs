@@ -14,6 +14,7 @@ public class MonsterData
     public float Growth;
     public float GrowthATK;
     public float BulletSpeed;
+    public bool Resistance;
 }
 [System.Serializable]
 public class MonsterDataBases
