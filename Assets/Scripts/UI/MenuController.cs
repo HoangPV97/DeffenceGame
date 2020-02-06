@@ -159,8 +159,15 @@ public class MenuController : Singleton<MenuController>
 
     public void OnBtnPlayClick()
     {
-        DataController.Instance.LoadIngameStage();
-        SceneManager.LoadScene(2);
+        if (DataController.Instance.Energy >= 1)
+        {
+            DataController.Instance.Energy--;
+            DataController.Instance.LoadIngameStage();
+            SceneManager.LoadScene(2);
+        }
+        else {
+            Debug.Log("Not Enough energy");
+        }
     }
 
     public void OnBtnHeroClick()

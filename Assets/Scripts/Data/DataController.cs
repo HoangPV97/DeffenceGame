@@ -135,6 +135,21 @@ public class DataController : Singleton<DataController>
             }
         }
     }
+    public int Energy
+    {
+        get { return GameData.Energy; }
+        set
+        {
+            GameData.Energy = value;
+            EnergyTimeStamp = DateTime.Now;
+            Save();
+        }
+    }
+    public DateTime EnergyTimeStamp
+    {
+        get { return GameData.EnergyTimeStamp; }
+        set { GameData.EnergyTimeStamp = value; }
+    }
     #endregion
 
     #region in game
@@ -328,7 +343,6 @@ public class DataController : Singleton<DataController>
         BossStageDataBase = JsonUtility.FromJson<BossStageDataBase>(ConectingFireBase.Instance.GetTextBossStageDatabase());
         ///Load data 
         Load();
-
         //LoadScene Menu
         SceneManager.LoadScene(1);
     }
@@ -655,6 +669,7 @@ public class DataController : Singleton<DataController>
         var sgl = GetGameSkillData(skillID);
         sgl.Level = 1;
     }
+
     public void AddFortressLevel()
     {
         GetFortressGameData().Level++;

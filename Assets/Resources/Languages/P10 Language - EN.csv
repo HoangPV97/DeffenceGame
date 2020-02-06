@@ -1,18 +1,18 @@
 Des1_WEAPON_ICE_SKILL_1_1,Value
 ,
-Name_Wind,Ardella
-Name_Ice,Megan
-Name_Earth,Terra
-Name_Fire,Celes
-Name_Alliance_Wind,Aeilene
-Name_Alliance_Ice,Ellena
-Name_Alliance_Earth,Groggo
-Name_Alliance_Fire,Fairo
+Name_Wind,ARDELLIA
+Name_Ice,MEGAN
+Name_Earth,HECTOR
+Name_Fire,CELES
+Name_Alliance_Wind,AELIENE
+Name_Alliance_Ice,ELLENA
+Name_Alliance_Earth,GROGGO
+Name_Alliance_Fire,FAIRO
 ,
 Name_WEAPON_WIND_SKILL_1,Wind Slash
-Des1_WEAPON_WIND_SKILL_1_1,Shoot 1 powerful arrow that deals damage and rolls enemies back.
-Des1_WEAPON_WIND_SKILL_1_2,Shoot 2 powerful arrows that deal damage and roll enemies back.
-Des1_WEAPON_WIND_SKILL_1_3,Shoot 3 powerful arrows that deal damage and roll enemies back.
+Des1_WEAPON_WIND_SKILL_1_1,Release 1 powerful wind slash that deals damage and rolls enemies back.
+Des1_WEAPON_WIND_SKILL_1_2,Release 2 powerful wind slashes that deal damage and roll enemies back.
+Des1_WEAPON_WIND_SKILL_1_3,Release 3 powerful wind slashes that deal damage and roll enemies back.
 Name_WEAPON_WIND_SKILL_2,Tornado
 Des1_WEAPON_WIND_SKILL_2_1,Create a tornado that causes damage to all enemies at the target location.
 Des1_WEAPON_WIND_SKILL_2_2,Create a tornado that causes damage to all enemies at the target location.
@@ -172,19 +172,19 @@ KnockbackDistance,Knockback distance
 KnockbackDuration,Knockback duration
 EffectedAoe,Area of effect
 TimeEffect,Duration
-IncreaseFireRate,Increasing ATK speed
-IncreaseDamage,Increasing damage
-IncreaseCrit,Increasing critical hit
-SlowdownPercent,Slowdown percent
-HealthRecover,Health recover
+IncreaseFireRate,Bonus ATK speed
+IncreaseDamage,Bonus dmg
+IncreaseCrit,Bonus crit
+SlowdownPercent,Slowdown
+HealthRecover,HP recover
 MeteorNumber,Meteors
-AddedMana,Current mana 
+AddedMana,Mana 
 AddedManaRegen,Mana recover
-CriticalChance,Critical chance
-QuickHandChance,Quickhand chance
-KnockBackChance,Knockback chance
-,
-,
+CriticalChance,Crit
+QuickHandChance,Quickhand
+KnockBackChance,Knockback
+DamagePercent,Dmg
+AddedHPRegen,Bonus HP recover
 NAME_QUEST_1,Monster Hunter
 NAME_QUEST_2,Blacksmith
 NAME_QUEST_3,Spell Caster
@@ -197,8 +197,8 @@ DES_QUEST_1,Kill {0} enemies.
 DES_QUEST_2,Upgrade Heros or Allies successfully {0} times.
 DES_QUEST_3,Cast spells in combat {0} times.
 DES_QUEST_4,Upgrade spells {0} time(s).
-DES_QUEST_5,Complete {0} stage(s) in Boss Mode.
-DES_QUEST_6,Play Endless Mode within {0} seconds.
+DES_QUEST_5,Complete {0} Boss stage(s).
+DES_QUEST_6,Play Endless mode within {0} seconds.
 DES_QUEST_7,Complete {0} Hellish stage(s).
 DES_QUEST_8,Buy materials in Shop by Gem {0} time(s).
 ,

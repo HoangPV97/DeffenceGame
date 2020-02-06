@@ -147,7 +147,7 @@ public class GameController : MonoBehaviour
         if (DataController.Instance.CurrentSelected < DataController.Instance.MaxStage)
             DataController.Instance.CurrentSelected++;
         gameStage.HardMode++;
-        DataController.Instance.Save();
+        DataController.Instance.Energy++;
     }
     public void PauseGame()
     {

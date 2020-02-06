@@ -26,8 +26,8 @@ public class GameData
     public DateTime LastPlayGacha;
     public List<GameDataQuest> gameDataQuests;
     public List<int> gameDataQuestLevels;
-    public int Stamina;
-    public DateTime LastSaveStamina;
+    public int Energy;
+    public DateTime EnergyTimeStamp;
     public List<GameDataAchievement> gameDataAchievements;
     public GameDataAchievement GetGameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
     {
