@@ -239,6 +239,7 @@ public class BossWind1 : EnemyController
             GameplayController.Instance.spawnPosition[se.Position].position, transform.rotation);
         m_Enemy.GetComponent<EnemyController>().SetUpdata(se.Type, level);
         GameController.Instance.EnemyLive += 1;
+        GameController.Instance.EnemyNumber += 1;
         if (se.Number > 0)
         {
             StartCoroutine(IESpawnEnemyBoss(stageEnemyDataBase, i, se.RepeatTime));

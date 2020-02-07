@@ -6,7 +6,7 @@ using TMPro;
 using System;
 public class EnergyController : MonoBehaviour
 {
-    private const int ENERGY_REPLENISH_TIME = 1800, MAX_ENERGY = 5;
+    private const int ENERGY_REPLENISH_TIME = 1800, MAX_ENERGY = 100;
     [SerializeField] private TextMeshProUGUI energyCount, timeCountDown;
     [SerializeField] private GameObject energyPropPrefab, unlimitedEnergyPropPrefab;
     [SerializeField] private Transform energyIcon, cameraCanvas;

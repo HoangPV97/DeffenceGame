@@ -22,7 +22,8 @@ public class MeteorSkill : MonoBehaviour
             if (enemyController != null)
             {
                 var element = enemyController.enemy.elemental;
-                if (!element.Equals(Elemental.Earth) && enemyController.enemy.Resistance)
+                var selectedLevel = DataController.Instance.StageData.Level;
+                if (element.Equals(Elemental.Earth) && enemyController.enemy.Resistance <= selectedLevel)
                 {
                     enemyController.DealDamge(Mathf.RoundToInt(Damage / 2));
                 }

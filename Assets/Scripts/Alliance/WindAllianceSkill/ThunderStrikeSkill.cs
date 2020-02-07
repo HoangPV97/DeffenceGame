@@ -8,7 +8,7 @@ public class ThunderStrikeSkill : MonoBehaviour
     public float EffectedTime, Damage, EffectedAoe;
     private void Start()
     {
-        ParticleScaler.ScaleByTransform(ParticleSystem, (EffectedAoe/10), true);
+        ParticleScaler.ScaleByTransform(ParticleSystem, (EffectedAoe / 10), true);
     }
     // Start is called before the first frame update
     public virtual void SetSkillData(float _EffectedTime, float _Damage, float _EffectedAoe)
@@ -27,7 +27,8 @@ public class ThunderStrikeSkill : MonoBehaviour
             if (enemyController != null)
             {
                 var element = enemyController.enemy.elemental;
-                if (!element.Equals(Elemental.Wind) && enemyController.enemy.Resistance)
+                var selectedLevel = DataController.Instance.StageData.Level;
+                if (element.Equals(Elemental.Wind) && enemyController.enemy.Resistance <= selectedLevel)
                 {
                     enemyController.DealDamge(Mathf.RoundToInt(Damage / 2));
                 }

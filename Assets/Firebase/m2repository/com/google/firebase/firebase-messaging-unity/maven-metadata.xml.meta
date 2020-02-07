@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 30f4d0eb77704ba68bf8dede64390643
+guid: f6a5eb4df3694f6dac9ddc5451ac17db
 labels:
 - gvh
-- gvh_targets-windows-windows64-osx-osxintel-osxintel64-linux-linux32-linux64
 - gvh_version-6.7.0
 timeCreated: 1480838400
 DefaultImporter:

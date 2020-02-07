@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 7f7b9cecf58b463599316e650bec7cb6
+guid: 0625d28dbdd6464a9915e074cb465acf
 labels:
 - gvh
-- gvh_targets-editor
 - gvh_version-6.7.0
 timeCreated: 1480838400
 PluginImporter:
@@ -19,7 +18,7 @@ PluginImporter:
       enabled: 0
       settings: {}
     Editor:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
@@ -29,13 +28,13 @@ PluginImporter:
       settings:
         CPU: None
     Linux64:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: None
+        CPU: x86_64
     LinuxUniversal:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: None
+        CPU: AnyCPU
     OSXIntel:
       enabled: 0
       settings:

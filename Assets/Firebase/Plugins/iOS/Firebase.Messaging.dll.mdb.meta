@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 7f7b9cecf58b463599316e650bec7cb6
+guid: 968fd831eb674f998afac222d3a1edc3
 labels:
 - gvh
-- gvh_targets-editor
 - gvh_version-6.7.0
 timeCreated: 1480838400
 PluginImporter:
@@ -67,7 +66,7 @@ PluginImporter:
       settings:
         CPU: AnyCPU
     iOS:
-      enabled: 0
+      enabled: 1
       settings:
         CompileFlags:
         FrameworkDependencies:

@@ -113,14 +113,15 @@ public class TornardoSkill : MonoBehaviour
     public void Hurted(EnemyController _enemyCtr)
     {
         _enemyCtr.gameEffect.SpawnEffect("HERO_WIND_BULLET_IMPACT", _enemyCtr.transform.position, 0.5f);
-        if (_enemyCtr.enemy.elemental.Equals(Elemental.Wind) && _enemyCtr.enemy.Resistance)
+        var selectedLevel = DataController.Instance.StageData.Level;
+        if (_enemyCtr.enemy.elemental.Equals(Elemental.Wind) && _enemyCtr.enemy.Resistance <= selectedLevel)
         {
             _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond / 2));
         }
         else if (_enemyCtr.enemy.elemental.Equals(Elemental.Earth))
         {
             float damageplus = DataController.Instance.inGameWeapons.ATKplus;
-            _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond),damageplus);
+            _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond), damageplus);
         }
         else
         {

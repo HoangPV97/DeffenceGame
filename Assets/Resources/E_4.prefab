@@ -285,6 +285,7 @@ MonoBehaviour:
       healthValueText: {fileID: 0}
     _elemental: 3
     _bulletSpeed: 0
+    _resistance: 0
   skeletonAnimation: {fileID: 2329509318956476609}
   attack: {fileID: 11400000, guid: aa82f06c6158e334da5ed3d4c7e0de40, type: 2}
   idle: {fileID: 11400000, guid: 008a9abde83cdef419862a511d43e69b, type: 2}
@@ -434,7 +435,7 @@ PrefabInstance:
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}

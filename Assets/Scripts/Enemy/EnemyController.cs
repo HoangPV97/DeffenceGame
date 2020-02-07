@@ -332,11 +332,13 @@ public class EnemyController : MonoBehaviour
     {
         if (collider2D.gameObject.tag.Equals("Enemy"))
         {
-            if (gameObject.transform.position.y < collider2D.gameObject.transform.position.y && !CheckLayerEnemy)
+            var rendererCollider = collider2D.GetComponent<MeshRenderer>();
+            if (gameObject.transform.position.y < collider2D.gameObject.transform.position.y)
             {
-                renderer.sortingOrder = 1;
-                collider2D.GetComponent<MeshRenderer>().sortingOrder = 0;
-                CheckLayerEnemy = true;
+                if (renderer.sortingOrder <= rendererCollider.sortingOrder)
+                {
+                    renderer.sortingOrder = rendererCollider.sortingOrder + 1;
+                }
             }
         }
     }
@@ -344,7 +346,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collider2D.gameObject.tag.Equals("Enemy") && CheckLayerEnemy)
         {
-            renderer.sortingOrder = 0;
+            renderer.sortingOrder = -1;
             CheckLayerEnemy = false;
         }
     }

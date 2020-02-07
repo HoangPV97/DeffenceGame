@@ -29,7 +29,8 @@ public class BlizzardSkill : BulletController
             {
                 enemyController.gameEffect.SpawnEffect("ALLIANCE_ICE_BULLET_IMPACT", enemyController.transform.position, 0.5f);
                 var element = enemyController.enemy.elemental;
-                if (!element.Equals(Elemental.Ice) && enemyController.enemy.Resistance)
+                var selectedLevel = DataController.Instance.StageData.Level;
+                if (element.Equals(Elemental.Ice) && enemyController.enemy.Resistance <= selectedLevel)
                 {
                     enemyController.DealDamge(Mathf.RoundToInt(bullet.Damage / 2));
                 }

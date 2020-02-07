@@ -46,9 +46,10 @@ public class SlowSkill : MonoBehaviour
             {
                 enemyController.Deal_Slow_Effect(SlowSkillData.EffectedTime, SlowSkillData.SlowdownPercent);
                 var element = enemyController.enemy.elemental;
+                var selectedLevel = DataController.Instance.StageData.Level;
                 int _damage = (int)SlowSkillData.Damage;
                 int _damageplus = (int)DataController.Instance.inGameWeapons.ATKplus;
-                if (!element.Equals(Elemental.Earth) && enemyController.enemy.Resistance)
+                if (element.Equals(Elemental.Earth) && enemyController.enemy.Resistance <= selectedLevel)
                 {
                     enemyController.DealDamge(_damage / 2);
                 }
@@ -60,7 +61,7 @@ public class SlowSkill : MonoBehaviour
                 {
                     enemyController.DealDamge(_damage);
                 }
-            }   
+            }
         }
     }
 }

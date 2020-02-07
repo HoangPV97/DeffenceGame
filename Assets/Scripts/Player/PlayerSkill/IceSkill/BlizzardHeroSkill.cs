@@ -97,11 +97,12 @@ public class BlizzardHeroSkill : MonoBehaviour
     public void Hurted(EnemyController _enemyCtr)
     {
         _enemyCtr.gameEffect.SpawnEffect("HERO_ICE_BULLET_IMPACT", _enemyCtr.transform.position, 0.5f);
-        if (_enemyCtr.enemy.elemental.Equals(Elemental.Wind) && _enemyCtr.enemy.Resistance)
+        var selectedLevel = DataController.Instance.StageData.Level;
+        if (_enemyCtr.enemy.elemental.Equals(Elemental.Ice) && _enemyCtr.enemy.Resistance <= selectedLevel)
         {
             _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond / 2));
         }
-        else if (_enemyCtr.enemy.elemental.Equals(Elemental.Earth))
+        else if (_enemyCtr.enemy.elemental.Equals(Elemental.Fire))
         {
             float damageplus = DataController.Instance.inGameWeapons.ATKplus;
             _enemyCtr.DealDamge((int)(Tornardo.DamagePerSecond), damageplus);
