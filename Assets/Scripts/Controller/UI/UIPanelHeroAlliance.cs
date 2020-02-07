@@ -64,6 +64,13 @@ public class UIPanelHeroAlliance : BaseUIView
                 DataController.Instance.ElementalSlot2 = currentSelectedHero.elemental;
             SetupUIHero(currentSelectedHero.elemental);
         }
+
+        for (int i = 0; i < UIHeroItems.Length; i++)
+        {
+            if (UIHeroItems[i].elemental != currentSelectedHero.elemental)
+                UIHeroItems[i].SetupData();
+        }
+
     }
 
     private void OnUnEquip()
@@ -125,7 +132,24 @@ public class UIPanelHeroAlliance : BaseUIView
         DG.Tweening.DOVirtual.DelayedCall(0.02f, () =>
         {
             Debug.Log("?????????????????");
-            UIHeroItems[0].OnSelected();
+            if (isHero)
+            {
+                GetUIHeroItem(DataController.Instance.CurrentSelectedWeapon).OnSelected();
+            }
+            else
+            {
+                if (DataController.Instance.ElementalSlot1 != Elemental.None)
+                {
+                    GetUIHeroItem(DataController.Instance.ElementalSlot1).OnSelected();
+                    return;
+                }
+                if (DataController.Instance.ElementalSlot2 != Elemental.None)
+                {
+                    GetUIHeroItem(DataController.Instance.ElementalSlot2).OnSelected();
+                    return;
+                }
+                UIHeroItems[0].OnSelected();
+            } // UIHeroItems[0].OnSelected();
         });
 
     }

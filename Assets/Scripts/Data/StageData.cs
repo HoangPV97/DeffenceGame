@@ -98,3 +98,10 @@ public class StageEnemy
     public int Position;
     public int Number;
 }
+public class StageEnemyDungeon
+{
+    public int Level;
+    public string ID; 
+    public int Duration;
+    public List<StageEnemy> stageEnemies;
+}

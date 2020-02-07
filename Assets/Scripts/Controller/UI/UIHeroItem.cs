@@ -52,10 +52,10 @@ public class UIHeroItem : MonoBehaviour
             gameObject.SetActive(false);
             gameObject.SetActive(true);
             Animator.Play("HeroItemDefault");
-            Equip.gameObject.SetActive(false);
             Selected[0].SetActive(false);
             Selected[1].SetActive(false);
         }
+        Equip.gameObject.SetActive(false);
         string unlock = "Clear - {0}\n to \n Unlock";
         int LevelUnlock = 0;
         GameDataWeapon weapon;

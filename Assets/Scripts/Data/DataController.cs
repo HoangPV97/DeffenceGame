@@ -140,6 +140,8 @@ public class DataController : Singleton<DataController>
         get { return GameData.Energy; }
         set
         {
+            if (value > 5)
+                value = 5;
             GameData.Energy = value;
             EnergyTimeStamp = DateTime.Now;
             Save();
