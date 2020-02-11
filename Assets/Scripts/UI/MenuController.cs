@@ -19,6 +19,8 @@ public class MenuController : Singleton<MenuController>
     public UIButton BtnGacha;
     public UIButton BtnQuest;
     public UIReward UIReward;
+    public UIDailyReward UIDailyReward;
+    public UIButton BtnDaily;
     public TextMeshProUGUI txtGold, txtGem;
     bool _GachafailUpgrade;
     public bool GachafailUpgrade
@@ -76,6 +78,7 @@ public class MenuController : Singleton<MenuController>
         ResetTextGold();
         BtnGacha.SetUpEvent(OnBtnGachaClick);
         CheckEnableGacha();
+        BtnDaily.SetUpEvent(OnBtnDailyClick);
     }
 
     public void CheckEnableGacha()
@@ -152,6 +155,11 @@ public class MenuController : Singleton<MenuController>
         UIReward.SetUpData(items);
     }
 
+    public void OnBtnDailyClick()
+    {
+        UIDailyReward.SetUpData();
+    }
+
     public void OnBtnGachaClick()
     {
         UIGacha.OnShow();
@@ -165,7 +173,8 @@ public class MenuController : Singleton<MenuController>
             DataController.Instance.LoadIngameStage();
             SceneManager.LoadScene(2);
         }
-        else {
+        else
+        {
             Debug.Log("Not Enough energy");
         }
     }

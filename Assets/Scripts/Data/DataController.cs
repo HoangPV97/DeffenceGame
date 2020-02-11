@@ -243,6 +243,8 @@ public class DataController : Singleton<DataController>
             if ((float)((DateTime.Now - GameData.timeStamp).TotalSeconds) >= 24 * 60 * 60 || DateTime.Now.Hour < GameData.timeStamp.Hour)
             {
                 GameData.ResetDailyQuest();
+                if (GameData.DailyLogin == GameData.DailyLoginDone && GameData.DailyLogin < 21)
+                    GameData.DailyLogin++;
                 Save();
             }
     }
@@ -279,6 +281,8 @@ public class DataController : Singleton<DataController>
             new SaveGameTierLevel { Level = 0, Tier = 1,Des = "FORTRESS_SKILL_3" },
             new SaveGameTierLevel { Level = 0, Tier = 1,Des = "FORTRESS_SKILL_4" }},
             CurrentStage = 1,
+            DailyLogin = 1,
+            DailyLoginDone = 0,
             gameDataWeapons = new List<GameDataWeapon> {
                 new GameDataWeapon
         {
@@ -968,6 +972,26 @@ public class DataController : Singleton<DataController>
     public void SaveLastPlayGacha()
     {
         GameData.LastPlayGacha = DateTime.Now;
+    }
+
+    public int GetDailyLoginNumber()
+    {
+        return GameData.DailyLogin;
+    }
+
+    public int GetDailyLoginNumberDone()
+    {
+        return GameData.DailyLoginDone;
+    }
+
+    public void AddDailyLoginNumberDone()
+    {
+        GameData.DailyLoginDone++;
+    }
+
+    public void AddDailyLoginNumber()
+    {
+        GameData.DailyLogin++;
     }
 }
 

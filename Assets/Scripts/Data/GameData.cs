@@ -29,6 +29,7 @@ public class GameData
     public int Energy;
     public DateTime EnergyTimeStamp;
     public List<GameDataAchievement> gameDataAchievements;
+    public int DailyLogin, DailyLoginDone;
     public GameDataAchievement GetGameDataAchievement(ACHIEVEMENT_TYPE _TYPE)
     {
         if (gameDataAchievements == null)

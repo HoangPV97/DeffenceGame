@@ -16,7 +16,7 @@ public class UIItemAchievement : MonoBehaviour
         _TYPE = (ACHIEVEMENT_TYPE)index;
         var gda = DataController.Instance.GetGameDataAchievement(_TYPE);
         var gdb = DataController.Instance.GetAchievementDatabase(_TYPE);
-        Debug.Log(index + ":" + _TYPE);
+       // Debug.Log(index + ":" + _TYPE);
         txtName.text = Language.GetKey("NAME_" + _TYPE);
         txtDes1.text = string.Format(Language.GetKey("DES1_" + _TYPE), gda.Target);
         txtDes2.text = string.Format(Language.GetKey("DES2_" + _TYPE), gdb.GetReward(gda.Level));
