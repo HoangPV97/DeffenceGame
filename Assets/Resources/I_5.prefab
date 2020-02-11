@@ -254,6 +254,7 @@ MonoBehaviour:
       healthValueText: {fileID: 0}
     _elemental: 2
     _bulletSpeed: 0
+    _resistance: 0
   skeletonAnimation: {fileID: 9124661697560551847}
   attack: {fileID: 11400000, guid: 2e6791d069f88364dbc9be5f21d7bfc7, type: 2}
   idle: {fileID: 11400000, guid: c674c367dd3ded44e8b0eacf4b0a891e, type: 2}
@@ -270,6 +271,8 @@ MonoBehaviour:
   canvas: {fileID: 880590222981525886}
   boxCollider2D: {fileID: 6292061646329833473}
   KnockBackDistance: {x: 0, y: 0, z: 0}
+  BulletName: ENEMY_ICE_BULLET_1
+  Barrel: {fileID: 7857216459765961333}
 --- !u!1 &6292061646712227653
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,17 +367,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4863626066266363660, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c7c1a83468a89b54788eddea51ae4488,
         type: 3}
+    - target: {fileID: 4674961460655832935, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4674961459942323408, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -485,15 +488,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 142.00098
       objectReference: {fileID: 0}
-    - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 145
-      objectReference: {fileID: 0}
     - target: {fileID: 4674961460655832934, guid: 047aa3e3016052441b4c2a011841725b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 142.00133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674961459929325922, guid: 047aa3e3016052441b4c2a011841725b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 145
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047aa3e3016052441b4c2a011841725b, type: 3}

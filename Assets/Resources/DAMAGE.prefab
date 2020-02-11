@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3701410317760825482}
   - component: {fileID: 2628655676979376306}
   m_Layer: 0
-  m_Name: DamageText
+  m_Name: DAMAGE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
 --- !u!33 &3701410317760825482
 MeshFilter:
   m_ObjectHideFlags: 0

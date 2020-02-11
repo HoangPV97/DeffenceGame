@@ -119,11 +119,7 @@ public class EnemyController : MonoBehaviour
         isMove = false;
         CurrentState = EnemyState.Die;
         Rigidbody2D.velocity = Vector2.zero;
-        var lText = GetComponentsInChildren<LoadingText>();
-        for (int i = 0; i < lText.Length; i++)
-        {
-            ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
-        }
+        
         canvas.gameObject.SetActive(false);
         boxCollider2D.enabled = false;
         if (effectObj != null)
@@ -133,7 +129,11 @@ public class EnemyController : MonoBehaviour
         {
             Despawn(effectObj);
         }
-
+        var lText = GetComponentsInChildren<LoadingText>();
+        for (int i = 0; i < lText.Length; i++)
+        {
+            ObjectPoolManager.Instance.DespawnObJect(lText[i].gameObject);
+        }
         GameController.Instance.OnEnemyDie(1);
         Despawn(gameObject);
     }
