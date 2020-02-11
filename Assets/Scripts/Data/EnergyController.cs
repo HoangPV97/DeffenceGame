@@ -30,7 +30,7 @@ public class EnergyController : MonoBehaviour
         {
 
             deltaTime = (DateTime.Now - saveTimeStamp).TotalSeconds;
-            if (deltaTime < -ENERGY_REPLENISH_TIME)
+            if (deltaTime < - ENERGY_REPLENISH_TIME)
             {
                 DataController.Instance.EnergyTimeStamp = DateTime.Now;//user hack time
                 deltaTime = 0;
@@ -40,7 +40,7 @@ public class EnergyController : MonoBehaviour
                 saveTimeStamp = DateTime.Now;
                 DataController.Instance.Energy++;//add a energy
                 currentEnergy = DataController.Instance.Energy;
-
+                energyCount.text = DataController.Instance.Energy + "/" + MAX_ENERGY;
             }
             if (DataController.Instance.Energy < MAX_ENERGY)//calculate the remain time and convert to minute and second
             {

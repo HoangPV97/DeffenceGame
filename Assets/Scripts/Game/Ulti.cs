@@ -119,6 +119,14 @@ public enum ITEM_TYPE
     Upgrade_Spell_Ice_2,
     Upgrade_Spell_Earth_2,
     Upgrade_Spell_Fire_2,
+    Unlock_Weapon_Wind_Skill4,
+    Unlock_Weapon_Earth_Skill4,
+    Unlock_Weapon_Ice_Skill4,
+    Unlock_Weapon_Fire_Skill4,
+    Unlock_Alliance_Wind_Skill4,
+    Unlock_Alliance_Earth_Skill4,
+    Unlock_Alliance_Ice_Skill4,
+    Unlock_Alliance_Fire_Skill4
 }
 [System.Serializable]
 public class ItemDataBase
